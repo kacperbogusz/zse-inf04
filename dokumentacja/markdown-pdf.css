@@ -1,0 +1,302 @@
+/* ============================================================
+   markdown-pdf.css — Styl dla dokumentacji kodu
+   Font: Inter (Google Fonts)
+   Cel: czytelna, kompaktowa dokumentacja techniczna
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ── Zmienne ── */
+:root {
+  --text: #1a1d23;
+  --text-muted: #5a6070;
+  --heading: #0f1117;
+  --accent: #2563eb;
+  --accent-light: #eff6ff;
+  --border: #e2e6ed;
+  --code-bg: #f6f8fa;
+  --code-border: #d0d7de;
+  --table-head: #f0f4f8;
+  --link: #2563eb;
+  --blockquote: #64748b;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --size-base: 12.5px;
+  --line-height: 1.7;
+}
+
+/* ── Reset & base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--size-base);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--size-base);
+  line-height: var(--line-height);
+  color: var(--text);
+  background: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nagłówki ── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  color: var(--heading);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.9em;
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.35em;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+
+h3 {
+  font-size: 1.12em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+h4 {
+  font-size: 0.95em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+h5,
+h6 {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ── Akapity ── */
+p {
+  margin: 0 0 0.85em;
+}
+
+/* ── Linki ── */
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+a:hover {
+  border-bottom-color: var(--link);
+}
+
+/* ── Listy ── */
+ul,
+ol {
+  margin: 0 0 0.85em 0;
+  padding-left: 1.6em;
+}
+
+li {
+  margin-bottom: 0.2em;
+}
+
+li > ul,
+li > ol {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+/* ── Kod inline ── */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  color: #c0392b;
+  font-weight: 500;
+}
+
+/* ── Bloki kodu ── */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  margin: 0 0 1.2em;
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* ── Tabele ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.2em;
+  font-size: 0.88em;
+}
+
+thead {
+  background: var(--table-head);
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5em 0.85em;
+  border: 1px solid var(--border);
+  color: var(--heading);
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+}
+
+td {
+  padding: 0.45em 0.85em;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: #fafbfc;
+}
+
+/* ── Cytaty (blockquote) ── */
+blockquote {
+  margin: 0 0 1em;
+  padding: 0.7em 1em;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light);
+  color: var(--blockquote);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9em;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* ── Linia pozioma ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.8em 0;
+}
+
+/* ── Obrazy ── */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 0.5em auto;
+}
+
+/* ── Pogrubienie i kursywa ── */
+strong {
+  font-weight: 600;
+  color: var(--heading);
+}
+
+em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ── Checkbox (GitHub task list) ── */
+input[type="checkbox"] {
+  margin-right: 0.4em;
+}
+
+/* ── Podziały stron (page break) ── */
+.page {
+  page-break-after: always;
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    font-size: 11px;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.7em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  pre,
+  code {
+    font-size: 0.78em;
+  }
+
+  a {
+    color: var(--text);
+    border-bottom: none;
+  }
+
+  /* Nie łam bloków kodu przez strony */
+  pre {
+    page-break-inside: avoid;
+  }
+
+  /* Nie łam nagłówków od treści */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+}
