@@ -1,0 +1,225 @@
+ 
+    
+ 
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Oznaczenie kwalifikacji: INF.04  
+Numer zadania: 01 
+Wersja arkusza: SG 
+ 
+ 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+ 
+ 
+ 
+ 
+ 
+      Czas trwania egzaminu: 180 minut.                        INF.04 -01-21.06 -SG 
+ 
+EGZAMIN ZAWODOWY  
+Rok 2021  
+CZĘŚĆ PRAKTYCZNA  
+ 
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL            
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.  
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz: 
+ swój numer  PESEL*,  
+ oznaczenie  kwalifikacji,  
+ numer  zadania,  
+ numer  stanowiska.  
+3. Sprawdź, czy  arkusz egzaminacyjny zawiera 5  stron i nie zawiera  błędów. Ewentualny brak stron lub 
+inne usterki zgłoś przez podniesienie ręki przewodniczącemu zespołu  nadzorującego.  
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten 
+nie jest wliczany do czasu trwania  egzaminu.  
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu 
+nadzorującego.  
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji  
+pracy.  
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ 
+OCENY na swoim stanowisku lub w miejscu wskazanym prz ez przewodniczącego zespołu 
+nadzorującego.  
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.  
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub innego dokumentu potwierdzającego tożsamość  
+ 
+ 
+ 
+ 
+Układ graficzny  
+© CKE 2020
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+ 
+ 
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019             
+ 
+ 
+Strona 2 z 5 Zadanie egzaminacyjne  
+Wykonaj aplikację konsolową oraz mobilną według wskazań. Udokumentuj obie aplikacje zrzutami ekranu 
+i komentarzami zgodnie z opisem w części III instrukcji do zadania . W tym celu zaloguj się na konto Egzamin  
+bez hasła.  
+Utwórz folder i nazwij go swoim numerem PESEL. W folderze utwórz trzy podfoldery: konsola , mobilna , 
+dokumentacja . Po wykonaniu każdej aplikacji, jej pełny kod (cały projekt) skopiuj do odpowiedniego folderu. 
+Dokumentację obu aplikacji w postaci zrzutów ekranu i dokumentu umieść w  podfolderze dokumentacja . 
+Część I.  Aplikacja konsolowa  
+Napisz program sortujący tablicę metodą przez wybieran ie według zamieszczonej dokumentacji:  
+Sortowanie przez wybieranie - jedna z prostszych metod sortowania o złożoności O(n2). Polega na 
+wyszukaniu elementu mającego się znaleźć na żądanej pozycji i zamianie miejscami z tym, który jest tam 
+obecnie. Operacja j est wykonywana dla wszystkich indeksów sortowanej tablicy.  
+Algorytm przedstawia się następująco:  
+1. wyszukaj minimalną wartość z tablicy spośród elementów od i do końca tablicy  
+2. zamień wartość minimalną, z elementem na pozycji i  
+Gdy zamiast wartości minimalnej  wybierana będzie maksymalna, wówczas tablica będzie posortowana 
+od największego do najmniejszego elementu.  
+Założenia do programu  
+‒ Program wykonywany w konsoli . 
+‒ Obiektowy j ęzyk programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym: C++ lub 
+C# lub Java lub Python . 
+‒ Sortowanie odbywa się malejąco, nie wykorzystuje  gotowych funkcji do sortowania oraz do szukania 
+maksimum . 
+‒ Sortowana jest tablica 10 liczb całkowitych . Tablica jest polem klasy . 
+‒ Tablica jest wczytywana z klawiatury po uprzednim wypisaniu odpowiedniego komunikatu . 
+‒ Wszystkie elementy posortowanej tablicy są wyświetlane na ekranie . 
+‒ Klasa zawiera co najmniej dwie metody : sortującą i szukającą wartość najwyżs zą. Widzialność 
+metody szukającej ogranicza się jedynie do klasy.  
+‒ Metoda  szukająca zwraca wartość, w zależności od przyjętej taktyki może być to wartość 
+maksymalna lub index wartości maksymalnej . 
+‒ Program powinien być zapisany czytelnie, z zasadami czystego formatowania kodu, należy stosować 
+znaczące nazwy zmiennych i funkcji . 
+‒ Dokumentacja do programu wykonana zgodnie z wytycznymi z części III zadania egzaminacyjnego . 
+Kod aplikacji (cały folder projekt u) przygotuj do nagrania na płytę ( skopiuj do folderu z numerem PESEL, do 
+podfolderu konsola ). 
+Część II.  Aplikac ja mobilna  
+Wykonaj aplikację mobilną za pomocą środowiska programistycznego dostępnego na stanowisku 
+egzaminacyjnym oraz uruchom ją w dostępnym emulatorze systemu mobilnego.  
+ 
+Strona 3 z 5   
+Obraz 1a.  
+Emulacja na urządzeniu Nexus 5X API 29 x86.  
+Aplikację utworzono w Android  Studio  Obraz 1b.  
+Emulacja na systemie Android 
+Oreo.  Aplikację utworzono w MS 
+Visual Studio  
+Na obraz ach 1a i 1b  przedstawiono działanie aplikacji mobilnej . W zależności od użytego środowiska 
+programistycznego oraz emulowanego systemu  wynik końcowy może nieznacznie się różnić.  
+Opis wyglądu a plikacj i 
+‒ Napis  „Rejestruj konto ”. 
+‒ Napis „Podaj e -mail:”, a pod nim pole edycyjne z podpowiedzią o treści „email” . 
+‒ Napis „Podaj hasło:”, a pod nim pole edycyjne do wprowadzenia hasła, realizuje ukrywanie hasła jak 
+na obrazach 1 a i 1b.  
+‒ Napis „Powtórz hasło:”, a pod nim pole edycyjne do wprowadzenia hasła, realizuje ukrywanie hasła 
+jak na obrazach 1a i 1b.  
+‒ Przycisk o treści „Z ATWIERDŹ” , jest on wyśrodkowany . 
+‒ Obszar do wyświetlania komunikatów , jest on wyśrodkowany . 
+Działanie aplikacji  
+‒ Po wybraniu przycisku ZATWIERDŹ jest sprawdzane:  
+‒ Czy e-mail zawiera znak @ . 
+‒ Czy podane hasło jest równe powtórzonemu hasłu . 
+‒ W obszarze do wyświet lania komunikatów pojawia się napis : 
+‒ Na początku działania aplikacji: „Autor”, dalej wstawiony numer PESEL  zdającego . 
+‒ Po zatwierdzeniu, g dy e-mail jest niepoprawny: „Nieprawidłowy adres e -mail” . 
+‒ Po zatwierdzeniu, gdy hasła się różnią: „Hasła się różnią” . 
+‒ Po zatwierdzeniu, gdy nie wystąpiły błędy: „Witaj <e-mail>”, gdzie <e -mail> oznacza aktualnie 
+wprowadzony adres e -mail. 
+  
+
+ 
+Strona 4 z 5 Założenia aplikacji  
+‒ Interfejs użytkownika zapisany za pomocą języka znaczników wspieranego w danym środowisku (np. 
+XAML, XML) . 
+‒ Zastosowany typ rozkładu lin iowy (Linear / S tack lub inny o tej idei ). 
+‒ Zastosowan y kolor  tła dla napisu „Rejestruj konto” : Teal (#008080)  ,zgodnie z Obrazem 1a . 
+‒ Zastosowan y kolory czcionki: czarny  i biały, zgodnie z Obrazem 1a . 
+‒ Czcionka n apisu „Rejestruj k onto” jest wizualnie większ a od pozostałych . 
+‒ Pola edycyjne są rozciągnięte na całą szerokość  ekranu . 
+‒ Aplikacja powinna być zapisan a czytelnie, z zasadami czystego formatowania kodu, stosować 
+znaczące nazwy zmiennych i funkcji . 
+‒ Dokumentacja do programu wykonana zgodnie z wytycznymi z części III zadania egzaminacyjn ego. 
+Kod aplikacji (cały folder projekt u) przygotuj do nagrania na płytę ( skopiuj do folderu z  numerem PESEL, do 
+podfolderu mobilna ). 
+Część III . Dokumentacja utworzonych aplikacji  
+Wykonaj dokumentację aplikacji utworzonych podczas  egzamin u. W kodzie źródłowym aplikacji konsolowej  
+utwórz nagłówek metod y sortującej i szukającej , według wzoru  umieszczonego w listingu 1 . Nagłówek 
+powinien znaleźć się w kodzie źródłowym nad metodą . W mie jscu nawiasów <> należy podać nazw ę funkcji, 
+nazwy parametrów (lub słowo „brak”) oraz zwięzłe informacje (kilka słów) – zgodnie ze wzorcem. W  miejscu 
+autor należy podać swój numer PESEL  
+Listing 1. Wzór dokumentacji funkcji  
+/******************************** ************************  
+ * nazwa funkcji:       <tu wstaw nazwę funkcji>  
+ * parametry wejściowe: <naz wa parametru> - <co przechowuje > 
+ * wartość zwracana:    <co zwraca funkcja – opis> 
+ * autor:               <numer PESEL zdającego>  
+ * ****************************************************/  
+Wykonaj zrzuty ekranu dokumentujące uruchomienie aplikacji.  Zrzuty powinny obejmować cały obszar 
+ekranu z widocznym paskiem zadań.  Jeżeli aplikacja uruchamia się , na zrzucie należy umieścić okno 
+z wynikiem działania programu oraz otwarte środowisko programistyczne z projektem. Jeżeli aplikacja nie 
+uruchamia się z powodu błędów kompilacji, należy na zrzucie umieścić okno ze spisem błędów i widocznym 
+otwartym środowiskiem programistycznym. Wymagane zrz uty ekranu:  
+‒ z aplikacji konsolowej – konsola.jpg  
+‒ z aplikacji mobilnej – mobilna.jpg  
+W edytorze tekstu pakietu biurowego utwórz  plik z dokumentacją i nazwij go egzamin .  
+Dokument  powinien zawierać podpisane zrzuty ekranu  oraz zapisane informacje:  
+‒ nazwę syst emu operacyjnego , na którym pracował zdający  
+‒ nazwy środowisk  programistycznych , z których zdający korzystał na egzaminie  
+‒ nazwy języków programowania użytych podczas tworzenia aplikacji  
+‒ nazwę emulowanego urządzenia  lub systemu,  na którym uruchomiono aplikację mobilną   
+‒ opcjonalnie komentarz do wykonanej pracy.  
+Dokumentacja powinna się znajdować w podfolderze dokumentacja  
+ 
+Strona 5 z 5 UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numerem PESEL powinny się znajdować podfoldery 
+dokumentacja, konsola , mobilna.  W folderze dokumentacja powinny znaleźć się  pliki: konsola.jpg, 
+mobilna.jpg, egzamin. W  folderze konsola: cały projekt aplikacji konsolowej. W folderze mobilna: cały projekt 
+aplikacji mobilnej, ewentualnie inne przygotowane pliki. Po nagraniu płyty sprawdź poprawność nagrania. 
+Opisz płytę swoim numerem PESEL i  pozostaw na stanowisku, zapakowaną w pudełku wraz z  arkuszem 
+egzaminacyjnym.  
+ 
+Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+Ocenie będ ą podlegać 4 rezultat y 
+‒ Implementacja, kompilacja , uruchomienie programu , 
+‒ Aplikacja konsolowa , 
+‒ Aplikacja mobilna , 
+‒ Dokumentacja aplikacji . 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+Wypełnia zdający 
+Do arkusza egzaminacyj nego dołączam płytę CD opisaną numerem PESEL
+której jakość nagrania została przeze m nie sprawdzona.  
+Wypełnia Przewodniczący ZN 
+Potwierdzam, że do arkusza egzaminacyjnego dołączona  jest płyta CD, opisana numerem PESEL zdają cego.
+……………………………… 
+ Czytelny podpis Przewodnicz ącego ZN   ,

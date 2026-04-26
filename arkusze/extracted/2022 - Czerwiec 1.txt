@@ -1,0 +1,193 @@
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Oznaczenie kwalifikacji: INF.04  
+Numer zadania: 01 
+Wersja arkusza: SG 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+      Czas trwania egzaminu: 180 minut.           INF.04 -01-22.06-SG 
+EGZAMIN ZAWODOWY  
+Rok 202 2 
+CZĘŚĆ PRAKTYCZNA  
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz:
+−swój numer  PESEL*,
+−oznaczenie  kwalifikacji,
+−numer  zadania,
+−numer  stanowiska.
+3. Sprawdź, czy arkusz egzaminacyjny zawiera 5 stron i nie zawiera  błędów. Ewentualny brak stron lub
+inne usterki zgłoś przez podniesienie ręki przewodniczącemu zespołu  nadzorującego.
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten
+nie jest wliczany do czasu trwania  egzaminu.
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu
+nadzorującego.
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji
+pracy.
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ
+OCENY na swoim stanowisku lub w miejscu wskazanym przez przewodniczącego zespołu
+nadzorującego.
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub innego dokumentu potwierdzającego tożsamość
+Układ graficzny  
+© CKE 2020
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019  
+Strona 2 z 5 Zadanie egzaminacyjne  
+UWAGA: katalog z rezultatami pracy oraz płytę należy opisać numerem, którym został podpisany arkusz, 
+czyli numerem PESEL lub w przypadku jego braku numerem paszportu.  
+Wykonaj aplikację konsolową oraz mobilną według wskazań. Wykonaj dokumentację do aplikacji konsolowej, 
+zgodnie z  opisem w części III  instrukcji do zadania . W tym celu zaloguj się na konto Egzamin bez hasła . 
+Utwórz folder i nazwij go swoim numerem. W folderze utwórz podfoldery: konsola , mobilna , dokumentacja . 
+Po wykonaniu każdej aplikacji, jej pełny kod (cały folder projektu) spakuj do archiwum . Następnie pozostaw 
+w folderze jedynie pliki źródłowe, których treść modyfikowałeś, plik uru chomieniowy, jeśli jest to możliwe oraz 
+spakowane archiwum.  
+Część I.  Aplikacja konsolowa  
+Napisz program implementujący algorytm przeszukiwania tablicy z wartownikiem. Opis algorytmu znajduje 
+się w ramce.  
+By odnaleźć element x podejmiemy następujące kroki : 
+1.na końcu tablicy (pod indeksem n+1) wstawimy szukany element x - będzie to nasz wartownik,
+w przypadku , gdy nie znajdziemy go nigdzie indziej w tablicy, zabezpieczy nas on przed wyjściem
+poza tablicę,
+2.przejdziemy po kolejnych elementach tablicy, tak długo aż nie znajdziemy szukanego elementu,
+3.w momencie znalezienia szukanego elementu x sprawdzamy, który jes t to element tablicy? Jeżeli
+jest to ostatni element tablicy (n+1) to trafiliśmy na naszego wartownika i oznacza to, że w tablicy
+nie było szukanego elementu x, w przeciwnym razie element x został odnaleziony.
+Założenia do programu : 
+‒ Program wykonywany w konsoli . 
+‒ Zastosowany o biektowy j ęzyk programowania zgodny z zainstalowanym na stanowisku 
+egzaminacyjnym: C++ lub C# , lub Java , lub Python . 
+‒ Przeszukiwana jest minimum 50 elementowa  tablica liczb całkowitych  wypełniona wartościami 
+pseudo losowymi  z zakresu od 1 do 100 .  
+‒ Wyszukiwane jest pierwsze wystąpienie elementu w tablicy.  
+‒ Wypełnianie tablicy i p rzeszukiwanie jest realizowane w oddzielnych funkcj ach / metod ach. Funkcja 
+przeszukująca zwraca indeks odnalezionego elementu . 
+‒ Wartość do wyszukania jest pobierana z klawiatury . 
+‒ Po przeszukaniu tablicy na ekranie wyświetlan a jest zawartość tablicy (liczby oddzielone przecinkami) 
+oraz indeks, pod którym odszukano wartość lub w  przypadku jej braku – stosowny komunikat.  
+‒ Program powinien podejmo wać zrozumiałą  komunikację z użytkownikiem, dane wprowadzane 
+i wyprowadzane powinny być opatrzone zrozumiałym opisem .  
+‒ Program powinien być zapisany czytelnie, z zachowaniem zasad  czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkc ji. 
+‒ Program główny powinien zawierać test działania aplikacji . 
+Podejmij próbę kompilacji i uruchomienia aplikacji. Informacje dotyczące dokumentacji i zrzut ów ekranow ych 
+umieszczono w części III zadania.  
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze konsola  powinno znaleźć się archiwum całego 
+projektu o nazwie konsola.zip , plik z kodem źródłowy m programu  oraz plik uruchomieniowy , jeżeli istnieje . 
+Część II.  Aplikac ja mobilna  
+Wykonaj aplikację mobilną za pomocą środowiska programistycznego dostępnego na stanowisku 
+egzaminacyjnym oraz uruchom ją w dostępnym emulatorze systemu mobilnego. Aplikacja jest fragmentem 
+programu do przeglądania ofert turystycznych . Do wykonania aplikacj i należy wykorzystać obraz z archiwum 
+zad1.zip  znajdującego się na pulpicie konta Egzamin  i zabezpieczonego hasłem: !Turystyk@  
+Strona 3 z 5 Obraz 1a.  
+Aplikacja AndroidStudio, s tan 
+początkowy.  Emulacja Nexus 5X 
+API 29 x86.  Obraz 1 b. 
+Aplikacja MS Visual Studio, z achowanie 
+aplikacji : 5 razy wciśnięto „POLUB”. Emulacja 
+Android Oreo.   
+Na obraz ie 1a przedstawiono stan po uruchomieniu aplikacji mobilnej . W zależności od zastosowanego  
+środowiska programistycznego oraz emulowanego systemu  wynik końcowy może nieznacznie się różnić  od 
+przedstawionego . Na o brazie 1b przedstawi ono zachowanie aplikacji : 5 razy wciśnięto przycisk „POLUB”   
+i w efekcie  status pod przyciskami wyświetla tekst „5 polubień” .  
+Elementy aplikacji:  
+‒ Tytuł  o treści: „Domek w górach ”. 
+‒ Obraz o nazwie obraz.jpg  wypakowany z archiwum . 
+‒ Trzy przyciski o treści: „POLUB”, „USUŃ”, „ZAPISZ” umiejscowione obok siebie . 
+‒ Napis o treści „0 polubień” . 
+‒ Linia horyzontalna . 
+‒ Napis o treści „Opis” . 
+‒ Napis o treści „Odwiedź komfortowy domek w Sudetach, blisko do szlaków turystycznych” . 
+Działanie aplikacji : 
+‒ Aplikacja implementuje licznik polubień, który w stanie początkowym aplikacji jest równy 0, następnie 
+jego stan jest:  
+‒ inkrementowany po wciśnięciu przycisku „POLUB” , 
+‒ dekrementowany po wciśnięciu przycisku „USUŃ” . Licznik nie może być niższy niż 0 . 
+‒ Stan licznika jest wyświetlany pod przyciskami, w formie napisu „<x> polubień”, gdzie <x> oznacza 
+aktualną wartość licznika . 
+Założenia aplikacji : 
+‒ Interfejs użytkownika zapi sany za pomocą języka znaczników wspieranego w danym środowisku (np. 
+XAML, XML) . 
+‒ Zastosowany typ rozkładu lin iowy wertykalny  (Linear / S tack lub inny o tej idei ) z zagłębionym 
+rozkładem liniowym horyzontalnym dla przycisków . 
+‒ Margines  wewnętrzn y górny dla całej strony  lub rozkładu  wertykalnego : 20 px (lub dp)  
+‒ Kolor tła przycisków i rozkładu , w którym się znajdują : Teal ( #008080) , zgodnie z  Obrazem 1a . 
+
+Strona 4 z 5 ‒ Kolory czcionki: biały  dla przycisków  oraz Gray (#808080) dla napisu „Odwiedź...”, zgodnie 
+z Obrazem 1a. 
+‒ Czcionka tytułu  ma rozmiar największy  spośród użytych  w aplikacji . 
+‒ Czcionka napisu „ Opis” jest pogrubiona . 
+‒ Napis o liczbie polubień jest wyrównany do prawej . 
+‒ Obraz wypełnia całą szerokość strony (zależnie od zastosowanego aspektu może być automatycznie 
+obcięty przez emulator – zobacz obraz 1 b). 
+‒ Linia horyzontalna jest koloru Gray (#808080), dopuszcza się również prostokąt o  wysokości 1 . 
+‒ Aplikacja powinna być zapisan a czytelnie, z zachowani em zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkcji . 
+Podejmij próbę kompilacji i emulacji . Informacje dotyczące dokumentacji i zrzutów ekranowych  
+umieszczono w części III zadania.   
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze mobilna  powinno znaleźć się archiwum całego 
+projektu o nazwie mobilna.zip , plik źródłowy interfejsu użytkownika (XAML lub XML) oraz plik źródłowy 
+kodu skojarzon ego z interfejsem użytkownika.  
+Część III. Dokumentacja aplikacji
+Wykonaj dokumentację do aplikacji utworzonych na egzaminie. W kodzie źródłowym aplikacji konsolowej 
+utwórz nagłówek funkcji przeszukującej, według wzoru zgodnie z listing iem 1. Nagłówek powinien znaleźć 
+się w kodzie źródłowym nad funkcją. W miejscu nawiasów <> należy podać nazwę funkcji, nazwy 
+argumentów wraz z krótkim opisem, typ zwracany wraz z krótkim opisem, krótki opis zawierający 
+przynajmniej nazwę algorytmu. Gdy funkcja nie ma argumentów – zapisać „brak”. W miejscu autor należy 
+podać swój numer.  
+UWAGA: Dokumentację umieścić w komentarzu (wieloliniowym lub kilku jednoliniowych). Znajdujący się w 
+listingu 1 wzór dokumentacji jest bez znaków początku i końca komentarza, gdyż te są różne dla różnych 
+języków programowania  
+Listing 1. Wzór dokumentacji funkcji 
+******************************************************  
+  nazwa funkcji:  <tu wstaw nazwę funkcji > 
+  argume nty:     <nazwa argumentu> - <co przechowuje>  
+< nazwa argumentu > - <co przechowuje>  
+  typ zwracany : <nazwa typu>, <co jest zwraca ne> 
+  informacje: <opis>  
+  autor:     <numer zdającego>  
+ *****************************************************  
+Wykonaj zrzuty ekranu dokumentujące uruchomienie aplikacji utworzonych podczas egzaminu. Zrzuty 
+powinny obejmować cały obszar ekranu monitora z widocznym paskiem zadań. Jeżeli aplikacja uruchamia 
+się, na zrzucie należy umieścić okno z  wynikiem działania programu oraz otwarte śr odowisko  
+programistyczne z  projektem lub okno terminala z  kompilacją projektu. Jeżeli aplikacja nie uruchamia się 
+z powodu błędów kompilacji, należy na zrzucie umieścić okno ze spisem błędów i widocznym otwartym 
+środowiskiem programistycznym. Wykonać należ y tyle zrzutów ile interakcji podejmuje aplikacja. Wymagane 
+zrzuty ekranu:  
+‒ Aplikacj a konsolow a – dowolna liczba zrzutów nazwanych  konsola1, konsola2 ...  
+‒ Aplikacj a mobiln a – dowolna liczba zrzutów nazwanych mobile1 , mobile2  ... (np. stan początkowy, 
+po wciś nięciu przycisku polubień ) 
+W edytorze tekstu pakietu biurowego utwórz plik z dokumentacją i nazwij go egzamin . Dokument powinien 
+zawierać podpisane zrzuty ekranu  oraz zapisane informacje: 
+‒ Nazwę systemu operacyjn ego, na którym pracował zdający.  
+‒ Nazwy środowisk programistycznych, z których  zdający korzystał na egzaminie.  
+‒ Nazwy języków programowania.  
+‒ Nazwa emulatora systemu mobilnego.  
+Zrzuty ekranu i dokument umieść w podfolderze dokumentacja . 
+Strona 5 z 5 UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numere m zdającego powinny się znajdować 
+podfoldery : konsola , mobilna , dokumentacja . W folderze dokumentacja : pliki ze zrzutami  oraz plik  egzamin . 
+W folderze konsola: spakowany cały projekt aplikacji konsolowej, pliki z kodem źródłowym , opcjonalnie plik 
+uruchomieniowy . W folderze mobilna: spakowany cały projekt aplikacji mobilnej, pliki ze źródłami interfejsu 
+i logiki . Po nagrani u płyty sprawdź poprawność nagrania. Opisz płytę swoim numerem i  pozostaw na 
+stanowisku, zapakowaną w pudełku wraz z  arkuszem eg zaminacyjnym.  
+Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+Ocenie będ ą podlegać 4 rezultat y 
+‒ Implementacja, kompilacja , uruchomienie programu , 
+‒ Aplikacja konsolowa , 
+‒ Aplikacja mobilna , 
+‒ Dokumentacja  aplikacji . 
+
+
+Wypełnia zdający 
+Do arkusza egzaminacyj nego dołączam płytę CD opisaną numerem PESEL
+której jakość nagrania została przeze m nie sprawdzona.  
+Wypełnia Przewodniczący ZN 
+Potwierdzam, że do arkusza egzaminacyjnego dołączona  jest płyta CD, opisana numerem PESEL zdają cego.
+……………………………… 
+ Czytelny podpis Przewodnicz ącego ZN   ,

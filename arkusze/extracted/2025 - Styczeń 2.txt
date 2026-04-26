@@ -1,0 +1,251 @@
+   
+ 
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Symbol  kwalifikacji: INF.04  
+Numer zadania: 02 
+Wersja arkusza: SG 
+ 
+ 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+ 
+ 
+ 
+ 
+ 
+      Czas trwania egzaminu: 180 minut.                        INF.04 -02-25.01-SG 
+ 
+EGZAMIN ZAWODOWY  
+Rok 202 5 
+CZĘŚĆ PRAKTYCZNA  
+ 
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL            
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.  
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz:  
+− swój numer  PESEL*,  
+− oznaczenie  kwalifikacji,  
+− numer  zadania,  
+− numer  stanowiska.  
+3. Sprawdź, czy arkusz egzaminacyjny zawiera 7 stron i nie zawiera  błędów. Ewentualny brak stron lub 
+inne usterki zgłoś przez podniesienie ręki przewodniczącemu zespołu  nadzorującego.  
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten 
+nie jest wliczany do czasu trwania  egzaminu.  
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu 
+nadzorującego.  
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji  
+pracy.  
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ 
+OCENY na swoim stanowisku lub w miejscu wskazanym przez przewodniczącego zespołu 
+nadzorującego.  
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.  
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub innego dokumentu potwierdzającego tożsamość  
+ 
+ 
+ 
+ 
+Układ graficzny  
+© CKE 202 3
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+ 
+ 
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019             
+ 
+Strona 2 z 7 Zadanie egzaminacyjne  
+UWAGA: numer, którym został podpisany arkusz egzaminacyjny (PESEL lub w przypadku jego braku numer 
+paszportu) jest w zadaniu nazywany numerem zdającego .  
+ 
+Wykonaj aplikację konsolową oraz mobilną według wskazań. Wykonaj dokumentację zgodnie z  opisem 
+w części III instrukcji do zadania. Wykorzystaj konto Egzamin  bez hasła.  
+ 
+Utwórz folder i nazwij go numerem zdającego. W folderze utwórz podfoldery: konsolowa , mobilna , 
+dokumentacja . Po wykonaniu każdej aplikacji, jej pełny kod (cały folder projektu) spakuj do archiwum . 
+Następnie pozostaw w  podfolderze jedynie spakowane archiwum, pliki źródłowe, których treść była 
+modyfikowana oraz jeśli jest to możliwe plik wykonywalny.  
+ 
+Część I. Aplikacja konsolowa  
+Napisz program implementujący klasę i dwie klasy potomne, który obsługuje działanie urządzeń domowych.  
+ 
+  
+Obraz 1. Działanie programu. Wprowadzono 
+poprawny numer programu pralki  Obraz 2. Działanie programu. Wprowadzono 
+niepoprawny numer programu pralki  
+ 
+Założenia do programu:  
+‒ Program wykonywany w konsoli  
+‒ Zastosowany obiektowy język programowania zgodny z zainstalowanym na stanowisku 
+egzaminacyjnym: C++ lub C#, lub Java, lub Python  
+‒ Program zawiera klasę bazową reprezentującą urządzenie oraz dwie klasy potomne reprezentujące 
+pralkę oraz odkurzacz  
+‒ Wymaganie do klasy bazowej:  
+‒ Implementuje jedną ogólnodostępną  metodę, która wyświetla treść komunikatu. Komunikat jest 
+argumentem metody. Metoda nie zwraca wartości.  
+‒ Wymagania do klasy reprezentującej pralkę:  
+‒ Definiuje pole przechowujące numer programu prania, który jest liczbą całkowitą. Pole inicjowane 
+jest wartością 0. Instancje klasy nie mają dostępu do pola, pole nie jest widoczne w klasach 
+dziedziczących po klasie pralki  
+‒ Implementuje ogólnodostępną  metodę do ustawienia numeru programu prania. Argumentem 
+metody jest numer programu. Gdy jest on liczbą z przedziału od 1 do 12, metoda ustawia pole 
+określające numer programu na tą wartość. W przeciwnym wypadku pole jest ustawione na 
+wartość 0. Metoda zwr aca wartość pola numeru programu  
+‒ Wymagania do klasy reprezentującej odkurzacz:  
+‒ Definiuje pole reprezentujące stan odkurzacza, które jest typu logicznego, inicjowane wartością 
+false . Wartość false  oznacza, że odkurzacz jest wyłączony, true  - włączony. Pole dostępne 
+tylko w tej klasie, niedostępne w klasach potomnych  
+‒ Implementuje ogólnodostępną  bezargumentową metodę on() , która włącza odkurzacz. Metoda 
+nie zwraca wartości. Włączenie polega na ustawieniu pola stanu na wartość true  oraz 
+wywołaniu metody klasy bazowej z komunikatem „Odkurzacz włączono”. Zmiana stanu 
+i komunikat mogą być wykonane tylko i wyłącznie, gdy odkurzacz jest wyłączony  
+
+Strona 3 z 7 ‒ Implementuje ogólnodostępną  bezargumentową metodę off() , która wyłącza odkurzacz. 
+Metoda nie zwraca wartości. Wyłączenie polega na ustawieniu pola stanu na wartość false  oraz 
+wywołaniu metody klasy bazowej z komunikatem „Odkurzacz wyłączono”. Zmiana stanu 
+i komunikat mogą być wykonane tylko i wyłącznie, gdy odkurzacz jest włączony  
+‒ Wymagania do programu głównego:  
+‒ Należy zainicjować dwa obiekty typu pralka i odkurzacz  
+‒ Na obiekcie typu pralka należy przetes tować ustawienie programu prania z wartościami  
+poprawnymi i niepoprawny mi. Powinny być  wyświetlone odpowiednie komunikaty , patrz 
+obrazy 1 i 2 
+‒ Na obiekcie typu odkurzacz należy: 
+−Wywołać metodę on() trzykrotnie; mimo trzykrotnego wywołania tylko raz wyświetla się
+komunikat – patrz obraz 1
+−Wywołać metodę klasy bazowej z treścią: „Odkurzacz wyładował się”
+−Wywołać metodę off()
+‒ Program powinien podejmować zrozumiałą komunikację z użytkownikiem. Jej przykład 
+przedstawiono na obrazach 1 i 2  
+‒ W programie może być zastosowane angielskie lub polskie nazewnictwo klas, pól, metod, instancji 
+klas, zmiennych  
+‒ Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych, metod  
+‒ Dokumentację aplikacji należy utworzyć zgodnie z opisem w części III treści zadania.  
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze konsolowa  powinno znaleźć się archiwum całego 
+projektu o nazwie konsola.zip , skopiowany z projektu plik z kodem źródłowym programu oraz plik 
+wykonywalny, jeżeli istnieje.  
+Strona 4 z 7 Część II. Aplikacja mobilna  
+Za pomocą środowiska programistycznego dostępnego na stanowisku egzaminacyjnym wykonaj aplikację 
+mobilną do obsługi urządzeń domowych. Do wykonania zadania należy wykorzystać obrazy zawarte 
+w archiwum pliki4.zip  zabezpieczonym hasłem: Int3rn3tOfThingS  
+Obraz 3.  
+Środowisko Maui, stan początkowy. Emulacja 
+Pixel  5 Obraz 4. 
+Środowisko Android Studio, stan początkowy . 
+Emulacja Pixel 5 
+Obraz 5.  
+Fragment widoku po wciśnięciu przycisku 
+ZATWIERDŹ  Obraz 6.  
+Fragment widoku po wciśnięciu przycisku Włącz  
+Stan początkowy aplikacji został przedstawiony na obrazach 3 i 4. Interakcje w aplikacji zostały 
+przedstawione na obrazach 5 i 6. W zależności od zastosowanego środowiska programistycznego oraz 
+emulowanego systemu  wynik końcowy może nieznacznie różnić się od przedstawionego.  
+Elementy aplikacji:  
+‒ Napis (etykieta) o treści: „Urządzenia Domowe”  
+‒ Napis o treści: „Autor: ”, dalej wstawiony numer zdającego  
+‒ Rozkład dotyczący pralki:  
+−Obraz pralka.jpg
+−Napis o treści: „Pralka”
+−Pole edycyjne z podpowiedzią o treści: „Podaj nr prania 1..12” umożliwiające wpisywanie jedynie
+liczb
+
+Strona 5 z 7 −Przycisk o treści: „Zatwierdź”
+−Napis o treści: „Numer prania: nie podano”
+‒ Rozkład dotyczący odkurzacza:  
+‒ Obraz odkurzacz.jpg  
+‒ Napis o treści: „Odkurzacz”  
+‒ Przycisk o treści: „Włącz”  
+‒ Napis o treści: „Odkurzacz wyłączony”  
+‒ Napis o treści: „Status: naładowany”  
+‒ Rozmieszczenie elementów zgodne z obrazami 3 i 4  
+Działanie aplikacji:  
+‒ Po wciśnięciu przycisku „Zatwierdź” pobierana jest liczba z pola edycyjnego, jeśli jest ona z przedziału 
+od 1 do 12 to zmieniany jest napis poniżej na: „Numer prania: <numer>”, gdzie <numer> oznacza 
+wartość podaną w polu edycyjnym (obraz 5)  
+‒ Po wciśnięciu przycisku „Włącz”, zmienia się podpis przycisku na „Wyłącz” oraz treść napisu poniżej 
+na: „Odkurzacz włączony”. Jeżeli kolejny raz zostanie wciśnięty przycisk, napisy wracają do stanu 
+początkowego („Włącz” oraz „Odkurzacz wyłączony”) (obraz 6 ) 
+Założenia aplikacji:  
+‒ Interfejs użytkownika zapisany za pomocą języka znaczników wspieranego w danym środowisku (np. 
+XAML, XML)  
+‒ Zastosowane rozkłady liniowe (Linear / Stack lub inny o tej idei), aby można było uzyskać widok taki 
+jak na obrazach 3 i 4.  
+‒ Kolory tła:  
+‒ Dla głównego rozkładu lub strony: LightBlue (#ADD8E6)  
+‒ Dla pola edycyjnego: SkyBlue (#87CEEB)  
+‒ Dla przycisków: RoyalBlue (#4169E1)  
+‒ Kolor czcionki wpisanego tekstu oraz czcionki podpowiedzi dla pola edycyjnego: Navy (#000080)  
+‒ Marginesy zewnętrzne:  
+‒ Dla pierwszych dwóch napisów 5  
+‒ Dla przycisków 10  
+‒ Dla obrazów marginesy lewy, prawy i dolny 20, górny 0  
+‒ Tekst zapisany powiększoną czcionką dla napisów „Urządzenia Domowe”, „Pralka”, „Odkurzacz”  
+‒ Pierwsze dwa napisy na stronie są wyśrodkowane  
+‒ Obrazy mają wysokość 150  
+‒ Aplikacja powinna być zapisana czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkcji.  
+Podejmij próbę kompilacji i emulacji aplikacji. Informacje dotyczące dokumentacji i zrzutów ekranowych 
+umieszczono w części III zadania.  
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze mobilna  powinno znaleźć się archiwum całego 
+projektu o nazwie mobilna.zip , skopiowane z projektu plik (lub pliki) z kodem źródłowym interfejsu 
+użytkownika (XAML lub XML) oraz plik źródłowy kodu skojarzonego z interfejsem użytkownika.  
+Strona 6 z 7 Część III. Dokumentacja aplikacji konsolowej 
+Wykonaj dokumentacj ę do aplikacji utworzony ch na egzamini e. W kodzi e źr ódłowym aplikacji konsolowej za 
+pomocą komentarza utw órz nagłów ek metody kla sy bazowej, według wzor u z listing u 1. Komentar z powinien 
+znaleźć się nad lub po d nazwą metody. W miejscu nawiasów <> należy podać odpowiednie opisy.  
+UWAGA: Dokumentację należy umieścić w komentarzu (wieloliniowym lub kilku jednoliniowych). Znajdujący 
+się w listingu  1 wzór  dokumentacji  jest bez znaków  początku  i końca  komentarza,  gdyż  te są różne  dla 
+różnych języków programowania.  
+Listing 1. Wzór dokumentacji metody  (liczba gwiazdek dowolna)  
+************************************************  
+ nazwa:  
+ opis: 
+ parametry:  <tu wstaw nazwę metody>  
+ <co wykonuje metoda?>  
+ <nazwa i opis parametru1, lub „brak”> 
+ <nazwa i opis parametru2> 
+ ... 
+ zwracany typ i opis: <nazwa typu i opis co jest zwracane lub „brak”>  
+ autor:      <numer zdającego>  
+************************************************  
+Wykonaj zrzuty ekranu dokumentujące uruchomienie aplikacji utworzonych podczas egzaminu. Zrzuty 
+powinny obejmować cały obszar ekranu monitora z widocznym paskiem zadań. Jeżeli aplikacja uruchamia 
+się, na zrzucie należy umieścić okno z  wynikiem działania programu oraz otwarte środowisko 
+programistyczne z  projektem lub okno terminala z  kompilacją projektu. Jeżeli aplikacja nie uruchamia się 
+z powodu błędów kompilacji, należy na zrzucie umieścić okno ze spisem błędów i widocznym otwartym 
+środowiskiem programis tycznym. Wykonać należy tyle zrzutów, ile interakcji podejmuje aplikacja. 
+Wymagane zrzuty ekranu:  
+‒ Aplikacja konsolowa – dowolna liczba zrzutów nazwanych konsola1, konsola2, ... 
+‒ Aplikacja mobilna – dowolna liczba zrzutów nazwanych mobile1 , mobile2,  ... (np. stan początkowy, po 
+wciśnięciu przycisku Zatwierdź”, po wciśnięciu przycisku „Włącz”, następnie „Wyłącz”)  
+W edytorze tekstu pakietu biurowego utwórz plik z dokumentacją i nazwij go egzamin . Dokument powinien 
+zawierać informacje o wykorzystanych w czasie egzaminu narzędziach:  
+‒ Nazwę systemu operacyjnego  
+‒ Nazwy środowisk programistycznych  
+‒ Nazwę emulatora dla aplikacji mobilnej  
+‒ Nazwy języków programowania  
+Zrzuty ekranu i dokument umieść w podfolderze dokumentacja . 
+UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numerem zdającego powinny się znajdować 
+podfoldery: dokumentacja, konsolowa, mobilna. W folderze dokumentacja: pliki ze zrzutami oraz plik 
+egzamin. W  folderze konsolowa: spakowany cały projekt aplikacji konsolowej, pliki źródłowe, opcjonalnie plik 
+wykonywalny. W folderze mobilna: spakowany cały projekt aplikacji mobilnej, pliki z kodem źródłowym 
+interfejsu i logiki. Po nagraniu płyty sprawdź poprawność nagrania. Opisz płytę numerem zdającego 
+i pozostaw n a stanowisku, zapakowaną w pudełku wraz z  arkuszem egzaminacyjnym.  
+Strona 7 z 7 Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+ 
+Ocenie będą podlegać 4 rezultaty  
+‒ Implementacja, kompilacja, uruchomienie programu,  
+‒ Aplikacja konsolowa,  
+‒ Aplikacja mobilna,  
+‒ Dokumentacja aplikacji.  
+ 
+Wypełn ia zdając y 
+Do arkusza egzaminacyjnego dołączam płytę CD opisaną numerem PE SEL 
+której jakość nagrania została przeze mnie sprawdzona. 
+Wypełnia Przewodnicząc y ZN  
+Potwierdzam, że do arkusza egzaminacyjnego dołączona jest  płyta CD, opisana numerem PESEL zdającego.
+……………………………........…  
+Czytelny podpis Przewodnicząc ego ZN   ,

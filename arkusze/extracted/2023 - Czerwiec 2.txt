@@ -1,0 +1,174 @@
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Oznaczenie kwalifikacji: INF.04  
+Numer zadania: 02 
+Wersja arkusza: SG 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+      Czas trwania egzaminu: 180 minut.           INF.04 -02-23.06-SG 
+EGZAMIN ZAWODOWY  
+Rok 202 3 
+CZĘŚĆ PRAKTYCZNA  
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz:
+− swój numer  PESEL*,
+− oznaczenie  kwalifikacji,
+− numer  zadania,
+− numer  stanowiska.
+3. Sprawdź, czy arkusz egzaminacyjny zawiera 5 stron i nie zawiera  błędów. Ewentualny brak stron lub
+inne usterki zgłoś przez podniesienie ręki przewodniczą cemu zespołu  nadzorującego.
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten
+nie jest wliczany do czasu trwania  egzaminu.
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu
+nadzorującego.
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji
+pracy.
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ
+OCENY na swoim stanowisku lub w miejscu wskazanym przez przewodniczącego zespołu
+nadzorującego.
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub inneg o dokumentu potwierdzającego tożsamość
+Układ graficzny  
+© CKE 2020
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019  
+ 
+Strona 2 z 5 Zadanie egzaminacyjne  
+UWAGA: katalog z rezultatami pracy oraz płytę należy opisać numerem zdającego, którym został podpisany 
+arkusz, czyli numerem PESEL lub w przypadku jego braku numerem paszportu. Dalej w zadaniu numer ten 
+jest nazwany numerem zdającego.  
+ 
+Wykonaj aplikację konsolową oraz mobilną według wskazań. Wykonaj testy aplikacji konsolowej, zgodnie 
+z opisem w części III instrukcji do zadania. Wykorzystaj konto Egzamin  bez hasła.  
+Utwórz folder i nazwij go numerem zdającego . W folderze utwórz podfoldery : konsola , mobilna , testy . 
+Po wykonaniu każdej aplikacji, jej pełny kod (cały folder projektu) spakuj do archiwum. Następnie pozostaw 
+w podfolderze jedynie pliki źródłowe, których treść była modyfikowana, plik wykonywalny, jeśli jest to możliwe 
+oraz spakow ane archiwum . Testy aplikacji konsolowej oraz zrzuty ekranu dokumentujące uruchomienie testu 
+umieść w  folderze testy . 
+Część I. Aplikacja konsolowa  
+Napisz program sortujący tablicę metodą bąbelkową. Założenia do programu:  
+‒ Program wykonywany w konsoli.  
+‒ Obiektowy język programowania zgodny z zainstalowanym na stanowisku egzaminacyjnym, jeden z: 
+C++, C#, Java, Python.  
+‒ Sortowanie odbywa się rosnąco, nie wykorzystuje  gotowych funkcji do sortowania oraz zamiany 
+miejscami elementów.  
+‒ Sortowana jest tab lica 100 pseudolosowych liczb całkowitych.  
+‒ Wszystkie elementy posortowanej tablicy są wyświetlane na ekranie, oddzielone dowolnym 
+separatorem, poprzedzone znaczącym komunikatem.  
+‒ Sortowanie odbywa się w funkcji, której argumentem jest tablica, funkcja nie zwraca wartości.  
+‒ Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkcji.  
+‒ Program główny powinien zawierać test działania funkcji sortującej, który jest opisany w części III 
+zadania egzaminacyjnego.  
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze konsola  powinno znaleźć się archiwum całego 
+projektu o nazwie konsola.zip , plik z kodem źródłowym programu oraz plik wykonywalny, jeżeli istnieje.  
+Część II. Apl ikacja mobilna  
+Wykonaj aplikację mobilną za pomocą środowiska programistycznego dostępnego na stanowisku 
+egzaminacyjnym oraz uruchom ją w dostępnym emulatorze systemu mobilnego. Aplikacja służy do 
+zarządzania ustawieniami czcionki.  
+ 
+Strona 3 z 5    
+Obraz 1a.  
+Stan początkowy.  
+Emulacja na urządzeniu Nexus 5X 
+API 29 x86. Aplikację utworzono w 
+Android Studio  Obraz 1b.  
+Zachowanie aplikacji. 
+Zwiększono rozmiar czcionki do 
+30 i zmieniono napis cytatu 
+(emulacja w Android Studio)  Obraz 1c.  
+Stan początkowy  
+Emulacja na s ystemie Android 
+Oreo.  Aplikację utworzono w 
+MS Visual Studio  
+ 
+ 
+Na obrazach 1a i 1c przedstawiono stan po uruchomieniu aplikacji mobilnej. W zależności od zastosowanego 
+środowiska programistycznego oraz emulatora wynik końcowy może nieznacznie się różnić od 
+przedstawionego. Obraz 1b przedstawia zachowanie aplikacji, gdy suwak przesunięto do wartości 30 oraz 
+dwa razy wybrano przycisk o treści „>>”  
+Elementy aplikacji:  
+‒ Napis o treści: „Właściwości czcionki”.  
+‒ Napis o treści: „Rozmiar: ”.  
+‒ Suwak (SeekBar / Slider).  
+‒ Napis cytatu.  
+‒ Przycisk o treści: „>>”.  
+Działanie aplikacji:  
+‒ Po przesunięciu suwaka następuje akcja (obraz 1b):  
+‒ wartość aktualna suwaka jest zapisywana po napisie „Rozmiar:”  
+‒ rozmiar czcionki cytatu jest zmieniany na aktualną wartość suwaka (rozmiar czcionki powinien 
+być liczbą całkowitą).  
+‒ Po wybraniu przycisku następuje akcja:  
+‒ zamieniany jest tekst w napisie cytatu. Kolejne napisy: "Dzień dobry", "Good morning", 
+"Buenos dias". Jeżeli wyświetlony jest tekst „Buenos dias”, wybranie przycisku p owoduje 
+wyświetlenie „Dzień dobry” itd.  
+  
+
+ 
+Strona 4 z 5 Założenia aplikacji  
+‒ Interfejs użytkownika zapisany za pomocą języka znaczników wspieranego w danym środowisku (np. 
+XAML, XML).  
+‒ Zastosowany typ rozkładu liniowy (Linear / Stack lub inny o tej idei).  
+‒ Zastosowano marginesy dla całej strony 20  
+‒ Wszystkie pola są rozciągnięte na szerokość strony  
+‒ Zastosowany kolor tła elementów: #558B2F, zgodnie z Obrazem 1a.  
+‒ Zastosowany kolory czcionki: czarny i biały, zgodnie z Obrazem 1a.  
+‒ Czcionka napisu „Właściwości czc ionki” ma rozmiar największy i jest pogrubiona,  
+‒ Czcionka napisu „Rozmiar:” ma rozmiar średni.  
+‒ Suwak ma wartość maksymalną 40, jeżeli ustawienie minimum jest wymagane – ustawić wartość 0.  
+‒ Przycisk jest wyśrodkowany oraz jego tekst jest wyśrodkowany i pogr ubiony.  
+‒ Teksty pojawiające się w polu napisu cytatu są zdefiniowane w kodzie jako tablica 3 -elementowa.  
+‒ Aplikacja powinna być zapisana czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkcji.  
+Podejmij próbę kompilacji i uruchomienia aplikacji. Wykonaj zrzut ekranu emulacji aplikacji, ze środowiskiem 
+programistycznym w tle. Jeżeli aplikacja uruchamia się, na zrzucie należy umieścić okno z  wynikiem 
+emulacji , kilka zrzutów ekranu dokumentujących interakcje  aplikacji, nazwane mobilna1 , mobilna2  itd. oraz 
+otwarte środowisko programistyczne z projektem. Jeżeli aplikacja nie uruchamia się, na zrzucie powinno być 
+widoczne okno z błędami kompilacji oraz środowisko programistyczne. Zrzut zawierający cały obszar ekranu 
+z widocznym paskiem zadań zapisz jako mobilna.jpg  w folderze  numerem zdającego /mobilna . 
+Utwórz plik tekstowy o nazwie srodowisko.txt w folderze  numerem zdającego /mobilna . Zapisz w nim nazwę 
+środowiska programistycznego, w którym została wykonana aplikacja oraz nazwę emulowanego urządzenia 
+lub s ystemu, na którym uruchomiono aplikację.  
+Kod aplikacji przygotuj do nagrania na płytę. W podfolderze mobilna  powinno znaleźć się archiwum całego 
+projektu o nazwie mobilna.zip , plik (lub pliki) z kodem źródłowym interfejsu użytkownika (XAML lub XML) 
+oraz plik źródłowy kodu skojarzonego z interfejsem użytkownika.  
+Część III. Test aplikacji konsolowej  
+Wykonaj test aplikacji konsolowej. Test powinien być fragmentem kodu, który należy umieścić w programie 
+głównym aplikacji. Test zapisz w folderze testy , w pliku o nazwie test, z rozszerzeniem charakterystycznym 
+dla aplikacji pisanych w danym języku programowania. W  teście sprawdź działanie funkcji sortującej dla 
+wylosowanych liczb pseudolosowych. Liczby powinny być całkowite dodatnie z przedziału 0..1000. Ur uchom 
+aplikację z testem i  udokumentuj to zrzutem ekranu. Jeżeli aplikacja nie kompiluje się, na zrzucie umieść 
+środowisko programistyczne z oknem kompilacji. Zrzut powinien obejmować cały obszar ekranu 
+z widocznym paskiem zadań i nazywać się konsola_testy .jpg. Zrzut umieść w folderze testy . 
+ 
+UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numerem zdającego  powinny się znajdować 
+podfoldery konsola, mobilna, testy. W folderze testy pliki: konsola_testy.jpg, test. W  folderze konsola: cały 
+projekt aplikacji konsolowej. W folderze mobilna: pliki mobilna.jpg, srodowisko.txt oraz cały projekt aplikacji 
+mobilnej, ew entualnie inne przygotowane pliki. Po nagraniu płyty sprawdź poprawność nagrania. Opisz płytę 
+numerem zdającego  i pozostaw na stanowisku, zapakowaną w pudełku wraz z  arkuszem egzaminacyjnym.  
+ 
+  
+ 
+Strona 5 z 5 Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+Ocenie będą podlegać 4 rezultaty : 
+‒ implementacja, kompilacja, uruchomienie programu,  
+‒ aplikacja konsolowa,  
+‒ aplikacja mobilna,  
+‒ testy aplikacji konsolowej.  
+ 
+
+
+Wypełnia zdający 
+Do arkusza egzaminacyj nego dołączam płytę CD opisaną numerem PESEL
+której jakość nagrania została przeze m nie sprawdzona.  
+Wypełnia Przewodniczący ZN 
+Potwierdzam, że do arkusza egzaminacyjnego dołączona  jest płyta CD, opisana numerem PESEL zdają cego.
+……………………………… 
+ Czytelny podpis Przewodnicz ącego ZN   ,

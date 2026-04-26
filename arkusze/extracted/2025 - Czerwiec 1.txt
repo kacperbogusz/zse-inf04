@@ -1,0 +1,224 @@
+   
+ 
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Symbol  kwalifikacji: INF.04  
+Numer zadania: 01 
+Wersja arkusza: SG 
+ 
+ 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+ 
+ 
+ 
+ 
+ 
+      Czas trwania egzaminu: 180 minut.                           INF.04 -01-25.06-SG 
+ 
+EGZAMIN ZAWODOWY  
+Rok 202 5 
+CZĘŚĆ PRAKTYCZNA  
+ 
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL            
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.  
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz:  
+− swój numer  PESEL*,  
+− oznaczenie  kwalifikacji,  
+− numer  zadania,  
+− numer  stanowiska.  
+3. Sprawdź, czy arkusz egzaminacyjny zawiera 5 stron i nie zawiera  błędów. Ewentualny brak stron lub 
+inne usterki zgłoś przez podniesienie ręki przewodniczącemu zespołu  nadzorującego.  
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten 
+nie jest wliczany do czasu trwania  egzaminu.  
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu 
+nadzorującego.  
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji  
+pracy.  
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ 
+OCENY na swoim stanowisku lub w miejscu wskazanym przez przewodniczącego zespołu 
+nadzorującego.  
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.  
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub innego dokumentu potwierdzającego tożsamość  
+ 
+ 
+ 
+ 
+Układ graficzny  
+© CKE 202 3
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+ 
+ 
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019             
+ 
+Strona 2 z 5 Zadanie egzaminacyjne  
+UWAGA: numer, którym został podpisany arkusz egzaminacyjny (PESEL lub w przypadku jego braku, numer 
+paszportu) jest w zadaniu nazywany numerem zdającego . 
+ 
+Wykonaj aplikację konsolową oraz desktopową według wskazań. Wykonaj dokumentację do utworzonych 
+aplikacji zgodnie z opisem w części III instrukcji do zadania.  Wykorzystaj konto Egzamin  bez hasła.  
+ 
+Utwórz folder i nazwij go numerem zdającego. W folderze utwórz podfoldery: konsolowa , desktopowa , 
+dokumentacja . Po wykonaniu każdej aplikacji, jej pełny kod (cały folder projektu) spakuj do archiwum . 
+Następnie pozostaw w podfolderze jedynie skopiowane z projektu pliki źródłowe, których treść była 
+modyfikowana, plik wykonywalny, jeśli jest to możliwe, oraz spakowane archiwum.  
+ 
+Część I. Aplikacja konsolowa  
+Za pomocą narzędzi do tworzenia aplikacji konsolowych wykonaj 
+program loterii liczbowej polegającej na losowaniu zestawów 
+składających się z sześciu liczb  
+ 
+Założenia aplikacji:  
+− Zastosowany obiektowy język programowania zgodny 
+z zainstalowanym na stanowisku egzaminacyjnym: C++ lub C#, 
+lub Java, lub Python  
+− Fragment działania programu przedstawiono na obrazie 1  
+− Program wczytuje z klawiatury ile zestawów należy wylosować  
+− Program generuje podaną liczbę zestawów składających się 
+z sześciu losowanych liczb całkowitych ze zbioru <1, 49>. W 
+jednym zestawie liczby nie mogą się powtarzać. Zestawy są 
+wyświetlone na ekranie  
+− Program zlicza we wszystkich zestawach ile jest wystąpień każdej 
+liczby od 1 do 49, co zostaje wyświetlone na ekranie  
+− W programie należy użyć funkcji do  generowania liczb 
+pseudolosowych  
+− Do przechowywania wyników losowań należy użyć 
+dwuwymiarowej tablicy liczb całkowitych składającej się 
+z n wierszy i  6 kolumn (n – liczba wczytana z klawiatury) lub innej 
+dowolnej kolekcji pasującej do problemu  
+− W programie należy zdefiniować przynajmniej dwie funkcje:  
+− Wypełniającą tablicę lub kolekcję danymi losowań  
+− Wyświetlającą wyniki wszystkich losowań na ekranie  
+− W podejściu strukturalnym nie można stosować zmiennych globalnych  
+− Program powinien podejmować zrozumiałą komunikację z  użytkownikiem  
+− W programie należy stosować znaczące, angielskie lub polskie nazewnictwo  
+− Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu   
+− Podejmij próbę uruchomienia aplikacji. Informacje dotyczące dokumentacji i  zrzutów ekranowych 
+umieszczono w  części III arkusza egzaminacyjnego  
+ 
+Obraz 1. Fragment programu, dalej są 
+policzone wystąpienia liczb 14..49  
+Strona 3 z 5 Kod aplikacji przygotuj do nagrania na płytę. W folderze konsolowa  powinno znaleźć się archiwum całego 
+projektu o nazwie konsola.zip , skopiowany  z projektu plik z kodem źródłowym programu oraz plik 
+wykonywalny, jeżeli istnieje.  
+ 
+ 
+Część II. Aplikacja desktopowa  
+Za pomocą dostępnego na stanowisku egzaminacyjnym środowiska programistycznego wykonaj aplikację 
+desktopową wybierania kolorów z palety RGB. Obrazy przedstawiają stany aplikacji. W zależności od 
+użytego środowiska programistycznego wygląd może nieznacznie się różnić.  
+ 
+ 
+ 
+Obraz 2. Stan początkowy   
+Obraz 3. Zmiana pozycji suwaków, zmienia kolor 
+dużego prostokąta i wartości po prawej stronie 
+suwaka  
+ 
+ 
+Obraz 4. Po wciśnięciu przycisku, mały prostokąt 
+zmienia kolor i napis odpowiadający ustawionemu 
+kolorowi RGB   
+Obraz 5. Dalsze zmiany suwaków nie wpływają na 
+kolor pobrany w małym prostokącie  
+ 
+Opis wyglądu aplikacji:  
+− Tytuł okna „Wzornik kolorów RGB. Wykonał” dalej wstawiony numer zdającego  
+− Tło okna: Cornsilk (#FFF8DC)  
+− Duży prostokąt o białym kolorze tła  
+− Napis: „Dobierz kolor suwakami i zapisz przyciskiem:”  
+− Trzy suwaki, każdy o wartości początkowej 255 oraz zakresie wartości od 0 do 255  
+− Z lewej strony suwaków kolejno etykiety: R, G, B  
+− Z prawej strony suwaków etykiety z aktualną wartością suwaka, początkowo ustawione na 255  
+− Przycisk „Pobierz” koloru Peru (  #CD853F)  
+− Etykieta z pobraną wartością suwaków, domyślnie „255, 255, 255” o kolorze tła białym (mały prostokąt)  
+ 
+  
+
+Strona 4 z 5 Działanie aplikacji:  
+− Zmiany położenia suwaków powodują zmianę wartości RGB po prawej stronie suwaka oraz powodują 
+ustawienie koloru dużego prostokąta na wartość RGB odpowiadającą suwakom (obraz 3)  
+− Po wciśnięciu przycisku „Pobierz” mały prostokąt na dole okna ma ustawiony kolor oraz tekst 
+odpowiadający aktualnemu RGB (obraz 4)  
+− Dalsze ruchy suwakami zmieniają kolor dużego prostokąta oraz wartości RGB przy suwakach (obraz  5). 
+Mały prostokąt nie zmienia się, jego zmianę może wywołać dopiero przyciśnięcie przycisku „Pobierz”  
+ 
+Aplikacja powinna być zapisana czytelnie, z zasadami czystego formatowania kodu, należy stosować 
+znaczące nazwy zmiennych i funkcji.  
+ 
+Podejmij próbę kompilacji i uruchomienia aplikacji. Informacje dotyczące dokumentacji i zrzutów ekranowych 
+umieszczono w części III zadania egzaminacyjnego.  
+ 
+Kod aplikacji przygotuj do nagrania na płytę. W folderze desktopowa  powinno znaleźć się archiwum całego 
+projektu o nazwie desktopowa.zip , skopiowane  z projektu pliki źródłowe, które były modyfikowane w czasie 
+egzaminu (interfejs użytkownika i logika aplikacji) oraz plik wykonywalny, jeżeli istnieje.  
+ 
+Część III. Dokumentacja aplikacji  
+Wykonaj dokumentację do aplikacji utworzonych na egzaminie. W kodzie źródłowym aplikacji konsolowej za 
+pomocą komentarza utwórz nagłówek jednej dowolnej funkcji/metody, według wzoru z listingu 1. Komentarz 
+powinien znaleźć się nad lub pod nazwą funkcji. W  miejscu nawiasów <> należy podać odpowiednie opisy. 
+W miejscu autor należy podać numer zdającego.  
+ 
+UWAGA: Dokumentację należy umieścić w komentarzu (wieloliniowym lub kilku jednoliniowych). Znajdujący 
+się w  listingu 1 wzór dokumentacji jest bez znaków początku i końca komentarza, gdyż te są różne dla 
+różnych języków programowania. W przypadku podejścia obiektowego zamiast słowa „funkcji” można 
+napisać „metody”  
+ 
+Listing 1. Wzór dokumentacji funkcji (liczba gwiazdek dowolna)  
+**********************************************  
+nazwa funkcji:   <nazwa> 
+opis funkcji:    <krótki opis co robi funkcja>  
+parametry:   <nazwa i opis parametru1, lub „brak”>  
+    <nazwa i opis parametru2>   
+zwracany typ i opis: <nazwa typu i opis co jest zwracane lub „brak”>  
+autor:                <numer zdającego>  
+***********************************************  
+ 
+Wykonaj zrzuty ekranu dokumentujące uruchomienie aplikacji utworzonych podczas egzaminu. Zrzuty 
+powinny obejmować cały obszar ekranu monitora z widocznym paskiem zadań. Jeżeli aplikacja uruchamia 
+się, na zrzucie należy umieścić okno z  wynikiem działania programu oraz otwarte środowisko 
+programistyczne z  projektem lub okno terminala z  kompilacją projektu. Jeżeli aplikacja nie uruchamia się 
+z powodu błędów kompilacji, należy na zrzucie umieścić okno ze spisem błędów i widocznym otwartym 
+środowiskiem programis tycznym. Wykonać należy tyle zrzutów, ile interakcji podejmuje aplikacja (np. stan 
+początkowy, po wybraniu przycisków itd.). Wymagane zrzuty ekranu:  
+‒ Aplikacja konsolowa – dowolna liczba zrzutów nazwanych konsola1 , konsola2,  ... 
+‒ Aplikacja desktopowa – dowolna liczba zrzutów nazwanych desktop1 , desktop2,  ...  
+ 
+Strona 5 z 5 Utwórz plik z dokumentacją i nazwij go egzamin . Dokument powinien zawierać informacje o narzędziach 
+wykorzystanych na egzaminie:  
+‒ Nazwę systemu operacyjnego  
+‒ Nazwy środowisk programistycznych  
+‒ Nazwy języków programowania  
+ 
+Zrzuty ekranu i dokument umieść w folderze dokumentacja . 
+ 
+UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numerem zdającego powinny się znajdować 
+podfoldery desktopowa, dokumentacja, konsolowa. W folderze desktopowa: spakowany cały projekt aplikacji 
+desktopowej, pliki ze źródłami interfejsu i logiki, opcjonalnie plik wykonywalny . W folderze dokumentacja: 
+pliki ze zrzutami oraz plik egzamin. W  folderze konsolowa: spakowany cały projekt aplikacji konsolowej, pliki 
+źródłowe, opcjonalnie plik wykonywalny. Opisz płytę numerem zdającego i  pozostaw na stanowisku, 
+zapakowaną w pudełku wraz z  arkuszem egzaminacyjnym.  
+ 
+Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+ 
+Ocenie będą podlegać 4 rezultaty:  
+‒ implementacja, kompilacja, uruchomienie programu,  
+‒ aplikacja konsolowa,  
+‒ aplikacja desktopowa,  
+‒ dokumentacja aplikacji.  
+ 
+
+
+Wypełn ia zdając y 
+Do arkusza egzaminacyjnego dołączam płytę CD opisaną numerem PE SEL 
+której jakość nagrania została przeze mnie sprawdzona. 
+Wypełnia Przewodnicząc y ZN  
+Potwierdzam, że do arkusza egzaminacyjnego dołączona jest  płyta CD, opisana numerem PESEL zdającego.
+……………………………........…  
+Czytelny podpis Przewodnicząc ego ZN   ,
