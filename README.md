@@ -1,4 +1,4 @@
-# Arkusze Egzaminacyjne INF.04
+# Arkusze egzaminacyjne INF.04
 
 | Rok | Miesiąc | Arkusz | Link do pliku |
 | :--- | :--- | :--- | :--- |
