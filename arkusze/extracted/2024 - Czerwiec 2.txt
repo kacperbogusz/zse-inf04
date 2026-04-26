@@ -1,0 +1,243 @@
+   
+ 
+Nazwa kwalifikacji: Projektowanie, programowanie i testowanie aplikacji  
+Symbol  kwalifikacji: INF.04  
+Numer zadania: 02 
+Wersja arkusza: SG 
+ 
+ 
+Wypełnia zdający  
+Numer PESEL zdającego*  
+ 
+ 
+ 
+ 
+ 
+      Czas trwania egzaminu: 180 minut.                        INF.04 -02-24.06-SG 
+ 
+EGZAMIN ZAWODOWY  
+Rok 202 4 
+CZĘŚĆ PRAKTYCZNA  
+ 
+Instrukcja dla zdającego  
+1. Na pierwszej  stronie  arkusza egzaminacyjnego wpisz w oznaczonym  miejscu  swój numer  PESEL            
+i naklej naklejkę z numerem PESEL i z kodem  ośrodka.  
+2. Na KARCIE OCENY w oznaczonym miejscu przyklej naklejkę z numerem PESEL oraz  wpisz:  
+− swój numer  PESEL*,  
+− oznaczenie  kwalifikacji,  
+− numer  zadania,  
+− numer  stanowiska.  
+3. Sprawdź, czy arkusz egzaminacyjny zawiera 5 stron i nie zawiera  błędów. Ewentualny brak stron lub 
+inne usterki zgłoś przez podniesienie ręki przewodniczącemu zespołu  nadzorującego.  
+4. Zapoznaj się z treścią zadania oraz stanowiskiem egzaminacyjnym. Masz na to 10 minut. Czas ten 
+nie jest wliczany do czasu trwania  egzaminu.  
+5. Czas rozpoczęcia i zakończenia pracy zapisze w widocznym miejscu przewodniczący zespołu 
+nadzorującego.  
+6. Wykonaj samodzielnie zadanie egzaminacyjne. Przestrzegaj zasad bezpieczeństwa i organizacji  
+pracy.  
+7. Po zakończeniu wykonania zadania pozostaw arkusz egzaminacyjny z rezultatami oraz KARTĘ 
+OCENY na swoim stanowisku lub w miejscu wskazanym przez przewodniczącego zespołu 
+nadzorującego.  
+8. Po uzyskaniu zgody zespołu nadzorującego możesz opuścić salę/miejsce przeprowadzania  egzaminu.  
+Powodzenia!  
+* w przypadku braku numeru PESEL – seria i numer paszportu lub innego dokumentu potwierdzającego tożsamość  
+ 
+ 
+ 
+ 
+Układ graficzny  
+© CKE 202 3
+Arkusz zawiera informacje 
+prawnie chronione do momentu 
+rozpoczęcia egzaminu  
+ 
+ 
+Miejsce na naklejkę z numerem 
+PESEL i z kodem ośrodka  
+PODSTAWA PROGRAMOWA 
+2019             
+ 
+Strona 2 z 5 Zadanie egzaminacyjne  
+UWAGA: katalog z rezultatami pracy oraz płytę należy opisać numerem zdającego , którym został podpisany 
+arkusz, czyli numerem PESEL lub w przypadku jego braku numerem paszportu. Dalej w zadaniu numer ten 
+jest nazwany numerem zdającego . 
+ 
+Wykonaj aplikację konsolową oraz desktopową według wskazań. Wykonaj dokumentację zgodnie z opisem 
+w części III instrukcji do zadania. Wykorzystaj konto Egzamin  bez hasła. Do rozwiązania zadania wykorzystaj 
+archiwum pliki2.zip  z hasłem: My^SoUndS  
+ 
+Utwórz folder i nazwij go numerem zdającego. W folderze utwórz podfoldery: konsolowa , desktopowa , 
+dokumentacja . Po wykonaniu każdej aplikacji, jej pełny kod (cały folder projektu) spakuj do archiwum . 
+Następnie pozostaw w  podfolderze jedynie spakowane archiwum, skopiowane z projektu pliki źródłowe, 
+których treść była modyfikowana oraz jeśli istnieje  plik wykonywalny.  
+ 
+Część I. Aplikacja konsolowa  
+Za pomocą narzędzi do tworzenia aplikacji konsolowych utwórz program do odczytywania i wyświetlania 
+danych z pliku. Program implementuje część aplikacji do odtwarzania muzyki, jego zadaniem jest wczytanie 
+danych o albumach muzycznych, a następnie wyświetle nie ich.  
+ 
+Założenia aplikacji:  
+‒ Zastosowany obiektowy język programowania zgodny z zainstalowanym 
+na stanowisku egzaminacyjnym: C++ lub C#, lub Java, lub Python  
+‒ Podejście obiektowe lub strukturalne  
+‒ Plik DataStructure.txt  zawiera strukturę rekordu danych o albumach 
+muzycznych. Przy podejściu obiektowym należy utworzyć klasę o takich 
+polach, a przy podejściu strukturalnym - strukturę. Należy dobrać 
+odpowiednie typy dla pól pasujące do danych zamieszczonych w pliku 
+Data.txt . Dla liczby pobrań należy zastosować typ przynajmniej 32 bitowy  
+‒ Wczytanie danych:  
+‒ Dane są wczytane z pliku Data.txt (muszą zostać wczytane wszystkie 
+dane zawarte w pliku). Należy założyć, że do pliku mogą zostać 
+dopisane nowe albumy, przy czym jego struktura nigdy się nie zmienia 
+oraz plik jest zawsze poprawny strukturalnie (wszystkie rekordy są 
+kompletne i poprawne ze względu na typy pól)  
+ 
+UWAGA: W niektórych językach programowania np. Python można 
+zdefiniować k odowani e znaków: encoding="utf -8" jako parametr funkcji 
+otwierającej plik.  
+ 
+‒ Dane jednego rekordu są przypisane do odpowiednich pól obiektu lub 
+struktury  
+‒ Każdy rekord jest zapisywany w tablicy lub dowolnej kolekcji  
+‒ Wczytanie odbywa się w osobnej metodzie lub funkcji  
+‒ Wyświetlenie danych:  
+‒ Dane z każdego rekordu są kolejno wyświetlane w konsoli,                              
+w osobnych liniach, patrz obraz 1  
+‒ Wyświetlonych jest tyle rekordów, ile faktycznie zostało wczytanych  
+‒ Wyświetlenie odbywa się w osobnej metodzie lub funkcji  
+Obraz 1. Fragment wyniku 
+działania aplikacji  
+Strona 3 z 5 ‒ W programie może być zastosowane angielskie lub polskie nazewnictwo zmiennych i funkcji lub metod  
+‒ Program powinien być zapisany czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych  
+‒ Do kodu należy dołączyć dokumentację, która została opisana w części III zadania egzaminacyjnego.  
+ 
+Kod aplikacji przygotuj do nagrania na płytę. W folderze konsolowa  powinno znaleźć się archiwum całego 
+projektu o nazwie konsola.zip , skopiowany z projektu plik z kodem źródłowym programu oraz plik 
+wykonywalny, jeżeli istnieje.  
+ 
+Część II. Aplikacja desktopowa  
+Za pomocą dostępnego na stanowisku egzaminacyjnym środowiska programistycznego wykonaj aplikację 
+desktopową będącą interfejsem graficznym programu utworzonego w konsoli.  
+ 
+ 
+Obraz 2. Stan początkowy aplikacji  
+ 
+ 
+Obraz 3. Po wciśnięciu przycisku z prawej strony  
+ 
+Na obrazie 2 przedstawiono ideę aplikacji desktopowej. W zależności od użytego środowiska 
+programistycznego wygląd może nieznacznie się różnić. Do wykonania zadania można posłużyć się 
+fragmentami aplikacji konsolowej.  
+ 
+Opis wyglądu aplikacji:  
+‒ Okno o nazwie „MojeDźwięki, Wykonał:” następnie wstawiony numer zdającego. Okno ma tło koloru 
+SeaGreen (#2E8B57)  
+‒ Kontrolki rozmieszczone i formatowane zgodnie z obrazem 2:  
+‒ Dwa przyciski po prawej i lewej stronie, przyciski są wypełnione grafiką z plików obraz2.png  
+i obraz3.png . Wysokość obrazów 70  
+‒ Obraz płyty winylowej z pliku obraz.png  
+
+Strona 4 z 5 ‒ 5 napisów (etykiet) kolejno z nazwą wykonawcy, tytułem albumu, liczbą utworów, rokiem wydania 
+i liczbą pobrań  
+‒ Przycisk o treści „Pobierz”  
+‒ Formatowanie napisów: kolor czcionki biały i #61D918, rozmiary czcionek: 50, 30, 20, czcionka 
+pochylona dla nazwy albumu. Zgodnie z obrazem 2  
+‒ Formatowanie przycisku do pobrania: kolor tła #61D918, czcionka pogrubiona, rozmiaru 20  
+ 
+Działanie aplikacji po załadowaniu okna:  
+‒ Wczytuje dane z pliku Dane.txt  
+‒ Dane pierwszego albumu są wyświetlane zgodnie z obrazem 2  
+ 
+Działanie aplikacji po kliknięciu przycisku po lewej stronie:  
+‒ Wyświetlane są dane poprzedniego albumu, na przykład, gdy aktualnie wyświetlany jest album siódmy 
+(The Rasmus), zostanie wyświetlony album szósty (Melanie Martinez)  
+‒ Gdy aktualnie wyświetlany jest pierwszy album (Gorillaz), zostanie wyświetlony album ostatni (Faith No 
+More)  
+  
+Działanie aplikacji po kliknięciu przycisku po prawej stronie:  
+‒ Wyświetlane są dane następnego albumu, na przykład, gdy aktualnie wyświetlany jest pierwszy album, 
+zostanie wyświetlony drugi album, patrz obraz 3  
+‒ Gdy aktualnie wyświetlany jest ostatni album, to zostanie wyświetlony pierwszy album  
+ 
+Działanie aplikacji po kliknięciu przycisku Pobierz:  
+‒ Zostaje zwiększona o jeden liczba pobrań dla danego albumu. Efekt powinien być widoczny w  oknie 
+aplikacji oraz zapamiętany  w trakcie jej działania (nie musi być  trwale  zapisywany do pliku Dane.txt ) 
+ 
+Aplikacja powinna być zapisana czytelnie, z zachowaniem zasad czystego formatowania kodu, należy 
+stosować znaczące nazwy zmiennych i funkcji.  
+ 
+Podejmij próbę kompilacji i uruchomienia aplikacji. Informacje dotyczące dokumentacji i zrzutu ekranowego 
+umieszczono w części III zadania egzaminacyjnego.  
+ 
+Kod aplikacji przygotuj do nagrania na płytę. W folderze desktopowa  powinno znaleźć się archiwum całego 
+projektu o nazwie desktopowa.zip , skopiowane z projektu pliki źródłowe, które były modyfikowane w czasie 
+egzaminu (interfejs użytkownika i logika aplikacji) oraz plik wykonywalny, jeżeli istnieje.  
+ 
+ 
+Część III. Dokumentacja aplikacji  
+Wykonaj dokumentację do aplikacji utworzonych na egzaminie. W kodzie źródłowym aplikacji konsolowej za 
+pomocą komentarza utwórz nagłówek dowolnej funkcji / metody, według wzoru z listingu 1. W przypadku 
+podejścia obiektowego zamiast słowa „funkcji” można n apisać „metody”. Komentarz powinien znaleźć się 
+nad lub pod nazwą funkcji. W  miejscu nawiasów <> należy podać odpowiednie opisy.  
+ 
+UWAGA: Dokumentację należy umieścić w komentarzu (wieloliniowym lub kilku jednoliniowych). Znajdujący 
+się w  listingu 1 wzór dokumentacji jest bez znaków początku i końca komentarza, gdyż te są różne dla 
+różnych języków programowania  
+ 
+  
+Strona 5 z 5 Listing 1. Wzór dokumentacji funkcji (liczba gwiazdek dowolna)  
+**********************************************  
+nazwa funkcji:   <nazwa> 
+opis funkcji:    <krótki opis co robi funkcja, cel zastosowania>  
+parametry:   <opis parametru1, lub „brak”>  
+    <opis parametru2>  
+    ...  
+zwracany typ i opis: <nazwa typu i opis co jest zwracane lub „brak”>  
+autor:                <numer zdającego>  
+***********************************************  
+ 
+Wykonaj zrzuty ekranu dokumentujące uruchomienie aplikacji utworzonych podczas egzaminu. Zrzuty 
+powinny obejmować cały obszar ekranu monitora z widocznym paskiem zadań. Jeżeli aplikacja uruchamia 
+się, na zrzucie należy umieścić okno z  wynikiem działania programu oraz otwarte środowisko 
+programistyczne z  projektem lub okno terminala z  kompilacją projektu. Jeżeli aplikacja nie uruchamia się 
+z powodu błędów kompilacji, należy na zrzucie umieścić okno ze spisem błędów i widocznym otwartym 
+środowiskiem programistycznym. Wykonać należy tyle zrzutów, ile interakcji podejm uje aplikacja (np. stan 
+początkowy, po wybraniu przycisków itd.). Wymagane zrzuty ekranu:  
+‒ Aplikacja konsolowa – dowolna liczba zrzutów nazwanych konsola1 , konsola2,  ... 
+‒ Aplikacja desktopowa – dowolna liczba zrzutów nazwanych desktop1 , desktop2,  ...  
+ 
+W edytorze tekstu pakietu biurowego utwórz plik z dokumentacją i nazwij go egzamin . Dokument powinien 
+zawierać informacje:  
+‒ Nazwę systemu operacyjnego, na którym pracował zdający  
+‒ Nazwy środowisk programistycznych, z których zdający korzystał na egzaminie  
+‒ Nazwy języków programowania  
+Zrzuty ekranu i dokument umieść w podfolderze dokumentacja . 
+ 
+UWAGA: Nagraj płytę z  rezultatami pracy. W folderze z numerem zdającego powinny się znajdować 
+podfoldery desktopowa, dokumentacja, konsolowa. W folderze desktopowa: spakowany cały projekt aplikacji 
+desktopowej, pliki ze źródłami interfejsu i logiki, opcjonalnie plik wykonywalny . W folderze dokumentacja: 
+pliki ze zrzutami oraz plik egzamin. W  folderze konsolowa: spakowany cały projekt aplikacji konsolowej, pliki 
+źródłowe, opcjonalnie plik wykonywalny. Opisz płytę numerem zdającego i  pozostaw na stanowisku, 
+zapakowaną w pudełku wraz z  arkuszem egzaminacyjnym.  
+ 
+ 
+ 
+Czas przeznaczony na wykonanie zadania wynosi  180 minut.  
+ 
+Ocenie będą podlegać 4 rezultaty  
+‒ implementacja, kompilacja, uruchomienie programu,  
+‒ aplikacja konsolowa,  
+‒ aplikacja desktopowa,  
+‒ dokumentacja aplikacji.  
+ 
+ 
+
+
+Wypełn ia zdając y 
+Do arkusza egzaminacyjnego dołączam płytę CD opisaną numerem PE SEL 
+której jakość nagrania została przeze mnie sprawdzona. 
+Wypełnia Przewodnicząc y ZN  
+Potwierdzam, że do arkusza egzaminacyjnego dołączona jest  płyta CD, opisana numerem PESEL zdającego.
+……………………………........…  
+Czytelny podpis Przewodnicząc ego ZN   ,

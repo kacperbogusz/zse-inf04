@@ -1,7 +1,7 @@
 # Analiza arkuszy INF.04 — Część II: Aplikacja desktopowa / mobilna / webowa
 
 > [!NOTE]
-> Analiza obejmuje 16 arkuszy egzaminacyjnych z lat 2021–2026. Skupiam się na **Części II** egzaminu, która polega na stworzeniu aplikacji z graficznym interfejsem użytkownika. Aplikacje wymagają najczęściej zrealizowania środowisk: Desktopowego (np. WPF, JavaFX, Windows Forms), Mobilnego (Android Studio - Java/Kotlin lub Xamarin/MAUI - C#) lub Webowego (Angular, React.js + Bootstrap).
+> Analiza obejmuje 18 arkuszy egzaminacyjnych z lat 2021–2026. Skupiam się na **Części II** egzaminu, która polega na stworzeniu aplikacji z graficznym interfejsem użytkownika. Aplikacje wymagają najczęściej zrealizowania środowisk: Desktopowego (np. WPF, JavaFX, Windows Forms), Mobilnego (Android Studio - Java/Kotlin lub Xamarin/MAUI - C#) lub Webowego (Angular, React.js + Bootstrap).
 
 ---
 
@@ -139,7 +139,31 @@
 
 ---
 
-### 12. 🗓️ 2025 – Styczeń 1
+### 12. 🗓️ 2024 – Czerwiec 1
+
+| Aspekt | Szczegóły |
+|---|---|
+| **Typ aplikacji** | 📱 Aplikacja mobilna |
+| **Temat** | Interfejs do Gry w Kości |
+| **Opis** | Pierwsza iteracja tego samego układu, który pojawił się w 2026 Styczeń 1. Zaprogramowanie wyglądu do gry w pięć kości (na ekranie przycisk "Rzuć kośćmi"). Wymuszone jest skorzystanie z logiki gry i klas przygotowanych i napisanych samemu w pierwszej części egzaminu w konsoli! |
+| **Trudność** | ⭐⭐⭐⭐ Średnia-trudna |
+| **Kluczowe umiejętności** | Rozkład wizualny Horizontal/Vertical Layout. **Spięcie stworzonej logiki z Części 1 do aplikacji mobilnej (Integracja)**, przypisywanie plików graficznych po stronie kodu w locie (np. `cost0.png`). |
+
+---
+
+### 13. 🗓️ 2024 – Czerwiec 2
+
+| Aspekt | Szczegóły |
+|---|---|
+| **Typ aplikacji** | 💻 Aplikacja desktopowa |
+| **Temat** | Interfejs Odtwarzacza Muzyki |
+| **Opis** | Aplikacja okienkowa "MojeDźwięki", która musi korzystać z kodu napisanego w części pierwszej (czytnik plików, ładowanie klas z `Data.txt`). Aplikacja prezentuje po jednym albumie muzycznym na na graficznym widoku i udostępnia przełączanie do lewego/prawego albumu strzałkami i inkrementowanie licznika pobrań. |
+| **Trudność** | ⭐⭐⭐⭐ Średnia-trudna |
+| **Kluczowe umiejętności** | **Integracja kodu struktury/klas z części I (czytanie pliku tekstowego we front-endzie)**, paginacja obiektów tablicy, obsługa przycisków Prev/Next, dynamika aktualizacji UI powiązana z odświeżaniem tablic. |
+
+---
+
+### 14. 🗓️ 2025 – Styczeń 1
 
 | Aspekt | Szczegóły |
 |---|---|
@@ -151,7 +175,7 @@
 
 ---
 
-### 13. 🗓️ 2025 – Styczeń 2
+### 15. 🗓️ 2025 – Styczeń 2
 
 | Aspekt | Szczegóły |
 |---|---|
@@ -163,7 +187,7 @@
 
 ---
 
-### 14. 🗓️ 2025 – Czerwiec 1
+### 16. 🗓️ 2025 – Czerwiec 1
 
 | Aspekt | Szczegóły |
 |---|---|
@@ -175,7 +199,7 @@
 
 ---
 
-### 15. 🗓️ 2025 – Czerwiec 2
+### 17. 🗓️ 2025 – Czerwiec 2
 
 | Aspekt | Szczegóły |
 |---|---|
@@ -187,7 +211,7 @@
 
 ---
 
-### 16. 🗓️ 2026 – Styczeń 1
+### 18. 🗓️ 2026 – Styczeń 1
 
 | Aspekt | Szczegóły |
 |---|---|
@@ -204,23 +228,23 @@
 ### Podział tematyczny (Typ środowiska/aplikacji)
 
 ```mermaid
-pie title Częstotliwość występowania platform na 16 arkuszach
-    "Aplikacje Mobilne" : 8
-    "Aplikacje Desktopowe" : 5
+pie title Częstotliwość występowania platform na 18 arkuszach
+    "Aplikacje Mobilne" : 9
+    "Aplikacje Desktopowe" : 6
     "Aplikacje Webowe (SPA)" : 3
 ```
 
 | Środowisko docelowe | Liczba arkuszy | Arkusze (Rok) |
 |---|---|---|
-| **Aplikacje Mobilne 📱** | 8 | 2021 Cze1, 2022 Sty1, 2022 Cze1, 2023 Sty2, 2023 Cze2, 2024 Sty2, 2025 Sty2, 2026 Sty1 |
-| **Aplikacje Desktopowe 💻** | 5 | 2023 Sty1, 2023 Cze1, 2024 Sty1, 2025 Cze1, 2025 Cze2 |
+| **Aplikacje Mobilne 📱** | 9 | 2021 Cze1, 2022 Sty1, 2022 Cze1, 2023 Sty2, 2023 Cze2, 2024 Sty2, 2024 Cze1, 2025 Sty2, 2026 Sty1 |
+| **Aplikacje Desktopowe 💻** | 6 | 2023 Sty1, 2023 Cze1, 2024 Sty1, 2024 Cze2, 2025 Cze1, 2025 Cze2 |
 | **Aplikacje Webowe 🌐** | 3 | 2022 Cze2, 2023 Cze3, 2025 Sty1 |
 
 ### Kluczowe obserwacje egzaminacyjne CKE
 
 > [!IMPORTANT]
-> **NOWY TREND (2025 i 2026) – Rozwiązanie kaskadowe!**
-> Do 2024 roku zadania Części I (konsola) i Części II (aplikacja okienkowa/mobilna/webowa) bywały na ogół odseparowane na płaszczyźnie logiki (Część II nie używała kodu napisanego w części pierwszej). Tymczasem **począwszy od 2025 Czerwiec 2 (np. Szyfr Cezara), 2025 Styczeń 2 (Urządzenia odkurzacze), jak i w najnowszym 2026 Styczeń 1 (Kości), komisja wprost sugeruje połączenie prac poprzez zaimplementowanie klas wyjściowych z Cześci I jako warstwy kontrolerów/domenowej w Części II z intefejsem wizualnym!** 
+> **NOWY TREND (Od 2024) – Rozwiązanie kaskadowe!**
+> Do początku 2024 roku zadania Części I (konsola) i Części II bywały na ogół odseparowane na płaszczyźnie logiki (Część II nie używała kodu napisanego w części pierwszej). Tymczasem **począwszy od egzaminów czerwcowych 2024 (Gra w kości, Odtwarzacz muzyki) widać wyraźny zwrot. W tych oraz późniejszych zadaniach takich jak Szyfr Cezara (2025 Cze 2) czy Urządzenia domowe (2025 Sty 2), komisja wprost sugeruje połączenie prac poprzez zaimplementowanie wyjściowych klas z Części I jako warstwy logiki (kontrolerów/domenowej) dla tworzonego GUI!** 
 
 1. **Przeskok ku nowoczesnemu deweloperstwu (Web)** — Niespotykany w starszych rewizjach INF.04, typ zadań "Zastosuj bibliotekę React/Angular" (2022 Cze 2, 2023 Cze 3, 2025 Sty 1) sprawdza faktyczną zwinność frontendu SPA wykorzystując Node.js z typowymi frameworkami i designem Boostrap w tle. Jeżeli jest to aplikacja webowa to jest oceniana jej reaktywność.
 2. **Krytyczne elementy w Mobilne/Desktop** — CKE notorycznie stawia na powtarzalny workflow, niezawodnie w 80% pytań powtarzają się schematy:
