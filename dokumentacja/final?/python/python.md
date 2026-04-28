@@ -35,9 +35,11 @@
   - [5.1. Definicja i wywoływanie funkcji](#51-definicja-i-wywoływanie-funkcji)
   - [5.2. Parametry domyślne](#52-parametry-domyślne)
   - [5.3. Argumenty pozycyjne i nazwane](#53-argumenty-pozycyjne-i-nazwane)
-  - [5.4. Zasięg zmiennych (scope)](#54-zasięg-zmiennych-scope)
-  - [5.5. Funkcja `lambda` — funkcje anonimowe](#55-funkcja-lambda--funkcje-anonimowe)
-  - [5.6. Funkcje wbudowane — przegląd najważniejszych](#56-funkcje-wbudowane--przegląd-najważniejszych)
+  - [5.4. Zmienna liczba argumentów — *args i **kwargs](#54-zmienna-liczba-argumentów--args-i-kwargs)
+  - [5.5. Argumenty tylko pozycyjne (/) i tylko nazwane (*)](#55-argumenty-tylko-pozycyjne--i-tylko-nazwane-)
+  - [5.6. Zasięg zmiennych (scope)](#56-zasięg-zmiennych-scope)
+  - [5.7. Funkcja `lambda` — funkcje anonimowe](#57-funkcja-lambda--funkcje-anonimowe)
+  - [5.8. Funkcje wbudowane — przegląd najważniejszych](#58-funkcje-wbudowane--przegląd-najważniejszych)
 - [6. Przetwarzanie łańcuchów znaków](#6-przetwarzanie-łańcuchów-znaków)
   - [6.1. Podstawowe operacje na napisach](#61-podstawowe-operacje-na-napisach)
   - [6.2. Metody napisów — kompletny przegląd](#62-metody-napisów--kompletny-przegląd)
@@ -100,22 +102,30 @@
   - [14.6. Podsumowanie — kiedy co stosować w OOP](#146-podsumowanie--kiedy-co-stosować-w-oop)
   - [14.7. Polimorfizm](#147-polimorfizm)
   - [14.8. Klasy abstrakcyjne — moduł `abc`](#148-klasy-abstrakcyjne--moduł-abc)
+  - [14.9. Kompleksowa implementacja: System Quiz](#149-kompleksowa-implementacja-system-quiz)
 - [15. Algorytmy w Pythonie](#15-algorytmy-w-pythonie)
   - [15.1. Sortowanie przez wybieranie (Selection Sort)](#151-sortowanie-przez-wybieranie-selection-sort)
   - [15.2. Sortowanie bąbelkowe (Bubble Sort)](#152-sortowanie-bąbelkowe-bubble-sort)
-  - [15.3. Wyszukiwanie liniowe](#153-wyszukiwanie-liniowe)
-  - [15.4. Wyszukiwanie z wartownikiem (Sentinel Search)](#154-wyszukiwanie-z-wartownikiem-sentinel-search)
-  - [15.5. Algorytm Euklidesa (NWD — Największy Wspólny Dzielnik)](#155-algorytm-euklidesa-nwd--największy-wspólny-dzielnik)
-  - [15.6. Sito Eratostenesa](#156-sito-eratostenesa)
-  - [15.7. Szyfr Cezara](#157-szyfr-cezara)
-  - [15.8. Walidacja danych z wagami](#158-walidacja-danych-z-wagami)
-  - [15.9. Usuwanie sąsiednich duplikatów](#159-usuwanie-sąsiednich-duplikatów)
-  - [15.10. Zliczanie wystąpień wartości w danych](#1510-zliczanie-wystąpień-wartości-w-danych)
-  - [15.11. Obliczanie średniej arytmetycznej](#1511-obliczanie-średniej-arytmetycznej)
-  - [15.12. Wyodrębnianie elementów spełniających warunek](#1512-wyodrębnianie-elementów-spełniających-warunek)
-  - [15.13. Sprawdzanie czy liczba jest pierwsza](#1513-sprawdzanie-czy-liczba-jest-pierwsza)
-  - [15.14. Rekurencja](#1514-rekurencja)
-  - [15.15. Wyszukiwanie binarne (Binary Search)](#1515-wyszukiwanie-binarne-binary-search)
+  - [15.3. Sortowanie przez wstawianie (Insertion Sort)](#153-sortowanie-przez-wstawianie-insertion-sort)
+  - [15.4. Sortowanie przez scalanie (Merge Sort)](#154-sortowanie-przez-scalanie-merge-sort)
+  - [15.5. Sortowanie szybkie (Quick Sort)](#155-sortowanie-szybkie-quick-sort)
+  - [15.6. Wyszukiwanie liniowe](#156-wyszukiwanie-liniowe)
+  - [15.7. Wyszukiwanie z wartownikiem (Sentinel Search)](#154-wyszukiwanie-z-wartownikiem-sentinel-search)
+  - [15.8. Wyszukiwanie binarne (Binary Search)](#1515-wyszukiwanie-binarne-binary-search)
+  - [15.9. Algorytm Euklidesa (NWD — Największy Wspólny Dzielnik)](#155-algorytm-euklidesa-nwd--największy-wspólny-dzielnik)
+  - [15.10. Najmniejsza Wspólna Wielokrotność (NWW)](#1510-najmniejsza-wspólna-wielokrotność-nww)
+  - [15.11. Sprawdzanie czy liczba jest pierwsza](#1513-sprawdzanie-czy-liczba-jest-pierwsza)
+  - [15.12. Sito Eratostenesa](#156-sito-eratostenesa)
+  - [15.13. Rozkład liczby na czynniki pierwsze](#1513-rozkład-liczby-na-czynniki-pierwsze)
+  - [15.14. Konwersja systemów liczbowych (Dziesiętny <-> Binarny)](#1514-konwersja-systemów-liczbowych-dziesiętny---binarny)
+  - [15.15. Szyfr Cezara](#157-szyfr-cezara)
+  - [15.16. Palindromy i Anagramy](#1516-palindromy-i-anagramy)
+  - [15.17. Rekurencja](#1514-rekurencja)
+  - [15.18. Walidacja danych z wagami](#158-walidacja-danych-z-wagami)
+  - [15.19. Usuwanie sąsiednich duplikatów](#159-usuwanie-sąsiednich-duplikatów)
+  - [15.20. Zliczanie wystąpień wartości w danych](#1510-zliczanie-wystąpień-wartości-w-danych)
+  - [15.21. Obliczanie średniej arytmetycznej](#1511-obliczanie-średniej-arytmetycznej)
+  - [15.22. Wyodrębnianie elementów spełniających warunek](#1512-wyodrębnianie-elementów-spełniających-warunek)
 - [16. Tablice dwuwymiarowe](#16-tablice-dwuwymiarowe)
   - [16.1. Tworzenie tablic 2D](#161-tworzenie-tablic-2d)
   - [16.2. Dostęp i iteracja](#162-dostęp-i-iteracja)
@@ -1500,7 +1510,140 @@ info(miasto="Kraków", imie="Anna", wiek=30)
 info("Piotr", miasto="Gdańsk", wiek=22)
 ```
 
-### 5.4. Zasięg zmiennych (scope)
+### 5.4. Zmienna liczba argumentów — *args i **kwargs
+
+W sytuacjach, gdy nie wiemy z góry, ile argumentów zostanie przekazanych do funkcji, z pomocą przychodzą specjalne operatory `*args` oraz `**kwargs`. Są one szczególnie przydatne, gdy chcemy napisać elastyczne funkcje, dekoratory, lub przekazywać argumenty w dziedziczeniu klas (do `super().__init__()`).
+
+**Argumenty zmiennej długości — `*args` (Arbitrary Arguments):**
+
+Użycie pojedynczej gwiazdki `*` przed nazwą parametru sprawia, że funkcja staje się zdolna do przyjęcia dowolnej liczby argumentów **pozycyjnych**. Wewnątrz funkcji stają się one dostępne jako krotka (tuple).
+
+```python
+def suma_wielu(*args):
+    # args to tuple, np. (1, 2, 3, 4)
+    suma = 0
+    for liczba in args:
+        suma += liczba
+    return suma
+
+print(suma_wielu(5, 10))          # 15
+print(suma_wielu(1, 2, 3, 4, 5))  # 15
+print(suma_wielu())               # 0
+
+def powitaj_grupe(*imiona):
+    for imie in imiona:
+        print(f"Cześć, {imie}!")
+
+powitaj_grupe("Jan", "Anna", "Piotr")
+```
+
+👉 *Wskazówka:* Nazwa `args` to tylko konwencja (od ang. *arguments*). Ważny jest znak `*`, możesz nazwać parametr `*imiona` czy `*liczby`.
+
+**Pary klucz-wartość — `**kwargs` (Arbitrary Keyword Arguments):**
+
+Dwie gwiazdki `**` pozwalają na przekazanie dowolnej liczby argumentów **nazwanych** (klucz=wartość). Wewnątrz funkcji są one zapisywane jako słownik (dictionary).
+
+```python
+def wyswietl_dane_osobowe(**kwargs):
+    # kwargs to słownik, np. {'imie': 'Jan', 'wiek': 25}
+    for klucz, wartosc in kwargs.items():
+        print(f"{klucz.capitalize()}: {wartosc}")
+
+wyswietl_dane_osobowe(imie="Jan", wiek=25, miasto="Warszawa")
+# Imie: Jan
+# Wiek: 25
+# Miasto: Warszawa
+
+wyswietl_dane_osobowe(stanowisko="Programista", pensja=5000)
+```
+
+👉 *Wskazówka:* Podobnie jak z `args`, nazwa `kwargs` (od *keyword arguments*) to konwencja. Kluczowe są znaki `**`.
+
+**Łączenie zwykłych argumentów, `*args` i `**kwargs`:**
+
+Możesz łączyć te mechanizmy w jednej funkcji, jednak musisz bezwzględnie zachować następującą kolejność w definicji:
+1. Argumenty podstawowe (pozycyjne)
+2. `*args`
+3. Parametry ze zdefiniowaną wartością domyślną
+4. `**kwargs`
+
+```python
+def zloz_zamowienie(klient, *produkty, dostawa="Standard", **opcje_dodatkowe):
+    print(f"Zamówienie dla: {klient}")
+    
+    print("Mój koszyk:")
+    for produkt in produkty:
+        print(f"- {produkt}")
+        
+    print(f"Typ dostawy: {dostawa}")
+    
+    if opcje_dodatkowe:
+        print("Opcje dodatkowe:")
+        for opcja, wartosc in opcje_dodatkowe.items():
+            print(f"- {opcja}: {wartosc}")
+
+zloz_zamowienie(
+    "Anna Nowak",            # argument podstawowy (klient)
+    "Myszka", "Klawiatura",  # *args (produkty)
+    dostawa="Express",       # nadpisanie parametru domyślnego
+    faktura=True,            # **kwargs (opcje_dodatkowe)
+    pakowanie_prezent=False  # **kwargs (opcje_dodatkowe)
+)
+```
+
+**Rozpakowywanie argumentów (Unpacking):**
+
+Gwiazdki działają również w drugą stronę! Jeśli masz już listę lub słownik układający się w odpowiednie parametry, możesz użyć `*` by "rozpakować" listę na argumenty pozycyjne lub `**` by rozpakować słownik na nazwane.
+
+```python
+dane = [3, 4, 5]
+print(suma_wielu(*dane))  # równe wywołaniu suma_wielu(3, 4, 5)
+
+osoba = {"imie": "Marek", "wiek": 40}
+wyswietl_dane_osobowe(**osoba) # równe wywołaniu wyswietl_dane_osobowe(imie="Marek", wiek=40)
+```
+
+To używany wzorzec m.in. przy rozszerzaniu konstruktorów z użyciem funkcji `super()`, gdy podrzędna klasa przyjmuje szerszą liczbę argumentów, które po prostu podaje dalej do konstruktora rodzica.
+
+### 5.5. Argumenty tylko pozycyjne (/) i tylko nazwane (*)
+
+W nowszych wersjach Pythona (3.8+) wprowadzono symbole `/` oraz `*` w definicji parametrów funkcji, aby jawnie określić, jak argumenty mogą być przekazywane. Pozwala to na większą kontrolę nad API funkcji i zapobiega pomyłkom.
+
+**Argumenty tylko pozycyjne (`/`):**
+
+Wszystkie parametry znajdujące się **przed** symbolem `/` muszą zostać przekane wyłącznie na podstawie pozycji. Nie można użyć ich nazw.
+
+```python
+def pole_prostokata(a, b, /):
+    return a * b
+
+print(pole_prostokata(5, 10))    # ✅ OK (pozycyjne)
+# print(pole_prostokata(a=5, b=10)) # ❌ TypeError: positional-only arguments
+```
+
+**Argumenty tylko nazwane (`*`):**
+
+Wszystkie parametry znajdujące się **po** symbolu `*` muszą zostać przekazane wyłącznie jako argumenty nazwane. Często stosowane, aby uniknąć pomyłek przy wielu parametrach logicznych.
+
+```python
+def wyslij_wiadomosc(tresc, *, pilne=False, do_logow=True):
+    print(f"Wysyłanie: {tresc} (Pilne: {pilne})")
+
+wyslij_wiadomosc("Dzień dobry", pilne=True) # ✅ OK
+# wyslij_wiadomosc("Hej", True)            # ❌ TypeError: takes 1 positional argument but 2 were given
+```
+
+**Kompletna składnia mieszana:**
+
+```python
+def func(pos_only, /, standard, *, kw_only):
+    print(pos_only, standard, kw_only)
+
+func(10, standard=20, kw_only=30) # ✅ OK
+func(10, 20, kw_only=30)          # ✅ OK
+```
+
+### 5.6. Zasięg zmiennych (scope)
 
 Zmienne utworzone wewnątrz funkcji są **lokalne** — nie istnieją poza funkcją. Zmienne utworzone poza funkcjami są **globalne** — są widoczne w całym programie. Zrozumienie tego mechanizmu jest kluczowe do unikania błędów.
 
@@ -1525,7 +1668,7 @@ print(f"Po zmianie: {x}")  # 99
 
 W praktyce należy unikać `global` — lepiej przekazywać dane jako parametry i zwracać wyniki przez `return`.
 
-### 5.5. Funkcja `lambda` — funkcje anonimowe
+### 5.7. Funkcja `lambda` — funkcje anonimowe
 
 Lambda to krótka, jednolinijkowa funkcja anonimowa (bez nazwy). Składnia: `lambda parametry: wyrażenie`. Lambda automatycznie zwraca wynik wyrażenia — nie używamy słowa `return`.
 
@@ -1554,7 +1697,7 @@ pracownicy.sort(key=lambda p: p["pensja"], reverse=True)
 # Posortowani malejąco wg pensji
 ```
 
-### 5.6. Funkcje wbudowane — przegląd najważniejszych
+### 5.8. Funkcje wbudowane — przegląd najważniejszych
 
 Python oferuje wiele wbudowanych funkcji, które nie wymagają importowania żadnego modułu:
 
@@ -2531,121 +2674,90 @@ print(random.randint(1, 100))  # Znowu 82
 
 ## 10. Programowanie obiektowe — podstawy
 
-Programowanie obiektowe (OOP — Object-Oriented Programming) to paradygmat, w którym program jest organizowany wokół **obiektów** — bytów łączących dane (pola/atrybuty) i zachowania (metody). Klasa jest „szablonem" opisującym jakie pola i metody będą miały jej obiekty, a obiekt to konkretna instancja klasy.
-
-Analogicznie: klasa jest jak **przepis na ciasto** — opisuje składniki (pola) i kroki przygotowania (metody). Obiekt to **konkretne ciasto** upieczone według tego przepisu. Z jednego przepisu (klasy) możemy upiec wiele ciast (obiektów), każde z innym nadzieniem (wartościami pól).
-
-W programowaniu obiektowym wyróżniamy cztery główne filary:
-
-| Filar | Opis |
-|---|---|
-| **Abstrakcja** | Ukrywanie złożoności — pokazujemy tylko to, co potrzebne |
-| **Hermetyzacja** | Kontrola dostępu do danych (private, protected, public) |
-| **Dziedziczenie** | Klasa dziecko przejmuje cechy klasy rodzica |
-| **Polimorfizm** | Ta sama metoda zachowuje się inaczej w różnych klasach |
+Programowanie obiektowe (OOP — Object-Oriented Programming) to paradygmat, w którym program jest organizowany wokół **obiektów** — autonomicznych bytów łączących dane (atrybuty) i zachowania (metody).
 
 ### 10.1. Definicja klasy
-
-Klasę definiujemy słowem kluczowym `class`, po którym następuje nazwa klasy (konwencja: `PascalCase` — każde słowo od wielkiej litery) i dwukropek:
+Klasa to „szablon” lub „projekt”, na podstawie którego tworzymy obiekty. Nazwy klas w Pythonie zapisujemy zgodnie z konwencją **PascalCase** (np. `MojaKlasa`).
 
 ```python
-class Samochod:
-    pass  # Pusta klasa — placeholder, gdy jeszcze nie ma kodu
+class Robot:
+    """Prosta klasa reprezentująca robota."""
+    pass
 
-# Tworzenie obiektu (instancji klasy) — nawiasy po nazwie klasy
-auto = Samochod()
-print(type(auto))  # <class '__main__.Samochod'>
+# Tworzenie instancji (obiektu)
+moj_robot = Robot()
+print(type(moj_robot))  # <class '__main__.Robot'>
 ```
 
 ### 10.2. Konstruktor `__init__` i pola instancji
-
-Konstruktor to specjalna metoda `__init__`, która jest **automatycznie** wywoływana podczas tworzenia obiektu. Służy do inicjalizacji pól (atrybutów) obiektu. Słowo `self` to referencja do aktualnego obiektu — jest wymagane jako pierwszy parametr każdej metody instancji.
+Metoda `__init__` jest wywoływana automatycznie podczas tworzenia nowego obiektu. Służy do nadawania obiektowi początkowego stanu (inicjalizacji pól).
 
 ```python
 class Samochod:
-    def __init__(self, marka, rok):
-        self.marka = marka        # Pole instancji — unikalne dla każdego obiektu
-        self.rok = rok            # Pole instancji
-        self.predkosc = 0         # Pole z wartością domyślną
+    def __init__(self, marka, model, rok):
+        # Pola instancji (unikalne dla każdego obiektu)
+        self.marka = marka
+        self.model = model
+        self.rok = rok
+        self.czy_odpalony = False
 
-# Tworzenie obiektów — argumenty trafiają do __init__
-auto1 = Samochod("Toyota", 2020)
-auto2 = Samochod("BMW", 2022)
+# Przekazujemy argumenty z pominięciem 'self'
+auto1 = Samochod("Toyota", "Corolla", 2022)
+auto2 = Samochod("Tesla", "Model 3", 2023)
 
-# Każdy obiekt ma SWOJE, niezależne pola
-print(auto1.marka)     # Toyota
-print(auto2.marka)     # BMW
-print(auto1.predkosc)  # 0
+print(auto1.marka)  # Toyota
+print(auto2.marka)  # Tesla
 ```
 
 ### 10.3. Metody instancji
-
-Metody to funkcje zdefiniowane wewnątrz klasy. Ich pierwszym parametrem jest zawsze `self`, dzięki czemu mają dostęp do pól obiektu. Metody definiują **zachowania** obiektu.
-
-```python
-class Samochod:
-    def __init__(self, marka, rok):
-        self.marka = marka
-        self.rok = rok
-        self.predkosc = 0
-
-    def przyspiesz(self, wartosc):
-        """Zwiększa prędkość o podaną wartość."""
-        self.predkosc += wartosc
-
-    def hamuj(self, wartosc):
-        """Zmniejsza prędkość, ale nie poniżej 0."""
-        self.predkosc = max(0, self.predkosc - wartosc)
-
-    def wyswietl_info(self):
-        """Wyświetla informacje o samochodzie."""
-        print(f"{self.marka} ({self.rok}), prędkość: {self.predkosc} km/h")
-
-    def pobierz_predkosc(self):
-        """Zwraca aktualną prędkość (metoda z wartością zwrotną)."""
-        return self.predkosc
-```
-
-**Użycie metod — wywołujemy je na obiekcie za pomocą kropki:**
+Metody to funkcje zdefiniowane wewnątrz klasy, które mają dostęp do danych obiektu poprzez parametr `self`.
 
 ```python
-auto = Samochod("Toyota", 2020)
-auto.przyspiesz(50)
-auto.wyswietl_info()          # Toyota (2020), prędkość: 50 km/h
-print(auto.pobierz_predkosc())  # 50
-auto.hamuj(30)
-auto.wyswietl_info()          # Toyota (2020), prędkość: 20 km/h
+class Pies:
+    def __init__(self, imie):
+        self.imie = imie
+
+    def szczekaj(self):
+        print(f"{self.imie} mówi: Hau! Hau!")
+
+    def przedstaw_sie(self, tytul="Pies"):
+        print(f"Jestem {tytul} i nazywam się {self.imie}.")
+
+reksio = Pies("Reksio")
+reksio.szczekaj()              # Reksio mówi: Hau! Hau!
+reksio.przedstaw_sie("Azor")   # Jestem Azor i nazywam się Reksio.
 ```
 
 ### 10.4. `self` — czym jest i dlaczego jest konieczne
+`self` to pierwszy parametr każdej metody instancji. Reprezentuje on **konkretny obiekt**, na którym metoda została wywołana.
 
-`self` to nie jest słowo kluczowe — to konwencja nazewnicza (technicznie możesz nazwać ten parametr dowolnie, ale **każdy** programista Python używa `self`). Odnosi się do konkretnego obiektu, na którym wywoływana jest metoda.
-
-Kluczowa różnica: `self.pole` to pole obiektu (trwałe), a zwykła zmienna wewnątrz metody jest lokalna (znika po wyjściu z metody):
-
-```python
-class Przyklad:
-    def __init__(self):
-        self.wartosc = 0           # POLE obiektu — istnieje tak długo jak obiekt
-
-    def ustaw(self, nowa_wartosc):
-        self.wartosc = nowa_wartosc  # Modyfikuje POLE obiektu
-
-    def wyswietl(self):
-        wartosc = 99                 # ZMIENNA LOKALNA — znika po wyjściu z metody
-        print(f"Pole obiektu: {self.wartosc}")
-        print(f"Zmienna lokalna: {wartosc}")
-
-obj = Przyklad()
-obj.ustaw(42)
-obj.wyswietl()
-# Pole obiektu: 42
-# Zmienna lokalna: 99
-```
+- **Dlaczego `self`?** Python nie używa słowa kluczowego `this` jak Java czy C#, a przekazywanie referencji do obiektu musi być jawne w definicji (choć niejawne przy wywołaniu).
+- **Jak to działa pod spodem?** Wywołanie `auto.jedz(10)` jest przez Pythona zamieniane na `Samochod.jedz(auto, 10)`.
 
 ### 10.5. Metoda `__str__` — reprezentacja tekstowa obiektu
+Pozwala zdefiniować, co ma się wyświetlić, gdy przekażemy obiekt do funkcji `print()` lub `str()`.
 
-Metoda `__str__` definiuje, co się wyświetli, gdy użyjemy `print()` na obiekcie. Bez niej `print(obiekt)` wypisze coś w stylu `<__main__.Samochod object at 0x...>`:
+```python
+class Ksiazka:
+    def __init__(self, tytul, autor):
+        self.tytul = tytul
+        self.autor = autor
+
+    def __str__(self):
+        return f"'{self.tytul}' autorstwa {self.autor}"
+
+ksiazka = Ksiazka("Wiedźmin", "Andrzej Sapkowski")
+print(ksiazka)  # 'Wiedźmin' autorstwa Andrzej Sapkowski
+```
+
+### 10.6. `__repr__` vs `__str__` — dwie reprezentacje tekstowe
+
+| Metoda | Cel | Grupa docelowa | Wywołanie |
+|---|---|---|---|
+| `__str__` | Nieformalna, ładna reprezentacja. | Użytkownik końcowy. | `print(obj)`, `str(obj)` |
+| `__repr__` | Formalna, techniczna informacja. | Programista (debugowanie). | Konsola, f-string `!r`, listy. |
+
+**Zasada:** Jeśli nie zdefiniujesz `__str__`, Python użyje `__repr__`. Jeśli nie zdefiniujesz żadnej, zobaczysz adres w pamięci.
 
 ```python
 class Produkt:
@@ -2653,168 +2765,73 @@ class Produkt:
         self.nazwa = nazwa
         self.cena = cena
 
-    def __str__(self):
-        return f"Produkt: {self.nazwa}, Cena: {self.cena} zł"
-
-p = Produkt("Laptop", 3500)
-print(p)  # Produkt: Laptop, Cena: 3500 zł (zamiast <...object...>)
-```
-
-### 10.6. `__repr__` vs `__str__` — dwie reprezentacje tekstowe
-
-Python oferuje dwie metody specjalne do tworzenia tekstowej reprezentacji obiektu. Zrozumienie różnicy między nimi jest ważne:
-
-| Metoda | Cel | Wywoływana przez | Odbiorca |
-|---|---|---|---|
-| `__str__` | Czytelna reprezentacja | `print()`, `str()`, f-string | Użytkownik końcowy |
-| `__repr__` | Jednoznaczna reprezentacja | `repr()`, konsola interaktywna | Programista (debugowanie) |
-
-`__repr__` powinna zwracać string, który — idealnie — pozwoliłby odtworzyć obiekt. `__str__` powinna zwracać przystępną, ładną formę do wyświetlania.
-
-```python
-class Punkt:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
     def __repr__(self):
-        # Dla programisty — jednoznaczna, techniczna
-        return f"Punkt(x={self.x}, y={self.y})"
+        return f"Produkt(nazwa='{self.nazwa}', cena={self.cena})"
 
-    def __str__(self):
-        # Dla użytkownika — ładna, czytelna
-        return f"({self.x}, {self.y})"
-
-p = Punkt(3, 5)
-
-print(p)          # (3, 5)          <- wywołuje __str__
-print(repr(p))    # Punkt(x=3, y=5) <- wywołuje __repr__
-print(f"Punkt: {p}")  # Punkt: (3, 5) <- f-string wywołuje __str__
+p = Produkt("Chleb", 4.50)
+print(p)      # Produkt(nazwa='Chleb', cena=4.5)
+lista = [p]
+print(lista)  # [Produkt(nazwa='Chleb', cena=4.5)]
 ```
-
-**Ważna zasada:** Jeśli klasa ma zdefiniowaną tylko `__repr__` (bez `__str__`), to `print()` użyje `__repr__` jako zapasowej. Jeśli zdefiniujesz tylko `__str__`, to `repr()` pokaże domyślną `<__main__.Klasa object at 0x...>`.
-
-**Praktyczna rada:** Zawsze definiuj przynajmniej `__repr__`. Jeśli potrzebujesz ładnego wyświetlania dla użytkownika, dodaj też `__str__`.
-
-```python
-class Ocena:
-    def __init__(self, przedmiot, wartosc):
-        self.przedmiot = przedmiot
-        self.wartosc = wartosc
-
-    def __repr__(self):
-        return f"Ocena('{self.przedmiot}', {self.wartosc})"
-
-    def __str__(self):
-        return f"{self.przedmiot}: {self.wartosc}"
-
-# Różnica widoczna np. przy listach:
-oceny = [Ocena("Matematyka", 5), Ocena("Polski", 4)]
-print(oceny)         # [Ocena('Matematyka', 5), Ocena('Polski', 4)] <- __repr__!
-print(oceny[0])      # Matematyka: 5 <- __str__
-```
-
-Zauważ: `print(lista)` wyświetla elementy listy za pomocą `__repr__`, nie `__str__`. To dlatego, że lista używa `repr()` na swoich elementach.
 
 ---
 
 ## 11. Programowanie obiektowe — hermetyzacja
 
-Hermetyzacja (enkapsulacja) to mechanizm **ukrywania wewnętrznych szczegółów implementacji** klasy. Zamiast pozwalać na bezpośredni dostęp do pól, udostępniamy kontrolowane metody (gettery/settery). Dzięki temu klasa ma pełną kontrolę nad swoimi danymi — może np. walidować wartości przed ich zapisaniem.
+Hermetyzacja (enkapsulacja) to ukrywanie danych wewnętrznych obiektu i udostępnianie ich tylko poprzez kontrolowany interfejs. Zapobiega to przypadkowej modyfikacji stanu obiektu.
 
 ### 11.1. Poziomy dostępu w Pythonie
+W Pythonie nie ma ścisłych ograniczeń dostępu (jak `private` w Java). Stosujemy konwencje nazewnictwa.
 
-W Pythonie nie ma słów kluczowych `public`, `private`, `protected` jak w Javie czy C#. Zamiast tego stosowana jest **konwencja nazewnicza** oparta na podkreślnikach:
+| Typ | Zapis | Dostępność | Znaczenie |
+|---|---|---|---|
+| **Publiczne** | `self.nazwa` | Wszędzie. | Standardowe pole. |
+| **Chronione** | `self._nazwa` | Klasa i podklasy. | "Proszę, nie ruszaj mnie poza klasą" (konwencja). |
+| **Prywatne** | `self.__nazwa` | Tylko klasa. | Silnie ukryte (uruchamia mechanizm **Name Mangling**). |
 
-| Konwencja | Zapis | Dostęp z zewnątrz | Klasy potomne | Odpowiednik Java/C# |
-|---|---|---|---|---|
-| Publiczne | `self.pole` | ✅ Pełny | ✅ Tak | `public` |
-| Chronione | `self._pole` | ⚠️ Możliwy (niezalecany) | ✅ Tak | `protected` |
-| Prywatne | `self.__pole` | ❌ Name mangling | ❌ Nie | `private` |
+**Name Mangling:** Atrybut `self.__tajne` w klasie `Konto` jest zamieniany na `_Konto__tajne`. Można się do niego dostać z zewnątrz, ale jest to celowo utrudnione.
 
-**Jeden podkreślnik `_` (protected)** — to jedynie sygnał dla innych programistów: „nie dotykaj tego pola z zewnątrz klasy". Python tego nie wymusza — ale łamanie tej konwencji jest uważane za złą praktykę.
-
-**Dwa podkreślniki `__` (private)** — Python stosuje mechanizm zwany **name mangling**: pole `self.__pensja` w klasie `Pracownik` jest wewnętrznie zmieniane na `self._Pracownik__pensja`. To nie jest prawdziwe ukrywanie (nadal można się dostać), ale skutecznie chroni przed przypadkowym dostępem.
+### 11.2. Gettery i settery — metody dostępu
+Klasyczne podejście (rzadziej stosowane w Pythonie na rzecz `@property`):
 
 ```python
 class Pracownik:
-    def __init__(self, imie, pensja, stanowisko):
-        self.imie = imie               # PUBLIC
-        self._stanowisko = stanowisko  # PROTECTED
-        self.__pensja = pensja         # PRIVATE (name mangling)
+    def __init__(self, pensja):
+        self.__pensja = pensja
 
-p = Pracownik("Jan", 5000, "Programista")
+    def get_pensja(self):
+        return self.__pensja
 
-print(p.imie)              # ✅ OK
-print(p._stanowisko)       # ⚠️ Działa, ale jest niezalecane
-# print(p.__pensja)        # ❌ AttributeError!
-print(p._Pracownik__pensja)# ⚠️ Technicznie możliwe, ale NIGDY tego nie rób
-```
-
-### 11.2. Gettery i settery — metody dostępu
-
-Getter (pobierz) i setter (ustaw) to metody publiczne, które kontrolują dostęp do prywatnych pól. Setter może zawierać walidację — odrzucanie niepoprawnych wartości:
-
-```python
-class Produkt:
-    def __init__(self, nazwa, cena):
-        self.__nazwa = nazwa
-        self.__cena = cena
-
-    # Getter — odczyt
-    def pobierz_nazwe(self):
-        return self.__nazwa
-
-    def pobierz_cene(self):
-        return self.__cena
-
-    # Setter z walidacją
-    def ustaw_cene(self, nowa_cena):
-        if nowa_cena >= 0:
-            self.__cena = nowa_cena
-        else:
-            print("Cena nie może być ujemna!")
-
-p = Produkt("Laptop", 3500)
-print(p.pobierz_cene())    # 3500
-p.ustaw_cene(4000)         # OK
-p.ustaw_cene(-100)         # Cena nie może być ujemna!
-print(p.pobierz_cene())    # 4000 (nie -100)
+    def set_pensja(self, nowa_pensja):
+        if nowa_pensja > 0:
+            self.__pensja = nowa_pensja
 ```
 
 ### 11.3. Dekorator `@property` — pythoniczny getter/setter
-
-Dekorator `@property` pozwala na dostęp do pola jak do zwykłego atrybutu (bez nawiasów), ale z kontrolą gettera i settera. To bardziej „pythonowy" sposób niż tradycyjne metody `pobierz_X()` / `ustaw_X()`:
+Pozwala używać metod tak, jakby były zwykłymi polami (bez nawiasów `()`), co umożliwia dodanie walidacji bez zmiany API klasy.
 
 ```python
-class Temperatura:
-    def __init__(self, celsius):
-        self.__celsius = celsius
+class Osoba:
+    def __init__(self, wiek):
+        self.__wiek = wiek
 
     @property
-    def celsius(self):
-        """Getter — wywoływany przy ODCZYCIE: t.celsius"""
-        return self.__celsius
+    def wiek(self):
+        """Getter: wywoływany przy 'print(obj.wiek)'"""
+        return self.__wiek
 
-    @celsius.setter
-    def celsius(self, wartosc):
-        """Setter — wywoływany przy ZAPISIE: t.celsius = 30"""
-        if wartosc < -273.15:
-            raise ValueError("Temperatura poniżej zera absolutnego!")
-        self.__celsius = wartosc
+    @wiek.setter
+    def wiek(self, wartosc):
+        """Setter: wywoływany przy 'obj.wiek = 20'"""
+        if 0 <= wartosc <= 150:
+            self.__wiek = wartosc
+        else:
+            print("Nieprawidłowy wiek!")
 
-    @property
-    def fahrenheit(self):
-        """Właściwość tylko do odczytu (brak settera)."""
-        return self.__celsius * 9/5 + 32
-
-# Użycie — wygląda jak bezpośredni dostęp do pola, ale działa getter/setter!
-t = Temperatura(25)
-print(t.celsius)       # 25   (getter)
-print(t.fahrenheit)    # 77.0 (getter obliczeniowy)
-
-t.celsius = 30         # Setter z walidacją
-print(t.celsius)       # 30
+o = Osoba(25)
+o.wiek = 30    # Wywołuje setter
+print(o.wiek)  # Wywołuje getter -> 30
+o.wiek = -5    # Nieprawidłowy wiek!
 ```
 
 ---
@@ -2822,141 +2839,70 @@ print(t.celsius)       # 30
 ## 12. Programowanie obiektowe — zmienne klasowe i metody statyczne
 
 ### 12.1. Zmienne klasowe (static fields)
-
-Zmienne klasowe należą **do klasy**, nie do konkretnego obiektu. Są wspólne dla WSZYSTKICH instancji — zmiana przez jedną instancję jest widoczna dla wszystkich. Typowe zastosowanie: zliczanie utworzonych obiektów, przechowywanie stałych.
+Zmienne zdefiniowane bezpośrednio w klasie (poza `__init__`). Są współdzielone przez **wszystkie** instancje tej klasy.
 
 ```python
-class Uzytkownik:
-    # Zmienna KLASOWA — wspólna dla wszystkich instancji
-    licznik = 0
+class Pracownik:
+    liczba_pracownikow = 0  # Zmienna klasowa
 
-    def __init__(self, nazwa):
-        Uzytkownik.licznik += 1          # Inkrementacja przez NAZWĘ KLASY
-        self.id = Uzytkownik.licznik     # Automatyczne nadanie unikalnego ID
-        self.nazwa = nazwa
+    def __init__(self, imie):
+        self.imie = imie
+        Pracownik.liczba_pracownikow += 1
 
-    def wyswietl(self):
-        print(f"ID: {self.id}, Nazwa: {self.nazwa}")
-
-u1 = Uzytkownik("Jan")
-u2 = Uzytkownik("Anna")
-u3 = Uzytkownik("Piotr")
-
-u1.wyswietl()   # ID: 1, Nazwa: Jan
-u2.wyswietl()   # ID: 2, Nazwa: Anna
-u3.wyswietl()   # ID: 3, Nazwa: Piotr
-
-# Dostęp do zmiennej klasowej — przez nazwę klasy
-print(f"Łączna liczba użytkowników: {Uzytkownik.licznik}")  # 3
+p1 = Pracownik("Adam")
+p2 = Pracownik("Ewa")
+print(Pracownik.liczba_pracownikow)  # 2
 ```
 
-**Kluczowa pułapka — modyfikacja zmiennej klasowej:**
+### 12.2. Zmienne klasowe — tablice i kolekcje (Pułapka!)
+Jeśli zmienna klasowa jest mutowalna (np. lista), każda zmiana w jednym obiekcie wpłynie na wszystkie inne!
 
 ```python
-class Licznik:
-    wartosc = 0
+class KlasaZBlędem:
+    lista = []  # UWAGA: wspólna dla wszystkich!
 
-    def __init__(self):
-        # ✅ POPRAWNIE — modyfikuje zmienną KLASY
-        Licznik.wartosc += 1
-
-        # ❌ BŁĄD — tworzy NOWĄ zmienną INSTANCJI o tej samej nazwie!
-        # self.wartosc += 1
-        # Odczyt self.wartosc znajdzie zmienną klasową, ale += utworzy NOWĄ instancji
-```
-
-Zasada jest prosta: do **modyfikacji** zmiennej klasowej zawsze używaj nazwy klasy (`NazwaKlasy.pole`), nie `self`.
-
-### 12.2. Zmienne klasowe — tablice i kolekcje
-
-Zmienne klasowe mogą przechowywać tablice wspólne dla wszystkich obiektów, np. nazwy plików zasobów:
-
-```python
-class Gracz:
-    dozwolone_klasy = ["Wojownik", "Mag", "Łucznik", "Złodziej"]
-    ikony = ["icon_0.png", "icon_1.png", "icon_2.png", "icon_3.png"]
-
-    def __init__(self, nazwa, klasa_id):
-        self.nazwa = nazwa
-        self.klasa_id = klasa_id
-
-    def pobierz_klase(self):
-        return Gracz.dozwolone_klasy[self.klasa_id]
-
-    def pobierz_ikone(self):
-        return Gracz.ikony[self.klasa_id]
+obj1 = KlasaZBlędem()
+obj2 = KlasaZBlędem()
+obj1.lista.append(1)
+print(obj2.lista)  # [1] -> Zmiana widoczna w drugim obiekcie!
 ```
 
 ### 12.3. Metody statyczne — `@staticmethod`
-
-Metoda statyczna nie potrzebuje dostępu do instancji (`self`) ani do klasy (`cls`). Jest po prostu funkcją umieszczoną w kontekście klasy jako organizacja kodu. Wywoływana jest na **klasie**, nie na obiekcie — nie trzeba tworzyć instancji, aby ją wywołać.
+Metoda, która nie ma dostępu do `self` ani `cls`. Zachowuje się jak zwykła funkcja, ale jest umieszczona wewnątrz klasy dla lepszej organizacji.
 
 ```python
 class Narzedzia:
     @staticmethod
-    def jest_parzysta(liczba):
-        return liczba % 2 == 0
+    def czy_parzysta(n):
+        return n % 2 == 0
 
-    @staticmethod
-    def policz_samogloski(tekst):
-        samogloski = "aąeęiouóyAĄEĘIOUÓY"
-        return sum(1 for z in tekst if z in samogloski)
-
-    @staticmethod
-    def odwroc_napis(tekst):
-        return tekst[::-1]
-
-# Wywołanie — BEZ tworzenia obiektu!
-print(Narzedzia.jest_parzysta(4))              # True
-print(Narzedzia.policz_samogloski("Python"))   # 1
-print(Narzedzia.odwroc_napis("Python"))        # nohtyP
+print(Narzedzia.czy_parzysta(10))  # True
 ```
 
 ### 12.4. Metody klasowe — `@classmethod`
-
-Metoda klasowa otrzymuje referencję do **klasy** jako pierwszy argument (`cls`). Różni się od `@staticmethod` tym, że ma dostęp do zmiennych klasowych i może tworzyć nowe instancje:
+Jako pierwszy argument przyjmuje klasę (`cls`), a nie instancję. Często używana jako **alternatywny konstruktor** (wzorzec Fabryka).
 
 ```python
-class Pracownik:
-    liczba_pracownikow = 0
-
-    def __init__(self, imie, stanowisko):
-        self.imie = imie
-        self.stanowisko = stanowisko
-        Pracownik.liczba_pracownikow += 1
+class Data:
+    def __init__(self, dzien, miesiac, rok):
+        self.dzien, self.miesiac, self.rok = dzien, miesiac, rok
 
     @classmethod
-    def ile_pracownikow(cls):
-        return cls.liczba_pracownikow
+    def z_tekstu(cls, tekst):
+        """Tworzy obiekt na podstawie stringa 'DD-MM-YYYY'"""
+        d, m, r = map(int, tekst.split("-"))
+        return cls(d, m, r)  # Wywołuje __init__
 
-    @classmethod
-    def stworz_programiste(cls, imie):
-        """Metoda fabrykująca — tworzy instancję z domyślnym stanowiskiem."""
-        return cls(imie, "Programista")
-
-p1 = Pracownik("Jan", "Tester")
-p2 = Pracownik.stworz_programiste("Anna")
-
-print(p2.stanowisko)                   # Programista
-print(Pracownik.ile_pracownikow())     # 2
+data = Data.z_tekstu("15-05-2024")
+print(data.rok)  # 2024
 ```
-
-**Porównanie: `@staticmethod` vs `@classmethod`:**
-
-| Cecha | `@staticmethod` | `@classmethod` |
-|---|---|---|
-| Pierwszy argument | Brak | `cls` (klasa) |
-| Dostęp do pól klasy | ❌ Nie | ✅ Tak (przez `cls`) |
-| Tworzenie instancji | Ręcznie | Przez `cls(...)` |
-| Zastosowanie | Funkcje narzędziowe | Fabryki obiektów, dostęp do klasy |
 
 ---
 
 ## 13. Programowanie obiektowe — konstruktory zaawansowane
 
 ### 13.1. Konstruktor z wartościami domyślnymi
-
-W Pythonie nie ma przeciążania konstruktorów (overloading) — nie można mieć dwóch `__init__` z różnymi listami parametrów. Zamiast tego stosuje się **jeden konstruktor z parametrami domyślnymi**:
+Python nie obsługuje przeciążania metod (wiele metod o tej samej nazwie), dlatego używamy parametrów domyślnych.
 
 ```python
 class Punkt:
@@ -2964,444 +2910,261 @@ class Punkt:
         self.x = x
         self.y = y
 
-    def wyswietl(self):
-        print(f"({self.x}, {self.y})")
-
-# Różne sposoby tworzenia — jeden konstruktor, wiele wariantów
-p1 = Punkt()           # (0, 0) — oba domyślne
-p2 = Punkt(5)          # (5, 0) — x podane, y domyślne
-p3 = Punkt(3, 7)       # (3, 7) — oba podane
-p4 = Punkt(y=10)       # (0, 10) — argument nazwany
+p1 = Punkt()      # (0, 0)
+p2 = Punkt(5, 10) # (5, 10)
 ```
 
 ### 13.2. Wzorzec z `None` — pełny zamiennik dwóch konstruktorów
-
-Gdy konstruktor musi się zachowywać **zupełnie inaczej** w zależności od tego, czy argumenty zostały podane:
+Jeśli chcemy, aby pole było inicjalizowane nową listą dla każdego obiektu, używamy `None`.
 
 ```python
-class Element:
-    licznik = 0
-
-    def __init__(self, wartosc=None):
-        Element.licznik += 1
-        self.id = Element.licznik
-
-        if wartosc is None:
-            # KONSTRUKTOR BEZPARAMETROWY — losujemy wartość
-            import random
-            self.wartosc = random.randint(1, 6)
+class Student:
+    def __init__(self, imie, oceny=None):
+        self.imie = imie
+        # Zapewnia unikalną listę dla każdego obiektu
+        if oceny is None:
+            self.oceny = []
         else:
-            # KONSTRUKTOR Z PARAMETREM — używamy podanej wartości
-            if 1 <= wartosc <= 6:
-                self.wartosc = wartosc
-            else:
-                self.wartosc = 0  # Walidacja — wartość poza zakresem
-
-    def wyswietl(self):
-        print(f"ID: {self.id}, Wartość: {self.wartosc}")
-
-e1 = Element()          # Losowa wartość 1-6
-e2 = Element(4)         # Wartość 4
-e3 = Element(99)        # Wartość 0 (poza zakresem)
+            self.oceny = oceny
 ```
 
 ### 13.3. Walidacja w konstruktorze
-
-Konstruktor to idealne miejsce na sprawdzanie poprawności danych:
+Zawsze warto sprawdzić dane wejściowe przed ich przypisaniem.
 
 ```python
-class Ocena:
-    def __init__(self, wartosc):
-        if isinstance(wartosc, int) and 1 <= wartosc <= 6:
-            self.wartosc = wartosc
-        else:
-            self.wartosc = 0
-            print(f"Uwaga: {wartosc} to niepoprawna ocena, ustawiono 0")
-
-o1 = Ocena(5)     # OK
-o2 = Ocena(9)     # Uwaga: 9 to niepoprawna ocena, ustawiono 0
-o3 = Ocena(-1)    # Uwaga: -1 to niepoprawna ocena, ustawiono 0
+class Konto:
+    def __init__(self, balans):
+        if balans < 0:
+            raise ValueError("Balans nie może być ujemny!")
+        self.balans = balans
 ```
 
 ### 13.4. Kopiowanie obiektów
-
-W Pythonie nie ma konstruktora kopiującego jak w C++. Istnieją dwa główne sposoby kopiowania obiektów:
+Standardowe przypisanie `obj2 = obj1` kopiuje tylko **referencję** (oba wskazują na ten sam obiekt). Aby stworzyć kopię, używamy modułu `copy`.
 
 ```python
-# Sposób 1: Metoda kopiująca w klasie
-class Notatka:
-    def __init__(self, tytul="", tresc=""):
-        self.tytul = tytul
-        self.tresc = tresc
-
-    def kopiuj_z(self, inna):
-        """Kopiuje dane z innego obiektu."""
-        self.tytul = inna.tytul
-        self.tresc = inna.tresc
-
-oryg = Notatka("Zakupy", "Mleko, chleb")
-kopia = Notatka()
-kopia.kopiuj_z(oryg)
-
-# Sposób 2: Moduł copy
 import copy
 
-kopia_plytka = copy.copy(oryg)      # Płytka kopia
-kopia_gleb = copy.deepcopy(oryg)    # Głęboka kopia (kopiuje zagnieżdżone obiekty)
-```
+class Graf:
+    def __init__(self, wezly):
+        self.wezly = wezly
 
-Różnica: **płytka kopia** kopiuje obiekt „na powierzchni" — jeśli obiekt zawiera referencje do innych obiektów (np. listę), kopia będzie wskazywać na tę samą listę. **Głęboka kopia** kopiuje rekurencyjnie wszystko.
+g1 = Graf([1, 2, 3])
+
+# Kopia płytka (Shallow copy)
+g2 = copy.copy(g1) 
+
+# Kopia głęboka (Deep copy) - kopiuje też zawartość list
+g3 = copy.deepcopy(g1)
+```
 
 ---
 
 ## 14. Programowanie obiektowe — dziedziczenie, polimorfizm i klasy abstrakcyjne
 
-Dziedziczenie pozwala tworzyć nowe klasy na bazie istniejących. Klasa potomna (dziecko) automatycznie otrzymuje wszystkie pola i metody klasy bazowej (rodzica) i może je rozszerzać lub nadpisywać.
-
 ### 14.1. Podstawy dziedziczenia
-
-Dziedziczenie deklarujemy, podając nazwę klasy bazowej w nawiasie po nazwie klasy potomnej:
+Klasa pochodna (dziecko) dziedziczy wszystkie atrybuty i metody klasy bazowej (rodzica).
 
 ```python
-# Klasa bazowa (rodzic/nadklasa)
 class Zwierze:
-    def __init__(self, nazwa, wiek):
-        self.nazwa = nazwa
-        self.wiek = wiek
+    def oddychaj(self):
+        print("Oddycham...")
 
-    def przedstaw_sie(self):
-        print(f"Jestem {self.nazwa}, mam {self.wiek} lat")
+class Pies(Zwierze):
+    def szczekaj(self):
+        print("Hau!")
 
-    def wydaj_dzwiek(self):
-        print("...")
-
-
-# Klasa potomna (dziecko/podklasa)
-class Pies(Zwierze):     # Pies DZIEDZICZY po Zwierze
-    def __init__(self, nazwa, wiek, rasa):
-        super().__init__(nazwa, wiek)   # Wywołanie konstruktora RODZICA
-        self.rasa = rasa                # Dodatkowe pole tylko dla Pies
-
-    def wydaj_dzwiek(self):             # NADPISANIE metody rodzica (override)
-        print("Hau hau!")
-
-    def aportuj(self):                  # Nowa metoda — tylko dla Pies
-        print(f"{self.nazwa} aportuje!")
-
-
-class Kot(Zwierze):
-    def __init__(self, nazwa, wiek, kolor):
-        super().__init__(nazwa, wiek)
-        self.kolor = kolor
-
-    def wydaj_dzwiek(self):
-        print("Miau!")
-```
-
-**Użycie — klasa potomna ma dostęp do metod rodzica:**
-
-```python
-pies = Pies("Burek", 5, "Labrador")
-pies.przedstaw_sie()   # Jestem Burek, mam 5 lat (ODZIEDZICZONA metoda)
-pies.wydaj_dzwiek()    # Hau hau! (NADPISANA metoda)
-pies.aportuj()         # Burek aportuje! (WŁASNA metoda)
+p = Pies()
+p.oddychaj() # Metoda z klasy Zwierze
+p.szczekaj() # Metoda z klasy Pies
 ```
 
 ### 14.2. `super()` — wywoływanie metod rodzica
-
-Funkcja `super()` zwraca referencję do klasy bazowej, co pozwala wywoływać jej metody z poziomu klasy potomnej. Jest szczególnie ważna w konstruktorze — jeśli nie wywołamy `super().__init__()`, pola zdefiniowane w rodzicu nie zostaną zainicjalizowane.
+Służy głównie do wywoływania konstruktora klasy bazowej wewnątrz konstruktora klasy pochodnej.
 
 ```python
-class Bazowa:
-    def __init__(self):
-        self.pole_bazowe = "wartość bazowa"
+class Pojazd:
+    def __init__(self, marka):
+        self.marka = marka
 
-    def komunikat(self, tekst):
-        print(f"[INFO] {tekst}")
-
-
-class Potomna(Bazowa):
-    def __init__(self):
-        super().__init__()                # KONIECZNE — inicjalizuje pola rodzica
-        self.pole_potomne = "wartość potomna"
-
-    def akcja(self, tekst):
-        self.komunikat(tekst)             # Wywołanie odziedziczonej metody
-        # Albo: super().komunikat(tekst) — to samo, ale jawne
+class Auto(Pojazd):
+    def __init__(self, marka, paliwo):
+        super().__init__(marka)  # Wywołanie __init__ rodzica
+        self.paliwo = paliwo
 ```
 
 ### 14.3. Hermetyzacja a dziedziczenie
-
-Ważne pytanie: jakie pola rodzica są widoczne w dziecku?
-
-```python
-class Rodzic:
-    def __init__(self):
-        self.publiczne = "dostępne wszędzie"
-        self._chronione = "dostępne w klasach potomnych"
-        self.__prywatne = "NIEDOSTĘPNE w klasach potomnych"
-
-
-class Dziecko(Rodzic):
-    def __init__(self):
-        super().__init__()
-
-    def test(self):
-        print(self.publiczne)      # ✅ Publiczne — OK
-        print(self._chronione)     # ✅ Chronione — OK (to jego przeznaczenie!)
-        # print(self.__prywatne)   # ❌ AttributeError — prywatne rodzica
-```
+- Pola **publiczne** i **chronione** (`_`) są dostępne w klasach pochodnych.
+- Pola **prywatne** (`__`) **nie są** bezpośrednio dostępne (trzeba użyć gettera rodzica).
 
 ### 14.4. Wzorzec: logika stanów z dziedziczeniem
-
-Połączenie dziedziczenia z logiką stanów — klasa bazowa z wspólną metodą, klasy potomne z własną logiką:
+Dziedziczenie świetnie nadaje się do modelowania obiektów, które zmieniają swoje zachowanie w zależności od stanu (np. zamówienie, postać w grze).
 
 ```python
-class Urzadzenie:
-    def __init__(self, nazwa):
-        self.nazwa = nazwa
+class StanZamowienia:
+    def nastepny(self): pass
+    def __str__(self): return self.__class__.__name__
 
-    def komunikat(self, tekst):
-        print(f"[{self.nazwa}] {tekst}")
+class Nowe(StanZamowienia):
+    def nastepny(self): return Opłacone()
 
+class Opłacone(StanZamowienia):
+    def nastepny(self): return Wyslane()
 
-class Przelacznik(Urzadzenie):
-    def __init__(self, nazwa):
-        super().__init__(nazwa)
-        self.__wlaczony = False    # Stan wewnętrzny
+class Wyslane(StanZamowienia):
+    def nastepny(self): return self # Koniec
 
-    def wlacz(self):
-        if not self.__wlaczony:     # Tylko jeśli wyłączony
-            self.__wlaczony = True
-            self.komunikat("Włączono")
-        # Jeśli już włączony — nic nie rób (ochrona)
+class Zamowienie:
+    def __init__(self):
+        self.stan = Nowe()
 
-    def wylacz(self):
-        if self.__wlaczony:         # Tylko jeśli włączony
-            self.__wlaczony = False
-            self.komunikat("Wyłączono")
+    def pchnij_dalej(self):
+        self.stan = self.stan.nastepny()
+        print(f"Obecny stan: {self.stan}")
 
-p = Przelacznik("Lampa")
-p.wlacz()       # [Lampa] Włączono
-p.wlacz()       # (nic — już włączona)
-p.wylacz()      # [Lampa] Wyłączono
-p.wylacz()      # (nic — już wyłączona)
+z = Zamowienie()
+z.pchnij_dalej() # Obecny stan: Opłacone
+z.pchnij_dalej() # Obecny stan: Wyslane
 ```
 
 ### 14.5. Sprawdzanie typu i dziedziczenia
+Aby sprawdzić, czy obiekt jest instancją danej klasy (lub jej klasy pochodnej), używamy `isinstance()`. Aby sprawdzić relację między klasami — `issubclass()`.
 
 ```python
-pies = Pies("Burek", 5, "Labrador")
-
-# isinstance — czy obiekt jest danego typu (uwzględnia dziedziczenie)
-print(isinstance(pies, Pies))     # True
-print(isinstance(pies, Zwierze))  # True (Pies JEST Zwierzęciem)
-print(isinstance(pies, Kot))      # False
-
-# issubclass — czy klasa jest podklasą
-print(issubclass(Pies, Zwierze))  # True
-print(issubclass(Pies, Kot))      # False
+isinstance(p, Pies)      # True
+isinstance(p, Zwierze)   # True (bo Pies dziedziczy po Zwierze)
+issubclass(Pies, Zwierze) # True
 ```
 
 ### 14.6. Podsumowanie — kiedy co stosować w OOP
 
-| Mechanizm | Kiedy stosować | Przykład |
-|---|---|---|
-| Klasa z polami | Gdy obiekty przechowują dane | Osoba, Produkt, Notatka |
-| Metody instancji | Gdy metoda operuje na danych obiektu | `wyswietl()`, `oblicz()` |
-| Pola prywatne `__` | Gdy pole nie powinno być dostępne z zewnątrz | Saldo konta, hasło |
-| Pola chronione `_` | Gdy pole ma być dostępne w klasach potomnych | Wewnętrzny stan urządzenia |
-| `@property` | Kontrolowany dostęp do pola (getter/setter) | Walidacja przy ustawianiu |
-| Zmienne klasowe | Dane wspólne dla WSZYSTKICH obiektów | Licznik instancji, stałe |
-| `@staticmethod` | Funkcja narzędziowa powiązana z klasą | Walidacja, konwersja |
-| `@classmethod` | Alternatywne sposoby tworzenia obiektów | Metody fabrykujące |
-| Dziedziczenie | Klasy o wspólnych cechach, ale z różnicami | Zwierzę → Pies, Kot |
-| `super()` | Wywołanie metody/konstruktora rodzica | Inicjalizacja pól bazowych |
-
-Programowanie obiektowe to potężne narzędzie organizacji kodu. Kluczowe jest zrozumienie, że klasa to nie tylko "zbiór zmiennych i funkcji" — to **model** rzeczywistego lub abstrakcyjnego bytu, który łączy dane z zachowaniami w spójną całość.
+| Mechanizm | Kiedy stosować? |
+|---|---|
+| **Klasa** | Gdy potrzebujesz zgrupować dane i funkcje w jeden "byt". |
+| **Pola prywatne (`__`)** | Zawsze dla danych, które nie powinny być zmieniane bezpośrednio (np. balans konta). |
+| **`@property`** | Gdy chcesz, by dostęp do pola był prosty (`obj.x`), ale wymagał walidacji. |
+| **`@classmethod`** | Gdy potrzebujesz stworzyć obiekt w nietypowy sposób (np. z pliku JSON). |
+| **Dziedziczenie** | Tylko gdy zachodzi relacja **"jest rodzajem"** (np. Pies jest rodzajem Zwierzęcia). |
+| **Kompozycja** | Gdy obiekt **"posiada"** inne obiekty (np. Samochód posiada Silnik). Zazwyczaj lepsza niż dziedziczenie! |
+| **Klasa abstrakcyjna** | Gdy tworzysz fundament dla innych klas i chcesz wymusić na nich wspólny interfejs. |
 
 ### 14.7. Polimorfizm
-
-Polimorfizm (z greckiego „wiele form") to zdolność obiektów różnych klas do reagowania na tę samą metodę w sposób specyficzny dla danej klasy. Innymi słowy: ta sama nazwa metody, ale różne zachowania w zależności od tego, na jakim obiekcie jest wywoływana.
-
-Polimorfizm jest ściśle powiązany z dziedziczeniem — klasy potomne **nadpisują** (override) metody klasy bazowej, dostarczając własną implementację.
+Zdolność różnych obiektów do reagowania na to samo wywołanie metody w sposób specyficzny dla swojej klasy. W Pythonie opiera się to na **Duck Typing** ("Jeśli coś kwacze jak kaczka, to jest kaczką").
 
 ```python
-class Figura:
-    def __init__(self, nazwa):
-        self.nazwa = nazwa
-
-    def pole(self):
-        """Metoda do nadpisania w klasach potomnych."""
-        return 0
-
-    def wyswietl(self):
-        print(f"{self.nazwa}: pole = {self.pole():.2f}")
-
-
-class Kwadrat(Figura):
-    def __init__(self, bok):
-        super().__init__("Kwadrat")
-        self.bok = bok
-
-    def pole(self):                    # Nadpisanie metody
-        return self.bok ** 2
-
-
-class Kolo(Figura):
-    def __init__(self, promien):
-        super().__init__("Koło")
-        self.promien = promien
-
-    def pole(self):                    # Nadpisanie metody
-        import math
-        return math.pi * self.promien ** 2
-
-
-class Trojkat(Figura):
-    def __init__(self, podstawa, wysokosc):
-        super().__init__("Trójkąt")
-        self.podstawa = podstawa
-        self.wysokosc = wysokosc
-
-    def pole(self):                    # Nadpisanie metody
-        return 0.5 * self.podstawa * self.wysokosc
-```
-
-**Polimorfizm w akcji — jedna pętla, różne zachowania:**
-
-```python
-figury = [
-    Kwadrat(5),
-    Kolo(3),
-    Trojkat(6, 4)
-]
-
-# Ta sama metoda wyswietl() — każda figura reaguje po swojemu
-for figura in figury:
-    figura.wyswietl()
-# Kwadrat: pole = 25.00
-# Koło: pole = 28.27
-# Trójkąt: pole = 12.00
-```
-
-To jest sedno polimorfizmu: **nie musimy wiedzieć**, jakiego dokładnie typu jest obiekt w liście — wystarczy, że wiemy, iż ma metodę `pole()` i `wyswietl()`. Każdy obiekt sam „wie", jak obliczyć swoje pole.
-
-**Polimorfizm bez dziedziczenia — duck typing:**
-
-W Pythonie polimorfizm nie wymaga formalnego dziedziczenia. Wystarczy, że obiekty mają metodę o tej samej nazwie. To podejście nazywa się **duck typing** — „jeśli coś chodzi jak kaczka i kwacze jak kaczka, to jest kaczką":
-
-```python
-class Pies:
-    def glos(self):
-        return "Hau!"
-
-class Kot:
-    def glos(self):
-        return "Miau!"
-
 class Kaczka:
-    def glos(self):
-        return "Kwak!"
+    def kwacz(self): print("Kwa kwa!")
 
-# Nie muszą dziedziczyć po wspólnej klasie!
-zwierzeta = [Pies(), Kot(), Kaczka()]
-for z in zwierzeta:
-    print(z.glos())  # Hau! Miau! Kwak!
+class Czlowiek:
+    def kwacz(self): print("Naśladuję kaczkę!")
+
+def wydaj_dzwiek(byt):
+    byt.kwacz() # Polimorficzne wywołanie
+
+wydaj_dzwiek(Kaczka())
+wydaj_dzwiek(Czlowiek())
 ```
 
 ### 14.8. Klasy abstrakcyjne — moduł `abc`
-
-Klasa abstrakcyjna to klasa, której **nie można bezpośrednio instancjonować** (utworzyć z niej obiektu). Służy wyłącznie jako baza dla klas potomnych. Wymusza na klasach potomnych zaimplementowanie określonych metod — dzięki temu mamy gwarancję, że każda podklasa będzie miała wymagane metody.
-
-W Pythonie klasy abstrakcyjne tworzymy za pomocą modułu `abc` (Abstract Base Classes):
+Klasa abstrakcyjna to taka, z której nie można stworzyć obiektu. Służy jako interfejs wymuszający implementację konkretnych metod w klasach pochodnych.
 
 ```python
 from abc import ABC, abstractmethod
 
-
-class Figura(ABC):    # Dziedziczy po ABC — jest klasą abstrakcyjną
-
-    def __init__(self, nazwa):
-        self.nazwa = nazwa
-
+class Ksztalt(ABC):
     @abstractmethod
     def pole(self):
-        """Każda figura MUSI zaimplementować tę metodę."""
+        """Metoda musi być nadpisana w dziecku"""
         pass
 
-    @abstractmethod
-    def obwod(self):
-        """Każda figura MUSI zaimplementować tę metodę."""
-        pass
+class Kwadrat(Ksztalt):
+    def __init__(self, a):
+        self.a = a
+    
+    def pole(self):
+        return self.a ** 2
 
-    def wyswietl(self):
-        """Metoda konkretna — wspólna dla wszystkich figur."""
-        print(f"{self.nazwa}: pole={self.pole():.2f}, obwód={self.obwod():.2f}")
+# k = Ksztalt() # BŁĄD: Can't instantiate abstract class
+kw = Kwadrat(4)
+print(kw.pole()) # 16
 ```
 
-**Co to oznacza w praktyce:**
+### 14.9. Kompleksowa implementacja: System Quiz
+Wzorcowy przykład łączący: klasy abstrakcyjne, dziedziczenie, hermetyzację i listę obiektów.
 
 ```python
-# ❌ NIE MOŻNA utworzyć obiektu klasy abstrakcyjnej
-# f = Figura("test")  # TypeError: Can't instantiate abstract class
+from abc import ABC, abstractmethod
 
-# ❌ Klasa potomna BEZ implementacji wszystkich metod abstrakcyjnych
-# class Kwadrat(Figura):
-#     def pole(self):
-#         return self.bok ** 2
-#     # Brak obwod() → TypeError przy próbie utworzenia!
+class Pytanie(ABC):
+    def __init__(self, tresc, punkty):
+        self._tresc = tresc      # Chronione
+        self._punkty = punkty
 
-# ✅ Klasa potomna z PEŁNĄ implementacją
-class Prostokat(Figura):
-    def __init__(self, a, b):
-        super().__init__("Prostokąt")
-        self.a = a
-        self.b = b
+    @abstractmethod
+    def wyswietl(self): pass
 
-    def pole(self):          # Implementacja metody abstrakcyjnej
-        return self.a * self.b
+    @abstractmethod
+    def sprawdz(self, odpowiedz): pass
 
-    def obwod(self):         # Implementacja metody abstrakcyjnej
-        return 2 * (self.a + self.b)
+class PytanieZamkniete(Pytanie):
+    def __init__(self, tresc, punkty, opcje, poprawna_index):
+        super().__init__(tresc, punkty)
+        self.__opcje = opcje      # Prywatne
+        self.__poprawna = poprawna_index
 
+    def wyswietl(self):
+        print(f"\n[Pytanie za {self._punkty} pkt]: {self._tresc}")
+        for i, o in enumerate(self.__opcje, 1):
+            print(f"{i}. {o}")
 
-class Kolo(Figura):
-    def __init__(self, promien):
-        super().__init__("Koło")
-        self.promien = promien
+    def sprawdz(self, odp):
+        return str(odp) == str(self.__poprawna)
 
-    def pole(self):
-        import math
-        return math.pi * self.promien ** 2
+class PytanieOtwarte(Pytanie):
+    def __init__(self, tresc, punkty, poprawna_odp):
+        super().__init__(tresc, punkty)
+        self.__poprawna = poprawna_odp.lower().strip()
 
-    def obwod(self):
-        import math
-        return 2 * math.pi * self.promien
+    def wyswietl(self):
+        print(f"\n[Pytanie OTWARTE za {self._punkty} pkt]: {self._tresc}")
 
+    def sprawdz(self, odp):
+        return odp.lower().strip() == self.__poprawna
 
-# Użycie — polimorfizm z gwarancją interfejsu
-figury = [Prostokat(4, 6), Kolo(5)]
-for f in figury:
-    f.wyswietl()
-# Prostokąt: pole=24.00, obwód=20.00
-# Koło: pole=78.54, obwód=31.42
+class Quiz:
+    def __init__(self, tytul):
+        self.tytul = tytul
+        self.__pytania = []
+        self.__wynik = 0
+
+    def dodaj_pytanie(self, p):
+        if isinstance(p, Pytanie):
+            self.__pytania.append(p)
+
+    def uruchom(self):
+        print(f"=== {self.tytul.upper()} ===")
+        for p in self.__pytania:
+            p.wyswietl()
+            user_odp = input("Odpowiedź: ")
+            if p.sprawdz(user_odp):
+                print("DOBRZE!")
+                self.__wynik += p._punkty
+            else:
+                print("ŹLE!")
+        
+        print(f"\nKONIEC. Twój wynik: {self.__wynik} pkt.")
+
+# --- Demo ---
+moj_quiz = Quiz("Test Wiedzy")
+moj_quiz.dodaj_pytanie(PytanieZamkniete("Stolica Polski?", 1, ["Kraków", "Warszawa"], 2))
+moj_quiz.dodaj_pytanie(PytanieOtwarte("Jak ma na imię twórca Pythona?", 2, "Guido"))
+
+# moj_quiz.uruchom() # Odkomentuj, aby przetestować interaktywnie
 ```
-
-**Kiedy stosować klasy abstrakcyjne:**
-
-| Scenariusz | Zwykła klasa bazowa | Klasa abstrakcyjna |
-|---|---|---|
-| Klasa bazowa powinna mieć swoje obiekty | ✅ Tak | ❌ Nie |
-| Chcemy WYMUSIĆ implementację metod | ❌ Nie gwarantuje | ✅ Wymusza |
-| Klasa bazowa to tylko "szablon" | ⚠️ Może, ale nie musi | ✅ Idealnie |
-| Potrzebujemy wspólnych metod konkretnych | ✅ Tak | ✅ Tak (obok abstrakcyjnych) |
-
----
 
 ## 15. Algorytmy w Pythonie
 
-Algorytmy to precyzyjne przepisy na rozwiązanie problemu. Składają się z jednoznacznie określonych kroków, prowadzących od danych wejściowych do pożądanego wyniku. Poniżej przedstawione są najważniejsze algorytmy, które warto znać — każdy z pełną implementacją w Pythonie, wyjaśnieniem idei działania i przebiegiem krok po kroku.
+Algorytmy to precyzyjne przepisy na rozwiązanie problemu. Składają się z jednoznacznie określonych kroków, prowadzących od danych wejściowych do pożądanego wyniku. Poniżej przedstawione są najważniejsze algorytmy, pogrupowane tematycznie, z pełnymi implementacjami i wyjaśnieniami.
 
 **Złożoność algorytmów — krótkie wprowadzenie:**
 
@@ -3412,76 +3175,30 @@ Algorytmy to precyzyjne przepisy na rozwiązanie problemu. Składają się z jed
 | O(n²) | Kwadratowa | Czas rośnie kwadratowo | Sortowanie bąbelkowe, przez wybieranie |
 | O(log n) | Logarytmiczna | Bardzo efektywna | Wyszukiwanie binarne |
 
-W praktyce nie musimy dokładnie obliczać złożoności — wystarczy wiedzieć, że algorytmy O(n²) są wolne dla dużych danych, a O(n) i O(log n) są szybkie.
+---
 
 ### 15.1. Sortowanie przez wybieranie (Selection Sort)
 
-**Idea algorytmu:** W każdym kroku szukamy elementu ekstremalnego (minimum lub maksimum) w nieposortowanej części tablicy i zamieniamy go z pierwszym nieposortowanym elementem. Po każdym kroku posortowana część tablicy rośnie o jeden element.
-
-**Złożoność czasowa:** O(n²) — dla tablicy n elementów wykonujemy n przejść, każde przeszukuje malejący fragment.
-
-**Sortowanie rosnąco (szukanie minimum):**
+**Idea:** W każdym kroku szukamy elementu minimalnego w nieposortowanej części tablicy i zamieniamy go z pierwszym nieposortowanym elementem.
 
 ```python
-def sortowanie_przez_wybieranie_rosnaco(tablica):
+def sortowanie_przez_wybieranie(tablica):
     n = len(tablica)
     for i in range(n - 1):
-        # Zakładamy, że minimum jest na pozycji i
         indeks_min = i
-        # Szukamy mniejszego elementu w reszcie tablicy
         for j in range(i + 1, n):
             if tablica[j] < tablica[indeks_min]:
                 indeks_min = j
-        # Zamiana elementów — Python pozwala na elegancki swap
+        # Zamiana miejscami
         tablica[i], tablica[indeks_min] = tablica[indeks_min], tablica[i]
-```
-
-**Przebieg krok po kroku** (dla tablicy `[5, 3, 8, 1, 4]`):
-
-| Krok | Tablica przed | Znalezione min | Zamiana | Tablica po |
-|---|---|---|---|---|
-| i=0 | **[5**, 3, 8, 1, 4] | min=1 (indeks 3) | 5 ↔ 1 | [**1**, 3, 8, 5, 4] |
-| i=1 | [1, **3**, 8, 5, 4] | min=3 (indeks 1) | bez zamiany | [1, **3**, 8, 5, 4] |
-| i=2 | [1, 3, **8**, 5, 4] | min=4 (indeks 4) | 8 ↔ 4 | [1, 3, **4**, 5, 8] |
-| i=3 | [1, 3, 4, **5**, 8] | min=5 (indeks 3) | bez zamiany | [1, 3, 4, **5**, 8] |
-
-Wynik: `[1, 3, 4, 5, 8]` ✅
-
-**Sortowanie malejąco (szukanie maksimum):**
-
-Wystarczy zamienić `<` na `>` w porównaniu. Warto też wyodrębnić szukanie maksimum do osobnej metody — na niektórych arkuszach jest to wymagane:
-
-```python
-def znajdz_indeks_max(tablica, od_indeksu):
-    """Znajduje indeks elementu maksymalnego od podanego indeksu do końca."""
-    indeks_max = od_indeksu
-    for i in range(od_indeksu + 1, len(tablica)):
-        if tablica[i] > tablica[indeks_max]:
-            indeks_max = i
-    return indeks_max
-
-def sortowanie_przez_wybieranie_malejaco(tablica):
-    for i in range(len(tablica) - 1):
-        indeks_max = znajdz_indeks_max(tablica, i)
-        tablica[i], tablica[indeks_max] = tablica[indeks_max], tablica[i]
 ```
 
 ### 15.2. Sortowanie bąbelkowe (Bubble Sort)
 
-**Idea algorytmu:** Porównujemy sąsiednie elementy i zamieniamy je, jeśli są w złej kolejności. Powtarzamy przejścia aż tablica będzie posortowana. Największy element „bąbelkuje" na koniec w każdym przejściu.
-
-**Złożoność czasowa:** O(n²), ale z optymalizacją (flaga) może zakończyć się wcześniej.
+**Idea:** Porównujemy sąsiednie elementy i zamieniamy je, jeśli są w złej kolejności. Powtarzamy, aż tablica będzie posortowana.
 
 ```python
 def sortowanie_babelkowe(tablica):
-    n = len(tablica)
-    for i in range(n - 1):
-        for j in range(n - 1 - i):  # -i bo koniec jest już posortowany
-            if tablica[j] > tablica[j + 1]:
-                tablica[j], tablica[j + 1] = tablica[j + 1], tablica[j]
-
-# Wersja z optymalizacją — flaga „czy była zamiana"
-def sortowanie_babelkowe_optymalne(tablica):
     n = len(tablica)
     for i in range(n - 1):
         zamieniono = False
@@ -3490,469 +3207,299 @@ def sortowanie_babelkowe_optymalne(tablica):
                 tablica[j], tablica[j + 1] = tablica[j + 1], tablica[j]
                 zamieniono = True
         if not zamieniono:
-            break  # Brak zamiany = tablica posortowana → koniec
+            break  # Jeśli nie było zamiany, tablica jest posortowana
 ```
 
-**Przebieg krok po kroku** (dla tablicy `[5, 3, 8, 1]`):
+### 15.3. Sortowanie przez wstawianie (Insertion Sort)
 
-| Przejście | Porównania | Zamiany | Tablica po przejściu |
-|---|---|---|---|
-| 1 (i=0) | 5>3✅ 5>8❌ 8>1✅ | 5↔3, 8↔1 | [3, 5, 1, **8**] |
-| 2 (i=1) | 3>5❌ 5>1✅ | 5↔1 | [3, 1, **5**, 8] |
-| 3 (i=2) | 3>1✅ | 3↔1 | [**1**, **3**, 5, 8] |
+**Idea:** Pobieramy kolejny element i "wstawiamy" go w odpowiednie miejsce wśród elementów już posortowanych (podobnie jak układanie kart w dłoni).
 
-Wynik: `[1, 3, 5, 8]` ✅
+```python
+def sortowanie_przez_wstawianie(tablica):
+    for i in range(1, len(tablica)):
+        klucz = tablica[i]
+        j = i - 1
+        # Przesuwamy elementy większe od klucza o jedną pozycję w prawo
+        while j >= 0 and tablica[j] > klucz:
+            tablica[j + 1] = tablica[j]
+            j -= 1
+        tablica[j + 1] = klucz
+```
 
-### 15.3. Wyszukiwanie liniowe
+### 15.4. Sortowanie przez scalanie (Merge Sort)
 
-**Idea:** Przeglądamy tablicę element po elemencie, szukając wartości. Zwracamy indeks pierwszego trafienia lub -1 gdy brak.
+**Idea:** Strategia „dziel i zwyciężaj”. Dzielimy tablicę na połowy, aż zostaną pojedyncze elementy, a następnie scalamy je w porządku rosnącym.
+
+```python
+def merge_sort(tablica):
+    if len(tablica) > 1:
+        srodek = len(tablica) // 2
+        L = tablica[:srodek]
+        R = tablica[srodek:]
+
+        merge_sort(L) # Sortuj lewą połowę
+        merge_sort(R) # Sortuj prawą połowę
+
+        i = j = k = 0
+        # Scalanie
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                tablica[k] = L[i]
+                i += 1
+            else:
+                tablica[k] = R[j]
+                j += 1
+            k += 1
+        
+        # Dopisanie pozostałych elementów
+        while i < len(L):
+            tablica[k] = L[i]; i += 1; k += 1
+        while j < len(R):
+            tablica[k] = R[j]; j += 1; k += 1
+```
+
+### 15.5. Sortowanie szybkie (Quick Sort)
+
+**Idea:** Wybieramy element obrotowy (pivot). Dzielimy tablicę na elementy mniejsze od pivota, równe mu i większe, a następnie rekurencyjnie sortujemy podtablice.
+
+```python
+def quick_sort(tablica):
+    if len(tablica) <= 1:
+        return tablica
+    pivot = tablica[len(tablica) // 2]
+    lewe = [x for x in tablica if x < pivot]
+    srodkowe = [x for x in tablica if x == pivot]
+    prawe = [x for x in tablica if x > pivot]
+    return quick_sort(lewe) + srodkowe + quick_sort(prawe)
+```
+
+---
+
+### 15.6. Wyszukiwanie liniowe
+
+**Idea:** Sprawdzamy każdy element po kolei, aż znajdziemy szukaną wartość.
 
 ```python
 def wyszukaj_liniowo(tablica, szukana):
-    """Zwraca indeks pierwszego wystąpienia lub -1 gdy nie znaleziono."""
     for i in range(len(tablica)):
         if tablica[i] == szukana:
             return i
     return -1
-
-# Wersja z enumerate
-def wyszukaj_liniowo_v2(tablica, szukana):
-    for i, element in enumerate(tablica):
-        if element == szukana:
-            return i
-    return -1
 ```
 
-### 15.4. Wyszukiwanie z wartownikiem (Sentinel Search)
+### 15.7. Wyszukiwanie z wartownikiem (Sentinel Search)
 
-**Idea:** Optymalizacja wyszukiwania liniowego — dodajemy szukany element na koniec tablicy (wartownik). Dzięki temu nie musimy w pętli sprawdzać, czy nie wyszliśmy poza granice tablicy. Po zakończeniu sprawdzamy, czy znaleźliśmy prawdziwy element czy wartownika.
+**Idea:** Dodajemy szukaną wartość na koniec tablicy jako "wartownika", aby uprościć warunek pętli (brak sprawdzania końca tablicy w każdym kroku).
 
 ```python
 def wyszukaj_z_wartownikiem(tablica, szukana):
     n = len(tablica)
-    tablica.append(szukana)  # Dodajemy wartownika na końcu
-
+    tablica.append(szukana) # Dodaj wartownika
     i = 0
-    while tablica[i] != szukana:  # Na pewno się zatrzyma — wartownik gwarantuje
+    while tablica[i] != szukana:
         i += 1
-
-    tablica.pop()  # Usuwamy wartownika — przywracamy oryginalną tablicę
-
-    if i < n:
-        return i     # Element znaleziony PRZED wartownikiem
-    else:
-        return -1    # Trafiliśmy na wartownika → elementu nie ma
+    tablica.pop() # Usuń wartownika
+    return i if i < n else -1
 ```
 
-### 15.5. Algorytm Euklidesa (NWD — Największy Wspólny Dzielnik)
+### 15.8. Wyszukiwanie binarne (Binary Search)
 
-**Idea:** Wielokrotnie zastępujemy większą liczbę resztą z dzielenia przez mniejszą, aż reszta wyniesie 0. Ostatnia niezerowa wartość to NWD.
-
-Przykład: NWD(48, 18) → 48%18=12 → 18%12=6 → 12%6=**0** → NWD = **6**
+**Idea:** W posortowanej tablicy sprawdzamy środkowy element. Jeśli to nie on, odrzucamy połowę tablicy, w której na pewno nie ma szukanej wartości.
 
 ```python
-# Wersja iteracyjna
+def wyszukiwanie_binarne(tablica, szukana):
+    lewy, prawy = 0, len(tablica) - 1
+    while lewy <= prawy:
+        srodek = (lewy + prawy) // 2
+        if tablica[srodek] == szukana:
+            return srodek
+        elif tablica[srodek] < szukana:
+            lewy = srodek + 1
+        else:
+            prawy = srodek - 1
+    return -1
+```
+
+---
+
+### 15.9. Algorytm Euklidesa (NWD)
+
+**Idea:** NWD dwóch liczb to największa liczba, która dzieli obie bez reszty. Opiera się na reszcie z dzielenia.
+
+```python
 def nwd(a, b):
     while b != 0:
-        a, b = b, a % b  # Jednoczesne przypisanie — idiom Pythona
+        a, b = b, a % b
     return a
-
-# Wersja rekurencyjna
-def nwd_rekurencyjnie(a, b):
-    if b == 0:
-        return a
-    return nwd_rekurencyjnie(b, a % b)
-
-# Testy
-print(nwd(48, 18))    # 6
-print(nwd(100, 75))   # 25
-print(nwd(17, 5))     # 1 (liczby względnie pierwsze)
 ```
 
-### 15.6. Sito Eratostenesa
+### 15.10. Najmniejsza Wspólna Wielokrotność (NWW)
 
-**Idea:** Algorytm do znajdowania wszystkich liczb pierwszych w zakresie 2..n. Tworzymy tablicę logiczną, gdzie `True` oznacza „jest liczbą pierwszą". Następnie wykreślamy (ustawiamy `False`) wielokrotności każdej znalezionej liczby pierwszej. Wystarczy sprawdzać do √n.
+**Idea:** Najmniejsza liczba będąca wielokrotnością obu liczb. Wykorzystuje zależność: `NWW(a, b) = |a * b| / NWD(a, b)`.
 
 ```python
-def sito_eratostenesa(n):
-    """Zwraca listę liczb pierwszych z zakresu 2..n."""
-    # Tablica logiczna — indeksy od 0 do n
-    jest_pierwsza = [True] * (n + 1)
-    jest_pierwsza[0] = False  # 0 nie jest liczbą pierwszą
-    jest_pierwsza[1] = False  # 1 nie jest liczbą pierwszą
-
-    i = 2
-    while i * i <= n:           # Sprawdzamy do √n
-        if jest_pierwsza[i]:
-            # Wykreślamy wielokrotności: 2i, 3i, 4i, ...
-            for j in range(i * 2, n + 1, i):
-                jest_pierwsza[j] = False
-        i += 1
-
-    # Zbieramy liczby pierwsze (indeksy z wartością True)
-    pierwsze = [i for i in range(2, n + 1) if jest_pierwsza[i]]
-    return pierwsze
-
-wynik = sito_eratostenesa(100)
-print(wynik)
-# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
-#  53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-print(f"Znaleziono {len(wynik)} liczb pierwszych do 100")
+def nww(a, b):
+    if a == 0 or b == 0: return 0
+    return abs(a * b) // nwd(a, b)
 ```
 
-### 15.7. Szyfr Cezara
+### 15.11. Sprawdzanie czy liczba jest pierwsza
 
-**Idea:** Szyfr polega na przesunięciu każdej litery o stałą liczbę pozycji (klucz) w alfabecie. Po `z` wracamy do `a` (zawijanie). Klucz może być dodatni (przesunięcie w prawo), ujemny (w lewo), a nawet większy niż 26 — modulo 26 zapewnia poprawne zawijanie.
-
-```python
-def szyfruj_cezar(tekst_jawny, klucz):
-    """
-    Szyfruje tekst szyfrem Cezara.
-    Obsługuje: małe litery a-z i spacje.
-    Klucz: dowolna liczba całkowita.
-    """
-    wynik = ""
-    for znak in tekst_jawny:
-        if 'a' <= znak <= 'z':
-            # 1. Numer litery w alfabecie (a=0, b=1, ..., z=25)
-            numer = ord(znak) - ord('a')
-            # 2. Przesunięcie z zawijaniem (modulo 26)
-            nowy_numer = (numer + klucz) % 26
-            # 3. Konwersja z powrotem na literę
-            wynik += chr(nowy_numer + ord('a'))
-        else:
-            # Znaki spoza a-z (spacja, interpunkcja) — bez zmian
-            wynik += znak
-    return wynik
-
-# Testowanie różnych kluczy
-print(szyfruj_cezar("abc", 3))       # "def"   — klucz dodatni
-print(szyfruj_cezar("xyz", 3))       # "abc"   — zawijanie
-print(szyfruj_cezar("def", -3))      # "abc"   — klucz ujemny (odszyfrowanie)
-print(szyfruj_cezar("abc", 29))      # "def"   — klucz > 26 (29 % 26 = 3)
-print(szyfruj_cezar("ab cd", 2))     # "cd ef" — spacja bez zmian
-print(szyfruj_cezar("abc", 0))       # "abc"   — klucz 0 = bez zmian
-```
-
-### 15.8. Walidacja danych z wagami
-
-Wiele systemów walidacji (np. numery PESEL, kart kredytowych, NIP) opiera się na sumie kontrolnej liczonej za pomocą wag:
-
-```python
-def sprawdz_plec(pesel):
-    """Zwraca 'K' (kobieta) lub 'M' (mężczyzna) na podstawie PESEL."""
-    przedostatnia = int(pesel[-2])  # Przedostatnia cyfra
-    if przedostatnia % 2 == 0:
-        return 'K'
-    else:
-        return 'M'
-
-def sprawdz_sume_kontrolna(pesel, wagi):
-    """Sprawdza poprawność sumy kontrolnej."""
-    S = 0
-    for i in range(len(wagi)):
-        S += int(pesel[i]) * wagi[i]
-    M = S % 10
-    R = 0 if M == 0 else 10 - M
-    return R == int(pesel[-1])  # Porównanie z ostatnią cyfrą
-
-# Wagi dla PESEL
-wagi_pesel = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
-```
-
-### 15.9. Usuwanie sąsiednich duplikatów
-
-Algorytm przetwarzania tekstu — usuwanie powtarzających się znaków występujących bezpośrednio obok siebie:
-
-```python
-def usun_duplikaty_obok(tekst):
-    """Usuwa powtarzające się znaki obok siebie."""
-    if not tekst:     # Obsługa pustego napisu
-        return ""
-
-    wynik = tekst[0]  # Pierwszy znak zawsze zostaje
-    for i in range(1, len(tekst)):
-        if tekst[i] != tekst[i - 1]:  # Różny od poprzedniego?
-            wynik += tekst[i]
-    return wynik
-
-print(usun_duplikaty_obok("aabbbcc"))       # "abc"
-print(usun_duplikaty_obok("Abba;;;to"))     # "Aba;to"
-print(usun_duplikaty_obok(""))              # "" (pusty → pusty)
-```
-
-### 15.10. Zliczanie wystąpień wartości w danych
-
-```python
-def zlicz_wystapienia(dane, zakres_od, zakres_do):
-    """Zlicza ile razy każda wartość z zakresu występuje w danych."""
-    wystapienia = {}
-    for wartosc in range(zakres_od, zakres_do + 1):
-        wystapienia[wartosc] = 0
-
-    for element in dane:
-        if element in wystapienia:
-            wystapienia[element] += 1
-
-    return wystapienia
-
-# Wyświetlanie
-def wyswietl_statystyki(wystapienia):
-    for wartosc, liczba in sorted(wystapienia.items()):
-        if liczba > 0:
-            print(f"Wartość {wartosc:>3}: {'█' * liczba} ({liczba})")
-```
-
-### 15.11. Obliczanie średniej arytmetycznej
-
-Średnia arytmetyczna to suma elementów podzielona przez ich liczbę. Choć Python oferuje wbudowane `sum()` i `len()`, warto też wiedzieć, jak zaimplementować to ręcznie:
-
-```python
-# Sposób 1: Wbudowane funkcje (najkrótszy)
-def srednia_wbudowana(tablica):
-    if not tablica:  # Ochrona przed dzieleniem przez zero
-        return 0
-    return sum(tablica) / len(tablica)
-
-# Sposób 2: Ręczna implementacja
-def srednia_reczna(tablica):
-    if not tablica:
-        return 0
-    suma = 0
-    for element in tablica:
-        suma += element
-    return suma / len(tablica)
-
-dane = [10, 20, 30, 40, 50]
-print(f"Średnia: {srednia_wbudowana(dane):.2f}")  # Średnia: 30.00
-```
-
-### 15.12. Wyodrębnianie elementów spełniających warunek
-
-Częsty wzorzec — z tablicy wybrać tylko elementy spełniające konkretny warunek (np. nieparzyste, większe od progu, itd.):
-
-```python
-def wyswietl_nieparzyste(tablica):
-    """Wyświetla nieparzyste elementy i zwraca ich liczbę."""
-    licznik = 0
-    for element in tablica:
-        if element % 2 != 0:
-            print(element, end=" ")
-            licznik += 1
-    print()  # Nowa linia
-    return licznik
-
-def filtruj_w_zakresie(tablica, minimum, maksimum):
-    """Zwraca nową listę z elementami w podanym zakresie."""
-    wynik = []
-    for element in tablica:
-        if minimum <= element <= maksimum:
-            wynik.append(element)
-    return wynik
-
-# Lub z list comprehension:
-def filtruj_v2(tablica, minimum, maksimum):
-    return [x for x in tablica if minimum <= x <= maksimum]
-
-dane = [3, 12, 7, 25, 1, 18, 9, 42]
-print(filtruj_w_zakresie(dane, 5, 20))  # [12, 7, 18, 9]
-```
-
-### 15.13. Sprawdzanie czy liczba jest pierwsza
-
-Liczba pierwsza to liczba naturalna większa od 1, która dzieli się tylko przez 1 i przez siebie. Jest to fundamentalne pojęcie w algorytmice:
+**Idea:** Sprawdzamy dzielniki liczby od 2 do jej pierwiastka. Jeśli żaden nie dzieli liczby, jest ona pierwsza.
 
 ```python
 import math
 
 def jest_pierwsza(n):
-    """Sprawdza czy n jest liczbą pierwszą."""
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False  # Parzyste > 2 nie są pierwsze
-
-    # Sprawdzamy dzielniki nieparzyste do √n
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
-        if n % i == 0:
-            return False
+    if n < 2: return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0: return False
     return True
-
-# Testy
-print(jest_pierwsza(2))    # True
-print(jest_pierwsza(17))   # True
-print(jest_pierwsza(4))    # False
-print(jest_pierwsza(1))    # False
-print(jest_pierwsza(97))   # True
-
-# Wylistowanie wszystkich liczb pierwszych do 50
-liczby_pierwsze = [n for n in range(2, 51) if jest_pierwsza(n)]
-print(liczby_pierwsze)
-# [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 ```
 
-Dlaczego sprawdzamy tylko do √n? Jeśli n ma dzielnik d > √n, to n/d < √n, więc mniejszy dzielnik znaleźlibyśmy wcześniej.
+### 15.12. Sito Eratostenesa
 
-### 15.14. Rekurencja
-
-Rekurencja to technika, w której **funkcja wywołuje samą siebie**. Każde wywołanie rekurencyjne rozwiązuje mniejszy podproblem, aż do osiągnięcia **przypadku bazowego** (warunek stopu), który kończy łańcuch wywołań.
-
-Rekurencja opiera się na dwóch elementach:
-1. **Przypadek bazowy** — warunek kończący rekurencję (bez niego funkcja będzie się wywoływać w nieskończoność)
-2. **Przypadek rekurencyjny** — wywołanie funkcji z mniejszym/prostszym argumentem
-
-**Silnia (n!) — klasyczny przykład rekurencji:**
-
-Silnia to iloczyn wszystkich liczb naturalnych od 1 do n: `5! = 5 * 4 * 3 * 2 * 1 = 120`
+**Idea:** Wykreślanie wielokrotności liczb pierwszych z tablicy, aby znaleźć wszystkie liczby pierwsze w podanym zakresie.
 
 ```python
-def silnia(n):
-    # Przypadek bazowy
-    if n <= 1:
-        return 1
-    # Przypadek rekurencyjny
-    return n * silnia(n - 1)
-
-print(silnia(5))   # 120
-print(silnia(0))   # 1
-print(silnia(10))  # 3628800
+def sito(n):
+    pierwsze = [True] * (n + 1)
+    pierwsze[0] = pierwsze[1] = False
+    for p in range(2, int(n**0.5) + 1):
+        if pierwsze[p]:
+            for i in range(p * p, n + 1, p):
+                pierwsze[i] = False
+    return [i for i, b in enumerate(pierwsze) if b]
 ```
 
-**Przebieg wywołań dla `silnia(4)`:**
+### 15.13. Rozkład liczby na czynniki pierwsze
 
-```
-silnia(4)
-  -> 4 * silnia(3)
-    -> 3 * silnia(2)
-      -> 2 * silnia(1)
-        -> 1              <- przypadek bazowy
-      <- 2 * 1 = 2
-    <- 3 * 2 = 6
-  <- 4 * 6 = 24          <- wynik końcowy
-```
-
-**Ciąg Fibonacciego — kolejny klasyczny przykład:**
-
-Każda liczba w ciągu to suma dwóch poprzednich: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+**Idea:** Dzielenie liczby przez kolejne najmniejsze możliwe dzielniki (liczby pierwsze), aż pozostanie 1.
 
 ```python
-def fibonacci(n):
-    """Zwraca n-tą liczbę ciągu Fibonacciego."""
-    if n <= 0:
-        return 0
-    if n == 1:
-        return 1
-    return fibonacci(n - 1) + fibonacci(n - 2)
-
-# Wyświetlenie pierwszych 10 elementów
-for i in range(10):
-    print(fibonacci(i), end=" ")
-# 0 1 1 2 3 5 8 13 21 34
+def rozklad_na_czynniki(n):
+    czynniki = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            czynniki.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        czynniki.append(n)
+    return czynniki
 ```
 
-**NWD — wersja rekurencyjna (przypomnienie):**
+### 15.14. Konwersja systemów liczbowych (Dziesiętny <-> Binarny)
 
 ```python
-def nwd(a, b):
-    if b == 0:
-        return a
-    return nwd(b, a % b)
+def dec_to_bin(n):
+    if n == 0: return "0"
+    wynik = ""
+    while n > 0:
+        wynik = str(n % 2) + wynik
+        n //= 2
+    return wynik
 
-print(nwd(48, 18))  # 6
+def bin_to_dec(b):
+    wynik = 0
+    for i, cyfra in enumerate(reversed(b)):
+        if cyfra == '1':
+            wynik += 2**i
+    return wynik
 ```
 
-**Rekurencja vs iteracja — porównanie:**
+---
 
-| Cecha | Rekurencja | Iteracja (pętla) |
-|---|---|---|
-| Czytelność | Często prostsza | Czasem mniej intuicyjna |
-| Wydajność | Narzut wywołań | Szybsza |
-| Pamięć | Stos wywołań | Mniejsze zużycie |
-| Limit głębokości | ~1000 (Python) | Brak limitu |
-| Kiedy stosować | Struktury drzewiaste, podział problemu | Proste iteracje, duże dane |
+### 15.15. Szyfr Cezara
 
-**Ważna uwaga:** Python ma domyślny limit **996-1000 wywołań rekurencyjnych**. Przy przekroczeniu tego limitu pojawi się `RecursionError`. Dla algorytmów z dużymi danymi lepiej użyć wersji iteracyjnej.
+**Idea:** Przesunięcie każdej litery tekstu o stałą liczbę pozycji (klucz) w alfabecie.
 
 ```python
-import sys
-print(sys.getrecursionlimit())  # 1000 (domyślnie)
-```
-
-### 15.15. Wyszukiwanie binarne (Binary Search)
-
-**Idea:** Wyszukiwanie binarne działa tylko na **posortowanych** tablicach. Zamiast sprawdzać każdy element po kolei (jak wyszukiwanie liniowe), dzieli tablicę na pół w każdym kroku. Porównuje szukany element ze środkowym i decyduje, w której połowie kontynuować.
-
-**Złożoność:** O(log n) — niesamowicie szybkie. Dla tablicy 1 000 000 elementów potrzeba maksymalnie ~20 porównań.
-
-```python
-def wyszukiwanie_binarne(tablica, szukana):
-    """
-    Szuka elementu w POSORTOWANEJ tablicy.
-    Zwraca indeks lub -1 gdy nie znaleziono.
-    """
-    lewy = 0
-    prawy = len(tablica) - 1
-
-    while lewy <= prawy:
-        srodek = (lewy + prawy) // 2    # Indeks środka
-
-        if tablica[srodek] == szukana:
-            return srodek                 # Znaleziono!
-        elif tablica[srodek] < szukana:
-            lewy = srodek + 1             # Szukamy w prawej połowie
+def szyfruj_cezar(tekst, klucz):
+    wynik = ""
+    for znak in tekst.lower():
+        if 'a' <= znak <= 'z':
+            nowy = (ord(znak) - ord('a') + klucz) % 26
+            wynik += chr(nowy + ord('a'))
         else:
-            prawy = srodek - 1            # Szukamy w lewej połowie
-
-    return -1  # Nie znaleziono
+            wynik += znak
+    return wynik
 ```
 
-**Przebieg krok po kroku** (szukamy `23` w tablicy `[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]`):
-
-| Krok | Lewy | Prawy | Środek | Wartość | Decyzja |
-|---|---|---|---|---|---|
-| 1 | 0 | 9 | 4 | 16 | 23 > 16 -> szukaj prawo |
-| 2 | 5 | 9 | 7 | 56 | 23 < 56 -> szukaj lewo |
-| 3 | 5 | 6 | 5 | **23** | Znaleziono! Indeks = 5 |
+### 15.16. Palindromy i Anagramy
 
 ```python
-# Testowanie
-tablica = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+def czy_palindrom(tekst):
+    t = tekst.replace(" ", "").lower()
+    return t == t[::-1]
 
-print(wyszukiwanie_binarne(tablica, 23))   # 5
-print(wyszukiwanie_binarne(tablica, 2))    # 0
-print(wyszukiwanie_binarne(tablica, 91))   # 9
-print(wyszukiwanie_binarne(tablica, 50))   # -1 (nie ma)
+def czy_anagram(s1, s2):
+    t1 = s1.replace(" ", "").lower()
+    t2 = s2.replace(" ", "").lower()
+    return sorted(t1) == sorted(t2)
 ```
 
-**Wersja rekurencyjna:**
+---
+
+### 15.17. Rekurencja
+
+**Idea:** Technika, w której funkcja wywołuje samą siebie. Wymaga przypadku bazowego (stopu).
 
 ```python
-def wyszukiwanie_binarne_rek(tablica, szukana, lewy=0, prawy=None):
-    if prawy is None:
-        prawy = len(tablica) - 1
+# Silnia (n!)
+def silnia(n):
+    return 1 if n <= 1 else n * silnia(n - 1)
 
-    if lewy > prawy:
-        return -1
-
-    srodek = (lewy + prawy) // 2
-
-    if tablica[srodek] == szukana:
-        return srodek
-    elif tablica[srodek] < szukana:
-        return wyszukiwanie_binarne_rek(tablica, szukana, srodek + 1, prawy)
-    else:
-        return wyszukiwanie_binarne_rek(tablica, szukana, lewy, srodek - 1)
+# Fibonacci
+def fib(n):
+    return n if n <= 1 else fib(n-1) + fib(n-2)
 ```
 
-**Porównanie wyszukiwań:**
+### 15.18. Walidacja danych z wagami (np. PESEL)
 
-| Algorytm | Złożoność | Wymaga sortowania | Maks. porównań (n=1000) |
-|---|---|---|---|
-| Liniowe | O(n) | Nie | 1000 |
-| Z wartownikiem | O(n) | Nie | 1000 |
-| Binarne | O(log n) | Tak | 10 |
+```python
+def suma_kontrolna(liczby, wagi):
+    suma = sum(int(l) * w for l, w in zip(liczby, wagi))
+    return (10 - (suma % 10)) % 10
+```
+
+### 15.19. Usuwanie sąsiednich duplikatów
+
+```python
+def usun_duplikaty(tekst):
+    if not tekst: return ""
+    wynik = tekst[0]
+    for i in range(1, len(tekst)):
+        if tekst[i] != tekst[i-1]:
+            wynik += tekst[i]
+    return wynik
+```
+
+### 15.20. Zliczanie wystąpień wartości w danych
+
+```python
+def zlicz_wystapienia(tablica):
+    liczniki = {}
+    for x in tablica:
+        liczniki[x] = liczniki.get(x, 0) + 1
+    return liczniki
+```
+
+### 15.21. Obliczanie średniej arytmetycznej
+
+```python
+def srednia(tablica):
+    return sum(tablica) / len(tablica) if tablica else 0
+```
+
+### 15.22. Wyodrębnianie elementów spełniających warunek
+
+```python
+def filtruj_parzyste(tablica):
+    # Wykorzystanie list comprehension
+    return [x for x in tablica if x % 2 == 0]
+```
 
 ---
 
@@ -4449,7 +3996,6 @@ def test_szyfruj(wejscie, oczekiwany):
 | Asercje | `self.assertEqual(a, b)` | `assert a == b` |
 | Uruchomienie | `python -m unittest` | `pytest` |
 | Składnia | Bardziej formalna | Prostsza, krótsza |
-| Na stanowisku | ✅ Zawsze dostępny | ✅ Jeśli zainstalowany |
 
 ### 17.10. Podsumowanie — uruchamianie testów
 

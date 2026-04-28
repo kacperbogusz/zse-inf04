@@ -381,8 +381,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             page-break-after: always;
         }
     </style>
-    <link rel="stylesheet" href="file:///Users/kacperbogusz/Desktop/zse-inf04/dokumentacja/markdown-pdf.css"
-        type="text/css">
+    <link rel="stylesheet" href="../style/markdown-pdf.css" type="text/css">
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 
@@ -452,10 +451,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <li><a href="#51-definicja-i-wywo%C5%82ywanie-funkcji">5.1. Definicja i wywoływanie funkcji</a></li>
                 <li><a href="#52-parametry-domy%C5%9Blne">5.2. Parametry domyślne</a></li>
                 <li><a href="#53-argumenty-pozycyjne-i-nazwane">5.3. Argumenty pozycyjne i nazwane</a></li>
-                <li><a href="#54-zasi%C4%99g-zmiennych-scope">5.4. Zasięg zmiennych (scope)</a></li>
-                <li><a href="#55-funkcja-lambda--funkcje-anonimowe">5.5. Funkcja <code>lambda</code> — funkcje
+                <li><a href="#54-zmienna-liczba-argument%C3%B3w--args-i-kwargs">5.4. Zmienna liczba argumentów — *args i
+                        **kwargs</a></li>
+                <li><a href="#55-argumenty-tylko-pozycyjne--i-tylko-nazwane-">5.5. Argumenty tylko pozycyjne (/) i tylko
+                        nazwane (*)</a></li>
+                <li><a href="#56-zasi%C4%99g-zmiennych-scope">5.6. Zasięg zmiennych (scope)</a></li>
+                <li><a href="#57-funkcja-lambda--funkcje-anonimowe">5.7. Funkcja <code>lambda</code> — funkcje
                         anonimowe</a></li>
-                <li><a href="#56-funkcje-wbudowane--przegl%C4%85d-najwa%C5%BCniejszych">5.6. Funkcje wbudowane —
+                <li><a href="#58-funkcje-wbudowane--przegl%C4%85d-najwa%C5%BCniejszych">5.8. Funkcje wbudowane —
                         przegląd najważniejszych</a></li>
             </ul>
         </li>
@@ -577,6 +580,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <li><a href="#147-polimorfizm">14.7. Polimorfizm</a></li>
                 <li><a href="#148-klasy-abstrakcyjne--modu%C5%82-abc">14.8. Klasy abstrakcyjne — moduł
                         <code>abc</code></a></li>
+                <li><a href="#149-kompleksowa-implementacja-system-quiz">14.9. Kompleksowa implementacja: System
+                        Quiz</a></li>
             </ul>
         </li>
         <li><a href="#15-algorytmy-w-pythonie">15. Algorytmy w Pythonie</a>
@@ -585,27 +590,39 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         (Selection Sort)</a></li>
                 <li><a href="#152-sortowanie-b%C4%85belkowe-bubble-sort">15.2. Sortowanie bąbelkowe (Bubble Sort)</a>
                 </li>
-                <li><a href="#153-wyszukiwanie-liniowe">15.3. Wyszukiwanie liniowe</a></li>
-                <li><a href="#154-wyszukiwanie-z-wartownikiem-sentinel-search">15.4. Wyszukiwanie z wartownikiem
+                <li><a href="#153-sortowanie-przez-wstawianie-insertion-sort">15.3. Sortowanie przez wstawianie
+                        (Insertion Sort)</a></li>
+                <li><a href="#154-sortowanie-przez-scalanie-merge-sort">15.4. Sortowanie przez scalanie (Merge Sort)</a>
+                </li>
+                <li><a href="#155-sortowanie-szybkie-quick-sort">15.5. Sortowanie szybkie (Quick Sort)</a></li>
+                <li><a href="#156-wyszukiwanie-liniowe">15.6. Wyszukiwanie liniowe</a></li>
+                <li><a href="#154-wyszukiwanie-z-wartownikiem-sentinel-search">15.7. Wyszukiwanie z wartownikiem
                         (Sentinel Search)</a></li>
-                <li><a href="#155-algorytm-euklidesa-nwd--najwi%C4%99kszy-wsp%C3%B3lny-dzielnik">15.5. Algorytm
+                <li><a href="#1515-wyszukiwanie-binarne-binary-search">15.8. Wyszukiwanie binarne (Binary Search)</a>
+                </li>
+                <li><a href="#155-algorytm-euklidesa-nwd--najwi%C4%99kszy-wsp%C3%B3lny-dzielnik">15.9. Algorytm
                         Euklidesa (NWD — Największy Wspólny Dzielnik)</a></li>
-                <li><a href="#156-sito-eratostenesa">15.6. Sito Eratostenesa</a></li>
-                <li><a href="#157-szyfr-cezara">15.7. Szyfr Cezara</a></li>
-                <li><a href="#158-walidacja-danych-z-wagami">15.8. Walidacja danych z wagami</a></li>
-                <li><a href="#159-usuwanie-s%C4%85siednich-duplikat%C3%B3w">15.9. Usuwanie sąsiednich duplikatów</a>
+                <li><a href="#1510-najmniejsza-wsp%C3%B3lna-wielokrotno%C5%9B%C4%87-nww">15.10. Najmniejsza Wspólna
+                        Wielokrotność (NWW)</a></li>
+                <li><a href="#1513-sprawdzanie-czy-liczba-jest-pierwsza">15.11. Sprawdzanie czy liczba jest pierwsza</a>
                 </li>
-                <li><a href="#1510-zliczanie-wyst%C4%85pie%C5%84-warto%C5%9Bci-w-danych">15.10. Zliczanie wystąpień
+                <li><a href="#156-sito-eratostenesa">15.12. Sito Eratostenesa</a></li>
+                <li><a href="#1513-rozk%C5%82ad-liczby-na-czynniki-pierwsze">15.13. Rozkład liczby na czynniki
+                        pierwsze</a></li>
+                <li><a href="#1514-konwersja-system%C3%B3w-liczbowych-dziesi%C4%99tny---binarny">15.14. Konwersja
+                        systemów liczbowych (Dziesiętny &lt;-&gt; Binarny)</a></li>
+                <li><a href="#157-szyfr-cezara">15.15. Szyfr Cezara</a></li>
+                <li><a href="#1516-palindromy-i-anagramy">15.16. Palindromy i Anagramy</a></li>
+                <li><a href="#1514-rekurencja">15.17. Rekurencja</a></li>
+                <li><a href="#158-walidacja-danych-z-wagami">15.18. Walidacja danych z wagami</a></li>
+                <li><a href="#159-usuwanie-s%C4%85siednich-duplikat%C3%B3w">15.19. Usuwanie sąsiednich duplikatów</a>
+                </li>
+                <li><a href="#1510-zliczanie-wyst%C4%85pie%C5%84-warto%C5%9Bci-w-danych">15.20. Zliczanie wystąpień
                         wartości w danych</a></li>
-                <li><a href="#1511-obliczanie-%C5%9Bredniej-arytmetycznej">15.11. Obliczanie średniej arytmetycznej</a>
+                <li><a href="#1511-obliczanie-%C5%9Bredniej-arytmetycznej">15.21. Obliczanie średniej arytmetycznej</a>
                 </li>
-                <li><a href="#1512-wyodr%C4%99bnianie-element%C3%B3w-spe%C5%82niaj%C4%85cych-warunek">15.12.
+                <li><a href="#1512-wyodr%C4%99bnianie-element%C3%B3w-spe%C5%82niaj%C4%85cych-warunek">15.22.
                         Wyodrębnianie elementów spełniających warunek</a></li>
-                <li><a href="#1513-sprawdzanie-czy-liczba-jest-pierwsza">15.13. Sprawdzanie czy liczba jest pierwsza</a>
-                </li>
-                <li><a href="#1514-rekurencja">15.14. Rekurencja</a></li>
-                <li><a href="#1515-wyszukiwanie-binarne-binary-search">15.15. Wyszukiwanie binarne (Binary Search)</a>
-                </li>
             </ul>
         </li>
         <li><a href="#16-tablice-dwuwymiarowe">16. Tablice dwuwymiarowe</a>
@@ -666,7 +683,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>Python jest językiem programowania wysokiego poziomu, stworzonym przez Guido van Rossuma w 1991 roku. Wyróżnia
         się prostą i czytelną składnią, której fundamentem jest <strong>wcięciowanie</strong> (indentacja) — nie używa
         się klamerek <code>{}</code> do oznaczania bloków kodu, lecz spacji lub tabulatorów. Standardowo stosuje się
-        <strong>4 spacje</strong> na każdy poziom wcięcia.</p>
+        <strong>4 spacje</strong> na każdy poziom wcięcia.
+    </p>
     <p>Python jest językiem <strong>interpretowanym</strong> — kod nie jest kompilowany do postaci binarnej, lecz
         wykonywany linia po linii przez interpreter. Jest też <strong>dynamicznie typowany</strong>, co oznacza, że typ
         zmiennej jest ustalany automatycznie w momencie przypisania wartości, a nie deklarowany z góry przez
@@ -789,7 +807,8 @@ print(type(w))        <span class="hljs-comment"># &lt;class 'bool'&gt;</span>
     <p>Konwersja typów (ang. <em>type casting</em>) polega na zamianie jednego typu danych na inny. Jest to operacja
         niezwykle częsta — na przykład funkcja <code>input()</code> zawsze zwraca tekst <code>str</code>, więc aby
         wykonywać operacje arytmetyczne na danych pobranych od użytkownika, trzeba je zamienić na <code>int</code> lub
-        <code>float</code>.</p>
+        <code>float</code>.
+    </p>
     <table>
         <thead>
             <tr>
@@ -1053,7 +1072,8 @@ print(<span class="hljs-string">"Imię: {}, Wiek: {}"</span>.format(imie, wiek))
 print(<span class="hljs-string">"Imię: %s, Wiek: %d"</span> % (imie, wiek))
 </div></code></pre>
     <h3 id="15-pobieranie-danych-od-u%C5%BCytkownika--input">1.5. Pobieranie danych od użytkownika —
-        <code>input()</code></h3>
+        <code>input()</code>
+    </h3>
     <p>Funkcja <code>input()</code> wyświetla komunikat (prompt) i czeka na dane od użytkownika. Po naciśnięciu Enter
         zwraca wpisany tekst. <strong>Zawsze zwraca wartość typu <code>str</code></strong> — nawet jeśli użytkownik
         wpisze liczbę, dla Pythona to nadal będzie tekst.</p>
@@ -1105,7 +1125,8 @@ z użyciem apostrofów zamiast cudzysłowów.
 </div></code></pre>
     <h3 id="17-znak-nowej-linii-i-znaki-specjalne">1.7. Znak nowej linii i znaki specjalne</h3>
     <p>W napisach można używać znaków specjalnych (sekwencji ucieczki), które zaczynają się od odwrotnego ukośnika
-        <code>\</code>:</p>
+        <code>\</code>:
+    </p>
     <table>
         <thead>
             <tr>
@@ -1285,7 +1306,8 @@ print(<span class="hljs-string">f"Twój wiek: <span class="hljs-subst">{wiek}</s
         Python oferuje kilka eleganckich sposobów, aby to zrobić.</p>
     <p><strong>Metoda <code>split()</code> + <code>map()</code>:</strong></p>
     <p>Funkcja <code>map()</code> stosuje podaną funkcję (np. <code>int</code>) do każdego elementu uzyskanego z
-        <code>split()</code>. To najczęstszy wzorzec wczytywania wielu liczb:</p>
+        <code>split()</code>. To najczęstszy wzorzec wczytywania wielu liczb:
+    </p>
     <pre class="hljs"><code><div><span class="hljs-comment"># Wczytanie dwóch liczb z jednej linii</span>
 <span class="hljs-comment"># Użytkownik wpisuje np.: 10 20</span>
 a, b = map(int, input(<span class="hljs-string">"Podaj dwie liczby: "</span>).split())
@@ -1359,7 +1381,8 @@ osoby = []
     <h3 id="21-operatory-arytmetyczne">2.1. Operatory arytmetyczne</h3>
     <p>Operatory arytmetyczne służą do wykonywania działań matematycznych. Warto zwrócić szczególną uwagę na różnicę
         między zwykłym dzieleniem <code>/</code> (które zawsze daje <code>float</code>) a dzieleniem całkowitym
-        <code>//</code>.</p>
+        <code>//</code>.
+    </p>
     <table>
         <thead>
             <tr>
@@ -1467,7 +1490,8 @@ ostatnia_cyfra = liczba % <span class="hljs-number">10</span>  <span class="hljs
 </div></code></pre>
     <h3 id="22-operatory-por%C3%B3wnania">2.2. Operatory porównania</h3>
     <p>Operatory porównania porównują dwie wartości i zwracają wartość logiczną <code>True</code> lub
-        <code>False</code>. Są fundamentalne dla instrukcji warunkowych <code>if</code> i pętli <code>while</code>.</p>
+        <code>False</code>. Są fundamentalne dla instrukcji warunkowych <code>if</code> i pętli <code>while</code>.
+    </p>
     <table>
         <thead>
             <tr>
@@ -1542,7 +1566,8 @@ print(a &gt;= b)    <span class="hljs-comment"># False</span>
     <h3 id="23-operatory-logiczne">2.3. Operatory logiczne</h3>
     <p>Operatory logiczne służą do łączenia warunków. Python używa angielskich słów kluczowych <code>and</code>,
         <code>or</code>, <code>not</code> zamiast symboli <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>
-        znanych z C++ czy Javy.</p>
+        znanych z C++ czy Javy.
+    </p>
     <table>
         <thead>
             <tr>
@@ -1707,7 +1732,8 @@ print(<span class="hljs-string">"Jan"</span> <span class="hljs-keyword">in</span
 </div></code></pre>
     <p><strong>Operator <code>is</code></strong> sprawdza <strong>tożsamość obiektów</strong> — czy dwa obiekty to ten
         sam obiekt w pamięci (nie czy mają tę samą wartość). W praktyce używa się go głównie do porównywania z
-        <code>None</code>:</p>
+        <code>None</code>:
+    </p>
     <pre class="hljs"><code><div>x = <span class="hljs-literal">None</span>
 
 <span class="hljs-comment"># ✅ Prawidłowo — porównanie z None zawsze przez is</span>
@@ -1725,12 +1751,14 @@ print(<span class="hljs-string">"Jan"</span> <span class="hljs-keyword">in</span
     <p>Instrukcje sterujące kontrolują przepływ wykonania programu — pozwalają na podejmowanie decyzji (<code>if</code>)
         oraz wielokrotne wykonywanie bloków kodu (pętle <code>for</code>, <code>while</code>).</p>
     <h3 id="31-instrukcja-warunkowa-if--elif--else">3.1. Instrukcja warunkowa <code>if</code> / <code>elif</code> /
-        <code>else</code></h3>
+        <code>else</code>
+    </h3>
     <p>Instrukcja <code>if</code> to podstawowy mechanizm podejmowania decyzji w programie. Warunek jest wyrażeniem,
         które Python ewaluuje do <code>True</code> lub <code>False</code>. Jeśli jest prawdziwy, wykonywany jest blok
         kodu wcięty pod <code>if</code>.</p>
     <p>Słowo kluczowe <code>elif</code> (skrót od „else if&quot;) pozwala na sprawdzanie kolejnych warunków, a
-        <code>else</code> obsługuje przypadek, gdy żaden wcześniejszy warunek nie był spełniony.</p>
+        <code>else</code> obsługuje przypadek, gdy żaden wcześniejszy warunek nie był spełniony.
+    </p>
     <pre class="hljs"><code><div>liczba = int(input(<span class="hljs-string">"Podaj liczbę: "</span>))
 
 <span class="hljs-keyword">if</span> liczba &gt; <span class="hljs-number">0</span>:
@@ -2029,7 +2057,8 @@ print(lista[<span class="hljs-number">-1</span>])     <span class="hljs-comment"
 print(lista[<span class="hljs-number">-2</span>])     <span class="hljs-comment"># 40   — przedostatni element</span>
 </div></code></pre>
     <p><strong>Wycinanie (slicing)</strong> — pozwala wybrać fragment listy. Składnia:
-        <code>lista[start:stop:krok]</code>, gdzie <code>stop</code> jest <strong>wyłączny</strong>:</p>
+        <code>lista[start:stop:krok]</code>, gdzie <code>stop</code> jest <strong>wyłączny</strong>:
+    </p>
     <pre class="hljs"><code><div>lista = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]
 
 print(lista[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>])    <span class="hljs-comment"># [20, 30, 40] — od indeksu 1 do 3 (4 jest wyłączny)</span>
@@ -2209,7 +2238,8 @@ print(slownie.get(<span class="hljs-number">7</span>, <span class="hljs-string">
     <h3 id="44-zbiory-set">4.4. Zbiory (<code>set</code>)</h3>
     <p>Zbiór to kolekcja <strong>unikalnych</strong> elementów — automatycznie eliminuje duplikaty. Nie zachowuje
         kolejności elementów. Jest zoptymalizowany do sprawdzania, czy element istnieje w zbiorze (operacja
-        <code>in</code> jest bardzo szybka).</p>
+        <code>in</code> jest bardzo szybka).
+    </p>
     <pre class="hljs"><code><div><span class="hljs-comment"># Tworzenie zbiorów</span>
 pusty = set()              <span class="hljs-comment"># UWAGA: {} to pusty SŁOWNIK, nie zbiór!</span>
 liczby = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>}
@@ -2338,7 +2368,8 @@ i, r = podziel_z_reszta(<span class="hljs-number">17</span>, <span class="hljs-n
 print(<span class="hljs-string">f"Iloraz: <span class="hljs-subst">{i}</span>, Reszta: <span class="hljs-subst">{r}</span>"</span>)  <span class="hljs-comment"># Iloraz: 3, Reszta: 2</span>
 </div></code></pre>
     <p>Jeśli funkcja nie ma instrukcji <code>return</code> lub ma <code>return</code> bez wartości, domyślnie zwraca
-        <code>None</code>.</p>
+        <code>None</code>.
+    </p>
     <h3 id="52-parametry-domy%C5%9Blne">5.2. Parametry domyślne</h3>
     <p>Parametry domyślne pozwalają na wywoływanie funkcji bez podawania wszystkich argumentów — te z wartością domyślną
         zostaną automatycznie uzupełnione. Parametry z wartościami domyślnymi muszą być <strong>na końcu</strong> listy
@@ -2379,7 +2410,126 @@ info(miasto=<span class="hljs-string">"Kraków"</span>, imie=<span class="hljs-s
 <span class="hljs-comment"># Mieszane — pozycyjne MUSZĄ być przed nazwanymi</span>
 info(<span class="hljs-string">"Piotr"</span>, miasto=<span class="hljs-string">"Gdańsk"</span>, wiek=<span class="hljs-number">22</span>)
 </div></code></pre>
-    <h3 id="54-zasi%C4%99g-zmiennych-scope">5.4. Zasięg zmiennych (scope)</h3>
+    <h3 id="54-zmienna-liczba-argument%C3%B3w--args-i-kwargs">5.4. Zmienna liczba argumentów — *args i **kwargs</h3>
+    <p>W sytuacjach, gdy nie wiemy z góry, ile argumentów zostanie przekazanych do funkcji, z pomocą przychodzą
+        specjalne operatory <code>*args</code> oraz <code>**kwargs</code>. Są one szczególnie przydatne, gdy chcemy
+        napisać elastyczne funkcje, dekoratory, lub przekazywać argumenty w dziedziczeniu klas (do
+        <code>super().__init__()</code>).
+    </p>
+    <p><strong>Argumenty zmiennej długości — <code>*args</code> (Arbitrary Arguments):</strong></p>
+    <p>Użycie pojedynczej gwiazdki <code>*</code> przed nazwą parametru sprawia, że funkcja staje się zdolna do
+        przyjęcia dowolnej liczby argumentów <strong>pozycyjnych</strong>. Wewnątrz funkcji stają się one dostępne jako
+        krotka (tuple).</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">suma_wielu</span><span class="hljs-params">(*args)</span>:</span>
+    <span class="hljs-comment"># args to tuple, np. (1, 2, 3, 4)</span>
+    suma = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> liczba <span class="hljs-keyword">in</span> args:
+        suma += liczba
+    <span class="hljs-keyword">return</span> suma
+
+print(suma_wielu(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>))          <span class="hljs-comment"># 15</span>
+print(suma_wielu(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>))  <span class="hljs-comment"># 15</span>
+print(suma_wielu())               <span class="hljs-comment"># 0</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">powitaj_grupe</span><span class="hljs-params">(*imiona)</span>:</span>
+    <span class="hljs-keyword">for</span> imie <span class="hljs-keyword">in</span> imiona:
+        print(<span class="hljs-string">f"Cześć, <span class="hljs-subst">{imie}</span>!"</span>)
+
+powitaj_grupe(<span class="hljs-string">"Jan"</span>, <span class="hljs-string">"Anna"</span>, <span class="hljs-string">"Piotr"</span>)
+</div></code></pre>
+    <p>👉 <em>Wskazówka:</em> Nazwa <code>args</code> to tylko konwencja (od ang. <em>arguments</em>). Ważny jest znak
+        <code>*</code>, możesz nazwać parametr <code>*imiona</code> czy <code>*liczby</code>.
+    </p>
+    <p><strong>Pary klucz-wartość — <code>**kwargs</code> (Arbitrary Keyword Arguments):</strong></p>
+    <p>Dwie gwiazdki <code>**</code> pozwalają na przekazanie dowolnej liczby argumentów <strong>nazwanych</strong>
+        (klucz=wartość). Wewnątrz funkcji są one zapisywane jako słownik (dictionary).</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl_dane_osobowe</span><span class="hljs-params">(**kwargs)</span>:</span>
+    <span class="hljs-comment"># kwargs to słownik, np. {'imie': 'Jan', 'wiek': 25}</span>
+    <span class="hljs-keyword">for</span> klucz, wartosc <span class="hljs-keyword">in</span> kwargs.items():
+        print(<span class="hljs-string">f"<span class="hljs-subst">{klucz.capitalize()}</span>: <span class="hljs-subst">{wartosc}</span>"</span>)
+
+wyswietl_dane_osobowe(imie=<span class="hljs-string">"Jan"</span>, wiek=<span class="hljs-number">25</span>, miasto=<span class="hljs-string">"Warszawa"</span>)
+<span class="hljs-comment"># Imie: Jan</span>
+<span class="hljs-comment"># Wiek: 25</span>
+<span class="hljs-comment"># Miasto: Warszawa</span>
+
+wyswietl_dane_osobowe(stanowisko=<span class="hljs-string">"Programista"</span>, pensja=<span class="hljs-number">5000</span>)
+</div></code></pre>
+    <p>👉 <em>Wskazówka:</em> Podobnie jak z <code>args</code>, nazwa <code>kwargs</code> (od <em>keyword
+            arguments</em>) to konwencja. Kluczowe są znaki <code>**</code>.</p>
+    <p><strong>Łączenie zwykłych argumentów, <code>*args</code> i <code>**kwargs</code>:</strong></p>
+    <p>Możesz łączyć te mechanizmy w jednej funkcji, jednak musisz bezwzględnie zachować następującą kolejność w
+        definicji:</p>
+    <ol>
+        <li>Argumenty podstawowe (pozycyjne)</li>
+        <li><code>*args</code></li>
+        <li>Parametry ze zdefiniowaną wartością domyślną</li>
+        <li><code>**kwargs</code></li>
+    </ol>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">zloz_zamowienie</span><span class="hljs-params">(klient, *produkty, dostawa=<span class="hljs-string">"Standard"</span>, **opcje_dodatkowe)</span>:</span>
+    print(<span class="hljs-string">f"Zamówienie dla: <span class="hljs-subst">{klient}</span>"</span>)
+    
+    print(<span class="hljs-string">"Mój koszyk:"</span>)
+    <span class="hljs-keyword">for</span> produkt <span class="hljs-keyword">in</span> produkty:
+        print(<span class="hljs-string">f"- <span class="hljs-subst">{produkt}</span>"</span>)
+        
+    print(<span class="hljs-string">f"Typ dostawy: <span class="hljs-subst">{dostawa}</span>"</span>)
+    
+    <span class="hljs-keyword">if</span> opcje_dodatkowe:
+        print(<span class="hljs-string">"Opcje dodatkowe:"</span>)
+        <span class="hljs-keyword">for</span> opcja, wartosc <span class="hljs-keyword">in</span> opcje_dodatkowe.items():
+            print(<span class="hljs-string">f"- <span class="hljs-subst">{opcja}</span>: <span class="hljs-subst">{wartosc}</span>"</span>)
+
+zloz_zamowienie(
+    <span class="hljs-string">"Anna Nowak"</span>,            <span class="hljs-comment"># argument podstawowy (klient)</span>
+    <span class="hljs-string">"Myszka"</span>, <span class="hljs-string">"Klawiatura"</span>,  <span class="hljs-comment"># *args (produkty)</span>
+    dostawa=<span class="hljs-string">"Express"</span>,       <span class="hljs-comment"># nadpisanie parametru domyślnego</span>
+    faktura=<span class="hljs-literal">True</span>,            <span class="hljs-comment"># **kwargs (opcje_dodatkowe)</span>
+    pakowanie_prezent=<span class="hljs-literal">False</span>  <span class="hljs-comment"># **kwargs (opcje_dodatkowe)</span>
+)
+</div></code></pre>
+    <p><strong>Rozpakowywanie argumentów (Unpacking):</strong></p>
+    <p>Gwiazdki działają również w drugą stronę! Jeśli masz już listę lub słownik układający się w odpowiednie
+        parametry, możesz użyć <code>*</code> by &quot;rozpakować&quot; listę na argumenty pozycyjne lub <code>**</code>
+        by rozpakować słownik na nazwane.</p>
+    <pre class="hljs"><code><div>dane = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+print(suma_wielu(*dane))  <span class="hljs-comment"># równe wywołaniu suma_wielu(3, 4, 5)</span>
+
+osoba = {<span class="hljs-string">"imie"</span>: <span class="hljs-string">"Marek"</span>, <span class="hljs-string">"wiek"</span>: <span class="hljs-number">40</span>}
+wyswietl_dane_osobowe(**osoba) <span class="hljs-comment"># równe wywołaniu wyswietl_dane_osobowe(imie="Marek", wiek=40)</span>
+</div></code></pre>
+    <p>To używany wzorzec m.in. przy rozszerzaniu konstruktorów z użyciem funkcji <code>super()</code>, gdy podrzędna
+        klasa przyjmuje szerszą liczbę argumentów, które po prostu podaje dalej do konstruktora rodzica.</p>
+    <h3 id="55-argumenty-tylko-pozycyjne--i-tylko-nazwane">5.5. Argumenty tylko pozycyjne (/) i tylko nazwane (*)</h3>
+    <p>W nowszych wersjach Pythona (3.8+) wprowadzono symbole <code>/</code> oraz <code>*</code> w definicji parametrów
+        funkcji, aby jawnie określić, jak argumenty mogą być przekazywane. Pozwala to na większą kontrolę nad API
+        funkcji i zapobiega pomyłkom.</p>
+    <p><strong>Argumenty tylko pozycyjne (<code>/</code>):</strong></p>
+    <p>Wszystkie parametry znajdujące się <strong>przed</strong> symbolem <code>/</code> muszą zostać przekane wyłącznie
+        na podstawie pozycji. Nie można użyć ich nazw.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole_prostokata</span><span class="hljs-params">(a, b, /)</span>:</span>
+    <span class="hljs-keyword">return</span> a * b
+
+print(pole_prostokata(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>))    <span class="hljs-comment"># ✅ OK (pozycyjne)</span>
+<span class="hljs-comment"># print(pole_prostokata(a=5, b=10)) # ❌ TypeError: positional-only arguments</span>
+</div></code></pre>
+    <p><strong>Argumenty tylko nazwane (<code>*</code>):</strong></p>
+    <p>Wszystkie parametry znajdujące się <strong>po</strong> symbolu <code>*</code> muszą zostać przekazane wyłącznie
+        jako argumenty nazwane. Często stosowane, aby uniknąć pomyłek przy wielu parametrach logicznych.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyslij_wiadomosc</span><span class="hljs-params">(tresc, *, pilne=False, do_logow=True)</span>:</span>
+    print(<span class="hljs-string">f"Wysyłanie: <span class="hljs-subst">{tresc}</span> (Pilne: <span class="hljs-subst">{pilne}</span>)"</span>)
+
+wyslij_wiadomosc(<span class="hljs-string">"Dzień dobry"</span>, pilne=<span class="hljs-literal">True</span>) <span class="hljs-comment"># ✅ OK</span>
+<span class="hljs-comment"># wyslij_wiadomosc("Hej", True)            # ❌ TypeError: takes 1 positional argument but 2 were given</span>
+</div></code></pre>
+    <p><strong>Kompletna składnia mieszana:</strong></p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(pos_only, /, standard, *, kw_only)</span>:</span>
+    print(pos_only, standard, kw_only)
+
+func(<span class="hljs-number">10</span>, standard=<span class="hljs-number">20</span>, kw_only=<span class="hljs-number">30</span>) <span class="hljs-comment"># ✅ OK</span>
+func(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, kw_only=<span class="hljs-number">30</span>)          <span class="hljs-comment"># ✅ OK</span>
+</div></code></pre>
+    <h3 id="56-zasi%C4%99g-zmiennych-scope">5.6. Zasięg zmiennych (scope)</h3>
     <p>Zmienne utworzone wewnątrz funkcji są <strong>lokalne</strong> — nie istnieją poza funkcją. Zmienne utworzone
         poza funkcjami są <strong>globalne</strong> — są widoczne w całym programie. Zrozumienie tego mechanizmu jest
         kluczowe do unikania błędów.</p>
@@ -2401,11 +2551,13 @@ funkcja_global()
 print(<span class="hljs-string">f"Po zmianie: <span class="hljs-subst">{x}</span>"</span>)  <span class="hljs-comment"># 99</span>
 </div></code></pre>
     <p>W praktyce należy unikać <code>global</code> — lepiej przekazywać dane jako parametry i zwracać wyniki przez
-        <code>return</code>.</p>
-    <h3 id="55-funkcja-lambda--funkcje-anonimowe">5.5. Funkcja <code>lambda</code> — funkcje anonimowe</h3>
+        <code>return</code>.
+    </p>
+    <h3 id="57-funkcja-lambda--funkcje-anonimowe">5.7. Funkcja <code>lambda</code> — funkcje anonimowe</h3>
     <p>Lambda to krótka, jednolinijkowa funkcja anonimowa (bez nazwy). Składnia:
         <code>lambda parametry: wyrażenie</code>. Lambda automatycznie zwraca wynik wyrażenia — nie używamy słowa
-        <code>return</code>.</p>
+        <code>return</code>.
+    </p>
     <pre class="hljs"><code><div><span class="hljs-comment"># Zwykła funkcja</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kwadrat</span><span class="hljs-params">(x)</span>:</span>
     <span class="hljs-keyword">return</span> x ** <span class="hljs-number">2</span>
@@ -2429,7 +2581,7 @@ pracownicy = [
 pracownicy.sort(key=<span class="hljs-keyword">lambda</span> p: p[<span class="hljs-string">"pensja"</span>], reverse=<span class="hljs-literal">True</span>)
 <span class="hljs-comment"># Posortowani malejąco wg pensji</span>
 </div></code></pre>
-    <h3 id="56-funkcje-wbudowane--przegl%C4%85d-najwa%C5%BCniejszych">5.6. Funkcje wbudowane — przegląd najważniejszych
+    <h3 id="58-funkcje-wbudowane--przegl%C4%85d-najwa%C5%BCniejszych">5.8. Funkcje wbudowane — przegląd najważniejszych
     </h3>
     <p>Python oferuje wiele wbudowanych funkcji, które nie wymagają importowania żadnego modułu:</p>
     <table>
@@ -2818,7 +2970,8 @@ print(chr(<span class="hljs-number">97</span>))     <span class="hljs-comment">#
 </div></code></pre>
     <p><strong>Przesunięcie znaku w alfabecie z zawijaniem:</strong></p>
     <p>To kluczowy wzorzec stosowany w szyfrach i algorytmach operujących na literach. Zawijanie oznacza, że po
-        <code>z</code> wracamy do <code>a</code>:</p>
+        <code>z</code> wracamy do <code>a</code>:
+    </p>
     <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">przesun_znak</span><span class="hljs-params">(znak, przesuniecie)</span>:</span>
     <span class="hljs-keyword">if</span> <span class="hljs-string">'a'</span> &lt;= znak &lt;= <span class="hljs-string">'z'</span>:
         numer = ord(znak) - ord(<span class="hljs-string">'a'</span>)           <span class="hljs-comment"># a=0, b=1, ..., z=25</span>
@@ -3023,7 +3176,8 @@ plik.close()  <span class="hljs-comment"># Łatwo zapomnieć!</span>
     <h3 id="73-zapis-do-pliku-tekstowego">7.3. Zapis do pliku tekstowego</h3>
     <p><strong><code>write()</code> — zapis tekstu:</strong></p>
     <p>Metoda <code>write()</code> nie dodaje automatycznie znaku nowej linii — trzeba go dodać samodzielnie jako
-        <code>\n</code>:</p>
+        <code>\n</code>:
+    </p>
     <pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">"wynik.txt"</span>, <span class="hljs-string">"w"</span>, encoding=<span class="hljs-string">"utf-8"</span>) <span class="hljs-keyword">as</span> plik:
     plik.write(<span class="hljs-string">"Pierwsza linia\n"</span>)
     plik.write(<span class="hljs-string">"Druga linia\n"</span>)
@@ -3122,7 +3276,8 @@ sciezka = <span class="hljs-string">"dane.txt"</span>
 </div></code></pre>
     <h3 id="76-obs%C5%82uga-b%C5%82%C4%99d%C3%B3w-przy-pracy-z-plikami">7.6. Obsługa błędów przy pracy z plikami</h3>
     <p>Pliki mogą nie istnieć, możemy nie mieć uprawnień, dysk może być pełny. Dlatego warto zabezpieczyć się blokem
-        <code>try/except</code>:</p>
+        <code>try/except</code>:
+    </p>
     <pre class="hljs"><code><div><span class="hljs-keyword">try</span>:
     <span class="hljs-keyword">with</span> open(<span class="hljs-string">"nieistniejacy.txt"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> plik:
         zawartosc = plik.read()
@@ -3134,7 +3289,8 @@ sciezka = <span class="hljs-string">"dane.txt"</span>
     print(<span class="hljs-string">f"Wystąpił nieoczekiwany błąd: <span class="hljs-subst">{e}</span>"</span>)
 </div></code></pre>
     <h3 id="77-operacje-na-%C5%9Bcie%C5%BCkach--modu%C5%82-ospath">7.7. Operacje na ścieżkach — moduł
-        <code>os.path</code></h3>
+        <code>os.path</code>
+    </h3>
     <pre class="hljs"><code><div><span class="hljs-keyword">import</span> os
 
 sciezka = <span class="hljs-string">"/Users/jan/dokumenty/raport.txt"</span>
@@ -3574,7 +3730,8 @@ print(sum(int(c) <span class="hljs-keyword">for</span> c <span class="hljs-keywo
     <p>Warto wiedzieć, że moduł <code>random</code> <strong>nie jest</strong> bezpieczny kryptograficznie — nie powinien
         być używany do generowania haseł czy kluczy szyfrowania. Do tych celów Python oferuje moduł
         <code>secrets</code>. Jednak do symulacji, gier, testowania i algorytmów <code>random</code> jest w zupełności
-        wystarczający.</p>
+        wystarczający.
+    </p>
     <h3 id="91-importowanie">9.1. Importowanie</h3>
     <pre class="hljs"><code><div><span class="hljs-keyword">import</span> random
 
@@ -3695,957 +3852,532 @@ print(random.randint(<span class="hljs-number">1</span>, <span class="hljs-numbe
     <hr>
     <h2 id="10-programowanie-obiektowe--podstawy">10. Programowanie obiektowe — podstawy</h2>
     <p>Programowanie obiektowe (OOP — Object-Oriented Programming) to paradygmat, w którym program jest organizowany
-        wokół <strong>obiektów</strong> — bytów łączących dane (pola/atrybuty) i zachowania (metody). Klasa jest
-        „szablonem&quot; opisującym jakie pola i metody będą miały jej obiekty, a obiekt to konkretna instancja klasy.
-    </p>
-    <p>Analogicznie: klasa jest jak <strong>przepis na ciasto</strong> — opisuje składniki (pola) i kroki przygotowania
-        (metody). Obiekt to <strong>konkretne ciasto</strong> upieczone według tego przepisu. Z jednego przepisu (klasy)
-        możemy upiec wiele ciast (obiektów), każde z innym nadzieniem (wartościami pól).</p>
-    <p>W programowaniu obiektowym wyróżniamy cztery główne filary:</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Filar</th>
-                <th>Opis</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Abstrakcja</strong></td>
-                <td>Ukrywanie złożoności — pokazujemy tylko to, co potrzebne</td>
-            </tr>
-            <tr>
-                <td><strong>Hermetyzacja</strong></td>
-                <td>Kontrola dostępu do danych (private, protected, public)</td>
-            </tr>
-            <tr>
-                <td><strong>Dziedziczenie</strong></td>
-                <td>Klasa dziecko przejmuje cechy klasy rodzica</td>
-            </tr>
-            <tr>
-                <td><strong>Polimorfizm</strong></td>
-                <td>Ta sama metoda zachowuje się inaczej w różnych klasach</td>
-            </tr>
-        </tbody>
-    </table>
+        wokół <strong>obiektów</strong> — autonomicznych bytów łączących dane (atrybuty) i zachowania (metody).</p>
     <h3 id="101-definicja-klasy">10.1. Definicja klasy</h3>
-    <p>Klasę definiujemy słowem kluczowym <code>class</code>, po którym następuje nazwa klasy (konwencja:
-        <code>PascalCase</code> — każde słowo od wielkiej litery) i dwukropek:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Samochod</span>:</span>
-    <span class="hljs-keyword">pass</span>  <span class="hljs-comment"># Pusta klasa — placeholder, gdy jeszcze nie ma kodu</span>
+    <p>Klasa to „szablon” lub „projekt”, na podstawie którego tworzymy obiekty. Nazwy klas w Pythonie zapisujemy zgodnie
+        z konwencją <strong>PascalCase</strong> (np. <code>MojaKlasa</code>).</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Robot</span>:</span>
+    <span class="hljs-string">"""Prosta klasa reprezentująca robota."""</span>
+    <span class="hljs-keyword">pass</span>
 
-<span class="hljs-comment"># Tworzenie obiektu (instancji klasy) — nawiasy po nazwie klasy</span>
-auto = Samochod()
-print(type(auto))  <span class="hljs-comment"># &lt;class '__main__.Samochod'&gt;</span>
+<span class="hljs-comment"># Tworzenie instancji (obiektu)</span>
+moj_robot = Robot()
+print(type(moj_robot))  <span class="hljs-comment"># &lt;class '__main__.Robot'&gt;</span>
 </div></code></pre>
     <h3 id="102-konstruktor-init-i-pola-instancji">10.2. Konstruktor <code>__init__</code> i pola instancji</h3>
-    <p>Konstruktor to specjalna metoda <code>__init__</code>, która jest <strong>automatycznie</strong> wywoływana
-        podczas tworzenia obiektu. Służy do inicjalizacji pól (atrybutów) obiektu. Słowo <code>self</code> to referencja
-        do aktualnego obiektu — jest wymagane jako pierwszy parametr każdej metody instancji.</p>
+    <p>Metoda <code>__init__</code> jest wywoływana automatycznie podczas tworzenia nowego obiektu. Służy do nadawania
+        obiektowi początkowego stanu (inicjalizacji pól).</p>
     <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Samochod</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, marka, rok)</span>:</span>
-        self.marka = marka        <span class="hljs-comment"># Pole instancji — unikalne dla każdego obiektu</span>
-        self.rok = rok            <span class="hljs-comment"># Pole instancji</span>
-        self.predkosc = <span class="hljs-number">0</span>         <span class="hljs-comment"># Pole z wartością domyślną</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, marka, model, rok)</span>:</span>
+        <span class="hljs-comment"># Pola instancji (unikalne dla każdego obiektu)</span>
+        self.marka = marka
+        self.model = model
+        self.rok = rok
+        self.czy_odpalony = <span class="hljs-literal">False</span>
 
-<span class="hljs-comment"># Tworzenie obiektów — argumenty trafiają do __init__</span>
-auto1 = Samochod(<span class="hljs-string">"Toyota"</span>, <span class="hljs-number">2020</span>)
-auto2 = Samochod(<span class="hljs-string">"BMW"</span>, <span class="hljs-number">2022</span>)
+<span class="hljs-comment"># Przekazujemy argumenty z pominięciem 'self'</span>
+auto1 = Samochod(<span class="hljs-string">"Toyota"</span>, <span class="hljs-string">"Corolla"</span>, <span class="hljs-number">2022</span>)
+auto2 = Samochod(<span class="hljs-string">"Tesla"</span>, <span class="hljs-string">"Model 3"</span>, <span class="hljs-number">2023</span>)
 
-<span class="hljs-comment"># Każdy obiekt ma SWOJE, niezależne pola</span>
-print(auto1.marka)     <span class="hljs-comment"># Toyota</span>
-print(auto2.marka)     <span class="hljs-comment"># BMW</span>
-print(auto1.predkosc)  <span class="hljs-comment"># 0</span>
+print(auto1.marka)  <span class="hljs-comment"># Toyota</span>
+print(auto2.marka)  <span class="hljs-comment"># Tesla</span>
 </div></code></pre>
     <h3 id="103-metody-instancji">10.3. Metody instancji</h3>
-    <p>Metody to funkcje zdefiniowane wewnątrz klasy. Ich pierwszym parametrem jest zawsze <code>self</code>, dzięki
-        czemu mają dostęp do pól obiektu. Metody definiują <strong>zachowania</strong> obiektu.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Samochod</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, marka, rok)</span>:</span>
-        self.marka = marka
-        self.rok = rok
-        self.predkosc = <span class="hljs-number">0</span>
+    <p>Metody to funkcje zdefiniowane wewnątrz klasy, które mają dostęp do danych obiektu poprzez parametr
+        <code>self</code>.
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pies</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, imie)</span>:</span>
+        self.imie = imie
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">przyspiesz</span><span class="hljs-params">(self, wartosc)</span>:</span>
-        <span class="hljs-string">"""Zwiększa prędkość o podaną wartość."""</span>
-        self.predkosc += wartosc
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">szczekaj</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">f"<span class="hljs-subst">{self.imie}</span> mówi: Hau! Hau!"</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hamuj</span><span class="hljs-params">(self, wartosc)</span>:</span>
-        <span class="hljs-string">"""Zmniejsza prędkość, ale nie poniżej 0."""</span>
-        self.predkosc = max(<span class="hljs-number">0</span>, self.predkosc - wartosc)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">przedstaw_sie</span><span class="hljs-params">(self, tytul=<span class="hljs-string">"Pies"</span>)</span>:</span>
+        print(<span class="hljs-string">f"Jestem <span class="hljs-subst">{tytul}</span> i nazywam się <span class="hljs-subst">{self.imie}</span>."</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl_info</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Wyświetla informacje o samochodzie."""</span>
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self.marka}</span> (<span class="hljs-subst">{self.rok}</span>), prędkość: <span class="hljs-subst">{self.predkosc}</span> km/h"</span>)
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pobierz_predkosc</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Zwraca aktualną prędkość (metoda z wartością zwrotną)."""</span>
-        <span class="hljs-keyword">return</span> self.predkosc
-</div></code></pre>
-    <p><strong>Użycie metod — wywołujemy je na obiekcie za pomocą kropki:</strong></p>
-    <pre class="hljs"><code><div>auto = Samochod(<span class="hljs-string">"Toyota"</span>, <span class="hljs-number">2020</span>)
-auto.przyspiesz(<span class="hljs-number">50</span>)
-auto.wyswietl_info()          <span class="hljs-comment"># Toyota (2020), prędkość: 50 km/h</span>
-print(auto.pobierz_predkosc())  <span class="hljs-comment"># 50</span>
-auto.hamuj(<span class="hljs-number">30</span>)
-auto.wyswietl_info()          <span class="hljs-comment"># Toyota (2020), prędkość: 20 km/h</span>
+reksio = Pies(<span class="hljs-string">"Reksio"</span>)
+reksio.szczekaj()              <span class="hljs-comment"># Reksio mówi: Hau! Hau!</span>
+reksio.przedstaw_sie(<span class="hljs-string">"Azor"</span>)   <span class="hljs-comment"># Jestem Azor i nazywam się Reksio.</span>
 </div></code></pre>
     <h3 id="104-self--czym-jest-i-dlaczego-jest-konieczne">10.4. <code>self</code> — czym jest i dlaczego jest konieczne
     </h3>
-    <p><code>self</code> to nie jest słowo kluczowe — to konwencja nazewnicza (technicznie możesz nazwać ten parametr
-        dowolnie, ale <strong>każdy</strong> programista Python używa <code>self</code>). Odnosi się do konkretnego
-        obiektu, na którym wywoływana jest metoda.</p>
-    <p>Kluczowa różnica: <code>self.pole</code> to pole obiektu (trwałe), a zwykła zmienna wewnątrz metody jest lokalna
-        (znika po wyjściu z metody):</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Przyklad</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        self.wartosc = <span class="hljs-number">0</span>           <span class="hljs-comment"># POLE obiektu — istnieje tak długo jak obiekt</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ustaw</span><span class="hljs-params">(self, nowa_wartosc)</span>:</span>
-        self.wartosc = nowa_wartosc  <span class="hljs-comment"># Modyfikuje POLE obiektu</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        wartosc = <span class="hljs-number">99</span>                 <span class="hljs-comment"># ZMIENNA LOKALNA — znika po wyjściu z metody</span>
-        print(<span class="hljs-string">f"Pole obiektu: <span class="hljs-subst">{self.wartosc}</span>"</span>)
-        print(<span class="hljs-string">f"Zmienna lokalna: <span class="hljs-subst">{wartosc}</span>"</span>)
-
-obj = Przyklad()
-obj.ustaw(<span class="hljs-number">42</span>)
-obj.wyswietl()
-<span class="hljs-comment"># Pole obiektu: 42</span>
-<span class="hljs-comment"># Zmienna lokalna: 99</span>
-</div></code></pre>
+    <p><code>self</code> to pierwszy parametr każdej metody instancji. Reprezentuje on <strong>konkretny
+            obiekt</strong>, na którym metoda została wywołana.</p>
+    <ul>
+        <li><strong>Dlaczego <code>self</code>?</strong> Python nie używa słowa kluczowego <code>this</code> jak Java
+            czy C#, a przekazywanie referencji do obiektu musi być jawne w definicji (choć niejawne przy wywołaniu).
+        </li>
+        <li><strong>Jak to działa pod spodem?</strong> Wywołanie <code>auto.jedz(10)</code> jest przez Pythona
+            zamieniane na <code>Samochod.jedz(auto, 10)</code>.</li>
+    </ul>
     <h3 id="105-metoda-str--reprezentacja-tekstowa-obiektu">10.5. Metoda <code>__str__</code> — reprezentacja tekstowa
         obiektu</h3>
-    <p>Metoda <code>__str__</code> definiuje, co się wyświetli, gdy użyjemy <code>print()</code> na obiekcie. Bez niej
-        <code>print(obiekt)</code> wypisze coś w stylu <code>&lt;__main__.Samochod object at 0x...&gt;</code>:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Produkt</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, cena)</span>:</span>
-        self.nazwa = nazwa
-        self.cena = cena
+    <p>Pozwala zdefiniować, co ma się wyświetlić, gdy przekażemy obiekt do funkcji <code>print()</code> lub
+        <code>str()</code>.
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ksiazka</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tytul, autor)</span>:</span>
+        self.tytul = tytul
+        self.autor = autor
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Produkt: <span class="hljs-subst">{self.nazwa}</span>, Cena: <span class="hljs-subst">{self.cena}</span> zł"</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"'<span class="hljs-subst">{self.tytul}</span>' autorstwa <span class="hljs-subst">{self.autor}</span>"</span>
 
-p = Produkt(<span class="hljs-string">"Laptop"</span>, <span class="hljs-number">3500</span>)
-print(p)  <span class="hljs-comment"># Produkt: Laptop, Cena: 3500 zł (zamiast &lt;...object...&gt;)</span>
+ksiazka = Ksiazka(<span class="hljs-string">"Wiedźmin"</span>, <span class="hljs-string">"Andrzej Sapkowski"</span>)
+print(ksiazka)  <span class="hljs-comment"># 'Wiedźmin' autorstwa Andrzej Sapkowski</span>
 </div></code></pre>
     <h3 id="106-repr-vs-str--dwie-reprezentacje-tekstowe">10.6. <code>__repr__</code> vs <code>__str__</code> — dwie
         reprezentacje tekstowe</h3>
-    <p>Python oferuje dwie metody specjalne do tworzenia tekstowej reprezentacji obiektu. Zrozumienie różnicy między
-        nimi jest ważne:</p>
     <table>
         <thead>
             <tr>
                 <th>Metoda</th>
                 <th>Cel</th>
-                <th>Wywoływana przez</th>
-                <th>Odbiorca</th>
+                <th>Grupa docelowa</th>
+                <th>Wywołanie</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><code>__str__</code></td>
-                <td>Czytelna reprezentacja</td>
-                <td><code>print()</code>, <code>str()</code>, f-string</td>
-                <td>Użytkownik końcowy</td>
+                <td>Nieformalna, ładna reprezentacja.</td>
+                <td>Użytkownik końcowy.</td>
+                <td><code>print(obj)</code>, <code>str(obj)</code></td>
             </tr>
             <tr>
                 <td><code>__repr__</code></td>
-                <td>Jednoznaczna reprezentacja</td>
-                <td><code>repr()</code>, konsola interaktywna</td>
-                <td>Programista (debugowanie)</td>
+                <td>Formalna, techniczna informacja.</td>
+                <td>Programista (debugowanie).</td>
+                <td>Konsola, f-string <code>!r</code>, listy.</td>
             </tr>
         </tbody>
     </table>
-    <p><code>__repr__</code> powinna zwracać string, który — idealnie — pozwoliłby odtworzyć obiekt.
-        <code>__str__</code> powinna zwracać przystępną, ładną formę do wyświetlania.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Punkt</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x, y)</span>:</span>
-        self.x = x
-        self.y = y
+    <p><strong>Zasada:</strong> Jeśli nie zdefiniujesz <code>__str__</code>, Python użyje <code>__repr__</code>. Jeśli
+        nie zdefiniujesz żadnej, zobaczysz adres w pamięci.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Produkt</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, cena)</span>:</span>
+        self.nazwa = nazwa
+        self.cena = cena
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-comment"># Dla programisty — jednoznaczna, techniczna</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Punkt(x=<span class="hljs-subst">{self.x}</span>, y=<span class="hljs-subst">{self.y}</span>)"</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Produkt(nazwa='<span class="hljs-subst">{self.nazwa}</span>', cena=<span class="hljs-subst">{self.cena}</span>)"</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-comment"># Dla użytkownika — ładna, czytelna</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f"(<span class="hljs-subst">{self.x}</span>, <span class="hljs-subst">{self.y}</span>)"</span>
-
-p = Punkt(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
-
-print(p)          <span class="hljs-comment"># (3, 5)          &lt;- wywołuje __str__</span>
-print(repr(p))    <span class="hljs-comment"># Punkt(x=3, y=5) &lt;- wywołuje __repr__</span>
-print(<span class="hljs-string">f"Punkt: <span class="hljs-subst">{p}</span>"</span>)  <span class="hljs-comment"># Punkt: (3, 5) &lt;- f-string wywołuje __str__</span>
+p = Produkt(<span class="hljs-string">"Chleb"</span>, <span class="hljs-number">4.50</span>)
+print(p)      <span class="hljs-comment"># Produkt(nazwa='Chleb', cena=4.5)</span>
+lista = [p]
+print(lista)  <span class="hljs-comment"># [Produkt(nazwa='Chleb', cena=4.5)]</span>
 </div></code></pre>
-    <p><strong>Ważna zasada:</strong> Jeśli klasa ma zdefiniowaną tylko <code>__repr__</code> (bez
-        <code>__str__</code>), to <code>print()</code> użyje <code>__repr__</code> jako zapasowej. Jeśli zdefiniujesz
-        tylko <code>__str__</code>, to <code>repr()</code> pokaże domyślną
-        <code>&lt;__main__.Klasa object at 0x...&gt;</code>.</p>
-    <p><strong>Praktyczna rada:</strong> Zawsze definiuj przynajmniej <code>__repr__</code>. Jeśli potrzebujesz ładnego
-        wyświetlania dla użytkownika, dodaj też <code>__str__</code>.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ocena</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, przedmiot, wartosc)</span>:</span>
-        self.przedmiot = przedmiot
-        self.wartosc = wartosc
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Ocena('<span class="hljs-subst">{self.przedmiot}</span>', <span class="hljs-subst">{self.wartosc}</span>)"</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f"<span class="hljs-subst">{self.przedmiot}</span>: <span class="hljs-subst">{self.wartosc}</span>"</span>
-
-<span class="hljs-comment"># Różnica widoczna np. przy listach:</span>
-oceny = [Ocena(<span class="hljs-string">"Matematyka"</span>, <span class="hljs-number">5</span>), Ocena(<span class="hljs-string">"Polski"</span>, <span class="hljs-number">4</span>)]
-print(oceny)         <span class="hljs-comment"># [Ocena('Matematyka', 5), Ocena('Polski', 4)] &lt;- __repr__!</span>
-print(oceny[<span class="hljs-number">0</span>])      <span class="hljs-comment"># Matematyka: 5 &lt;- __str__</span>
-</div></code></pre>
-    <p>Zauważ: <code>print(lista)</code> wyświetla elementy listy za pomocą <code>__repr__</code>, nie
-        <code>__str__</code>. To dlatego, że lista używa <code>repr()</code> na swoich elementach.</p>
     <hr>
     <h2 id="11-programowanie-obiektowe--hermetyzacja">11. Programowanie obiektowe — hermetyzacja</h2>
-    <p>Hermetyzacja (enkapsulacja) to mechanizm <strong>ukrywania wewnętrznych szczegółów implementacji</strong> klasy.
-        Zamiast pozwalać na bezpośredni dostęp do pól, udostępniamy kontrolowane metody (gettery/settery). Dzięki temu
-        klasa ma pełną kontrolę nad swoimi danymi — może np. walidować wartości przed ich zapisaniem.</p>
+    <p>Hermetyzacja (enkapsulacja) to ukrywanie danych wewnętrznych obiektu i udostępnianie ich tylko poprzez
+        kontrolowany interfejs. Zapobiega to przypadkowej modyfikacji stanu obiektu.</p>
     <h3 id="111-poziomy-dost%C4%99pu-w-pythonie">11.1. Poziomy dostępu w Pythonie</h3>
-    <p>W Pythonie nie ma słów kluczowych <code>public</code>, <code>private</code>, <code>protected</code> jak w Javie
-        czy C#. Zamiast tego stosowana jest <strong>konwencja nazewnicza</strong> oparta na podkreślnikach:</p>
+    <p>W Pythonie nie ma ścisłych ograniczeń dostępu (jak <code>private</code> w Java). Stosujemy konwencje nazewnictwa.
+    </p>
     <table>
         <thead>
             <tr>
-                <th>Konwencja</th>
+                <th>Typ</th>
                 <th>Zapis</th>
-                <th>Dostęp z zewnątrz</th>
-                <th>Klasy potomne</th>
-                <th>Odpowiednik Java/C#</th>
+                <th>Dostępność</th>
+                <th>Znaczenie</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Publiczne</td>
-                <td><code>self.pole</code></td>
-                <td>✅ Pełny</td>
-                <td>✅ Tak</td>
-                <td><code>public</code></td>
+                <td><strong>Publiczne</strong></td>
+                <td><code>self.nazwa</code></td>
+                <td>Wszędzie.</td>
+                <td>Standardowe pole.</td>
             </tr>
             <tr>
-                <td>Chronione</td>
-                <td><code>self._pole</code></td>
-                <td>⚠️ Możliwy (niezalecany)</td>
-                <td>✅ Tak</td>
-                <td><code>protected</code></td>
+                <td><strong>Chronione</strong></td>
+                <td><code>self._nazwa</code></td>
+                <td>Klasa i podklasy.</td>
+                <td>&quot;Proszę, nie ruszaj mnie poza klasą&quot; (konwencja).</td>
             </tr>
             <tr>
-                <td>Prywatne</td>
-                <td><code>self.__pole</code></td>
-                <td>❌ Name mangling</td>
-                <td>❌ Nie</td>
-                <td><code>private</code></td>
+                <td><strong>Prywatne</strong></td>
+                <td><code>self.__nazwa</code></td>
+                <td>Tylko klasa.</td>
+                <td>Silnie ukryte (uruchamia mechanizm <strong>Name Mangling</strong>).</td>
             </tr>
         </tbody>
     </table>
-    <p><strong>Jeden podkreślnik <code>_</code> (protected)</strong> — to jedynie sygnał dla innych programistów: „nie
-        dotykaj tego pola z zewnątrz klasy&quot;. Python tego nie wymusza — ale łamanie tej konwencji jest uważane za
-        złą praktykę.</p>
-    <p><strong>Dwa podkreślniki <code>__</code> (private)</strong> — Python stosuje mechanizm zwany <strong>name
-            mangling</strong>: pole <code>self.__pensja</code> w klasie <code>Pracownik</code> jest wewnętrznie
-        zmieniane na <code>self._Pracownik__pensja</code>. To nie jest prawdziwe ukrywanie (nadal można się dostać), ale
-        skutecznie chroni przed przypadkowym dostępem.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pracownik</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, imie, pensja, stanowisko)</span>:</span>
-        self.imie = imie               <span class="hljs-comment"># PUBLIC</span>
-        self._stanowisko = stanowisko  <span class="hljs-comment"># PROTECTED</span>
-        self.__pensja = pensja         <span class="hljs-comment"># PRIVATE (name mangling)</span>
-
-p = Pracownik(<span class="hljs-string">"Jan"</span>, <span class="hljs-number">5000</span>, <span class="hljs-string">"Programista"</span>)
-
-print(p.imie)              <span class="hljs-comment"># ✅ OK</span>
-print(p._stanowisko)       <span class="hljs-comment"># ⚠️ Działa, ale jest niezalecane</span>
-<span class="hljs-comment"># print(p.__pensja)        # ❌ AttributeError!</span>
-print(p._Pracownik__pensja)<span class="hljs-comment"># ⚠️ Technicznie możliwe, ale NIGDY tego nie rób</span>
-</div></code></pre>
+    <p><strong>Name Mangling:</strong> Atrybut <code>self.__tajne</code> w klasie <code>Konto</code> jest zamieniany na
+        <code>_Konto__tajne</code>. Można się do niego dostać z zewnątrz, ale jest to celowo utrudnione.
+    </p>
     <h3 id="112-gettery-i-settery--metody-dost%C4%99pu">11.2. Gettery i settery — metody dostępu</h3>
-    <p>Getter (pobierz) i setter (ustaw) to metody publiczne, które kontrolują dostęp do prywatnych pól. Setter może
-        zawierać walidację — odrzucanie niepoprawnych wartości:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Produkt</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, cena)</span>:</span>
-        self.__nazwa = nazwa
-        self.__cena = cena
+    <p>Klasyczne podejście (rzadziej stosowane w Pythonie na rzecz <code>@property</code>):</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pracownik</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, pensja)</span>:</span>
+        self.__pensja = pensja
 
-    <span class="hljs-comment"># Getter — odczyt</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pobierz_nazwe</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> self.__nazwa
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_pensja</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.__pensja
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pobierz_cene</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> self.__cena
-
-    <span class="hljs-comment"># Setter z walidacją</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ustaw_cene</span><span class="hljs-params">(self, nowa_cena)</span>:</span>
-        <span class="hljs-keyword">if</span> nowa_cena &gt;= <span class="hljs-number">0</span>:
-            self.__cena = nowa_cena
-        <span class="hljs-keyword">else</span>:
-            print(<span class="hljs-string">"Cena nie może być ujemna!"</span>)
-
-p = Produkt(<span class="hljs-string">"Laptop"</span>, <span class="hljs-number">3500</span>)
-print(p.pobierz_cene())    <span class="hljs-comment"># 3500</span>
-p.ustaw_cene(<span class="hljs-number">4000</span>)         <span class="hljs-comment"># OK</span>
-p.ustaw_cene(<span class="hljs-number">-100</span>)         <span class="hljs-comment"># Cena nie może być ujemna!</span>
-print(p.pobierz_cene())    <span class="hljs-comment"># 4000 (nie -100)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_pensja</span><span class="hljs-params">(self, nowa_pensja)</span>:</span>
+        <span class="hljs-keyword">if</span> nowa_pensja &gt; <span class="hljs-number">0</span>:
+            self.__pensja = nowa_pensja
 </div></code></pre>
     <h3 id="113-dekorator-property--pythoniczny-gettersetter">11.3. Dekorator <code>@property</code> — pythoniczny
         getter/setter</h3>
-    <p>Dekorator <code>@property</code> pozwala na dostęp do pola jak do zwykłego atrybutu (bez nawiasów), ale z
-        kontrolą gettera i settera. To bardziej „pythonowy&quot; sposób niż tradycyjne metody <code>pobierz_X()</code> /
-        <code>ustaw_X()</code>:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Temperatura</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, celsius)</span>:</span>
-        self.__celsius = celsius
+    <p>Pozwala używać metod tak, jakby były zwykłymi polami (bez nawiasów <code>()</code>), co umożliwia dodanie
+        walidacji bez zmiany API klasy.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Osoba</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, wiek)</span>:</span>
+        self.__wiek = wiek
 
 <span class="hljs-meta">    @property</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">celsius</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Getter — wywoływany przy ODCZYCIE: t.celsius"""</span>
-        <span class="hljs-keyword">return</span> self.__celsius
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wiek</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">"""Getter: wywoływany przy 'print(obj.wiek)'"""</span>
+        <span class="hljs-keyword">return</span> self.__wiek
 
-<span class="hljs-meta">    @celsius.setter</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">celsius</span><span class="hljs-params">(self, wartosc)</span>:</span>
-        <span class="hljs-string">"""Setter — wywoływany przy ZAPISIE: t.celsius = 30"""</span>
-        <span class="hljs-keyword">if</span> wartosc &lt; <span class="hljs-number">-273.15</span>:
-            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"Temperatura poniżej zera absolutnego!"</span>)
-        self.__celsius = wartosc
+<span class="hljs-meta">    @wiek.setter</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wiek</span><span class="hljs-params">(self, wartosc)</span>:</span>
+        <span class="hljs-string">"""Setter: wywoływany przy 'obj.wiek = 20'"""</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt;= wartosc &lt;= <span class="hljs-number">150</span>:
+            self.__wiek = wartosc
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">"Nieprawidłowy wiek!"</span>)
 
-<span class="hljs-meta">    @property</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fahrenheit</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Właściwość tylko do odczytu (brak settera)."""</span>
-        <span class="hljs-keyword">return</span> self.__celsius * <span class="hljs-number">9</span>/<span class="hljs-number">5</span> + <span class="hljs-number">32</span>
-
-<span class="hljs-comment"># Użycie — wygląda jak bezpośredni dostęp do pola, ale działa getter/setter!</span>
-t = Temperatura(<span class="hljs-number">25</span>)
-print(t.celsius)       <span class="hljs-comment"># 25   (getter)</span>
-print(t.fahrenheit)    <span class="hljs-comment"># 77.0 (getter obliczeniowy)</span>
-
-t.celsius = <span class="hljs-number">30</span>         <span class="hljs-comment"># Setter z walidacją</span>
-print(t.celsius)       <span class="hljs-comment"># 30</span>
+o = Osoba(<span class="hljs-number">25</span>)
+o.wiek = <span class="hljs-number">30</span>    <span class="hljs-comment"># Wywołuje setter</span>
+print(o.wiek)  <span class="hljs-comment"># Wywołuje getter -&gt; 30</span>
+o.wiek = <span class="hljs-number">-5</span>    <span class="hljs-comment"># Nieprawidłowy wiek!</span>
 </div></code></pre>
     <hr>
     <h2 id="12-programowanie-obiektowe--zmienne-klasowe-i-metody-statyczne">12. Programowanie obiektowe — zmienne
         klasowe i metody statyczne</h2>
     <h3 id="121-zmienne-klasowe-static-fields">12.1. Zmienne klasowe (static fields)</h3>
-    <p>Zmienne klasowe należą <strong>do klasy</strong>, nie do konkretnego obiektu. Są wspólne dla WSZYSTKICH instancji
-        — zmiana przez jedną instancję jest widoczna dla wszystkich. Typowe zastosowanie: zliczanie utworzonych
-        obiektów, przechowywanie stałych.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Uzytkownik</span>:</span>
-    <span class="hljs-comment"># Zmienna KLASOWA — wspólna dla wszystkich instancji</span>
-    licznik = <span class="hljs-number">0</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa)</span>:</span>
-        Uzytkownik.licznik += <span class="hljs-number">1</span>          <span class="hljs-comment"># Inkrementacja przez NAZWĘ KLASY</span>
-        self.id = Uzytkownik.licznik     <span class="hljs-comment"># Automatyczne nadanie unikalnego ID</span>
-        self.nazwa = nazwa
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">f"ID: <span class="hljs-subst">{self.id}</span>, Nazwa: <span class="hljs-subst">{self.nazwa}</span>"</span>)
-
-u1 = Uzytkownik(<span class="hljs-string">"Jan"</span>)
-u2 = Uzytkownik(<span class="hljs-string">"Anna"</span>)
-u3 = Uzytkownik(<span class="hljs-string">"Piotr"</span>)
-
-u1.wyswietl()   <span class="hljs-comment"># ID: 1, Nazwa: Jan</span>
-u2.wyswietl()   <span class="hljs-comment"># ID: 2, Nazwa: Anna</span>
-u3.wyswietl()   <span class="hljs-comment"># ID: 3, Nazwa: Piotr</span>
-
-<span class="hljs-comment"># Dostęp do zmiennej klasowej — przez nazwę klasy</span>
-print(<span class="hljs-string">f"Łączna liczba użytkowników: <span class="hljs-subst">{Uzytkownik.licznik}</span>"</span>)  <span class="hljs-comment"># 3</span>
-</div></code></pre>
-    <p><strong>Kluczowa pułapka — modyfikacja zmiennej klasowej:</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Licznik</span>:</span>
-    wartosc = <span class="hljs-number">0</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-comment"># ✅ POPRAWNIE — modyfikuje zmienną KLASY</span>
-        Licznik.wartosc += <span class="hljs-number">1</span>
-
-        <span class="hljs-comment"># ❌ BŁĄD — tworzy NOWĄ zmienną INSTANCJI o tej samej nazwie!</span>
-        <span class="hljs-comment"># self.wartosc += 1</span>
-        <span class="hljs-comment"># Odczyt self.wartosc znajdzie zmienną klasową, ale += utworzy NOWĄ instancji</span>
-</div></code></pre>
-    <p>Zasada jest prosta: do <strong>modyfikacji</strong> zmiennej klasowej zawsze używaj nazwy klasy
-        (<code>NazwaKlasy.pole</code>), nie <code>self</code>.</p>
-    <h3 id="122-zmienne-klasowe--tablice-i-kolekcje">12.2. Zmienne klasowe — tablice i kolekcje</h3>
-    <p>Zmienne klasowe mogą przechowywać tablice wspólne dla wszystkich obiektów, np. nazwy plików zasobów:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gracz</span>:</span>
-    dozwolone_klasy = [<span class="hljs-string">"Wojownik"</span>, <span class="hljs-string">"Mag"</span>, <span class="hljs-string">"Łucznik"</span>, <span class="hljs-string">"Złodziej"</span>]
-    ikony = [<span class="hljs-string">"icon_0.png"</span>, <span class="hljs-string">"icon_1.png"</span>, <span class="hljs-string">"icon_2.png"</span>, <span class="hljs-string">"icon_3.png"</span>]
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, klasa_id)</span>:</span>
-        self.nazwa = nazwa
-        self.klasa_id = klasa_id
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pobierz_klase</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> Gracz.dozwolone_klasy[self.klasa_id]
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pobierz_ikone</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> Gracz.ikony[self.klasa_id]
-</div></code></pre>
-    <h3 id="123-metody-statyczne--staticmethod">12.3. Metody statyczne — <code>@staticmethod</code></h3>
-    <p>Metoda statyczna nie potrzebuje dostępu do instancji (<code>self</code>) ani do klasy (<code>cls</code>). Jest po
-        prostu funkcją umieszczoną w kontekście klasy jako organizacja kodu. Wywoływana jest na <strong>klasie</strong>,
-        nie na obiekcie — nie trzeba tworzyć instancji, aby ją wywołać.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Narzedzia</span>:</span>
-<span class="hljs-meta">    @staticmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">jest_parzysta</span><span class="hljs-params">(liczba)</span>:</span>
-        <span class="hljs-keyword">return</span> liczba % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>
-
-<span class="hljs-meta">    @staticmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">policz_samogloski</span><span class="hljs-params">(tekst)</span>:</span>
-        samogloski = <span class="hljs-string">"aąeęiouóyAĄEĘIOUÓY"</span>
-        <span class="hljs-keyword">return</span> sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> z <span class="hljs-keyword">in</span> tekst <span class="hljs-keyword">if</span> z <span class="hljs-keyword">in</span> samogloski)
-
-<span class="hljs-meta">    @staticmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">odwroc_napis</span><span class="hljs-params">(tekst)</span>:</span>
-        <span class="hljs-keyword">return</span> tekst[::<span class="hljs-number">-1</span>]
-
-<span class="hljs-comment"># Wywołanie — BEZ tworzenia obiektu!</span>
-print(Narzedzia.jest_parzysta(<span class="hljs-number">4</span>))              <span class="hljs-comment"># True</span>
-print(Narzedzia.policz_samogloski(<span class="hljs-string">"Python"</span>))   <span class="hljs-comment"># 1</span>
-print(Narzedzia.odwroc_napis(<span class="hljs-string">"Python"</span>))        <span class="hljs-comment"># nohtyP</span>
-</div></code></pre>
-    <h3 id="124-metody-klasowe--classmethod">12.4. Metody klasowe — <code>@classmethod</code></h3>
-    <p>Metoda klasowa otrzymuje referencję do <strong>klasy</strong> jako pierwszy argument (<code>cls</code>). Różni
-        się od <code>@staticmethod</code> tym, że ma dostęp do zmiennych klasowych i może tworzyć nowe instancje:</p>
+    <p>Zmienne zdefiniowane bezpośrednio w klasie (poza <code>__init__</code>). Są współdzielone przez
+        <strong>wszystkie</strong> instancje tej klasy.
+    </p>
     <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pracownik</span>:</span>
-    liczba_pracownikow = <span class="hljs-number">0</span>
+    liczba_pracownikow = <span class="hljs-number">0</span>  <span class="hljs-comment"># Zmienna klasowa</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, imie, stanowisko)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, imie)</span>:</span>
         self.imie = imie
-        self.stanowisko = stanowisko
         Pracownik.liczba_pracownikow += <span class="hljs-number">1</span>
 
-<span class="hljs-meta">    @classmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ile_pracownikow</span><span class="hljs-params">(cls)</span>:</span>
-        <span class="hljs-keyword">return</span> cls.liczba_pracownikow
-
-<span class="hljs-meta">    @classmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stworz_programiste</span><span class="hljs-params">(cls, imie)</span>:</span>
-        <span class="hljs-string">"""Metoda fabrykująca — tworzy instancję z domyślnym stanowiskiem."""</span>
-        <span class="hljs-keyword">return</span> cls(imie, <span class="hljs-string">"Programista"</span>)
-
-p1 = Pracownik(<span class="hljs-string">"Jan"</span>, <span class="hljs-string">"Tester"</span>)
-p2 = Pracownik.stworz_programiste(<span class="hljs-string">"Anna"</span>)
-
-print(p2.stanowisko)                   <span class="hljs-comment"># Programista</span>
-print(Pracownik.ile_pracownikow())     <span class="hljs-comment"># 2</span>
+p1 = Pracownik(<span class="hljs-string">"Adam"</span>)
+p2 = Pracownik(<span class="hljs-string">"Ewa"</span>)
+print(Pracownik.liczba_pracownikow)  <span class="hljs-comment"># 2</span>
 </div></code></pre>
-    <p><strong>Porównanie: <code>@staticmethod</code> vs <code>@classmethod</code>:</strong></p>
-    <table>
-        <thead>
-            <tr>
-                <th>Cecha</th>
-                <th><code>@staticmethod</code></th>
-                <th><code>@classmethod</code></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Pierwszy argument</td>
-                <td>Brak</td>
-                <td><code>cls</code> (klasa)</td>
-            </tr>
-            <tr>
-                <td>Dostęp do pól klasy</td>
-                <td>❌ Nie</td>
-                <td>✅ Tak (przez <code>cls</code>)</td>
-            </tr>
-            <tr>
-                <td>Tworzenie instancji</td>
-                <td>Ręcznie</td>
-                <td>Przez <code>cls(...)</code></td>
-            </tr>
-            <tr>
-                <td>Zastosowanie</td>
-                <td>Funkcje narzędziowe</td>
-                <td>Fabryki obiektów, dostęp do klasy</td>
-            </tr>
-        </tbody>
-    </table>
+    <h3 id="122-zmienne-klasowe--tablice-i-kolekcje-pu%C5%82apka">12.2. Zmienne klasowe — tablice i kolekcje (Pułapka!)
+    </h3>
+    <p>Jeśli zmienna klasowa jest mutowalna (np. lista), każda zmiana w jednym obiekcie wpłynie na wszystkie inne!</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KlasaZBl</span>ę<span class="hljs-title">dem</span>:</span>
+    lista = []  <span class="hljs-comment"># UWAGA: wspólna dla wszystkich!</span>
+
+obj1 = KlasaZBlędem()
+obj2 = KlasaZBlędem()
+obj1.lista.append(<span class="hljs-number">1</span>)
+print(obj2.lista)  <span class="hljs-comment"># [1] -&gt; Zmiana widoczna w drugim obiekcie!</span>
+</div></code></pre>
+    <h3 id="123-metody-statyczne--staticmethod">12.3. Metody statyczne — <code>@staticmethod</code></h3>
+    <p>Metoda, która nie ma dostępu do <code>self</code> ani <code>cls</code>. Zachowuje się jak zwykła funkcja, ale
+        jest umieszczona wewnątrz klasy dla lepszej organizacji.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Narzedzia</span>:</span>
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">czy_parzysta</span><span class="hljs-params">(n)</span>:</span>
+        <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+
+print(Narzedzia.czy_parzysta(<span class="hljs-number">10</span>))  <span class="hljs-comment"># True</span>
+</div></code></pre>
+    <h3 id="124-metody-klasowe--classmethod">12.4. Metody klasowe — <code>@classmethod</code></h3>
+    <p>Jako pierwszy argument przyjmuje klasę (<code>cls</code>), a nie instancję. Często używana jako
+        <strong>alternatywny konstruktor</strong> (wzorzec Fabryka).
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Data</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, dzien, miesiac, rok)</span>:</span>
+        self.dzien, self.miesiac, self.rok = dzien, miesiac, rok
+
+<span class="hljs-meta">    @classmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">z_tekstu</span><span class="hljs-params">(cls, tekst)</span>:</span>
+        <span class="hljs-string">"""Tworzy obiekt na podstawie stringa 'DD-MM-YYYY'"""</span>
+        d, m, r = map(int, tekst.split(<span class="hljs-string">"-"</span>))
+        <span class="hljs-keyword">return</span> cls(d, m, r)  <span class="hljs-comment"># Wywołuje __init__</span>
+
+data = Data.z_tekstu(<span class="hljs-string">"15-05-2024"</span>)
+print(data.rok)  <span class="hljs-comment"># 2024</span>
+</div></code></pre>
     <hr>
     <h2 id="13-programowanie-obiektowe--konstruktory-zaawansowane">13. Programowanie obiektowe — konstruktory
         zaawansowane</h2>
     <h3 id="131-konstruktor-z-warto%C5%9Bciami-domy%C5%9Blnymi">13.1. Konstruktor z wartościami domyślnymi</h3>
-    <p>W Pythonie nie ma przeciążania konstruktorów (overloading) — nie można mieć dwóch <code>__init__</code> z różnymi
-        listami parametrów. Zamiast tego stosuje się <strong>jeden konstruktor z parametrami domyślnymi</strong>:</p>
+    <p>Python nie obsługuje przeciążania metod (wiele metod o tej samej nazwie), dlatego używamy parametrów domyślnych.
+    </p>
     <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Punkt</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x=<span class="hljs-number">0</span>, y=<span class="hljs-number">0</span>)</span>:</span>
         self.x = x
         self.y = y
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">f"(<span class="hljs-subst">{self.x}</span>, <span class="hljs-subst">{self.y}</span>)"</span>)
-
-<span class="hljs-comment"># Różne sposoby tworzenia — jeden konstruktor, wiele wariantów</span>
-p1 = Punkt()           <span class="hljs-comment"># (0, 0) — oba domyślne</span>
-p2 = Punkt(<span class="hljs-number">5</span>)          <span class="hljs-comment"># (5, 0) — x podane, y domyślne</span>
-p3 = Punkt(<span class="hljs-number">3</span>, <span class="hljs-number">7</span>)       <span class="hljs-comment"># (3, 7) — oba podane</span>
-p4 = Punkt(y=<span class="hljs-number">10</span>)       <span class="hljs-comment"># (0, 10) — argument nazwany</span>
+p1 = Punkt()      <span class="hljs-comment"># (0, 0)</span>
+p2 = Punkt(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>) <span class="hljs-comment"># (5, 10)</span>
 </div></code></pre>
     <h3 id="132-wzorzec-z-none--pe%C5%82ny-zamiennik-dw%C3%B3ch-konstruktor%C3%B3w">13.2. Wzorzec z <code>None</code> —
         pełny zamiennik dwóch konstruktorów</h3>
-    <p>Gdy konstruktor musi się zachowywać <strong>zupełnie inaczej</strong> w zależności od tego, czy argumenty zostały
-        podane:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Element</span>:</span>
-    licznik = <span class="hljs-number">0</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, wartosc=None)</span>:</span>
-        Element.licznik += <span class="hljs-number">1</span>
-        self.id = Element.licznik
-
-        <span class="hljs-keyword">if</span> wartosc <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-            <span class="hljs-comment"># KONSTRUKTOR BEZPARAMETROWY — losujemy wartość</span>
-            <span class="hljs-keyword">import</span> random
-            self.wartosc = random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>)
+    <p>Jeśli chcemy, aby pole było inicjalizowane nową listą dla każdego obiektu, używamy <code>None</code>.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, imie, oceny=None)</span>:</span>
+        self.imie = imie
+        <span class="hljs-comment"># Zapewnia unikalną listę dla każdego obiektu</span>
+        <span class="hljs-keyword">if</span> oceny <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+            self.oceny = []
         <span class="hljs-keyword">else</span>:
-            <span class="hljs-comment"># KONSTRUKTOR Z PARAMETREM — używamy podanej wartości</span>
-            <span class="hljs-keyword">if</span> <span class="hljs-number">1</span> &lt;= wartosc &lt;= <span class="hljs-number">6</span>:
-                self.wartosc = wartosc
-            <span class="hljs-keyword">else</span>:
-                self.wartosc = <span class="hljs-number">0</span>  <span class="hljs-comment"># Walidacja — wartość poza zakresem</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">f"ID: <span class="hljs-subst">{self.id}</span>, Wartość: <span class="hljs-subst">{self.wartosc}</span>"</span>)
-
-e1 = Element()          <span class="hljs-comment"># Losowa wartość 1-6</span>
-e2 = Element(<span class="hljs-number">4</span>)         <span class="hljs-comment"># Wartość 4</span>
-e3 = Element(<span class="hljs-number">99</span>)        <span class="hljs-comment"># Wartość 0 (poza zakresem)</span>
+            self.oceny = oceny
 </div></code></pre>
     <h3 id="133-walidacja-w-konstruktorze">13.3. Walidacja w konstruktorze</h3>
-    <p>Konstruktor to idealne miejsce na sprawdzanie poprawności danych:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ocena</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, wartosc)</span>:</span>
-        <span class="hljs-keyword">if</span> isinstance(wartosc, int) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span> &lt;= wartosc &lt;= <span class="hljs-number">6</span>:
-            self.wartosc = wartosc
-        <span class="hljs-keyword">else</span>:
-            self.wartosc = <span class="hljs-number">0</span>
-            print(<span class="hljs-string">f"Uwaga: <span class="hljs-subst">{wartosc}</span> to niepoprawna ocena, ustawiono 0"</span>)
-
-o1 = Ocena(<span class="hljs-number">5</span>)     <span class="hljs-comment"># OK</span>
-o2 = Ocena(<span class="hljs-number">9</span>)     <span class="hljs-comment"># Uwaga: 9 to niepoprawna ocena, ustawiono 0</span>
-o3 = Ocena(<span class="hljs-number">-1</span>)    <span class="hljs-comment"># Uwaga: -1 to niepoprawna ocena, ustawiono 0</span>
+    <p>Zawsze warto sprawdzić dane wejściowe przed ich przypisaniem.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Konto</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, balans)</span>:</span>
+        <span class="hljs-keyword">if</span> balans &lt; <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"Balans nie może być ujemny!"</span>)
+        self.balans = balans
 </div></code></pre>
     <h3 id="134-kopiowanie-obiekt%C3%B3w">13.4. Kopiowanie obiektów</h3>
-    <p>W Pythonie nie ma konstruktora kopiującego jak w C++. Istnieją dwa główne sposoby kopiowania obiektów:</p>
-    <pre class="hljs"><code><div><span class="hljs-comment"># Sposób 1: Metoda kopiująca w klasie</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Notatka</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tytul=<span class="hljs-string">""</span>, tresc=<span class="hljs-string">""</span>)</span>:</span>
-        self.tytul = tytul
-        self.tresc = tresc
+    <p>Standardowe przypisanie <code>obj2 = obj1</code> kopiuje tylko <strong>referencję</strong> (oba wskazują na ten
+        sam obiekt). Aby stworzyć kopię, używamy modułu <code>copy</code>.</p>
+    <pre class="hljs"><code><div><span class="hljs-keyword">import</span> copy
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kopiuj_z</span><span class="hljs-params">(self, inna)</span>:</span>
-        <span class="hljs-string">"""Kopiuje dane z innego obiektu."""</span>
-        self.tytul = inna.tytul
-        self.tresc = inna.tresc
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Graf</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, wezly)</span>:</span>
+        self.wezly = wezly
 
-oryg = Notatka(<span class="hljs-string">"Zakupy"</span>, <span class="hljs-string">"Mleko, chleb"</span>)
-kopia = Notatka()
-kopia.kopiuj_z(oryg)
+g1 = Graf([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 
-<span class="hljs-comment"># Sposób 2: Moduł copy</span>
-<span class="hljs-keyword">import</span> copy
+<span class="hljs-comment"># Kopia płytka (Shallow copy)</span>
+g2 = copy.copy(g1) 
 
-kopia_plytka = copy.copy(oryg)      <span class="hljs-comment"># Płytka kopia</span>
-kopia_gleb = copy.deepcopy(oryg)    <span class="hljs-comment"># Głęboka kopia (kopiuje zagnieżdżone obiekty)</span>
+<span class="hljs-comment"># Kopia głęboka (Deep copy) - kopiuje też zawartość list</span>
+g3 = copy.deepcopy(g1)
 </div></code></pre>
-    <p>Różnica: <strong>płytka kopia</strong> kopiuje obiekt „na powierzchni&quot; — jeśli obiekt zawiera referencje do
-        innych obiektów (np. listę), kopia będzie wskazywać na tę samą listę. <strong>Głęboka kopia</strong> kopiuje
-        rekurencyjnie wszystko.</p>
     <hr>
     <h2 id="14-programowanie-obiektowe--dziedziczenie-polimorfizm-i-klasy-abstrakcyjne">14. Programowanie obiektowe —
         dziedziczenie, polimorfizm i klasy abstrakcyjne</h2>
-    <p>Dziedziczenie pozwala tworzyć nowe klasy na bazie istniejących. Klasa potomna (dziecko) automatycznie otrzymuje
-        wszystkie pola i metody klasy bazowej (rodzica) i może je rozszerzać lub nadpisywać.</p>
     <h3 id="141-podstawy-dziedziczenia">14.1. Podstawy dziedziczenia</h3>
-    <p>Dziedziczenie deklarujemy, podając nazwę klasy bazowej w nawiasie po nazwie klasy potomnej:</p>
-    <pre class="hljs"><code><div><span class="hljs-comment"># Klasa bazowa (rodzic/nadklasa)</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Zwierze</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, wiek)</span>:</span>
-        self.nazwa = nazwa
-        self.wiek = wiek
+    <p>Klasa pochodna (dziecko) dziedziczy wszystkie atrybuty i metody klasy bazowej (rodzica).</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Zwierze</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">oddychaj</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">"Oddycham..."</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">przedstaw_sie</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">f"Jestem <span class="hljs-subst">{self.nazwa}</span>, mam <span class="hljs-subst">{self.wiek}</span> lat"</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pies</span><span class="hljs-params">(Zwierze)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">szczekaj</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">"Hau!"</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wydaj_dzwiek</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">"..."</span>)
-
-
-<span class="hljs-comment"># Klasa potomna (dziecko/podklasa)</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pies</span><span class="hljs-params">(Zwierze)</span>:</span>     <span class="hljs-comment"># Pies DZIEDZICZY po Zwierze</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, wiek, rasa)</span>:</span>
-        super().__init__(nazwa, wiek)   <span class="hljs-comment"># Wywołanie konstruktora RODZICA</span>
-        self.rasa = rasa                <span class="hljs-comment"># Dodatkowe pole tylko dla Pies</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wydaj_dzwiek</span><span class="hljs-params">(self)</span>:</span>             <span class="hljs-comment"># NADPISANIE metody rodzica (override)</span>
-        print(<span class="hljs-string">"Hau hau!"</span>)
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">aportuj</span><span class="hljs-params">(self)</span>:</span>                  <span class="hljs-comment"># Nowa metoda — tylko dla Pies</span>
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self.nazwa}</span> aportuje!"</span>)
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kot</span><span class="hljs-params">(Zwierze)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa, wiek, kolor)</span>:</span>
-        super().__init__(nazwa, wiek)
-        self.kolor = kolor
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wydaj_dzwiek</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">"Miau!"</span>)
-</div></code></pre>
-    <p><strong>Użycie — klasa potomna ma dostęp do metod rodzica:</strong></p>
-    <pre class="hljs"><code><div>pies = Pies(<span class="hljs-string">"Burek"</span>, <span class="hljs-number">5</span>, <span class="hljs-string">"Labrador"</span>)
-pies.przedstaw_sie()   <span class="hljs-comment"># Jestem Burek, mam 5 lat (ODZIEDZICZONA metoda)</span>
-pies.wydaj_dzwiek()    <span class="hljs-comment"># Hau hau! (NADPISANA metoda)</span>
-pies.aportuj()         <span class="hljs-comment"># Burek aportuje! (WŁASNA metoda)</span>
+p = Pies()
+p.oddychaj() <span class="hljs-comment"># Metoda z klasy Zwierze</span>
+p.szczekaj() <span class="hljs-comment"># Metoda z klasy Pies</span>
 </div></code></pre>
     <h3 id="142-super--wywo%C5%82ywanie-metod-rodzica">14.2. <code>super()</code> — wywoływanie metod rodzica</h3>
-    <p>Funkcja <code>super()</code> zwraca referencję do klasy bazowej, co pozwala wywoływać jej metody z poziomu klasy
-        potomnej. Jest szczególnie ważna w konstruktorze — jeśli nie wywołamy <code>super().__init__()</code>, pola
-        zdefiniowane w rodzicu nie zostaną zainicjalizowane.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bazowa</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        self.pole_bazowe = <span class="hljs-string">"wartość bazowa"</span>
+    <p>Służy głównie do wywoływania konstruktora klasy bazowej wewnątrz konstruktora klasy pochodnej.</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pojazd</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, marka)</span>:</span>
+        self.marka = marka
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">komunikat</span><span class="hljs-params">(self, tekst)</span>:</span>
-        print(<span class="hljs-string">f"[INFO] <span class="hljs-subst">{tekst}</span>"</span>)
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Potomna</span><span class="hljs-params">(Bazowa)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        super().__init__()                <span class="hljs-comment"># KONIECZNE — inicjalizuje pola rodzica</span>
-        self.pole_potomne = <span class="hljs-string">"wartość potomna"</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">akcja</span><span class="hljs-params">(self, tekst)</span>:</span>
-        self.komunikat(tekst)             <span class="hljs-comment"># Wywołanie odziedziczonej metody</span>
-        <span class="hljs-comment"># Albo: super().komunikat(tekst) — to samo, ale jawne</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Auto</span><span class="hljs-params">(Pojazd)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, marka, paliwo)</span>:</span>
+        super().__init__(marka)  <span class="hljs-comment"># Wywołanie __init__ rodzica</span>
+        self.paliwo = paliwo
 </div></code></pre>
     <h3 id="143-hermetyzacja-a-dziedziczenie">14.3. Hermetyzacja a dziedziczenie</h3>
-    <p>Ważne pytanie: jakie pola rodzica są widoczne w dziecku?</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rodzic</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        self.publiczne = <span class="hljs-string">"dostępne wszędzie"</span>
-        self._chronione = <span class="hljs-string">"dostępne w klasach potomnych"</span>
-        self.__prywatne = <span class="hljs-string">"NIEDOSTĘPNE w klasach potomnych"</span>
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dziecko</span><span class="hljs-params">(Rodzic)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        super().__init__()
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test</span><span class="hljs-params">(self)</span>:</span>
-        print(self.publiczne)      <span class="hljs-comment"># ✅ Publiczne — OK</span>
-        print(self._chronione)     <span class="hljs-comment"># ✅ Chronione — OK (to jego przeznaczenie!)</span>
-        <span class="hljs-comment"># print(self.__prywatne)   # ❌ AttributeError — prywatne rodzica</span>
-</div></code></pre>
+    <ul>
+        <li>Pola <strong>publiczne</strong> i <strong>chronione</strong> (<code>_</code>) są dostępne w klasach
+            pochodnych.</li>
+        <li>Pola <strong>prywatne</strong> (<code>__</code>) <strong>nie są</strong> bezpośrednio dostępne (trzeba użyć
+            gettera rodzica).</li>
+    </ul>
     <h3 id="144-wzorzec-logika-stan%C3%B3w-z-dziedziczeniem">14.4. Wzorzec: logika stanów z dziedziczeniem</h3>
-    <p>Połączenie dziedziczenia z logiką stanów — klasa bazowa z wspólną metodą, klasy potomne z własną logiką:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Urzadzenie</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa)</span>:</span>
-        self.nazwa = nazwa
+    <p>Dziedziczenie świetnie nadaje się do modelowania obiektów, które zmieniają swoje zachowanie w zależności od stanu
+        (np. zamówienie, postać w grze).</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StanZamowienia</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nastepny</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">pass</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">return</span> self.__class__.__name__
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">komunikat</span><span class="hljs-params">(self, tekst)</span>:</span>
-        print(<span class="hljs-string">f"[<span class="hljs-subst">{self.nazwa}</span>] <span class="hljs-subst">{tekst}</span>"</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Nowe</span><span class="hljs-params">(StanZamowienia)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nastepny</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">return</span> Opłacone()
 
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Op</span>ł<span class="hljs-title">acone</span><span class="hljs-params">(StanZamowienia)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nastepny</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">return</span> Wyslane()
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Przelacznik</span><span class="hljs-params">(Urzadzenie)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa)</span>:</span>
-        super().__init__(nazwa)
-        self.__wlaczony = <span class="hljs-literal">False</span>    <span class="hljs-comment"># Stan wewnętrzny</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wyslane</span><span class="hljs-params">(StanZamowienia)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nastepny</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">return</span> self <span class="hljs-comment"># Koniec</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wlacz</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.__wlaczony:     <span class="hljs-comment"># Tylko jeśli wyłączony</span>
-            self.__wlaczony = <span class="hljs-literal">True</span>
-            self.komunikat(<span class="hljs-string">"Włączono"</span>)
-        <span class="hljs-comment"># Jeśli już włączony — nic nie rób (ochrona)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Zamowienie</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self.stan = Nowe()
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wylacz</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">if</span> self.__wlaczony:         <span class="hljs-comment"># Tylko jeśli włączony</span>
-            self.__wlaczony = <span class="hljs-literal">False</span>
-            self.komunikat(<span class="hljs-string">"Wyłączono"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pchnij_dalej</span><span class="hljs-params">(self)</span>:</span>
+        self.stan = self.stan.nastepny()
+        print(<span class="hljs-string">f"Obecny stan: <span class="hljs-subst">{self.stan}</span>"</span>)
 
-p = Przelacznik(<span class="hljs-string">"Lampa"</span>)
-p.wlacz()       <span class="hljs-comment"># [Lampa] Włączono</span>
-p.wlacz()       <span class="hljs-comment"># (nic — już włączona)</span>
-p.wylacz()      <span class="hljs-comment"># [Lampa] Wyłączono</span>
-p.wylacz()      <span class="hljs-comment"># (nic — już wyłączona)</span>
+z = Zamowienie()
+z.pchnij_dalej() <span class="hljs-comment"># Obecny stan: Opłacone</span>
+z.pchnij_dalej() <span class="hljs-comment"># Obecny stan: Wyslane</span>
 </div></code></pre>
     <h3 id="145-sprawdzanie-typu-i-dziedziczenia">14.5. Sprawdzanie typu i dziedziczenia</h3>
-    <pre class="hljs"><code><div>pies = Pies(<span class="hljs-string">"Burek"</span>, <span class="hljs-number">5</span>, <span class="hljs-string">"Labrador"</span>)
-
-<span class="hljs-comment"># isinstance — czy obiekt jest danego typu (uwzględnia dziedziczenie)</span>
-print(isinstance(pies, Pies))     <span class="hljs-comment"># True</span>
-print(isinstance(pies, Zwierze))  <span class="hljs-comment"># True (Pies JEST Zwierzęciem)</span>
-print(isinstance(pies, Kot))      <span class="hljs-comment"># False</span>
-
-<span class="hljs-comment"># issubclass — czy klasa jest podklasą</span>
-print(issubclass(Pies, Zwierze))  <span class="hljs-comment"># True</span>
-print(issubclass(Pies, Kot))      <span class="hljs-comment"># False</span>
+    <p>Aby sprawdzić, czy obiekt jest instancją danej klasy (lub jej klasy pochodnej), używamy
+        <code>isinstance()</code>. Aby sprawdzić relację między klasami — <code>issubclass()</code>.
+    </p>
+    <pre class="hljs"><code><div>isinstance(p, Pies)      <span class="hljs-comment"># True</span>
+isinstance(p, Zwierze)   <span class="hljs-comment"># True (bo Pies dziedziczy po Zwierze)</span>
+issubclass(Pies, Zwierze) <span class="hljs-comment"># True</span>
 </div></code></pre>
     <h3 id="146-podsumowanie--kiedy-co-stosowa%C4%87-w-oop">14.6. Podsumowanie — kiedy co stosować w OOP</h3>
     <table>
         <thead>
             <tr>
                 <th>Mechanizm</th>
-                <th>Kiedy stosować</th>
-                <th>Przykład</th>
+                <th>Kiedy stosować?</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Klasa z polami</td>
-                <td>Gdy obiekty przechowują dane</td>
-                <td>Osoba, Produkt, Notatka</td>
+                <td><strong>Klasa</strong></td>
+                <td>Gdy potrzebujesz zgrupować dane i funkcje w jeden &quot;byt&quot;.</td>
             </tr>
             <tr>
-                <td>Metody instancji</td>
-                <td>Gdy metoda operuje na danych obiektu</td>
-                <td><code>wyswietl()</code>, <code>oblicz()</code></td>
+                <td><strong>Pola prywatne (<code>__</code>)</strong></td>
+                <td>Zawsze dla danych, które nie powinny być zmieniane bezpośrednio (np. balans konta).</td>
             </tr>
             <tr>
-                <td>Pola prywatne <code>__</code></td>
-                <td>Gdy pole nie powinno być dostępne z zewnątrz</td>
-                <td>Saldo konta, hasło</td>
+                <td><strong><code>@property</code></strong></td>
+                <td>Gdy chcesz, by dostęp do pola był prosty (<code>obj.x</code>), ale wymagał walidacji.</td>
             </tr>
             <tr>
-                <td>Pola chronione <code>_</code></td>
-                <td>Gdy pole ma być dostępne w klasach potomnych</td>
-                <td>Wewnętrzny stan urządzenia</td>
+                <td><strong><code>@classmethod</code></strong></td>
+                <td>Gdy potrzebujesz stworzyć obiekt w nietypowy sposób (np. z pliku JSON).</td>
             </tr>
             <tr>
-                <td><code>@property</code></td>
-                <td>Kontrolowany dostęp do pola (getter/setter)</td>
-                <td>Walidacja przy ustawianiu</td>
+                <td><strong>Dziedziczenie</strong></td>
+                <td>Tylko gdy zachodzi relacja <strong>&quot;jest rodzajem&quot;</strong> (np. Pies jest rodzajem
+                    Zwierzęcia).</td>
             </tr>
             <tr>
-                <td>Zmienne klasowe</td>
-                <td>Dane wspólne dla WSZYSTKICH obiektów</td>
-                <td>Licznik instancji, stałe</td>
+                <td><strong>Kompozycja</strong></td>
+                <td>Gdy obiekt <strong>&quot;posiada&quot;</strong> inne obiekty (np. Samochód posiada Silnik).
+                    Zazwyczaj lepsza niż dziedziczenie!</td>
             </tr>
             <tr>
-                <td><code>@staticmethod</code></td>
-                <td>Funkcja narzędziowa powiązana z klasą</td>
-                <td>Walidacja, konwersja</td>
-            </tr>
-            <tr>
-                <td><code>@classmethod</code></td>
-                <td>Alternatywne sposoby tworzenia obiektów</td>
-                <td>Metody fabrykujące</td>
-            </tr>
-            <tr>
-                <td>Dziedziczenie</td>
-                <td>Klasy o wspólnych cechach, ale z różnicami</td>
-                <td>Zwierzę → Pies, Kot</td>
-            </tr>
-            <tr>
-                <td><code>super()</code></td>
-                <td>Wywołanie metody/konstruktora rodzica</td>
-                <td>Inicjalizacja pól bazowych</td>
+                <td><strong>Klasa abstrakcyjna</strong></td>
+                <td>Gdy tworzysz fundament dla innych klas i chcesz wymusić na nich wspólny interfejs.</td>
             </tr>
         </tbody>
     </table>
-    <p>Programowanie obiektowe to potężne narzędzie organizacji kodu. Kluczowe jest zrozumienie, że klasa to nie tylko
-        &quot;zbiór zmiennych i funkcji&quot; — to <strong>model</strong> rzeczywistego lub abstrakcyjnego bytu, który
-        łączy dane z zachowaniami w spójną całość.</p>
     <h3 id="147-polimorfizm">14.7. Polimorfizm</h3>
-    <p>Polimorfizm (z greckiego „wiele form&quot;) to zdolność obiektów różnych klas do reagowania na tę samą metodę w
-        sposób specyficzny dla danej klasy. Innymi słowy: ta sama nazwa metody, ale różne zachowania w zależności od
-        tego, na jakim obiekcie jest wywoływana.</p>
-    <p>Polimorfizm jest ściśle powiązany z dziedziczeniem — klasy potomne <strong>nadpisują</strong> (override) metody
-        klasy bazowej, dostarczając własną implementację.</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Figura</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa)</span>:</span>
-        self.nazwa = nazwa
+    <p>Zdolność różnych obiektów do reagowania na to samo wywołanie metody w sposób specyficzny dla swojej klasy. W
+        Pythonie opiera się to na <strong>Duck Typing</strong> (&quot;Jeśli coś kwacze jak kaczka, to jest
+        kaczką&quot;).</p>
+    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kaczka</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kwacz</span><span class="hljs-params">(self)</span>:</span> print(<span class="hljs-string">"Kwa kwa!"</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Metoda do nadpisania w klasach potomnych."""</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Czlowiek</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kwacz</span><span class="hljs-params">(self)</span>:</span> print(<span class="hljs-string">"Naśladuję kaczkę!"</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self.nazwa}</span>: pole = <span class="hljs-subst">{self.pole():<span class="hljs-number">.2</span>f}</span>"</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wydaj_dzwiek</span><span class="hljs-params">(byt)</span>:</span>
+    byt.kwacz() <span class="hljs-comment"># Polimorficzne wywołanie</span>
 
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kwadrat</span><span class="hljs-params">(Figura)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, bok)</span>:</span>
-        super().__init__(<span class="hljs-string">"Kwadrat"</span>)
-        self.bok = bok
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>                    <span class="hljs-comment"># Nadpisanie metody</span>
-        <span class="hljs-keyword">return</span> self.bok ** <span class="hljs-number">2</span>
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kolo</span><span class="hljs-params">(Figura)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, promien)</span>:</span>
-        super().__init__(<span class="hljs-string">"Koło"</span>)
-        self.promien = promien
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>                    <span class="hljs-comment"># Nadpisanie metody</span>
-        <span class="hljs-keyword">import</span> math
-        <span class="hljs-keyword">return</span> math.pi * self.promien ** <span class="hljs-number">2</span>
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trojkat</span><span class="hljs-params">(Figura)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, podstawa, wysokosc)</span>:</span>
-        super().__init__(<span class="hljs-string">"Trójkąt"</span>)
-        self.podstawa = podstawa
-        self.wysokosc = wysokosc
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>                    <span class="hljs-comment"># Nadpisanie metody</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0.5</span> * self.podstawa * self.wysokosc
-</div></code></pre>
-    <p><strong>Polimorfizm w akcji — jedna pętla, różne zachowania:</strong></p>
-    <pre class="hljs"><code><div>figury = [
-    Kwadrat(<span class="hljs-number">5</span>),
-    Kolo(<span class="hljs-number">3</span>),
-    Trojkat(<span class="hljs-number">6</span>, <span class="hljs-number">4</span>)
-]
-
-<span class="hljs-comment"># Ta sama metoda wyswietl() — każda figura reaguje po swojemu</span>
-<span class="hljs-keyword">for</span> figura <span class="hljs-keyword">in</span> figury:
-    figura.wyswietl()
-<span class="hljs-comment"># Kwadrat: pole = 25.00</span>
-<span class="hljs-comment"># Koło: pole = 28.27</span>
-<span class="hljs-comment"># Trójkąt: pole = 12.00</span>
-</div></code></pre>
-    <p>To jest sedno polimorfizmu: <strong>nie musimy wiedzieć</strong>, jakiego dokładnie typu jest obiekt w liście —
-        wystarczy, że wiemy, iż ma metodę <code>pole()</code> i <code>wyswietl()</code>. Każdy obiekt sam „wie&quot;,
-        jak obliczyć swoje pole.</p>
-    <p><strong>Polimorfizm bez dziedziczenia — duck typing:</strong></p>
-    <p>W Pythonie polimorfizm nie wymaga formalnego dziedziczenia. Wystarczy, że obiekty mają metodę o tej samej nazwie.
-        To podejście nazywa się <strong>duck typing</strong> — „jeśli coś chodzi jak kaczka i kwacze jak kaczka, to jest
-        kaczką&quot;:</p>
-    <pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pies</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">glos</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hau!"</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kot</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">glos</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"Miau!"</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kaczka</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">glos</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"Kwak!"</span>
-
-<span class="hljs-comment"># Nie muszą dziedziczyć po wspólnej klasie!</span>
-zwierzeta = [Pies(), Kot(), Kaczka()]
-<span class="hljs-keyword">for</span> z <span class="hljs-keyword">in</span> zwierzeta:
-    print(z.glos())  <span class="hljs-comment"># Hau! Miau! Kwak!</span>
+wydaj_dzwiek(Kaczka())
+wydaj_dzwiek(Czlowiek())
 </div></code></pre>
     <h3 id="148-klasy-abstrakcyjne--modu%C5%82-abc">14.8. Klasy abstrakcyjne — moduł <code>abc</code></h3>
-    <p>Klasa abstrakcyjna to klasa, której <strong>nie można bezpośrednio instancjonować</strong> (utworzyć z niej
-        obiektu). Służy wyłącznie jako baza dla klas potomnych. Wymusza na klasach potomnych zaimplementowanie
-        określonych metod — dzięki temu mamy gwarancję, że każda podklasa będzie miała wymagane metody.</p>
-    <p>W Pythonie klasy abstrakcyjne tworzymy za pomocą modułu <code>abc</code> (Abstract Base Classes):</p>
+    <p>Klasa abstrakcyjna to taka, z której nie można stworzyć obiektu. Służy jako interfejs wymuszający implementację
+        konkretnych metod w klasach pochodnych.</p>
     <pre class="hljs"><code><div><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
 
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Figura</span><span class="hljs-params">(ABC)</span>:</span>    <span class="hljs-comment"># Dziedziczy po ABC — jest klasą abstrakcyjną</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, nazwa)</span>:</span>
-        self.nazwa = nazwa
-
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ksztalt</span><span class="hljs-params">(ABC)</span>:</span>
 <span class="hljs-meta">    @abstractmethod</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Każda figura MUSI zaimplementować tę metodę."""</span>
+        <span class="hljs-string">"""Metoda musi być nadpisana w dziecku"""</span>
         <span class="hljs-keyword">pass</span>
 
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kwadrat</span><span class="hljs-params">(Ksztalt)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, a)</span>:</span>
+        self.a = a
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.a ** <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># k = Ksztalt() # BŁĄD: Can't instantiate abstract class</span>
+kw = Kwadrat(<span class="hljs-number">4</span>)
+print(kw.pole()) <span class="hljs-comment"># 16</span>
+</div></code></pre>
+    <h3 id="149-kompleksowa-implementacja-system-quiz">14.9. Kompleksowa implementacja: System Quiz</h3>
+    <p>Wzorcowy przykład łączący: klasy abstrakcyjne, dziedziczenie, hermetyzację i listę obiektów.</p>
+    <pre class="hljs"><code><div><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pytanie</span><span class="hljs-params">(ABC)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tresc, punkty)</span>:</span>
+        self._tresc = tresc      <span class="hljs-comment"># Chronione</span>
+        self._punkty = punkty
+
 <span class="hljs-meta">    @abstractmethod</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">obwod</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Każda figura MUSI zaimplementować tę metodę."""</span>
-        <span class="hljs-keyword">pass</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-keyword">pass</span>
+
+<span class="hljs-meta">    @abstractmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprawdz</span><span class="hljs-params">(self, odpowiedz)</span>:</span> <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PytanieZamkniete</span><span class="hljs-params">(Pytanie)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tresc, punkty, opcje, poprawna_index)</span>:</span>
+        super().__init__(tresc, punkty)
+        self.__opcje = opcje      <span class="hljs-comment"># Prywatne</span>
+        self.__poprawna = poprawna_index
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""Metoda konkretna — wspólna dla wszystkich figur."""</span>
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self.nazwa}</span>: pole=<span class="hljs-subst">{self.pole():<span class="hljs-number">.2</span>f}</span>, obwód=<span class="hljs-subst">{self.obwod():<span class="hljs-number">.2</span>f}</span>"</span>)
+        print(<span class="hljs-string">f"\n[Pytanie za <span class="hljs-subst">{self._punkty}</span> pkt]: <span class="hljs-subst">{self._tresc}</span>"</span>)
+        <span class="hljs-keyword">for</span> i, o <span class="hljs-keyword">in</span> enumerate(self.__opcje, <span class="hljs-number">1</span>):
+            print(<span class="hljs-string">f"<span class="hljs-subst">{i}</span>. <span class="hljs-subst">{o}</span>"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprawdz</span><span class="hljs-params">(self, odp)</span>:</span>
+        <span class="hljs-keyword">return</span> str(odp) == str(self.__poprawna)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PytanieOtwarte</span><span class="hljs-params">(Pytanie)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tresc, punkty, poprawna_odp)</span>:</span>
+        super().__init__(tresc, punkty)
+        self.__poprawna = poprawna_odp.lower().strip()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">f"\n[Pytanie OTWARTE za <span class="hljs-subst">{self._punkty}</span> pkt]: <span class="hljs-subst">{self._tresc}</span>"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprawdz</span><span class="hljs-params">(self, odp)</span>:</span>
+        <span class="hljs-keyword">return</span> odp.lower().strip() == self.__poprawna
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Quiz</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, tytul)</span>:</span>
+        self.tytul = tytul
+        self.__pytania = []
+        self.__wynik = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dodaj_pytanie</span><span class="hljs-params">(self, p)</span>:</span>
+        <span class="hljs-keyword">if</span> isinstance(p, Pytanie):
+            self.__pytania.append(p)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">uruchom</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">f"=== <span class="hljs-subst">{self.tytul.upper()}</span> ==="</span>)
+        <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> self.__pytania:
+            p.wyswietl()
+            user_odp = input(<span class="hljs-string">"Odpowiedź: "</span>)
+            <span class="hljs-keyword">if</span> p.sprawdz(user_odp):
+                print(<span class="hljs-string">"DOBRZE!"</span>)
+                self.__wynik += p._punkty
+            <span class="hljs-keyword">else</span>:
+                print(<span class="hljs-string">"ŹLE!"</span>)
+        
+        print(<span class="hljs-string">f"\nKONIEC. Twój wynik: <span class="hljs-subst">{self.__wynik}</span> pkt."</span>)
+
+<span class="hljs-comment"># --- Demo ---</span>
+moj_quiz = Quiz(<span class="hljs-string">"Test Wiedzy"</span>)
+moj_quiz.dodaj_pytanie(PytanieZamkniete(<span class="hljs-string">"Stolica Polski?"</span>, <span class="hljs-number">1</span>, [<span class="hljs-string">"Kraków"</span>, <span class="hljs-string">"Warszawa"</span>], <span class="hljs-number">2</span>))
+moj_quiz.dodaj_pytanie(PytanieOtwarte(<span class="hljs-string">"Jak ma na imię twórca Pythona?"</span>, <span class="hljs-number">2</span>, <span class="hljs-string">"Guido"</span>))
+
+<span class="hljs-comment"># moj_quiz.uruchom() # Odkomentuj, aby przetestować interaktywnie</span>
 </div></code></pre>
-    <p><strong>Co to oznacza w praktyce:</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-comment"># ❌ NIE MOŻNA utworzyć obiektu klasy abstrakcyjnej</span>
-<span class="hljs-comment"># f = Figura("test")  # TypeError: Can't instantiate abstract class</span>
-
-<span class="hljs-comment"># ❌ Klasa potomna BEZ implementacji wszystkich metod abstrakcyjnych</span>
-<span class="hljs-comment"># class Kwadrat(Figura):</span>
-<span class="hljs-comment">#     def pole(self):</span>
-<span class="hljs-comment">#         return self.bok ** 2</span>
-<span class="hljs-comment">#     # Brak obwod() → TypeError przy próbie utworzenia!</span>
-
-<span class="hljs-comment"># ✅ Klasa potomna z PEŁNĄ implementacją</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Prostokat</span><span class="hljs-params">(Figura)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, a, b)</span>:</span>
-        super().__init__(<span class="hljs-string">"Prostokąt"</span>)
-        self.a = a
-        self.b = b
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>          <span class="hljs-comment"># Implementacja metody abstrakcyjnej</span>
-        <span class="hljs-keyword">return</span> self.a * self.b
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">obwod</span><span class="hljs-params">(self)</span>:</span>         <span class="hljs-comment"># Implementacja metody abstrakcyjnej</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * (self.a + self.b)
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Kolo</span><span class="hljs-params">(Figura)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, promien)</span>:</span>
-        super().__init__(<span class="hljs-string">"Koło"</span>)
-        self.promien = promien
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pole</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">import</span> math
-        <span class="hljs-keyword">return</span> math.pi * self.promien ** <span class="hljs-number">2</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">obwod</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">import</span> math
-        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * math.pi * self.promien
-
-
-<span class="hljs-comment"># Użycie — polimorfizm z gwarancją interfejsu</span>
-figury = [Prostokat(<span class="hljs-number">4</span>, <span class="hljs-number">6</span>), Kolo(<span class="hljs-number">5</span>)]
-<span class="hljs-keyword">for</span> f <span class="hljs-keyword">in</span> figury:
-    f.wyswietl()
-<span class="hljs-comment"># Prostokąt: pole=24.00, obwód=20.00</span>
-<span class="hljs-comment"># Koło: pole=78.54, obwód=31.42</span>
-</div></code></pre>
-    <p><strong>Kiedy stosować klasy abstrakcyjne:</strong></p>
-    <table>
-        <thead>
-            <tr>
-                <th>Scenariusz</th>
-                <th>Zwykła klasa bazowa</th>
-                <th>Klasa abstrakcyjna</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Klasa bazowa powinna mieć swoje obiekty</td>
-                <td>✅ Tak</td>
-                <td>❌ Nie</td>
-            </tr>
-            <tr>
-                <td>Chcemy WYMUSIĆ implementację metod</td>
-                <td>❌ Nie gwarantuje</td>
-                <td>✅ Wymusza</td>
-            </tr>
-            <tr>
-                <td>Klasa bazowa to tylko &quot;szablon&quot;</td>
-                <td>⚠️ Może, ale nie musi</td>
-                <td>✅ Idealnie</td>
-            </tr>
-            <tr>
-                <td>Potrzebujemy wspólnych metod konkretnych</td>
-                <td>✅ Tak</td>
-                <td>✅ Tak (obok abstrakcyjnych)</td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
     <h2 id="15-algorytmy-w-pythonie">15. Algorytmy w Pythonie</h2>
     <p>Algorytmy to precyzyjne przepisy na rozwiązanie problemu. Składają się z jednoznacznie określonych kroków,
-        prowadzących od danych wejściowych do pożądanego wyniku. Poniżej przedstawione są najważniejsze algorytmy, które
-        warto znać — każdy z pełną implementacją w Pythonie, wyjaśnieniem idei działania i przebiegiem krok po kroku.
-    </p>
+        prowadzących od danych wejściowych do pożądanego wyniku. Poniżej przedstawione są najważniejsze algorytmy,
+        pogrupowane tematycznie, z pełnymi implementacjami i wyjaśnieniami.</p>
     <p><strong>Złożoność algorytmów — krótkie wprowadzenie:</strong></p>
     <table>
         <thead>
@@ -4683,100 +4415,24 @@ figury = [Prostokat(<span class="hljs-number">4</span>, <span class="hljs-number
             </tr>
         </tbody>
     </table>
-    <p>W praktyce nie musimy dokładnie obliczać złożoności — wystarczy wiedzieć, że algorytmy O(n²) są wolne dla dużych
-        danych, a O(n) i O(log n) są szybkie.</p>
+    <hr>
     <h3 id="151-sortowanie-przez-wybieranie-selection-sort">15.1. Sortowanie przez wybieranie (Selection Sort)</h3>
-    <p><strong>Idea algorytmu:</strong> W każdym kroku szukamy elementu ekstremalnego (minimum lub maksimum) w
-        nieposortowanej części tablicy i zamieniamy go z pierwszym nieposortowanym elementem. Po każdym kroku
-        posortowana część tablicy rośnie o jeden element.</p>
-    <p><strong>Złożoność czasowa:</strong> O(n²) — dla tablicy n elementów wykonujemy n przejść, każde przeszukuje
-        malejący fragment.</p>
-    <p><strong>Sortowanie rosnąco (szukanie minimum):</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_przez_wybieranie_rosnaco</span><span class="hljs-params">(tablica)</span>:</span>
+    <p><strong>Idea:</strong> W każdym kroku szukamy elementu minimalnego w nieposortowanej części tablicy i zamieniamy
+        go z pierwszym nieposortowanym elementem.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_przez_wybieranie</span><span class="hljs-params">(tablica)</span>:</span>
     n = len(tablica)
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n - <span class="hljs-number">1</span>):
-        <span class="hljs-comment"># Zakładamy, że minimum jest na pozycji i</span>
         indeks_min = i
-        <span class="hljs-comment"># Szukamy mniejszego elementu w reszcie tablicy</span>
         <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i + <span class="hljs-number">1</span>, n):
             <span class="hljs-keyword">if</span> tablica[j] &lt; tablica[indeks_min]:
                 indeks_min = j
-        <span class="hljs-comment"># Zamiana elementów — Python pozwala na elegancki swap</span>
+        <span class="hljs-comment"># Zamiana miejscami</span>
         tablica[i], tablica[indeks_min] = tablica[indeks_min], tablica[i]
 </div></code></pre>
-    <p><strong>Przebieg krok po kroku</strong> (dla tablicy <code>[5, 3, 8, 1, 4]</code>):</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Krok</th>
-                <th>Tablica przed</th>
-                <th>Znalezione min</th>
-                <th>Zamiana</th>
-                <th>Tablica po</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>i=0</td>
-                <td><strong>[5</strong>, 3, 8, 1, 4]</td>
-                <td>min=1 (indeks 3)</td>
-                <td>5 ↔ 1</td>
-                <td>[<strong>1</strong>, 3, 8, 5, 4]</td>
-            </tr>
-            <tr>
-                <td>i=1</td>
-                <td>[1, <strong>3</strong>, 8, 5, 4]</td>
-                <td>min=3 (indeks 1)</td>
-                <td>bez zamiany</td>
-                <td>[1, <strong>3</strong>, 8, 5, 4]</td>
-            </tr>
-            <tr>
-                <td>i=2</td>
-                <td>[1, 3, <strong>8</strong>, 5, 4]</td>
-                <td>min=4 (indeks 4)</td>
-                <td>8 ↔ 4</td>
-                <td>[1, 3, <strong>4</strong>, 5, 8]</td>
-            </tr>
-            <tr>
-                <td>i=3</td>
-                <td>[1, 3, 4, <strong>5</strong>, 8]</td>
-                <td>min=5 (indeks 3)</td>
-                <td>bez zamiany</td>
-                <td>[1, 3, 4, <strong>5</strong>, 8]</td>
-            </tr>
-        </tbody>
-    </table>
-    <p>Wynik: <code>[1, 3, 4, 5, 8]</code> ✅</p>
-    <p><strong>Sortowanie malejąco (szukanie maksimum):</strong></p>
-    <p>Wystarczy zamienić <code>&lt;</code> na <code>&gt;</code> w porównaniu. Warto też wyodrębnić szukanie maksimum do
-        osobnej metody — na niektórych arkuszach jest to wymagane:</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">znajdz_indeks_max</span><span class="hljs-params">(tablica, od_indeksu)</span>:</span>
-    <span class="hljs-string">"""Znajduje indeks elementu maksymalnego od podanego indeksu do końca."""</span>
-    indeks_max = od_indeksu
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(od_indeksu + <span class="hljs-number">1</span>, len(tablica)):
-        <span class="hljs-keyword">if</span> tablica[i] &gt; tablica[indeks_max]:
-            indeks_max = i
-    <span class="hljs-keyword">return</span> indeks_max
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_przez_wybieranie_malejaco</span><span class="hljs-params">(tablica)</span>:</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(tablica) - <span class="hljs-number">1</span>):
-        indeks_max = znajdz_indeks_max(tablica, i)
-        tablica[i], tablica[indeks_max] = tablica[indeks_max], tablica[i]
-</div></code></pre>
     <h3 id="152-sortowanie-b%C4%85belkowe-bubble-sort">15.2. Sortowanie bąbelkowe (Bubble Sort)</h3>
-    <p><strong>Idea algorytmu:</strong> Porównujemy sąsiednie elementy i zamieniamy je, jeśli są w złej kolejności.
-        Powtarzamy przejścia aż tablica będzie posortowana. Największy element „bąbelkuje&quot; na koniec w każdym
-        przejściu.</p>
-    <p><strong>Złożoność czasowa:</strong> O(n²), ale z optymalizacją (flaga) może zakończyć się wcześniej.</p>
+    <p><strong>Idea:</strong> Porównujemy sąsiednie elementy i zamieniamy je, jeśli są w złej kolejności. Powtarzamy, aż
+        tablica będzie posortowana.</p>
     <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_babelkowe</span><span class="hljs-params">(tablica)</span>:</span>
-    n = len(tablica)
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n - <span class="hljs-number">1</span>):
-        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n - <span class="hljs-number">1</span> - i):  <span class="hljs-comment"># -i bo koniec jest już posortowany</span>
-            <span class="hljs-keyword">if</span> tablica[j] &gt; tablica[j + <span class="hljs-number">1</span>]:
-                tablica[j], tablica[j + <span class="hljs-number">1</span>] = tablica[j + <span class="hljs-number">1</span>], tablica[j]
-
-<span class="hljs-comment"># Wersja z optymalizacją — flaga „czy była zamiana"</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_babelkowe_optymalne</span><span class="hljs-params">(tablica)</span>:</span>
     n = len(tablica)
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n - <span class="hljs-number">1</span>):
         zamieniono = <span class="hljs-literal">False</span>
@@ -4785,523 +4441,236 @@ figury = [Prostokat(<span class="hljs-number">4</span>, <span class="hljs-number
                 tablica[j], tablica[j + <span class="hljs-number">1</span>] = tablica[j + <span class="hljs-number">1</span>], tablica[j]
                 zamieniono = <span class="hljs-literal">True</span>
         <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> zamieniono:
-            <span class="hljs-keyword">break</span>  <span class="hljs-comment"># Brak zamiany = tablica posortowana → koniec</span>
+            <span class="hljs-keyword">break</span>  <span class="hljs-comment"># Jeśli nie było zamiany, tablica jest posortowana</span>
 </div></code></pre>
-    <p><strong>Przebieg krok po kroku</strong> (dla tablicy <code>[5, 3, 8, 1]</code>):</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Przejście</th>
-                <th>Porównania</th>
-                <th>Zamiany</th>
-                <th>Tablica po przejściu</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1 (i=0)</td>
-                <td>5&gt;3✅ 5&gt;8❌ 8&gt;1✅</td>
-                <td>5↔3, 8↔1</td>
-                <td>[3, 5, 1, <strong>8</strong>]</td>
-            </tr>
-            <tr>
-                <td>2 (i=1)</td>
-                <td>3&gt;5❌ 5&gt;1✅</td>
-                <td>5↔1</td>
-                <td>[3, 1, <strong>5</strong>, 8]</td>
-            </tr>
-            <tr>
-                <td>3 (i=2)</td>
-                <td>3&gt;1✅</td>
-                <td>3↔1</td>
-                <td>[<strong>1</strong>, <strong>3</strong>, 5, 8]</td>
-            </tr>
-        </tbody>
-    </table>
-    <p>Wynik: <code>[1, 3, 5, 8]</code> ✅</p>
-    <h3 id="153-wyszukiwanie-liniowe">15.3. Wyszukiwanie liniowe</h3>
-    <p><strong>Idea:</strong> Przeglądamy tablicę element po elemencie, szukając wartości. Zwracamy indeks pierwszego
-        trafienia lub -1 gdy brak.</p>
+    <h3 id="153-sortowanie-przez-wstawianie-insertion-sort">15.3. Sortowanie przez wstawianie (Insertion Sort)</h3>
+    <p><strong>Idea:</strong> Pobieramy kolejny element i &quot;wstawiamy&quot; go w odpowiednie miejsce wśród elementów
+        już posortowanych (podobnie jak układanie kart w dłoni).</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sortowanie_przez_wstawianie</span><span class="hljs-params">(tablica)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(tablica)):
+        klucz = tablica[i]
+        j = i - <span class="hljs-number">1</span>
+        <span class="hljs-comment"># Przesuwamy elementy większe od klucza o jedną pozycję w prawo</span>
+        <span class="hljs-keyword">while</span> j &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> tablica[j] &gt; klucz:
+            tablica[j + <span class="hljs-number">1</span>] = tablica[j]
+            j -= <span class="hljs-number">1</span>
+        tablica[j + <span class="hljs-number">1</span>] = klucz
+</div></code></pre>
+    <h3 id="154-sortowanie-przez-scalanie-merge-sort">15.4. Sortowanie przez scalanie (Merge Sort)</h3>
+    <p><strong>Idea:</strong> Strategia „dziel i zwyciężaj”. Dzielimy tablicę na połowy, aż zostaną pojedyncze elementy,
+        a następnie scalamy je w porządku rosnącym.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(tablica)</span>:</span>
+    <span class="hljs-keyword">if</span> len(tablica) &gt; <span class="hljs-number">1</span>:
+        srodek = len(tablica) // <span class="hljs-number">2</span>
+        L = tablica[:srodek]
+        R = tablica[srodek:]
+
+        merge_sort(L) <span class="hljs-comment"># Sortuj lewą połowę</span>
+        merge_sort(R) <span class="hljs-comment"># Sortuj prawą połowę</span>
+
+        i = j = k = <span class="hljs-number">0</span>
+        <span class="hljs-comment"># Scalanie</span>
+        <span class="hljs-keyword">while</span> i &lt; len(L) <span class="hljs-keyword">and</span> j &lt; len(R):
+            <span class="hljs-keyword">if</span> L[i] &lt; R[j]:
+                tablica[k] = L[i]
+                i += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                tablica[k] = R[j]
+                j += <span class="hljs-number">1</span>
+            k += <span class="hljs-number">1</span>
+        
+        <span class="hljs-comment"># Dopisanie pozostałych elementów</span>
+        <span class="hljs-keyword">while</span> i &lt; len(L):
+            tablica[k] = L[i]; i += <span class="hljs-number">1</span>; k += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> j &lt; len(R):
+            tablica[k] = R[j]; j += <span class="hljs-number">1</span>; k += <span class="hljs-number">1</span>
+</div></code></pre>
+    <h3 id="155-sortowanie-szybkie-quick-sort">15.5. Sortowanie szybkie (Quick Sort)</h3>
+    <p><strong>Idea:</strong> Wybieramy element obrotowy (pivot). Dzielimy tablicę na elementy mniejsze od pivota, równe
+        mu i większe, a następnie rekurencyjnie sortujemy podtablice.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(tablica)</span>:</span>
+    <span class="hljs-keyword">if</span> len(tablica) &lt;= <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> tablica
+    pivot = tablica[len(tablica) // <span class="hljs-number">2</span>]
+    lewe = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica <span class="hljs-keyword">if</span> x &lt; pivot]
+    srodkowe = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica <span class="hljs-keyword">if</span> x == pivot]
+    prawe = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica <span class="hljs-keyword">if</span> x &gt; pivot]
+    <span class="hljs-keyword">return</span> quick_sort(lewe) + srodkowe + quick_sort(prawe)
+</div></code></pre>
+    <hr>
+    <h3 id="156-wyszukiwanie-liniowe">15.6. Wyszukiwanie liniowe</h3>
+    <p><strong>Idea:</strong> Sprawdzamy każdy element po kolei, aż znajdziemy szukaną wartość.</p>
     <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukaj_liniowo</span><span class="hljs-params">(tablica, szukana)</span>:</span>
-    <span class="hljs-string">"""Zwraca indeks pierwszego wystąpienia lub -1 gdy nie znaleziono."""</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(tablica)):
         <span class="hljs-keyword">if</span> tablica[i] == szukana:
             <span class="hljs-keyword">return</span> i
     <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
-
-<span class="hljs-comment"># Wersja z enumerate</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukaj_liniowo_v2</span><span class="hljs-params">(tablica, szukana)</span>:</span>
-    <span class="hljs-keyword">for</span> i, element <span class="hljs-keyword">in</span> enumerate(tablica):
-        <span class="hljs-keyword">if</span> element == szukana:
-            <span class="hljs-keyword">return</span> i
-    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
 </div></code></pre>
-    <h3 id="154-wyszukiwanie-z-wartownikiem-sentinel-search">15.4. Wyszukiwanie z wartownikiem (Sentinel Search)</h3>
-    <p><strong>Idea:</strong> Optymalizacja wyszukiwania liniowego — dodajemy szukany element na koniec tablicy
-        (wartownik). Dzięki temu nie musimy w pętli sprawdzać, czy nie wyszliśmy poza granice tablicy. Po zakończeniu
-        sprawdzamy, czy znaleźliśmy prawdziwy element czy wartownika.</p>
+    <h3 id="157-wyszukiwanie-z-wartownikiem-sentinel-search">15.7. Wyszukiwanie z wartownikiem (Sentinel Search)</h3>
+    <p><strong>Idea:</strong> Dodajemy szukaną wartość na koniec tablicy jako &quot;wartownika&quot;, aby uprościć
+        warunek pętli (brak sprawdzania końca tablicy w każdym kroku).</p>
     <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukaj_z_wartownikiem</span><span class="hljs-params">(tablica, szukana)</span>:</span>
     n = len(tablica)
-    tablica.append(szukana)  <span class="hljs-comment"># Dodajemy wartownika na końcu</span>
-
+    tablica.append(szukana) <span class="hljs-comment"># Dodaj wartownika</span>
     i = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">while</span> tablica[i] != szukana:  <span class="hljs-comment"># Na pewno się zatrzyma — wartownik gwarantuje</span>
+    <span class="hljs-keyword">while</span> tablica[i] != szukana:
         i += <span class="hljs-number">1</span>
-
-    tablica.pop()  <span class="hljs-comment"># Usuwamy wartownika — przywracamy oryginalną tablicę</span>
-
-    <span class="hljs-keyword">if</span> i &lt; n:
-        <span class="hljs-keyword">return</span> i     <span class="hljs-comment"># Element znaleziony PRZED wartownikiem</span>
-    <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>    <span class="hljs-comment"># Trafiliśmy na wartownika → elementu nie ma</span>
+    tablica.pop() <span class="hljs-comment"># Usuń wartownika</span>
+    <span class="hljs-keyword">return</span> i <span class="hljs-keyword">if</span> i &lt; n <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>
 </div></code></pre>
-    <h3 id="155-algorytm-euklidesa-nwd--najwi%C4%99kszy-wsp%C3%B3lny-dzielnik">15.5. Algorytm Euklidesa (NWD —
-        Największy Wspólny Dzielnik)</h3>
-    <p><strong>Idea:</strong> Wielokrotnie zastępujemy większą liczbę resztą z dzielenia przez mniejszą, aż reszta
-        wyniesie 0. Ostatnia niezerowa wartość to NWD.</p>
-    <p>Przykład: NWD(48, 18) → 48%18=12 → 18%12=6 → 12%6=<strong>0</strong> → NWD = <strong>6</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-comment"># Wersja iteracyjna</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nwd</span><span class="hljs-params">(a, b)</span>:</span>
-    <span class="hljs-keyword">while</span> b != <span class="hljs-number">0</span>:
-        a, b = b, a % b  <span class="hljs-comment"># Jednoczesne przypisanie — idiom Pythona</span>
-    <span class="hljs-keyword">return</span> a
-
-<span class="hljs-comment"># Wersja rekurencyjna</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nwd_rekurencyjnie</span><span class="hljs-params">(a, b)</span>:</span>
-    <span class="hljs-keyword">if</span> b == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> a
-    <span class="hljs-keyword">return</span> nwd_rekurencyjnie(b, a % b)
-
-<span class="hljs-comment"># Testy</span>
-print(nwd(<span class="hljs-number">48</span>, <span class="hljs-number">18</span>))    <span class="hljs-comment"># 6</span>
-print(nwd(<span class="hljs-number">100</span>, <span class="hljs-number">75</span>))   <span class="hljs-comment"># 25</span>
-print(nwd(<span class="hljs-number">17</span>, <span class="hljs-number">5</span>))     <span class="hljs-comment"># 1 (liczby względnie pierwsze)</span>
-</div></code></pre>
-    <h3 id="156-sito-eratostenesa">15.6. Sito Eratostenesa</h3>
-    <p><strong>Idea:</strong> Algorytm do znajdowania wszystkich liczb pierwszych w zakresie 2..n. Tworzymy tablicę
-        logiczną, gdzie <code>True</code> oznacza „jest liczbą pierwszą&quot;. Następnie wykreślamy (ustawiamy
-        <code>False</code>) wielokrotności każdej znalezionej liczby pierwszej. Wystarczy sprawdzać do √n.</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sito_eratostenesa</span><span class="hljs-params">(n)</span>:</span>
-    <span class="hljs-string">"""Zwraca listę liczb pierwszych z zakresu 2..n."""</span>
-    <span class="hljs-comment"># Tablica logiczna — indeksy od 0 do n</span>
-    jest_pierwsza = [<span class="hljs-literal">True</span>] * (n + <span class="hljs-number">1</span>)
-    jest_pierwsza[<span class="hljs-number">0</span>] = <span class="hljs-literal">False</span>  <span class="hljs-comment"># 0 nie jest liczbą pierwszą</span>
-    jest_pierwsza[<span class="hljs-number">1</span>] = <span class="hljs-literal">False</span>  <span class="hljs-comment"># 1 nie jest liczbą pierwszą</span>
-
-    i = <span class="hljs-number">2</span>
-    <span class="hljs-keyword">while</span> i * i &lt;= n:           <span class="hljs-comment"># Sprawdzamy do √n</span>
-        <span class="hljs-keyword">if</span> jest_pierwsza[i]:
-            <span class="hljs-comment"># Wykreślamy wielokrotności: 2i, 3i, 4i, ...</span>
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i * <span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>, i):
-                jest_pierwsza[j] = <span class="hljs-literal">False</span>
-        i += <span class="hljs-number">1</span>
-
-    <span class="hljs-comment"># Zbieramy liczby pierwsze (indeksy z wartością True)</span>
-    pierwsze = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> jest_pierwsza[i]]
-    <span class="hljs-keyword">return</span> pierwsze
-
-wynik = sito_eratostenesa(<span class="hljs-number">100</span>)
-print(wynik)
-<span class="hljs-comment"># [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,</span>
-<span class="hljs-comment">#  53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span>
-print(<span class="hljs-string">f"Znaleziono <span class="hljs-subst">{len(wynik)}</span> liczb pierwszych do 100"</span>)
-</div></code></pre>
-    <h3 id="157-szyfr-cezara">15.7. Szyfr Cezara</h3>
-    <p><strong>Idea:</strong> Szyfr polega na przesunięciu każdej litery o stałą liczbę pozycji (klucz) w alfabecie. Po
-        <code>z</code> wracamy do <code>a</code> (zawijanie). Klucz może być dodatni (przesunięcie w prawo), ujemny (w
-        lewo), a nawet większy niż 26 — modulo 26 zapewnia poprawne zawijanie.</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">szyfruj_cezar</span><span class="hljs-params">(tekst_jawny, klucz)</span>:</span>
-    <span class="hljs-string">"""
-    Szyfruje tekst szyfrem Cezara.
-    Obsługuje: małe litery a-z i spacje.
-    Klucz: dowolna liczba całkowita.
-    """</span>
-    wynik = <span class="hljs-string">""</span>
-    <span class="hljs-keyword">for</span> znak <span class="hljs-keyword">in</span> tekst_jawny:
-        <span class="hljs-keyword">if</span> <span class="hljs-string">'a'</span> &lt;= znak &lt;= <span class="hljs-string">'z'</span>:
-            <span class="hljs-comment"># 1. Numer litery w alfabecie (a=0, b=1, ..., z=25)</span>
-            numer = ord(znak) - ord(<span class="hljs-string">'a'</span>)
-            <span class="hljs-comment"># 2. Przesunięcie z zawijaniem (modulo 26)</span>
-            nowy_numer = (numer + klucz) % <span class="hljs-number">26</span>
-            <span class="hljs-comment"># 3. Konwersja z powrotem na literę</span>
-            wynik += chr(nowy_numer + ord(<span class="hljs-string">'a'</span>))
+    <h3 id="158-wyszukiwanie-binarne-binary-search">15.8. Wyszukiwanie binarne (Binary Search)</h3>
+    <p><strong>Idea:</strong> W posortowanej tablicy sprawdzamy środkowy element. Jeśli to nie on, odrzucamy połowę
+        tablicy, w której na pewno nie ma szukanej wartości.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukiwanie_binarne</span><span class="hljs-params">(tablica, szukana)</span>:</span>
+    lewy, prawy = <span class="hljs-number">0</span>, len(tablica) - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> lewy &lt;= prawy:
+        srodek = (lewy + prawy) // <span class="hljs-number">2</span>
+        <span class="hljs-keyword">if</span> tablica[srodek] == szukana:
+            <span class="hljs-keyword">return</span> srodek
+        <span class="hljs-keyword">elif</span> tablica[srodek] &lt; szukana:
+            lewy = srodek + <span class="hljs-number">1</span>
         <span class="hljs-keyword">else</span>:
-            <span class="hljs-comment"># Znaki spoza a-z (spacja, interpunkcja) — bez zmian</span>
-            wynik += znak
-    <span class="hljs-keyword">return</span> wynik
-
-<span class="hljs-comment"># Testowanie różnych kluczy</span>
-print(szyfruj_cezar(<span class="hljs-string">"abc"</span>, <span class="hljs-number">3</span>))       <span class="hljs-comment"># "def"   — klucz dodatni</span>
-print(szyfruj_cezar(<span class="hljs-string">"xyz"</span>, <span class="hljs-number">3</span>))       <span class="hljs-comment"># "abc"   — zawijanie</span>
-print(szyfruj_cezar(<span class="hljs-string">"def"</span>, <span class="hljs-number">-3</span>))      <span class="hljs-comment"># "abc"   — klucz ujemny (odszyfrowanie)</span>
-print(szyfruj_cezar(<span class="hljs-string">"abc"</span>, <span class="hljs-number">29</span>))      <span class="hljs-comment"># "def"   — klucz &gt; 26 (29 % 26 = 3)</span>
-print(szyfruj_cezar(<span class="hljs-string">"ab cd"</span>, <span class="hljs-number">2</span>))     <span class="hljs-comment"># "cd ef" — spacja bez zmian</span>
-print(szyfruj_cezar(<span class="hljs-string">"abc"</span>, <span class="hljs-number">0</span>))       <span class="hljs-comment"># "abc"   — klucz 0 = bez zmian</span>
+            prawy = srodek - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
 </div></code></pre>
-    <h3 id="158-walidacja-danych-z-wagami">15.8. Walidacja danych z wagami</h3>
-    <p>Wiele systemów walidacji (np. numery PESEL, kart kredytowych, NIP) opiera się na sumie kontrolnej liczonej za
-        pomocą wag:</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprawdz_plec</span><span class="hljs-params">(pesel)</span>:</span>
-    <span class="hljs-string">"""Zwraca 'K' (kobieta) lub 'M' (mężczyzna) na podstawie PESEL."""</span>
-    przedostatnia = int(pesel[<span class="hljs-number">-2</span>])  <span class="hljs-comment"># Przedostatnia cyfra</span>
-    <span class="hljs-keyword">if</span> przedostatnia % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'K'</span>
-    <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'M'</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprawdz_sume_kontrolna</span><span class="hljs-params">(pesel, wagi)</span>:</span>
-    <span class="hljs-string">"""Sprawdza poprawność sumy kontrolnej."""</span>
-    S = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(wagi)):
-        S += int(pesel[i]) * wagi[i]
-    M = S % <span class="hljs-number">10</span>
-    R = <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> M == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">10</span> - M
-    <span class="hljs-keyword">return</span> R == int(pesel[<span class="hljs-number">-1</span>])  <span class="hljs-comment"># Porównanie z ostatnią cyfrą</span>
-
-<span class="hljs-comment"># Wagi dla PESEL</span>
-wagi_pesel = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>]
+    <hr>
+    <h3 id="159-algorytm-euklidesa-nwd">15.9. Algorytm Euklidesa (NWD)</h3>
+    <p><strong>Idea:</strong> NWD dwóch liczb to największa liczba, która dzieli obie bez reszty. Opiera się na reszcie
+        z dzielenia.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nwd</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">while</span> b != <span class="hljs-number">0</span>:
+        a, b = b, a % b
+    <span class="hljs-keyword">return</span> a
 </div></code></pre>
-    <h3 id="159-usuwanie-s%C4%85siednich-duplikat%C3%B3w">15.9. Usuwanie sąsiednich duplikatów</h3>
-    <p>Algorytm przetwarzania tekstu — usuwanie powtarzających się znaków występujących bezpośrednio obok siebie:</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">usun_duplikaty_obok</span><span class="hljs-params">(tekst)</span>:</span>
-    <span class="hljs-string">"""Usuwa powtarzające się znaki obok siebie."""</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> tekst:     <span class="hljs-comment"># Obsługa pustego napisu</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>
-
-    wynik = tekst[<span class="hljs-number">0</span>]  <span class="hljs-comment"># Pierwszy znak zawsze zostaje</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(tekst)):
-        <span class="hljs-keyword">if</span> tekst[i] != tekst[i - <span class="hljs-number">1</span>]:  <span class="hljs-comment"># Różny od poprzedniego?</span>
-            wynik += tekst[i]
-    <span class="hljs-keyword">return</span> wynik
-
-print(usun_duplikaty_obok(<span class="hljs-string">"aabbbcc"</span>))       <span class="hljs-comment"># "abc"</span>
-print(usun_duplikaty_obok(<span class="hljs-string">"Abba;;;to"</span>))     <span class="hljs-comment"># "Aba;to"</span>
-print(usun_duplikaty_obok(<span class="hljs-string">""</span>))              <span class="hljs-comment"># "" (pusty → pusty)</span>
+    <h3 id="1510-najmniejsza-wsp%C3%B3lna-wielokrotno%C5%9B%C4%87-nww">15.10. Najmniejsza Wspólna Wielokrotność (NWW)
+    </h3>
+    <p><strong>Idea:</strong> Najmniejsza liczba będąca wielokrotnością obu liczb. Wykorzystuje zależność:
+        <code>NWW(a, b) = |a * b| / NWD(a, b)</code>.
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nww</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> b == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-keyword">return</span> abs(a * b) // nwd(a, b)
 </div></code></pre>
-    <h3 id="1510-zliczanie-wyst%C4%85pie%C5%84-warto%C5%9Bci-w-danych">15.10. Zliczanie wystąpień wartości w danych</h3>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">zlicz_wystapienia</span><span class="hljs-params">(dane, zakres_od, zakres_do)</span>:</span>
-    <span class="hljs-string">"""Zlicza ile razy każda wartość z zakresu występuje w danych."""</span>
-    wystapienia = {}
-    <span class="hljs-keyword">for</span> wartosc <span class="hljs-keyword">in</span> range(zakres_od, zakres_do + <span class="hljs-number">1</span>):
-        wystapienia[wartosc] = <span class="hljs-number">0</span>
-
-    <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> dane:
-        <span class="hljs-keyword">if</span> element <span class="hljs-keyword">in</span> wystapienia:
-            wystapienia[element] += <span class="hljs-number">1</span>
-
-    <span class="hljs-keyword">return</span> wystapienia
-
-<span class="hljs-comment"># Wyświetlanie</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl_statystyki</span><span class="hljs-params">(wystapienia)</span>:</span>
-    <span class="hljs-keyword">for</span> wartosc, liczba <span class="hljs-keyword">in</span> sorted(wystapienia.items()):
-        <span class="hljs-keyword">if</span> liczba &gt; <span class="hljs-number">0</span>:
-            print(<span class="hljs-string">f"Wartość <span class="hljs-subst">{wartosc:&gt;<span class="hljs-number">3</span>}</span>: <span class="hljs-subst">{<span class="hljs-string">'█'</span> * liczba}</span> (<span class="hljs-subst">{liczba}</span>)"</span>)
-</div></code></pre>
-    <h3 id="1511-obliczanie-%C5%9Bredniej-arytmetycznej">15.11. Obliczanie średniej arytmetycznej</h3>
-    <p>Średnia arytmetyczna to suma elementów podzielona przez ich liczbę. Choć Python oferuje wbudowane
-        <code>sum()</code> i <code>len()</code>, warto też wiedzieć, jak zaimplementować to ręcznie:</p>
-    <pre class="hljs"><code><div><span class="hljs-comment"># Sposób 1: Wbudowane funkcje (najkrótszy)</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">srednia_wbudowana</span><span class="hljs-params">(tablica)</span>:</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> tablica:  <span class="hljs-comment"># Ochrona przed dzieleniem przez zero</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-    <span class="hljs-keyword">return</span> sum(tablica) / len(tablica)
-
-<span class="hljs-comment"># Sposób 2: Ręczna implementacja</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">srednia_reczna</span><span class="hljs-params">(tablica)</span>:</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> tablica:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-    suma = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> tablica:
-        suma += element
-    <span class="hljs-keyword">return</span> suma / len(tablica)
-
-dane = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]
-print(<span class="hljs-string">f"Średnia: <span class="hljs-subst">{srednia_wbudowana(dane):<span class="hljs-number">.2</span>f}</span>"</span>)  <span class="hljs-comment"># Średnia: 30.00</span>
-</div></code></pre>
-    <h3 id="1512-wyodr%C4%99bnianie-element%C3%B3w-spe%C5%82niaj%C4%85cych-warunek">15.12. Wyodrębnianie elementów
-        spełniających warunek</h3>
-    <p>Częsty wzorzec — z tablicy wybrać tylko elementy spełniające konkretny warunek (np. nieparzyste, większe od
-        progu, itd.):</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyswietl_nieparzyste</span><span class="hljs-params">(tablica)</span>:</span>
-    <span class="hljs-string">"""Wyświetla nieparzyste elementy i zwraca ich liczbę."""</span>
-    licznik = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> tablica:
-        <span class="hljs-keyword">if</span> element % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>:
-            print(element, end=<span class="hljs-string">" "</span>)
-            licznik += <span class="hljs-number">1</span>
-    print()  <span class="hljs-comment"># Nowa linia</span>
-    <span class="hljs-keyword">return</span> licznik
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filtruj_w_zakresie</span><span class="hljs-params">(tablica, minimum, maksimum)</span>:</span>
-    <span class="hljs-string">"""Zwraca nową listę z elementami w podanym zakresie."""</span>
-    wynik = []
-    <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> tablica:
-        <span class="hljs-keyword">if</span> minimum &lt;= element &lt;= maksimum:
-            wynik.append(element)
-    <span class="hljs-keyword">return</span> wynik
-
-<span class="hljs-comment"># Lub z list comprehension:</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filtruj_v2</span><span class="hljs-params">(tablica, minimum, maksimum)</span>:</span>
-    <span class="hljs-keyword">return</span> [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica <span class="hljs-keyword">if</span> minimum &lt;= x &lt;= maksimum]
-
-dane = [<span class="hljs-number">3</span>, <span class="hljs-number">12</span>, <span class="hljs-number">7</span>, <span class="hljs-number">25</span>, <span class="hljs-number">1</span>, <span class="hljs-number">18</span>, <span class="hljs-number">9</span>, <span class="hljs-number">42</span>]
-print(filtruj_w_zakresie(dane, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>))  <span class="hljs-comment"># [12, 7, 18, 9]</span>
-</div></code></pre>
-    <h3 id="1513-sprawdzanie-czy-liczba-jest-pierwsza">15.13. Sprawdzanie czy liczba jest pierwsza</h3>
-    <p>Liczba pierwsza to liczba naturalna większa od 1, która dzieli się tylko przez 1 i przez siebie. Jest to
-        fundamentalne pojęcie w algorytmice:</p>
+    <h3 id="1511-sprawdzanie-czy-liczba-jest-pierwsza">15.11. Sprawdzanie czy liczba jest pierwsza</h3>
+    <p><strong>Idea:</strong> Sprawdzamy dzielniki liczby od 2 do jej pierwiastka. Jeśli żaden nie dzieli liczby, jest
+        ona pierwsza.</p>
     <pre class="hljs"><code><div><span class="hljs-keyword">import</span> math
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">jest_pierwsza</span><span class="hljs-params">(n)</span>:</span>
-    <span class="hljs-string">"""Sprawdza czy n jest liczbą pierwszą."""</span>
-    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-    <span class="hljs-keyword">if</span> n == <span class="hljs-number">2</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
-    <span class="hljs-keyword">if</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>  <span class="hljs-comment"># Parzyste &gt; 2 nie są pierwsze</span>
-
-    <span class="hljs-comment"># Sprawdzamy dzielniki nieparzyste do √n</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>, int(math.sqrt(n)) + <span class="hljs-number">1</span>, <span class="hljs-number">2</span>):
-        <span class="hljs-keyword">if</span> n % i == <span class="hljs-number">0</span>:
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, int(math.sqrt(n)) + <span class="hljs-number">1</span>):
+        <span class="hljs-keyword">if</span> n % i == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
-
-<span class="hljs-comment"># Testy</span>
-print(jest_pierwsza(<span class="hljs-number">2</span>))    <span class="hljs-comment"># True</span>
-print(jest_pierwsza(<span class="hljs-number">17</span>))   <span class="hljs-comment"># True</span>
-print(jest_pierwsza(<span class="hljs-number">4</span>))    <span class="hljs-comment"># False</span>
-print(jest_pierwsza(<span class="hljs-number">1</span>))    <span class="hljs-comment"># False</span>
-print(jest_pierwsza(<span class="hljs-number">97</span>))   <span class="hljs-comment"># True</span>
-
-<span class="hljs-comment"># Wylistowanie wszystkich liczb pierwszych do 50</span>
-liczby_pierwsze = [n <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, <span class="hljs-number">51</span>) <span class="hljs-keyword">if</span> jest_pierwsza(n)]
-print(liczby_pierwsze)
-<span class="hljs-comment"># [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]</span>
 </div></code></pre>
-    <p>Dlaczego sprawdzamy tylko do √n? Jeśli n ma dzielnik d &gt; √n, to n/d &lt; √n, więc mniejszy dzielnik
-        znaleźlibyśmy wcześniej.</p>
-    <h3 id="1514-rekurencja">15.14. Rekurencja</h3>
-    <p>Rekurencja to technika, w której <strong>funkcja wywołuje samą siebie</strong>. Każde wywołanie rekurencyjne
-        rozwiązuje mniejszy podproblem, aż do osiągnięcia <strong>przypadku bazowego</strong> (warunek stopu), który
-        kończy łańcuch wywołań.</p>
-    <p>Rekurencja opiera się na dwóch elementach:</p>
-    <ol>
-        <li><strong>Przypadek bazowy</strong> — warunek kończący rekurencję (bez niego funkcja będzie się wywoływać w
-            nieskończoność)</li>
-        <li><strong>Przypadek rekurencyjny</strong> — wywołanie funkcji z mniejszym/prostszym argumentem</li>
-    </ol>
-    <p><strong>Silnia (n!) — klasyczny przykład rekurencji:</strong></p>
-    <p>Silnia to iloczyn wszystkich liczb naturalnych od 1 do n: <code>5! = 5 * 4 * 3 * 2 * 1 = 120</code></p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">silnia</span><span class="hljs-params">(n)</span>:</span>
-    <span class="hljs-comment"># Przypadek bazowy</span>
-    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
-    <span class="hljs-comment"># Przypadek rekurencyjny</span>
-    <span class="hljs-keyword">return</span> n * silnia(n - <span class="hljs-number">1</span>)
-
-print(silnia(<span class="hljs-number">5</span>))   <span class="hljs-comment"># 120</span>
-print(silnia(<span class="hljs-number">0</span>))   <span class="hljs-comment"># 1</span>
-print(silnia(<span class="hljs-number">10</span>))  <span class="hljs-comment"># 3628800</span>
+    <h3 id="1512-sito-eratostenesa">15.12. Sito Eratostenesa</h3>
+    <p><strong>Idea:</strong> Wykreślanie wielokrotności liczb pierwszych z tablicy, aby znaleźć wszystkie liczby
+        pierwsze w podanym zakresie.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sito</span><span class="hljs-params">(n)</span>:</span>
+    pierwsze = [<span class="hljs-literal">True</span>] * (n + <span class="hljs-number">1</span>)
+    pierwsze[<span class="hljs-number">0</span>] = pierwsze[<span class="hljs-number">1</span>] = <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, int(n**<span class="hljs-number">0.5</span>) + <span class="hljs-number">1</span>):
+        <span class="hljs-keyword">if</span> pierwsze[p]:
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(p * p, n + <span class="hljs-number">1</span>, p):
+                pierwsze[i] = <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">return</span> [i <span class="hljs-keyword">for</span> i, b <span class="hljs-keyword">in</span> enumerate(pierwsze) <span class="hljs-keyword">if</span> b]
 </div></code></pre>
-    <p><strong>Przebieg wywołań dla <code>silnia(4)</code>:</strong></p>
-    <pre class="hljs"><code><div>silnia(4)
-  -&gt; 4 * silnia(3)
-    -&gt; 3 * silnia(2)
-      -&gt; 2 * silnia(1)
-        -&gt; 1              &lt;- przypadek bazowy
-      &lt;- 2 * 1 = 2
-    &lt;- 3 * 2 = 6
-  &lt;- 4 * 6 = 24          &lt;- wynik końcowy
+    <h3 id="1513-rozk%C5%82ad-liczby-na-czynniki-pierwsze">15.13. Rozkład liczby na czynniki pierwsze</h3>
+    <p><strong>Idea:</strong> Dzielenie liczby przez kolejne najmniejsze możliwe dzielniki (liczby pierwsze), aż
+        pozostanie 1.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rozklad_na_czynniki</span><span class="hljs-params">(n)</span>:</span>
+    czynniki = []
+    d = <span class="hljs-number">2</span>
+    <span class="hljs-keyword">while</span> d * d &lt;= n:
+        <span class="hljs-keyword">while</span> n % d == <span class="hljs-number">0</span>:
+            czynniki.append(d)
+            n //= d
+        d += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">1</span>:
+        czynniki.append(n)
+    <span class="hljs-keyword">return</span> czynniki
 </div></code></pre>
-    <p><strong>Ciąg Fibonacciego — kolejny klasyczny przykład:</strong></p>
-    <p>Każda liczba w ciągu to suma dwóch poprzednich: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fibonacci</span><span class="hljs-params">(n)</span>:</span>
-    <span class="hljs-string">"""Zwraca n-tą liczbę ciągu Fibonacciego."""</span>
-    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-    <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
-    <span class="hljs-keyword">return</span> fibonacci(n - <span class="hljs-number">1</span>) + fibonacci(n - <span class="hljs-number">2</span>)
+    <h3 id="1514-konwersja-system%C3%B3w-liczbowych-dziesi%C4%99tny---binarny">15.14. Konwersja systemów liczbowych
+        (Dziesiętny &lt;-&gt; Binarny)</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dec_to_bin</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-string">"0"</span>
+    wynik = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">while</span> n &gt; <span class="hljs-number">0</span>:
+        wynik = str(n % <span class="hljs-number">2</span>) + wynik
+        n //= <span class="hljs-number">2</span>
+    <span class="hljs-keyword">return</span> wynik
 
-<span class="hljs-comment"># Wyświetlenie pierwszych 10 elementów</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
-    print(fibonacci(i), end=<span class="hljs-string">" "</span>)
-<span class="hljs-comment"># 0 1 1 2 3 5 8 13 21 34</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bin_to_dec</span><span class="hljs-params">(b)</span>:</span>
+    wynik = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i, cyfra <span class="hljs-keyword">in</span> enumerate(reversed(b)):
+        <span class="hljs-keyword">if</span> cyfra == <span class="hljs-string">'1'</span>:
+            wynik += <span class="hljs-number">2</span>**i
+    <span class="hljs-keyword">return</span> wynik
 </div></code></pre>
-    <p><strong>NWD — wersja rekurencyjna (przypomnienie):</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nwd</span><span class="hljs-params">(a, b)</span>:</span>
-    <span class="hljs-keyword">if</span> b == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> a
-    <span class="hljs-keyword">return</span> nwd(b, a % b)
-
-print(nwd(<span class="hljs-number">48</span>, <span class="hljs-number">18</span>))  <span class="hljs-comment"># 6</span>
-</div></code></pre>
-    <p><strong>Rekurencja vs iteracja — porównanie:</strong></p>
-    <table>
-        <thead>
-            <tr>
-                <th>Cecha</th>
-                <th>Rekurencja</th>
-                <th>Iteracja (pętla)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Czytelność</td>
-                <td>Często prostsza</td>
-                <td>Czasem mniej intuicyjna</td>
-            </tr>
-            <tr>
-                <td>Wydajność</td>
-                <td>Narzut wywołań</td>
-                <td>Szybsza</td>
-            </tr>
-            <tr>
-                <td>Pamięć</td>
-                <td>Stos wywołań</td>
-                <td>Mniejsze zużycie</td>
-            </tr>
-            <tr>
-                <td>Limit głębokości</td>
-                <td>~1000 (Python)</td>
-                <td>Brak limitu</td>
-            </tr>
-            <tr>
-                <td>Kiedy stosować</td>
-                <td>Struktury drzewiaste, podział problemu</td>
-                <td>Proste iteracje, duże dane</td>
-            </tr>
-        </tbody>
-    </table>
-    <p><strong>Ważna uwaga:</strong> Python ma domyślny limit <strong>996-1000 wywołań rekurencyjnych</strong>. Przy
-        przekroczeniu tego limitu pojawi się <code>RecursionError</code>. Dla algorytmów z dużymi danymi lepiej użyć
-        wersji iteracyjnej.</p>
-    <pre class="hljs"><code><div><span class="hljs-keyword">import</span> sys
-print(sys.getrecursionlimit())  <span class="hljs-comment"># 1000 (domyślnie)</span>
-</div></code></pre>
-    <h3 id="1515-wyszukiwanie-binarne-binary-search">15.15. Wyszukiwanie binarne (Binary Search)</h3>
-    <p><strong>Idea:</strong> Wyszukiwanie binarne działa tylko na <strong>posortowanych</strong> tablicach. Zamiast
-        sprawdzać każdy element po kolei (jak wyszukiwanie liniowe), dzieli tablicę na pół w każdym kroku. Porównuje
-        szukany element ze środkowym i decyduje, w której połowie kontynuować.</p>
-    <p><strong>Złożoność:</strong> O(log n) — niesamowicie szybkie. Dla tablicy 1 000 000 elementów potrzeba maksymalnie
-        ~20 porównań.</p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukiwanie_binarne</span><span class="hljs-params">(tablica, szukana)</span>:</span>
-    <span class="hljs-string">"""
-    Szuka elementu w POSORTOWANEJ tablicy.
-    Zwraca indeks lub -1 gdy nie znaleziono.
-    """</span>
-    lewy = <span class="hljs-number">0</span>
-    prawy = len(tablica) - <span class="hljs-number">1</span>
-
-    <span class="hljs-keyword">while</span> lewy &lt;= prawy:
-        srodek = (lewy + prawy) // <span class="hljs-number">2</span>    <span class="hljs-comment"># Indeks środka</span>
-
-        <span class="hljs-keyword">if</span> tablica[srodek] == szukana:
-            <span class="hljs-keyword">return</span> srodek                 <span class="hljs-comment"># Znaleziono!</span>
-        <span class="hljs-keyword">elif</span> tablica[srodek] &lt; szukana:
-            lewy = srodek + <span class="hljs-number">1</span>             <span class="hljs-comment"># Szukamy w prawej połowie</span>
+    <hr>
+    <h3 id="1515-szyfr-cezara">15.15. Szyfr Cezara</h3>
+    <p><strong>Idea:</strong> Przesunięcie każdej litery tekstu o stałą liczbę pozycji (klucz) w alfabecie.</p>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">szyfruj_cezar</span><span class="hljs-params">(tekst, klucz)</span>:</span>
+    wynik = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">for</span> znak <span class="hljs-keyword">in</span> tekst.lower():
+        <span class="hljs-keyword">if</span> <span class="hljs-string">'a'</span> &lt;= znak &lt;= <span class="hljs-string">'z'</span>:
+            nowy = (ord(znak) - ord(<span class="hljs-string">'a'</span>) + klucz) % <span class="hljs-number">26</span>
+            wynik += chr(nowy + ord(<span class="hljs-string">'a'</span>))
         <span class="hljs-keyword">else</span>:
-            prawy = srodek - <span class="hljs-number">1</span>            <span class="hljs-comment"># Szukamy w lewej połowie</span>
-
-    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>  <span class="hljs-comment"># Nie znaleziono</span>
+            wynik += znak
+    <span class="hljs-keyword">return</span> wynik
 </div></code></pre>
-    <p><strong>Przebieg krok po kroku</strong> (szukamy <code>23</code> w tablicy
-        <code>[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]</code>):</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Krok</th>
-                <th>Lewy</th>
-                <th>Prawy</th>
-                <th>Środek</th>
-                <th>Wartość</th>
-                <th>Decyzja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>0</td>
-                <td>9</td>
-                <td>4</td>
-                <td>16</td>
-                <td>23 &gt; 16 -&gt; szukaj prawo</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>5</td>
-                <td>9</td>
-                <td>7</td>
-                <td>56</td>
-                <td>23 &lt; 56 -&gt; szukaj lewo</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>5</td>
-                <td>6</td>
-                <td>5</td>
-                <td><strong>23</strong></td>
-                <td>Znaleziono! Indeks = 5</td>
-            </tr>
-        </tbody>
-    </table>
-    <pre class="hljs"><code><div><span class="hljs-comment"># Testowanie</span>
-tablica = [<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">12</span>, <span class="hljs-number">16</span>, <span class="hljs-number">23</span>, <span class="hljs-number">38</span>, <span class="hljs-number">56</span>, <span class="hljs-number">72</span>, <span class="hljs-number">91</span>]
+    <h3 id="1516-palindromy-i-anagramy">15.16. Palindromy i Anagramy</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">czy_palindrom</span><span class="hljs-params">(tekst)</span>:</span>
+    t = tekst.replace(<span class="hljs-string">" "</span>, <span class="hljs-string">""</span>).lower()
+    <span class="hljs-keyword">return</span> t == t[::<span class="hljs-number">-1</span>]
 
-print(wyszukiwanie_binarne(tablica, <span class="hljs-number">23</span>))   <span class="hljs-comment"># 5</span>
-print(wyszukiwanie_binarne(tablica, <span class="hljs-number">2</span>))    <span class="hljs-comment"># 0</span>
-print(wyszukiwanie_binarne(tablica, <span class="hljs-number">91</span>))   <span class="hljs-comment"># 9</span>
-print(wyszukiwanie_binarne(tablica, <span class="hljs-number">50</span>))   <span class="hljs-comment"># -1 (nie ma)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">czy_anagram</span><span class="hljs-params">(s1, s2)</span>:</span>
+    t1 = s1.replace(<span class="hljs-string">" "</span>, <span class="hljs-string">""</span>).lower()
+    t2 = s2.replace(<span class="hljs-string">" "</span>, <span class="hljs-string">""</span>).lower()
+    <span class="hljs-keyword">return</span> sorted(t1) == sorted(t2)
 </div></code></pre>
-    <p><strong>Wersja rekurencyjna:</strong></p>
-    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wyszukiwanie_binarne_rek</span><span class="hljs-params">(tablica, szukana, lewy=<span class="hljs-number">0</span>, prawy=None)</span>:</span>
-    <span class="hljs-keyword">if</span> prawy <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-        prawy = len(tablica) - <span class="hljs-number">1</span>
+    <hr>
+    <h3 id="1517-rekurencja">15.17. Rekurencja</h3>
+    <p><strong>Idea:</strong> Technika, w której funkcja wywołuje samą siebie. Wymaga przypadku bazowego (stopu).</p>
+    <pre class="hljs"><code><div><span class="hljs-comment"># Silnia (n!)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">silnia</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> n * silnia(n - <span class="hljs-number">1</span>)
 
-    <span class="hljs-keyword">if</span> lewy &gt; prawy:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
-
-    srodek = (lewy + prawy) // <span class="hljs-number">2</span>
-
-    <span class="hljs-keyword">if</span> tablica[srodek] == szukana:
-        <span class="hljs-keyword">return</span> srodek
-    <span class="hljs-keyword">elif</span> tablica[srodek] &lt; szukana:
-        <span class="hljs-keyword">return</span> wyszukiwanie_binarne_rek(tablica, szukana, srodek + <span class="hljs-number">1</span>, prawy)
-    <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> wyszukiwanie_binarne_rek(tablica, szukana, lewy, srodek - <span class="hljs-number">1</span>)
+<span class="hljs-comment"># Fibonacci</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">return</span> n <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> fib(n<span class="hljs-number">-1</span>) + fib(n<span class="hljs-number">-2</span>)
 </div></code></pre>
-    <p><strong>Porównanie wyszukiwań:</strong></p>
-    <table>
-        <thead>
-            <tr>
-                <th>Algorytm</th>
-                <th>Złożoność</th>
-                <th>Wymaga sortowania</th>
-                <th>Maks. porównań (n=1000)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Liniowe</td>
-                <td>O(n)</td>
-                <td>Nie</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>Z wartownikiem</td>
-                <td>O(n)</td>
-                <td>Nie</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>Binarne</td>
-                <td>O(log n)</td>
-                <td>Tak</td>
-                <td>10</td>
-            </tr>
-        </tbody>
-    </table>
+    <h3 id="1518-walidacja-danych-z-wagami-np-pesel">15.18. Walidacja danych z wagami (np. PESEL)</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">suma_kontrolna</span><span class="hljs-params">(liczby, wagi)</span>:</span>
+    suma = sum(int(l) * w <span class="hljs-keyword">for</span> l, w <span class="hljs-keyword">in</span> zip(liczby, wagi))
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">10</span> - (suma % <span class="hljs-number">10</span>)) % <span class="hljs-number">10</span>
+</div></code></pre>
+    <h3 id="1519-usuwanie-s%C4%85siednich-duplikat%C3%B3w">15.19. Usuwanie sąsiednich duplikatów</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">usun_duplikaty</span><span class="hljs-params">(tekst)</span>:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> tekst: <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>
+    wynik = tekst[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(tekst)):
+        <span class="hljs-keyword">if</span> tekst[i] != tekst[i<span class="hljs-number">-1</span>]:
+            wynik += tekst[i]
+    <span class="hljs-keyword">return</span> wynik
+</div></code></pre>
+    <h3 id="1520-zliczanie-wyst%C4%85pie%C5%84-warto%C5%9Bci-w-danych">15.20. Zliczanie wystąpień wartości w danych</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">zlicz_wystapienia</span><span class="hljs-params">(tablica)</span>:</span>
+    liczniki = {}
+    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica:
+        liczniki[x] = liczniki.get(x, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> liczniki
+</div></code></pre>
+    <h3 id="1521-obliczanie-%C5%9Bredniej-arytmetycznej">15.21. Obliczanie średniej arytmetycznej</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">srednia</span><span class="hljs-params">(tablica)</span>:</span>
+    <span class="hljs-keyword">return</span> sum(tablica) / len(tablica) <span class="hljs-keyword">if</span> tablica <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>
+</div></code></pre>
+    <h3 id="1522-wyodr%C4%99bnianie-element%C3%B3w-spe%C5%82niaj%C4%85cych-warunek">15.22. Wyodrębnianie elementów
+        spełniających warunek</h3>
+    <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filtruj_parzyste</span><span class="hljs-params">(tablica)</span>:</span>
+    <span class="hljs-comment"># Wykorzystanie list comprehension</span>
+    <span class="hljs-keyword">return</span> [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> tablica <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]
+</div></code></pre>
     <hr>
     <h2 id="16-tablice-dwuwymiarowe">16. Tablice dwuwymiarowe</h2>
     <p>Tablica dwuwymiarowa (2D) to „tablica tablic&quot; — lista, której każdy element jest również listą. Reprezentuje
@@ -5436,7 +4805,8 @@ transpozycja = [list(wiersz) <span class="hljs-keyword">for</span> wiersz <span 
     <h3 id="171-czym-jest-testowanie-jednostkowe">17.1. Czym jest testowanie jednostkowe</h3>
     <p>Testowanie jednostkowe (unit testing) polega na automatycznym sprawdzaniu poprawności
         <strong>pojedynczych</strong> jednostek kodu (funkcji, metod, klas) w izolacji od reszty programu. Każdy test to
-        oddzielna metoda, która:</p>
+        oddzielna metoda, która:
+    </p>
     <ol>
         <li><strong>Przygotowuje</strong> dane wejściowe (Arrange)</li>
         <li><strong>Wywołuje</strong> testowaną funkcję/metodę (Act)</li>
@@ -5488,7 +4858,8 @@ python -m unittest test_plik.py -v        <span class="hljs-comment"># Tryb verb
 </div></code></pre>
     <h3 id="173-asercje--kompletna-lista">17.3. Asercje — kompletna lista</h3>
     <p>Asercje to metody sprawdzające warunki. Jeśli warunek nie jest spełniony, test jest oznaczany jako
-        <strong>FAIL</strong>.</p>
+        <strong>FAIL</strong>.
+    </p>
     <table>
         <thead>
             <tr>
@@ -5821,11 +5192,6 @@ pytest test_funkcje.py -v --tb=short      <span class="hljs-comment"># Krótki t
                 <td>Składnia</td>
                 <td>Bardziej formalna</td>
                 <td>Prostsza, krótsza</td>
-            </tr>
-            <tr>
-                <td>Na stanowisku</td>
-                <td>✅ Zawsze dostępny</td>
-                <td>✅ Jeśli zainstalowany</td>
             </tr>
         </tbody>
     </table>
