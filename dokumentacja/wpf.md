@@ -524,7 +524,7 @@ WPF jest technologią dojrzałą i szeroko stosowaną w polskich firmach do twor
 
 ---
 
-### 1.2. Jak działa typowa aplikacja WPF
+### 1.4. Jak działa aplikacja okienkowa
 
 Kiedy uruchamiasz aplikację WPF, system wykonuje następujące kroki:
 
@@ -547,7 +547,7 @@ Ważna zasada: **plik XAML i plik C# to jedna całość**. Razem tworzą jedno o
 
 ---
 
-### 1.3. XAML i C# jako dwa filary WPF
+### 1.5. XAML i C# jako dwa filary WPF
 
 **XAML** (Extensible Application Markup Language) to język oparty na XML. Używasz go do opisania, jak wygląda okno — gdzie jest przycisk, jaki ma rozmiar, jakiego koloru jest tło. XAML jest czytelny i łatwy do edytowania. Visual Studio pokazuje podgląd w czasie rzeczywistym.
 
@@ -600,7 +600,7 @@ namespace MojaAplikacja
 
 ---
 
-### 1.4. Code-behind, czyli logika za widokiem
+### 1.6. Code-behind i logika za widokiem
 
 **Code-behind** (kod za widokiem) to plik C# powiązany z konkretnym plikiem XAML. W projekcie WPF każdy plik `.xaml` ma swój plik `.xaml.cs`. Razem tworzą jedną klasę — dlatego w XAML widzisz `x:Class="MojaAplikacja.MainWindow"`, a w C# `public partial class MainWindow`.
 
@@ -819,7 +819,7 @@ Po uruchomieniu Visual Studio zobaczysz ekran startowy z opcjami "Utwórz nowy p
 
 ---
 
-### 2.2. Tworzenie pierwszego projektu WPF
+### 2.3. Tworzenie projektu WPF
 
 Po uruchomieniu Visual Studio:
 
@@ -839,7 +839,7 @@ Visual Studio automatycznie wygeneruje strukturę projektu z podstawowymi plikam
 
 ---
 
-### 2.3. Struktura plików w projekcie WPF
+### 2.4. Struktura plików projektu
 
 Po stworzeniu projektu w panelu **Solution Explorer** (po prawej stronie) zobaczysz następujące pliki:
 
@@ -944,7 +944,7 @@ Plik projektu w formacie XML. Zawiera informacje o docelowej platformie .NET, re
 
 ---
 
-### 2.4. Foldery w projekcie
+### 48.3. Cały folder projektu
 
 Gdy projekt rośnie, warto zorganizować pliki w folderach. Standardowa struktura dla aplikacji WPF wygląda tak:
 
@@ -1146,7 +1146,7 @@ namespace TypyDanych
 
 ---
 
-### 3.2. Instrukcje warunkowe if, else if, else
+### 3.3. Instrukcje warunkowe if, else if, else
 
 Instrukcja `if` pozwala wykonać kod tylko wtedy, gdy warunek jest spełniony.
 
@@ -1295,7 +1295,7 @@ private void btnSprawdzParzystosc_Click(object sender, RoutedEventArgs e)
 
 ---
 
-### 3.3. Instrukcja switch
+### 3.4. Instrukcja switch
 
 Instrukcja `switch` to alternatywa dla długiego łańcucha `if-else if`. Sprawdza wartość jednej zmiennej i wykonuje odpowiedni blok kodu.
 
@@ -1444,7 +1444,7 @@ switch (miesiac)
 
 ---
 
-### 3.4. Pętle — for, foreach, while
+### 3.5. Pętle for, foreach, while
 
 Pętla pozwala powtarzać kod wielokrotnie bez pisania go kilka razy.
 
@@ -1590,7 +1590,7 @@ private void btnSzukaj_Click(object sender, RoutedEventArgs e)
 
 ---
 
-### 3.5. Metody pomocnicze — dlaczego NIE pisać całej logiki w Click
+### 3.6. Metody pomocnicze
 
 Bardzo częsty błąd początkujących: wpisanie całej logiki aplikacji bezpośrednio do metody obsługi kliknięcia. To prowadzi do kodu, który jest trudny do czytania, testowania i naprawiania.
 
@@ -1863,7 +1863,7 @@ if (double.TryParse(txtWartość.Text,
 
 ---
 
-### 3.7. Fallback do wartości domyślnej
+### 3.8. Fallback do wartości domyślnej
 
 **Fallback** to wzorzec, w którym gdy parsowanie się nie uda lub dane są puste, używasz z góry ustalonej wartości domyślnej zamiast przerywać działanie programu.
 
@@ -1957,7 +1957,7 @@ namespace FallbackDemo
 
 ---
 
-### 3.8. Praca z tekstem
+### 3.9. Praca z tekstem: string
 
 `string` w C# ma wiele wbudowanych metod do manipulacji tekstem.
 
@@ -2079,7 +2079,7 @@ namespace TekstDemo
 
 ---
 
-### 3.9. Praca ze znakami — char
+### 3.10. Praca ze znakami: char
 
 `char` przechowuje jeden znak. Klasa `char` ma przydatne metody statyczne do sprawdzania właściwości znaków.
 
@@ -2192,7 +2192,7 @@ namespace CharDemo
 
 ---
 
-### 3.10. Losowanie danych — klasa Random
+### 29.1. Klasa Random
 
 Klasa `Random` pozwala generować liczby pseudolosowe. Bardzo przydatna do losowania pytań, elementów listy, kart itp.
 
@@ -2324,7 +2324,7 @@ private void Potasuj<T>(List<T> lista)
 
 ## 4. Klasy, obiekty i modele danych
 
-### 4.1. Czym jest klasa — własny typ danych
+### 4.1. Czym jest klasa
 
 W C# klasa to **projekt** (blueprins) własnego, złożonego typu danych. Tak jak `int` przechowuje jedną liczbę, a `string` jeden tekst — Twoja własna klasa może przechowywać wiele powiązanych danych razem.
 
@@ -2388,7 +2388,7 @@ public class Produkt
 
 ---
 
-### 4.2. Właściwości klasy
+### 4.3. Pola i właściwości
 
 Właściwości (ang. properties) to dane przechowywane przez klasę. Deklarujesz je za pomocą słów kluczowych `get` i `set`.
 
@@ -2626,7 +2626,7 @@ namespace PracownikApp
 
 ---
 
-### 4.4. Lista obiektów — List\<T\>
+### 5.2. List
 
 `List<T>` to lista obiektów tego samego typu. `T` (Type) zastępujesz rzeczywistym typem, np. `List<Album>`, `List<Pracownik>`, `List<string>`.
 
@@ -2779,7 +2779,7 @@ private void WyswietlAlbum()
 
 ---
 
-### 4.6. Aktualizacja właściwości obiektu
+### 32.4. Aktualizacja pojedynczych właściwości
 
 Możesz zmieniać właściwości obiektu w dowolnym momencie. Na przykład zwiększać licznik pobrań:
 
@@ -2908,9 +2908,9 @@ namespace AlbumPrzeglad
 
 ---
 
-## 5. Kolekcje i praca na listach
+## 5. Kolekcje i praca na danych
 
-### 5.1. Tablice — proste przechowywanie wielu danych
+### 5.1. Tablice
 
 Tablica (ang. array) to najprostszy sposób przechowywania wielu wartości tego samego typu. Jej rozmiar jest **ustalony przy tworzeniu** i nie można go zmienić.
 
@@ -3018,7 +3018,7 @@ Dlatego w WPF częściej używasz `List<T>`.
 
 ---
 
-### 5.2. List\<T\> — dynamiczna kolekcja
+### 5.2. List
 
 `List<T>` to dynamiczna lista — możesz dodawać i usuwać elementy w dowolnym momencie.
 
@@ -3147,7 +3147,7 @@ namespace ListaZadan
 
 ---
 
-### 5.3. Indeks aktualnego elementu
+### 5.5. Indeks aktualnego elementu
 
 Gdy przeglądasz listę rekordów (album, pytanie, pracownik) i pokazujesz jeden na raz, potrzebujesz zmiennej `aktualnyIndeks` jako **pola klasy**.
 
@@ -3271,7 +3271,7 @@ namespace CytatyApp
 
 ---
 
-### 5.4. Przechodzenie do następnego elementu
+### 5.6. Przechodzenie do następnego i poprzedniego elementu
 
 Przejście do następnego elementu to zwiększenie `aktualnyIndeks` o 1. Pamiętaj o zabezpieczeniu przed wyjściem poza zakres listy.
 
@@ -3316,7 +3316,7 @@ private void btnNastepny_Click(object sender, RoutedEventArgs e)
 
 ---
 
-### 5.5. Przechodzenie do poprzedniego elementu
+### 5.6. Przechodzenie do następnego i poprzedniego elementu
 
 Analogicznie — zmniejszasz `aktualnyIndeks` o 1. Zabezpieczenie przed ujemną wartością.
 
@@ -3351,7 +3351,7 @@ private void btnPoprzedni_Click(object sender, RoutedEventArgs e)
 
 ---
 
-### 5.6. Zawijanie indeksu — po ostatnim wróć do pierwszego
+### 5.7. Zawijanie indeksu na początku i końcu listy
 
 Zawijanie indeksu to jeden z najczęstszych wzorców w aplikacjach przeglądających listy. Zamiast zatrzymywać się na końcu/początku, aplikacja "zawija" się i przechodzi na drugi koniec.
 
@@ -3525,7 +3525,7 @@ namespace QuizApp
 
 ---
 
-### 5.7. ObservableCollection\<T\> — różnica od List\<T\>
+### 5.2. List
 
 `ObservableCollection<T>` to specjalna kolekcja z przestrzeni nazw `System.Collections.ObjectModel`. Jej główna zaleta: automatycznie powiadamia interfejs użytkownika o zmianach (dodaniu, usunięciu elementu).
 
@@ -3792,7 +3792,7 @@ Dodatkowe właściwości okna:
 
 ---
 
-### 6.3. Znaczniki i atrybuty — otwieranie, zamykanie, zagnieżdżanie
+### 6.3. Znaczniki i atrybuty
 
 XAML używa składni XML. Każdy element ma tag otwierający i zamykający, albo jest samozamykający.
 
@@ -3879,7 +3879,7 @@ namespace ZagniezdzaniePrzyklad
 
 ---
 
-### 6.4. x:Name — odwoływanie się do kontrolek w C#
+### 6.5. x:Name i odwoływanie się do kontrolek w C#
 
 Aby móc korzystać z kontrolki w kodzie C#, musisz nadać jej nazwę za pomocą atrybutu `x:Name`. Dzięki temu Visual Studio generuje pole w klasie, przez które możesz odwoływać się do tej kontrolki.
 
@@ -3974,7 +3974,7 @@ namespace NazwyKontrolek
 
 ---
 
-### 6.5. Właściwości kontrolek
+### 6.6. Najważniejsze właściwości kontrolek
 
 Każda kontrolka w WPF ma zestaw właściwości, które decyduję o jej wyglądzie i zachowaniu. Poniżej omówione są najważniejsze z nich.
 
@@ -4129,7 +4129,7 @@ namespace WlasciwosciKontrolek
 
 ---
 
-### 6.6. Kolory w XAML
+### 6.8. Komentarze w XAML
 
 W XAML możesz definiować kolory na trzy sposoby.
 
@@ -4377,7 +4377,7 @@ namespace CzcionkiPrzyklad
 
 ---
 
-### 6.8. Margines i padding — Margin, Padding
+### 8.8. Marginesy, padding i odstępy
 
 **Margin** to zewnętrzny odstęp — odległość od krawędzi kontrolki do elementów sąsiadujących lub do krawędzi kontenera.
 
@@ -4551,7 +4551,7 @@ namespace WyrownaniePrzyklad
 
 ---
 
-### 6.10. Widoczność kontrolki — Visibility
+### 33.4. Konwersja bool -> Visibility
 
 Właściwość `Visibility` ma trzy wartości, które różnią się zachowaniem:
 
@@ -4649,13 +4649,13 @@ namespace WidocznoscPrzyklad
 
 ---
 
-## 7. Layout — rozmieszczanie elementów
+## 8. Layout i rozmieszczanie elementów
 
 Layout (układ) to sposób, w jaki WPF rozmieszcza kontrolki w oknie. WPF oferuje kilka paneli układu, z których każdy ma inne zachowanie.
 
 ---
 
-### 7.1. Czym jest layout — nie używamy stałych pozycji
+### 8.1. Czym jest layout
 
 W tradycyjnym programowaniu (Windows Forms) każda kontrolka miała ustalone `X` i `Y` — dokładną pozycję w pikselach. W WPF **nie robimy tego** dla zwykłych layoutów.
 
@@ -4680,7 +4680,7 @@ Dobre podejście (Grid, StackPanel):
 
 ---
 
-### 7.2. Grid — siatka wierszy i kolumn
+### 8.2. Grid — wiersze i kolumny
 
 `Grid` to najczęściej używany panel w WPF. Działa jak tabela — definiujesz wiersze i kolumny, a potem umieszczasz elementy w wybranych komórkach.
 
@@ -4825,7 +4825,7 @@ namespace GridProporcje
 
 ---
 
-### 7.3. Formularze na Grid — etykieta po lewej, pole po prawej
+### 8.3. Formularze na Grid
 
 Grid świetnie nadaje się do tworzenia formularzy. Typowy układ: etykieta w lewej kolumnie, pole wejściowe w prawej.
 
@@ -5067,7 +5067,7 @@ namespace GridRowSpan
 
 ---
 
-### 7.4. StackPanel — pionowe i poziome
+### 8.4. StackPanel
 
 `StackPanel` układa elementy jeden za drugim — pionowo lub poziomo. To najprostrzy panel do szybkiego tworzenia listy elementów.
 
@@ -5149,7 +5149,7 @@ namespace StackPanelPrzyklad
 
 ---
 
-### 7.5. DockPanel — dokowanie elementów
+### 8.5. DockPanel
 
 `DockPanel` pozwala "dokować" elementy do krawędzi panelu. Ostatni element (bez atrybutu Dock) domyślnie wypełnia pozostałą przestrzeń.
 
@@ -5239,7 +5239,7 @@ namespace DockPanelPrzyklad
 
 ---
 
-### 7.6. WrapPanel — zawijanie elementów
+### 8.6. WrapPanel
 
 `WrapPanel` układa elementy poziomo (lub pionowo), a gdy nie ma już miejsca w wierszu — zawija je do kolejnej linii. Działa podobnie do tekstu w edytorze.
 
@@ -5299,7 +5299,7 @@ namespace WrapPanelPrzyklad
 
 ---
 
-### 7.7. Canvas — pozycjonowanie absolutne
+### 8.7. Canvas
 
 `Canvas` to jedyny panel w WPF, który używa stałych pozycji. Umieszczasz kontrolki podając dokładne współrzędne. Używaj go tylko do rysowania i animacji — nie do budowania formularzy.
 
@@ -5469,7 +5469,7 @@ namespace MarginPraktyka
 
 ---
 
-### 7.9. Zagnieżdżanie paneli — złożone układy
+### 8.10. Zagnieżdżanie paneli
 
 Złożone okna aplikacji często wymagają zagnieżdżenia kilku paneli. Łączysz Grid, StackPanel, DockPanel i inne by osiągnąć żądany efekt.
 
@@ -5635,13 +5635,13 @@ namespace ZlozonyLayout
 
 ---
 
-## 8. Podstawowe kontrolki tekstowe
+## 10. Kontrolki tekstowe
 
 Kontrolki tekstowe służą do wyświetlania i wprowadzania tekstu. To fundamentalne elementy każdego interfejsu.
 
 ---
 
-### 8.1. TextBlock — wyświetlanie tekstu
+### 10.1. TextBlock
 
 `TextBlock` to kontrolka do **wyświetlania** tekstu — nie można w nią klikać ani jej edytować. Używasz jej do etykiet, nagłówków, opisów, wyników.
 
@@ -5738,7 +5738,7 @@ namespace TextBlockPrzyklad
 
 ---
 
-### 8.2. Label — etykieta z dostępnością
+### 10.2. Label
 
 `Label` to kontrolka podobna do `TextBlock`, ale z kilkoma ważnymi różnicami:
 
@@ -5851,7 +5851,7 @@ namespace LabelPrzyklad
 
 ---
 
-### 8.3. TextBox — pole tekstowe
+### 20.1. Text
 
 `TextBox` to edytowalne pole, w którym użytkownik wpisuje tekst. To jedna z najważniejszych kontrolek w formularzach.
 
@@ -6038,7 +6038,7 @@ namespace TextBoxPrzyklad
 
 ---
 
-### 8.4. Wielowierszowy TextBox
+### 10.4. Wielowierszowy TextBox
 
 Domyślnie TextBox przyjmuje tylko jedną linię. Żeby umożliwić wpisywanie wielu linii, używasz:
 
@@ -6196,7 +6196,7 @@ namespace TextBoxWieloliniowyPrzyklad
 
 ---
 
-### 8.5. PasswordBox — pole hasła
+### 10.8. PasswordBox
 
 `PasswordBox` to pole tekstowe, w którym wpisywany tekst jest maskowany. Zamiast liter wyświetla się ciąg znaków (domyślnie `●`).
 
@@ -6384,13 +6384,13 @@ namespace PasswordBoxPrzyklad
 
 ---
 
-## 9. Przyciski i główne akcje aplikacji
+## 11. Przyciski i akcje użytkownika
 
 Przyciski są podstawowym sposobem interakcji użytkownika z aplikacją. Kliknięcie przycisku wyzwala zdarzenie, które obsługujesz w kodzie C#.
 
 ---
 
-### 9.1. Button — Content, Click, rozmiary, style
+### 11.1. Button
 
 `Button` to kontrolka reagująca na kliknięcie. Właściwość `Content` określa co jest wyświetlane na przycisku — może to być tekst, ikona lub dowolna kontrolka.
 
@@ -6507,7 +6507,7 @@ namespace ButtonPrzyklad
 
 ---
 
-### 9.2. Zdarzenie Click — podpięcie w XAML i C#
+### 11.2. Zdarzenie Click
 
 Kliknięcie przycisku to **zdarzenie** (event). Musisz je podpiąć — powiedzieć aplikacji, jaka metoda ma zostać wywołana po kliknięciu.
 
@@ -6696,7 +6696,7 @@ namespace ClickZdarzeniePrzyklad
 
 ---
 
-### 9.3. Jeden przycisk — jedna odpowiedzialność
+### 11.3. Jeden przycisk — jedna odpowiedzialność
 
 Dobra praktyka programowania: każdy przycisk powinien mieć **jedną, jasno określoną** odpowiedzialność. Nie ładuj całej logiki do jednej metody.
 
@@ -6910,7 +6910,7 @@ namespace JednaOdpowiedzialnosc
 
 ---
 
-### 9.4. Kilka przycisków w jednym oknie — osobne metody obsługi
+### 11.4. Kilka przycisków w jednym oknie
 
 Gdy masz wiele przycisków, każdy powinien mieć **osobną metodę** obsługi. Możesz też użyć jednej metody i sprawdzać `sender`, ale tylko gdy przyciski robią to samo z różnymi wartościami.
 
@@ -7112,7 +7112,7 @@ namespace KilkaPrzyciskow
 
 ---
 
-### 9.5. Włączanie i wyłączanie przycisków — IsEnabled
+### 11.5. Włączanie i wyłączanie przycisków: IsEnabled
 
 Właściwość `IsEnabled` kontroluje, czy użytkownik może kliknąć przycisk. Wyłączony przycisk (`IsEnabled="False"`) jest wyszarzony i nie reaguje na kliknięcia.
 
@@ -7460,13 +7460,13 @@ namespace IsEnabledLista
 <!-- SECTION_DONE -->
 
 
-## 10. Kontrolki wyboru
+## 12. Kontrolki wyboru
 
 Kontrolki wyboru pozwalają użytkownikowi dokonywać wyborów spośród dostępnych opcji. W WPF masz do dyspozycji wiele takich kontrolek: `CheckBox`, `RadioButton`, `ComboBox`, `ListBox` oraz `DataGrid`. Każda z nich nadaje się do innego scenariusza.
 
 ---
 
-### 10.1. CheckBox — IsChecked, właściwość nullable bool?, obsługa braku zaznaczenia
+### 12.1. CheckBox
 
 `CheckBox` to kontrolka, która może mieć trzy stany: zaznaczony (`true`), odznaczony (`false`) lub nieokreślony (`null`). Właściwość `IsChecked` jest typu `bool?` (nullable bool), co właśnie umożliwia ten trzeci stan.
 
@@ -7576,7 +7576,7 @@ namespace PrzykladCheckBox
 
 ---
 
-### 10.2. Grupa checkboxów jako ustawienia programu — przykład generatora haseł
+### 12.1. CheckBox
 
 Klasyczny przykład użycia wielu `CheckBox` to generator haseł. Użytkownik wybiera, jakie znaki mają wchodzić w skład hasła.
 
@@ -7731,7 +7731,7 @@ namespace GeneratorHasel
 
 ---
 
-### 10.3. RadioButton — IsChecked, wybór jednej opcji
+### 11.1. Button
 
 `RadioButton` służy do wyboru jednej opcji spośród kilku. W odróżnieniu od `CheckBox`, zaznaczenie jednego `RadioButton` w grupie automatycznie odznacza pozostałe.
 
@@ -7820,7 +7820,7 @@ namespace PrzykladRadio
 
 ---
 
-### 10.4. Grupowanie RadioButton — GroupName, przykład wyboru rodzaju przesyłki
+### 11.1. Button
 
 Gdy chcesz mieć kilka niezależnych grup `RadioButton` w jednym kontenerze, używasz właściwości `GroupName`. Każda różna wartość `GroupName` tworzy osobną grupę.
 
@@ -7956,7 +7956,7 @@ namespace WyborPrzesylki
 
 ---
 
-### 10.5. ComboBox — Items w XAML, ItemsSource z C#, SelectedItem, SelectedIndex, wartość domyślna
+### 12.6. ComboBox
 
 `ComboBox` to lista rozwijana, z której użytkownik wybiera jedną pozycję. Możesz wypełniać ją zarówno w XAML jak i dynamicznie w C#.
 
@@ -8084,7 +8084,7 @@ namespace PrzykladComboBox
 
 ---
 
-### 10.6. ListBox — ItemsSource, SelectedItem, wielokrotny wybór
+### 5.2. List
 
 `ListBox` wyświetla listę pozycji, z których użytkownik może wybrać jedną lub wiele naraz (jeśli ustawisz `SelectionMode`).
 
@@ -8204,7 +8204,7 @@ namespace PrzykladListBox
 
 ---
 
-### 10.7. DataGrid — AutoGenerateColumns, wyświetlanie listy obiektów, podstawowe kolumny
+### 5.2. List
 
 `DataGrid` to zaawansowana siatka danych, idealna do wyświetlania list obiektów. Może automatycznie generować kolumny na podstawie właściwości klasy.
 
@@ -8324,13 +8324,13 @@ namespace PrzykladDataGrid
 
 ---
 
-## 11. Suwaki, wartości liczbowe i RGB
+## 13. Suwaki i wartości liczbowe
 
 `Slider` to kontrolka pozwalająca użytkownikowi wybierać wartość liczbową przez przeciąganie uchwytu. Jest idealna do regulacji głośności, jasności, a w WPF bardzo często używana do wyboru składowych koloru RGB.
 
 ---
 
-### 11.1. Slider — Minimum, Maximum, Value, TickFrequency, IsSnapToTickEnabled, SmallChange
+### 13.1. Slider
 
 Suwak ma kilka ważnych właściwości, które kontrolują jego zachowanie:
 
@@ -8410,7 +8410,7 @@ namespace PrzykladSlider
 
 ---
 
-### 11.2. Zdarzenie ValueChanged — reakcja na zmianę suwaka (e.NewValue)
+### 13.5. Zdarzenie ValueChanged
 
 Zdarzenie `ValueChanged` wywoływane jest za każdym razem gdy wartość suwaka się zmienia. Parametr `e.NewValue` zawiera nową wartość, a `e.OldValue` poprzednią.
 
@@ -8491,7 +8491,7 @@ namespace SliderValueChanged
 
 ---
 
-### 11.3. Pokazywanie wartości suwaka obok kontrolki — TextBlock aktualizowany na żywo
+### 10.1. TextBlock
 
 Standardowy wzorzec to umieszczenie `Slider` i `TextBlock` obok siebie w `StackPanel` z `Orientation="Horizontal"`.
 
@@ -8560,7 +8560,7 @@ namespace SliderZEtykieta
 
 ---
 
-### 11.4. Trzy suwaki RGB — kompletny przykład z trzema Slider, R, G, B od 0 do 255
+### 13.1. Slider
 
 Poniżej znajdziesz kompletną aplikację do wyboru koloru za pomocą trzech suwaków RGB. Jest to jeden z najczęściej spotykanych przykładów łączący `Slider`, `TextBlock`, `Rectangle` i manipulację kolorami.
 
@@ -8762,7 +8762,7 @@ namespace KoloryRGB
 
 ---
 
-### 11.5. Konwersja wartości RGB na kolor — Color.FromRgb(), SolidColorBrush, ustawianie Background
+### 16.3. SolidColorBrush
 
 Żeby ustawić kolor elementu WPF z poziomu C#, musisz:
 1. Stworzyć obiekt `Color` za pomocą `Color.FromRgb(r, g, b)` lub `Color.FromArgb(a, r, g, b)`
@@ -8797,7 +8797,7 @@ mojButton.Background = new SolidColorBrush(Color.FromRgb(0, 128, 64));
 
 ---
 
-### 11.6. Bieżący kolor i zapisany kolor — dwa Rectangle, przycisk Pobierz
+### 16.4. Rectangle
 
 Ten wzorzec jest bardzo przydatny: użytkownik manipuluje suwakami, a wybrany kolor można "zapamiętać". Poniżej uproszczony wariant skupiony na dwóch `Rectangle`.
 
@@ -8899,13 +8899,13 @@ namespace ZapisanyKolor
 
 ---
 
-## 12. Obrazy, grafiki i zasoby
+## 14. Obrazy, grafiki i zasoby
 
 Kontrolka `Image` wyświetla grafikę. W WPF obrazy możesz ładować z zasobów projektu (skompilowanych do EXE) lub ze ścieżek na dysku. Każdy z tych scenariuszy omówimy osobno.
 
 ---
 
-### 12.1. Kontrolka Image — Source, Stretch, Width, Height
+### 14.1. Kontrolka Image
 
 Kontrolka `Image` wyświetla grafikę. Kluczowe właściwości:
 
@@ -8976,7 +8976,7 @@ namespace PrzykladImage
 
 ---
 
-### 12.2. Dodawanie obrazów do projektu — folder Images, Build Action: Resource
+### 14.4. Build Action: Resource
 
 Żeby obraz był częścią aplikacji (wkompilowany do pliku EXE), musisz go poprawnie dodać do projektu:
 
@@ -9264,7 +9264,7 @@ namespace LadowanieObrazow
 
 ---
 
-### 12.7. Grafiki jako element stanu aplikacji — zmiana obrazu po wyborze opcji (RadioButton → Image)
+### 11.1. Button
 
 Bardzo często używa się obrazów do wizualnego potwierdzenia wyboru. Poniższy przykład zmienia obraz w zależności od wybranego `RadioButton`.
 
@@ -9363,13 +9363,13 @@ namespace ObrazyStanu
 
 ---
 
-## 13. Kształty, kolory i elementy wizualne
+## 16. Kolory, kształty i elementy wizualne
 
 WPF oferuje bogaty zestaw kontrolek do budowania interfejsu wizualnego. `Rectangle`, `Border`, `ProgressBar` i inne elementy pozwalają budować estetyczne aplikacje bez osobnych bibliotek graficznych.
 
 ---
 
-### 13.1. Rectangle — Fill, Stroke, StrokeThickness, Width, Height, jako podgląd koloru RGB
+### 16.4. Rectangle
 
 `Rectangle` to kształt prostokąta. Najczęściej używasz go jako wizualny podgląd wartości lub koloru.
 
@@ -9452,7 +9452,7 @@ namespace PrzykladRectangle
 
 ---
 
-### 13.2. Border — CornerRadius, BorderBrush, BorderThickness, jako kontener z obramowaniem
+### 16.5. Border
 
 `Border` to kontrolka-kontener, która dodaje obramowanie, zaokrąglone rogi i tło do dowolnej innej kontrolki. Może zawierać dokładnie jeden element potomny.
 
@@ -9534,7 +9534,7 @@ namespace PrzykladBorder
 
 ---
 
-### 13.3. Background, Foreground, BorderBrush — Color vs Brush, SolidColorBrush w C#
+### 16.3. SolidColorBrush
 
 W WPF kolory przekazujesz jako **Brush** (pędzel), a nie jako `Color`. Różnica jest ważna:
 
@@ -9625,7 +9625,7 @@ namespace KoloryIPedzle
 
 ---
 
-### 13.4. Dynamiczna zmiana koloru elementu — walidacja (czerwone tło TextBox przy błędzie)
+### 20.1. Text
 
 Zmienianie wyglądu kontrolki to prosty i skuteczny sposób na sygnalizowanie błędów walidacji.
 
@@ -9766,7 +9766,7 @@ namespace WalidacjaKolorem
 
 ---
 
-### 13.5. Podgląd danych przez wygląd kontrolki — Rectangle jako wskaźnik, Border jako karta
+### 16.4. Rectangle
 
 **MainWindow.xaml:**
 ```xml
@@ -9870,7 +9870,7 @@ namespace PodgladDanych
 
 ---
 
-### 13.6. ProgressBar — Value, Minimum, Maximum, animowany postęp
+### 16.9. ProgressBar
 
 `ProgressBar` wizualnie pokazuje postęp operacji.
 
@@ -9949,13 +9949,13 @@ namespace PrzykladProgressBar
 
 ---
 
-## 14. Zdarzenia w WPF
+## 18. Zdarzenia w WPF
 
 Zdarzenia to mechanizm informowania aplikacji o akcjach użytkownika lub zmianach stanu. WPF używa rozszerzonego systemu zdarzeń zwanego **Routed Events** (zdarzenia trasowane), który różni się od klasycznych zdarzeń .NET.
 
 ---
 
-### 14.1. Czym są zdarzenia — model obsługi, event handler, delegate
+### 18.1. Czym są zdarzenia
 
 **Zdarzenie** (event) to sygnał wysyłany przez kontrolkę, gdy coś się dzieje. Np. kliknięcie przycisku to zdarzenie `Click`. Aby zareagować na zdarzenie, piszesz **metodę obsługi** (event handler).
 
@@ -9978,7 +9978,7 @@ Parametry:
 
 ---
 
-### 14.2. Podpinanie zdarzeń w XAML i w C#
+### 18.2. Podpinanie zdarzeń w XAML
 
 Możesz podpiąć zdarzenie na dwa sposoby:
 
@@ -10064,7 +10064,7 @@ namespace PodpiecieZdarzen
 
 ---
 
-### 14.3. Parametry obsługi zdarzeń — sender, RoutedEventArgs, identyfikacja kontrolki
+### 19.6. Parametry sender i RoutedEventArgs
 
 Parametr `sender` to obiekt który wywołał zdarzenie. Możesz go użyć by zidentyfikować które pole lub przycisk spowodowało zdarzenie — szczególnie gdy kilka kontrolek współdzieli jeden handler.
 
@@ -10148,7 +10148,7 @@ namespace IdentyfikacjaSendera
 
 ---
 
-### 14.4. Click — pełny przykład z odczytem danych i aktualizacją UI
+### 18.4. Click
 
 **MainWindow.xaml:**
 ```xml
@@ -10248,7 +10248,7 @@ namespace PelnyClick
 
 ---
 
-### 14.5. TextChanged — reagowanie na wpisywanie, TextChangedEventArgs
+### 18.5. TextChanged
 
 Zdarzenie `TextChanged` jest wywoływane za każdym razem gdy tekst w `TextBox` się zmienia. Przydatne do wyszukiwania w czasie rzeczywistym lub liczenia znaków.
 
@@ -10343,7 +10343,7 @@ namespace TextChangedPrzyklad
 
 ---
 
-### 14.6. LostFocus — zdarzenie opuszczenia pola, przykład ładowania obrazu po opuszczeniu pola numeru
+### 18.6. LostFocus
 
 `LostFocus` jest wywoływany gdy kontrolka traci fokus (użytkownik przechodzi do następnego pola Tab lub kliknął gdzie indziej). Idealny do walidacji i ładowania danych.
 
@@ -10502,7 +10502,7 @@ namespace LostFocusPrzyklad
 
 ---
 
-### 14.7. SelectionChanged — ComboBox i ListBox, SelectionChangedEventArgs
+### 5.2. List
 
 `SelectionChanged` jest wywoływane gdy użytkownik zmienia zaznaczenie w `ComboBox` lub `ListBox`.
 
@@ -10584,7 +10584,7 @@ namespace SelectionChangedPrzyklad
 
 ---
 
-### 14.8. Checked i Unchecked — CheckBox, RadioButton
+### 11.1. Button
 
 Zdarzenia `Checked` i `Unchecked` są wywoływane odpowiednio gdy kontrolka jest zaznaczana i odznaczana. Działają dla `CheckBox` i `RadioButton`.
 
@@ -10688,7 +10688,7 @@ namespace CheckedUnchecked
 
 ---
 
-### 14.9. ValueChanged — Slider, RangeBaseValueChangedEventArgs, e.NewValue
+### 13.1. Slider
 
 Zdarzenie `ValueChanged` Slidera zostało omówione w rozdziale 11.2. Tutaj pokazujemy je w kontekście zdarzeń WPF.
 
@@ -10771,7 +10771,7 @@ namespace ValueChangedPrzyklad
 
 ---
 
-### 14.10. Loaded — inicjalizacja danych przy starcie aplikacji
+### 18.10. Loaded
 
 Zdarzenie `Loaded` okna jest wywoływane gdy okno zostało załadowane i wszystkie kontrolki są gotowe. To odpowiednie miejsce na ładowanie danych z pliku lub bazy, inicjalizację list itp.
 
@@ -10847,7 +10847,7 @@ namespace LoadedPrzyklad
 
 ---
 
-### 14.11. Zdarzenia klawiatury — KeyDown, KeyEventArgs, obsługa Enter
+### 18.12. Zdarzenia klawiatury: KeyDown, KeyUp
 
 `KeyDown` jest wywoływane gdy użytkownik naciśnie klawisz. Możesz sprawdzić który klawisz za pomocą `e.Key`.
 
@@ -10955,7 +10955,7 @@ namespace KlawiaturaPrzyklad
 
 ---
 
-### 14.12. Zdarzenia okna — Closing, CancelEventArgs, potwierdzenie zamknięcia
+### 18.11. Closing
 
 Zdarzenie `Closing` jest wywoływane gdy użytkownik próbuje zamknąć okno (klikając X lub przez Alt+F4). Możesz anulować zamknięcie przez `e.Cancel = true`.
 
@@ -11078,13 +11078,13 @@ namespace ZdarzeniaOkna
 <!-- SECTION_DONE -->
 
 
-## 15. Odczytywanie i ustawianie wartości kontrolek w C#
+## 20. Odczytywanie i ustawianie wartości kontrolek w C#
 
 Każda kontrolka WPF przechowuje dane w swoich właściwościach. Żeby odczytać co wpisał użytkownik albo ustawić wartość programowo, musisz znać nazwy tych właściwości i sposób ich używania w C#. W tej sekcji zobaczysz jak to robić dla każdej popularnej kontrolki.
 
 ---
 
-### 15.1. Odczyt i zapis TextBox.Text
+### 20.1. Text
 
 `TextBox` przechowuje tekst w właściwości `Text`. Możesz ją odczytać, ustawić albo wyczyścić.
 
@@ -11180,7 +11180,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.2. Odczyt CheckBox.IsChecked
+### 12.1. CheckBox
 
 Właściwość `IsChecked` jest typu `bool?` (nullable bool), co oznacza że może mieć trzy wartości: `true`, `false`, lub `null`. Dzieje się tak bo CheckBox może być w stanie nieokreślonym (gdy `IsThreeState="True"`).
 
@@ -11275,7 +11275,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.3. Odczyt wybranego RadioButton
+### 11.1. Button
 
 RadioButton nie ma jednej wspólnej właściwości dla grupy. Musisz sprawdzić `IsChecked` każdego przycisku z osobna. Grupowanie odbywa się przez `GroupName` lub przez umieszczenie w tym samym panelu.
 
@@ -11369,7 +11369,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.4. Odczyt i ustawianie ComboBox.SelectedItem i SelectedIndex
+### 12.6. ComboBox
 
 `ComboBox` udostępnia dwie główne właściwości do odczytu wyboru:
 - **`SelectedItem`** — zwraca wybrany obiekt (ComboBoxItem lub string) — wymaga rzutowania
@@ -11484,7 +11484,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.5. Odczyt Slider.Value i konwersja na int
+### 13.1. Slider
 
 `Slider` zwraca wartość jako `double`. Często potrzebujesz liczby całkowitej — używasz rzutowania `(int)` lub `Math.Round()`.
 
@@ -11590,7 +11590,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.6. Ustawianie Label.Content i TextBlock.Text
+### 10.1. TextBlock
 
 `Label` i `TextBlock` mają podobne zastosowanie — wyświetlają tekst. Różnica:
 - `Label` używa właściwości **`Content`** (typ `object`)
@@ -11692,7 +11692,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.7. Pobieranie i ustawianie Image.Source
+### 20.7. Source
 
 Kontrolka `Image` wyświetla obrazek. Właściwość `Source` przyjmuje obiekt `BitmapImage`. Możesz ustawiać zdjęcie programowo lub sprawdzić czy jest załadowane.
 
@@ -11810,7 +11810,7 @@ namespace KontrolkiDemo
 
 ---
 
-### 15.8. Zmiana Background i koloru kontrolki w C#
+### 20.8. Background
 
 Możesz zmieniać kolory tła i tekstu kontrolek programowo. Używasz klasy `SolidColorBrush` i struktury `Color`.
 
@@ -11927,13 +11927,13 @@ namespace KontrolkiDemo
 
 ---
 
-## 16. Formularze i pobieranie danych od użytkownika
+## 21. Formularze i pobieranie danych od użytkownika
 
 Formularz to zestaw kontrolek, który pozwala użytkownikowi wprowadzić dane. W WPF budujesz formularze używając Grid z etykietami i polami wejściowymi. W tej sekcji zobaczysz jak zbudować kompletny formularz i poprawnie zebrać dane ze wszystkich typów kontrolek.
 
 ---
 
-### 16.1. Budowa prostego formularza
+### 21.1. Budowa prostego formularza
 
 Dobrze zbudowany formularz ma:
 - Etykiety opisujące każde pole (kolumna lewa)
@@ -12247,7 +12247,7 @@ namespace FormularzDemo
 
 ---
 
-### 16.2. Pobieranie tekstu z TextBox
+### 20.1. Text
 
 Odczyt tekstu z `TextBox` to podstawa każdego formularza. Zawsze stosuj `Trim()` i sprawdzaj puste pole.
 
@@ -12280,7 +12280,7 @@ if (string.IsNullOrWhiteSpace(TxtImie.Text))
 
 ---
 
-### 16.3. Pobieranie zaznaczenia z CheckBox
+### 12.1. CheckBox
 
 ```csharp
 // Sposób podstawowy — operator ??
@@ -12303,7 +12303,7 @@ ChkZdalny.IsChecked = false;  // odznacz
 
 ---
 
-### 16.4. Pobieranie wyboru z RadioButton
+### 11.1. Button
 
 ```csharp
 // Sprawdzasz każdy RadioButton z osobna
@@ -12325,7 +12325,7 @@ if (stanowisko == "")
 
 ---
 
-### 16.5. Pobieranie wyboru z ComboBox
+### 12.6. ComboBox
 
 ```csharp
 // Sprawdź null przed rzutowaniem
@@ -12353,7 +12353,7 @@ if (indeks < 0)
 
 ---
 
-### 16.6. Pobieranie wartości ze Slider
+### 13.1. Slider
 
 ```csharp
 // Odczyt jako double
@@ -12375,7 +12375,7 @@ if (wiek < 18 || wiek > 70)
 
 ---
 
-### 16.7. Czyszczenie formularza po akcji
+### 21.8. Czyszczenie formularza po akcji
 
 Czyszczenie formularza po zapisaniu danych to dobra praktyka. Resetujesz każdą kontrolkę do wartości domyślnej.
 
@@ -12484,13 +12484,13 @@ namespace FormularzDemo
 
 ---
 
-## 17. Walidacja danych użytkownika
+## 22. Walidacja danych
 
 Walidacja to sprawdzanie czy dane wprowadzone przez użytkownika są poprawne przed ich użyciem. Nigdy nie zakładaj, że użytkownik poda właściwe dane — może wpisać litery zamiast cyfr, zostawić puste pola, albo podać wartość poza zakresem. W tej sekcji nauczysz się jak chronić program przed takimi sytuacjami.
 
 ---
 
-### 17.1. Czym jest walidacja
+### 22.1. Czym jest walidacja
 
 Walidacja to zestaw sprawdzeń wykonywanych zanim program przetworzy dane. Bez niej program może się wysypać lub pokazać błędne wyniki.
 
@@ -12506,7 +12506,7 @@ Walidacja to zestaw sprawdzeń wykonywanych zanim program przetworzy dane. Bez n
 
 ---
 
-### 17.2. Sprawdzanie pustych pól
+### 22.2. Sprawdzanie pustych pól
 
 Najczęstsza walidacja — czy pole nie jest puste.
 
@@ -12601,7 +12601,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.3. Sprawdzanie długości tekstu
+### 22.3. Sprawdzanie długości tekstu
 
 Możesz sprawdzać minimalną i maksymalną liczbę znaków.
 
@@ -12703,7 +12703,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.4. Sprawdzanie czy tekst zawiera tylko cyfry
+### 22.4. Sprawdzanie, czy tekst zawiera tylko cyfry
 
 Możesz sprawdzić czy każdy znak to cyfra.
 
@@ -12832,7 +12832,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.5. Sprawdzanie poprawności liczby — int.TryParse()
+### 22.5. Sprawdzanie poprawności liczby
 
 `int.TryParse()` próbuje zamienić string na liczbę całkowitą. Zwraca `true` jeśli się udało i `false` jeśli tekst nie jest liczbą. Jest bezpieczniejszy niż `int.Parse()`, który rzuca wyjątek.
 
@@ -12913,7 +12913,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.6. Walidacja zakresu liczbowego
+### 22.6. Walidacja zakresu liczbowego
 
 Po sprawdzeniu czy wartość jest liczbą, sprawdzasz czy mieści się w dozwolonym zakresie.
 
@@ -13008,7 +13008,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.7. Walidacja formatu — Regex
+### 22.7. Walidacja formatu przez Regex
 
 `Regex` (wyrażenie regularne) to wzorzec opisujący format tekstu. Możesz nim sprawdzić np. kod pocztowy, numer PESEL, adres email.
 
@@ -13166,7 +13166,7 @@ namespace WalidacjaDemo
 
 ---
 
-### 17.8. Komunikaty błędów — MessageBox vs TextBlock
+### 10.1. TextBlock
 
 Masz dwa sposoby wyświetlania błędów. Każdy ma swoje zastosowanie.
 
@@ -13404,13 +13404,13 @@ namespace WalidacjaDemo
 
 ---
 
-## 18. Komunikaty dla użytkownika
+## 23. Komunikaty dla użytkownika
 
 `MessageBox` to okno dialogowe wyświetlające wiadomość i oczekujące odpowiedzi użytkownika. Służy do informowania o błędach, sukcesach i potwierdzania akcji. W tej sekcji poznasz wszystkie opcje `MessageBox` i nauczysz się kiedy i jak go używać.
 
 ---
 
-### 18.1. MessageBox.Show() — podstawowe wywołanie
+### 23.1. MessageBox.Show()
 
 `MessageBox.Show()` ma kilka przeciążeń (wersji z różną liczbą parametrów).
 
@@ -13498,7 +13498,7 @@ namespace MessageBoxDemo
 
 ---
 
-### 18.2. Typy przycisków — MessageBoxButton
+### 11.1. Button
 
 Możesz wybrać jeden z gotowych zestawów przycisków:
 
@@ -13596,7 +13596,7 @@ namespace MessageBoxDemo
 
 ---
 
-### 18.3. Ikony — MessageBoxImage
+### 23.4. MessageBoxResult
 
 | Wartość | Ikona | Kiedy używać |
 |---------|-------|-------------|
@@ -13688,7 +13688,7 @@ namespace MessageBoxDemo
 
 ---
 
-### 18.4. Odczyt odpowiedzi — MessageBoxResult
+### 23.4. MessageBoxResult
 
 `MessageBox.Show()` zwraca wartość `MessageBoxResult` wskazującą który przycisk kliknął użytkownik. Możesz na tej podstawie podjąć decyzję w programie.
 
@@ -13799,7 +13799,7 @@ namespace MessageBoxDemo
 
 ---
 
-### 18.5. Komunikaty błędów walidacji
+### 23.5. Komunikaty błędów
 
 Poniżej widzisz konkretne komunikaty błędów dla typowych sytuacji walidacji.
 
@@ -13932,7 +13932,7 @@ namespace MessageBoxDemo
 
 ---
 
-### 18.6. Komunikaty z wynikiem działania
+### 23.6. Komunikaty wyniku działania
 
 Po wykonaniu operacji pokazujesz podsumowanie wyników.
 
@@ -14174,13 +14174,13 @@ namespace MessageBoxDemo
 
 ---
 
-## 19. Stan aplikacji
+## 24. Stan aplikacji i aktualizacja widoku
 
 Stan aplikacji to zestaw danych, które program pamięta podczas działania. Bez stanu każde kliknięcie przycisku byłoby niezależne — program nie pamiętałby co było wcześniej. W tej sekcji nauczysz się jak prawidłowo przechowywać i aktualizować stan aplikacji w WPF.
 
 ---
 
-### 19.1. Czym jest stan aplikacji
+### 24.1. Czym jest stan aplikacji
 
 Stan to wszystkie dane, które program utrzymuje między akcjami użytkownika. Przykłady stanu:
 
@@ -14338,7 +14338,7 @@ namespace StanAplikacji
 
 ---
 
-### 19.3. Stan lokalny a stan globalny okna
+### 24.3. Stan lokalny i globalny
 
 To kluczowa różnica! Zmienna wewnątrz metody (lokalna) żyje tylko podczas jej wykonania. Pole klasy (stan okna) żyje przez cały czas.
 
@@ -14441,7 +14441,7 @@ namespace StanAplikacji
 
 ---
 
-### 19.4. Stan bieżący i stan zatwierdzony
+### 24.4. Stan bieżący i zatwierdzony
 
 Czasem masz dwa rodzaje stanu: **bieżący** (to co aktualnie widać w kontrolkach) i **zatwierdzony** (to co zostało zatwierdzone przez użytkownika). Przykład: mieszanie kolorów RGB.
 
@@ -14603,7 +14603,7 @@ namespace StanAplikacji
 
 ---
 
-### 19.5. Aktualizacja stanu po kliknięciu
+### 27.7. Aktualizacja danych tylko w pamięci
 
 Wzorzec aktualizacji stanu po każdej akcji jest zawsze taki sam:
 1. **Pobierz** dane z kontrolek
@@ -15076,13 +15076,13 @@ namespace StanAplikacji
 <!-- SECTION_DONE -->
 
 
-## 20. Dynamiczna aktualizacja interfejsu
+## 25. Dynamiczna aktualizacja interfejsu
 
 Dynamiczna aktualizacja interfejsu to zmiana wyglądu i zawartości okna w trakcie działania programu — bez ponownego uruchamiania aplikacji. WPF daje Ci pełną kontrolę nad każdym elementem okna z poziomu kodu C#. Możesz zmieniać teksty, kolory, widoczność i obrazki — wszystko w odpowiedzi na akcje użytkownika.
 
 ---
 
-### 20.1. Zmienianie tekstu w kontrolce — TextBlock.Text, Label.Content, Button.Content
+### 10.1. TextBlock
 
 Każda kontrolka tekstowa w WPF ma właściwość, przez którą ustawiasz jej zawartość:
 
@@ -15371,7 +15371,7 @@ namespace VisibilityDemo
 
 ---
 
-### 20.4. Zmienianie obrazka w runtime — Image.Source z nową BitmapImage
+### 20.7. Source
 
 Kontrolka `Image` może wyświetlać różne obrazki w zależności od akcji użytkownika. Zmieniasz właściwość `Source` przypisując nowy obiekt `BitmapImage`.
 
@@ -15472,7 +15472,7 @@ namespace ZmianaObrazka
 
 ---
 
-### 20.5. Zmienianie koloru elementu — Rectangle.Fill, Border.Background, TextBlock.Foreground
+### 10.1. TextBlock
 
 Kolory w WPF ustawiasz przez właściwości takie jak `Fill`, `Background` i `Foreground`. W C# używasz klasy `Brushes` lub tworzysz `SolidColorBrush`.
 
@@ -15745,13 +15745,13 @@ namespace PrzegladarkAlbumow
 
 ---
 
-## 21. Pliki i dane zewnętrzne
+## 26. Pliki i dane zewnętrzne
 
 Aplikacje WPF często potrzebują wczytać dane z pliku tekstowego (np. lista albumów, pytania quizu, produkty) lub zapisać wyniki do pliku. W tej sekcji zobaczysz wszystkie podstawowe operacje na plikach.
 
 ---
 
-### 21.1. Odczyt pliku tekstowego — File.ReadAllLines(), File.ReadAllText(), Encoding.UTF8
+### 20.1. Text
 
 Klasa `File` z przestrzeni nazw `System.IO` oferuje proste metody do odczytu pliku:
 
@@ -15970,7 +15970,7 @@ namespace ParseowaniePliku
 
 ---
 
-### 21.3. Tworzenie obiektów z danych z pliku — pętla foreach, new Album(...)
+### 27.4. Tworzenie obiektów z danych tekstowych
 
 Po parsowaniu linii tworzysz obiekty klasy modelu i dodajesz je do listy.
 
@@ -16091,7 +16091,7 @@ namespace ObiektyZPliku
 
 ---
 
-### 21.4. Zapis tekstu do pliku — File.WriteAllText(), File.AppendAllText()
+### 20.1. Text
 
 | Metoda | Działanie |
 |---|---|
@@ -16177,7 +16177,7 @@ namespace ZapisPliku
 
 ---
 
-### 21.5. Dialog zapisu pliku — SaveFileDialog
+### 26.6. SaveFileDialog
 
 `SaveFileDialog` to standardowe okno systemowe "Zapisz jako". Użytkownik wybiera lokalizację i nazwę pliku, a Ty dostajesz ścieżkę.
 
@@ -16309,7 +16309,7 @@ namespace DialogZapisu
 
 ---
 
-### 21.6. Dialog otwarcia pliku — OpenFileDialog
+### 26.5. OpenFileDialog
 
 `OpenFileDialog` działa podobnie do `SaveFileDialog`, ale służy do wyboru istniejącego pliku. Szczegółowy przykład pokazano już w poprzednim podrozdziale (metoda `btnOtworz_Click`). Poniżej widzisz kluczowe różnice:
 
@@ -16328,7 +16328,7 @@ if (dialog.ShowDialog() == true)
 
 ---
 
-### 21.7. Sprawdzanie istnienia pliku — File.Exists(sciezka)
+### 26.7. Sprawdzanie istnienia pliku: File.Exists
 
 Przed próbą odczytu zawsze sprawdzaj czy plik istnieje. Inaczej program rzuci wyjątek.
 
@@ -16420,7 +16420,7 @@ string podkatalog = Path.Combine(katalogExe, "dane", "albumy.txt");
 
 ---
 
-### 21.9. Obsługa błędów przy plikach — try/catch FileNotFoundException, IOException
+### 26.10. Obsługa błędów przy plikach
 
 Operacje na plikach mogą się nie udać z wielu powodów. Zawsze otaczaj je blokiem `try/catch`.
 
@@ -16505,7 +16505,7 @@ namespace ObslugaBledow
 
 ---
 
-## 22. Algorytmy w aplikacjach WPF
+## 28. Algorytmy w aplikacjach WPF
 
 Dobra aplikacja WPF oddziela logikę (algorytmy) od interfejsu użytkownika. W tej sekcji zobaczysz kompletne implementacje popularnych algorytmów zintegrowanych z WPF.
 
@@ -16559,7 +16559,7 @@ private void btnSzyfruj_Click(object sender, RoutedEventArgs e)
 
 ---
 
-### 22.2. Generator haseł — kompletna implementacja
+### 28.2. Generator haseł
 
 Poniższy przykład to kompletny generator haseł. Użytkownik wybiera długość hasła i zestawy znaków za pomocą CheckBox. Program losuje hasło.
 
@@ -16736,7 +16736,7 @@ namespace GeneratorHasel
 
 ---
 
-### 22.3. Szyfr Cezara — kompletna implementacja
+### 28.4. Szyfr Cezara
 
 Szyfr Cezara przesuwa każdą literę w alfabecie o określoną liczbę pozycji. Działa na literach (a–z, A–Z), pomijając wszystkie inne znaki.
 
@@ -16880,7 +16880,7 @@ namespace SzyfrCezara
 
 ---
 
-### 22.4. Walidator kodu pocztowego — kompletna walidacja
+### 28.3. Walidator kodu pocztowego
 
 Kod pocztowy w Polsce ma format `XX-XXX` (6 znaków: 2 cyfry, myślnik, 3 cyfry). Walidator sprawdza każdy warunek osobno i wyświetla konkretny komunikat błędu.
 
@@ -17032,7 +17032,7 @@ namespace WalidatorKodu
 
 ---
 
-### 22.5. Przeliczanie ceny lub wyniku — wybór opcji, mnożnik, wyświetlenie
+### 28.5. Przeliczanie ceny lub wyniku
 
 **MainWindow.xaml:**
 ```xml
@@ -17201,7 +17201,7 @@ namespace Liczniki
 
 ---
 
-### 22.7. Praca z dużym tekstem — StringBuilder, Append, ToString()
+### 28.8. StringBuilder
 
 Gdy budujesz długi string z wielu części, nie używaj operatora `+` w pętli — jest wolny. Używaj klasy `StringBuilder`.
 
@@ -17317,13 +17317,13 @@ namespace StringBuilderDemo
 
 ---
 
-## 23. Generowanie losowych danych
+## 29. Generowanie losowych danych
 
 Losowość jest potrzebna w wielu aplikacjach: generatory haseł, losowanie pytań, symulacje, gry. W C# do generowania liczb losowych służy klasa `Random`.
 
 ---
 
-### 23.1. Klasa Random — new Random(), Next(min, max), NextDouble()
+### 29.1. Klasa Random
 
 ```csharp
 // Tworzenie generatora
@@ -17432,7 +17432,7 @@ namespace RandomDemo
 
 ---
 
-### 23.2. Generowanie losowego hasła — budowanie zestawu znaków, losowanie po jednym znaku, StringBuilder
+### 28.8. StringBuilder
 
 Poniższy przykład to uproszczona wersja generatora haseł pokazująca sam algorytm losowania.
 
@@ -17522,7 +17522,7 @@ namespace GeneratorHaslaProste
 
 ---
 
-### 23.3. Kontrola składu przez CheckBox — dodawanie zestawu znaków tylko gdy checkbox zaznaczony
+### 12.1. CheckBox
 
 Szczegółowy przykład z CheckBoxami pokazano w rozdziale 22.2 (Generator haseł). Poniżej widoczny jest sam wzorzec budowania zestawu:
 
@@ -17560,7 +17560,7 @@ if (string.IsNullOrEmpty(zestaw))
 
 ---
 
-### 23.4. Losowanie z kolekcji — lista[rng.Next(lista.Count)], przykład losowania pytania
+### 5.2. List
 
 **MainWindow.xaml:**
 ```xml
@@ -17867,7 +17867,7 @@ namespace OOPDemo
 
 ---
 
-### 24.2. Właściwości z get i set — auto-implemented properties, private set
+### 4.4. Właściwości z get i set
 
 ```csharp
 public class Album
@@ -17910,7 +17910,7 @@ public class Album
 
 ---
 
-### 24.3. Hermetyzacja — private i public, co powinno być ukryte
+### 4.6. Hermetyzacja: private i public
 
 Hermetyzacja (encapsulation) to ukrywanie szczegółów implementacji. Używasz jej aby:
 - Chronić dane przed niepoprawną modyfikacją z zewnątrz
@@ -17958,7 +17958,7 @@ public class GeneratorHasel
 
 ---
 
-### 24.4. Oddzielenie logiki od UI — klasa GeneratorHasel i klasa SzyfrCezara
+### 28.2. Generator haseł
 
 Poniższy przykład pokazuje kompletną aplikację gdzie logika jest całkowicie oddzielona od interfejsu.
 
@@ -18115,7 +18115,7 @@ namespace OddzieloneKlasy
 
 ---
 
-### 24.5. Wczytywanie danych do listy obiektów klasy modelu — kompletny przykład
+### 5.2. List
 
 Poniższy przykład to kompletna aplikacja: odczyt pliku → parsowanie → lista obiektów → wyświetlenie w ListBox → szczegóły wybranego elementu.
 
@@ -18377,9 +18377,9 @@ Aktualizacja TextBlocków     ← widok szczegółów
 <!-- SECTION_DONE -->
 
 
-## 25. Binding i podstawy MVVM
+## 30. Binding — podstawy
 
-### 25.1. Czym jest binding — połączenie właściwości C# z kontrolką XAML
+### 30.1. Czym jest binding
 
 W tej sekcji zobaczysz, jak działa mechanizm wiązania danych (ang. binding) w WPF. Binding pozwala na automatyczne synchronizowanie danych między kodem C# a interfejsem użytkownika w XAML. Zamiast ręcznie przypisywać wartości (np. `MojePole.Text = zmienna;`), deklarujesz w XAML, że dana kontrolka "nasłuchuje" zmian konkretnej właściwości.
 
@@ -18428,7 +18428,7 @@ Kluczowe elementy w tym przykładzie:
 
 <!-- SECTION_DONE -->
 
-### 25.2. DataContext — ustawianie w XAML i C#, this jako DataContext
+### 20.1. Text
 
 W tej sekcji zobaczysz, jak określić globalne źródło danych dla całego okna za pomocą właściwości `DataContext`. Zamiast pisać za każdym razem `ElementName`, możemy przypisać obiekt (np. samo okno) jako główne źródło danych dla całego XAML.
 
@@ -18485,7 +18485,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 25.3. Binding do właściwości — {Binding NazwaWlasciwosci} w XAML
+### 30.3. Binding do właściwości
 
 W tej sekcji zobaczysz, jak wiązać dane z niestandardowym obiektem klasy, a nie tylko z właściwościami okna. Tworzysz osobną klasę reprezentującą dane i przypisujesz jej instancję jako `DataContext`.
 
@@ -18559,7 +18559,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 25.4. Binding dwukierunkowy — Mode=TwoWay, kiedy potrzebny
+### 30.4. Mode
 
 W tej sekcji zobaczysz, jak umożliwić przepływ danych w obu kierunkach. Standardowy binding często jest jednokierunkowy (od danych do kontrolki). Gdy użytkownik wpisuje coś w TextBox, chcemy, by ta wartość wracała do naszego obiektu C#. W tym celu używasz parametru `Mode=TwoWay`.
 
@@ -18719,7 +18719,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 25.6. Binding kolekcji — ItemsSource={Binding Lista}, ObservableCollection<T>, auto-odświeżanie
+### 5.2. List
 
 W tej sekcji zobaczysz, jak połączyć listę danych z kontrolką typu ListBox lub DataGrid. Standardowa klasa `List<T>` nie informuje interfejsu o dodaniu lub usunięciu elementów. Dlatego w WPF dla kolekcji używa się specjalnej klasy `ObservableCollection<T>`.
 
@@ -18797,7 +18797,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 25.7. MVVM — Model (dane), View (XAML), ViewModel (logika+binding), kiedy stosować
+### 30.4. Mode
 
 W tej sekcji zobaczysz, jak wygląda podział aplikacji na warstwy za pomocą wzorca MVVM (Model-View-ViewModel). Jest to standard w tworzeniu profesjonalnych aplikacji WPF. Polega on na oddzieleniu interfejsu (View) od danych (Model) poprzez specjalną klasę pośredniczącą (ViewModel).
 
@@ -18903,7 +18903,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 25.8. Komendy ICommand — RelayCommand, CanExecute, Execute, binding komendy do przycisku
+### 35.4. ICommand
 
 W tej sekcji zobaczysz, jak całkowicie pozbyć się zdarzeń typu `Button_Click` w pliku Code-Behind (C# widoku) dzięki użyciu komend i interfejsu `ICommand`. Komendy pozwalają dodatkowo automatycznie sterować włączaniem i wyłączaniem przycisków za pomocą metody `CanExecute`.
 
@@ -19041,7 +19041,7 @@ Kluczowe elementy:
 
 ## 26. Style i wygląd aplikacji
 
-### 26.1. Podstawowe formatowanie kontrolek — FontSize, FontWeight, Foreground, Background bezpośrednio
+### 20.8. Background
 
 W tej sekcji zobaczysz, jak zmieniać wygląd pojedynczych kontrolek ręcznie, bezpośrednio w pliku XAML. Jest to najszybszy sposób stylizacji, chociaż przy dużej ilości kontrolek prowadzi do powtarzania kodu.
 
@@ -19097,7 +19097,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 26.2. Style lokalne — Style w Window.Resources, TargetType, Setter
+### 20.7. Source
 
 W tej sekcji zobaczysz, jak zapobiegać powtarzaniu tego samego kodu. Wykorzystujesz zasoby okna, by zdefiniować styl raz i zastosować go w wielu miejscach jednocześnie.
 
@@ -19155,7 +19155,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 26.3. Style globalne — App.xaml, Application.Resources, styl dla wszystkich przycisków
+### 20.7. Source
 
 W tej sekcji zobaczysz, jak ustalić domyślny wygląd dla wszystkich kontrolek danego typu w całej aplikacji. Zamiast tworzyć styl w jednym oknie, umieszczasz go w pliku `App.xaml`. Poniższy przykład pokazuje również tworzenie stylu bez klucza (`x:Key`), co sprawia, że jest on stosowany automatycznie.
 
@@ -19216,7 +19216,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 26.4. TargetType i Setter w stylach — Property, Value, przykład stylu Button
+### 11.1. Button
 
 W tej sekcji omówimy dokładniej działanie Settera w stylach. Styl to w WPF zbiór przypisań. Setter składa się z podania właściwości (`Property`) i wartości (`Value`), jaką ta właściwość ma przyjąć.
 
@@ -19338,7 +19338,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 26.6. DataTemplate — szablon wiersza w ListBox, wyświetlanie obiektu klasy Album w liście
+### 5.2. List
 
 W tej sekcji zobaczysz, jak kontrolować wygląd elementów prezentujących dane w kontrolkach list. Kiedy wrzucisz obiekty np. klasy `Album` do ListBoxa, WPF po prostu wywoła metodę `ToString()`, co wygląda źle. Aby ułożyć właściwości ładnie na ekranie (np. ze zdjęciem, grubym tekstem itp.), musisz stworzyć kompletny `DataTemplate`.
 
@@ -19416,7 +19416,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 26.7. Zasoby kolorów i prosty motyw — SolidColorBrush jako zasób, StaticResource
+### 16.3. SolidColorBrush
 
 W tej sekcji zobaczysz, jak zdefiniować globalne zmienne dla kolorów za pomocą pędzli (Brush) i stworzyć jednolity motyw kolorystyczny, by móc łatwo zmienić kolor całej aplikacji w jednym miejscu.
 
@@ -19487,9 +19487,9 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 27. Nawigacja i wiele widoków
+## 41. Nawigacja i wiele widoków
 
-### 27.1. Wiele okien — new OknoSzczegoly().Show(), ShowDialog(), przekazywanie danych do okna
+### 41.1. Wiele okien
 
 W tej sekcji zobaczysz, jak nawigować między tradycyjnymi oknami w WPF. Omówione zostaną dwa sposoby otwierania okien (modalny i niemodalny) oraz sposób na przesłanie danych z okna A do okna B przez konstruktor klasy.
 
@@ -19588,7 +19588,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 27.2. UserControl — tworzenie własnej kontrolki, osadzanie w MainWindow
+### 41.5. UserControl
 
 W tej sekcji zobaczysz, jak tworzyć mniejsze ekrany komponentów (tzw. kontrolki użytkownika), by uprościć kod w głównym oknie. Zamiast pisać 1000 linii w MainWindow, robisz mniejsze klocki z użyciem klasy `UserControl`.
 
@@ -19673,7 +19673,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 27.3. ContentControl — podmiana Content na różne UserControl, prosta nawigacja
+### 20.2. Content
 
 W tej sekcji połączymy UserControls i mechanizm `ContentControl`, by stworzyć nowoczesną, jednoonkieniową nawigację, spotykaną chociażby w aplikacjach wizualnych (zmiana widoku bez otwierania nowych okien).
 
@@ -19745,7 +19745,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 27.4. Widok startowy, roboczy i wynikowy — Visibility toggling, przykład quizu
+### 41.7. Widok startowy, roboczy i wynikowy
 
 W tej sekcji zobaczysz alternatywną metodę nawigacji wykorzystywaną najczęściej w prostych i jednorazowych aplikacjach (np. quiz, instalator) - chowanie i wyświetlanie całych grup interfejsu (StackPanel) za pomocą właściwości `Visibility`.
 
@@ -19844,7 +19844,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 28. Wzorce i dobre praktyki w aplikacjach WPF
+## 28. Algorytmy w aplikacjach WPF
 
 ### 28.1. Wzorzec: odczyt kontrolek → logika → aktualizacja UI — schemat każdej obsługi zdarzenia
 
@@ -19982,7 +19982,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 28.3. Inicjalizacja danych w zdarzeniu Loaded okna — Window_Loaded, wczytanie pliku, init kolekcji
+### 18.10. Loaded
 
 W tej sekcji zobaczysz miejsce do wykonywania czasochłonnego przygotowywania danych (wczytywanie z pliku, połączenie z bazą). Najlepszym do tego miejscem jest wbudowane w każde okno zdarzenie `Loaded`, które wykonuje się, gdy okno z powodzeniem wyświetli się użytkownikowi.
 
@@ -20184,7 +20184,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 28.6. Czyszczenie formularza po akcji — ResetFormularz()
+### 21.8. Czyszczenie formularza po akcji
 
 W tej sekcji zobaczysz ostatnią dobrą praktykę, jaką jest poprawianie wrażeń z interfejsu (UX). Gdy np. formularz jest skutecznie przetworzony, wyodrębniamy metodę czyszczącą poszczególne elementy (przywracając ich pierwotny stan zerowy), aby użytkownik łatwiej wpisał kolejne dane.
 
@@ -20257,9 +20257,9 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 29. Porządkowanie kodu
+## 45. Porządkowanie kodu
 
-### 29.1. Nazewnictwo kontrolek — ImieTextBox, GenerujButton, WynikTextBlock, konwencje
+### 10.1. TextBlock
 
 W tej sekcji poznasz profesjonalną konwencję nazewnictwa dla okien WPF, która uchroni cię przed bałaganem. Częstym błędem nowicjuszy jest zostawianie kontrolek jak `textBox1`, `button3`, co przy większej aplikacji doprowadza do zgubienia się we własnym kodzie. Złota zasada to dopisywanie typu w postfixie (na końcu nazwy).
 
@@ -20315,7 +20315,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 29.2. Nazewnictwo metod — GenerujHaslo(), SprawdzKodPocztowy(), OdswiezWidok(), WczytajDane()
+### 45.2. Nazewnictwo metod
 
 W tej sekcji omówimy standardy pisania samych metod dla C#. C# i platforma .NET posiadają sztywny standard określania funkcji za pomocą czasowników z wielkiej litery (PascalCase), co gwarantuje łatwe odróżnienie metody od pola lub lokalnej zmiennej.
 
@@ -20384,7 +20384,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 29.3. Oddzielanie logiki od obsługi zdarzeń — Button_Click wywołuje metody, nie zawiera logiki
+### 11.1. Button
 
 W tej sekcji zajmiemy się bardzo niebezpiecznym nawykiem i zaprezentujemy jego rozwiązanie. Często metody `Button_Click` rosną do rozmiarów 150 linii i wykonują wszystko jednocześnie (zapytania bazodanowe, ukrywanie kontrolek, formatowanie liczb). Zdarzenie kliknięcia powinno z definicji jedynie "koordynować", a nie pracować fizycznie na logice.
 
@@ -20454,7 +20454,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 29.4. Klasy pomocnicze — GeneratorHasel, SzyfrCezara, AlbumService, Walidator jako osobne klasy
+### 28.2. Generator haseł
 
 W tej sekcji zobaczysz, jak umieszczać poszczególne zadania systemu w wyspecjalizowanych, osobnych klasach pomocniczych. Tworzenie klas z końcówkami np. `Service`, `Manager`, `Helper`, czy `Generator` to serce inżynierii C#, nazywane od strony architektonicznej "Rozdziałem Obowiązków" (Separation of Concerns).
 
@@ -20621,9 +20621,9 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 30. Debugowanie i typowe błędy
+## 44. Debugowanie i typowe błędy
 
-### 30.1. Debugowanie C# — F9 breakpoint, F5 debug, F10 step over, F11 step into, podgląd zmiennych
+### 44.2. Podgląd zmiennych
 
 W tej sekcji poznasz narzędzia Visual Studio służące do kontrolowania i wstrzymywania kodu krok po kroku w trakcie jego prawdziwego życia. Pozwala to zaglądać do środka pętli i czytać stany kontrolek bez seryjnego "używania MessageBox" jako testera wartości. 
 
@@ -20741,7 +20741,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 30.3. Błędy z kontrolkami — NullReferenceException gdy brak x:Name, niezgodne nazwy XAML/C#
+### 44.4. Brak x:Name
 
 W tej sekcji zobaczysz błąd w kodzie działający od strony systemu, gdy nie podłączysz poprawnego odwołania x:Name kontrolki. Słynny przypadek to brak nadania nazwy interfejsowi w XAML po czym na bezczelnego uderzanie w nią w kodzie C#, czego skutkiem jest najsłynniejszy i najgorszy z błędów - zrzut z komunikatem "Object reference not set to an instance of an object".
 
@@ -20880,7 +20880,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 30.5. Błędy logiczne — IndexOutOfRange przy nawigacji listą, pusty zestaw znaków w generatorze, brak OdswiezWidok()
+### 5.2. List
 
 W tej sekcji powiemy sobie o błędach w logice kodu C#. Są najtrudniejszą formą błędu – nie wywalają się podczas kompilacji na czerwono. Kod wpisano syntaktycznie, program działa, po czym podczas wciskania akcji i generowania logiki przez maszynę okazuje się, że obliczył źle pozycje, tablice lub podał kosmicznie nieprzewidzianą kombinację wyjścia poza skale danych, wywalając się do pulpitu z hukiem!
 
@@ -20956,9 +20956,9 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 31. Publikowanie aplikacji
+## 43. Testowanie logiki aplikacji
 
-### 31.1. Tryb Debug i Release — różnice, kiedy używać którego
+### 46.2. Debug i Release
 
 W tej sekcji zajmiemy się finałowym trybem przygotowywania i optymalizacji aplikacji po długotrwałym kodowaniu i testowaniu, używając dostępnych trybów na samej górze środowiska IDE – zazwyczaj znanym trójkątem pod przyciskiem budowy obok paska z nazwą (np. "Debug", "Any CPU").
 
@@ -21066,7 +21066,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 31.3. Publikowanie folderowe — Publish, Folder, konfiguracja
+### 46.4. Publikowanie folderowe
 
 W tej sekcji przeprowadzisz ostateczny proces pakowania dla odbiorców zewnętrznych, wykorzystując do tego opcję masową – moduł "Publish". Jest to procedura, w której nie kopiujemy ręcznie plików z podziemi (jak pokazano wyżej w folderze bin), a tworzymy profesjonalną, docelową i odciętą ścieżkę generowanego ostatecznego produktu.
 
@@ -21108,7 +21108,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-### 31.4. Aplikacja zależna od runtime i samowystarczalna — self-contained vs framework-dependent, rozmiar
+### 46.5. Aplikacja zależna od runtime
 
 W ostatniej sekcji zajmiemy się najnowszą z plag od Microsoftu – doborem ciężkości. Musimy dokonać finalnego, mistrzowskiego wyboru konfiguracji publikacji. Obojętnie jaki proces podjąłeś, C# stawia Cię zawsze na wielkiej drodze – co chcesz zrobić z frameworkiem na którym zbudowano środowisko i w jaki sposób plik uruchomi klient obcy.
 
@@ -23164,11 +23164,11 @@ namespace WpfApp
 <!-- SECTION_DONE -->
 
 
-# 36. Zasoby i style
+## 36. Zasoby i style
 
 W tej sekcji zobaczysz, w jaki sposób organizować wygląd aplikacji za pomocą zasobów i stylów. Dowiesz się, jak tworzyć powtarzalne schematy kolorów, czcionek czy zachowań kontrolek i używać ich w wielu miejscach jednocześnie. Jest to kluczowe, aby interfejs był spójny i łatwy w utrzymaniu.
 
-## 36.1. Resources
+### 36.1. Resources
 
 Każdy element w WPF, od całej aplikacji (`App.xaml`), przez okno (`Window`), aż po pojedynczą kontrolkę (np. `Grid` lub `StackPanel`), posiada właściwość `Resources`. Służy ona do przechowywania wielokrotnie używanych obiektów, takich jak kolory, pędzle (Brushes), style czy szablony. Definiując coś raz w `Resources`, możesz odwoływać się do tego wielokrotnie.
 
@@ -23217,7 +23217,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.2. StaticResource
+### 36.2. StaticResource
 
 `StaticResource` to najczęstszy sposób odwoływania się do zasobów w XAML. Kiedy używasz `StaticResource`, WPF szuka zasobu tylko raz – podczas wczytywania okna. Jeśli później zmienisz wartość tego zasobu w kodzie, zmiana ta **nie zostanie** zaktualizowana w widoku. Używasz go dla wartości, które są stałe podczas działania programu.
 
@@ -23268,7 +23268,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.3. DynamicResource
+### 36.3. DynamicResource
 
 W przeciwieństwie do `StaticResource`, `DynamicResource` nasłuchuje zmian w zasobach przez cały czas życia aplikacji. Jeśli zmienisz wartość zasobu w kodzie C#, wszystkie elementy używające `DynamicResource` natychmiast się zaktualizują. Używasz go głównie wtedy, gdy tworzysz motywy (jasny/ciemny) i zmieniasz je "w locie".
 
@@ -23321,7 +23321,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.4. Style lokalne
+### 36.4. Style lokalne
 
 Style pozwalają zgrupować wiele właściwości (np. tło, czcionka, marginesy) i zastosować je do wielu kontrolek naraz. Styl lokalny to taki, który umieszczasz np. w `Window.Resources` lub `Grid.Resources` i odwołujesz się do niego w obrębie danego pliku.
 
@@ -23373,7 +23373,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.5. Style globalne w App.xaml
+### 36.5. Style globalne w App.xaml
 
 Kiedy tworzysz dużą aplikację, chcesz, aby przyciski w każdym oknie wyglądały tak samo. Zamiast kopiować style do każdego okna, umieszczasz je w pliku `App.xaml`. Zasoby z `App.xaml` są dostępne we wszystkich oknach i widokach aplikacji.
 
@@ -23434,7 +23434,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.6. Setter
+### 36.6. Setter
 
 Wewnątrz tagu `<Style>` umieszczasz elementy `<Setter>`. Setter to instrukcja mówiąca: "ustaw tę właściwość na tę wartość". Bez Setterów style nie robiłyby nic.
 
@@ -23490,7 +23490,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.7. TargetType
+### 36.7. TargetType
 
 Zrozumienie `TargetType` jest kluczowe, kiedy tworzysz style. Definiuje on z góry, z jaką klasą (jaką kontrolką) masz do czynienia. Dzięki temu edytor kodu wie, jakie właściwości może ci podpowiedzieć w atrybucie `Property` wewnątrz Settera.
 
@@ -23546,7 +23546,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.8. Zasoby kolorów
+### 36.8. Zasoby kolorów
 
 W profesjonalnych aplikacjach nigdy nie wpisuje się kolorów na sztywno ("na twardo") bezpośrednio do właściwości (np. `Background="Red"`). Zamiast tego definiuje się tak zwaną paletę kolorów w sekcji Resources, używając obiektów `Color` lub `SolidColorBrush`.
 
@@ -23602,7 +23602,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 36.9. Prosty motyw aplikacji
+### 36.9. Prosty motyw aplikacji
 
 Połączenie dynamicznych zasobów, pędzli i kodu C# pozwala na utworzenie prostego systemu zmiany motywu aplikacji, na przykład trybu jasnego i ciemnego. Używamy `DynamicResource`, aby kontrolki natychmiast załapały zmianę i zareagowały na nadpisanie kluczy w zasobach.
 
@@ -23673,11 +23673,11 @@ Kluczowe elementy:
 * **Natychmiastowy efekt** – Motyw zmienia się bez konieczności ponownego ładowania okna.
 
 <!-- SECTION_DONE -->
-# 37. Szablony i wygląd kontrolek
+## 37. Szablony i wygląd kontrolek
 
 W tej sekcji zobaczysz, jak całkowicie odmienić wygląd kontrolek bez utraty ich funkcjonalności. Dowiesz się również, jak prezentować dane w listach za pomocą niestandardowych układów.
 
-## 37.1. DataTemplate
+### 37.1. DataTemplate
 
 `DataTemplate` (Szablon Danych) służy do określenia, w jaki sposób dany obiekt C# (np. klasa `Osoba`) powinien zostać wyświetlony na ekranie. Zamiast widzieć suchą nazwę obiektu wypisaną przez metodę `ToString()`, tworzysz strukturę z przyciskami, obrazkami i tekstami, w które wstrzykujesz właściwości obiektu za pomocą Bindingu.
 
@@ -23750,7 +23750,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 37.2. ControlTemplate
+### 37.2. ControlTemplate
 
 O ile `DataTemplate` zmienia wygląd wyświetlanych *danych*, o tyle `ControlTemplate` (Szablon Kontrolki) pozwala na całkowitą zmianę wizualnej reprezentacji samej *kontrolki*. Np. z prostokątnego, szarego przycisku (Button) możesz zrobić okrągły, mieniący się kolorami kształt, który wciąż zachowuje się jak przycisk (można w niego kliknąć).
 
@@ -23808,7 +23808,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 37.3. TemplateBinding
+### 37.3. TemplateBinding
 
 Gdy tworzysz `ControlTemplate`, nowe wnętrze kontrolki (np. okrąg) z definicji nie ma dostępu do właściwości samej kontrolki (np. jej tła, ramki). Aby połączyć właściwość kształtu z właściwością oryginalnej kontrolki (np. `Background` przycisku), używasz wyrażenia `TemplateBinding`.
 
@@ -23863,7 +23863,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 37.4. Triggery w stylach
+### 37.4. Triggery w stylach
 
 Triggery (Wyzwalacze) pozwalają zmieniać właściwości kontrolki automatycznie, gdy zajdzie jakaś zmiana w jej stanie, np. gdy najedziesz na nią myszką (`IsMouseOver="True"`) albo gdy przycisk zostanie wciśnięty (`IsPressed="True"`). Dzięki temu ożywiasz interfejs bez pisania kodu w C#.
 
@@ -23929,7 +23929,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 37.5. Proste motywy kontrolek
+### 37.5. Proste motywy kontrolek
 
 Łącząc Style, ControlTemplate, TemplateBinding i Triggery w jedną całość, jesteś w stanie stworzyć pełnoprawny, profesjonalny wygląd dla kontrolek we własnym systemie wizualnym (tzw. "Theme" lub Motyw). Możesz całkowicie zastąpić standardowy, szary wygląd Windows.
 
@@ -24001,7 +24001,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 37.6. Różnica między stylem, szablonem i zasobem
+### 37.6. Różnica między stylem, szablonem i zasobem
 
 Bardzo często te trzy pojęcia się mieszają, ponieważ są ściśle powiązane i współpracują w tym samym fragmencie kodu. Warto raz na zawsze ustalić, za co konkretnie odpowiada każde z nich.
 
@@ -24077,11 +24077,11 @@ Kluczowe elementy:
 * **Hermetyzacja** – Styl ukrywa całą złożoność kontrolki, a widok końcowy z punktu widzenia programisty pozostaje krótki (`<Label ... Style="..." />`).
 
 <!-- SECTION_DONE -->
-# 38. Drzewo logiczne i wizualne
+## 38. Drzewo logiczne i wizualne
 
 W tej sekcji zobaczysz, jak platforma WPF zarządza elementami pod spodem interfejsu. Zrozumienie struktury "drzewa" w WPF pozwala pojąć, dlaczego właściwości są dziedziczone oraz w jaki sposób program szuka stylów i zasobów.
 
-## 38.1. Logical tree
+### 38.1. Logical tree
 
 Drzewo logiczne (Logical Tree) to struktura, którą piszesz w swoim kodzie XAML. Przedstawia ono widok z lotu ptaka – główne kontrolki aplikacji. Każdy węzeł to po prostu element, który dodajesz na ekran, np. `Window` zawiera `Grid`, a w nim znajduje się `Button`.
 
@@ -24138,7 +24138,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 38.2. Visual tree
+### 38.2. Visual tree
 
 Drzewo wizualne (Visual Tree) to rozwinięcie drzewa logicznego o elementy najniższego poziomu. O ile przycisk w XAML to tylko jedno słowo `<Button>`, o tyle w drzewie wizualnym zostaje on rozłożony na mniejsze części rysunkowe (granice, teksty, obrysy, ContentPresenter). Każdy element wyświetlany na ekranie pochodzi od klasy `Visual`.
 
@@ -24200,7 +24200,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 38.3. Dziedziczenie właściwości
+### 38.3. Dziedziczenie właściwości
 
 Niektóre właściwości w WPF przenoszą się w dół na elementy potomne. To mechanizm zwany dziedziczeniem właściwości (Property Value Inheritance). Jeśli ustawisz powiększoną czcionkę głównemu elementowi okna (np. `Window`), wszystkie przyciski i etykiety w tym oknie również się powiększą, chociaż ich nie konfigurowałeś.
 
@@ -24248,7 +24248,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 38.4. Szukanie zasobów
+### 38.4. Szukanie zasobów
 
 Gdy deklarujesz użycie zasobu kluczem np. `{StaticResource MyBrush}`, WPF musi wiedzieć, gdzie ten `MyBrush` się znajduje. Robi to, przeszukując w górę drzewo logiczne, by znaleźć zadeklarowany styl czy pędzel. Przeszukanie idzie w kierunku od dziecka do korzenia i kończy się na zasobach aplikacji (`App.xaml`).
 
@@ -24298,7 +24298,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 38.5. Wpływ drzewa na style
+### 38.5. Wpływ drzewa na style
 
 Podobnie jak zasoby, również i style wyszukiwane są wzdłuż struktury drzewa. Dotyczy to w szczególności tzw. "stylów ukrytych" (bez podanego klucza `x:Key`), które same z siebie poszukują kontrolek w drzewie o podanym `TargetType`.
 
@@ -24366,7 +24366,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 38.6. Wpływ drzewa na binding
+### 38.6. Wpływ drzewa na binding
 
 Głównym zadaniem Drzewa Logicznego z perspektywy mechanizmu Bindingu jest przekazywanie obiektu bindowania (DataContext). Kiedy nadajesz `DataContext` na oknie aplikacji, wędruje on w dół do każdego elementu w interfejsie. Z kolei Drzewo Wizualne przydaje się, by w złożonych kontrolkach w górę lub w dół namierzyć kontrolkę.
 
@@ -24419,11 +24419,11 @@ Kluczowe elementy:
 * **`RelativeSource AncestorType`** – Służy do celowego podróżowania po drzewie w górę (do rodziców), aby wydobyć stamtąd potrzebną wartość podczas pisania kodu XAML.
 
 <!-- SECTION_DONE -->
-# 39. DependencyProperty i właściwości WPF
+## 39. DependencyProperty i właściwości WPF
 
 W tej sekcji zobaczysz serce architektury WPF, czyli Właściwości Zależności (Dependency Properties). Dzięki nim możliwe są zaawansowane funkcje, takie jak wiązanie danych (Binding), style, szablony, czy powiadamianie o zmianach.
 
-## 39.1. Czym jest DependencyProperty
+### 39.1. Czym jest DependencyProperty
 
 W WPF większość właściwości w kontrolkach wizualnych to nie są zwykłe zmienne w C#. Kiedy ustawiasz tło w przycisku (`Background="Red"`), WPF zapisuje to w specjalnym systemie Dependency Properties (właściwości zależnych). System ten analizuje, skąd ma brać wartość: czy z kodu, czy z Bindingu, a może z nałożonej animacji albo lokalnego stylu. Przez to jedna "właściwość" staje się systemem reagującym na zależności z zewnątrz.
 
@@ -24473,7 +24473,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 39.2. Zwykła właściwość C# a właściwość zależności
+### 39.2. Zwykła właściwość C# a właściwość zależności
 
 Dlaczego po prostu nie użyjemy zwykłej właściwości (`public string Text { get; set; }`) w kontrolkach WPF? Zwykła właściwość może być wywołana tylko z C#, musiałbyś przy każdej zmianie ręcznie odpalać powiadomienia (np. `INotifyPropertyChanged`). System nie potrafiłby też rozpoznać, czy wartość w danej chwili ma być zmieniana przez styl (Style), animację czy wiązanie. Właściwość zależności "obsługuje" te wszystkie warstwy za programistę.
 
@@ -24527,7 +24527,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 39.3. Dependency properties w kontrolkach WPF
+### 39.3. Dependency properties w kontrolkach WPF
 
 Gdy przeglądasz dokumentację Microsoftu dla dowolnej kontrolki np. przycisku `Button`, każda z jej wizualnych cech jest odnotowana jako "Dependency property". Pozwala to platformie łączyć właściwości między wieloma elementami bez pisania kodu C#.
 
@@ -24573,7 +24573,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 39.4. Wartości lokalne, style i binding
+### 39.4. Wartości lokalne, style i binding
 
 System obliczający finalną wartość danej właściwości posługuje się zbiorem priorytetów. Np. przycisk może mieć kolor nałożony z 4 różnych miejsc naraz (lokalnie jako tło, ze stylu w aplikacji, w triggerze animacji, lub poprzez system operacyjny Windows). Która wartość wygra?
 
@@ -24638,7 +24638,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 39.5. Tworzenie własnej prostej właściwości zależności
+### 39.5. Tworzenie własnej prostej właściwości zależności
 
 Gdy piszesz własną, niestandardową kontrolkę (np. powiadomienie-baner, własny przełącznik on/off), do obsługi jej unikalnych cech potrzebujesz stworzyć własną Właściwość Zależności. Tylko w ten sposób umożliwić użytkownikom kontrolki swobodne bindowanie do jej zmiennych w kodzie XAML.
 
@@ -24712,18 +24712,18 @@ Kluczowe elementy:
 * **Wrapper GetValue/SetValue** – Podstawowy szkielet, bez żadnego dodawania własnej logiki obok wywołań bazowych (inaczej WPF to zignoruje i przeskoczy przez XAML).
 
 <!-- SECTION_DONE -->
-# 40. CollectionView i prezentacja kolekcji
+## 40. CollectionView i prezentacja kolekcji
 
 W tej sekcji poznasz potężny mechanizm zarządzania sposobem wyświetlania kolekcji w WPF. Zobaczysz, jak w czasie rzeczywistym filtrować, sortować i grupować dane bez dotykania oryginalnej listy w kodzie. Omówimy to na przykładzie mini-aplikacji do zarządzania kontaktami w firmie.
 
-## 40.1. Po co używać widoku kolekcji
+### 40.1. Po co używać widoku kolekcji
 
 Kiedy przekazujesz kontrolce `ListBox` lub `DataGrid` listę elementów (np. pobraną z bazy danych w `List<T>` lub `ObservableCollection<T>`), wyświetla ona po prostu dane w takiej kolejności, w jakiej je dodałeś. Co jeśli użytkownik chce je wyszukać, posortować alfabetycznie lub ukryć nieaktywnych pracowników?
 Mógłbyś oczywiście stworzyć nową listę, na niej posortować elementy i podpiąć ją z powrotem do kontrolki. To jednak niepotrzebnie dubluje pamięć i potrafi "zerwać" synchronizację przy aktualizacji danych. WPF rozwiązuje to poprzez tworzenie przezroczystej "szyby" pomiędzy prawdziwymi danymi, a interfejsem graficznym. Ta "szyba" to właśnie Widok Kolekcji (Collection View). Patrząc przez szybę, możesz odwracać, ukrywać i grupować elementy – podczas gdy pod spodem oryginalne dane się nie zmieniają.
 
 <!-- SECTION_DONE -->
 
-## 40.2. ICollectionView
+### 40.2. ICollectionView
 
 Interfejs `ICollectionView` to mechanizm zaszyty w WPF, który pozwala na modyfikację strumienia danych. Kiedy podpinasz `ObservableCollection<T>` do listy `ItemsSource`, WPF i tak niejawnie owija te dane w widok. Możesz wyciągnąć referencję do tego automatycznego widoku z użyciem klasy `CollectionViewSource` i zacząć go programowo obsługiwać.
 
@@ -24822,7 +24822,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 40.3. CollectionViewSource
+### 40.3. CollectionViewSource
 
 Aby nie pisać zarządzania sortowaniem w C# z użyciem `ICollectionView`, platforma WPF udostępnia obiekt `CollectionViewSource`. Pozwala on zadeklarować Widok Kolekcji bezpośrednio w kodzie XAML jako zasób (Resource). Daje to potężną możliwość bindowania kontrolek interfejsu (np. pole wyszukiwarki) bezpośrednio do widoku, minimalizując logikę kontrolera (code-behind).
 
@@ -24892,7 +24892,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 40.4. Sortowanie danych w widoku
+### 40.4. Sortowanie danych w widoku
 
 Sortowanie opiera się na klasie `SortDescription`. Dodajesz ją do kolekcji `SortDescriptions` w Twoim obiekcie widoku. Zobaczysz natychmiastowe przemodelowanie elementów w interfejsie. Jeśli dodasz nowe osoby do `ObservableCollection`, nowy element zostanie tam umieszczony, ale interfejs wpisze go od razu do dobrego sortowania w widoku!
 
@@ -24961,7 +24961,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 40.5. Filtrowanie danych w widoku
+### 40.5. Filtrowanie danych w widoku
 
 Najczęstszym miejscem użycia `CollectionView` jest pole tekstowe do wyszukiwania zjawisk zwane potocznie "Lupką". Filtr działa na zasadzie wywoływania zdefiniowanego na zewnątrz "predykatu" (czyli funkcji, która sprawdza element i odpowiada True – Pokaż lub False – Ukryj) za każdym razem, kiedy wywołasz odświeżanie.
 
@@ -25051,7 +25051,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 40.6. Grupowanie danych
+### 40.6. Grupowanie danych
 
 Jeżeli chcesz np. połączyć pracowników w drzewiaste działy (HR podział 1, IT podział 2), Widok Kolekcji używa grup (GroupDescriptions). Do pełnego wizualnego pogrupowania musisz również dopisać XAML-ową strukturę (`GroupStyle`), aby kontrolka wiedziała, jak dorysować podziały i nagłówki przed daną grupą.
 
@@ -25131,7 +25131,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 40.7. Aktualny element kolekcji
+### 40.7. Aktualny element kolekcji
 
 Jeśli masz kontrolkę, która modyfikuje dane osoby z listy (np. obok listy masz TextBoxy), przydatne okazuje się zjawisko `CurrentItem`. Widok z `ICollectionView` oprócz układania danych, potrafi wskazać swoim "kursorem" zaznaczony aktualnie wiersz. Zsynchronizujesz interfejs, aby pokazywał obok te same dane, co aktywnie zaznaczone nazwisko.
 
@@ -25216,11 +25216,11 @@ Kluczowe elementy:
 * **Binding w TextBox do kolekcji** – Przypinając jako DataContext cały obiekt widoku `ICollectionView`, Binding `{Binding Name}` odszukuje właściwość w tym jednym obiekcie, na który spogląda kursor (zaznaczony wiersz ListBoxa).
 
 <!-- SECTION_DONE -->
-# 41. Nawigacja i wiele widoków
+## 41. Nawigacja i wiele widoków
 
 W tej sekcji zobaczysz, jak zbudować program, który nie gnieździ się w jednym "okienku". Nauczysz się przekazywać informacje między panelami, przełączać kontrolki w zależności od etapu procesu, a także wywoływać osobne, wbudowane systemy dialogowe.
 
-## 41.1. Wiele okien
+### 41.1. Wiele okien
 
 Z czasem każda aplikacja rośnie. Jedno `MainWindow` przestaje wystarczać i pojawia się potrzeba stworzenia np. Okna Ustawień (SettingsWindow). W WPF, każde nowe okno jest oddzielnym plikiem `.xaml` posiadającym dziedziczenie z klasy `Window`. 
 
@@ -25267,7 +25267,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.2. Show()
+### 41.2. Show()
 
 Posiadając definicję drugiego okna, należy je wywołać z pierwszego (głównego). Użycie metody `.Show()` spowoduje otwarcie nowego okna w trybie "Niemodalnym" (modeless). Oznacza to, że użytkownik może swobodnie przełączać się pomiędzy oboma oknami i np. pisać w nich na zmianę. Główne okno w ogóle na niego nie czeka i kod przechodzi dalej od razu po otworzeniu okna.
 
@@ -25317,7 +25317,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.3. ShowDialog()
+### 41.3. ShowDialog()
 
 Prawdziwa praca biurowa (np. wyskakujące powiadomienie "Czy na pewno chcesz usunąć plik?") opiera się o modalność. Używasz do tego metody `.ShowDialog()`. Blokuje ona użytkownika – zmusza go do interakcji w tym nowym oknie (wybranie OK lub Cancel), w czasie gdy całe okno główne "zawiesza się", czekając na powrót wartości.
 
@@ -25375,7 +25375,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.4. Przekazywanie danych między oknami
+### 41.4. Przekazywanie danych między oknami
 
 Najczęstszym problemem początkujących deweloperów jest: "Jak podać z głównego okna informacje o logowaniu do drugiego okna, a potem z niego wrócić ze zmienionym hasłem?". Sposobem na to jest modyfikowanie konstruktora (Constructor Injection) przy wywoływaniu i publiczne właściwości (Properties) przy powrocie.
 
@@ -25445,7 +25445,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.5. UserControl
+### 41.5. UserControl
 
 Otwieranie 15 okien staje się koszmarem dla pamięci komputera. Nowoczesne programy mają wbudowany jeden ekran, na którym "wstrzykują" różne bloki bez mnożenia paneli, wykorzystując tzw. System Kontrolek Użytkownika. `UserControl` tworzysz analogicznie do klasycznego przycisku `Button` – z własnym kodem XAML – i zamykasz go w spójną całość do wrzucenia gdziekolwiek w aplikacji.
 
@@ -25506,7 +25506,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.6. ContentControl
+### 41.6. ContentControl
 
 `ContentControl` to ramka, "pojemnik", do którego wrzucamy treść w czasie działania programu. To doskonałe miejsce, aby umieszczać zdefiniowane przed chwilą `UserControl` podczas przeskakiwania po różnych widokach w jednym oknie (np. przełączając pasek z napisem Krok 1, Krok 2, Krok 3).
 
@@ -25571,7 +25571,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 41.7. Widok startowy, roboczy i wynikowy
+### 41.7. Widok startowy, roboczy i wynikowy
 
 Aby podsumować system przełączania wielu widoków w ramach `ContentControl`, zbudujmy mechanizm typowego procesowania (Wizard). Użytkownik widzi po kolei etapy: Start (Wstęp), Praca (Wypełnianie ankiety), Wynik (Podsumowanie podane z parametrami), nie wymieniając przy tym otwartego pierwotnie pliku z Okna (Window).
 
@@ -25655,11 +25655,11 @@ Kluczowe elementy:
 * **Przekazywanie wyników pomiędzy stronami** – Jak widzisz z parametru (`string resultAge`), przepychając użytkownika od metody do metody, można rzucić wynikiem pobranym wcześniej w formularzu, nic nie zapisując do bazy danych lub zewnętrznych struktur.
 
 <!-- SECTION_DONE -->
-# 42. Asynchroniczność i responsywność UI
+## 42. Asynchroniczność i responsywność UI
 
 W tej sekcji zrozumiesz, dlaczego i kiedy aplikacje "zamrażają się" oraz jak temu zaradzić. Odkryjesz narzędzia takie jak `async` i `await`, które gwarantują płynne działanie interfejsu (np. reagowanie paska przewijania lub klikania okien), podczas gdy skomplikowane algorytmy przetwarzają się pod spodem. Zostanie to przedstawione na przykładzie mini aplikacji generującej duży raport.
 
-## 42.1. Dlaczego interfejs może się zawieszać
+### 42.1. Dlaczego interfejs może się zawieszać
 
 Zasada budowy Windowsa mówi jasno: istnieje tylko jeden główny strumień zdarzeń graficznych nazywany "Wątkiem UI". Jeśli użytkownik klika Przycisk, na ten czas "Wątek UI" przejmuje funkcję z kodem `Click`. Jeśli wpiszesz w nim pętlę trwającą 10 sekund (np. symulowaną przez uśpienie `Thread.Sleep`), "Wątek UI" przez 10 sekund utknie na wykonywaniu tej operacji. Ponieważ utknął, nie może obsłużyć kliknięcia w krzyżyk, pomniejszenia okna czy odświeżenia grafiki powiadamiającej o uciekającym czasie! Program wydaje się być martwy.
 
@@ -25709,7 +25709,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.2. async i await
+### 42.2. async i await
 
 Aby rozwiązać ten problem, nowoczesny C# wprowadził mechanizm `async` (oznacza, że funkcja może zostać wstrzymana) i `await` (czeka na "odpędzone" zadanie). Jeśli wstrzymasz wykonanie poprzez `await`, WPF nie wyrzuca Wątku UI w nicość, lecz "uwalnia go", by wracał obsługiwać przyciski w systemie, kiedy baza danych powoli miele wiersze z tyłu na pobocznym torze.
 
@@ -25762,7 +25762,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.3. Zadania długotrwałe
+### 42.3. Zadania długotrwałe
 
 `Task.Delay` służyło tylko do celów demonstracyjnych. Jeśli chcesz faktycznie przeprowadzić np. "100 obliczeń matematycznych w pętli", musisz wymusić przeniesienie pracy z "Wątku UI" na "Wątek w tle" (tzw. ThreadPool). Mechanizmem delegującym taką żmudną robotę jest `Task.Run()`.
 
@@ -25824,7 +25824,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.4. Dispatcher
+### 42.4. Dispatcher
 
 Gdy odpędzasz logikę od "Wątku UI" za pomocą `Task.Run()`, pracujesz w tzw. "obcym terytorium". Jeśli poboczny wątek zapragnie w połowie długiego pętlenia zaktualizować pasek postępu ("Jestem na 50%"), spotka się z błędem w konsoli "Ten wątek nie należy do tego elementu". Żeby poboczny wątek zapukał do jedynego autoryzowanego głównego wątku UI, używamy narzędzia `Dispatcher`.
 
@@ -25886,7 +25886,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.5. Aktualizacja UI z innego wątku
+### 42.5. Aktualizacja UI z innego wątku
 
 Użycie `Dispatcher` czasami sprawia kłopoty wydajnościowe na bardzo szybkiej pętli liczącej setki uderzeń na ułamek sekundy (zatyka kolejkę interfejsu). Nowoczesnym wzorcem jest obiekt `IProgress<T>`, na który wpisuje się zadania a on dba, by podnieść zdarzenie na Wątku UI bez jawnego, uciążliwego stukania "Invoke".
 
@@ -25950,7 +25950,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.6. CancellationToken
+### 42.6. CancellationToken
 
 Zadania `Task.Run` po uruchomieniu są porzucane. Jeśli użytkownik zmieni zadanie na pasku albo zamknie aplikację, pętla może żyć "pod spodem" i obciążać system. Musimy mieć bat pozwalający przerwać to zadanie w trakcie jego liczenia. Do takich akcji wykorzystuje się w C# pojęcie `CancellationTokenSource` (sygnał wywołania o przerwanie) oraz `CancellationToken` (token kontrolny w pętli zadania).
 
@@ -26029,7 +26029,7 @@ Kluczowe elementy:
 
 <!-- SECTION_DONE -->
 
-## 42.7. Blokowanie przycisku podczas operacji
+### 42.7. Blokowanie przycisku podczas operacji
 
 Podczas wywoływania długich skryptów trzeba zabezpieczyć się przed tzw. double-clickiem lub klikaniem spamu przez zdezorientowanych użytkowników. Jeśli tego nie wymusisz, jedno kliknięcie przycisku odpali Taska, po 3 sekundach drugie kliknięcie stworzy nową bazę i wyrzuci wyjątki blokady systemu plików na dysku serwera.
 
@@ -26946,7 +26946,7 @@ namespace CleanApp
 
 <!-- SECTION_DONE -->
 
-### 45.3. Metody pomocnicze
+### 3.6. Metody pomocnicze
 
 Kiedy widzisz, że dany kawałek kodu powtarza się w wielu miejscach, przenieś go do oddzielnej metody prywatnej.
 
@@ -28007,10 +28007,10 @@ namespace ArchiveApp
 <!-- SECTION_DONE -->
 
 
-# 49. Projekty praktyczne od prostych do średnich
+## 49. Projekty praktyczne od prostych do średnich
 W tej sekcji zobaczysz dziesięć kompletnych, działających aplikacji, które krok po kroku przeprowadzają Cię przez budowę coraz bardziej zaawansowanych interfejsów i logiki.
 
-## 49.1. Licznik kliknięć
+### 49.1. Licznik kliknięć
 Prosta aplikacja, w której kliknięcie przycisku inkrementuje wartość licznika wyświetlaną w interfejsie. Dodatkowo istnieje możliwość zresetowania licznika.
 
 **MainWindow.xaml:**
@@ -28068,7 +28068,7 @@ namespace LicznikKlikniec
 *   **UpdateCounterDisplay** – metoda pomocnicza zapobiegająca duplikowaniu kodu aktualizującego kontrolkę `TextBlock`.
 <!-- SECTION_DONE -->
 
-## 49.2. Formularz danych osobowych
+### 49.2. Formularz danych osobowych
 Aplikacja z formularzem pobierającym imię, nazwisko, wiek i płeć użytkownika. Po kliknięciu przycisku zapisz wyświetla podsumowanie danych w oknie dialogowym. Jeśli dane są niekompletne, wyświetla komunikat o błędzie.
 
 **MainWindow.xaml:**
@@ -28180,7 +28180,7 @@ namespace FormularzDanych
 *   **MessageBox.Show** – proste w użyciu okno dialogowe informujące użytkownika o sukcesie lub błędzie.
 <!-- SECTION_DONE -->
 
-## 49.3. Generator haseł
+### 28.2. Generator haseł
 Aplikacja pozwala wygenerować losowe hasło na podstawie określonych przez użytkownika parametrów (długość, zawartość cyfr, znaków specjalnych). Posiada również możliwość skopiowania hasła do schowka.
 
 **MainWindow.xaml:**
@@ -28299,7 +28299,7 @@ namespace GeneratorHasel
 *   **StringBuilder** – wydajniejsza metoda tworzenia stringa z pojedynczych znaków w pętli.
 <!-- SECTION_DONE -->
 
-## 49.4. Nadawanie przesyłki
+### 49.4. Nadawanie przesyłki
 Zaawansowany formularz nadawania paczki, gdzie użytkownik wybiera gabaryt, podaje wymiary (jeśli wymagane) i adres dostawy. Aplikacja kalkuluje orientacyjną cenę na bieżąco.
 
 **MainWindow.xaml:**
@@ -28425,7 +28425,7 @@ namespace NadawaniePrzesylki
 *   **Zabezpieczenie przed null** – z racji inicjalizacji kontrolek z XAML w specyficznej kolejności, metoda podłączona pod zdarzenia odpala się wcześnie, dlatego warto zawsze sprawdzać `if (PriceTextBlock == null) return;`.
 <!-- SECTION_DONE -->
 
-## 49.5. Dane paszportowe
+### 49.5. Dane paszportowe
 Aplikacja z weryfikacją poprawności wpisywanych danych w formularzu oraz z logiką sprawdzania poprawności numeru paszportu i daty jego ważności. Ostrzega na czerwono, jeśli pole straci ostrość i nie spełnia wymogów walidacji.
 
 **MainWindow.xaml:**
@@ -28539,7 +28539,7 @@ namespace DanePaszportowe
 *   **DatePicker** – kontrolka służąca do wybierania daty z wbudowanego kalendarza.
 <!-- SECTION_DONE -->
 
-## 49.6. Przeglądarka albumów
+### 49.6. Przeglądarka albumów
 Aplikacja ładująca obiekty z kodów do listy (ListBox) i wyświetlająca szczegóły wybranego albumu obok. Pokazuje obrazek przypisany do konkretnego albumu, bazując na prostym cyklicznym wyborze.
 
 **MainWindow.xaml:**
@@ -28635,7 +28635,7 @@ namespace PrzegladarkaAlbumow
 *   **SelectionChanged** – obsługuje aktualizowanie sąsiednich kontrolek na podstawie wybranego aktualnie elementu z listy.
 <!-- SECTION_DONE -->
 
-## 49.7. Wzornik kolorów RGB
+### 49.7. Wzornik kolorów RGB
 Rozbudowany projekt, który przy pomocy trzech suwaków pozwala manipulować kolorami tła prostokąta, pokazując aktualną wartość HEX generowanego koloru.
 
 **MainWindow.xaml:**
@@ -28726,7 +28726,7 @@ namespace WzornikKolorow
 *   **HexCodeTextBlock.Text = $"#{r:X2}{g:X2}{b:X2}";** – eleganckie formatowanie stringów pozwalające wygenerować poprawny kod szesnastkowy. Format `X2` powoduje wypisanie zawsze dwóch znaków HEX.
 <!-- SECTION_DONE -->
 
-## 49.8. Szyfr Cezara
+### 28.4. Szyfr Cezara
 Narzędzie służące do szyfrowania i deszyfrowania tekstów popularną metodą przesunięcia (szyfr Cezara). Pozwala podać dowolne przesunięcie używając liczby.
 
 **MainWindow.xaml:**
@@ -28829,7 +28829,7 @@ namespace SzyfrCezara
 *   **Kierunek przesunięcia** – deszyfracja to tak naprawdę ta sama operacja co szyfrowanie, ale z zastosowaniem przeciwnego klucza (np. `-3`).
 <!-- SECTION_DONE -->
 
-## 49.9. Lista zadań
+### 49.9. Lista zadań
 Implementacja popularnej listy rzeczy do zrobienia (To-Do List). Posiada dodawanie i usuwanie elementów bazując na `ObservableCollection`, która automatycznie odświeża interfejs.
 
 **MainWindow.xaml:**
@@ -28928,7 +28928,7 @@ namespace ListaZadan
 *   **Focus()** – ułatwienie dla użytkownika (ergonomia). Po dodaniu zadania, pole tekstowe automatycznie czeka na kolejne wciśnięcia klawiszy.
 <!-- SECTION_DONE -->
 
-## 49.10. Mini aplikacja wielowidokowa
+### 49.10. Mini aplikacja wielowidokowa
 Zamiast otwierania kilku osobnych okien, w jednym oknie (z lewym panelem menu) wstawiamy treść, która zmienia się dynamicznie. Służy do tego `Frame` i obiekty `Page`, lecz tutaj zbudujemy to poprzez przełączanie widoczności z użyciem zwykłych `Grid` w jednym pliku – jest to prostsze w mniejszych projektach.
 
 **MainWindow.xaml:**
@@ -29025,10 +29025,10 @@ namespace AplikacjaWielowidokowa
 *   **HideAllViews()** – metoda narzędziowa. Przed pokazaniem nowego ekranu zawsze wyłączamy wszystkie pozostałe, aby uniknąć kolizji wyświetlania.
 <!-- SECTION_DONE -->
 
-# 50. Kluczowe mechaniki do powtarzania
+## 50. Kluczowe mechaniki do powtarzania
 Zestawienie najpopularniejszych, wielokrotnie powtarzających się problemów z budową interfejsów w WPF. Znajdziesz tu szybkie przypomnienie i gotowy fragment kodu służący do wklejenia i dopasowania do swoich potrzeb.
 
-## 50.1. Formularz z wieloma kontrolkami
+### 50.1. Formularz z wieloma kontrolkami
 Budowa formularzy wymaga poukładania opisu oraz kontrolki wejściowej, by estetycznie tworzyły wiersze. Zamiast budować tabele komórka po komórce, używamy wierszy dla całych bloków połączonych w pionie. Narzędzie `StackPanel` zawarte w wierszach systematyzuje całość.
 
 **Złoty snippet (XAML):**
@@ -29052,7 +29052,7 @@ Budowa formularzy wymaga poukładania opisu oraz kontrolki wejściowej, by estet
 ```
 <!-- SECTION_DONE -->
 
-## 50.2. Główny przycisk akcji
+### 50.2. Główny przycisk akcji
 Zawsze na dole każdego formularza dodajesz przycisk, który wykonuje właściwą logikę. Ten element powinien być dobrze widoczny i posiadać przypięte zdarzenie `Click`. W kodzie uruchamia on docelowe mechanizmy i ewentualne komunikaty.
 
 **Złoty snippet (XAML + C#):**
@@ -29067,7 +29067,7 @@ private void SubmitAction_Click(object sender, RoutedEventArgs e)
 ```
 <!-- SECTION_DONE -->
 
-## 50.3. Dynamiczna zmiana tekstu
+### 50.3. Dynamiczna zmiana tekstu
 Interfejs musi na bieżąco reagować na to, co wpisuje użytkownik do TextBoxa. Za każdym wciśnięciem klawisza zmieniamy tekst innej kontrolki obok. Używamy do tego zdarzenia `TextChanged`.
 
 **Złoty snippet (XAML + C#):**
@@ -29083,7 +29083,7 @@ private void InputBox_TextChanged(object sender, TextChangedEventArgs e)
 ```
 <!-- SECTION_DONE -->
 
-## 50.4. Dynamiczna zmiana obrazu
+### 14.6. Dynamiczna zmiana obrazu
 Podmiana pliku graficznego z kodu jest niezbędna, jeśli widok zależy od stanu. Wymaga podania względnej ścieżki i stworzenia obiektu `BitmapImage`. Ten nowy obiekt nadpisuje dotychczasowy wstrzykiwany do kontrolki `Image`.
 
 **Złoty snippet (C#):**
@@ -29099,7 +29099,7 @@ private void ChangeImage(string imageName)
 ```
 <!-- SECTION_DONE -->
 
-## 50.5. Zdarzenie LostFocus
+### 50.5. Zdarzenie LostFocus
 To zdarzenie jest idealnym momentem na przeprowadzenie kontroli jakości, formatowanie numerów czy zablokowanie dalszych czynności. Odpala się gdy kursor wyjdzie z edytowanego pola tekstowego. W ten sposób nie nękamy użytkownika błędami, gdy ten jeszcze pisze.
 
 **Złoty snippet (XAML + C#):**
@@ -29117,7 +29117,7 @@ private void PeselInput_LostFocus(object sender, RoutedEventArgs e)
 ```
 <!-- SECTION_DONE -->
 
-## 50.6. Walidacja cyfr i długości tekstu
+### 50.6. Walidacja cyfr i długości tekstu
 Często chcemy zezwolić wpisywać tylko i wyłącznie cyfry, albo tylko ograniczoną liczbę znaków. Używa się do tego wyrażeń regularnych na zdarzeniu odrzucającym niewłaściwe klawisze. Limit znaków wprowadzamy prosto z poziomu XAML.
 
 **Złoty snippet (XAML + C#):**
@@ -29138,7 +29138,7 @@ private void PhoneInput_PreviewTextInput(object sender, TextCompositionEventArgs
 ```
 <!-- SECTION_DONE -->
 
-## 50.7. Fallback do wartości domyślnej
+### 3.8. Fallback do wartości domyślnej
 Przy parsowaniu liczb z tekstu należy zabezpieczyć się przed sytuacją, w której pole jest puste albo tekst jest uszkodzony. Ochroni to aplikację przed nagłym wyrzuceniem błędu systemowego (Exception). W takim przypadku zawsze warto mieć bezpieczną alternatywę wpisaną na twardo.
 
 **Złoty snippet (C#):**
@@ -29152,7 +29152,7 @@ if (!double.TryParse(textValue, out double price))
 ```
 <!-- SECTION_DONE -->
 
-## 50.8. Odczyt listy obiektów z pliku
+### 50.8. Odczyt listy obiektów z pliku
 Jest to klasyczny scenariusz wczytania linia po linii struktury z prostego pliku tekstowego. Przydaje się to do załadowania gotowej bazy danych na start działania programu. Należy upewnić się najpierw, czy plik istnieje, by nie wyrzucić wyjątku.
 
 **Złoty snippet (C#):**
@@ -29173,7 +29173,7 @@ private List<string> LoadData(string filePath)
 ```
 <!-- SECTION_DONE -->
 
-## 50.9. Indeks cykliczny
+### 50.9. Indeks cykliczny
 Mechanika przydatna bardzo często przy przycisku "Następne zdjęcie", gdzie przekroczenie rozmiaru listy powinno nas przenieść z powrotem na element zerowy (początek). Używa się do tego prostej matematyki z zastosowaniem operatora modulo. Taka pętla wyklucza błąd poza zakresem i jest bezawaryjna.
 
 **Złoty snippet (C#):**
@@ -29190,7 +29190,7 @@ private void NextItem()
 ```
 <!-- SECTION_DONE -->
 
-## 50.10. Suwaki RGB
+### 50.10. Suwaki RGB
 Suwaki dostarczają idealnej pożywki do budowania barw na zasadzie RGB z zakresu 0 do 255. Do prostokąta, by zmienić mu kolor tła, wstrzykujemy pędzel zbudowany ze struktury `Color`. Wszystko operuje bez opóźnień.
 
 **Złoty snippet (C#):**
@@ -29208,7 +29208,7 @@ private void UpdateColor()
 ```
 <!-- SECTION_DONE -->
 
-## 50.11. Zapis przez dialog systemowy
+### 50.11. Zapis przez dialog systemowy
 Zamiast zapisywać dane na twardo w jednym i tym samym miejscu na dysku, otwieramy natywne okienko Windows pozwalające wybrać ścieżkę zapisu pliku. Wymaga referencji do zasobów przestrzeni nazewniczej Win32. Ten mechanizm zapewnia maksymalną niezawodność zapisu.
 
 **Złoty snippet (C#):**
@@ -29229,7 +29229,7 @@ private void SaveData()
 ```
 <!-- SECTION_DONE -->
 
-## 50.12. Stan bieżący i zatwierdzony
+### 24.4. Stan bieżący i zatwierdzony
 Aplikacje rzadko zapisują globalne ustawienia na bieżąco, częściej zatwierdzamy zmiany jednorazowo przyciskiem "Zapisz". Dlatego też potrzebujemy zmiennej z wersją roboczą oraz zmiennej przechowującej wynik ostateczny. Dopiero kliknięcie przesuwa wartość do faktycznego celu.
 
 **Złoty snippet (C#):**
