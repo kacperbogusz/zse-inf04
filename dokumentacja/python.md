@@ -156,7 +156,7 @@
 
 ---
 
-> **Jak korzystać z tego poradnika:** Każdy rozdział jest samodzielny — możesz czytać je w dowolnej kolejności. Następujące po sobie rozdziały OOP (10–14) warto jednak czytać po kolei, ponieważ każdy z nich buduje na wiedzy z poprzedniego. Przykłady kodu są gotowe do uruchomienia — możesz je skopiować i przetestować w swoim edytorze.
+> **Jak korzystać z tego poradnika:** Każdy rozdział jest samodzielny — możesz czytać je w dowolnej kolejności. Następujące po sobie rozdziały OOP (10–14) warto jednak czytać po kolei, ponieważ każdy z nich buduje na wiedzy z poprzedniego.
 
 ---
 
