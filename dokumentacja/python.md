@@ -48,6 +48,7 @@
   - [6.5. Iteracja po znakach i budowanie nowego napisu](#65-iteracja-po-znakach-i-budowanie-nowego-napisu)
   - [6.6. Obsługa polskich znaków](#66-obsługa-polskich-znaków)
   - [6.7. Przydatne wzorce przetwarzania tekstu](#67-przydatne-wzorce-przetwarzania-tekstu)
+  - [6.8. Usuwanie powtarzających się znaków](#68-usuwanie-powtarzających-się-znaków)
 - [7. Obsługa plików](#7-obsługa-plików)
   - [7.1. Otwieranie i zamykanie plików](#71-otwieranie-i-zamykanie-plików)
   - [7.2. Odczyt pliku tekstowego](#72-odczyt-pliku-tekstowego)
@@ -122,7 +123,7 @@
   - [15.16. Palindromy i Anagramy](#1516-palindromy-i-anagramy)
   - [15.17. Rekurencja](#1514-rekurencja)
   - [15.18. Walidacja danych z wagami](#158-walidacja-danych-z-wagami)
-  - [15.19. Usuwanie sąsiednich duplikatów](#159-usuwanie-sąsiednich-duplikatów)
+  - [15.19. Usuwanie powtarzających się znaków (sąsiednich duplikatów)](#1519-usuwanie-powtarzających-się-znaków-sąsiednich-duplikatów)
   - [15.20. Zliczanie wystąpień wartości w danych](#1510-zliczanie-wystąpień-wartości-w-danych)
   - [15.21. Obliczanie średniej arytmetycznej](#1511-obliczanie-średniej-arytmetycznej)
   - [15.22. Wyodrębnianie elementów spełniających warunek](#1512-wyodrębnianie-elementów-spełniających-warunek)
@@ -2010,6 +2011,28 @@ for slowo, ile in sorted(wystapienia.items(), key=lambda x: x[1], reverse=True):
 
 Metoda `dict.get(klucz, domyslna)` jest tu kluczowa — zwraca wartość domyślną `0` zamiast rzucania `KeyError`, gdy klucz nie istnieje. Dzięki temu nie potrzebujemy bloku `if/else`.
 
+### 6.8. Usuwanie powtarzających się znaków
+
+Częstym zadaniem przy pracy z tekstem jest usuwanie powtarzających się bezpośrednio po sobie znaków (sąsiednich duplikatów). Może to być przydatne np. do korekty błędów typograficznych (zamiana `"banannowy"` na `"bananowy"`).
+
+Algorytm ten przegląda tekst znak po znaku i buduje nowy napis, dołączając tylko te znaki, które różnią się od swojego bezpośredniego poprzednika.
+
+```python
+def usun_powtarzajace_sie_znaki(tekst):
+    if not tekst:
+        return ""
+    
+    czysty_tekst = tekst[0]
+    for i in range(1, len(tekst)):
+        if tekst[i] != tekst[i-1]:
+            czysty_tekst += tekst[i]
+    return czysty_tekst
+
+# Przykład użycia:
+print(usun_powtarzajace_sie_znaki("banannowy"))  # "bananowy"
+print(usun_powtarzajace_sie_znaki("heeeellooo")) # "helo"
+```
+
 ---
 
 ## 7. Obsługa plików
@@ -3464,16 +3487,20 @@ def suma_kontrolna(liczby, wagi):
     return (10 - (suma % 10)) % 10
 ```
 
-### 15.19. Usuwanie sąsiednich duplikatów
+### 15.19. Usuwanie powtarzających się znaków (sąsiednich duplikatów)
+
+Algorytm usuwania powtarzających się bezpośrednio po sobie znaków opiera się na iteracji przez tekst od drugiego znaku (indeks 1) i porównywaniu go z poprzednikiem (indeks `i-1`). Jeśli są różne, znak jest dodawany do wynikowego napisu.
 
 ```python
-def usun_duplikaty(tekst):
-    if not tekst: return ""
-    wynik = tekst[0]
+def usun_powtarzajace_sie_znaki(tekst):
+    if not tekst:
+        return ""
+    
+    czysty_tekst = tekst[0]
     for i in range(1, len(tekst)):
         if tekst[i] != tekst[i-1]:
-            wynik += tekst[i]
-    return wynik
+            czysty_tekst += tekst[i]
+    return czysty_tekst
 ```
 
 ### 15.20. Zliczanie wystąpień wartości w danych

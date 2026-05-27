@@ -621,7 +621,7 @@ W code-behind możesz:
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Code-Behind Demo" Height="300" Width="450">
-    <StackPanel Margin="20" Spacing="10">
+    <StackPanel Margin="20">
         <TextBlock Text="Wpisz swoje imię:"/>
         <TextBox Name="txtImie" Width="200" HorizontalAlignment="Left"/>
         <Button Name="btnPowitaj" Content="Przywitaj mnie" Width="150"
@@ -3061,8 +3061,7 @@ Dlatego w WPF częściej używasz `List<T>`.
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Name="txtNoweZadanie" Margin="0,0,8,0"
-                     PlaceholderText="Wpisz nowe zadanie..."/>
+            <TextBox Grid.Column="0" Name="txtNoweZadanie" Margin="0,0,8,0"/>
             <Button Grid.Column="1" Content="Dodaj" Click="btnDodaj_Click"
                     Padding="12,5" Background="Green" Foreground="White"/>
         </Grid>
@@ -3578,8 +3577,7 @@ private void DodajElement(string tekst)
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Name="txtNazwa" Margin="0,0,8,0"
-                     PlaceholderText="Wpisz nazwę elementu..."/>
+            <TextBox Grid.Column="0" Name="txtNazwa" Margin="0,0,8,0"/>
             <Button Grid.Column="1" Content="Dodaj" Click="btnDodaj_Click"
                     Padding="12,5"/>
         </Grid>
@@ -8770,7 +8768,7 @@ namespace KoloryRGB
 3. Przypisać do właściwości `Fill` (kształty) lub `Background` (panele, przyciski)
 
 ```csharp
-// Namespace: System.Windows.Media
+using System.Windows.Media; // Color, SolidColorBrush, Colors, Brushes
 
 // Tworzenie koloru z RGB
 Color mojaBarwa = Color.FromRgb(255, 128, 0); // pomarańczowy
@@ -11604,7 +11602,6 @@ namespace KontrolkiDemo
         Title="Label i TextBlock" Height="350" Width="500">
     <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBox x:Name="TxtWejscie"
-                 Placeholder="Wpisz tekst..."
                  FontSize="13"
                  Padding="5"
                  Margin="0,0,0,10"/>
@@ -12386,7 +12383,7 @@ Czyszczenie formularza po zapisaniu danych to dobra praktyka. Resetujesz każdą
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Reset formularza" Height="380" Width="450">
     <StackPanel Margin="20">
-        <TextBox x:Name="TxtNazwa" Placeholder="Nazwa produktu..."
+        <TextBox x:Name="TxtNazwa"
                  FontSize="13" Padding="5" Margin="0,5"/>
         <ComboBox x:Name="CmbKategoria" Height="30" FontSize="13" Margin="0,5">
             <ComboBoxItem Content="Elektronika"/>
@@ -13195,7 +13192,7 @@ MessageBox.Show(
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Komunikaty błędów" Height="380" Width="450">
     <StackPanel Margin="20" VerticalAlignment="Center">
-        <TextBox x:Name="TxtImie" Placeholder="Imię..."
+        <TextBox x:Name="TxtImie"
                  FontSize="13" Padding="5" Margin="0,3,0,3"/>
 
         <!-- TextBlock błędu przy polu -->
@@ -13204,7 +13201,7 @@ MessageBox.Show(
                    Foreground="Red"
                    Margin="0,0,0,10"/>
 
-        <TextBox x:Name="TxtWiek" Placeholder="Wiek..."
+        <TextBox x:Name="TxtWiek"
                  FontSize="13" Padding="5" Margin="0,3,0,3"/>
         <TextBlock x:Name="TbBladWiek"
                    FontSize="11"
@@ -13708,7 +13705,6 @@ namespace MessageBoxDemo
         Title="Odczyt odpowiedzi" Height="320" Width="450">
     <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBox x:Name="TxtDane"
-                 Placeholder="Wpisz coś..."
                  FontSize="13"
                  Padding="5"
                  Margin="0,0,0,10"/>
@@ -13810,13 +13806,13 @@ Poniżej widzisz konkretne komunikaty błędów dla typowych sytuacji walidacji.
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Komunikaty błędów walidacji" Height="420" Width="500">
     <StackPanel Margin="20" VerticalAlignment="Center">
-        <TextBox x:Name="TxtImie" Placeholder="Imię"
+        <TextBox x:Name="TxtImie"
                  FontSize="13" Padding="5" Margin="0,3"/>
-        <TextBox x:Name="TxtWiek" Placeholder="Wiek"
+        <TextBox x:Name="TxtWiek"
                  FontSize="13" Padding="5" Margin="0,3"/>
-        <TextBox x:Name="TxtEmail" Placeholder="Email"
+        <TextBox x:Name="TxtEmail"
                  FontSize="13" Padding="5" Margin="0,3"/>
-        <TextBox x:Name="TxtKod" Placeholder="Kod pocztowy (XX-XXX)"
+        <TextBox x:Name="TxtKod"
                  FontSize="13" Padding="5" Margin="0,3"/>
         <Button Content="Waliduj i zapisz"
                 Height="35"
@@ -14036,7 +14032,6 @@ Przed nieodwracalną operacją (usunięcie, reset, zamknięcie) zawsze pytaj uż
         Closing="Window_Closing">
     <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBox x:Name="TxtNotatka"
-                 Placeholder="Wpisz notatki..."
                  Height="120"
                  FontSize="13"
                  TextWrapping="Wrap"
@@ -15186,11 +15181,9 @@ Często chcesz ukryć sekcję wyników i pokazać ją dopiero gdy użytkownik kl
         <TextBlock Text="Podaj dwie liczby:" FontSize="14" Margin="0,0,0,5"/>
 
         <TextBox x:Name="txtLiczba1"
-                 PlaceholderText="Pierwsza liczba"
                  Margin="0,0,0,5"/>
 
         <TextBox x:Name="txtLiczba2"
-                 PlaceholderText="Druga liczba"
                  Margin="0,0,0,10"/>
 
         <Button Content="Oblicz sumę"
@@ -16314,6 +16307,8 @@ namespace DialogZapisu
 `OpenFileDialog` działa podobnie do `SaveFileDialog`, ale służy do wyboru istniejącego pliku. Szczegółowy przykład pokazano już w poprzednim podrozdziale (metoda `btnOtworz_Click`). Poniżej widzisz kluczowe różnice:
 
 ```csharp
+using Microsoft.Win32; // OpenFileDialog i SaveFileDialog są w tym namespace, nie w System.Windows.Forms!
+
 // Tylko odczyt istniejącego pliku
 OpenFileDialog dialog = new OpenFileDialog();
 dialog.Filter = "Obrazy (*.jpg;*.png)|*.jpg;*.png|Wszystkie|*.*";
@@ -16599,7 +16594,7 @@ Poniższy przykład to kompletny generator haseł. Użytkownik wybiera długoś�
                   Content="Cyfry (0–9)"
                   IsChecked="True" Margin="0,0,0,5"/>
         <CheckBox x:Name="chkSpecjalne"
-                  Content="Znaki specjalne (!@#$%^&*)"
+                  Content="Znaki specjalne (!@#$%^&amp;*)"
                   IsChecked="False" Margin="0,0,0,15"/>
 
         <!-- Przycisk generowania -->
@@ -17583,7 +17578,6 @@ if (string.IsNullOrEmpty(zestaw))
 
         <!-- Odpowiedź użytkownika -->
         <TextBox x:Name="txtOdpowiedz"
-                 PlaceholderText="Wpisz odpowiedź..."
                  Height="35" Margin="0,0,0,10"/>
 
         <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
@@ -18124,7 +18118,7 @@ Poniższy przykład to kompletna aplikacja: odczyt pliku → parsowanie → list
 <Window x:Class="ListaObiektow.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Plik → Lista<Album>" Height="520" Width="600">
+        Title="Plik → Lista&lt;Album&gt;" Height="520" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23970,7 +23964,7 @@ Kluczowe elementy:
         </Style>
     </Window.Resources>
     
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <Button Content="Zaloguj się" Style="{StaticResource ModernButton}" Margin="10" />
         <Button Content="Anuluj akcję" Style="{StaticResource ModernButton}" Margin="10" />
         <Button Content="Niedostępny" Style="{StaticResource ModernButton}" IsEnabled="False" Margin="10" />
@@ -28019,9 +28013,9 @@ Prosta aplikacja, w której kliknięcie przycisku inkrementuje wartość licznik
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Licznik kliknięć" Height="300" Width="400">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock x:Name="CounterTextBlock" Text="0" FontSize="72" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Kliknij mnie!" FontSize="20" Padding="15,5" Click="IncrementButton_Click"/>
             <Button Content="Resetuj" FontSize="20" Padding="15,5" Click="ResetButton_Click"/>
         </StackPanel>
@@ -28189,14 +28183,14 @@ Aplikacja pozwala wygenerować losowe hasło na podstawie określonych przez uż
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Generator Haseł" Height="350" Width="400">
-    <StackPanel Margin="20" Spacing="10">
+    <StackPanel Margin="20">
         <TextBlock Text="Wygenerowane hasło:" FontWeight="Bold"/>
         <TextBox x:Name="PasswordTextBox" Height="40" FontSize="20" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center"/>
         
         <Button Content="Kopiuj do schowka" Click="CopyButton_Click" Width="150" HorizontalAlignment="Right" Margin="0,0,0,10"/>
 
         <TextBlock Text="Długość hasła (8-32):" FontWeight="SemiBold"/>
-        <StackPanel Orientation="Horizontal" Spacing="10">
+        <StackPanel Orientation="Horizontal">
             <Slider x:Name="LengthSlider" Minimum="8" Maximum="32" Value="12" Width="250" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="LengthSlider_ValueChanged"/>
             <TextBlock x:Name="LengthTextBlock" Text="12" FontSize="16" VerticalAlignment="Center"/>
         </StackPanel>
@@ -28321,7 +28315,7 @@ Zaawansowany formularz nadawania paczki, gdzie użytkownik wybiera gabaryt, poda
         <TextBlock Text="Kalkulator paczki" FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
 
         <GroupBox Grid.Row="1" Header="Wybierz gabaryt paczki" Margin="0,0,0,15">
-            <StackPanel Margin="10" Spacing="5">
+            <StackPanel Margin="10">
                 <RadioButton x:Name="SmallRadio" Content="Mała (do 5 kg, 15 PLN)" Checked="RecalculatePrice" IsChecked="True"/>
                 <RadioButton x:Name="MediumRadio" Content="Średnia (do 15 kg, 20 PLN)" Checked="RecalculatePrice"/>
                 <RadioButton x:Name="LargeRadio" Content="Duża (powyżej 15 kg, 30 PLN)" Checked="RecalculatePrice"/>
@@ -28434,7 +28428,7 @@ Aplikacja z weryfikacją poprawności wpisywanych danych w formularzu oraz z log
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Dane paszportowe" Height="350" Width="400">
-    <StackPanel Margin="20" Spacing="10">
+    <StackPanel Margin="20">
         <TextBlock Text="System paszportowy" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
         <TextBlock Text="Numer paszportu (2 litery, 7 cyfr):"/>
@@ -28651,27 +28645,27 @@ Rozbudowany projekt, który przy pomocy trzech suwaków pozwala manipulować kol
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Spacing="10" VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center">
             <TextBlock Text="Czerwony (R):"/>
-            <StackPanel Orientation="Horizontal" Spacing="10">
+            <StackPanel Orientation="Horizontal">
                 <Slider x:Name="RedSlider" Minimum="0" Maximum="255" Width="150" ValueChanged="ColorSlider_ValueChanged" SmallChange="1" LargeChange="10"/>
                 <TextBlock x:Name="RedValue" Text="0" Width="30" TextAlignment="Right"/>
             </StackPanel>
 
             <TextBlock Text="Zielony (G):"/>
-            <StackPanel Orientation="Horizontal" Spacing="10">
+            <StackPanel Orientation="Horizontal">
                 <Slider x:Name="GreenSlider" Minimum="0" Maximum="255" Width="150" ValueChanged="ColorSlider_ValueChanged"/>
                 <TextBlock x:Name="GreenValue" Text="0" Width="30" TextAlignment="Right"/>
             </StackPanel>
 
             <TextBlock Text="Niebieski (B):"/>
-            <StackPanel Orientation="Horizontal" Spacing="10">
+            <StackPanel Orientation="Horizontal">
                 <Slider x:Name="BlueSlider" Minimum="0" Maximum="255" Width="150" ValueChanged="ColorSlider_ValueChanged"/>
                 <TextBlock x:Name="BlueValue" Text="0" Width="30" TextAlignment="Right"/>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Column="2" VerticalAlignment="Center" Spacing="15">
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
             <Rectangle x:Name="ColorPreview" Width="150" Height="150" Stroke="Black" StrokeThickness="1">
                 <Rectangle.Fill>
                     <SolidColorBrush Color="Black"/>
@@ -28747,7 +28741,7 @@ Narzędzie służące do szyfrowania i deszyfrowania tekstów popularną metodą
         <TextBlock Text="Tekst jawny:" FontWeight="SemiBold"/>
         <TextBox Grid.Row="1" x:Name="InputTextBox" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,15"/>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15" Margin="0,0,0,15">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
             <TextBlock Text="Klucz (przesunięcie):" VerticalAlignment="Center"/>
             <TextBox x:Name="KeyTextBox" Text="3" Width="50" TextAlignment="Center" VerticalContentAlignment="Center"/>
             <Button Content="Szyfruj ↓" Width="100" Height="30" Click="EncryptButton_Click"/>
@@ -28945,7 +28939,7 @@ Zamiast otwierania kilku osobnych okien, w jednym oknie (z lewym panelem menu) w
 
         <!-- Pasek boczny -->
         <Border Background="#FF333333">
-            <StackPanel Margin="10" Spacing="10">
+            <StackPanel Margin="10">
                 <TextBlock Text="MENU" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,20"/>
                 <Button Content="Strona Główna" Padding="10" Background="Transparent" Foreground="White" BorderThickness="0" Click="NavHome_Click"/>
                 <Button Content="Ustawienia" Padding="10" Background="Transparent" Foreground="White" BorderThickness="0" Click="NavSettings_Click"/>
