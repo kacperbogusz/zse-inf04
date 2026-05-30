@@ -18,6 +18,7 @@
   - [2.3. Operatory logiczne](#23-operatory-logiczne)
   - [2.4. Operatory przypisania](#24-operatory-przypisania)
   - [2.5. Operatory przynależności i tożsamości](#25-operatory-przynależności-i-tożsamości)
+  - [2.6. Priorytet operatorów](#26-priorytet-operatorów)
 - [3. Instrukcje sterujące](#3-instrukcje-sterujące)
   - [3.1. Instrukcja warunkowa `if` / `elif` / `else`](#31-instrukcja-warunkowa-if--elif--else)
   - [3.2. Instrukcja `match` / `case` — wzorce (switch)](#32-instrukcja-match--case--wzorce-switch)
@@ -154,6 +155,7 @@
   - [18.7. Najczęstsze pułapki i błędy w Pythonie](#187-najczęstsze-pułapki-i-błędy-w-pythonie)
   - [18.8. Wzorzec menu programu (pętla główna)](#188-wzorzec-menu-programu-pętla-główna)
   - [18.9. Sortowanie obiektów — parametr `key`](#189-sortowanie-obiektów--parametr-key)
+  - [18.10. Generatory i `yield`](#1810-generatory-i-yield)
 
 
 ---
@@ -846,6 +848,60 @@ if x is not None:
 
 ---
 
+### 2.6. Priorytet operatorów
+
+Kiedy w jednym wyrażeniu pojawia się kilka operatorów, Python wykonuje je w określonej kolejności — dokładnie tak jak w matematyce. Nawias `()` zawsze ma najwyższy priorytet i pozwala wymusić żądaną kolejność.
+
+| Priorytet | Operator | Opis |
+|-----------|----------|------|
+| 1 (najwyższy) | `()` | Nawiasy |
+| 2 | `**` | Potęgowanie |
+| 3 | `+x`, `-x`, `~x` | Jednoargumentowe: plus, minus, negacja bitowa |
+| 4 | `*`, `/`, `//`, `%` | Mnożenie, dzielenie, dzielenie całkowite, reszta |
+| 5 | `+`, `-` | Dodawanie, odejmowanie |
+| 6 | `<<`, `>>` | Przesunięcia bitowe |
+| 7 | `&` | Bitowe AND |
+| 8 | `^` | Bitowe XOR |
+| 9 | `\|` | Bitowe OR |
+| 10 | `==`, `!=`, `<`, `>`, `<=`, `>=`, `in`, `not in`, `is`, `is not` | Porównania |
+| 11 | `not` | Logiczne NOT |
+| 12 | `and` | Logiczne AND |
+| 13 (najniższy) | `or` | Logiczne OR |
+
+**Przykłady — kolejność działań:**
+
+```python
+# Mnożenie przed dodawaniem (jak w matematyce)
+wynik = 2 + 3 * 4        # 14, a nie 20!
+
+# Nawiasy zmieniają kolejność
+wynik = (2 + 3) * 4      # 20
+
+# Potęgowanie prawostronnie łączne
+wynik = 2 ** 3 ** 2      # 2 ** (3 ** 2) = 2 ** 9 = 512
+wynik = (2 ** 3) ** 2    # 8 ** 2 = 64
+
+# Dzielenie całkowite i reszta — ten sam priorytet co * i /
+wynik = 10 + 4 // 3      # 10 + 1 = 11
+wynik = 10 % 3 + 1       # 1 + 1 = 2
+
+# not ma wyższy priorytet niż and i or
+wynik = not True or False   # (not True) or False = False or False = False
+wynik = not (True or False) # not True = False
+```
+
+**Praktyczna zasada:** Jeśli nie jesteś pewien kolejności — użyj nawiasów. Kod z nawiasami jest bardziej czytelny i mniej podatny na błędy.
+
+```python
+# ✅ Czytelnie — intencja jest natychmiast widoczna
+wynik = (a + b) * (c - d)
+
+# ❌ Niebezpiecznie — czytelnik musi znać priorytety na pamięć
+wynik = a + b * c - d
+```
+
+---
+
 ## 3. Instrukcje sterujące
 
 Instrukcje sterujące kontrolują przepływ wykonania programu — pozwalają na podejmowanie decyzji (`if`) oraz wielokrotne wykonywanie bloków kodu (pętle `for`, `while`).
@@ -1448,6 +1504,14 @@ osoba["wiek"] = 26                    # Modyfikuje istniejący
 # Usuwanie
 del osoba["miasto"]
 wartosc = osoba.pop("email")          # Usuwa i zwraca wartość
+
+# Scalanie słowników — metoda update()
+osoba2 = {"telefon": "123-456", "wiek": 30}  # wiek nadpisze stary!
+osoba.update(osoba2)           # dodaje/nadpisuje pary z osoba2
+print(osoba)                   # {..., "telefon": "123-456", "wiek": 30}
+
+# Alternatywnie od Python 3.9 — operator |
+skrotka = {"a": 1} | {"b": 2}  # {"a": 1, "b": 2}
 
 # Sprawdzanie obecności klucza
 if "imie" in osoba:
@@ -4555,3 +4619,137 @@ from operator import attrgetter
 wg_sredniej = sorted(uczniowie, key=attrgetter("srednia"), reverse=True)
 wg_wielu = sorted(uczniowie, key=attrgetter("wiek", "imie"))
 ```
+
+---
+
+### 18.10. Generatory i `yield`
+
+**Generator** to specjalny rodzaj funkcji, która **nie zwraca wszystkich wartości naraz** (jak lista), tylko produkuje je **po jednej na żądanie**. Dzięki temu zużywa minimalną pamięć nawet przy miliardach elementów.
+
+Różnica między zwykłą funkcją a generatorem to słowo kluczowe `yield` zamiast `return`.
+
+---
+
+**Podstawowy przykład — generator vs lista:**
+
+```python
+# Zwykła funkcja — tworzy całą listę w pamięci
+def liczby_lista(n):
+    wynik = []
+    for i in range(n):
+        wynik.append(i * i)
+    return wynik
+
+# Generator — produkuje wartości po jednej
+def liczby_generator(n):
+    for i in range(n):
+        yield i * i   # zwróć jedną wartość i "zamróż" funkcję
+
+# Użycie jest identyczne w pętli for
+for kwadrat in liczby_generator(5):
+    print(kwadrat)   # 0, 1, 4, 9, 16
+
+# Można też zamienić generator na listę
+print(list(liczby_generator(5)))  # [0, 1, 4, 9, 16]
+```
+
+---
+
+**Jak działa `yield` — "zamrażanie" funkcji:**
+
+```python
+def przykladowy_generator():
+    print("Krok 1")
+    yield 10           # zatrzymaj się, zwróć 10
+    print("Krok 2")
+    yield 20           # zatrzymaj się, zwróć 20
+    print("Krok 3")
+    yield 30           # zatrzymaj się, zwróć 30
+    print("Koniec")
+
+g = przykladowy_generator()    # tworzy obiekt generatora (nic nie wykonuje!)
+
+print(next(g))    # "Krok 1", potem zwraca 10
+print(next(g))    # "Krok 2", potem zwraca 20
+print(next(g))    # "Krok 3", potem zwraca 30
+# next(g) teraz rzuciłoby StopIteration (generator wyczerpany)
+```
+
+---
+
+**Praktyczny przykład — generator parzystych liczb:**
+
+```python
+def parzyste(limit):
+    """Generator liczb parzystych od 0 do limit."""
+    liczba = 0
+    while liczba <= limit:
+        yield liczba
+        liczba += 2
+
+# Wypisz parzyste do 10
+for p in parzyste(10):
+    print(p)   # 0, 2, 4, 6, 8, 10
+
+# Pobierz tylko pierwszą parzystą
+g = parzyste(100)
+print(next(g))   # 0
+print(next(g))   # 2
+print(next(g))   # 4
+```
+
+---
+
+**Generator expression — jednoliniowy generator (jak list comprehension):**
+
+```python
+# List comprehension — tworzy całą listę w pamięci
+kwadraty_lista = [x**2 for x in range(10)]
+
+# Generator expression — produkuje wartości leniwie (nawiasy okrągłe!)
+kwadraty_gen = (x**2 for x in range(10))
+
+# Działanie takie same:
+for k in kwadraty_gen:
+    print(k)
+
+# Generator expression bezpośrednio w funkcji:
+print(sum(x**2 for x in range(10)))  # 285 (bez tworzenia listy)
+print(max(x**2 for x in range(10)))  # 81
+```
+
+---
+
+**Kiedy używać generatorów:**
+
+| Sytuacja | Rozwiązanie |
+|----------|-----------|
+| Duża kolekcja, używasz każdego elementu raz | Generator |
+| Mała kolekcja lub potrzebujesz dostępu losowego | Lista |
+| Odczyt dużego pliku linia po linii | Generator |
+| Przetwarzanie strumienia danych | Generator |
+| Wielokrotna iteracja przez tę samą kolekcję | Lista |
+
+```python
+# Przykład: odczyt dużego pliku generatorą (bez wczytywania całego do pamięci)
+def czytaj_linie(nazwa_pliku):
+    with open(nazwa_pliku, encoding="utf-8") as f:
+        for linia in f:
+            yield linia.strip()   # zwraca linię po linii
+
+# Użycie:
+# for linia in czytaj_linie("duzy_plik.txt"):
+#     print(linia)
+```
+
+---
+
+**Porównanie: `return` vs `yield`:**
+
+| Cecha | `return` (zwykła funkcja) | `yield` (generator) |
+|-------|--------------------------|---------------------|
+| Kiedy zwraca | Po wykonaniu całej funkcji | Po każdym `yield` |
+| Pamięć | Cały wynik naraz | Jedna wartość na raz |
+| Można iterować | Tak (jeśli zwróci listę) | Tak (zawsze) |
+| Wznawia wykonanie | Nie (zaczyna od nowa) | Tak (kontynuuje) |
+| Typ zwracanej wartości | Dowolny | Obiekt `generator` |
