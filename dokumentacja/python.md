@@ -20,11 +20,12 @@
   - [2.5. Operatory przynależności i tożsamości](#25-operatory-przynależności-i-tożsamości)
 - [3. Instrukcje sterujące](#3-instrukcje-sterujące)
   - [3.1. Instrukcja warunkowa `if` / `elif` / `else`](#31-instrukcja-warunkowa-if--elif--else)
-  - [3.2. Pętla `for`](#32-pętla-for)
-  - [3.3. Funkcja `enumerate()` — iteracja z indeksem](#33-funkcja-enumerate--iteracja-z-indeksem)
-  - [3.4. Pętla `while`](#34-pętla-while)
-  - [3.5. `break`, `continue` i `else` w pętlach](#35-break-continue-i-else-w-pętlach)
-  - [3.6. Pętle zagnieżdżone](#36-pętle-zagnieżdżone)
+  - [3.2. Instrukcja `match` / `case` — wzorce (switch)](#32-instrukcja-match--case--wzorce-switch)
+  - [3.3. Pętla `for`](#33-pętla-for)
+  - [3.4. Funkcja `enumerate()` — iteracja z indeksem](#34-funkcja-enumerate--iteracja-z-indeksem)
+  - [3.5. Pętla `while`](#35-pętla-while)
+  - [3.6. `break`, `continue` i `else` w pętlach](#36-break-continue-i-else-w-pętlach)
+  - [3.7. Pętle zagnieżdżone](#37-pętle-zagnieżdżone)
 - [4. Struktury danych](#4-struktury-danych)
   - [4.1. Listy (`list`)](#41-listy-list)
   - [4.2. Krotki (`tuple`)](#42-krotki-tuple)
@@ -895,7 +896,202 @@ a, b = 5, 10
 maksimum = a if a > b else b  # 10
 ```
 
-### 3.2. Pętla `for`
+### 3.2. Instrukcja `match` / `case` — wzorce (switch)
+
+Python **nie ma** słowa kluczowego `switch` (jak w C, Java czy C#). Do wersji 3.9 jedynym sposobem obsługi wielu wariantów było łańcuchowanie `if` / `elif` / `else`. Od **Pythona 3.10** dostępna jest instrukcja `match` / `case`, która jest odpowiednikiem `switch` — i przy okazji znacznie potężniejsza.
+
+> **Uwaga dla egzaminu:** Jeśli zadanie nie precyzuje wersji Pythona, bezpieczniej używać `if/elif/else`. Instrukcja `match` działa tylko od Python 3.10+.
+
+---
+
+**Podstawowa składnia:**
+
+```python
+match wyrażenie:
+    case wartość1:
+        # kod dla wartości1
+    case wartość2:
+        # kod dla wartości2
+    case _:
+        # domyślny przypadek (odpowiednik "default" / "else")
+```
+
+---
+
+**Przykład 1 — prosty wybór dnia tygodnia:**
+
+```python
+dzien = input("Podaj numer dnia (1-7): ")
+numer = int(dzien)
+
+match numer:
+    case 1:
+        print("Poniedziałek")
+    case 2:
+        print("Wtorek")
+    case 3:
+        print("Środa")
+    case 4:
+        print("Czwartek")
+    case 5:
+        print("Piątek")
+    case 6:
+        print("Sobota")
+    case 7:
+        print("Niedziela")
+    case _:
+        print("Nieprawidłowy numer dnia")
+```
+
+---
+
+**Przykład 2 — kilka wartości w jednym case (operator `|`):**
+
+```python
+miesiąc = int(input("Podaj numer miesiąca (1-12): "))
+
+match miesiąc:
+    case 12 | 1 | 2:
+        print("Zima")
+    case 3 | 4 | 5:
+        print("Wiosna")
+    case 6 | 7 | 8:
+        print("Lato")
+    case 9 | 10 | 11:
+        print("Jesień")
+    case _:
+        print("Nieprawidłowy miesiąc")
+```
+
+---
+
+**Przykład 3 — dopasowanie do napisu:**
+
+```python
+komenda = input("Podaj komendę (start/stop/pause): ").lower()
+
+match komenda:
+    case "start":
+        print("Uruchamiam...")
+    case "stop":
+        print("Zatrzymuję...")
+    case "pause":
+        print("Wstrzymuję...")
+    case _:
+        print(f"Nieznana komenda: {komenda}")
+```
+
+---
+
+**Odpowiednik `match/case` w wersji `if/elif/else` (kompatybilny z każdą wersją Pythona):**
+
+Poniższy kod działa identycznie jak przykład z miesiącami powyżej, ale jest kompatybilny z Pythonem 3.9 i starszym:
+
+```python
+miesiąc = int(input("Podaj numer miesiąca (1-12): "))
+
+if miesiąc in (12, 1, 2):
+    print("Zima")
+elif miesiąc in (3, 4, 5):
+    print("Wiosna")
+elif miesiąc in (6, 7, 8):
+    print("Lato")
+elif miesiąc in (9, 10, 11):
+    print("Jesień")
+else:
+    print("Nieprawidłowy miesiąc")
+```
+
+---
+
+**Przykład 4 — symulator kalkulatora (typowe zadanie egzaminacyjne):**
+
+```python
+a = float(input("Podaj pierwszą liczbę: "))
+operator = input("Podaj operator (+, -, *, /): ")
+b = float(input("Podaj drugą liczbę: "))
+
+match operator:
+    case "+":
+        wynik = a + b
+    case "-":
+        wynik = a - b
+    case "*":
+        wynik = a * b
+    case "/":
+        if b == 0:
+            print("Błąd: dzielenie przez zero!")
+        else:
+            wynik = a / b
+            print(f"{a} / {b} = {wynik}")
+    case _:
+        print(f"Nieznany operator: {operator}")
+```
+
+**Ten sam przykład z `if/elif/else` (Python 3.9 i starszy):**
+
+```python
+a = float(input("Podaj pierwszą liczbę: "))
+operator = input("Podaj operator (+, -, *, /): ")
+b = float(input("Podaj drugą liczbę: "))
+
+if operator == "+":
+    wynik = a + b
+    print(f"{a} + {b} = {wynik}")
+elif operator == "-":
+    wynik = a - b
+    print(f"{a} - {b} = {wynik}")
+elif operator == "*":
+    wynik = a * b
+    print(f"{a} * {b} = {wynik}")
+elif operator == "/":
+    if b == 0:
+        print("Błąd: dzielenie przez zero!")
+    else:
+        wynik = a / b
+        print(f"{a} / {b} = {wynik}")
+else:
+    print(f"Nieznany operator: {operator}")
+```
+
+---
+
+**Porównanie: `match/case` vs `if/elif` vs słownik funkcji:**
+
+| Metoda | Wersja Python | Zaleta |
+|--------|--------------|--------|
+| `if / elif / else` | Każda | Zawsze działa, czytelna dla prostych przypadków |
+| `match / case` | 3.10+ | Bardziej czytelna przy wielu wariantach, obsługa wzorców |
+| Słownik funkcji | Każda | Elegancka przy wielu wariantach bez zagnieżdżeń |
+
+**Technika z słownikiem** — zamiennik `switch` dostępny w każdej wersji Pythona:
+
+```python
+def dodaj(a, b):      return a + b
+def odejmij(a, b):    return a - b
+def mnóż(a, b):       return a * b
+def dziel(a, b):      return a / b if b != 0 else "Dzielenie przez zero!"
+
+operacje = {
+    "+": dodaj,
+    "-": odejmij,
+    "*": mnóż,
+    "/": dziel,
+}
+
+a = float(input("a: "))
+op = input("Operator: ")
+b = float(input("b: "))
+
+if op in operacje:
+    print(f"Wynik: {operacje[op](a, b)}")
+else:
+    print("Nieznany operator")
+```
+
+---
+
+### 3.3. Pętla `for`
 
 Pętla `for` w Pythonie działa inaczej niż w większości języków programowania. Zamiast klasycznej pętli liczącej (`for (int i = 0; i < n; i++)` z C++ lub Javy), Python iteruje bezpośrednio po elementach kolekcji — listy, napisu, zakresu liczb itp. To sprawia, że kod jest krótszy i bardziej czytelny, ale wymaga przyzwyczajenia, jeśli znasz inne języki.
 
@@ -942,7 +1138,7 @@ for znak in "Python":
     print(znak)  # P, y, t, h, o, n
 ```
 
-### 3.3. Funkcja `enumerate()` — iteracja z indeksem
+### 3.4. Funkcja `enumerate()` — iteracja z indeksem
 
 Funkcja `enumerate()` to niezwykle przydatne narzędzie, które podczas iteracji po kolekcji podaje jednocześnie **indeks** i **wartość** każdego elementu. Bez niej trzeba by ręcznie zarządzać licznikiem.
 
@@ -976,7 +1172,7 @@ for numer, owoc in enumerate(owoce, start=1):
 
 `enumerate()` zwraca pary `(indeks, element)`, które rozpakowujemy do dwóch zmiennych. Jest szczególnie przydatna, gdy potrzebujemy jednocześnie pozycji elementu i jego wartości — na przykład przy wyszukiwaniu, modyfikowaniu listy, czy wyświetlaniu numerowanych wyników.
 
-### 3.4. Pętla `while`
+### 3.5. Pętla `while`
 
 Pętla `while` powtarza blok kodu **dopóki warunek jest prawdziwy**. Jest odpowiednia, gdy nie wiemy z góry, ile razy pętla powinna się wykonać.
 
@@ -998,7 +1194,7 @@ while True:
 
 **Ważna uwaga:** Pętla `while True:` tworzy pętlę nieskończoną. Jedynym sposobem na wyjście z niej jest instrukcja `break`. Jest to częsty wzorzec w programowaniu — używany np. do menu programu, powtarzania operacji do momentu poprawnego wpisania danych itp.
 
-### 3.5. `break`, `continue` i `else` w pętlach
+### 3.6. `break`, `continue` i `else` w pętlach
 
 W trakcie wykonywania pętli może zajść potrzeba przerwania jej działania, pominięcia pewnych iteracji, lub wykonania kodu po jej naturalnym zakończeniu. Do tego służą trzy słowa kluczowe, które dają precyzyjną kontrolę nad przebiegiem pętli:
 
@@ -1033,7 +1229,7 @@ else:
 # To się WYKONA, bo break nie został użyty
 ```
 
-### 3.6. Pętle zagnieżdżone
+### 3.7. Pętle zagnieżdżone
 
 Pętle zagnieżdżone to pętle umieszczone wewnątrz innych pętli. Zewnętrzna pętla wykonuje się raz, a dla każdej jej iteracji wewnętrzna pętla wykonuje się od początku do końca. Są niezbędne do pracy z tablicami dwuwymiarowymi i algorytmami sortowania.
 
