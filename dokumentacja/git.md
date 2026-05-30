@@ -1,8 +1,5 @@
 # Dokumentacja: Git
 
-> **Uwaga:** Git nie pojawił się bezpośrednio w dotychczasowych arkuszach egzaminacyjnych INF04.
-> Ta dokumentacja stanowi jednak przydatne uzupełnienie — znajomość Gita jest oczekiwana od każdego programisty i może pojawić się w zadaniu praktycznym (np. „umieść projekt w repozytorium").
-
 ---
 
 ## Spis treści
