@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="1. Rozszerzanie Pythona za pomocą C lub C++" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/extending/extending.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Jest całkiem łatwo dodać nowe wbudowane moduły do Pythona, jeśli znasz się na programowaniu w C. Takie moduły rozszerzające &lt;extension modules&gt; mogą zrobić dwie rzeczy których nie da się zrob..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_extending_extending_52312d78.png" />
+<meta property="og:image:alt" content="Jest całkiem łatwo dodać nowe wbudowane moduły do Pythona, jeśli znasz się na programowaniu w C. Takie moduły rozszerzające &lt;extension modules&gt; mogą zrobić dwie rzeczy których nie da się zrob..." />
+<meta name="description" content="Jest całkiem łatwo dodać nowe wbudowane moduły do Pythona, jeśli znasz się na programowaniu w C. Takie moduły rozszerzające &lt;extension modules&gt; mogą zrobić dwie rzeczy których nie da się zrob..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>1. Rozszerzanie Pythona za pomocą C lub C++ &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="2. Defining Extension Types: Tutorial" href="newtypes_tutorial.html" />
+    <link rel="prev" title="Rozszerzony i wbudowany interpreter Python" href="index.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/extending/extending.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. Rozszerzanie Pythona za pomocą C lub C++</a><ul>
+<li><a class="reference internal" href="#a-simple-example">1.1. Prosty przykład</a></li>
+<li><a class="reference internal" href="#intermezzo-errors-and-exceptions">1.2. Intermezzo: Błędy i Wyjątki</a></li>
+<li><a class="reference internal" href="#back-to-the-example">1.3. Z powrotem do Przykładu</a></li>
+<li><a class="reference internal" href="#the-module-s-method-table-and-initialization-function">1.4. Zadanie zainicjowania i tabela sposobów postępowania modułu.</a></li>
+<li><a class="reference internal" href="#compilation-and-linkage">1.5. Kompilacja i łączenie</a></li>
+<li><a class="reference internal" href="#calling-python-functions-from-c">1.6. Wywoływanie zadań języka pytonowskiego z C</a></li>
+<li><a class="reference internal" href="#extracting-parameters-in-extension-functions">1.7. Wydobywanie parametrów w zadaniach rozszerzających</a></li>
+<li><a class="reference internal" href="#keyword-parameters-for-extension-functions">1.8. Parametry kluczowe dla zadań rozszerzających</a></li>
+<li><a class="reference internal" href="#building-arbitrary-values">1.9. Budowanie dowolnych wartości</a></li>
+<li><a class="reference internal" href="#reference-counts">1.10. Liczby odniesień</a><ul>
+<li><a class="reference internal" href="#reference-counting-in-python">1.10.1. Zliczanie odniesień w języku pytonowskim</a></li>
+<li><a class="reference internal" href="#ownership-rules">1.10.2. Zasady właścicielskie</a></li>
+<li><a class="reference internal" href="#thin-ice">1.10.3. Cienki lód</a></li>
+<li><a class="reference internal" href="#null-pointers">1.10.4. Puste wskaźniki (NULL)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-extensions-in-c">1.11. Pisanie rozszerzeń w C++</a></li>
+<li><a class="reference internal" href="#providing-a-c-api-for-an-extension-module">1.12. Dostarczanie sprzęgu programowania aplikacji (API) języka C dla modułu rozszerzającego</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="index.html"
+                          title="poprzedni rozdział">Rozszerzony i wbudowany interpreter Python</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="newtypes_tutorial.html"
+                          title="następny rozdział"><span class="section-number">2. </span>Defining Extension Types: Tutorial</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "extending/extending.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/extending/extending.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="newtypes_tutorial.html" title="2. Defining Extension Types: Tutorial"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Rozszerzony i wbudowany interpreter Python"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Rozszerzony i wbudowany interpreter Python</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Rozszerzanie Pythona za pomocą C lub C++</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="extending-python-with-c-or-c">
+<span id="extending-intro"></span><h1 class="translated"><span class="section-number">1. </span>Rozszerzanie Pythona za pomocą C lub C++<a class="headerlink" href="#extending-python-with-c-or-c" title="Link to this heading">¶</a></h1>
+<p class="translated">Jest całkiem łatwo dodać nowe wbudowane moduły do Pythona, jeśli znasz się na programowaniu w C. Takie <em class="dfn">moduły rozszerzające &lt;extension modules&gt;</em> mogą zrobić dwie rzeczy których nie da się zrobić bezpośrednio w Pythonie: mogą wypełnić nowe wbudowane typy przedmiotów i mogą odwołać się do zadań bibliotecznych C i odwołań systemowych.</p>
+<p class="translated">Aby wspierać rozszerzenia, API Pythona (Application Programmers Interface) określa zbiór funkcji, makropoleceń i zmiennych, które dostarczają dostęp do większości aspektów systemu czasu-wykonania Pythona. API Pythona jest załączane w źródłowym pliku C przez załączenie pliku nagłówkowego <code class="docutils literal notranslate"><span class="pre">&quot;Python.h&quot;</span></code>.</p>
+<p class="translated">Kompilacja rozszerzających modułów zależy od jego zamierzonego użycia zarówno jak też od ustawień twojego systemu; szczegóły są dane w późniejszych rozdziałach.</p>
+<div class="admonition note">
+<p class="admonition-title">Informacja</p>
+<p class="untranslated">The C extension interface is specific to CPython, and extension modules do
+not work on other Python implementations.  In many cases, it is possible to
+avoid writing C extensions and preserve portability to other implementations.
+For example, if your use case is calling C library functions or system calls,
+you should consider using the <a class="reference internal" href="../library/ctypes.html#module-ctypes" title="ctypes: A foreign function library for Python."><code class="xref py py-mod docutils literal notranslate"><span class="pre">ctypes</span></code></a> module or the <a class="reference external" href="https://cffi.readthedocs.io/">cffi</a> library rather than writing
+custom C code.
+These modules let you write Python code to interface with C code and are more
+portable between implementations of Python than writing and compiling a C
+extension module.</p>
+</div>
+<section id="a-simple-example">
+<span id="extending-simpleexample"></span><h2 class="translated"><span class="section-number">1.1. </span>Prosty przykład<a class="headerlink" href="#a-simple-example" title="Link to this heading">¶</a></h2>
+<p class="untranslated">Let’s create an extension module called <code class="docutils literal notranslate"><span class="pre">spam</span></code> (the favorite food of Monty
+Python fans…) and let’s say we want to create a Python interface to the C
+library function <code class="xref c c-func docutils literal notranslate"><span class="pre">system()</span></code> <a class="footnote-reference brackets" href="#id5" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This function takes a null-terminated
+character string as argument and returns an integer.  We want this function to
+be callable from Python as follows:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">spam</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span> <span class="o">=</span> <span class="n">spam</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;ls -l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">Zaczynając od stworzenia pliku <code class="file docutils literal notranslate"><span class="pre">spammodule.c</span></code> (Historycznie, jeśli moduł był nazwany <code class="docutils literal notranslate"><span class="pre">spam</span></code>, plik C zawierający jego wypełnienie jest nazywany <code class="file docutils literal notranslate"><span class="pre">spammodule.c</span></code>; jeśli nazwa modułu jest bardzo długa, jak np <code class="docutils literal notranslate"><span class="pre">spammify</span></code>, nazwa modułu może być po prostu <code class="file docutils literal notranslate"><span class="pre">spammify.c</span></code>.)</p>
+<p class="untranslated">The first two lines of our file can be:</p>
+<div class="translated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+</pre></div>
+</div>
+<p class="translated">które dociągają API Pythona (możesz dodać komentarz opisujący przeznaczenie modułu i uwagi na temat praw autorskich jeśli masz ochotę).</p>
+<div class="admonition note">
+<p class="admonition-title">Informacja</p>
+<p class="translated">Jako że Python może definiować pewne definicje preprocesora, które wpływają na pliki nagłówkowe na niektórych systemach, <em>musisz</em> załączyć plik <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> przed jakimikolwiek standardowymi nagłówkami.</p>
+<p class="untranslated"><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">PY_SSIZE_T_CLEAN</span></code> was used to indicate that <code class="docutils literal notranslate"><span class="pre">Py_ssize_t</span></code> should be
+used in some APIs instead of <code class="docutils literal notranslate"><span class="pre">int</span></code>.
+It is not necessary since Python 3.13, but we keep it here for backward compatibility.
+See <a class="reference internal" href="../c-api/arg.html#arg-parsing-string-and-buffers"><span class="std std-ref">Napisy i skrzynki wymiany</span></a> for a description of this macro.</p>
+</div>
+<p class="untranslated">All user-visible symbols defined by <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> have a prefix of <code class="docutils literal notranslate"><span class="pre">Py</span></code> or
+<code class="docutils literal notranslate"><span class="pre">PY</span></code>, except those defined in standard header files.</p>
+<div class="admonition tip">
+<p class="admonition-title">Wskazówka</p>
+<p class="untranslated">For backward compatibility, <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> includes several standard header files.
+C extensions should include the standard headers that they use,
+and should not rely on these implicit includes.
+If using the limited C API version 3.13 or newer, the implicit includes are:</p>
+<ul class="simple">
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;assert.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;intrin.h&gt;</span></code> (on Windows)</p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;inttypes.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;limits.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;math.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;stdarg.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;wchar.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;sys/types.h&gt;</span></code> (if present)</p></li>
+</ul>
+<p class="untranslated">If <a class="reference internal" href="../c-api/stable.html#c.Py_LIMITED_API" title="Py_LIMITED_API"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code></a> is not defined, or is set to version 3.12 or older,
+the headers below are also included:</p>
+<ul class="simple">
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;ctype.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;unistd.h&gt;</span></code> (on POSIX)</p></li>
+</ul>
+<p class="untranslated">If <a class="reference internal" href="../c-api/stable.html#c.Py_LIMITED_API" title="Py_LIMITED_API"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code></a> is not defined, or is set to version 3.10 or older,
+the headers below are also included:</p>
+<ul class="simple">
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;errno.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;stdio.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;stdlib.h&gt;</span></code></p></li>
+<li><p class="untranslated"><code class="docutils literal notranslate"><span class="pre">&lt;string.h&gt;</span></code></p></li>
+</ul>
+</div>
+<p class="translated">Następną rzeczą którą dodajemy do naszego pliku modułu jest zadanie C które będzie wzywane gdy wyrażenie języka pytonowskiego <code class="docutils literal notranslate"><span class="pre">spam.system(string)</span></code> zostanie obliczone (zobaczymy niedługo, jak to się kończy wywołaniem):</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">spam_system</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sts</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">command</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="n">sts</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="translated">Istnieje prosta zamiana nazw z listy parametrów w języku pytonowskim (dla przykładu, pojedyncze wyrażenie <code class="docutils literal notranslate"><span class="pre">&quot;ls</span> <span class="pre">-l&quot;</span></code>) do parametrów przekazanych do zadania C. Zadanie C zawsze ma dwa parametry, dla wygody nazywane <em>sam</em> - z ang. - <em>self</em> i <em>args</em>.</p>
+<p class="translated">Parametr <em>sam</em> - z ang. - <em>self</em> - wskazuje na przedmiot modułu dla zadań na poziomie-modułu; dla sposobu postępowania wskazywałby na przykład przedmiotu.</p>
+<p class="untranslated">The <em>args</em> argument will be a pointer to a Python tuple object containing the
+arguments.  Each item of the tuple corresponds to an argument in the call’s
+argument list.  The arguments are Python objects — in order to do anything
+with them in our C function we have to convert them to C values.  The function
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> in the Python API checks the argument types and
+converts them to C values.  It uses a template string to determine the required
+types of the arguments as well as the types of the C variables into which to
+store the converted values.  More about this later.</p>
+<p class="untranslated"><a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> returns true (nonzero) if all arguments have the right
+type and its components have been stored in the variables whose addresses are
+passed.  It returns false (zero) if an invalid argument list was passed.  In the
+latter case it also raises an appropriate exception so the calling function can
+return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> immediately (as we saw in the example).</p>
+</section>
+<section id="intermezzo-errors-and-exceptions">
+<span id="extending-errors"></span><h2 class="translated"><span class="section-number">1.2. </span>Intermezzo: Błędy i Wyjątki<a class="headerlink" href="#intermezzo-errors-and-exceptions" title="Link to this heading">¶</a></h2>
+<p class="untranslated">An important convention throughout the Python interpreter is the following: when
+a function fails, it should set an exception condition and return an error value
+(usually <code class="docutils literal notranslate"><span class="pre">-1</span></code> or a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).  Exception information is stored in
+three members of the interpreter’s thread state.  These are <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if
+there is no exception.  Otherwise they are the C equivalents of the members
+of the Python tuple returned by <a class="reference internal" href="../library/sys.html#sys.exc_info" title="sys.exc_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>.  These are the
+exception type, exception instance, and a traceback object.  It is important
+to know about them to understand how errors are passed around.</p>
+<p class="translated">Sprzęg języka pytonowskiego określa pewien zestaw zadań do ustawiania różnych rodzajów  wyjątków.</p>
+<p class="untranslated">The most common one is <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetString" title="PyErr_SetString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetString()</span></code></a>.  Its arguments are an exception
+object and a C string.  The exception object is usually a predefined object like
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ZeroDivisionError" title="PyExc_ZeroDivisionError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code></a>.  The C string indicates the cause of the error
+and is converted to a Python string object and stored as the „associated value”
+of the exception.</p>
+<p class="untranslated">Another useful function is <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetFromErrno" title="PyErr_SetFromErrno"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetFromErrno()</span></code></a>, which only takes an
+exception argument and constructs the associated value by inspection of the
+global variable <code class="xref c c-data docutils literal notranslate"><span class="pre">errno</span></code>.  The most general function is
+<a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetObject" title="PyErr_SetObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetObject()</span></code></a>, which takes two object arguments, the exception and
+its associated value.  You don’t need to <a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a> the objects passed
+to any of these functions.</p>
+<p class="untranslated">You can test non-destructively whether an exception has been set with
+<a class="reference internal" href="../c-api/exceptions.html#c.PyErr_Occurred" title="PyErr_Occurred"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Occurred()</span></code></a>.  This returns the current exception object, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+if no exception has occurred.  You normally don’t need to call
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Occurred()</span></code> to see whether an error occurred in a function call,
+since you should be able to tell from the return value.</p>
+<p class="untranslated">When a function <em>f</em> that calls another function <em>g</em> detects that the latter
+fails, <em>f</em> should itself return an error value (usually <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code>).  It
+should <em>not</em> call one of the <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code> functions — one has already
+been called by <em>g</em>. <em>f</em>’s caller is then supposed to also return an error
+indication to <em>its</em> caller, again <em>without</em> calling <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code>, and so on
+— the most detailed cause of the error was already reported by the function
+that first detected it.  Once the error reaches the Python interpreter’s main
+loop, this aborts the currently executing Python code and tries to find an
+exception handler specified by the Python programmer.</p>
+<p class="untranslated">(There are situations where a module can actually give a more detailed error
+message by calling another <code class="docutils literal notranslate"><span class="pre">PyErr_*</span></code> function, and in such cases it is
+fine to do so.  As a general rule, however, this is not necessary, and can cause
+information about the cause of the error to be lost: most operations can fail
+for a variety of reasons.)</p>
+<p class="untranslated">To ignore an exception set by a function call that failed, the exception
+condition must be cleared explicitly by calling <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_Clear" title="PyErr_Clear"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Clear()</span></code></a>.  The only
+time C code should call <code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Clear()</span></code> is if it doesn’t want to pass the
+error on to the interpreter but wants to handle it completely by itself
+(possibly by trying something else, or pretending nothing went wrong).</p>
+<p class="untranslated">Every failing <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> call must be turned into an exception — the
+direct caller of <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> (or <code class="xref c c-func docutils literal notranslate"><span class="pre">realloc()</span></code>) must call
+<a class="reference internal" href="../c-api/exceptions.html#c.PyErr_NoMemory" title="PyErr_NoMemory"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_NoMemory()</span></code></a> and return a failure indicator itself.  All the
+object-creating functions (for example, <a class="reference internal" href="../c-api/long.html#c.PyLong_FromLong" title="PyLong_FromLong"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_FromLong()</span></code></a>) already do
+this, so this note is only relevant to those who call <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> directly.</p>
+<p class="untranslated">Also note that, with the important exception of <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> and
+friends, functions that return an integer status usually return a positive value
+or zero for success and <code class="docutils literal notranslate"><span class="pre">-1</span></code> for failure, like Unix system calls.</p>
+<p class="untranslated">Finally, be careful to clean up garbage (by making <a class="reference internal" href="../c-api/refcounting.html#c.Py_XDECREF" title="Py_XDECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XDECREF()</span></code></a> or
+<a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> calls for objects you have already created) when you return
+an error indicator!</p>
+<p class="untranslated">The choice of which exception to raise is entirely yours.  There are predeclared
+C objects corresponding to all built-in Python exceptions, such as
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ZeroDivisionError" title="PyExc_ZeroDivisionError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code></a>, which you can use directly. Of course, you
+should choose exceptions wisely — don’t use <a class="reference internal" href="../c-api/exceptions.html#c.PyExc_TypeError" title="PyExc_TypeError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code></a> to mean
+that a file couldn’t be opened (that should probably be <a class="reference internal" href="../c-api/exceptions.html#c.PyExc_OSError" title="PyExc_OSError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_OSError</span></code></a>).
+If something’s wrong with the argument list, the <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>
+function usually raises <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code>.  If you have an argument whose
+value must be in a particular range or must satisfy other conditions,
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ValueError" title="PyExc_ValueError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ValueError</span></code></a> is appropriate.</p>
+<p class="untranslated">You can also define a new exception that is unique to your module.
+The simplest way to do this is to declare a static global object variable at
+the beginning of the file:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<p class="untranslated">and initialize it by calling <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_NewException" title="PyErr_NewException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_NewException()</span></code></a> in the module’s
+<a class="reference internal" href="../c-api/module.html#c.Py_mod_exec" title="Py_mod_exec"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_mod_exec</span></code></a> function (<code class="xref c c-func docutils literal notranslate"><span class="pre">spam_module_exec()</span></code>):</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyErr_NewException</span><span class="p">(</span><span class="s">&quot;spam.error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="untranslated">Since <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> is a global variable, it will be overwritten every time
+the module is reinitialized, when the <a class="reference internal" href="../c-api/module.html#c.Py_mod_exec" title="Py_mod_exec"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_mod_exec</span></code></a> function is called.</p>
+<p class="untranslated">For now, let’s avoid the issue: we will block repeated initialization by raising an
+<a class="reference internal" href="../library/exceptions.html#ImportError" title="ImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a>:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">spam_module_exec</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SpamError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_ImportError</span><span class="p">,</span>
+<span class="w">                        </span><span class="s">&quot;cannot initialize spam module more than once&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyErr_NewException</span><span class="p">(</span><span class="s">&quot;spam.error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_AddObjectRef</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SpamError&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SpamError</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">PyModuleDef_Slot</span><span class="w"> </span><span class="n">spam_module_slots</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="n">Py_mod_exec</span><span class="p">,</span><span class="w"> </span><span class="n">spam_module_exec</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyModuleDef</span><span class="w"> </span><span class="n">spam_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyModuleDef_HEAD_INIT</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spam&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="c1">// non-negative</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_slots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spam_module_slots</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">PyMODINIT_FUNC</span>
+<span class="nf">PyInit_spam</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyModuleDef_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">spam_module</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">Note that the Python name for the exception object is <code class="xref py py-exc docutils literal notranslate"><span class="pre">spam.error</span></code>.  The
+<a class="reference internal" href="../c-api/exceptions.html#c.PyErr_NewException" title="PyErr_NewException"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_NewException()</span></code></a> function may create a class with the base class
+being <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> (unless another class is passed in instead of <code class="docutils literal notranslate"><span class="pre">NULL</span></code>),
+described in <a class="reference internal" href="../library/exceptions.html#bltin-exceptions"><span class="std std-ref">Built-in Exceptions</span></a>.</p>
+<p class="untranslated">Note also that the <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> variable retains a reference to the newly
+created exception class; this is intentional!  Since the exception could be
+removed from the module by external code, an owned reference to the class is
+needed to ensure that it will not be discarded, causing <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> to
+become a dangling pointer. Should it become a dangling pointer, C code which
+raises the exception could cause a core dump or other unintended side effects.</p>
+<p class="untranslated">For now, the <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> call to remove this reference is missing.
+Even when the Python interpreter shuts down, the global <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code>
+variable will not be garbage-collected. It will „leak”.
+We did, however, ensure that this will happen at most once per process.</p>
+<p class="untranslated">We discuss the use of <a class="reference internal" href="../c-api/extension-modules.html#c.PyMODINIT_FUNC" title="PyMODINIT_FUNC"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyMODINIT_FUNC</span></code></a> as a function return type later in this
+sample.</p>
+<p class="untranslated">The <code class="xref py py-exc docutils literal notranslate"><span class="pre">spam.error</span></code> exception can be raised in your extension module using a
+call to <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetString" title="PyErr_SetString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetString()</span></code></a> as shown below:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">spam_system</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sts</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">command</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sts</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">SpamError</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;System command failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="n">sts</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="back-to-the-example">
+<span id="backtoexample"></span><h2 class="translated"><span class="section-number">1.3. </span>Z powrotem do Przykładu<a class="headerlink" href="#back-to-the-example" title="Link to this heading">¶</a></h2>
+<p class="translated">Wracając do naszej przykładowego zadania, powinieneś już być w stanie zrozumieć to wyrażenie:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">command</span><span class="p">))</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<p class="untranslated">It returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (the error indicator for functions returning object pointers)
+if an error is detected in the argument list, relying on the exception set by
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>.  Otherwise the string value of the argument has been
+copied to the local variable <code class="xref c c-data docutils literal notranslate"><span class="pre">command</span></code>.  This is a pointer assignment and
+you are not supposed to modify the string to which it points (so in Standard C,
+the variable <code class="xref c c-data docutils literal notranslate"><span class="pre">command</span></code> should properly be declared as <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span>
+<span class="pre">*command</span></code>).</p>
+<p class="untranslated">The next statement is a call to the Unix function <code class="xref c c-func docutils literal notranslate"><span class="pre">system()</span></code>, passing it
+the string we just got from <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">sts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="untranslated">Our <code class="xref py py-func docutils literal notranslate"><span class="pre">spam.system()</span></code> function must return the value of <code class="xref c c-data docutils literal notranslate"><span class="pre">sts</span></code> as a
+Python object.  This is done using the function <a class="reference internal" href="../c-api/long.html#c.PyLong_FromLong" title="PyLong_FromLong"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_FromLong()</span></code></a>.</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="n">sts</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="translated">W tym przypadku, zwróci przedmiot liczby całkowitej (Tak, nawet liczby całkowite są przedmiotami na stercie w języku pytonowskim!)</p>
+<p class="untranslated">If you have a C function that returns no useful argument (a function returning
+<span class="c-expr sig sig-inline c"><span class="kt">void</span></span>), the corresponding Python function must return <code class="docutils literal notranslate"><span class="pre">None</span></code>.   You
+need this idiom to do so (which is implemented by the <a class="reference internal" href="../c-api/none.html#c.Py_RETURN_NONE" title="Py_RETURN_NONE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_RETURN_NONE</span></code></a>
+macro):</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">Py_None</span><span class="p">;</span>
+</pre></div>
+</div>
+<p class="untranslated"><a class="reference internal" href="../c-api/none.html#c.Py_None" title="Py_None"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_None</span></code></a> is the C name for the special Python object <code class="docutils literal notranslate"><span class="pre">None</span></code>.  It is a
+genuine Python object rather than a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer, which means „error” in most
+contexts, as we have seen.</p>
+</section>
+<section id="the-module-s-method-table-and-initialization-function">
+<span id="methodtable"></span><h2 class="translated"><span class="section-number">1.4. </span>Zadanie zainicjowania i tabela sposobów postępowania modułu.<a class="headerlink" href="#the-module-s-method-table-and-initialization-function" title="Link to this heading">¶</a></h2>
+<p class="untranslated">I promised to show how <code class="xref c c-func docutils literal notranslate"><span class="pre">spam_system()</span></code> is called from Python programs.
+First, we need to list its name and address in a „method table”:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyMethodDef</span><span class="w"> </span><span class="n">spam_methods</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;system&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">spam_system</span><span class="p">,</span><span class="w"> </span><span class="n">METH_VARARGS</span><span class="p">,</span>
+<span class="w">     </span><span class="s">&quot;Execute a shell command.&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">{</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">}</span><span class="w">        </span><span class="cm">/* Sentinel */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p class="untranslated">Note the third entry (<code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code>).  This is a flag telling the interpreter
+the calling convention to be used for the C function.  It should normally always
+be <code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code> or <code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span> <span class="pre">|</span> <span class="pre">METH_KEYWORDS</span></code>; a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> means
+that an obsolete variant of <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> is used.</p>
+<p class="untranslated">When using only <code class="docutils literal notranslate"><span class="pre">METH_VARARGS</span></code>, the function should expect the Python-level
+parameters to be passed in as a tuple acceptable for parsing via
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>; more information on this function is provided below.</p>
+<p class="untranslated">The <a class="reference internal" href="../c-api/structures.html#c.METH_KEYWORDS" title="METH_KEYWORDS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_KEYWORDS</span></code></a> bit may be set in the third field if keyword
+arguments should be passed to the function.  In this case, the C function should
+accept a third <code class="docutils literal notranslate"><span class="pre">PyObject</span> <span class="pre">*</span></code> parameter which will be a dictionary of keywords.
+Use <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> to parse the arguments to such a
+function.</p>
+<p class="translated">Tabela sposobów postępowania musi być określona w strukturze definicji modułu:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyModuleDef</span><span class="w"> </span><span class="n">spam_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_methods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spam_methods</span><span class="p">,</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p class="untranslated">This structure, in turn, must be passed to the interpreter in the module’s
+initialization function.  The initialization function must be named
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyInit_name()</span></code>, where <em>name</em> is the name of the module, and should be the
+only non-<code class="docutils literal notranslate"><span class="pre">static</span></code> item defined in the module file:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyMODINIT_FUNC</span>
+<span class="nf">PyInit_spam</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyModuleDef_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">spam_module</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">Note that <a class="reference internal" href="../c-api/extension-modules.html#c.PyMODINIT_FUNC" title="PyMODINIT_FUNC"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PyMODINIT_FUNC</span></code></a> declares the function as <code class="docutils literal notranslate"><span class="pre">PyObject</span> <span class="pre">*</span></code> return type,
+declares any special linkage declarations required by the platform, and for C++
+declares the function as <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code>.</p>
+<p class="untranslated"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyInit_spam()</span></code> is called when each interpreter imports its module
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">spam</span></code> for the first time.  (See below for comments about embedding Python.)
+A pointer to the module definition must be returned via <a class="reference internal" href="../c-api/extension-modules.html#c.PyModuleDef_Init" title="PyModuleDef_Init"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyModuleDef_Init()</span></code></a>,
+so that the import machinery can create the module and store it in <code class="docutils literal notranslate"><span class="pre">sys.modules</span></code>.</p>
+<p class="untranslated">When embedding Python, the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyInit_spam()</span></code> function is not called
+automatically unless there’s an entry in the <a class="reference internal" href="../c-api/import.html#c.PyImport_Inittab" title="PyImport_Inittab"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyImport_Inittab</span></code></a> table.
+To add the module to the initialization table, use <a class="reference internal" href="../c-api/import.html#c.PyImport_AppendInittab" title="PyImport_AppendInittab"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyImport_AppendInittab()</span></code></a>,
+optionally followed by an import of the module:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PyStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PyConfig</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PyConfig_InitPythonConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Add a built-in module, before Py_Initialize */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyImport_AppendInittab</span><span class="p">(</span><span class="s">&quot;spam&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PyInit_spam</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error: could not extend in-built modules table</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Pass argv[0] to the Python interpreter */</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyConfig_SetBytesString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">.</span><span class="n">program_name</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyStatus_Exception</span><span class="p">(</span><span class="n">status</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">exception</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Initialize the Python interpreter.  Required.</span>
+<span class="cm">       If this step fails, it will be a fatal error. */</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_InitializeFromConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyStatus_Exception</span><span class="p">(</span><span class="n">status</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">exception</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">PyConfig_Clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Optionally import the module; alternatively,</span>
+<span class="cm">       import can be deferred until the embedded script</span>
+<span class="cm">       imports it. */</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">pmodule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyImport_ImportModule</span><span class="p">(</span><span class="s">&quot;spam&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pmodule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">PyErr_Print</span><span class="p">();</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error: could not import module &#39;spam&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ... use Python C API here ...</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nl">exception</span><span class="p">:</span>
+<span class="w">     </span><span class="n">PyConfig_Clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="w">     </span><span class="n">Py_ExitStatusException</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Informacja</p>
+<p class="untranslated">If you declare a global variable or a local static one, the module may
+experience unintended side-effects on re-initialisation, for example when
+removing entries from <code class="docutils literal notranslate"><span class="pre">sys.modules</span></code> or importing compiled modules into
+multiple interpreters within a process
+(or following a <code class="xref c c-func docutils literal notranslate"><span class="pre">fork()</span></code> without an intervening <code class="xref c c-func docutils literal notranslate"><span class="pre">exec()</span></code>).
+If module state is not yet fully <a class="reference internal" href="../howto/isolating-extensions.html#isolating-extensions-howto"><span class="std std-ref">isolated</span></a>,
+authors should consider marking the module as having no support for subinterpreters
+(via <a class="reference internal" href="../c-api/module.html#c.Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED" title="Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED</span></code></a>).</p>
+</div>
+<p class="untranslated">A more substantial example module is included in the Python source distribution
+as <code class="file docutils literal notranslate"><span class="pre">Modules/xxlimited.c</span></code>.  This file may be used as a template or simply
+read as an example.</p>
+</section>
+<section id="compilation-and-linkage">
+<span id="compilation"></span><h2 class="translated"><span class="section-number">1.5. </span>Kompilacja i łączenie<a class="headerlink" href="#compilation-and-linkage" title="Link to this heading">¶</a></h2>
+<p class="translated">Są jeszcze dwie rzeczy które trzeba zrobić zanim będzie można użyć nowego rozszerzenia: skompilowanie go i podłączenie z systemem Pythona. Jeśli używasz dynamicznego ładowania, szczegóły mogą zależeć od stylu dynamicznego ładowania którego twój system używa; zobacz rozdział o budowaniu rozszerzających modułów (rozdział <a class="reference internal" href="building.html#building"><span class="std std-ref">Building C and C++ Extensions</span></a>) i dodatkowe informacje które odnoszą się tylko do budowania w Windows (rozdział <a class="reference internal" href="windows.html#building-on-windows"><span class="std std-ref">Tworzenie rozszerzeń C i C++ w Windowsie</span></a>) po więcej informacji na ten temat.</p>
+<p class="untranslated">If you can’t use dynamic loading, or if you want to make your module a permanent
+part of the Python interpreter, you will have to change the configuration setup
+and rebuild the interpreter.  Luckily, this is very simple on Unix: just place
+your file (<code class="file docutils literal notranslate"><span class="pre">spammodule.c</span></code> for example) in the <code class="file docutils literal notranslate"><span class="pre">Modules/</span></code> directory
+of an unpacked source distribution, add a line to the file
+<code class="file docutils literal notranslate"><span class="pre">Modules/Setup.local</span></code> describing your file:</p>
+<div class="untranslated highlight-sh notranslate"><div class="highlight"><pre><span></span>spam<span class="w"> </span>spammodule.o
+</pre></div>
+</div>
+<p class="translated">i przebuduj program interpretujący przez uruchomienie programu <strong class="program">make</strong> w katalogu głównym instalacji. Możesz także uruchomić program <strong class="program">make</strong> w podkatalogu <code class="file docutils literal notranslate"><span class="pre">Modules/</span></code>, ale wtedy musisz najpierw przebudować plik <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> tam przez uruchomienie programu <strong class="program">make</strong> Makefile». To jest konieczne za każdym razem gdy zmieniasz plik <code class="file docutils literal notranslate"><span class="pre">Setup</span></code>.)</p>
+<p class="untranslated">If your module requires additional libraries to link with, these can be listed
+on the line in the configuration file as well, for instance:</p>
+<div class="untranslated highlight-sh notranslate"><div class="highlight"><pre><span></span>spam<span class="w"> </span>spammodule.o<span class="w"> </span>-lX11
+</pre></div>
+</div>
+</section>
+<section id="calling-python-functions-from-c">
+<span id="callingpython"></span><h2 class="translated"><span class="section-number">1.6. </span>Wywoływanie zadań języka pytonowskiego z C<a class="headerlink" href="#calling-python-functions-from-c" title="Link to this heading">¶</a></h2>
+<p class="translated">Jak do tej pory koncentrowaliśmy się na uczynieniu zadań C możliwymi do wywołania z poziomu języka pytonowskiego. Odwrotna sytuacja jest także użyteczna: wywoływanie zadań języka pytonowskiego z poziomu języka C. To w szczególności odnosi się do bibliotek które wspierają tak zwane zadania „callback” wstecznie wywołujące. Jeśli sprzęg C używa zadań wstecznie wywołujących, odpowiednik języka pytonowskiego często potrzebuje dostarczyć mechanizm wstecznego wywołania dla programisty języka pytonowskiego; wypełnienie będzie potrzebowało wzywać zadania wywołania wstecznego z poziomu wstecznego C. Inne przypadki są także możliwe do wyobrażenia.</p>
+<p class="translated">Szczęśliwie, program interpretujący polecenia języka pytonowskiego jest łatwo wywoływany rekursywnie i istnieje standardowy sprzęg aby wywołać zadanie języka pytonowskiego. (Nie będę rozpisywał się o tym jak wywołać czytnik języka pytonowskiego z konkretnym ciągiem znaków na wejściu — jeśli jesteś zainteresowany, spójrz na wypełnienie opcji <a class="reference internal" href="../using/cmdline.html#cmdoption-c"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c</span></code></a> wiersza polecenia w <code class="file docutils literal notranslate"><span class="pre">Modules/main.c</span></code> z kodu źródłowego języka pytonowskiego.)</p>
+<p class="untranslated">Calling a Python function is easy.  First, the Python program must somehow pass
+you the Python function object.  You should provide a function (or some other
+interface) to do this.  When this function is called, save a pointer to the
+Python function object (be careful to <a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a> it!) in a global
+variable — or wherever you see fit. For example, the following function might
+be part of a module definition:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">my_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">my_set_callback</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">dummy</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O:set_callback&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">temp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyCallable_Check</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_TypeError</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;parameter must be callable&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">Py_XINCREF</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span><span class="w">         </span><span class="cm">/* Add a reference to new callback */</span>
+<span class="w">        </span><span class="n">Py_XDECREF</span><span class="p">(</span><span class="n">my_callback</span><span class="p">);</span><span class="w">  </span><span class="cm">/* Dispose of previous callback */</span>
+<span class="w">        </span><span class="n">my_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span><span class="w">       </span><span class="cm">/* Remember new callback */</span>
+<span class="w">        </span><span class="cm">/* Boilerplate to return &quot;None&quot; */</span>
+<span class="w">        </span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">Py_None</span><span class="p">);</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_None</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">This function must be registered with the interpreter using the
+<a class="reference internal" href="../c-api/structures.html#c.METH_VARARGS" title="METH_VARARGS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">METH_VARARGS</span></code></a> flag; this is described in section <a class="reference internal" href="#methodtable"><span class="std std-ref">Zadanie zainicjowania i tabela sposobów postępowania modułu.</span></a>.  The
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> function and its arguments are documented in section
+<a class="reference internal" href="#parsetuple"><span class="std std-ref">Wydobywanie parametrów w zadaniach rozszerzających</span></a>.</p>
+<p class="untranslated">The macros <a class="reference internal" href="../c-api/refcounting.html#c.Py_XINCREF" title="Py_XINCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XINCREF()</span></code></a> and <a class="reference internal" href="../c-api/refcounting.html#c.Py_XDECREF" title="Py_XDECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XDECREF()</span></code></a> increment/decrement the
+reference count of an object and are safe in the presence of <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointers
+(but note that <em>temp</em> will not be  <code class="docutils literal notranslate"><span class="pre">NULL</span></code> in this context).  More info on them
+in section <a class="reference internal" href="#refcounts"><span class="std std-ref">Liczby odniesień</span></a>.</p>
+<p class="untranslated" id="index-0">Later, when it is time to call the function, you call the C function
+<a class="reference internal" href="../c-api/call.html#c.PyObject_CallObject" title="PyObject_CallObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code></a>.  This function has two arguments, both pointers to
+arbitrary Python objects: the Python function, and the argument list.  The
+argument list must always be a tuple object, whose length is the number of
+arguments.  To call the Python function with no arguments, pass in <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, or
+an empty tuple; to call it with one argument, pass a singleton tuple.
+<a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> returns a tuple when its format string consists of zero
+or more format codes between parentheses.  For example:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span>
+<span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arglist</span><span class="p">;</span>
+<span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="cm">/* Time to call the callback */</span>
+<span class="n">arglist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;(i)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyObject_CallObject</span><span class="p">(</span><span class="n">my_callback</span><span class="p">,</span><span class="w"> </span><span class="n">arglist</span><span class="p">);</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">arglist</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="untranslated"><a class="reference internal" href="../c-api/call.html#c.PyObject_CallObject" title="PyObject_CallObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code></a> returns a Python object pointer: this is the return
+value of the Python function.  <code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code> is
+„reference-count-neutral” with respect to its arguments.  In the example a new
+tuple was created to serve as the argument list, which is
+<a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a>-ed immediately after the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code>
+call.</p>
+<p class="untranslated">The return value of <a class="reference internal" href="../c-api/call.html#c.PyObject_CallObject" title="PyObject_CallObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code></a> is „new”: either it is a brand
+new object, or it is an existing object whose reference count has been
+incremented.  So, unless you want to save it in a global variable, you should
+somehow <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> the result, even (especially!) if you are not
+interested in its value.</p>
+<p class="untranslated">Before you do this, however, it is important to check that the return value
+isn’t <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  If it is, the Python function terminated by raising an exception.
+If the C code that called <a class="reference internal" href="../c-api/call.html#c.PyObject_CallObject" title="PyObject_CallObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code></a> is called from Python, it
+should now return an error indication to its Python caller, so the interpreter
+can print a stack trace, or the calling Python code can handle the exception.
+If this is not possible or desirable, the exception should be cleared by calling
+<a class="reference internal" href="../c-api/exceptions.html#c.PyErr_Clear" title="PyErr_Clear"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_Clear()</span></code></a>.  For example:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Pass error back */</span>
+<span class="p">...</span><span class="n">use</span><span class="w"> </span><span class="n">result</span><span class="p">...</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="untranslated">Depending on the desired interface to the Python callback function, you may also
+have to provide an argument list to <a class="reference internal" href="../c-api/call.html#c.PyObject_CallObject" title="PyObject_CallObject"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_CallObject()</span></code></a>.  In some cases
+the argument list is also provided by the Python program, through the same
+interface that specified the callback function.  It can then be saved and used
+in the same manner as the function object.  In other cases, you may have to
+construct a new tuple to pass as the argument list.  The simplest way to do this
+is to call <a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a>.  For example, if you want to pass an integral
+event code, you might use the following code:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arglist</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">arglist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;(l)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">eventcode</span><span class="p">);</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyObject_CallObject</span><span class="p">(</span><span class="n">my_callback</span><span class="p">,</span><span class="w"> </span><span class="n">arglist</span><span class="p">);</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">arglist</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Pass error back */</span>
+<span class="cm">/* Here maybe use the result */</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="untranslated">Note the placement of <code class="docutils literal notranslate"><span class="pre">Py_DECREF(arglist)</span></code> immediately after the call, before
+the error check!  Also note that strictly speaking this code is not complete:
+<a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> may run out of memory, and this should be checked.</p>
+<p class="untranslated">You may also call a function with keyword arguments by using
+<a class="reference internal" href="../c-api/call.html#c.PyObject_Call" title="PyObject_Call"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_Call()</span></code></a>, which supports arguments and keyword arguments.  As in
+the above example, we use <a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> to construct the dictionary.</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">dict</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;{s:i}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyObject_Call</span><span class="p">(</span><span class="n">my_callback</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">dict</span><span class="p">);</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">dict</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Pass error back */</span>
+<span class="cm">/* Here maybe use the result */</span>
+<span class="n">Py_DECREF</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="extracting-parameters-in-extension-functions">
+<span id="parsetuple"></span><h2 class="translated"><span class="section-number">1.7. </span>Wydobywanie parametrów w zadaniach rozszerzających<a class="headerlink" href="#extracting-parameters-in-extension-functions" title="Link to this heading">¶</a></h2>
+<p class="untranslated" id="index-1">The <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> function is declared as follows:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">PyArg_ParseTuple</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+<p class="translated">Parametr <em>arg</em> musi być przedmiotem - krotką zawierającym listę parametrów z języka pytonowskiego dla zadania C. Parametr <em>format</em> musi być ciągiem formatu, którego składnia jest wyjaśniona w <a class="reference internal" href="../c-api/arg.html#arg-parsing"><span class="std std-ref">Pobieranie kolejnych rzeczy podanych na wejściu i konstruowanie wartości.</span></a> w podręczniku użytkownika API Python/C. Pozostałe parametry muszą być adresami zmiennych których rodzaj jest określony przez ciąg formatujący.</p>
+<p class="untranslated">Note that while <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> checks that the Python arguments have
+the required types, it cannot check the validity of the addresses of C variables
+passed to the call: if you make mistakes there, your code will probably crash or
+at least overwrite random bits in memory.  So be careful!</p>
+<p class="translated">Zauważ, że dowolne odniesienia do przedmiotów języka pytonowskiego, które są dostarczone wołającemu są <em>pożyczonymi</em> odniesieniami; nie zmniejszaj liczby tych odniesień.</p>
+<p class="translated">Pewne przykładowe wywołania:</p>
+<div class="translated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">ok</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+<span class="n">Py_ssize_t</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+
+<span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"> </span><span class="cm">/* No arguments */</span>
+<span class="w">    </span><span class="cm">/* Python call: f() */</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="cm">/* A string */</span>
+<span class="w">    </span><span class="cm">/* Possible Python call: f(&#39;whoops!&#39;) */</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lls&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Two longs and a string */</span>
+<span class="w">    </span><span class="cm">/* Possible Python call: f(1, 2, &#39;three&#39;) */</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(ii)s#&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* A pair of ints and a string, whose size is also returned */</span>
+<span class="w">    </span><span class="cm">/* Possible Python call: f((1, 2), &#39;three&#39;) */</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bufsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s|si&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bufsize</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* A string, and optionally another string and an integer */</span>
+<span class="w">    </span><span class="cm">/* Possible Python calls:</span>
+<span class="cm">       f(&#39;spam&#39;)</span>
+<span class="cm">       f(&#39;spam&#39;, &#39;w&#39;)</span>
+<span class="cm">       f(&#39;spam&#39;, &#39;wb&#39;, 100000) */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;((ii)(ii))(ii)&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="o">&amp;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bottom</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* A rectangle and a point */</span>
+<span class="w">    </span><span class="cm">/* Possible Python call:</span>
+<span class="cm">       f(((0, 0), (400, 300)), (10, 10)) */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="n">Py_complex</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;D:myfunction&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* a complex, also providing a function name for errors */</span>
+<span class="w">    </span><span class="cm">/* Possible Python call: myfunction(1+2j) */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="keyword-parameters-for-extension-functions">
+<span id="parsetupleandkeywords"></span><h2 class="translated"><span class="section-number">1.8. </span>Parametry kluczowe dla zadań rozszerzających<a class="headerlink" href="#keyword-parameters-for-extension-functions" title="Link to this heading">¶</a></h2>
+<p class="untranslated" id="index-2">The <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> function is declared as follows:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">PyArg_ParseTupleAndKeywords</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">kwdict</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">kwlist</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+<p class="untranslated">The <em>arg</em> and <em>format</em> parameters are identical to those of the
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a> function.  The <em>kwdict</em> parameter is the dictionary of
+keywords received as the third parameter from the Python runtime.  The <em>kwlist</em>
+parameter is a <code class="docutils literal notranslate"><span class="pre">NULL</span></code>-terminated list of strings which identify the parameters;
+the names are matched with the type information from <em>format</em> from left to
+right.  On success, <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTupleAndKeywords" title="PyArg_ParseTupleAndKeywords"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTupleAndKeywords()</span></code></a> returns true, otherwise
+it returns false and raises an appropriate exception.</p>
+<div class="admonition note">
+<p class="admonition-title">Informacja</p>
+<p class="translated">Zagnieżdźone krotki nie mogą być wczytane gdy używane są parametry słów kluczowych! Parametry słów kluczowych przekazane do zadania które nie są obecne na liście <em>kwlist</em> spowodują że wyjątek <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> zostanie zgłoszony.</p>
+</div>
+<p class="translated" id="index-3">Tu jest przykładowy moduł który używa słów kluczowych, oparty na przykładzie Geoffa Philbricka (<a class="reference external" href="mailto:philbrick&#37;&#52;&#48;hks&#46;com">philbrick<span>&#64;</span>hks<span>&#46;</span>com</a>):</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PY_SSIZE_T_CLEAN</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">keywdarg_parrot</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">keywds</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">voltage</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a stiff&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;voom&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Norwegian Blue&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">kwlist</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;voltage&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;state&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;action&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;type&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTupleAndKeywords</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">keywds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;i|sss&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">kwlist</span><span class="p">,</span>
+<span class="w">                                     </span><span class="o">&amp;</span><span class="n">voltage</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">type</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;-- This parrot wouldn&#39;t %s if you put %i Volts through it.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">voltage</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;-- Lovely plumage, the %s -- It&#39;s %s!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Py_RETURN_NONE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">PyMethodDef</span><span class="w"> </span><span class="n">keywdarg_methods</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* The cast of the function is necessary since PyCFunction values</span>
+<span class="cm">     * only take two PyObject* parameters, and keywdarg_parrot() takes</span>
+<span class="cm">     * three.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;parrot&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">PyCFunction</span><span class="p">)(</span><span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span><span class="n">keywdarg_parrot</span><span class="p">,</span><span class="w"> </span><span class="n">METH_VARARGS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">METH_KEYWORDS</span><span class="p">,</span>
+<span class="w">     </span><span class="s">&quot;Print a lovely skit to standard output.&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">}</span><span class="w">   </span><span class="cm">/* sentinel */</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PyModuleDef</span><span class="w"> </span><span class="n">keywdarg_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyModuleDef_HEAD_INIT</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;keywdarg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">m_methods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keywdarg_methods</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">PyMODINIT_FUNC</span>
+<span class="nf">PyInit_keywdarg</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyModuleDef_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">keywdarg_module</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="building-arbitrary-values">
+<span id="buildvalue"></span><h2 class="translated"><span class="section-number">1.9. </span>Budowanie dowolnych wartości<a class="headerlink" href="#building-arbitrary-values" title="Link to this heading">¶</a></h2>
+<p class="untranslated">This function is the counterpart to <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>.  It is declared
+as follows:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="nf">Py_BuildValue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+<p class="untranslated">It recognizes a set of format units similar to the ones recognized by
+<a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>, but the arguments (which are input to the function,
+not output) must not be pointers, just values.  It returns a new Python object,
+suitable for returning from a C function called from Python.</p>
+<p class="untranslated">One difference with <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>: while the latter requires its
+first argument to be a tuple (since Python argument lists are always represented
+as tuples internally), <a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a> does not always build a tuple.  It
+builds a tuple only if its format string contains two or more format units. If
+the format string is empty, it returns <code class="docutils literal notranslate"><span class="pre">None</span></code>; if it contains exactly one
+format unit, it returns whatever object is described by that format unit.  To
+force it to return a tuple of size 0 or one, parenthesize the format string.</p>
+<p class="untranslated">Examples (to the left the call, to the right the resulting Python value):</p>
+<div class="untranslated highlight-none notranslate"><div class="highlight"><pre><span></span>Py_BuildValue(&quot;&quot;)                        None
+Py_BuildValue(&quot;i&quot;, 123)                  123
+Py_BuildValue(&quot;iii&quot;, 123, 456, 789)      (123, 456, 789)
+Py_BuildValue(&quot;s&quot;, &quot;hello&quot;)              &#39;hello&#39;
+Py_BuildValue(&quot;y&quot;, &quot;hello&quot;)              b&#39;hello&#39;
+Py_BuildValue(&quot;ss&quot;, &quot;hello&quot;, &quot;world&quot;)    (&#39;hello&#39;, &#39;world&#39;)
+Py_BuildValue(&quot;s#&quot;, &quot;hello&quot;, 4)          &#39;hell&#39;
+Py_BuildValue(&quot;y#&quot;, &quot;hello&quot;, 4)          b&#39;hell&#39;
+Py_BuildValue(&quot;()&quot;)                      ()
+Py_BuildValue(&quot;(i)&quot;, 123)                (123,)
+Py_BuildValue(&quot;(ii)&quot;, 123, 456)          (123, 456)
+Py_BuildValue(&quot;(i,i)&quot;, 123, 456)         (123, 456)
+Py_BuildValue(&quot;[i,i]&quot;, 123, 456)         [123, 456]
+Py_BuildValue(&quot;{s:i,s:i}&quot;,
+              &quot;abc&quot;, 123, &quot;def&quot;, 456)    {&#39;abc&#39;: 123, &#39;def&#39;: 456}
+Py_BuildValue(&quot;((ii)(ii)) (ii)&quot;,
+              1, 2, 3, 4, 5, 6)          (((1, 2), (3, 4)), (5, 6))
+</pre></div>
+</div>
+</section>
+<section id="reference-counts">
+<span id="refcounts"></span><h2 class="translated"><span class="section-number">1.10. </span>Liczby odniesień<a class="headerlink" href="#reference-counts" title="Link to this heading">¶</a></h2>
+<p class="untranslated">In languages like C or C++, the programmer is responsible for dynamic allocation
+and deallocation of memory on the heap.  In C, this is done using the functions
+<code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> and <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code>.  In C++, the operators <code class="docutils literal notranslate"><span class="pre">new</span></code> and
+<code class="docutils literal notranslate"><span class="pre">delete</span></code> are used with essentially the same meaning and we’ll restrict
+the following discussion to the C case.</p>
+<p class="untranslated">Every block of memory allocated with <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> should eventually be
+returned to the pool of available memory by exactly one call to <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code>.
+It is important to call <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> at the right time.  If a block’s address
+is forgotten but <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> is not called for it, the memory it occupies
+cannot be reused until the program terminates.  This is called a <em class="dfn">memory
+leak</em>.  On the other hand, if a program calls <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> for a block and then
+continues to use the block, it creates a conflict with reuse of the block
+through another <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> call.  This is called <em class="dfn">using freed memory</em>.
+It has the same bad consequences as referencing uninitialized data — core
+dumps, wrong results, mysterious crashes.</p>
+<p class="translated">Typowymi przyczynami wycieków pamięci są nietypowe ścieżki przejścia przez kod. Dla przykładu, zadanie może zaalokować blok pamięci, wykonać pewne obliczenia, a potem uwolnić ten blok jeszcze raz. Teraz zmiana w wymaganiach dla zadania może dodać test do obliczenia który wykrywa warunek błędu i może wrócić wcześniej z zadania. Łatwo jest zapomnieć aby uwolnić zaalokowany blok pamięci podczas wybierania tej drogi wcześniejszego zakończenia, szczególnie gdy jest dodawane później do kodu. Takie przecieki, gdy raz wprowadzone, często uchodzą niewykryte przez długi czas: błędne wyjście jest wybierane tylko w małym wycinku wszystkich wywołań, i większość nowoczesnych maszyn ma mnóstwo wirtualnej pamięci, tak że wyciek staje się widoczny tylko w długo działającym procesie który używa cieknącego zadania często. Dlatego też, jest to ważne aby zapobiegać wyciekom przed ich nastąpieniem, przez powzięcie konwencji kodowania lub strategii która minimalizuje ten rodzaj błędu.</p>
+<p class="untranslated">Since Python makes heavy use of <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> and <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code>, it needs a
+strategy to avoid memory leaks as well as the use of freed memory.  The chosen
+method is called <em class="dfn">reference counting</em>.  The principle is simple: every
+object contains a counter, which is incremented when a reference to the object
+is stored somewhere, and which is decremented when a reference to it is deleted.
+When the counter reaches zero, the last reference to the object has been deleted
+and the object is freed.</p>
+<p class="untranslated">An alternative strategy is called <em class="dfn">automatic garbage collection</em>.
+(Sometimes, reference counting is also referred to as a garbage collection
+strategy, hence my use of „automatic” to distinguish the two.)  The big
+advantage of automatic garbage collection is that the user doesn’t need to call
+<code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> explicitly.  (Another claimed advantage is an improvement in speed
+or memory usage — this is no hard fact however.)  The disadvantage is that for
+C, there is no truly portable automatic garbage collector, while reference
+counting can be implemented portably (as long as the functions <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code>
+and <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> are available — which the C Standard guarantees). Maybe some
+day a sufficiently portable automatic garbage collector will be available for C.
+Until then, we’ll have to live with reference counts.</p>
+<p class="translated">Podczas gdy język pytonowski używa tradycyjnego wypełnienia zliczania odniesień, on także oferuje wykrywanie cykli, które pracuje aby wykrywać cykliczne odniesienia. To pozwala aplikacjom nie martwić się o tworzenie bezpośrednich lub pośrednich cyklicznych odniesień; to są słabości wypełnienia zbiórki śmieci opartego jedynie na zliczaniu odniesień. Cykle odniesień składają się z przedmiotów które zawierają (możliwie pośrednio) odniesienia do samych siebie, tak że każdy przedmiot w cyklu ma liczbę odniesień która jest nie-zerowa. Typowe wypełnienia zliczające odniesienia nie są w stanie przejąć z powrotem pamięci należącej do któregokolwiek z przedmiotów w cyklu odniesień, ani do której odnosi się któryś z przedmiotów w cyklu, nawet jeśli nie ma więcej odniesień do cyklu samego w sobie.</p>
+<p class="untranslated">The cycle detector is able to detect garbage cycles and can reclaim them.
+The <a class="reference internal" href="../library/gc.html#module-gc" title="gc: Interface to the cycle-detecting garbage collector."><code class="xref py py-mod docutils literal notranslate"><span class="pre">gc</span></code></a> module exposes a way to run the detector (the
+<a class="reference internal" href="../library/gc.html#gc.collect" title="gc.collect"><code class="xref py py-func docutils literal notranslate"><span class="pre">collect()</span></code></a> function), as well as configuration
+interfaces and the ability to disable the detector at runtime.</p>
+<section id="reference-counting-in-python">
+<span id="refcountsinpython"></span><h3 class="translated"><span class="section-number">1.10.1. </span>Zliczanie odniesień w języku pytonowskim<a class="headerlink" href="#reference-counting-in-python" title="Link to this heading">¶</a></h3>
+<p class="untranslated">There are two macros, <code class="docutils literal notranslate"><span class="pre">Py_INCREF(x)</span></code> and <code class="docutils literal notranslate"><span class="pre">Py_DECREF(x)</span></code>, which handle the
+incrementing and decrementing of the reference count. <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> also
+frees the object when the count reaches zero. For flexibility, it doesn’t call
+<code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> directly — rather, it makes a call through a function pointer in
+the object’s <em class="dfn">type object</em>.  For this purpose (and others), every object
+also contains a pointer to its type object.</p>
+<p class="untranslated">The big question now remains: when to use <code class="docutils literal notranslate"><span class="pre">Py_INCREF(x)</span></code> and <code class="docutils literal notranslate"><span class="pre">Py_DECREF(x)</span></code>?
+Let’s first introduce some terms.  Nobody „owns” an object; however, you can
+<em class="dfn">own a reference</em> to an object.  An object’s reference count is now defined
+as the number of owned references to it.  The owner of a reference is
+responsible for calling <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> when the reference is no longer
+needed.  Ownership of a reference can be transferred.  There are three ways to
+dispose of an owned reference: pass it on, store it, or call <code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code>.
+Forgetting to dispose of an owned reference creates a memory leak.</p>
+<p class="untranslated">It is also possible to <em class="dfn">borrow</em> <a class="footnote-reference brackets" href="#id6" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> a reference to an object.  The
+borrower of a reference should not call <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a>.  The borrower must
+not hold on to the object longer than the owner from which it was borrowed.
+Using a borrowed reference after the owner has disposed of it risks using freed
+memory and should be avoided completely <a class="footnote-reference brackets" href="#id7" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
+<p class="translated">Zaletą pożyczania ponad posiadaniem odniesienia jest to że nie potrzebujesz zaprzątać swojej uwagi pozbyciem się odniesienia na wszystkich możliwych ścieżkach przejścia przez kod — innymi słowy, z pożyczonym odniesieniem nie musisz ryzykować wycieku gdy nastąpi przedwczesne wyjście z programu. Wadą pożyczania ponad posiadaniem jest to że istnieją pewne szczególne sytuacje gdzie w wydawałoby się poprawnym kodzie pożyczone odniesienie może być użyte po tym jak właściciel od którego zostało ono pożyczone faktycznie pozbył się go.</p>
+<p class="untranslated">A borrowed reference can be changed into an owned reference by calling
+<a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a>.  This does not affect the status of the owner from which the
+reference was borrowed — it creates a new owned reference, and gives full
+owner responsibilities (the new owner must dispose of the reference properly, as
+well as the previous owner).</p>
+</section>
+<section id="ownership-rules">
+<span id="ownershiprules"></span><h3 class="translated"><span class="section-number">1.10.2. </span>Zasady właścicielskie<a class="headerlink" href="#ownership-rules" title="Link to this heading">¶</a></h3>
+<p class="translated">Zawsze gdy odniesienie do przedmiotu jest przekazywane do lub z zadania, jest częścią specyfiki sprzęgu zadania to czy własność jest przekazywana z odniesieniem czy też nie.</p>
+<p class="untranslated">Most functions that return a reference to an object pass on ownership with the
+reference.  In particular, all functions whose function it is to create a new
+object, such as <a class="reference internal" href="../c-api/long.html#c.PyLong_FromLong" title="PyLong_FromLong"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_FromLong()</span></code></a> and <a class="reference internal" href="../c-api/arg.html#c.Py_BuildValue" title="Py_BuildValue"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_BuildValue()</span></code></a>, pass
+ownership to the receiver.  Even if the object is not actually new, you still
+receive ownership of a new reference to that object.  For instance,
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyLong_FromLong()</span></code> maintains a cache of popular values and can return a
+reference to a cached item.</p>
+<p class="untranslated">Many functions that extract objects from other objects also transfer ownership
+with the reference, for instance <a class="reference internal" href="../c-api/object.html#c.PyObject_GetAttrString" title="PyObject_GetAttrString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyObject_GetAttrString()</span></code></a>.  The picture
+is less clear, here, however, since a few common routines are exceptions:
+<a class="reference internal" href="../c-api/tuple.html#c.PyTuple_GetItem" title="PyTuple_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyTuple_GetItem()</span></code></a>, <a class="reference internal" href="../c-api/list.html#c.PyList_GetItem" title="PyList_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_GetItem()</span></code></a>, <a class="reference internal" href="../c-api/dict.html#c.PyDict_GetItem" title="PyDict_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyDict_GetItem()</span></code></a>, and
+<a class="reference internal" href="../c-api/dict.html#c.PyDict_GetItemString" title="PyDict_GetItemString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyDict_GetItemString()</span></code></a> all return references that you borrow from the
+tuple, list or dictionary.</p>
+<p class="untranslated">The function <a class="reference internal" href="../c-api/import.html#c.PyImport_AddModule" title="PyImport_AddModule"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyImport_AddModule()</span></code></a> also returns a borrowed reference, even
+though it may actually create the object it returns: this is possible because an
+owned reference to the object is stored in <code class="docutils literal notranslate"><span class="pre">sys.modules</span></code>.</p>
+<p class="untranslated">When you pass an object reference into another function, in general, the
+function borrows the reference from you — if it needs to store it, it will use
+<a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a> to become an independent owner.  There are exactly two
+important exceptions to this rule: <a class="reference internal" href="../c-api/tuple.html#c.PyTuple_SetItem" title="PyTuple_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyTuple_SetItem()</span></code></a> and
+<a class="reference internal" href="../c-api/list.html#c.PyList_SetItem" title="PyList_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_SetItem()</span></code></a>.  These functions take over ownership of the item passed
+to them — even if they fail!  (Note that <a class="reference internal" href="../c-api/dict.html#c.PyDict_SetItem" title="PyDict_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyDict_SetItem()</span></code></a> and friends
+don’t take over ownership — they are „normal.”)</p>
+<p class="untranslated">When a C function is called from Python, it borrows references to its arguments
+from the caller.  The caller owns a reference to the object, so the borrowed
+reference’s lifetime is guaranteed until the function returns.  Only when such a
+borrowed reference must be stored or passed on, it must be turned into an owned
+reference by calling <a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a>.</p>
+<p class="translated">Odniesienie do przedmiotu zwrócone z zadania C które jest wywołane z poziomu języka pytonowskiego musi być posiadanym odniesieniem — prawo własności jest przekazywane z zadania do wywołującego to ostatnie.</p>
+</section>
+<section id="thin-ice">
+<span id="thinice"></span><h3 class="translated"><span class="section-number">1.10.3. </span>Cienki lód<a class="headerlink" href="#thin-ice" title="Link to this heading">¶</a></h3>
+<p class="translated">Istnieje kilka sytuacji gdzie wydawałoby się nieszkodliwe użycie pożyczonych odniesień może prowadzić do kłopotów. Wszystkie one mają do czynienia z niejawnymi wezwaniami programu interpretującego polecenia języka pytonowskiego, które mogą powodować że właściciel odniesienia pozbędzie się go.</p>
+<p class="untranslated">The first and most important case to know about is using <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> on
+an unrelated object while borrowing a reference to a list item.  For instance:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="nf">bug</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyList_GetItem</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">PyList_SetItem</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="mf">0L</span><span class="p">));</span>
+<span class="w">    </span><span class="n">PyObject_Print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="cm">/* BUG! */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="translated">To zadanie najpierw pożycza odniesienie do <code class="docutils literal notranslate"><span class="pre">list[0]</span></code>, potem zamienia <code class="docutils literal notranslate"><span class="pre">list[1]</span></code> na wartość <code class="docutils literal notranslate"><span class="pre">0</span></code>, i ostatecznie wypisuje pożyczone odniesienie. Wydaje się nieszkodliwe, czyż nie? A jednak jest!</p>
+<p class="untranslated">Let’s follow the control flow into <a class="reference internal" href="../c-api/list.html#c.PyList_SetItem" title="PyList_SetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_SetItem()</span></code></a>.  The list owns
+references to all its items, so when item 1 is replaced, it has to dispose of
+the original item 1.  Now let’s suppose the original item 1 was an instance of a
+user-defined class, and let’s further suppose that the class defined a
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> method.  If this class instance has a reference count of 1,
+disposing of it will call its <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> method. Internally,
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_SetItem()</span></code> calls <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> on the replaced item,
+which invokes replaced item’s corresponding
+<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_dealloc" title="PyTypeObject.tp_dealloc"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dealloc</span></code></a> function. During
+deallocation, <code class="xref c c-member docutils literal notranslate"><span class="pre">tp_dealloc</span></code> calls
+<a class="reference internal" href="../c-api/typeobj.html#c.PyTypeObject.tp_finalize" title="PyTypeObject.tp_finalize"><code class="xref c c-member docutils literal notranslate"><span class="pre">tp_finalize</span></code></a>, which is mapped to the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> method for class instances (see <span class="target" id="index-4"></span><a class="pep reference external" href="https://peps.python.org/pep-0442/"><strong>PEP 442</strong></a>). This entire
+sequence happens synchronously within the <code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_SetItem()</span></code> call.</p>
+<p class="untranslated">Since it is written in Python, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> method can execute arbitrary
+Python code.  Could it perhaps do something to invalidate the reference to
+<code class="docutils literal notranslate"><span class="pre">item</span></code> in <code class="xref c c-func docutils literal notranslate"><span class="pre">bug()</span></code>?  You bet!  Assuming that the list passed into
+<code class="xref c c-func docutils literal notranslate"><span class="pre">bug()</span></code> is accessible to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> method, it could execute a
+statement to the effect of <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">list[0]</span></code>, and assuming this was the last
+reference to that object, it would free the memory associated with it, thereby
+invalidating <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p class="translated">Rozwiązanie, gdy znasz już źródło problemu, jest łatwe: tymczasowo zwiększyć ilość odniesień. Poprawna wersja zadania równa jest:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="nf">no_bug</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyList_GetItem</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Py_INCREF</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="w">    </span><span class="n">PyList_SetItem</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="mf">0L</span><span class="p">));</span>
+<span class="w">    </span><span class="n">PyObject_Print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Py_DECREF</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">This is a true story.  An older version of Python contained variants of this bug
+and someone spent a considerable amount of time in a C debugger to figure out
+why his <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> methods would fail…</p>
+<p class="untranslated">The second case of problems with a borrowed reference is a variant involving
+threads.  Normally, multiple threads in the Python interpreter can’t get in each
+other’s way, because there is a <a class="reference internal" href="../glossary.html#term-global-interpreter-lock"><span class="xref std std-term">global lock</span></a>
+protecting Python’s entire object space.
+However, it is possible to temporarily release this lock using the macro
+<a class="reference internal" href="../c-api/threads.html#c.Py_BEGIN_ALLOW_THREADS" title="Py_BEGIN_ALLOW_THREADS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_BEGIN_ALLOW_THREADS</span></code></a>, and to re-acquire it using
+<a class="reference internal" href="../c-api/threads.html#c.Py_END_ALLOW_THREADS" title="Py_END_ALLOW_THREADS"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_END_ALLOW_THREADS</span></code></a>.  This is common around blocking I/O calls, to
+let other threads use the processor while waiting for the I/O to complete.
+Obviously, the following function has the same problem as the previous one:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span>
+<span class="nf">bug</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyList_GetItem</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Py_BEGIN_ALLOW_THREADS</span>
+<span class="w">    </span><span class="p">...</span><span class="n">some</span><span class="w"> </span><span class="n">blocking</span><span class="w"> </span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="n">call</span><span class="p">...</span>
+<span class="w">    </span><span class="n">Py_END_ALLOW_THREADS</span>
+<span class="w">    </span><span class="n">PyObject_Print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="cm">/* BUG! */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="null-pointers">
+<span id="nullpointers"></span><h3 class="translated"><span class="section-number">1.10.4. </span>Puste wskaźniki (NULL)<a class="headerlink" href="#null-pointers" title="Link to this heading">¶</a></h3>
+<p class="untranslated">In general, functions that take object references as arguments do not expect you
+to pass them <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointers, and will dump core (or cause later core dumps) if
+you do so.  Functions that return object references generally return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> only
+to indicate that an exception occurred.  The reason for not testing for <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+arguments is that functions often pass the objects they receive on to other
+function — if each function were to test for <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, there would be a lot of
+redundant tests and the code would run more slowly.</p>
+<p class="untranslated">It is better to test for <code class="docutils literal notranslate"><span class="pre">NULL</span></code> only at the „source:” when a pointer that may be
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> is received, for example, from <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> or from a function that
+may raise an exception.</p>
+<p class="untranslated">The macros <a class="reference internal" href="../c-api/refcounting.html#c.Py_INCREF" title="Py_INCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_INCREF()</span></code></a> and <a class="reference internal" href="../c-api/refcounting.html#c.Py_DECREF" title="Py_DECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_DECREF()</span></code></a> do not check for <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+pointers — however, their variants <a class="reference internal" href="../c-api/refcounting.html#c.Py_XINCREF" title="Py_XINCREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XINCREF()</span></code></a> and <a class="reference internal" href="../c-api/refcounting.html#c.Py_XDECREF" title="Py_XDECREF"><code class="xref c c-func docutils literal notranslate"><span class="pre">Py_XDECREF()</span></code></a>
+do.</p>
+<p class="untranslated">The macros for checking for a particular object type (<code class="docutils literal notranslate"><span class="pre">Pytype_Check()</span></code>) don’t
+check for <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointers — again, there is much code that calls several of
+these in a row to test an object against various different expected types, and
+this would generate redundant tests.  There are no variants with <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+checking.</p>
+<p class="untranslated">The C function calling mechanism guarantees that the argument list passed to C
+functions (<code class="docutils literal notranslate"><span class="pre">args</span></code> in the examples) is never <code class="docutils literal notranslate"><span class="pre">NULL</span></code> — in fact it guarantees
+that it is always a tuple <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<p class="untranslated">It is a severe error to ever let a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer „escape” to the Python user.</p>
+</section>
+</section>
+<section id="writing-extensions-in-c">
+<span id="cplusplus"></span><h2 class="translated"><span class="section-number">1.11. </span>Pisanie rozszerzeń w C++<a class="headerlink" href="#writing-extensions-in-c" title="Link to this heading">¶</a></h2>
+<p class="translated">Jest możliwe pisanie modułów rozszerzających w C++. Niektóre ograniczenia obowiązują. Jeśli główny program (program interpretujący polecenia języka pytonowskiego) jest kompilowany i łączony przez kompilator języka C, nadrzędne lub statyczne przedmioty z konstruktorami nie mogą być używane. To nie jest problemem jeśli główny program jest łączony przez kompilator C++. Zadania które będą wezwane przez program interpretujący polecenia języka pytonowskiego (w szczególności, zadania inicjujące moduł) muszą być deklarowane używając <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code>. Nie jest to konieczne aby zawierać plik nagłówkowy języka pytonowskiego w <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span> <span class="pre">{...}</span></code> — one używają już tej formy jeśli symbol <code class="docutils literal notranslate"><span class="pre">__cplusplus</span></code> jest zdefiniowany (wszystkie niedawne kompilatory C++ definiują ten symbol).</p>
+</section>
+<section id="providing-a-c-api-for-an-extension-module">
+<span id="using-capsules"></span><h2 class="translated"><span class="section-number">1.12. </span>Dostarczanie sprzęgu programowania aplikacji (API) języka C dla modułu rozszerzającego<a class="headerlink" href="#providing-a-c-api-for-an-extension-module" title="Link to this heading">¶</a></h2>
+<p class="translated">Wiele modułów rozszerzających po prostu dostarcza nowych zadań i typów aby były używane z języka pytonowskiego, ale czasami kod w module rozszerzającym może być użyteczny dla innych rozszerzających modułów. Na przykład, moduł rozszerzający mógłby wypełniać typ „kolekcji” który działałby jak lista bez wprowadzonego porządku. Tak jak standardowy typ listy języka pytonowskiego posiada sprzęg programowania aplikacji języka C, który pozwala modułom rozszerzającym tworzenie i zmianę list, ten nowy typ kolekcji powinien mieć zbiór zadań C dla bezpośrednich zmian z innych modułów rozszerzających.</p>
+<p class="translated">Na pierwszy rzut oka to wydaje się proste: napisać zadania (bez deklarowania ich jako <code class="docutils literal notranslate"><span class="pre">statycznych</span></code>, oczywiście), dostarczyć odpowiedni plik nagłówkowy, i udokumentować API języka C. I faktycznie to mogłoby zadziałać jeśli wszystkie rozszerzające moduły byłyby zawsze złączone statycznie z interpreterem Pythona. Gdy moduły są używane jako współdzielone biblioteki, jednakże, symbole zdefiniowane w jednym module mogą nie być widoczne dla innych modułów. Szczegóły widoczności zależą od systemu operacyjnego; niektóre systemy używają jednej nadrzędnej przestrzeni nazw dla interpretera Pythona i wszystkich modułów rozszerzających (dla Windows, na przykład), podczas gdy inne wymagają jawnej listy importowanych symboli w czasie łączenia modułów (AIX jest jednym z przykładów), lub oferują wybór różnych strategii (większość Unix-ów). I nawet jeśli symbole są widoczne nadrzędnie, moduł którego zadania ktoś chciałby uruchomić mogły nie zostać jeszcze załadowane!</p>
+<p class="translated">Przenośność zatem wymaga aby nie czynić żadnych założeń o widoczności symboli. To oznacza, że wszystkie symbole w rozszerzających modułach powinny być deklarowane jako <code class="docutils literal notranslate"><span class="pre">statyczne</span></code>, z wyjątkiem zadania zainicjowania modułu, w celu ominięcia wojen nazw z innymi modułami rozszerzającymi (jak określono w rozdziale <a class="reference internal" href="#methodtable"><span class="std std-ref">Zadanie zainicjowania i tabela sposobów postępowania modułu.</span></a>). I to oznacza, że symbole, które <em>powinny</em> być dostępne z innych rozszerzających modułów muszą być eksportowane w różny sposób.</p>
+<p class="untranslated">Python provides a special mechanism to pass C-level information (pointers) from
+one extension module to another one: Capsules. A Capsule is a Python data type
+which stores a pointer (<span class="c-expr sig sig-inline c"><span class="kt">void</span><span class="p">*</span></span>).  Capsules can only be created and
+accessed via their C API, but they can be passed around like any other Python
+object. In particular,  they can be assigned to a name in an extension module’s
+namespace. Other extension modules can then import this module, retrieve the
+value of this name, and then retrieve the pointer from the Capsule.</p>
+<p class="translated">Istnieje wiele sposobów w jakie kapsuły mogą być używane aby wystawiać na zewnątrz sprzęgi programowania aplikacji (API) języka C dla danego modułu rozszerzającego. Każde zadanie mogłoby dostać swoją własną kapsułę, lub wszystkie wskaźniki sprzęgu programowania aplikacji (API) języka C mogłyby być zachowane w tabeli której adres byłby opublikowany w kapsule. A różne zadania zachowania i odbioru wskaźników mogłyby być rozprowadzone na różne sposoby pomiędzy moduły dostarczające kod i moduły odbierające.</p>
+<p class="untranslated">Whichever method you choose, it’s important to name your Capsules properly.
+The function <a class="reference internal" href="../c-api/capsule.html#c.PyCapsule_New" title="PyCapsule_New"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCapsule_New()</span></code></a> takes a name parameter
+(<span class="c-expr sig sig-inline c"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="p">*</span></span>); you’re permitted to pass in a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> name, but
+we strongly encourage you to specify a name.  Properly named Capsules provide
+a degree of runtime type-safety; there is no feasible way to tell one unnamed
+Capsule from another.</p>
+<p class="translated">W szczególności, kapsułom używanym do wystawiania sprzęgów programowania aplikacji języka C ( - z ang. - API) powinna być nadana nazwa stosująca się do następującej konwencji:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">modulename</span><span class="p">.</span><span class="n">attributename</span>
+</pre></div>
+</div>
+<p class="untranslated">The convenience function <a class="reference internal" href="../c-api/capsule.html#c.PyCapsule_Import" title="PyCapsule_Import"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyCapsule_Import()</span></code></a> makes it easy to
+load a C API provided via a Capsule, but only if the Capsule’s name
+matches this convention.  This behavior gives C API users a high degree
+of certainty that the Capsule they load contains the correct C API.</p>
+<p class="untranslated">The following example demonstrates an approach that puts most of the burden on
+the writer of the exporting module, which is appropriate for commonly used
+library modules. It stores all C API pointers (just one in the example!) in an
+array of <span class="c-expr sig sig-inline c"><span class="kt">void</span></span> pointers which becomes the value of a Capsule. The header
+file corresponding to the module provides a macro that takes care of importing
+the module and retrieving its C API pointers; client modules only have to call
+this macro before accessing the C API.</p>
+<p class="untranslated">The exporting module is a modification of the <code class="xref py py-mod docutils literal notranslate"><span class="pre">spam</span></code> module from section
+<a class="reference internal" href="#extending-simpleexample"><span class="std std-ref">Prosty przykład</span></a>. The function <code class="xref py py-func docutils literal notranslate"><span class="pre">spam.system()</span></code> does not call
+the C library function <code class="xref c c-func docutils literal notranslate"><span class="pre">system()</span></code> directly, but a function
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PySpam_System()</span></code>, which would of course do something more complicated in
+reality (such as adding „spam” to every command). This function
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PySpam_System()</span></code> is also exported to other extension modules.</p>
+<p class="untranslated">The function <code class="xref c c-func docutils literal notranslate"><span class="pre">PySpam_System()</span></code> is a plain C function, declared
+<code class="docutils literal notranslate"><span class="pre">static</span></code> like everything else:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">PySpam_System</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">The function <code class="xref c c-func docutils literal notranslate"><span class="pre">spam_system()</span></code> is modified in a trivial way:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">spam_system</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sts</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyArg_ParseTuple</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">command</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PySpam_System</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PyLong_FromLong</span><span class="p">(</span><span class="n">sts</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="translated">Na początku modułu, zaraz za linią</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Python.h&gt;</span>
+</pre></div>
+</div>
+<p class="translated">muszą być dodane dwie linie:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SPAM_MODULE</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;spammodule.h&quot;</span>
+</pre></div>
+</div>
+<p class="untranslated">The <code class="docutils literal notranslate"><span class="pre">#define</span></code> is used to tell the header file that it is being included in the
+exporting module, not a client module. Finally, the module’s <a class="reference internal" href="../c-api/module.html#c.Py_mod_exec" title="Py_mod_exec"><code class="xref c c-data docutils literal notranslate"><span class="pre">mod_exec</span></code></a> function must take care of initializing the C API pointer array:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">spam_module_exec</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">PySpam_API</span><span class="p">[</span><span class="n">PySpam_API_pointers</span><span class="p">];</span>
+<span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">c_api_object</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Initialize the C API pointer array */</span>
+<span class="w">    </span><span class="n">PySpam_API</span><span class="p">[</span><span class="n">PySpam_System_NUM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PySpam_System</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Create a Capsule containing the API pointer array&#39;s address */</span>
+<span class="w">    </span><span class="n">c_api_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyCapsule_New</span><span class="p">((</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PySpam_API</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spam._C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PyModule_Add</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c_api_object</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="untranslated">Note that <code class="docutils literal notranslate"><span class="pre">PySpam_API</span></code> is declared <code class="docutils literal notranslate"><span class="pre">static</span></code>; otherwise the pointer
+array would disappear when <code class="xref c c-func docutils literal notranslate"><span class="pre">PyInit_spam()</span></code> terminates!</p>
+<p class="translated">Większa część pracy jest wykonywana w pliku nagłówkowym <code class="file docutils literal notranslate"><span class="pre">spammodule.h</span></code>, który wygląda następująco:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef Py_SPAMMODULE_H</span>
+<span class="cp">#define Py_SPAMMODULE_H</span>
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* Header file for spammodule */</span>
+
+<span class="cm">/* C API functions */</span>
+<span class="cp">#define PySpam_System_NUM 0</span>
+<span class="cp">#define PySpam_System_RETURN int</span>
+<span class="cp">#define PySpam_System_PROTO (const char *command)</span>
+
+<span class="cm">/* Total number of C API pointers */</span>
+<span class="cp">#define PySpam_API_pointers 1</span>
+
+
+<span class="cp">#ifdef SPAM_MODULE</span>
+<span class="cm">/* This section is used when compiling spammodule.c */</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">PySpam_System_RETURN</span><span class="w"> </span><span class="n">PySpam_System</span><span class="w"> </span><span class="n">PySpam_System_PROTO</span><span class="p">;</span>
+
+<span class="cp">#else</span>
+<span class="cm">/* This section is used in modules that use spammodule&#39;s API */</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">**</span><span class="n">PySpam_API</span><span class="p">;</span>
+
+<span class="cp">#define PySpam_System \</span>
+<span class="cp"> (*(PySpam_System_RETURN (*)PySpam_System_PROTO) PySpam_API[PySpam_System_NUM])</span>
+
+<span class="cm">/* Return -1 on error, 0 on success.</span>
+<span class="cm"> * PyCapsule_Import will set an exception if there&#39;s an error.</span>
+<span class="cm"> */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">import_spam</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">PySpam_API</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="n">PyCapsule_Import</span><span class="p">(</span><span class="s">&quot;spam._C_API&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">PySpam_API</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif </span><span class="cm">/* !defined(Py_SPAMMODULE_H) */</span>
+</pre></div>
+</div>
+<p class="untranslated">All that a client module must do in order to have access to the function
+<code class="xref c c-func docutils literal notranslate"><span class="pre">PySpam_System()</span></code> is to call the function (or rather macro)
+<code class="xref c c-func docutils literal notranslate"><span class="pre">import_spam()</span></code> in its <a class="reference internal" href="../c-api/module.html#c.Py_mod_exec" title="Py_mod_exec"><code class="xref c c-data docutils literal notranslate"><span class="pre">mod_exec</span></code></a> function:</p>
+<div class="untranslated highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span>
+<span class="nf">client_module_exec</span><span class="p">(</span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">import_spam</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* additional initialization can happen here */</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="translated">Główną wadą tego podejścia jest to, że plik <code class="file docutils literal notranslate"><span class="pre">spammodule.h</span></code> jest raczej skomplikowany. Jednakże podstawowa struktura jest taka sama dla każdego zadania które jest wystawiane na zewnątrz więc trzeba się tego uczyć tylko raz.</p>
+<p class="translated">Ostatecznie warto wspomnieć, że kapsuły dają dodatkowe możliwości działania, które są szczególnie użyteczne dla umieszczania i zabierania miejsca w pamięci wskaźników zachowywanych w kapsule. Szczegóły są opisane w podręczniku użytkownika API Python/C w rozdziale <a class="reference internal" href="../c-api/capsule.html#capsules"><span class="std std-ref">Capsules</span></a> i w wypełnieniu programowym kapsuł (plików <code class="file docutils literal notranslate"><span class="pre">Include/pycapsule.h</span></code> i <code class="file docutils literal notranslate"><span class="pre">Objects/pycapsule.c</span></code> w dystrybucji źródłowej kodu Pythona).</p>
+<p class="translated rubric">Przypisy</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p class="translated">sprzęg dla tego zadania już istnieje w standardowym module <a class="reference internal" href="../library/os.html#module-os" title="os: Miscellaneous operating system interfaces."><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> — został on wybrany jako prosty i przejrzysty przykład.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p class="translated">Metafora „pożyczania” odniesienia nie jest do końca poprawna: właściciel wciąż ma kopię odniesienia.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p class="translated">Sprawdzanie że liczba odniesień jest przynajmniej 1 <strong>nie działa</strong> — liczba odniesień sama w sobie może być w uwolnionej pamięci i dlatego może być ponownie użyta dla innego przedmiotu!</p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p class="translated">Te gwarancje nie są w mocy gdy używasz „starego” sposobu wywoływania — to jest wciąż znajdowane w dużej części istniejącego kodu.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. Rozszerzanie Pythona za pomocą C lub C++</a><ul>
+<li><a class="reference internal" href="#a-simple-example">1.1. Prosty przykład</a></li>
+<li><a class="reference internal" href="#intermezzo-errors-and-exceptions">1.2. Intermezzo: Błędy i Wyjątki</a></li>
+<li><a class="reference internal" href="#back-to-the-example">1.3. Z powrotem do Przykładu</a></li>
+<li><a class="reference internal" href="#the-module-s-method-table-and-initialization-function">1.4. Zadanie zainicjowania i tabela sposobów postępowania modułu.</a></li>
+<li><a class="reference internal" href="#compilation-and-linkage">1.5. Kompilacja i łączenie</a></li>
+<li><a class="reference internal" href="#calling-python-functions-from-c">1.6. Wywoływanie zadań języka pytonowskiego z C</a></li>
+<li><a class="reference internal" href="#extracting-parameters-in-extension-functions">1.7. Wydobywanie parametrów w zadaniach rozszerzających</a></li>
+<li><a class="reference internal" href="#keyword-parameters-for-extension-functions">1.8. Parametry kluczowe dla zadań rozszerzających</a></li>
+<li><a class="reference internal" href="#building-arbitrary-values">1.9. Budowanie dowolnych wartości</a></li>
+<li><a class="reference internal" href="#reference-counts">1.10. Liczby odniesień</a><ul>
+<li><a class="reference internal" href="#reference-counting-in-python">1.10.1. Zliczanie odniesień w języku pytonowskim</a></li>
+<li><a class="reference internal" href="#ownership-rules">1.10.2. Zasady właścicielskie</a></li>
+<li><a class="reference internal" href="#thin-ice">1.10.3. Cienki lód</a></li>
+<li><a class="reference internal" href="#null-pointers">1.10.4. Puste wskaźniki (NULL)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-extensions-in-c">1.11. Pisanie rozszerzeń w C++</a></li>
+<li><a class="reference internal" href="#providing-a-c-api-for-an-extension-module">1.12. Dostarczanie sprzęgu programowania aplikacji (API) języka C dla modułu rozszerzającego</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="index.html"
+                          title="poprzedni rozdział">Rozszerzony i wbudowany interpreter Python</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="newtypes_tutorial.html"
+                          title="następny rozdział"><span class="section-number">2. </span>Defining Extension Types: Tutorial</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "extending/extending.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/extending/extending.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="newtypes_tutorial.html" title="2. Defining Extension Types: Tutorial"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Rozszerzony i wbudowany interpreter Python"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Rozszerzony i wbudowany interpreter Python</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Rozszerzanie Pythona za pomocą C lub C++</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>

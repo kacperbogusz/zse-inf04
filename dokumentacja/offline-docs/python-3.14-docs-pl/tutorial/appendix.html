@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="16. Dodatek" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/appendix.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Tryb interaktywny: Istnieją dwa warianty interaktywnego REPL. Klasyczny podstawowy interpreter jest obsługiwany na wszystkich platformach z minimalnymi możliwościami kontroli linii. Od Pythona 3.13..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_tutorial_appendix_d649df75.png" />
+<meta property="og:image:alt" content="Tryb interaktywny: Istnieją dwa warianty interaktywnego REPL. Klasyczny podstawowy interpreter jest obsługiwany na wszystkich platformach z minimalnymi możliwościami kontroli linii. Od Pythona 3.13..." />
+<meta name="description" content="Tryb interaktywny: Istnieją dwa warianty interaktywnego REPL. Klasyczny podstawowy interpreter jest obsługiwany na wszystkich platformach z minimalnymi możliwościami kontroli linii. Od Pythona 3.13..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>16. Dodatek &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="Instalacja i używanie Pythona" href="../using/index.html" />
+    <link rel="prev" title="15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia" href="floatingpoint.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/appendix.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">16. Dodatek</a><ul>
+<li><a class="reference internal" href="#interactive-mode">16.1. Tryb interaktywny</a><ul>
+<li><a class="reference internal" href="#error-handling">16.1.1. Przechwytywanie błędów</a></li>
+<li><a class="reference internal" href="#executable-python-scripts">16.1.2. Wykonywalne skrypty Pythona</a></li>
+<li><a class="reference internal" href="#the-interactive-startup-file">16.1.3. Plik interaktywnego uruchomienia</a></li>
+<li><a class="reference internal" href="#the-customization-modules">16.1.4. Moduły dostosowywania</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="floatingpoint.html"
+                          title="poprzedni rozdział"><span class="section-number">15. </span>Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="../using/index.html"
+                          title="następny rozdział">Instalacja i używanie Pythona</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/appendix.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/appendix.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/appendix.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="../using/index.html" title="Instalacja i używanie Pythona"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="floatingpoint.html" title="15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">16. </span>Dodatek</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="appendix">
+<span id="tut-appendix"></span><h1 class="translated"><span class="section-number">16. </span>Dodatek<a class="headerlink" href="#appendix" title="Link to this heading">¶</a></h1>
+<section id="interactive-mode">
+<span id="tut-interac"></span><h2 class="translated"><span class="section-number">16.1. </span>Tryb interaktywny<a class="headerlink" href="#interactive-mode" title="Link to this heading">¶</a></h2>
+<p class="translated">Istnieją dwa warianty interaktywnego <a class="reference internal" href="../glossary.html#term-REPL"><span class="xref std std-term">REPL</span></a>.  Klasyczny podstawowy interpreter jest obsługiwany na wszystkich platformach z minimalnymi możliwościami kontroli linii.</p>
+<p class="translated">Od Pythona 3.13 nowy interaktywny shell jest używany domyślnie. Obsługuje on kolor, edytowanie wieloliniowe, przeglądanie historii i tryb wklejania. Aby wyłączyć kolor, zobacz <a class="reference internal" href="../using/cmdline.html#using-on-controlling-color"><span class="std std-ref">Controlling color</span></a> po szczegóły. Klawisze funkcyjne zapewniają dodatkową funkcjonalność. <kbd class="kbd docutils literal notranslate">F1</kbd> uruchamia interaktywną przeglądarkę pomocy <a class="reference internal" href="../library/pydoc.html#module-pydoc" title="pydoc: Documentation generator and online help system."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pydoc</span></code></a>. <kbd class="kbd docutils literal notranslate">F2</kbd> pozwala na przeglądanie historii wiersza poleceń bez wyjścia ani podpowiedzi <a class="reference internal" href="../glossary.html#term-0"><span class="xref std std-term">&gt;&gt;&gt;</span></a> i <a class="reference internal" href="../glossary.html#term-..."><span class="xref std std-term">…</span></a>. <kbd class="kbd docutils literal notranslate">F3</kbd> uruchamia „tryb wklejania”, który ułatwia wklejanie większych bloków kodu. Naciśnij <kbd class="kbd docutils literal notranslate">F3</kbd>, aby wrócić do zwykłego promptu.</p>
+<p class="translated">Podczas korzystania z nowego interaktywnego shell, należy wyjść z shell wpisując <kbd class="kbd docutils literal notranslate">exit</kbd> lub <kbd class="kbd docutils literal notranslate">quit</kbd>. Dodawanie nawiasów po tych poleceniach nie jest wymagane.</p>
+<p class="translated">Jeśli nowy interaktywny shell nie jest pożądany, można go wyłączyć za pośrednictwem zmiennej środowiskowej <span class="target" id="index-14"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHON_BASIC_REPL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHON_BASIC_REPL</span></code></a>.</p>
+<section id="error-handling">
+<span id="tut-error"></span><h3 class="translated"><span class="section-number">16.1.1. </span>Przechwytywanie błędów<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h3>
+<p class="translated">Gdy wystąpi błąd, interpreter wyświetla komunikat błędu i ślad stosu. W trybie interaktywnym zwraca je do wiersza polecenia; jeżeli wejście pochodzi z pliku, na wyjściu generowany jest kod wyjścia różny od zera po wyświetleniu śladu stosu. (Błędy przechwycone przez słowo kluczowe <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> w poleceniu <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> nie są błędami w tym kontekście). Niektóre błędy są bezwarunkowo krytyczne i wywołują wyjście z programu z kodem wyjścia różnym od zera; dotyczy to wewnętrznych niezgodności i - w niektórych przypadkach - przepełnienia pamięci. Wszystkie komunikaty błędów są wyświetlane na standardowym wyjściu błędów; zazwyczaj jest to normalne wyjście z wykonywania komend.</p>
+<p class="translated">Wpisanie znaku przerwania (zazwyczaj <kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd> lub <kbd class="kbd docutils literal notranslate">Delete</kbd>) w pierwszorzędny lub drugorzędny prompt anuluje tryb wpisywania i wraca do pierwszorzędnego prompta. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Wpisanie znaku przerwania podczas wykonywania komendy wywołuje wyjątek <a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a>, który może być obsłużony instrukcją <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a>.</p>
+</section>
+<section id="executable-python-scripts">
+<span id="tut-scripts"></span><h3 class="translated"><span class="section-number">16.1.2. </span>Wykonywalne skrypty Pythona<a class="headerlink" href="#executable-python-scripts" title="Link to this heading">¶</a></h3>
+<p class="translated">W systemach uniksowych podobnych do BSD, skrypty Pythona można uczynić bezpośrednio wykonywalnymi, jak skrypty shell, przez dodanie linii</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+</pre></div>
+</div>
+<p class="translated">(zakładając, że interpreter jest na zmiennej <span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> użytkownika) na początku skryptu i nadając plikowi tryb wykonywalny. <code class="docutils literal notranslate"><span class="pre">#!</span></code> muszą być pierwszymi dwoma znakami pliku. Na niektórych platformach ta pierwsza linia musi kończyć się uniksowym zakończeniem linii (<code class="docutils literal notranslate"><span class="pre">'\n'</span></code>), nie windowsowym zakończeniem linii (<code class="docutils literal notranslate"><span class="pre">'\r\n'</span></code>). Zwróć uwagę, że znak kratki, czy krzyżyka, <code class="docutils literal notranslate"><span class="pre">'#'</span></code>, jest używany do rozpoczęcia komentarza w Pythonie.</p>
+<p class="translated">Skryptowi można nadać tryb wykonywalny, lub permission, przy użyciu komendy <strong class="program">chmod</strong>.</p>
+<div class="translated highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>chmod<span class="w"> </span>+x<span class="w"> </span>myscript.py
+</pre></div>
+</div>
+<p class="translated">W systemach Windows nie wyróżnia się „trybu wykonywalnego”. Instalator Pythona automatycznie powiązuje pliki <code class="docutils literal notranslate"><span class="pre">.py</span></code> z <code class="docutils literal notranslate"><span class="pre">python.exe</span></code>, żeby podwójne kliknięcie w plik Pythona uruchomiło go jako skrypt. Rozszerzeniem może być również <code class="docutils literal notranslate"><span class="pre">.pyw</span></code>. W tym przypadku okno konsoli, które normalnie się pojawia, zostanie ukryte.</p>
+</section>
+<section id="the-interactive-startup-file">
+<span id="tut-startup"></span><h3 class="translated"><span class="section-number">16.1.3. </span>Plik interaktywnego uruchomienia<a class="headerlink" href="#the-interactive-startup-file" title="Link to this heading">¶</a></h3>
+<p class="translated">Gdy używasz Pythona w trybie interaktywnym, często wygodne jest wykonywać jakieś standardowe komendy za każdym razem, gdy uruchamia się interpreter. Możesz to zrobić ustawiając zmienną środowiskową o nazwie <span class="target" id="index-16"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONSTARTUP"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONSTARTUP</span></code></a> na nazwę pliku zawierającego twoje komendy uruchomieniowe. Jest to podobne do funkcji <code class="file docutils literal notranslate"><span class="pre">.profile</span></code> shellów uniksowych.</p>
+<p class="translated">Ten plik jest czytany tylko w sesjach interaktywnych, nie gdy Python czyta komendy ze skryptu i nie gdy <code class="file docutils literal notranslate"><span class="pre">/dev/tty</span></code> jest podany jako źródło komend (które zachowuje się jak sesja interaktywna). Jest wykonywany w tym samym namespace’ie, w którym wykonują się interaktywne komendy, więc obiekty, które definiuje lub importuje mogą być używane bezpośrednio w interaktywnej sesji. Możesz również zmienić znaki prompt <code class="docutils literal notranslate"><span class="pre">sys.ps1</span></code> i <code class="docutils literal notranslate"><span class="pre">sys.ps2</span></code> w tym pliku.</p>
+<p class="translated">Jeśli chcesz odczytać dodatkowy plik rozruchowy z bieżącego katalogu, możesz zaprogramować to w globalnym pliku rozruchowym używając kodu takiego jak <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">os.path.isfile('.pythonrc.py'):</span> <span class="pre">exec(open('.pythonrc.py').read())</span></code>.  Jeśli chcesz użyć pliku rozruchowego w skrypcie, musisz to zrobić jawnie w skrypcie:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PYTHONSTARTUP&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">filename</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">fobj</span><span class="p">:</span>
+        <span class="n">startup_file</span> <span class="o">=</span> <span class="n">fobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">startup_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="the-customization-modules">
+<span id="tut-customize"></span><h3 class="translated"><span class="section-number">16.1.4. </span>Moduły dostosowywania<a class="headerlink" href="#the-customization-modules" title="Link to this heading">¶</a></h3>
+<p class="translated">Python udostępnia dwa haki umożliwiające jego dostosowanie: <span class="target" id="index-17"></span>sitecustomize i <span class="target" id="index-18"></span>usercustomize.  Aby zobaczyć jak to działa, należy najpierw znaleźć lokalizację katalogu pakietów użytkownika.  Uruchom Python i uruchom ten kod:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">site</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">site</span><span class="o">.</span><span class="n">getusersitepackages</span><span class="p">()</span>
+<span class="go">&#39;/home/user/.local/lib/python3.x/site-packages&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Teraz możesz stworzyć plik o nazwie <code class="file docutils literal notranslate"><span class="pre">usercustomize.py</span></code> w tym katalogu i umieścić w nim co tylko chcesz. Będzie to miało wpływ na każde wywołanie Pythona, chyba że zostanie on uruchomiony z opcją <a class="reference internal" href="../using/cmdline.html#cmdoption-s"><code class="xref std std-option docutils literal notranslate"><span class="pre">-s</span></code></a>, aby wyłączyć automatyczny import.</p>
+<p class="translated"><span class="target" id="index-19"></span>sitecustomize działa w ten sam sposób, ale jest zwykle tworzony przez administratora komputera w globalnym katalogu pakietów i jest importowany przed <span class="target" id="index-20"></span>usercustomize.  Więcej szczegółów można znaleźć w dokumentacji <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> moduł .</p>
+<p class="translated rubric">Przypisy</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p class="translated">Problem z pakietem GNU Readline może w tym przeszkodzić.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">16. Dodatek</a><ul>
+<li><a class="reference internal" href="#interactive-mode">16.1. Tryb interaktywny</a><ul>
+<li><a class="reference internal" href="#error-handling">16.1.1. Przechwytywanie błędów</a></li>
+<li><a class="reference internal" href="#executable-python-scripts">16.1.2. Wykonywalne skrypty Pythona</a></li>
+<li><a class="reference internal" href="#the-interactive-startup-file">16.1.3. Plik interaktywnego uruchomienia</a></li>
+<li><a class="reference internal" href="#the-customization-modules">16.1.4. Moduły dostosowywania</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="floatingpoint.html"
+                          title="poprzedni rozdział"><span class="section-number">15. </span>Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="../using/index.html"
+                          title="następny rozdział">Instalacja i używanie Pythona</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/appendix.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/appendix.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/appendix.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="../using/index.html" title="Instalacja i używanie Pythona"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="floatingpoint.html" title="15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">16. </span>Dodatek</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>

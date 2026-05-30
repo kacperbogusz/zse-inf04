@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="asyncio — Asynchroniczne I/O" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/library/asyncio.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Hello World!: asyncio jest biblioteką do pisania równoległego kodu przy użyciu składni async/await. asyncio jest używane jako podstawa dla wielu asynchronicznych framework’ów Pythona, które zapewni..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_library_asyncio_1d135c60.png" />
+<meta property="og:image:alt" content="Hello World!: asyncio jest biblioteką do pisania równoległego kodu przy użyciu składni async/await. asyncio jest używane jako podstawa dla wielu asynchronicznych framework’ów Pythona, które zapewni..." />
+<meta name="description" content="Hello World!: asyncio jest biblioteką do pisania równoległego kodu przy użyciu składni async/await. asyncio jest używane jako podstawa dla wielu asynchronicznych framework’ów Pythona, które zapewni..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>asyncio — Asynchroniczne I/O &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="Runners" href="asyncio-runner.html" />
+    <link rel="prev" title="Networking and Interprocess Communication" href="ipc.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/library/asyncio.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="ipc.html"
+                          title="poprzedni rozdział">Networking and Interprocess Communication</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="asyncio-runner.html"
+                          title="następny rozdział">Runners</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "library/asyncio.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/asyncio.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/library/asyncio.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="asyncio-runner.html" title="Runners"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="ipc.html" title="Networking and Interprocess Communication"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Biblioteka standardowa Pythona</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ipc.html" accesskey="U">Networking and Interprocess Communication</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — Asynchroniczne I/O</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-asyncio">
+<span id="asyncio-asynchronous-i-o"></span><h1 class="translated"><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — Asynchroniczne I/O<a class="headerlink" href="#module-asyncio" title="Link to this heading">¶</a></h1>
+<hr class="docutils" />
+<aside class="sidebar">
+<p class="translated sidebar-title">Hello World!</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Witaj ...&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... świecie!&#39;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</aside>
+<p class="translated">asyncio jest biblioteką do pisania <strong>równoległego</strong> kodu przy użyciu składni <strong>async/await</strong>.</p>
+<p class="translated">asyncio jest używane jako podstawa dla wielu asynchronicznych framework’ów Pythona, które zapewniają wysoką wydajność sieci i serwerów internetowych, bibliotek połączeń z bazami danych, rozproszonych kolejek zadań itp.</p>
+<p class="untranslated">asyncio is often a perfect fit for IO-bound and high-level
+<strong>structured</strong> network code.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Zobacz także</p>
+<dl class="simple">
+<dt class="untranslated"><a class="reference internal" href="../howto/a-conceptual-overview-of-asyncio.html#a-conceptual-overview-of-asyncio"><span class="std std-ref">A Conceptual Overview of asyncio</span></a></dt><dd><p class="untranslated">Explanation of the fundamentals of asyncio.</p>
+</dd>
+</dl>
+</div>
+<p class="translated">asyncio zapewnia zestaw <strong>wysopoziomowych</strong> interfejsów API do:</p>
+<ul class="simple">
+<li><p class="translated"><a class="reference internal" href="asyncio-task.html#coroutine"><span class="std std-ref">uruchamiania równoległych korutyn Pythona</span></a>   oraz pełnej kontroli nad ich wykonywaniem;</p></li>
+<li><p class="untranslated">perform <a class="reference internal" href="asyncio-stream.html#asyncio-streams"><span class="std std-ref">network IO and IPC</span></a>;</p></li>
+<li><p class="untranslated">control <a class="reference internal" href="asyncio-subprocess.html#asyncio-subprocess"><span class="std std-ref">subprocesses</span></a>;</p></li>
+<li><p class="untranslated">distribute tasks via <a class="reference internal" href="asyncio-queue.html#asyncio-queues"><span class="std std-ref">queues</span></a>;</p></li>
+<li><p class="untranslated"><a class="reference internal" href="asyncio-sync.html#asyncio-sync"><span class="std std-ref">synchronize</span></a> concurrent code;</p></li>
+</ul>
+<p class="untranslated">Additionally, there are <strong>low-level</strong> APIs for
+<em>library and framework developers</em> to:</p>
+<ul class="simple">
+<li><p class="untranslated">create and manage <a class="reference internal" href="asyncio-eventloop.html#asyncio-event-loop"><span class="std std-ref">event loops</span></a>, which
+provide asynchronous APIs for <a class="reference internal" href="asyncio-eventloop.html#loop-create-server"><span class="std std-ref">networking</span></a>,
+running <a class="reference internal" href="asyncio-eventloop.html#loop-subprocess-exec"><span class="std std-ref">subprocesses</span></a>,
+handling <a class="reference internal" href="asyncio-eventloop.html#loop-add-signal-handler"><span class="std std-ref">OS signals</span></a>, etc;</p></li>
+<li><p class="untranslated">implement efficient protocols using
+<a class="reference internal" href="asyncio-protocol.html#asyncio-transports-protocols"><span class="std std-ref">transports</span></a>;</p></li>
+<li><p class="untranslated"><a class="reference internal" href="asyncio-future.html#asyncio-futures"><span class="std std-ref">bridge</span></a> callback-based libraries and code
+with async/await syntax.</p></li>
+</ul>
+<div class="availability docutils container">
+<p class="untranslated"><a class="reference internal" href="intro.html#availability"><span class="std std-ref">Dostępność</span></a>: not WASI.</p>
+<p class="untranslated">This module does not work or is not available on WebAssembly. See
+<a class="reference internal" href="intro.html#wasm-availability"><span class="std std-ref">WebAssembly platforms</span></a> for more information.</p>
+</div>
+<p class="untranslated rubric" id="asyncio-cli">asyncio REPL</p>
+<p class="untranslated">You can experiment with an <code class="docutils literal notranslate"><span class="pre">asyncio</span></code> concurrent context in the <a class="reference internal" href="../glossary.html#term-REPL"><span class="xref std std-term">REPL</span></a>:</p>
+<div class="untranslated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go">$ python -m asyncio</span>
+<span class="go">asyncio REPL ...</span>
+<span class="go">Use &quot;await&quot; directly instead of &quot;asyncio.run()&quot;.</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="go">&#39;hello&#39;</span>
+</pre></div>
+</div>
+<p class="untranslated">This REPL provides limited compatibility with <span class="target" id="index-0"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHON_BASIC_REPL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHON_BASIC_REPL</span></code></a>.
+It is recommended that the default REPL is used
+for full functionality and the latest features.</p>
+<p class="audit-hook untranslated" id="audit_event_cpython_run_stdin_2">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">cpython.run_stdin</span></code> with no arguments.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Zmienione w wersji 3.12.5: </span>(also 3.11.10, 3.10.15, 3.9.20, and 3.8.20)
+Emits audit events.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Zmienione w wersji 3.13: </span>Uses PyREPL if possible, in which case <span class="target" id="index-1"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONSTARTUP"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONSTARTUP</span></code></a> is
+also executed. Emits audit events.</p>
+</div>
+<p class="untranslated rubric">Reference</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Wysokopoziomowe interfejsy API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-runner.html">Runners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-task.html">Coroutines and tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-stream.html">Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-sync.html">Synchronization Primitives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-subprocess.html">Subprocesses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-queue.html">Queues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-exceptions.html">Wyjątki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-graph.html">Call Graph Introspection</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">niskopoziomowe interfejsy API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-eventloop.html">Event loop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-future.html">Futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-protocol.html">Transports and Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-policy.html">Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-platforms.html">Platform Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-extending.html">Extending</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Przewodniki i samouczki</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-api-index.html">High-level API Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-llapi-index.html">Low-level API Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio-dev.html">Developing with asyncio</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Informacja</p>
+<p class="untranslated">The source code for asyncio can be found in <a class="extlink-source reference external" href="https://github.com/python/cpython/tree/3.14/Lib/asyncio/">Lib/asyncio/</a>.</p>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="ipc.html"
+                          title="poprzedni rozdział">Networking and Interprocess Communication</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="asyncio-runner.html"
+                          title="następny rozdział">Runners</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "library/asyncio.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/asyncio.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/library/asyncio.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="asyncio-runner.html" title="Runners"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="ipc.html" title="Networking and Interprocess Communication"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Biblioteka standardowa Pythona</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ipc.html" >Networking and Interprocess Communication</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">asyncio</span></code> — Asynchroniczne I/O</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>

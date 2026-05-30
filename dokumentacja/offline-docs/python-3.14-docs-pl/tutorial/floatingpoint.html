@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/floatingpoint.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Liczby zmiennoprzecinkowe są reprezentowane w komputerze jako ułamki o podstawie 2 (binarne). Na przykład dziesiętny ułamek 0.625 ma wartość 6/10 + 2/100 + 5/1000 i analogicznie binarny ułamek 0.10..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_tutorial_floatingpoint_23d06287.png" />
+<meta property="og:image:alt" content="Liczby zmiennoprzecinkowe są reprezentowane w komputerze jako ułamki o podstawie 2 (binarne). Na przykład dziesiętny ułamek 0.625 ma wartość 6/10 + 2/100 + 5/1000 i analogicznie binarny ułamek 0.10..." />
+<meta name="description" content="Liczby zmiennoprzecinkowe są reprezentowane w komputerze jako ułamki o podstawie 2 (binarne). Na przykład dziesiętny ułamek 0.625 ma wartość 6/10 + 2/100 + 5/1000 i analogicznie binarny ułamek 0.10..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="16. Dodatek" href="appendix.html" />
+    <link rel="prev" title="14. Interaktywna edycja danych wejściowych oraz podstawianie z historii" href="interactive.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/floatingpoint.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a><ul>
+<li><a class="reference internal" href="#representation-error">15.1. Błąd reprezentacji</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="interactive.html"
+                          title="poprzedni rozdział"><span class="section-number">14. </span>Interaktywna edycja danych wejściowych oraz podstawianie z historii</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="appendix.html"
+                          title="następny rozdział"><span class="section-number">16. </span>Dodatek</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/floatingpoint.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/floatingpoint.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/floatingpoint.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="appendix.html" title="16. Dodatek"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="interactive.html" title="14. Interaktywna edycja danych wejściowych oraz podstawianie z historii"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">15. </span>Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="floating-point-arithmetic-issues-and-limitations">
+<span id="tut-fp-issues"></span><h1 class="translated"><span class="section-number">15. </span>Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia<a class="headerlink" href="#floating-point-arithmetic-issues-and-limitations" title="Link to this heading">¶</a></h1>
+<p class="translated">Liczby zmiennoprzecinkowe są reprezentowane w komputerze jako ułamki o podstawie 2 (binarne). Na przykład <strong>dziesiętny</strong> ułamek <code class="docutils literal notranslate"><span class="pre">0.625</span></code> ma wartość 6/10 + 2/100 + 5/1000 i analogicznie <strong>binarny</strong> ułamek <code class="docutils literal notranslate"><span class="pre">0.101</span></code> ma wartość 1/2 + 0/4 + 1/8. Te dwa ułamki mają identyczne wartości, a jedyną prawdziwą różnicą jest to, że pierwszy jest zapisany w notacji ułamkowej o podstawie 10, a drugi o podstawie 2.</p>
+<p class="translated">Niestety, większości ułamków dziesiętnych nie można przedstawić dokładnie jako ułamków binarnych. Konsekwencją jest to, że ogólnie wprowadzane dziesiętne liczby zmiennoprzecinkowe są jedynie przybliżane przez binarne liczby zmiennoprzecinkowe faktycznie przechowywane w maszynie.</p>
+<p class="translated">Problem jest łatwiejszy do zrozumienia na początku przy podstawie 10. Rozważ ułamek 1/3. Możesz go przybliżyć jako ułamek o podstawie 10:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3</span>
+</pre></div>
+</div>
+<p class="translated">albo lepiej:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.33</span>
+</pre></div>
+</div>
+<p class="translated">albo lepiej:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.333</span>
+</pre></div>
+</div>
+<p class="translated">i tak dalej. Bez względu na to, ile cyfr jesteś w stanie zapisać, wynik nigdy nie będzie dokładnie 1/3, ale będzie coraz lepszym przybliżeniem 1/3.</p>
+<p class="translated">W ten sam sposób, bez względu na to, ile cyfr o podstawie 2 chcesz użyć, wartość dziesiętna 0,1 nie może być dokładnie przedstawiona jako ułamek o podstawie 2. W podstawie 2, 1/10 to ułamek okresowy</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0001100110011001100110011001100110011001100110011</span><span class="o">...</span>
+</pre></div>
+</div>
+<p class="translated">Zatrzymaj się na dowolnej skończonej liczbie bitów, a otrzymasz przybliżenie. Na większości dzisiejszych maszyn liczby zmiennoprzecinkowe są aproksymowane przy użyciu ułamka binarnego z licznikiem wykorzystującym pierwsze 53 bity, zaczynając od najbardziej znaczącego bitu i mianownikiem jako potęgą dwójki. W przypadku 1/10 ułamek binarny jest równy <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code> i jest zbliżony do prawdziwej wartości 1/10, ale nie do końca jej równy.</p>
+<p class="translated">Wielu użytkowników nie jest świadomych przybliżenia ze względu na sposób wyświetlania wartości. Python wypisuje tylko przybliżenie dziesiętne do prawdziwej wartości dziesiętnej przybliżenia binarnego zapisanego przez maszynę. Na większości maszyn, gdyby Python miał wydrukować prawdziwą wartość dziesiętną przybliżenia binarnego zapisanego dla 0,1 musiałby wyświetlić:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span>
+<span class="go">0.1000000000000000055511151231257827021181583404541015625</span>
+</pre></div>
+</div>
+<p class="translated">To więcej cyfr, niż większość ludzi uważa za przydatne, więc Python utrzymuje liczbę cyfr tak by były one do opanowania, wyświetlając zamiast tego zaokrągloną wartość:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="go">0.1</span>
+</pre></div>
+</div>
+<p class="translated">Pamiętaj tylko, że chociaż wydrukowany wynik wygląda jak dokładna wartość 1/10, rzeczywista zapisana wartość to najbliższa reprezentatywna część binarna.</p>
+<p class="translated">Co ciekawe, istnieje wiele różnych liczb dziesiętnych, które mają ten sam najbliższy przybliżony ułamek binarny. Na przykład liczby <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code> i <code class="docutils literal notranslate"><span class="pre">0.1000000000000000055511151231257827021181583404541015625</span></code> są wszystkie przybliżone przez <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code>. Ponieważ wszystkie te wartości dziesiętne mają to samo przybliżenie, każda z nich może zostać wyświetlona przy jednoczesnym zachowaniu niezmiennika <code class="docutils literal notranslate"><span class="pre">eval(repr(x))</span> <span class="pre">==</span> <span class="pre">x</span></code>.</p>
+<p class="translated">W przeszłości, interaktywny prompt oraz wbudowana funkcja Pythona <a class="reference internal" href="../library/functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> wybierały tę z 17 cyframi znaczącymi, <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code>. Począwszy od Pythona 3.1, Python (w większości systemów) może teraz wybrać najkrótszy z nich i po prostu wyświetlić <code class="docutils literal notranslate"><span class="pre">0.1</span></code>.</p>
+<p class="translated">Zauważ, że leży to w samej naturze binarnej liczby zmiennoprzecinkowej: nie jest to błąd w Pythonie ani w twoim kodzie. Zobaczysz to samo we wszystkich językach obsługujących arytmetykę zmiennoprzecinkową twojego sprzętu (chociaż niektóre języki mogą nie <em>wyświetlać</em> różnicy domyślnie lub we wszystkich trybach wyjściowych).</p>
+<p class="translated">Aby uzyskać przyjemniejszy wynik, możesz użyć formatowania ciągu znaków w celu uzyskania ograniczonej liczby cyfr znaczących:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="s1">&#39;.12g&#39;</span><span class="p">)</span>  <span class="c1"># daj 12 znaczących cyfr</span>
+<span class="go">&#39;3.14159265359&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="s1">&#39;.2f&#39;</span><span class="p">)</span>   <span class="c1"># daj 2 cyfry po kropce</span>
+<span class="go">&#39;3.14&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="go">&#39;3.141592653589793&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Ważne jest, aby zdać sobie sprawę, że w rzeczywistości jest to złudzenie: po prostu zaokrąglasz <em>wyświetlanie</em> prawdziwej wartości zapisanej w komputerze.</p>
+<p class="translated">Jedna iluzja może zrodzić kolejną. Na przykład, z powodu że 0,1 nie jest dokładnie 1/10, zsumowanie trzech wartości 0,1 może nie dać dokładnie 0,3:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p class="translated">Ponadto, ponieważ 0,1 nie może zbliżyć się do dokładnej wartości 1/10, a 0,3 nie może zbliżyć się do dokładnej wartości 3/10, to wstępne zaokrąglenie za pomocą funkcji <a class="reference internal" href="../library/functions.html#round" title="round"><code class="xref py py-func docutils literal notranslate"><span class="pre">round()</span></code></a> nie może pomóc:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p class="translated">Chociaż liczb nie można już bardziej przybliżyć do ich dokładnych wartości, funkcja <a class="reference internal" href="../library/math.html#math.isclose" title="math.isclose"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.isclose()</span></code></a> może być przydatna do porównywania niedokładnych wartości:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated">Alternatywnie do porównania zgrubnych przybliżeń można użyć funkcji <a class="reference internal" href="../library/functions.html#round" title="round"><code class="xref py py-func docutils literal notranslate"><span class="pre">round()</span></code></a>:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mi">22</span> <span class="o">/</span> <span class="mi">7</span><span class="p">,</span> <span class="n">ndigits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated">Binarna arytmetyka zmiennoprzecinkowa kryje w sobie wiele takich niespodzianek. Problem z „0,1” został dokładnie wyjaśniony poniżej, w sekcji „Błąd reprezentacji”.  Zobacz <a class="reference external" href="https://jvns.ca/blog/2023/01/13/examples-of-floating-point-problems/">Przykłady problemów zmiennoprzecinkowych</a> dla przyjemnego podsumowania jak działa binarna arytmetyka zmiennoprzecinkowa i jakie rodzaje problemów często spotyka się w praktyce.  Zobacz także <a class="reference external" href="http://www.indowsway.com/floatingpoint.htm">The Perils of Floating Point</a> dla bardziej kompletnego opisu innych typowych niespodzianek.</p>
+<p class="translated">Jak jest tam napisane pod koniec, „nie ma łatwych odpowiedzi”. Mimo to nie należy nadmiernie uważać na liczby zmiennoprzecinkowe! Błędy w operacjach zmiennoprzecinkowych Pythona są dziedziczone z budowy komputera i na większości maszyn są rzędu nie więcej niż 1 przez 2**53 na operację. Jest to więcej niż wystarczające dla większości zadań, ale należy pamiętać, że nie jest to arytmetyka dziesiętna i że każda operacja zmiennoprzecinkowa może napotkać nowy błąd zaokrąglenia.</p>
+<p class="translated">Chociaż istnieją przypadki skrajne, w większości przypadkowych zastosowań arytmetyki zmiennoprzecinkowej zobaczysz oczekiwany wynik, jeśli po prostu zaokrąglisz wyświetlanie końcowych wyników do oczekiwanej liczby cyfr dziesiętnych. <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> zwykle wystarcza, lecz dla dokładniejszej kontroli możesz zobaczyć opis formatowania tekstu za pomocą metody <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> w <a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format string syntax</span></a>.</p>
+<p class="translated">W przypadkach użycia, które wymagają dokładnej reprezentacji dziesiętnej, spróbuj użyć modułu <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a>, który implementuje arytmetykę dziesiętną odpowiednią dla aplikacji księgowych i aplikacji o wysokiej precyzji.</p>
+<p class="translated">Inną formą wspierającą arytmetykę dokładną jest moduł <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> realizujący arytmetykę opartą na liczbach wymiernych (aby liczby takie jak 1/3 mogły być reprezentowane dokładnie).</p>
+<p class="translated">Jeśli często korzystasz z operacji zmiennoprzecinkowych, powinieneś rzucić okiem na pakiet NumPy i wiele innych pakietów do operacji matematycznych i statystycznych dostarczonych przez projekt SciPy. Zobacz &lt;<a class="reference external" href="https://scipy.org">https://scipy.org</a>&gt;.</p>
+<p class="translated">Python udostępnia narzędzia, które mogą pomóc w tych rzadkich przypadkach, gdy naprawdę <em>musisz</em> poznać dokładną wartość liczby zmiennoprzecinkowej. Metoda <a class="reference internal" href="../library/stdtypes.html#float.as_integer_ratio" title="float.as_integer_ratio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.as_integer_ratio()</span></code></a> wyraża wartość float jako ułamek:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
+<span class="go">(3537115888337719, 1125899906842624)</span>
+</pre></div>
+</div>
+<p class="translated">Ponieważ stosunek jest dokładny, można go użyć do bezstratnego odtworzenia oryginalnej wartości:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="mi">3537115888337719</span> <span class="o">/</span> <span class="mi">1125899906842624</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated">Metoda <a class="reference internal" href="../library/stdtypes.html#float.hex" title="float.hex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.hex()</span></code></a> wyraża liczbę zmiennoprzecinkową w systemie hexadecymalnym (podstawa 16), ponownie podając dokładną wartość przechowywaną przez komputer:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+<span class="go">&#39;0x1.921f9f01b866ep+1&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Ta precyzyjna reprezentacja szesnastkowa może być wykorzystana do dokładnego zrekonstruowania wartości liczby zmiennoprzecinkowej:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="nb">float</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;0x1.921f9f01b866ep+1&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated">Ponieważ ta reprezentacja jest dokładna, przydatna jest ona do niezawodnego przenoszenia wartości między różnymi wersjami Pythona (niezależność od platformy) i wymiany danych z innymi językami obsługującymi ten sam format (takimi jak Java czy C99).</p>
+<p class="translated">Kolejnym pomocnym narzędziem jest funkcja <a class="reference internal" href="../library/functions.html#sum" title="sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code></a>, która pomaga złagodzić utratę precyzji podczas sumowania. Używa rozszerzonej precyzji dla pośrednich kroków zaokrąglania, gdy wartości są dodawane do bieżącej sumy. Może to mieć wpływ na ogólną dokładność, aby błędy nie kumulowały się do punktu, w którym wpływają na ostateczny wynik:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">1.0</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated"><a class="reference internal" href="../library/math.html#math.fsum" title="math.fsum"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.fsum()</span></code></a> idzie dalej i śledzi wszystkie „utracone cyfry”, gdy wartości są dodawane do bieżącej sumy, tak aby wynik miał tylko jedno zaokrąglenie. Jest to wolniejsze niż <a class="reference internal" href="../library/functions.html#sum" title="sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code></a>, ale będzie dokładniejsze w rzadkich przypadkach, w których duże wartości wejściowe w większości się znoszą, pozostawiając końcową sumę bliską zeru:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.10430216751806065</span><span class="p">,</span> <span class="o">-</span><span class="mf">266310978.67179024</span><span class="p">,</span> <span class="mf">143401161448607.16</span><span class="p">,</span>
+<span class="gp">... </span>       <span class="o">-</span><span class="mf">143401161400469.7</span><span class="p">,</span> <span class="mf">266262841.31058735</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.003244936839808227</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">Fraction</span><span class="p">,</span> <span class="n">arr</span><span class="p">)))</span>   <span class="c1"># Dokładne sumowanie z pojedynczym zaokrągleniem</span>
+<span class="go">8.042173697819788e-13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>                   <span class="c1"># Pojedyncze zaokrąglenie</span>
+<span class="go">8.042173697819788e-13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>                         <span class="c1"># Wielokrotne zaokrąglenia w rozszerzonej precyzji</span>
+<span class="go">8.042178034628478e-13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">total</span> <span class="o">+=</span> <span class="n">x</span>                   <span class="c1"># Wielokrotne zaokrąglenia w standardowej precyzji</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total</span>                            <span class="c1"># Proste dodawanie nie ma poprawnych cyfr!</span>
+<span class="go">-0.0051575902860057365</span>
+</pre></div>
+</div>
+<section id="representation-error">
+<span id="tut-fp-error"></span><h2 class="translated"><span class="section-number">15.1. </span>Błąd reprezentacji<a class="headerlink" href="#representation-error" title="Link to this heading">¶</a></h2>
+<p class="translated">Ta sekcja wyjaśnia szczegółowo przykład „0,1” i pokazuje, jak samodzielnie przeprowadzić dokładną analizę takich przypadków. Zakładamy że masz podstawową znajomość binarnej reprezentacji liczb zmiennoprzecinkowych.</p>
+<p class="translated"><em class="dfn">Błąd reprezentacji</em> odnosi się do faktu, że niektóre (właściwie większość) ułamków dziesiętnych nie może być reprezentowane dokładnie jako ułamki binarne (o podstawie 2). Jest to główny powód, dla którego Python (lub Perl, C, C++, Java, Fortran i wiele innych) często nie wyświetla dokładnie takiej liczby dziesiętnej, jakiej oczekujesz.</p>
+<p class="translated">Dlaczego? 1/10 nie jest dokładnie reprezentowalna jako ułamek binarny. Od co najmniej 2000 roku, prawie wszystkie dzisiejsze maszyny używają binarnej arytmetyki zmiennoprzecinkowej IEEE-754 i prawie wszystkie platformy odwzorowują liczby zmiennoprzecinkowe Pythona na „podwójną precyzję” IEEE-754 binary64. Wartości IEEE 754 binary64 zawierają 53 bity dokładności, więc na wejściu komputer stara się zamienić 0,1 na najbliższy możliwy ułamek w postaci <em>J</em>/2**<em>N</em>, gdzie <em>J</em> jest liczbą całkowitą zawierającą dokładnie 53 bity. Zapisując</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">~=</span> <span class="n">J</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="translated">jako</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">~=</span> <span class="mi">2</span><span class="o">**</span><span class="n">N</span> <span class="o">/</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p class="translated">i pamiętając, że <em>J</em> ma dokładnie 53 bity (jest <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">2**52</span></code> ale <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">2**53</span></code>), najlepszą wartością dla <em>N</em> jest 56:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">**</span><span class="mi">52</span> <span class="o">&lt;=</span>  <span class="mi">2</span><span class="o">**</span><span class="mi">56</span> <span class="o">//</span> <span class="mi">10</span>  <span class="o">&lt;</span> <span class="mi">2</span><span class="o">**</span><span class="mi">53</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p class="translated">Oznacza to, że 56 jest jedyną wartością dla <em>N</em>, która pozostawia <em>J</em> dokładnie 53 bity. Najlepszą możliwą wartością dla <em>J</em> jest zatem zaokrąglony iloraz:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">56</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<p class="translated">Ponieważ reszta jest większa niż połowa z 10, najlepsze przybliżenie uzyskuje się zaokrąglając w górę:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
+<span class="go">7205759403792794</span>
+</pre></div>
+</div>
+<p class="translated">Dlatego najlepszym możliwym przybliżeniem do 1/10 w arytmetyce podwójnej precyzji typu IEEE 754 jest:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">7205759403792794</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">56</span>
+</pre></div>
+</div>
+<p class="translated">Podzielenie licznika i mianownika przez dwa zmniejsza ułamek do:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3602879701896397</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+</pre></div>
+</div>
+<p class="translated">Zauważ, że ponieważ zaokrągliliśmy w górę, jest to w rzeczywistości trochę więcej niż 1/10; gdybyśmy nie zaokrąglili w górę, iloraz byłby nieco mniejszy niż 1/10. Ale w żadnym wypadku nie może to być <em>dokładnie</em> 1/10!</p>
+<p class="translated">Tak więc komputer nigdy nie „widzi” 1/10: to, co widzi, to dokładny ułamek podany powyżej, najlepsze przybliżenie w standardzie podwójnej precyzji IEEE 754, jakie może uzyskać:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+<span class="go">3602879701896397.0</span>
+</pre></div>
+</div>
+<p class="translated">Jeśli pomnożymy ten ułamek przez 10**55, otrzymamy wartość z dokładnością do 55 cyfr dziesiętnych:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3602879701896397</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">55</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+<span class="go">1000000000000000055511151231257827021181583404541015625</span>
+</pre></div>
+</div>
+<p class="translated">co oznacza, że ​​dokładna liczba zapisana w komputerze jest równa wartości dziesiętnej 0,1000000000000000055511151231257827021181583404541015625. Zamiast wyświetlać pełną wartość dziesiętną, wiele języków (w tym starsze wersje Pythona) zaokrągla wynik do 17 cyfr znaczących:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;.17f&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.10000000000000001&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Moduły <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> oraz <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> ułatwiają tego typu obliczenia:</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fraction</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">Fraction(3602879701896397, 36028797018963968)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
+<span class="go">(3602879701896397, 36028797018963968)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">Decimal(&#39;0.1000000000000000055511151231257827021181583404541015625&#39;)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="s1">&#39;.17&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.10000000000000001&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">15. Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a><ul>
+<li><a class="reference internal" href="#representation-error">15.1. Błąd reprezentacji</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="interactive.html"
+                          title="poprzedni rozdział"><span class="section-number">14. </span>Interaktywna edycja danych wejściowych oraz podstawianie z historii</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="appendix.html"
+                          title="następny rozdział"><span class="section-number">16. </span>Dodatek</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/floatingpoint.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/floatingpoint.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/floatingpoint.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="appendix.html" title="16. Dodatek"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="interactive.html" title="14. Interaktywna edycja danych wejściowych oraz podstawianie z historii"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">15. </span>Arytmetyka liczb zmiennoprzecinkowych: problemy i ograniczenia</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>

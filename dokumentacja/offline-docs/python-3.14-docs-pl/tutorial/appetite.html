@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="1. Na zaostrzenie apetytu" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/appetite.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Jeśli dużo pracujesz na komputerach, znajdziesz w końcu jakieś zadanie, które chciałbyś zautomatyzować. Na przykład możesz chcieć wykonać znajdź-i-zamień w wielu plikach tekstowych lub zmienić nazw..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_tutorial_appetite_528f261f.png" />
+<meta property="og:image:alt" content="Jeśli dużo pracujesz na komputerach, znajdziesz w końcu jakieś zadanie, które chciałbyś zautomatyzować. Na przykład możesz chcieć wykonać znajdź-i-zamień w wielu plikach tekstowych lub zmienić nazw..." />
+<meta name="description" content="Jeśli dużo pracujesz na komputerach, znajdziesz w końcu jakieś zadanie, które chciałbyś zautomatyzować. Na przykład możesz chcieć wykonać znajdź-i-zamień w wielu plikach tekstowych lub zmienić nazw..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>1. Na zaostrzenie apetytu &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="2. Używanie interpretera Pythona" href="interpreter.html" />
+    <link rel="prev" title="Python Tutorial" href="index.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/appetite.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="index.html"
+                          title="poprzedni rozdział">Python Tutorial</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="następny rozdział"><span class="section-number">2. </span>Używanie interpretera Pythona</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/appetite.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/appetite.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/appetite.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Używanie interpretera Pythona"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Python Tutorial"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Na zaostrzenie apetytu</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="whetting-your-appetite">
+<span id="tut-intro"></span><h1 class="translated"><span class="section-number">1. </span>Na zaostrzenie apetytu<a class="headerlink" href="#whetting-your-appetite" title="Link to this heading">¶</a></h1>
+<p class="translated">Jeśli dużo pracujesz na komputerach, znajdziesz w końcu jakieś zadanie, które chciałbyś zautomatyzować. Na przykład możesz chcieć wykonać znajdź-i-zamień w wielu plikach tekstowych lub zmienić nazwę i przearanżować w skomplikowany sposób zbiór plików fotografii. Być może chciałbyś napisać własną małą bazę danych, lub wyspecjalizowaną aplikację GUI lub prostą grę.</p>
+<p class="translated">Jeśli jesteś zawodowym deweloperem oprogramowania, mógłbyś chcieć pracować z kilkoma bibliotekami C/C++/Java, ale uważałbyś zwykły cykl napisz/skompiluj/przetestuj/zrekompiluj za zbyt wolny. Może piszesz zestaw testów dla takiej biblioteki i pisanie kodu testowego jest dla ciebie nudnym zajęciem. Lub może napisałeś program, który mógłby użyć języka rozszerzeń i nie chcesz projektować i implementować całego nowego języka dla swojej aplikacji.</p>
+<p class="translated">Python jest językiem dla ciebie.</p>
+<p class="translated">Mógłbyś napisać skrypt w uniksowym shellu lub windowsowy program wsadowy dla niektórych z tych zadań, lecz skrypty shellowe są najlepsze w przenoszeniu plików i zmieniania danych tekstowych, nie nadają się najlepiej dla aplikacji z graficznym interfejsem użytkownika lub gier. Mógłbyś napisać program w C/C++/Javie, ale może zająć wiele czasu pracy deweloperskiej, aby dostać jedynie wstępny szkic programu. Python jest łatwiejszy w użyciu, dostępny na Windows, macOS i uniksowe systemy operacyjne i pomoże ci wykonać zdanie szybciej.</p>
+<p class="translated">Python jest prosty w użyciu, ale jest prawdziwym językiem programowania, oferującym dużo więcej struktury i wsparcia dla dużych programów niż skrypty shell i pliki wsadowe mogą zaoferować. Z drugiej strony Python oferuje również dużo więcej sprawdzeń błędów niż C i będąc <em>językiem bardzo-wysokiego-poziomu</em>, ma wbudowane wysoko-poziomowe typy danych, takie jak elastyczne tablice i słowniki. Z powodu tych bardziej ogólnych typów danych Python jest odpowiedni dla dużo większej domeny problemów niż Awk lub nawet Perl, mimo to wiele rzeczy w Pythonie jest co najmniej tak prostych jak w tych językach.</p>
+<p class="translated">Python pozwala ci podzielić twój program na moduły, które mogą zostać wykorzystane w innych programach Pythona. Ma dużą kolekcję standardowych modułów, które możesz użyć jako podstawę dla swoich programów — lub jako przykładów do rozpoczęcia nauki programowania w Pythonie. Niektóre z tych modułów dostarczają rzeczy jak plikowe wejście/wyjście, wywołania systemowe, gniazda oraz nawet interfejsy do narzędzi graficznych interfejsów użytkownika takich jak Tk.</p>
+<p class="translated">Python jest językiem interpretowanym, co może oszczędzić ci znaczy czas podczas pracy nad programem, ponieważ nie jest potrzebna kompilacja i linkowanie. Interpreter może być używany interaktywnie, co ułatwia eksperymentowanie z funkcjami języka, pisanie programów „do wyrzucenia” lub testowanie funkcji podczas rozwijania programu metodą bottom-up. Jest również poręcznym biurkowym kalkulatorem.</p>
+<p class="translated">Python pozwala programom być pisanym kompaktowo i czytelnie. Programy pisane w Pythonie są typowo dużo krótsze niż ich odpowiedniki w C, C++ lub Javie, z kilku powodów:</p>
+<ul class="simple">
+<li><p class="translated">wysoko-poziomowe typy danych pozwalają wyrazić złożone operacje w jednym wyrażeniu;</p></li>
+<li><p class="translated">grupowanie wyrażeń odbywa się za pomocą wcięć zamiast otwierających i zamykających nawiasów;</p></li>
+<li><p class="translated">deklaracje zmiennych lub argumentów nie są potrzebne.</p></li>
+</ul>
+<p class="translated">Python jest <em>rozszerzalny</em>: jeśli wiesz, jak programować w C, prosto możesz dodać nową wbudowaną funkcję lub moduł do interpretera, zarówno aby wykonywać krytyczne operacje z maksymalną szybkością, lub linkować programy Pythona do bibliotek, które mogą być dostępne tylko w formie binarnej (takie jak specyficzne dla dostawcy biblioteki graficzne). Kiedy już jesteś naprawdę nakręcony, możesz połączyć interpreter Pythona z aplikacją napisaną w języku C i użyć go jako rozszerzenia lub języka poleceń dla tej aplikacji.</p>
+<p class="translated">Swoją drogą, nazwa języka pochodzi od programu BBC „Latający Cyrk Monty Pythona” i nie ma nic wspólnego z gadami. Tworzenie odniesień do skeczy Monty Pythona w dokumentacji jest nie tylko dozwolne, wręcz do tego zachęcamy!</p>
+<p class="translated">Teraz, gdy wszyscy jesteście podekscytowani Pythonem, będziecie chcieli zbadać go bardziej szczegółowo. Ponieważ najlepszym sposobem na nauczenie się języka jest korzystanie z niego, tutorial zaprasza do zabawy interpreterem Pythona podczas czytania.</p>
+<p class="translated">W następnym rozdziale wyjaśniana jest mechanika używania interpretera. Są to dość przyziemne informacje, ale niezbędne do wypróbowania przykładów pokazanych później.</p>
+<p class="translated">Reszta tutoriala wprowadza różne cechy języka i systemu Pythona poprzez przykłady, zaczynając od prostych wyrażeń, instrukcji i typów danych, poprzez funkcje i moduły, a na końcu dotykając zaawansowanych pojęć, takich jak wyjątki i klasy zdefiniowane przez użytkownika.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="index.html"
+                          title="poprzedni rozdział">Python Tutorial</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="następny rozdział"><span class="section-number">2. </span>Używanie interpretera Pythona</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/appetite.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/appetite.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/appetite.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Używanie interpretera Pythona"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Python Tutorial"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Na zaostrzenie apetytu</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>

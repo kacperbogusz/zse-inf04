@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+<html lang="pl" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3. Nieformalne wprowadzenie do Pythona" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/introduction.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="W nadchodzących przykładach wejście i wyjście są rozróżniane przez obecność lub nieobecność promptów (&gt;&gt;&gt; i …): aby powtórzyć przykład, musisz wpisać wszystko po prompcie, kiedy prompt jes..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.python.org/3.14/pl/_images/social_previews/summary_tutorial_introduction_61fb1e59.png" />
+<meta property="og:image:alt" content="W nadchodzących przykładach wejście i wyjście są rozróżniane przez obecność lub nieobecność promptów (&gt;&gt;&gt; i …): aby powtórzyć przykład, musisz wpisać wszystko po prompcie, kiedy prompt jes..." />
+<meta name="description" content="W nadchodzących przykładach wejście i wyjście są rozróżniane przez obecność lub nieobecność promptów (&gt;&gt;&gt; i …): aby powtórzyć przykład, musisz wpisać wszystko po prompcie, kiedy prompt jes..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#3776ab">
+
+    <title>3. Nieformalne wprowadzenie do Pythona &#8212; Python 3.14.5 - dokumentacja</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4365c8fe" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
+    
+    <script src="../_static/documentation_options.js?v=7d473458"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=2827c288"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Szukaj pośród Python 3.14.5 - dokumentacja"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="O tych dokumentach" href="../about.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
+    <link rel="copyright" title="Prawa autorskie" href="../copyright.html" />
+    <link rel="next" title="4. Więcej narzędzi kontroli przepływu" href="controlflow.html" />
+    <link rel="prev" title="2. Używanie interpretera Pythona" href="interpreter.html" />
+    
+      
+      <script defer file-types="bz2,epub,zip" data-domain="docs.python.org" src="https://analytics.python.org/js/script.file-downloads.outbound-links.js"></script>
+      
+      <link rel="canonical" href="https://docs.python.org/3/tutorial/introduction.html">
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+            <script type="text/javascript" src="../_static/rtd_switcher.js"></script>
+            <meta name="readthedocs-addons-api-version" content="1">
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q">
+                <input type="submit" value="Szukaj">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3. Nieformalne wprowadzenie do Pythona</a><ul>
+<li><a class="reference internal" href="#using-python-as-a-calculator">3.1. Używanie Pythona jako kalkulatora</a><ul>
+<li><a class="reference internal" href="#numbers">3.1.1. Liczby</a></li>
+<li><a class="reference internal" href="#text">3.1.2. Tekst</a></li>
+<li><a class="reference internal" href="#lists">3.1.3. Listy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#first-steps-towards-programming">3.2. Pierwsze kroki do programowania</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="poprzedni rozdział"><span class="section-number">2. </span>Używanie interpretera Pythona</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="controlflow.html"
+                          title="następny rozdział"><span class="section-number">4. </span>Więcej narzędzi kontroli przepływu</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/introduction.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/introduction.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/introduction.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="controlflow.html" title="4. Więcej narzędzi kontroli przepływu"
+             accesskey="N">dalej</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Używanie interpretera Pythona"
+             accesskey="P">wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Nieformalne wprowadzenie do Pythona</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="an-informal-introduction-to-python">
+<span id="tut-informal"></span><h1 class="translated"><span class="section-number">3. </span>Nieformalne wprowadzenie do Pythona<a class="headerlink" href="#an-informal-introduction-to-python" title="Link to this heading">¶</a></h1>
+<p class="translated">W nadchodzących przykładach wejście i wyjście są rozróżniane przez obecność lub nieobecność promptów (<a class="reference internal" href="../glossary.html#term-0"><span class="xref std std-term">&gt;&gt;&gt;</span></a> i <a class="reference internal" href="../glossary.html#term-..."><span class="xref std std-term">…</span></a>): aby powtórzyć przykład, musisz wpisać wszystko po prompcie, kiedy prompt jest widoczny; linie, które nie zaczynają się promptem są wyjściem z interpretera. Zwróć uwagę, że prompt drugiego rzędu z pustą linią w przykładzie oznacza, że musisz wpisać pustą linię; używa się tego do zakończenia wielo-liniowej komendy.</p>
+<p class="translated">Możesz użyć przycisku „Copy” (pojawia się w prawym górnym rogu po najechaniu kursorem lub dotknięciu przykładu kodu), który usuwa prompty i pomija dane wyjściowe, aby skopiować i wkleić linie wejściowe do swojego interpretera.</p>
+<p class="translated" id="index-0">Wiele przykładów w tej instrukcji, także tych wpisywanych w konsoli interaktywnej, zawiera komentarze. Komentarze w Pythonie zaczynają się znakiem hash <code class="docutils literal notranslate"><span class="pre">#</span></code> i ciągną się do końca fizycznej linii. Komentarz może pojawić się na początku linii, po wiodących spacjach lub kodzie, lecz nie może być zawarty w literale ciągu znaków. Znak hash w ciągu znaków jest po prostu znakiem hash. Jako że komentarze mają wyjaśniać kod i nie są interpretowane przez Pythona, można je ominąć przy wpisywaniu przykładów.</p>
+<p class="translated">Trochę przykładów:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to jest pierwszy komentarz</span>
+<span class="n">spam</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># a to jest drugi komentarz</span>
+          <span class="c1"># … i teraz trzeci!</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;# To nie jest komentarz, bo jest w cudzysłowie.&quot;</span>
+</pre></div>
+</div>
+<section id="using-python-as-a-calculator">
+<span id="tut-calculator"></span><h2 class="translated"><span class="section-number">3.1. </span>Używanie Pythona jako kalkulatora<a class="headerlink" href="#using-python-as-a-calculator" title="Link to this heading">¶</a></h2>
+<p class="translated">Wypróbujmy parę prostych poleceń Pythona. Uruchom interpreter i poczekaj na pojawienie się pierwszego znaku zachęty <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>. (Nie powinno to zająć dużo czasu.)</p>
+<section id="numbers">
+<span id="tut-numbers"></span><h3 class="translated"><span class="section-number">3.1.1. </span>Liczby<a class="headerlink" href="#numbers" title="Link to this heading">¶</a></h3>
+<p class="translated">Interpreter działa jak prosty kalkulator: można wpisać do niego wyrażenie, a on wypisze jego wartość. Składnia wyrażenia jest prosta: operatory <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code> i <code class="docutils literal notranslate"><span class="pre">/</span></code> można użyć do arytmetyki; nawiasy (<code class="docutils literal notranslate"><span class="pre">()</span></code>) można użyć do grupowania. Na przykład:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span>
+<span class="go">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="go">5.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">8</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># dzielenie zawsze zwraca liczbę zmiennoprzecinkową</span>
+<span class="go">1.6</span>
+</pre></div>
+</div>
+<p class="translated">Liczby całkowite (np. <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>) są typu <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, te z częścią ułamkową (np. <code class="docutils literal notranslate"><span class="pre">5.0</span></code>, <code class="docutils literal notranslate"><span class="pre">1.6</span></code>) są typu <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>. Więcej o typach numerycznych dowiemy się więcej później w tym tutorialu.</p>
+<p class="translated">Dzielenie (<code class="docutils literal notranslate"><span class="pre">/</span></code>) zawsze zwraca liczbę zmiennoprzecinkową. Aby zrobić <a class="reference internal" href="../glossary.html#term-floor-division"><span class="xref std std-term">dzielenie całkowite</span></a> i uzyskać wynik całkowity możesz użyć operatora <code class="docutils literal notranslate"><span class="pre">//</span></code>; aby obliczyć resztę możesz użyć <code class="docutils literal notranslate"><span class="pre">%</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">/</span> <span class="mi">3</span>  <span class="c1"># klasyczne dzielenie zwraca liczbę zmiennoprzecinkową</span>
+<span class="go">5.666666666666667</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">//</span> <span class="mi">3</span>  <span class="c1"># dzielenie całkowite pomija część ułamkową</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">%</span> <span class="mi">3</span>  <span class="c1"># operator % zwraca resztę z dzielenia</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># iloraz całkowity * dzielnik + reszta</span>
+<span class="go">17</span>
+</pre></div>
+</div>
+<p class="translated">W Pythonie możesz użyć operatora <code class="docutils literal notranslate"><span class="pre">**</span></code>, do obliczania potęgowania <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># 5 do kwadratu</span>
+<span class="go">25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span>  <span class="c1"># 2 do potęgi 7.</span>
+<span class="go">128</span>
+</pre></div>
+</div>
+<p class="translated">Znak równości (<code class="docutils literal notranslate"><span class="pre">=</span></code>) jest używany do przypisania wartości do zmiennej. Przypisanie do zmiennej nie jest wypisywane przez interpreter:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">height</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<span class="go">900</span>
+</pre></div>
+</div>
+<p class="translated">Jeśli zmienna nie jest „zdefiniowana” (nie ma przypisanej wartości), próba jej użycia spowoduje błąd:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span>  <span class="c1"># próba dostępu do niezdefiniowanej zmiennej</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;n&#39; is not defined</span>
+</pre></div>
+</div>
+<p class="translated">Python implementuje w pełni arytmetykę zmiennoprzecinkową; operatory z operandami typów mieszanych przekształcają operandy całkowite w zmiennoprzecinkowe:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">*</span> <span class="mf">3.75</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="go">14.0</span>
+</pre></div>
+</div>
+<p class="translated">W trybie interaktywnym ostatnie wyświetlone wyrażenie jest przypisywane do zmiennej <code class="docutils literal notranslate"><span class="pre">_</span></code>. Dzięki temu kiedy używasz Pythona jako biurkowego kalkulatora, jest nieco prościej kontynuować obliczenia, na przykład:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tax</span> <span class="o">=</span> <span class="mf">12.5</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">=</span> <span class="mf">100.50</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">*</span> <span class="n">tax</span>
+<span class="go">12.5625</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">+</span> <span class="n">_</span>
+<span class="go">113.0625</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">113.06</span>
+</pre></div>
+</div>
+<p class="translated">Ta zmienna powinna być traktowana przez użytkownika jako tylko-do-odczytu. Nie przypisuj wprost do niej wartości — stworzyłbyś niezależną zmienną lokalną o tej samej nazwie maskując wbudowaną zmienną z jej magicznym zachowaniem.</p>
+<p class="translated">Oprócz <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> i <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, Python wspiera inne typy liczb, takie jak <a class="reference internal" href="../library/decimal.html#decimal.Decimal" title="decimal.Decimal"><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></a> i <a class="reference internal" href="../library/fractions.html#fractions.Fraction" title="fractions.Fraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fraction</span></code></a>. Python ma też wbudowane wsparcie dla <a class="reference internal" href="../library/stdtypes.html#typesnumeric"><span class="std std-ref">liczb zespolonych</span></a> i używa sufiksów <code class="docutils literal notranslate"><span class="pre">j</span></code> lub <code class="docutils literal notranslate"><span class="pre">J</span></code> do wskazania części urojonej (np. <code class="docutils literal notranslate"><span class="pre">3+5j</span></code>).</p>
+</section>
+<section id="text">
+<span id="tut-strings"></span><h3 class="translated"><span class="section-number">3.1.2. </span>Tekst<a class="headerlink" href="#text" title="Link to this heading">¶</a></h3>
+<p class="translated">Python umożliwia manipulację tekstem (reprezentowanym przez typ <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, tzw. „ciąg znaków” lub „string”) oraz liczbami. Obejmuje to znaki „<code class="docutils literal notranslate"><span class="pre">!</span></code>”, słowa „<code class="docutils literal notranslate"><span class="pre">królik</span></code>”, nazwy „<code class="docutils literal notranslate"><span class="pre">Paryż</span></code>”, zdania „<code class="docutils literal notranslate"><span class="pre">Możesz</span> <span class="pre">na</span> <span class="pre">mnie</span> <span class="pre">liczyć.</span></code>”, itp. „<code class="docutils literal notranslate"><span class="pre">Hurra!</span> <span class="pre">:)</span></code>”. Mogą być one umieszczone w pojedynczych cudzysłowach (<code class="docutils literal notranslate"><span class="pre">'...'</span></code>) lub podwójnych cudzysłowach (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>) z takim samym wynikiem <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<div class="translated highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;spam eggs&#39;</span>  <span class="c1"># pojedynczy cudzysłów</span>
+<span class="go">&#39;spam eggs&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Paris rabbit got your back :)! Yay!&quot;</span>  <span class="c1"># podwójny cudzysłów</span>
+<span class="go">&#39;Paris rabbit got your back :)! Yay!&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;1975&#39;</span>  <span class="c1"># cyfry i liczby ujęte w cudzysłów są również ciągami znaków</span>
+<span class="go">&#39;1975&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Aby umieścić znak cudzysłowu, musimy go oznaczyć znakiem „ucieczki”, poprzedzając znakiem <code class="docutils literal notranslate"><span class="pre">\</span></code>. Alternatywnie, możemy użyć innego rodzaju znaków do oznaczenia cudzysłowu:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Oni powiedzieli </span><span class="se">\&#39;</span><span class="s1">tak</span><span class="se">\&#39;</span><span class="s1">.&#39;</span>  <span class="c1"># użyj \&#39; jako znaku ucieczki da pojedynczego cudzysłowu…</span>
+<span class="go">&quot;Oni powiedzieli &#39;tak&#39;.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Oni powiedzieli &#39;tak&#39;.&quot;</span>  <span class="c1"># …lub użyj podwójnego cudzysłowu</span>
+<span class="go">&quot;Oni powiedzieli &#39;tak&#39;.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Oni powiedzieli &quot;tak&quot;.&#39;</span>
+<span class="go">&#39;Oni powiedzieli &quot;tak&quot;.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Oni powiedzieli </span><span class="se">\&quot;</span><span class="s2">tak</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+<span class="go">&#39;Oni powiedzieli &quot;tak&quot;.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Oni powiedzieli &quot;tamci powiedzieli </span><span class="se">\&#39;</span><span class="s1">tak</span><span class="se">\&#39;</span><span class="s1">&quot;.&#39;</span>
+<span class="go">&#39;Oni powiedzieli &quot;tamci powiedzieli \&#39;tak\&#39;&quot;.&#39;</span>
+</pre></div>
+</div>
+<p class="translated">W interaktywnej powłoce Pythona definicja ciągu znaków i wyjściowy ciąg znaków mogą wyglądać inaczej. Funkcja <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> wytwarza czytelne wyjście, poprzez pominięcie otaczających cudzysłowów, pominięcie znaków ucieczki i wypisanie znaków specjalnych:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Pierwsza linia.</span><span class="se">\n</span><span class="s1">Druga linia.&#39;</span>  <span class="c1"># \n oznacza nową linię</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>  <span class="c1"># bez print(), znaki specjalne są zawarte w ciągu znaków</span>
+<span class="go">&#39;Pierwsza linia.\nDruga linia.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># z print(), znaki specjalne są interpretowane, więc \n tworzy nową linię</span>
+<span class="go">Pierwsza linia.</span>
+<span class="go">Druga linia.</span>
+</pre></div>
+</div>
+<p class="translated">Jeśli nie chcesz, aby znaki poprzedzone <code class="docutils literal notranslate"><span class="pre">\</span></code> były interpretowane jako znaki specjalne, możesz użyć <em>surowych ciągów znaków</em> (ang. <em>raw strings</em>) dodając <code class="docutils literal notranslate"><span class="pre">r</span></code> przed pierwszym cudzysłowem:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\t</span><span class="s1">aka</span><span class="se">\n</span><span class="s1">azwa&#39;</span><span class="p">)</span>  <span class="c1"># tutaj \t oznacza tabulator, \n oznacza nową linię</span>
+<span class="go">C:      aka</span>
+<span class="go">azwa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\taka\nazwa&#39;</span><span class="p">)</span>  <span class="c1"># zwróć uwagę na r przed cudzysłowem</span>
+<span class="go">C:\taka\nazwa</span>
+</pre></div>
+</div>
+<p class="translated">Istnieje jeden subtelny aspekt surowych ciągów znaków: surowy ciąg znaków nie może kończyć się nieparzystą liczbą znaków <code class="docutils literal notranslate"><span class="pre">\</span></code>; zobacz <a class="reference internal" href="../faq/programming.html#faq-programming-raw-string-backslash"><span class="std std-ref">wpis FAQ</span></a>, aby uzyskać więcej informacji i sposobów obejścia tego problemu.</p>
+<p class="translated">Literał ciągu znaków może obejmować wiele linii. Jednym ze sposobów jest użycie potrójnych cudzysłowów: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code> lub <code class="docutils literal notranslate"><span class="pre">'''...'''</span></code>. Znaki końca linii są automatycznie dołączane do napisów, ale można temu zapobiec, dodając <code class="docutils literal notranslate"><span class="pre">\</span></code> na końcu linii. W poniższym przykładzie początkowy znak nowej linii nie jest uwzględniony:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s2">Użycie: cosiek [OPCJE]</span>
+<span class="gp">... </span><span class="s2">     -h                        Wyświetl tą wiadomość użycia</span>
+<span class="gp">... </span><span class="s2">     -H hostname               Nazwa hosta do połączenia</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="go">Użycie: cosiek [OPCJE]</span>
+<span class="go">     -h                        Wyświetl tą wiadomość użycia</span>
+<span class="go">     -H hostname               Nazwa hosta do połączenia</span>
+
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p class="translated">Ciągi mogą być łączone operatorem <code class="docutils literal notranslate"><span class="pre">+</span></code> i powtarzane przy użyciu <code class="docutils literal notranslate"><span class="pre">*</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 3 razy &#39;un&#39;, a następnie &#39;ium&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">*</span> <span class="s1">&#39;un&#39;</span> <span class="o">+</span> <span class="s1">&#39;ium&#39;</span>
+<span class="go">&#39;unununium&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Dwa lub więcej <em>literały ciągu znaków</em> (czyli te zawarte w cudzysłowach) obok siebie są automatycznie łączone.</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Py&#39;</span> <span class="s1">&#39;thon&#39;</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p class="translated">To zachowanie jest szczególnie przydatne, gdy chcesz dzielić długie ciągi:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Umieść kilka ciągów znaków w nawiasach &#39;</span>
+<span class="gp">... </span>        <span class="s1">&#39;aby je połączyć.&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span>
+<span class="go">&#39;Umieść kilka ciągów znaków w nawiasach aby je połączyć&#39;.</span>
+</pre></div>
+</div>
+<p class="translated">Jednak działa tylko dla literałów, nie dla zmiennych lub wyrażeń:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prefiks</span> <span class="s1">&#39;thon&#39;</span>  <span class="c1"># nie można łączyć zmiennej i literału ciagu znaków</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="n">prefix</span> <span class="s1">&#39;thon&#39;</span>
+<span class="w">           </span><span class="pm">^^^^^^</span>
+<span class="gr">SyntaxError</span>: <span class="n">invalid syntax</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;un&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="s1">&#39;ium&#39;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;un&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="s1">&#39;ium&#39;</span>
+<span class="w">               </span><span class="pm">^^^^^</span>
+<span class="gr">SyntaxError</span>: <span class="n">invalid syntax</span>
+</pre></div>
+</div>
+<p class="translated">Jeśli chcesz połączyć zmienne lub zmienną i literał, użyj <code class="docutils literal notranslate"><span class="pre">+</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;thon&#39;</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Ciągi znaków mogą być <em>indeksowane</em>. Pierwszy znak ma indeks 0. Nie ma osobnego typu znakowego; znak jest po prostu ciągiem znaków o długości jeden:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># znak na pozycji 0</span>
+<span class="go">&#39;P&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># znak na pozycji 5</span>
+<span class="go">&#39;n&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Indeksy mogą być też liczbami ujemnymi, aby zacząć odliczać od prawej:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># ostatni znak</span>
+<span class="go">&#39;n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># przedostatni znak</span>
+<span class="go">&#39;o&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="go">&#39;P&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Zwróć uwagę, że jako -0 to to samo co 0, ujemne indeksy zaczynają się od -1.</p>
+<p class="translated">Dodatkowo do indeksowania, obsługiwany jest również <em>podział</em>. Podczas gdy indeksowanie służy do uzyskiwania pojedynczych znaków, <em>podział</em> pozwala na uzyskanie podciągu znaków:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># znaki od pozycji 0 (włącznie) do 2 (wyłącznie)</span>
+<span class="go">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># znaki od pozycji 2 (włącznie) do 5 (wyłącznie)</span>
+<span class="go">&#39;tho&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Indeksy podzielonych fragmentów mają przydatne wartości domyślne; pominięty pierwszy indeks domyślnie jest zerem, pominięty drugi indeks domyślnie ma wartość długości dzielonego stringa.</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># znak od początku do pozycji 2 (wyłącznie)</span>
+<span class="go">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>  <span class="c1"># znak od pozycji 4 (włącznie) do końca</span>
+<span class="go">&#39;on&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>  <span class="c1"># znak od przedostatniego (włącznie) do końca</span>
+<span class="go">&#39;on&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Zwróć uwagę, że początkowy indeks wchodzi w skład podciągu, a końcowy nie. W ten sposób <code class="docutils literal notranslate"><span class="pre">s[:i]</span> <span class="pre">+</span> <span class="pre">s[i:]</span></code> jest zawsze równe <code class="docutils literal notranslate"><span class="pre">s</span></code>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="go">&#39;Python&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Jednym ze sposobów na zapamiętanie, jak działa podział, to myślenie o indeksach wskazujących <em>pomiędzy</em> znakami, z lewą krawędzią pierwszego znaku numerowaną 0. Wtedy prawa krawędź ostatniego znaku ciągu o długości <em>n</em> ma indeks <em>n</em>, na przykład:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span> <span class="o">+---+---+---+---+---+---+</span>
+ <span class="o">|</span> <span class="n">P</span> <span class="o">|</span> <span class="n">y</span> <span class="o">|</span> <span class="n">t</span> <span class="o">|</span> <span class="n">h</span> <span class="o">|</span> <span class="n">o</span> <span class="o">|</span> <span class="n">n</span> <span class="o">|</span>
+ <span class="o">+---+---+---+---+---+---+</span>
+ <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>
+<span class="o">-</span><span class="mi">6</span>  <span class="o">-</span><span class="mi">5</span>  <span class="o">-</span><span class="mi">4</span>  <span class="o">-</span><span class="mi">3</span>  <span class="o">-</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p class="translated">W pierwszym wierszu liczb są pozycje indeksów od 0 do 6 w ciągu. W drugim wierszu odpowiadające im indeksy ujemne. Fragment od <em>i</em> do <em>j</em> składa się ze wszystkich znaków pomiędzy krawędziami oznaczonymi kolejno <em>i</em> i <em>j</em>.</p>
+<p class="translated">Dla nieujemnych indeksów długość wydzielonego fragmentu to różnica indeksów, jeśli oba mieszczą się w zakresie. Na przykład długość <code class="docutils literal notranslate"><span class="pre">word[1:3]</span></code> to 2.</p>
+<p class="translated">Próba użycia za dużego indeksu skończy się błędem:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span>  <span class="c1"># word ma tylko 6 znaków</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">string index out of range</span>
+</pre></div>
+</div>
+<p class="translated">Jednak indeksy podzielonych fragmentów poza zakresem są obsłużone bezpiecznie przy podziale:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">42</span><span class="p">]</span>
+<span class="go">&#39;on&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">42</span><span class="p">:]</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Ciągi znaków Pythona nie mogą być zmieniane — są <a class="reference internal" href="../glossary.html#term-immutable"><span class="xref std std-term">niemutowalne</span></a>. W związku z tym przypisywanie wartości do indeksowanej pozycji w ciągu spowoduje błąd:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="s1">&#39;py&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p class="translated">Jeśli potrzebujesz innego ciągu znaków, powinieneś(-nnaś) stworzyć nowy:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;J&#39;</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="go">&#39;Jython&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;py&#39;</span>
+<span class="go">&#39;Pypy&#39;</span>
+</pre></div>
+</div>
+<p class="translated">Wbudowana funkcja <a class="reference internal" href="../library/functions.html#len" title="len"><code class="xref py py-func docutils literal notranslate"><span class="pre">len()</span></code></a> zwraca długość ciągu:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;superkalifradalistodekspialitycznie&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">35</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Zobacz także</p>
+<dl class="simple">
+<dt class="translated"><a class="reference internal" href="../library/stdtypes.html#textseq"><span class="std std-ref">Text Sequence Type — str</span></a></dt><dd><p class="translated">Ciągi znaków są przykładami <em>typów sekwencyjnych</em> i obsługują wspólne operacje wspierane przez takie typy.</p>
+</dd>
+<dt class="translated"><a class="reference internal" href="../library/stdtypes.html#string-methods"><span class="std std-ref">Metody ciągów</span></a></dt><dd><p class="translated">Ciągi znaków wspierają dużą liczbę metod do podstawowych przekształceń i wyszukiwania.</p>
+</dd>
+<dt class="translated"><a class="reference internal" href="../reference/lexical_analysis.html#f-strings"><span class="std std-ref">f-strings</span></a></dt><dd><p class="translated">Literały ciągów znaków z osadzonymi wyrażeniami.</p>
+</dd>
+<dt class="translated"><a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format string syntax</span></a></dt><dd><p class="translated">Informacje o formatowaniu ciągów znaków przy użyciu <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a>.</p>
+</dd>
+<dt class="translated"><a class="reference internal" href="../library/stdtypes.html#old-string-formatting"><span class="std std-ref">printf-style String Formatting</span></a></dt><dd><p class="translated">Stare operacje formatowania, wywoływane gdy ciągi znaków są lewymi operandami operatora <code class="docutils literal notranslate"><span class="pre">%</span></code> są opisane tutaj bardziej szczegółowo.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="lists">
+<span id="tut-lists"></span><h3 class="translated"><span class="section-number">3.1.3. </span>Listy<a class="headerlink" href="#lists" title="Link to this heading">¶</a></h3>
+<p class="translated">Python ma kilka <em>złożonych</em> typów danych, używanych do grupowania różnych wartości. Najbardziej wszechstronnym jest <em>lista</em>, która może zostać zapisana jako lista wartości (elementów) rozdzielonych przecinkami ujęta w nawiasy kwadratowe. Listy mogą zawierać elementy różnych typów, ale zazwyczaj wszystkie elementy mają ten sam typ.</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span>
+<span class="go">[1, 4, 9, 16, 25]</span>
+</pre></div>
+</div>
+<p class="translated">Tak jak ciągi znaków (i wszystkie inne wbudowane typy <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sekwencyjne</span></a>), do elementów list można odwoływać się przez indeksy oraz można z nich „wydzielać”:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># indeksowanie zwraca element</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>  <span class="c1"># slicing zwraca nową listę</span>
+<span class="go">[9, 16, 25]</span>
+</pre></div>
+</div>
+<p class="translated">Listy wspierają też operacje takie jak łączenie:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">+</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="go">[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</span>
+</pre></div>
+</div>
+<p class="translated">W przeciwieństwie do ciągów znaków, które są <a class="reference internal" href="../glossary.html#term-immutable"><span class="xref std std-term">niemutowalne</span></a>, listy są typem <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">mutowalnym</span></a>, w szczególności można zmieniać ich treść:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">125</span><span class="p">]</span>  <span class="c1"># coś tu jest nie tak</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">**</span> <span class="mi">3</span>  <span class="c1"># sześcian 4 to 64, a nie 65!</span>
+<span class="go">64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span>  <span class="c1"># zastąp nieprawidłową wartość</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span>
+<span class="go">[1, 8, 27, 64, 125]</span>
+</pre></div>
+</div>
+<p class="translated">Można również dodawać nowe elementy na końcu listy, przez użycie <em>metody</em> (dowiemy się więcej o metodach później) <a class="reference internal" href="../library/stdtypes.html#list.append" title="list.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">list.append()</span></code></a>:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>  <span class="c1"># dodaj sześcian 6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># i sześcian 7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span>
+<span class="go">[1, 8, 27, 64, 125, 216, 343]</span>
+</pre></div>
+</div>
+<p class="translated">Proste przypisanie w Pythonie nigdy nie kopiuje danych. Kiedy przypisujesz listę do zmiennej, zmienna odnosi się do <em>istniejącej listy</em>. Wszystkie zmiany dokonane na liście przez jedną zmienną będą widoczne przez wszystkie inne zmienne, które się do niej odwołują.:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rgb</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;czerwony&quot;</span><span class="p">,</span> <span class="s2">&quot;zielony&quot;</span><span class="p">,</span> <span class="s2">&quot;niebieski&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgba</span> <span class="o">=</span> <span class="n">rgb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">rgba</span><span class="p">)</span>  <span class="c1"># odwołują się do tego samego obiektu</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgba</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;alfa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb</span>
+<span class="go">[&quot;czerwony&quot;, &quot;zielony&quot;, &quot;niebieski&quot;, &quot;alfa&quot;]</span>
+</pre></div>
+</div>
+<p class="translated">Wszystkie operacje wykrawania zwracają nową listę zawierającą żądane elementy. Następujący slice więc zwraca <a class="reference internal" href="../library/copy.html#shallow-vs-deep-copy"><span class="std std-ref">płytką kopię</span></a> listy:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">correct_rgba</span> <span class="o">=</span> <span class="n">rgba</span><span class="p">[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">correct_rgba</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;alfa&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">correct_rgba</span>
+<span class="go">[&quot;czerwony&quot;, &quot;zielony&quot;, &quot;niebieski&quot;, &quot;alfa&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgba</span>
+<span class="go">[&quot;czerwony&quot;, &quot;zielony&quot;, &quot;niebieski&quot;, &quot;alfa&quot;]</span>
+</pre></div>
+</div>
+<p class="translated">Możliwe jest również przypisywanie do slice’ów. Może to zmienić rozmiar listy lub zupełnie ją wyczyścić:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">litery</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># zastąp niektóre wartości</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">litery</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># teraz je usuń</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># wyczyść listę zastępując wszystkie elementy pustą listą</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[:]</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p class="translated">Wbudowana funkcja <a class="reference internal" href="../library/functions.html#len" title="len"><code class="xref py py-func docutils literal notranslate"><span class="pre">len()</span></code></a> ma również zastosowanie do list:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p class="translated">Można zagnieżdżać listy (tworzyć listy zawierające inne listy), na przykład:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], [1, 2, 3]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;b&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="first-steps-towards-programming">
+<span id="tut-firststeps"></span><h2 class="translated"><span class="section-number">3.2. </span>Pierwsze kroki do programowania<a class="headerlink" href="#first-steps-towards-programming" title="Link to this heading">¶</a></h2>
+<p class="translated">Oczywiście możemy używać Pythona do zadań bardziej skomplikowanych niż dodawanie dwóch do dwóch. Na przykład możemy napisać początkowy podciąg <a class="reference external" href="https://pl.wikipedia.org/wiki/Ci%C4%85g_Fibonacciego">ciągu Fibonacciego</a> następująco:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># ciąg Fibonacciego:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># suma dwóch elementów określa następny</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">...</span>
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p class="translated">Ten przykład wprowadza kilka nowych funkcji.</p>
+<ul>
+<li><p class="translated">Pierwsza linia zawiera <em>wielokrotne przypisanie</em>: zmienne <code class="docutils literal notranslate"><span class="pre">a</span></code> i <code class="docutils literal notranslate"><span class="pre">b</span></code> jednocześnie dostają nowe wartości 0 i 1. W ostatniej linii jest ponownie wykorzystane, demonstrując, że wyrażenia po prawej stronie są ewaluowane wcześniej, zanim którekolwiek z przypisań ma miejsce. Wyrażenia po prawej stronie są ewaluowane od lewej do prawej.</p></li>
+<li><p class="translated">Pętla <a class="reference internal" href="../reference/compound_stmts.html#while"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">while</span></code></a> wykonuje się dopóki warunek (tutaj: <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">10</span></code>) pozostaje prawdziwy. W Pythonie, tak jak w C, każda niezerowa liczba całkowita jest prawdziwa; zero jest fałszywe. Warunek może być również ciągiem znaków lub listą, tak naprawdę jakąkolwiek sekwencją; cokolwiek o niezerowej długości jest prawdziwe, puste sekwencje są fałszywe. Warunek użyty w przykładzie jest prostym porównaniem. Standardowe operatory porównań pisane są tak samo jak w C: <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> (mniejsze niż), <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> (większe niż), <code class="docutils literal notranslate"><span class="pre">==</span></code> (równe), <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> (mniejsze lub równe), <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> (większe lub równe) i <code class="docutils literal notranslate"><span class="pre">!=</span></code> (różne).</p></li>
+<li><p class="translated"><em>Ciało</em> pętli jest <em>wcięte</em>: indentacja (wcięcia) jest sposobem na grupowanie instrukcji. W trybie interaktywnym trzeba wprowadzić znak(i) spacji lub tabulacji, aby wciąć wiersz. W praktyce będziesz przygotowywać bardziej skomplikowane dane wejściowe dla Pythona za pomocą edytora tekstu; wszystkie przyzwoite edytory tekstu mają funkcję automatycznych wcięć. W chwili, gdy wprowadza się jakąś instrukcję złożoną w czasie sesji interpretera Pythona, trzeba zakończyć ją pustym wierszem (bowiem interpreter nie wie, czy ostatni wprowadzony wiersz jest ostatnim z tej instrukcji). Ważne jest, aby każdy wiersz należący do tej samej grupy instrukcji, był wcięty o taką samą liczbę spacji lub znaków tabulacji.</p></li>
+<li><p class="translated">Funkcja <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> wypisuje wartość argumentu(-ów), które jej podano. Różnica pomiędzy tą instrukcją, a zwykłym zapisem wyrażenia, które chce się wypisać (tak jak robiliśmy to w przykładzie z kalkulatorem) występuje w sposobie obsługi wielu wyrażeń i napisów. Łańcuchy znaków wypisywane są bez cudzysłowów, a pomiędzy nimi zapisywane są spacje, tak aby można było ładnie sformatować pojawiający się napis, na przykład:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">256</span><span class="o">*</span><span class="mi">256</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wartość i wynosi&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="go">Wartość i wynosi 65536</span>
+</pre></div>
+</div>
+<p class="translated">Keyword argument <em>end</em> można wykorzystać, aby uniknąć znaku nowej linii po wypisaniu lub aby zakończyć wypisanie innym ciągiem znaków:</p>
+<div class="translated highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">...</span>
+<span class="go">0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p class="translated rubric">Przypisy</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p class="translated">Jako że <code class="docutils literal notranslate"><span class="pre">**</span></code> ma wyższą precedencję niż <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">-3**2</span></code> zostanie zinterpretowane jako <code class="docutils literal notranslate"><span class="pre">-(3**2)</span></code> i zwróci <code class="docutils literal notranslate"><span class="pre">-9</span></code>. Aby tego uniknąć i otrzymać <code class="docutils literal notranslate"><span class="pre">9</span></code>, możesz użyć <code class="docutils literal notranslate"><span class="pre">(-3)**2</span></code>.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p class="translated">W przeciwieństwie do innych języków, znaki specjalne takie jak <code class="docutils literal notranslate"><span class="pre">\n</span></code> mają to samo znaczenie zarówno z pojedynczym (<code class="docutils literal notranslate"><span class="pre">'…'</span></code>) jak i podwójnym (<code class="docutils literal notranslate"><span class="pre">&quot;…&quot;</span></code>) cudzysłowem. Jedyną różnicą między nimi jest to, że wewnątrz pojedynczego cudzysłowu nie musisz używać znaku ucieczki dla <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> (lecz musisz użyć znaku ucieczki <code class="docutils literal notranslate"><span class="pre">\'</span></code>) i vice versa.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Spis treści</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3. Nieformalne wprowadzenie do Pythona</a><ul>
+<li><a class="reference internal" href="#using-python-as-a-calculator">3.1. Używanie Pythona jako kalkulatora</a><ul>
+<li><a class="reference internal" href="#numbers">3.1.1. Liczby</a></li>
+<li><a class="reference internal" href="#text">3.1.2. Tekst</a></li>
+<li><a class="reference internal" href="#lists">3.1.3. Listy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#first-steps-towards-programming">3.2. Pierwsze kroki do programowania</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Poprzedni temat</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="poprzedni rozdział"><span class="section-number">2. </span>Używanie interpretera Pythona</a></p>
+  </div>
+  <div>
+    <h4>Następny temat</h4>
+    <p class="topless"><a href="controlflow.html"
+                          title="następny rozdział"><span class="section-number">4. </span>Więcej narzędzi kontroli przepływu</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const title = document.querySelector('meta[property="og:title"]').content;
+        const elements = document.querySelectorAll('.improvepage');
+        const pageurl = window.location.href.split('?')[0];
+        elements.forEach(element => {
+            const url = new URL(element.href.split('?')[0].replace("-nojs", ""));
+            url.searchParams.set('pagetitle', title);
+            url.searchParams.set('pageurl', pageurl);
+            url.searchParams.set('pagesource', "tutorial/introduction.rst");
+            element.href = url.toString();
+        });
+    });
+  </script>
+  <div role="note" aria-label="source link">
+    <h3>Ta strona</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Zgłoś błąd</a></li>
+      <li><a class="improvepage" href="../improve-page-nojs.html">Ulepsz tę stronę</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/main/Doc/tutorial/introduction.rst?plain=1"
+            rel="nofollow">Pokaż źródło
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/python/python-docs-pl/blob/3.14/tutorial/introduction.po?plain=1"
+           rel="nofollow">Pokaż źródło tłumaczenia</a>
+      </li>
+      
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Zwiń pasek boczny">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Indeks modułów Pythona"
+             >moduły</a> |</li>
+        <li class="right" >
+          <a href="controlflow.html" title="4. Więcej narzędzi kontroli przepływu"
+             >dalej</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Używanie interpretera Pythona"
+             >wstecz</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.14.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Nieformalne wprowadzenie do Pythona</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Szybkie wyszukiwanie" aria-label="Szybkie wyszukiwanie" type="search" name="q" id="search-box">
+          <input type="submit" value="Szukaj">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Motyw
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>auto</option>
+        <option value="light">jasny</option>
+        <option value="dark">ciemny</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Prawa autorskie</a> 2001 Python Software Foundation.
+    <br>
+    Ta strona jest objęta licencją Python Software Foundation w wersji 2.
+    <br>
+    Przykłady, przepisy i inny kod w dokumentacji są dodatkowo objęte licencją Zero Clause BSD.
+    <br>
+    
+      Zobacz <a href="/license.html">Historię i licencję</a> aby uzyskać więcej informacji.<br>
+    
+    
+    <br>
+
+    Python Software Foundation jest organizacją non-profit.
+<a href="https://www.python.org/psf/donations/">Prosimy o wsparcie.</a>
+<br>
+    <br>
+      Ostatnia aktualizacja maj 30, 2026 (09:05 UTC).
+    
+      <a href="/bugs.html">Znalazłeś(-aś) błąd</a>?
+    
+    <br>
+
+    Stworzone za pomocą <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+
+  </body>
+</html>
