@@ -133,18 +133,26 @@
   - [12.3. Formularz jako obiekt stanu](#123-formularz-jako-obiekt-stanu)
   - [12.4. Dane z pliku przepisane do kodu](#124-dane-z-pliku-przepisane-do-kodu)
 - [13. Bootstrap w React — Kompletny Przewodnik](#13-bootstrap-w-react--kompletny-przewodnik)
-  - [13.1. Instalacja i konfiguracja Bootstrapa](#131-instalacja-i-konfiguracja-bootstrapa)
-  - [13.2. Czysty Bootstrap (CSS) vs React-Bootstrap (Komponenty)](#132-czysty-bootstrap-css-vs-react-bootstrap-komponenty)
-  - [13.3. System Grid (Siatka 12-kolumnowa) w detalach](#133-system-grid-siatka-12-kolumnowa-w-detalach)
-  - [13.4. Flexbox z Bootstrapem (Klasy d-flex)](#134-flexbox-z-bootstrapem-klasy-d-flex)
-  - [13.5. Typografia, kolory i tła](#135-typografia-kolory-i-tła)
-  - [13.6. Wymiary, Marginesy i paddingi (Spacing)](#136-wymiary-marginesy-i-paddingi-spacing)
-  - [13.7. Przyciski (Buttons) i grupy przycisków](#137-przyciski-buttons-i-grupy-przycisków)
-  - [13.8. Formularze zaawansowane (Input, Select, Switch, Walidacja)](#138-formularze-zaawansowane-input-select-switch-walidacja)
-  - [13.9. Karty (Cards) i bogate układy](#139-karty-cards-i-bogate-układy)
-  - [13.10. Tabele i paginacja](#1310-tabele-i-paginacja)
-  - [13.11. Komponenty UI: Alerty, Odznaki, Paski postępu i Spinnery](#1311-komponenty-ui-alerty-odznaki-paski-postępu-i-spinnery)
-  - [13.12. Złożony przykład praktyczny: Panel Użytkownika](#1312-złożony-przykład-praktyczny-panel-użytkownika)
+  - [13.1. Czym jest Bootstrap i kiedy go używać](#131-czym-jest-bootstrap-i-kiedy-go-używać)
+  - [13.2. Instalacja i konfiguracja Bootstrapa](#132-instalacja-i-konfiguracja-bootstrapa)
+  - [13.3. Czysty Bootstrap CSS vs React-Bootstrap](#133-czysty-bootstrap-css-vs-react-bootstrap)
+  - [13.4. Kontenery i podstawowy układ strony](#134-kontenery-i-podstawowy-układ-strony)
+  - [13.5. System Grid — siatka 12-kolumnowa](#135-system-grid--siatka-12-kolumnowa)
+  - [13.6. Flexbox i szybkie wyrównywanie elementów](#136-flexbox-i-szybkie-wyrównywanie-elementów)
+  - [13.7. Display, widoczność, pozycjonowanie i overflow](#137-display-widoczność-pozycjonowanie-i-overflow)
+  - [13.8. Spacing, wymiary, obramowania i cienie](#138-spacing-wymiary-obramowania-i-cienie)
+  - [13.9. Typografia, kolory, tła i tryb ciemny](#139-typografia-kolory-tła-i-tryb-ciemny)
+  - [13.10. Przyciski, grupy przycisków i stany](#1310-przyciski-grupy-przycisków-i-stany)
+  - [13.11. Formularze — pola, selecty, checkboxy i input group](#1311-formularze--pola-selecty-checkboxy-i-input-group)
+  - [13.12. Walidacja formularzy i floating labels](#1312-walidacja-formularzy-i-floating-labels)
+  - [13.13. Nawigacja — navbar, nav, tabs i breadcrumbs](#1313-nawigacja--navbar-nav-tabs-i-breadcrumbs)
+  - [13.14. Karty, list group, badge i układy kafelkowe](#1314-karty-list-group-badge-i-układy-kafelkowe)
+  - [13.15. Tabele, paginacja i prezentacja danych](#1315-tabele-paginacja-i-prezentacja-danych)
+  - [13.16. Alerty, spinnery, progress, placeholdery i toast](#1316-alerty-spinnery-progress-placeholdery-i-toast)
+  - [13.17. Komponenty wymagające JavaScriptu](#1317-komponenty-wymagające-javascriptu)
+  - [13.18. Dostępność i semantyka w Bootstrapie](#1318-dostępność-i-semantyka-w-bootstrapie)
+  - [13.19. Nadpisywanie Bootstrapa i własny motyw](#1319-nadpisywanie-bootstrapa-i-własny-motyw)
+  - [13.20. Złożony przykład praktyczny: Panel użytkownika](#1320-złożony-przykład-praktyczny-panel-użytkownika)
 - [14. Obrazy i zasoby statyczne](#14-obrazy-i-zasoby-statyczne)
   - [14.1. Obrazy z folderu public](#141-obrazy-z-folderu-public)
   - [14.2. Obrazy z folderu src — import](#142-obrazy-z-folderu-src--import)
@@ -172,6 +180,13 @@
   - [18.2. Import pliku JSON](#182-import-pliku-json)
   - [18.3. Fetch z folderu public](#183-fetch-z-folderu-public)
   - [18.4. Parsowanie danych tekstowych](#184-parsowanie-danych-tekstowych)
+  - [18.5. Czym jest API](#185-czym-jest-api)
+  - [18.6. Endpoint, metoda HTTP i status odpowiedzi](#186-endpoint-metoda-http-i-status-odpowiedzi)
+  - [18.7. Pobieranie danych z zewnętrznego API](#187-pobieranie-danych-z-zewnętrznego-api)
+  - [18.8. Loading, błąd i pusta lista](#188-loading-błąd-i-pusta-lista)
+  - [18.9. Wysyłanie danych metodą POST](#189-wysyłanie-danych-metodą-post)
+  - [18.10. Parametry w adresie URL](#1810-parametry-w-adresie-url)
+  - [18.11. Dobre praktyki przy pracy z API](#1811-dobre-praktyki-przy-pracy-z-api)
 - [19. Logika aplikacji poza JSX](#19-logika-aplikacji-poza-jsx)
   - [19.1. Funkcje pomocnicze](#191-funkcje-pomocnicze)
   - [19.2. Osobne moduły z logiką](#192-osobne-moduły-z-logiką)
@@ -204,36 +219,60 @@
   - [24.2. Label i htmlFor](#242-label-i-htmlfor)
   - [24.3. Semantyczny układ strony](#243-semantyczny-układ-strony)
 - [25. Routing i Nawigacja w SPA (react-router-dom)](#25-routing-i-nawigacja-w-spa-react-router-dom)
+  - [25.1. Czym jest Client-Side Routing?](#251-czym-jest-client-side-routing)
+  - [25.2. BrowserRouter, Routes i Route](#252-browserrouter-routes-i-route)
+  - [25.3. Linkowanie pomiędzy podstronami używając `<Link>`](#253-linkowanie-pomiędzy-podstronami-używając-link)
+  - [25.4. Nawigacja z poziomu kodu (useNavigate)](#254-nawigacja-z-poziomu-kodu-usenavigate)
+  - [25.5. Parametry w ścieżkach (useParams)](#255-parametry-w-ścieżkach-useparams)
 - [26. Wzorce praktyczne](#26-wzorce-praktyczne)
   - [26.1. Formularz rejestracji](#261-formularz-rejestracji)
   - [26.2. Zapisy na kurs](#262-zapisy-na-kurs)
   - [26.3. Formularz filmu](#263-formularz-filmu)
-  - [26.4. Galeria zdjęć z kategoriami](#264-galeria-zdjęć-z-kategoriami)
-  - [26.5. Lista zadań (Todo App) — wieloplikowy](#265-lista-zadań-todo-app--wieloplikowy)
-  - [26.6. Generator hasła](#266-generator-hasła)
-  - [26.7. Kalkulator BMI](#267-kalkulator-bmi)
-  - [26.8. Widok kart z filtrami i wyszukiwaniem](#268-widok-kart-z-filtrami-i-wyszukiwaniem)
-  - [26.9. Mixer kolorów RGB](#269-mixer-kolorów-rgb)
-  - [26.10. Kości do gry z blokowaniem](#2610-kości-do-gry-z-blokowaniem)
-  - [26.11. Licznik z historią operacji](#2611-licznik-z-historią-operacji)
-  - [26.12. Algorytmy — sumowanie, zliczanie, filtrowanie](#2612-algorytmy--sumowanie-zliczanie-filtrowanie)
-  - [26.13. Prosta Playlista Audio (Odtwarzacz ze stanem)](#2613-prosta-playlista-audio-odtwarzacz-ze-stanem)
-  - [26.14. Akordeon FAQ z widocznością (Sekcje Rozwijane)](#2614-akordeon-faq-z-widocznością-sekcje-rozwijane)
-  - [26.15. Formularz zamówienia pizzy](#2615-formularz-zamówienia-pizzy)
-  - [26.16. Przelicznik walut](#2616-przelicznik-walut)
-  - [26.17. Galeria zdjęć z lightboxem i ulubionymi](#2617-galeria-zdjęć-z-lightboxem-i-ulubionymi)
+  - [26.4. Formularz zamówienia pizzy](#264-formularz-zamówienia-pizzy)
+  - [26.5. Formularz wyceny ubezpieczenia OC pojazdu](#265-formularz-wyceny-ubezpieczenia-oc-pojazdu)
+  - [26.6. Formularz rezerwacji wizyty lekarskiej](#266-formularz-rezerwacji-wizyty-lekarskiej)
+  - [26.7. Generator i podgląd CV (Live CV Builder)](#267-generator-i-podgląd-cv-live-cv-builder)
+  - [26.8. Formularz ankiety z oceną gwiazdkową](#268-formularz-ankiety-z-oceną-gwiazdkową)
+  - [26.9. Kalkulator wyceny szafy na wymiar](#269-kalkulator-wyceny-szafy-na-wymiar)
+  - [26.10. Kalkulator BMI](#2610-kalkulator-bmi)
+  - [26.11. Przelicznik walut](#2611-przelicznik-walut)
+  - [26.12. Kalkulator spalania paliwa i kosztów podróży](#2612-kalkulator-spalania-paliwa-i-kosztów-podróży)
+  - [26.13. Kalkulator rat kredytu (symulator)](#2613-kalkulator-rat-kredytu-symulator)
+  - [26.14. Kalkulator zapotrzebowania kalorycznego (BMR i TDEE)](#2614-kalkulator-zapotrzebowania-kalorycznego-bmr-i-tdee)
+  - [26.15. Kalkulator wieku psa (ludzkie lata)](#2615-kalkulator-wieku-psa-ludzkie-lata)
+  - [26.16. Kalkulator czasu pracy i wynagrodzenia](#2616-kalkulator-czasu-pracy-i-wynagrodzenia)
+  - [26.17. Konwerter systemów liczbowych](#2617-konwerter-systemów-liczbowych)
+  - [26.18. Generator hasła](#2618-generator-hasła)
+  - [26.19. Kości do gry z blokowaniem](#2619-kości-do-gry-z-blokowaniem)
+  - [26.20. Gra w zgadywanie liczb (Za dużo / Za mało)](#2620-gra-w-zgadywanie-liczb-za-dużo--za-mało)
+  - [26.21. Kamień, Papier, Nożyce](#2621-kamień-papier-nożyce)
+  - [26.22. Rzut monetą ze statystykami i historią](#2622-rzut-monetą-ze-statystykami-i-historią)
+  - [26.23. Galeria zdjęć z kategoriami](#2623-galeria-zdjęć-z-kategoriami)
+  - [26.24. Lista zadań (Todo App) — wieloplikowy](#2624-lista-zadań-todo-app--wieloplikowy)
+  - [26.25. Widok kart z filtrami i wyszukiwaniem](#2625-widok-kart-z-filtrami-i-wyszukiwaniem)
+  - [26.26. Algorytmy — sumowanie, zliczanie, filtrowanie](#2626-algorytmy--sumowanie-zliczanie-filtrowanie)
+  - [26.27. Galeria zdjęć z lightboxem i ulubionymi](#2627-galeria-zdjęć-z-lightboxem-i-ulubionymi)
+  - [26.28. Książka adresowa z wyszukiwarką i tagami](#2628-książka-adresowa-z-wyszukiwarką-i-tagami)
+  - [26.29. Biblioteczka książek ze statusem przeczytania](#2629-biblioteczka-książek-ze-statusem-przeczytania)
+  - [26.30. Wyszukiwarka przepisów kulinarnych po składnikach](#2630-wyszukiwarka-przepisów-kulinarnych-po-składnikach)
+  - [26.31. Dzienniczek ocen z obliczaniem średniej ważonej](#2631-dzienniczek-ocen-z-obliczaniem-średniej-ważonej)
+  - [26.32. Lista zakupów z podziałem na działy](#2632-lista-zakupów-z-podziałem-na-działy)
+  - [26.33. Mixer kolorów RGB](#2633-mixer-kolorów-rgb)
+  - [26.34. Licznik z historią operacji](#2634-licznik-z-historią-operacji)
+  - [26.35. Prosta Playlista Audio (Odtwarzacz ze stanem)](#2635-prosta-playlista-audio-odtwarzacz-ze-stanem)
+  - [26.36. Akordeon FAQ z widocznością (Sekcje Rozwijane)](#2636-akordeon-faq-z-widocznością-sekcje-rozwijane)
+  - [26.37. CSS Gradient Generator](#2637-css-gradient-generator)
+  - [26.38. Licznik słów, znaków i czasu czytania](#2638-licznik-słów-znaków-i-czasu-czytania)
+  - [26.39. Minutnik Kuchenny (Odliczanie)](#2639-minutnik-kuchenny-odliczanie)
+  - [26.40. Kreator i podgląd menu restauracji (Karta dań)](#2640-kreator-i-podgląd-menu-restauracji-karta-dań)
+  - [26.41. Interaktywny Quiz wiedzy (5 pytań)](#2641-interaktywny-quiz-wiedzy-5-pytań)
+  - [26.42. Tablica Kanban (Zadania w kolumnach)](#2642-tablica-kanban-zadania-w-kolumnach)
+  - [26.43. System rezerwacji miejsc w kinie (Siatka miejsc)](#2643-system-rezerwacji-miejsc-w-kinie-siatka-miejsc)
+  - [26.44. Akordeon FAQ z wyszukiwarką pytań](#2644-akordeon-faq-z-wyszukiwarką-pytań)
+  - [26.45. Wyszukiwarka użytkowników z API](#2645-wyszukiwarka-użytkowników-z-api)
+## 1. Wprowadzenie
 
-
-
----
-
-> **Jak korzystać z tego poradnika:** Każdy rozdział jest samodzielny — możesz czytać je w dowolnej kolejności. Rozdziały 1–12 warto jednak czytać po kolei, ponieważ każdy z nich buduje na wiedzy z poprzedniego. Przykłady kodu są gotowe do uruchomienia — możesz je skopiować i przetestować w swoim projekcie React. Pliki, w których powinien znaleźć się kod, są zawsze oznaczone komentarzem na początku bloku kodu.
-
----
-
-## 1. wprowadzenie
-
-### 1.1. czym jest React
+### 1.1. Czym jest React
 
 React to biblioteka JavaScript stworzona przez zespół Facebooka (Meta) w 2013 roku. Służy do budowania interfejsów użytkownika (UI). Nie jest pełnym frameworkiem — odpowiada wyłącznie za warstwę widoku. Oznacza to, że React nie narzuca sposobu obsługi routingu, zapytań do serwera ani zarządzania bazą danych. W podstawowych projektach te rzeczy nie są zazwyczaj potrzebne.
 
@@ -241,7 +280,7 @@ Najważniejsza zasada Reacta brzmi: **widok jest funkcją danych**. Jeżeli zmie
 
 React opiera się na **komponentach**. Komponent to funkcja JavaScript, która zwraca fragment widoku (napisany w składni JSX, która wygląda jak HTML). Cała aplikacja jest drzewem komponentów — od jednego głównego (`App`) aż po najmniejsze przyciski i etykiety.
 
-### 1.2. czym jest single page application (SPA)
+### 1.2. Czym jest Single Page Application (SPA)
 
 SPA, czyli Single Page Application (aplikacja jednostronicowa), to aplikacja webowa, która działa na jednej stronie HTML. Przeglądarka ładuje plik `index.html` oraz pliki JavaScript i CSS. Od tego momentu widok zmienia się bez pełnego przeładowania strony — wszystko odbywa się dynamicznie po stronie klienta (przeglądarki).
 
@@ -252,7 +291,7 @@ Proste aplikacje Reactowe są właśnie małymi SPA. W typowych, mniejszych proj
 - nie ma routingu (wielu podstron)
 - dane są wpisane w kodzie lub skopiowane z pliku `dane.txt`
 
-### 1.3. deklaratywność vs imperatywność
+### 1.3. Deklaratywność vs imperatywność
 
 Przesiadka z czystego JavaScriptu na Reacta wymaga zmiany sposobu myślenia.
 
@@ -293,7 +332,7 @@ export default App;
 
 To jak zamawianie pizzy: w podejściu imperatywnym wchodzisz do kuchni i instruujesz kucharza, ile mąki i wody ma dodać. W podejściu deklaratywnym (React) składasz zamówienie: „Chcę margheritę". Restauracja (React) sama dba o to, byś ją otrzymał.
 
-### 1.4. virtual DOM — jak React aktualizuje stronę
+### 1.4. Virtual DOM — jak React aktualizuje stronę
 
 Zrozumienie tego mechanizmu pomaga pisać lepszy kod:
 
@@ -304,7 +343,7 @@ Zrozumienie tego mechanizmu pomaga pisać lepszy kod:
 
 Dzięki temu aplikacje są szybkie, a programista nie musi martwić się o ręczne manipulowanie elementami HTML.
 
-### 1.5. jak korzystać z tego poradnika
+### 1.5. Jak korzystać z tego poradnika
 
 | Obszar | Co trzeba umieć | Po co |
 |---|---|---|
@@ -322,9 +361,9 @@ Dzięki temu aplikacje są szybkie, a programista nie musi martwić się o ręcz
 
 ---
 
-## 2. środowisko pracy
+## 2. Środowisko pracy
 
-### 2.1. node.js, npm i npx
+### 2.1. Node.js, npm i npx
 
 Zanim zaczniesz pracę z Reactem, musisz zrozumieć trzy narzędzia:
 
@@ -342,7 +381,7 @@ Dodatkowo ważne pojęcia:
 | `node_modules` | Folder z pobranymi bibliotekami — nie edytujemy go ręcznie |
 | `package-lock.json` | Dokładne wersje zainstalowanych pakietów — nie edytujemy ręcznie |
 
-### 2.2. instalacja node.js
+### 2.2. Instalacja Node.js
 
 Node.js pobieramy ze strony [https://nodejs.org](https://nodejs.org). Wybieramy wersję **LTS** (Long Term Support), która jest stabilna i sprawdzona. Instalator automatycznie instaluje także `npm` i `npx`.
 
@@ -363,7 +402,7 @@ npx --version
 
 Jeżeli polecenia zwracają numery wersji, instalacja się powiodła.
 
-### 2.3. sprawdzanie wersji
+### 2.3. Sprawdzanie wersji
 
 Przed tworzeniem nowego projektu warto upewnić się, że narzędzia są zainstalowane:
 
@@ -382,7 +421,7 @@ Minimalne wymagania dla Create React App:
 - Node.js w wersji 14 lub nowszej (zalecana 18+)
 - npm w wersji 6 lub nowszej
 
-### 2.4. czym jest create React app
+### 2.4. Czym jest Create React App
 
 Create React App (skrót: CRA) to narzędzie, które tworzy gotowy projekt Reactowy z pełną konfiguracją. Nie trzeba ręcznie konfigurować bundlera (Webpack), transpilera (Babel) ani serwera deweloperskiego — CRA robi to za nas.
 
@@ -396,7 +435,7 @@ CRA tworzy projekt z:
 
 > **Uwaga:** Create React App jest obecnie narzędziem, które nie jest już aktywnie rozwijane przez zespół Reacta. Dla nowych projektów profesjonalnych rekomendowane są narzędzia jak Vite. Jednak CRA nadal doskonale sprawdza się do nauki i podstawowych środowisk projektowych, dlatego w tej dokumentacji używamy go świadomie.
 
-### 2.5. tworzenie nowego projektu
+### 2.5. Tworzenie nowego projektu
 
 Projekt tworzysz w folderze, w którym chcesz mieć katalog aplikacji. Nazwa projektu powinna być:
 - pisana małymi literami
@@ -419,7 +458,7 @@ Po uruchomieniu `npm start` przeglądarka powinna automatycznie otworzyć adres 
 
 Jeżeli port 3000 jest zajęty, terminal zapyta, czy użyć innego portu. Potwierdź klawiszem `Y`.
 
-### 2.6. uruchamianie projektu
+### 2.6. Uruchamianie projektu
 
 Po utworzeniu projektu najczęściej używasz dwóch poleceń:
 
@@ -436,7 +475,7 @@ Serwer deweloperski:
 - Wyświetla błędy kompilacji w terminalu i w przeglądarce
 - Działa pod adresem `http://localhost:3000`
 
-### 2.7. struktura katalogów
+### 2.7. Struktura katalogów
 
 Po utworzeniu projektu przez CRA otrzymujesz następującą strukturę:
 
@@ -522,7 +561,7 @@ export default App;
 
 `React.StrictMode` to komponent, który w trybie deweloperskim pomaga wykryć potencjalne problemy. Renderuje komponenty dwukrotnie, aby sprawdzić, czy nie mają efektów ubocznych. W trybie produkcyjnym (`npm run build`) StrictMode jest ignorowany.
 
-### 2.8. czyszczenie projektu startowego
+### 2.8. Czyszczenie projektu startowego
 
 Po utworzeniu projektu warto usunąć niepotrzebne pliki startowe i zacząć od czystego szablonu. Oto minimalny zestaw plików po wyczyszczeniu:
 
@@ -568,7 +607,7 @@ Pliki, które można usunąć:
 - `src/reportWebVitals.js`
 - `src/setupTests.js`
 
-### 2.9. skrypty npm
+### 2.9. Skrypty npm
 
 Skrypty są zdefiniowane w pliku `package.json`. Dzięki nim nie trzeba pamiętać pełnych poleceń:
 
@@ -592,7 +631,7 @@ Skrypty są zdefiniowane w pliku `package.json`. Dzięki nim nie trzeba pamięta
 
 Polecenia `eject` prawie nigdy nie używaj. Wyciąga ukrytą konfigurację Webpacka i Babela, co komplikuje projekt.
 
-### 2.10. instalacja dodatkowych bibliotek
+### 2.10. Instalacja dodatkowych bibliotek
 
 Aby zainstalować bibliotekę (np. Bootstrap), używasz polecenia `npm install`:
 
@@ -608,11 +647,11 @@ Po instalacji biblioteka pojawia się w `node_modules` i w sekcji `dependencies`
 
 ---
 
-## 3. podstawy JavaScript potrzebne w React
+## 3. Podstawy JavaScript potrzebne w React
 
 React jest biblioteką JavaScript, więc znajomość podstaw tego języka jest niezbędna. Ten rozdział prezentuje elementy JavaScriptu, które pojawiają się najczęściej w kodzie Reactowym.
 
-### 3.1. zmienne — const, let, var
+### 3.1. Zmienne — const, let, var
 
 Zmienna to "pudełko", w którym przechowujesz dane (tekst, liczby, tablice), by móc ich później użyć w programie. W nowoczesnym JavaScripcie zmienne deklarujemy za pomocą dwóch głównych słów kluczowych: `const` i `let`. Słowo `var` to przeżytek, którego w React już się nie używa.
 
@@ -664,7 +703,7 @@ osoba.imie = "Anna";     // OK — modyfikujemy pole obiektu
 // osoba = {};            // błąd — nie można przypisać ponownie
 ```
 
-### 3.2. typy danych
+### 3.2. Typy danych
 
 JavaScript ma kilka podstawowych typów danych:
 
@@ -723,7 +762,7 @@ arr2.push(4);           // arr1 też ma teraz [1, 2, 3, 4]!
 const arr3 = [...arr1]; // Nowa, niezależna tablica
 ```
 
-### 3.3. operatory arytmetyczne
+### 3.3. Operatory arytmetyczne
 
 | Operator | Nazwa | Przykład | Wynik |
 |---|---|---|---|
@@ -773,7 +812,7 @@ x %= 4;   // x = 2
 const wynik = `Cena: ${5 + 3} zł`; // "Cena: 8 zł" — jednoznaczne
 ```
 
-### 3.4. operatory porównania
+### 3.4. Operatory porównania
 
 | Operator | Znaczenie | Przykład | Wynik |
 |---|---|---|---|
@@ -799,7 +838,7 @@ console.log(0 == false);  // true (nieintuicyjne)
 console.log("" == false); // true (nieintuicyjne)
 ```
 
-### 3.5. operatory logiczne
+### 3.5. Operatory logiczne
 
 | Operator | Nazwa | Prawda gdy... |
 |---|---|---|
@@ -848,7 +887,7 @@ null || undefined || "ostatni" // "ostatni"
 const imieUsera = pobraneImie || "Anonim";
 ```
 
-### 3.6. template stringi (szablony napisów)
+### 3.6. Template stringi (szablony napisów)
 
 Template stringi to sposób wstawiania zmiennych i wyrażeń do tekstu. Używają **odwrotnych apostrofów** (backtick) `` ` `` zamiast cudzysłowów. Zmienne wstawiamy w `${}`:
 
@@ -880,7 +919,7 @@ const status = `Użytkownik jest ${wiek >= 18 ? "pełnoletni" : "niepełnoletni"
 const klasa = `btn btn-${aktywny ? "success" : "danger"} ${duzy ? "btn-lg" : ""}`;
 ```
 
-### 3.7. instrukcja warunkowa if / else if / else
+### 3.7. Instrukcja warunkowa if / else if / else
 
 Instrukcja `if` pozwala programowi podejmować decyzje. Działa jak "rozwidlenie dróg" – kod pójdzie w jedną stronę, jeśli warunek jest spełniony (`true`), a w drugą, jeśli nie jest (`false`).
 
@@ -914,7 +953,7 @@ function MojaStrona({ czyZalogowany }) {
 }
 ```
 
-### 3.8. operator trójargumentowy (ternary)
+### 3.8. Operator trójargumentowy (ternary)
 
 Operator trójargumentowy to skrócona forma `if/else`. Składa się z trzech części: `warunek ? wartość_dlaTrue : wartość_dlaFalse`.
 
@@ -930,7 +969,7 @@ Jest niezwykle często używany w JSX do warunkowego wyświetlania:
 <p>{czyZalogowany ? "Witaj ponownie!" : "Zaloguj się"}</p>
 ```
 
-### 3.9. funkcje — deklaracja i wyrażenie
+### 3.9. Funkcje — deklaracja i wyrażenie
 
 Funkcja to nazwany fragment kodu, który "wykonuje jakąś pracę" i może być wywoływany wielokrotnie. Możesz o niej myśleć jak o maszynce – wrzucasz do niej jakieś składniki (parametry), ona robi coś z nimi w środku, a następnie "wypluwa" wynik (przy pomocy `return`). W React każdy komponent jest właśnie taką funkcją!
 
@@ -986,7 +1025,7 @@ function obliczStatystyki(liczby) {
 const { suma, srednia } = obliczStatystyki([10, 20, 30]);
 ```
 
-### 3.10. funkcje strzałkowe (arrow functions)
+### 3.10. Funkcje strzałkowe (arrow functions)
 
 Funkcje strzałkowe to krótsza składnia funkcji, bardzo popularna w React:
 
@@ -1036,7 +1075,7 @@ function log(poziom, ...wiadomosci) {
 log("INFO", "Start", "Połączono", "Gotowe");
 ```
 
-### 3.11. tablice — tworzenie i podstawowe metody
+### 3.11. Tablice — tworzenie i podstawowe metody
 
 Tablice (arrays) to uporządkowane kolekcje elementów. W React są fundamentalne — listy, karty, formularze wieloelementowe — wszystko opiera się na tablicach.
 
@@ -1076,7 +1115,7 @@ for (const kurs of kursy) {
 }
 ```
 
-### 3.12. metody tablic kluczowe w React — map, filter, find, reduce
+### 3.12. Metody tablic kluczowe w React — map, filter, find, reduce
 
 W React niemal wszystkie operacje na listach elementów opierają się na czterech podstawowych metodach wbudowanych w JavaScript. Co kluczowe, w przypadku Reacta zależy nam na "niemutowalności" (immutability), dlatego każda z wymienionych metod **nie modyfikuje oryginalnej tablicy, ale zwraca zupełnie nową**. 
 
@@ -1189,7 +1228,7 @@ console.log(sumaCalkowita); // Ujrzysz całkowitą wyciągniętą pojedynczą li
 ```
 
 
-### 3.13. obiekty
+### 3.13. Obiekty
 
 Obiekty to kolekcje par klucz-wartość. Są podstawą modelowania danych w React:
 
@@ -1264,7 +1303,7 @@ const tytuly = filmy.map((f) => f.tytul);
 // ["Matrix", "Incepcja", "Titanic"]
 ```
 
-### 3.14. destrukturyzacja tablic i obiektów
+### 3.14. Destrukturyzacja tablic i obiektów
 
 Destrukturyzacja to sposób na „wyciągnięcie" wartości z tablicy lub obiektu do osobnych zmiennych. Jest niezwykle często używana w React.
 
@@ -1359,7 +1398,7 @@ console.log(drugi);   // 20
 console.log(czwarty); // 40
 ```
 
-### 3.15. operator spread (...)
+### 3.15. Operator spread (...)
 
 Operator spread (`...`) „rozkłada" tablicę lub obiekt na poszczególne elementy. Jest kluczowy w React do **niemutowalnej aktualizacji stanu**:
 
@@ -1435,7 +1474,7 @@ gleboka.adres.miasto = "Gdańsk"; // Teraz oryginał jest bezpieczny
 const pelnaKopia = structuredClone(original);
 ```
 
-### 3.16. import i export modułów (Szczegółowo)
+### 3.16. Import i export modułów
 
 Podział kodu na mniejsze pliki (moduły) to fundament pracy z Reactem. Zamiast pisać tysiące linijek w jednym pliku `App.js`, wyodrębniamy komponenty, dane i funkcje do osobnych plików, a następnie używamy mechanizmów `export` i `import`, by je ze sobą łączyć.
 
@@ -1484,7 +1523,7 @@ W ekosystemie React za pomocą instrukcji `import` możemy wciągać nie tylko J
 - **Import Obrazów:** `import logoImg from "./logo.png";` (daje nową powiastkę ze ścieżką do grafiki, co uodparnia na błędy ścieżek względem foleru public!)
 - **Import bibliotek:** `import "bootstrap/dist/css/bootstrap.css";`
 
-### 3.17. konwersje typów
+### 3.17. Konwersje typów
 
 W JavaScript ważne jest rozumienie konwersji typów, szczególnie przy formularzach:
 
@@ -1531,7 +1570,7 @@ const handleChange = (e) => {
 };
 ```
 
-### 3.18. metody napisów
+### 3.18. Metody napisów
 
 Metody napisów (stringów) są często potrzebne przy walidacji formularzy i przetwarzaniu tekstu:
 
@@ -1587,7 +1626,7 @@ console.log("React".length); // 5
 String.fromCharCode(65) // "A"
 ```
 
-### 3.19. truthy i falsy
+### 3.19. Truthy i falsy
 
 W JavaScripcie każda wartość może być potraktowana jako `true` (truthy) lub `false` (falsy) w kontekście logicznym. To kluczowe przy renderowaniu warunkowym w React.
 
@@ -1632,7 +1671,7 @@ if (0) {
 {items.length > 0 && <ul>...</ul>}
 ```
 
-### 3.20. konsola przeglądarki i profesjonalne debugowanie (console.log)
+### 3.20. Konsola przeglądarki — console.log()
 
 Zanim zaczniesz budować skomplikowane UI, musisz wiedzieć, w jaki sposób komunikować się z przepływem danych w aplikacji. Konsola przeglądarki (klawisz `F12` lub `Prawy przycisk -> Zbadaj -> zakładka Console`) to podstawowe narzędzie diagnostyczne. Pozwala Ci ona "zajrzeć pod maskę" każdego komponentu React.
 
@@ -1677,7 +1716,7 @@ console.table(userzy);
 // W terminalu F12 wytworzy to przepiękną, sortowalną tabelę ułatwiającą wgląd w atrybuty!
 ```
 
-### 3.21. instrukcja warunkowa switch
+### 3.21. Instrukcja warunkowa switch
 
 Instrukcja `switch` to alternatywa dla wielu warunków `if / else if`. Jest często używana w reducerach (`useReducer`) lub gdy mamy wiele precyzyjnych wartości do sprawdzenia.
 
@@ -1739,7 +1778,7 @@ switch (dzien) {
 }
 ```
 
-### 3.22. pętle (for, while, do...while) i iteracja
+### 3.22. Pętle (for, while, do...while) i iteracja
 
 Chociaż w React zazwyczaj używamy metody `.map()` do renderowania list, klasyczne pętle wciąż są ważne w logice i algorytmach.
 
@@ -1833,7 +1872,7 @@ function znajdzPierwszyBlad(pola) {
 }
 ```
 
-### 3.23. asynchroniczność (promises, async/await, try/catch)
+### 3.23. Asynchroniczność (Promises, async/await, try/catch)
 
 W dzisiejszym web developmentcie komunikacja z API jest oparta o asynchroniczność. Oznacza to, że Twój kod nie czeka w miejscu na pobranie danych z serwera, ale idzie dalej i wraca do obsługi danych, kiedy są one gotowe.
 
@@ -1909,7 +1948,7 @@ function ListaUzytkownikow() {
 
 **Ważne:** Nie można przekazać async funkcji bezpośrednio do useEffect (`useEffect(async () => {...})`). Trzeba zdefiniować async funkcję wewnątrz i ją wywołać.
 
-### 3.24. dodatkowe metody tablic — forEach, some, every, slice, splice, concat
+### 3.24. Dodatkowe metody tablic — forEach, some, every, slice, splice, concat
 
 Oprócz `map`, `filter`, `find` i `reduce` istnieje wiele innych przydatnych metod tablicowych.
 
@@ -2058,7 +2097,7 @@ Array.from({ length: 10 }, () => 0) // [0, 0, 0, ..., 0]
 Array.from("React") // ["R", "e", "a", "c", "t"]
 ```
 
-### 3.25. obiekt Math — losowanie, zaokrąglanie, min/max
+### 3.25. Obiekt Math — losowanie, zaokrąglanie, min/max
 
 Obiekt `Math` zawiera stałe i metody matematyczne. Nie trzeba go importować.
 
@@ -2115,7 +2154,7 @@ const kolory = ["red", "green", "blue", "yellow"];
 const losowy = kolory[Math.floor(Math.random() * kolory.length)];
 ```
 
-### 3.26. obiekt Date — data i czas
+### 3.26. Obiekt Date — data i czas
 
 ```js
 // Aktualna data i czas
@@ -2208,7 +2247,7 @@ function Stoper() {
 }
 ```
 
-### 3.28. operator ?? (nullish coalescing) i ?. (optional chaining)
+### 3.28. Operator ?? (nullish coalescing) i ?. (optional chaining)
 
 #### `??` — wartość domyślna dla null/undefined
 
@@ -2261,7 +2300,7 @@ function ProfilUsera({ user }) {
 }
 ```
 
-### 3.29. obsługa błędów — try / catch / finally
+### 3.29. Obsługa błędów — try / catch / finally
 
 Blok `try/catch` pozwala przechwycić błędy bez zatrzymywania całej aplikacji.
 
@@ -2312,7 +2351,7 @@ function handleSubmit(e) {
 }
 ```
 
-### 3.30. wyrażenia regularne (RegExp) — podstawy
+### 3.30. Wyrażenia regularne (RegExp) — podstawy
 
 Wyrażenia regularne (regex) służą do wyszukiwania wzorców w tekście. Przydatne przy walidacji formularzy.
 
@@ -2391,9 +2430,9 @@ function walidujHaslo(haslo) {
 
 ---
 
-## 4. jsx — składnia widoku
+## 4. JSX — składnia widoku
 
-### 4.1. czym jest jsx
+### 4.1. Czym jest JSX
 
 JSX (JavaScript XML) to rozszerzenie składni JavaScript, które pozwala pisać kod wyglądający jak HTML bezpośrednio w plikach JavaScript. JSX nie jest HTML-em — jest tylko **składnią**, która jest kompilowana do wywołań `React.createElement()`.
 
@@ -2407,7 +2446,7 @@ const element = React.createElement("h1", null, "Witaj, React!");
 
 Nie musisz znać formy skompilowanej — wystarczy, że piszesz w JSX. Babel (kompilator w CRA) dokonuje tej transformacji automatycznie.
 
-### 4.2. wstawianie wartości JavaScript w jsx
+### 4.2. Wstawianie wartości JavaScript w JSX
 
 Wartości JavaScript wstawiamy w JSX za pomocą **nawiasów klamrowych** `{}`:
 
@@ -2441,7 +2480,35 @@ function App() {
 export default App;
 ```
 
-### 4.3. atrybuty HTML vs jsx
+#### Porównanie najczęstszych różnic między HTML a JSX
+
+Poniższa tabela zbiera w jednym miejscu **najważniejsze różnice**, na które należy zwrócić uwagę przy przechodzeniu z klasycznego HTML na składnię JSX w React. Każda z tych różnic wynika z tego, że JSX jest tak naprawdę kodem JavaScript — dlatego pewne nazwy i konwencje muszą być dostosowane do reguł tego języka.
+
+| Cecha | HTML | JSX |
+|---|---|---|
+| **Klasy CSS** | `class="btn"` | `className="btn"` — słowo `class` jest zarezerwowane w JS |
+| **Etykiety formularzy** | `<label for="email">` | `<label htmlFor="email">` — słowo `for` jest zarezerwowane w JS |
+| **Style inline** | `style="color: red; font-size: 14px"` (string) | `style={{ color: "red", fontSize: "14px" }}` (obiekt JS) |
+| **Zamykanie tagów** | Opcjonalne — `<br>`, `<img>` | Wymagane — `<br />`, `<img />` — każdy tag musi być zamknięty |
+| **Komentarze** | `<!-- komentarz -->` | `{/* komentarz */}` — składnia komentarza JS w klamrach |
+| **Atrybuty boolean** | `<input checked>` (samo słowo) | `<input checked={true} />` — jawna wartość `true` lub skrócona forma |
+| **Obsługa zdarzeń** | `onclick="handleClick()"` (string, małe litery) | `onClick={handleClick}` (referencja do funkcji, camelCase) |
+
+> **Wskazówka:** Większość błędów początkujących programistów React wynika właśnie z powyższych różnic. Jeśli Twój komponent się nie renderuje lub widzisz ostrzeżenie w konsoli, pierwszym krokiem powinno być sprawdzenie, czy nie użyłeś przypadkiem nazwy atrybutu z czystego HTML zamiast jego odpowiednika JSX.
+
+Podczas pisania kodu w JSX musisz pamiętać, że pod maską jest to JavaScript, a nie zwykły HTML. Z tego powodu twórcy Reacta musieli wprowadzić pewne zmiany w nazewnictwie atrybutów, aby nie kolidowały one ze słowami kluczowymi języka JavaScript (np. `class` czy `for`). Poniższa tabela przedstawia najważniejsze różnice, o których musisz pamiętać przenosząc kod HTML do Reacta.
+
+| Cecha | HTML | JSX |
+|---|---|---|
+| **Klasy CSS** | `class="przycisk"` | `className="przycisk"` |
+| **Etykiety formularzy** | `for="email"` | `htmlFor="email"` |
+| **Style inline** | `style="color: red;"` | `style={{ color: 'red' }}` |
+| **Zamykanie tagów** | Opcjonalne (np. `<img>`, `<br>`) | Wymagane (np. `<img />`, `<br />`) |
+| **Komentarze** | `<!-- Komentarz -->` | `{/* Komentarz */}` |
+| **Atrybuty boolean** | `checked`, `disabled` | `checked={true}`, `disabled={false}` |
+| **Obsługa zdarzeń** | `onclick="funkcja()"` | `onClick={funkcja}` |
+
+### 4.3. Atrybuty HTML vs JSX
 
 W JSX kilka atrybutów HTML ma inne nazwy, ponieważ oryginalne nazwy kolidują ze słowami kluczowymi JavaScript:
 
@@ -2470,7 +2537,7 @@ W JSX kilka atrybutów HTML ma inne nazwy, ponieważ oryginalne nazwy kolidują 
 />
 ```
 
-### 4.4. zasada jednego elementu nadrzędnego
+### 4.4. Zasada jednego elementu nadrzędnego
 
 Komponent musi zwrócić **jeden główny element**. Nie można zwrócić dwóch sąsiednich elementów bez wspólnego rodzica:
 
@@ -2504,7 +2571,7 @@ function App() {
 }
 ```
 
-### 4.5. fragmenty — puste znaczniki
+### 4.5. Fragmenty — puste znaczniki
 
 Jeśli nie chcesz dodawać dodatkowego elementu HTML (np. `div`), możesz użyć **Fragmentu**. Fragment to pusty znacznik `<>...</>`, który nie dodaje żadnego elementu do DOM:
 
@@ -2532,7 +2599,7 @@ function App() {
 }
 ```
 
-### 4.6. komentarze w jsx
+### 4.6. Komentarze w JSX
 
 Komentarze w JSX muszą być w nawiasach klamrowych i mieć składnię JavaScriptu:
 
@@ -2551,7 +2618,7 @@ function App() {
 }
 ```
 
-### 4.7. atrybuty boolean
+### 4.7. Atrybuty boolean
 
 Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oznaczają `true`:
 
@@ -2569,7 +2636,7 @@ Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oz
 <input type="text" readOnly value="Nie można edytować" />
 ```
 
-### 4.8. co można wstawiać w klamrach — podsumowanie
+### 4.8. Co można wstawiać w klamrach — podsumowanie
 
 | Można wstawić | Przykład | Uwagi |
 |---|---|---|
@@ -2597,7 +2664,7 @@ Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oz
 ---
 
 
-### 4.9. tagi samozamykające z HTML w jsx (Zasada zamknięcia)
+### 4.9. Tagi samozamykające z HTML w JSX (Zasada zamknięcia)
 
 Gdy przychodzi praca z tagami `HTML`, bardzo często zapomina się o podstawowej regule JSX: **Każdy znacznik musi być zamknięty**. W klasycznym wczesnym HTML pisaliśmy np. `<br>`, `<img>` lub `<input>`. W React (dzięki rygorowi składni XML) coś takiego wywoła od razu potężny błąd kompilacji na czerwono.
 
@@ -2616,7 +2683,7 @@ Musisz **natychmiast** postawić zamykający ukośnik przez ostatecznym plusem t
 <hr />
 ```
 
-### 4.10. multimedia ze źródłem (Audio, soundplayery i wideo)
+### 4.10. Multimedia ze źródłem (Audio, Soundplayery i Wideo)
 
 Praca z plikami multimedialnymi to klasyk i genialny krok do pierwszych wielkich sukcesów małych interaktywnych apek (np. tworzenie prostej playlisty czy domowego centrum filmowego). Tagi `<audio>` oraz `<video>` wprawdzie są klasycznymi znacznikami HTML, to jednak perfekcyjnie dają się wprawiać w ruch przez mechanizm stanu w JSX i ścieżki (src).
 
@@ -2670,7 +2737,7 @@ function WideoWyjasnienia() {
 ```
 *Złota Rada: W dodanym atrybucie `poster=""` wklepujesz po prostu lokacje do jpega z miniaturką przed wcisnięciu PLAY przez konsumenta.*
 
-### 4.11. elementy osadzone: iframe (Mapy, embedy z YouTube)
+### 4.11. Elementy osadzone: Iframe (Mapy, Embedy z YouTube)
 
 Na stronach "kontaktowych" i w rozbudowanych projektach - niesamowicie cenne jest osadzić aplikacje od zewnętrznych dostawców. Iframe to dosłownie okno w Twojej stronie wyświetlające zasoby z innych serwerów (np. Google).
 
@@ -2697,9 +2764,9 @@ function LokalizacjaFirmaWidok() {
 ---
 
 
-## 5. komponenty
+## 5. Komponenty
 
-### 5.1. czym jest komponent
+### 5.1. Czym jest komponent
 
 Komponent to absolutny fundament Reacta. Wyobraź sobie stronę internetową nie jako jeden wielki plik HTML, ale jako budowlę z **klocków LEGO**. Każdy klocek to osobny "komponent". Masz klocek-Nawigację, klocek-Przycisk, klocek-Stopkę.
 
@@ -2712,7 +2779,7 @@ Dzięki podzieleniu aplikacji na komponenty, możesz:
 - Edytować wygląd Przycisku tylko w jednym pliku, a zmieni się on wszędzie.
 - Znacznie łatwiej czytać kod i nim zarządzać.
 
-### 5.2. pierwszy komponent funkcyjny
+### 5.2. Pierwszy komponent funkcyjny
 
 ```jsx
 // Plik: src/App.js
@@ -2733,7 +2800,7 @@ Każdy komponent:
 2. **Zwraca** JSX (widok).
 3. Jest **eksportowany** (`export default`) — aby inne pliki mogły go użyć.
 
-### 5.3. komponent statyczny — bez stanu
+### 5.3. Komponent statyczny — bez stanu
 
 Komponent nie musi mieć stanu. Może po prostu wyświetlać statyczny widok:
 
@@ -2766,7 +2833,7 @@ function InfoBox() {
 export default InfoBox;
 ```
 
-### 5.4. kompozycja — komponenty w komponentach
+### 5.4. Kompozycja — komponenty w komponentach
 
 Siła Reacta polega na składaniu komponentów jak klocków. Jeden komponent może zawierać inne:
 
@@ -2817,7 +2884,7 @@ function App() {
 export default App;
 ```
 
-### 5.5. podział na pliki — osobne komponenty
+### 5.5. Podział na pliki — osobne komponenty
 
 Każdy komponent zazwyczaj ma własny plik. Konwencja nazewnictwa:
 - Nazwa pliku = nazwa komponentu
@@ -2837,7 +2904,11 @@ src/
     └── KursKarta.js
 ```
 
-### 5.6. props — przekazywanie danych do komponentu
+#### Czym sa Props — wprowadzenie teoretyczne
+
+Props (skrót od "properties", czyli właściwości) to fundamentalny mechanizm Reacta pozwalający na przekazywanie danych do komponentów. Działają one dokładnie tak samo, jak argumenty przekazywane do zwykłych funkcji w języku JavaScript, jednak w React przekazujemy je z zewnątrz w postaci atrybutów (podobnie jak w HTML). Kluczową cechą propsów jest to, że są one **tylko do odczytu (readonly)**. Komponent-dziecko, który otrzymuje propsy, w żadnym wypadku nie może ich modyfikować. To zawsze rodzic (komponent wyżej w hierarchii) decyduje o tym, jakie konkretnie wartości zostaną przekazane w dół. Dzięki wykorzystaniu propsów możemy tworzyć wysoce uniwersalne i reużywalne komponenty. Jeden i ten sam komponent wizualny (np. przycisk lub karta profilu) może zostać wywołany wielokrotnie na stronie, za każdym razem z zupełnie innymi danymi wejściowymi.
+
+### 5.6. Props — przekazywanie danych do komponentu
 
 Props (skrót od "properties", czyli właściwości) to dane przekazywane z komponentu rodzica do komponentu dziecka. Działają dokładnie tak samo jak **parametry funkcji**. 
 
@@ -2876,7 +2947,7 @@ export default App;
 - Liczby, zmienne i wyrażenia podajemy w klamrach: `wiek={25}`.
 - Boolean `true` — wystarczy sam atrybut: `aktywny` = `aktywny={true}`.
 
-### 5.7. props — destrukturyzacja
+### 5.7. Props — destrukturyzacja
 
 Zamiast odwoływać się do `props.imie`, `props.wiek` itd., można użyć destrukturyzacji:
 
@@ -2898,7 +2969,7 @@ function KursKarta({ nazwa, opis, cena }) {
 export default KursKarta;
 ```
 
-### 5.8. props — wartości domyślne
+### 5.8. Props — wartości domyślne
 
 ```jsx
 // Plik: src/components/Przycisk.js
@@ -2920,7 +2991,7 @@ export default Przycisk;
 <Przycisk tekst="Usuń" kolor="danger" /> {/* wszystkie nadpisane */}
 ```
 
-### 5.9. children — zawartość między znacznikami
+### 5.9. Children — zawartość między znacznikami
 
 Specjalny prop `children` zawiera to, co zostanie umieszczone między otwierającym a zamykającym znacznikiem komponentu:
 
@@ -2964,7 +3035,7 @@ function App() {
 export default App;
 ```
 
-### 5.10. kiedy dzielić komponent na mniejsze
+### 5.10. Kiedy dzielić komponent na mniejsze
 
 Komponent warto podzielić, gdy:
 - Ma więcej niż ~100 linii JSX.
@@ -2976,7 +3047,7 @@ W prostych aplikacjach często wystarczy jeden komponent `App`. Nie musisz na si
 
 ---
 
-## 6. stylowanie
+## 6. Stylowanie
 
 ### 6.1. CSS w projekcie React (CRA)
 
@@ -3015,7 +3086,27 @@ W JSX atrybut HTML `class` zamieniony jest na `className`:
 <div className="container">
 ```
 
-### 6.3. style inline w jsx
+#### Kiedy uzywac stylow inline, a kiedy klas CSS (className)?
+
+W React masz do dyspozycji dwa glowne sposoby stylowania komponentow: **klasy CSS** (przez atrybut `className`) oraz **style inline** (przez atrybut `style`). Style inline w React roznia sie od tych znanych z czystego HTML — nie sa zapisywane jako string (np. `"color: red"`), lecz jako **obiekt JavaScript**, w ktorym nazwy wlasciwosci CSS musza byc w notacji **camelCase** (np. `backgroundColor` zamiast `background-color`). Dodatkowo wartosci liczbowe (np. `fontSize: 20`) automatycznie otrzymuja jednostke `px`, wiec nie trzeba jej dopisywac recznie. Z reguly klasy CSS sa preferowane w wiekszosci przypadkow — sa bardziej wydajne, wspieraja pseudo-klasy, media queries i responsywnosc.
+
+| Cecha | Klasy CSS (`className`) | Style inline (`style`) |
+|---|---|---|
+| **Skladnia** | `className="btn btn-primary"` | `style={{ color: "red", fontSize: 20 }}` |
+| **Nazewnictwo wlasciwosci** | Standardowe CSS: `background-color` | camelCase: `backgroundColor` |
+| **Kiedy preferowac** | Dla stalych, powtarzalnych stylow i zlozonych layoutow | Dla dynamicznych, obliczanych w locie wartosci (np. `width` zalezny od stanu) |
+| **Responsywnosc** | Pelne wsparcie (media queries, pseudo-klasy `:hover`, `:focus`) | Brak wsparcia dla media queries i pseudo-klas |
+
+W React mamy do dyspozycji różne podejścia do stylowania elementów. Najpopularniejszym sposobem jest używanie zewnętrznych arkuszy stylów przypinanych za pomocą atrybutu `className`, ale czasem zachodzi potrzeba użycia stylów wbudowanych (inline). Style inline w React różnią się jednak znacząco od tych z HTML. Zamiast przekazywać je jako zwykły ciąg znaków, musisz użyć obiektu JavaScript. Oznacza to, że nazwy wszystkich właściwości CSS piszemy z użyciem tzw. camelCase (np. `backgroundColor` zamiast `background-color`), a wartości liczbowe domyślnie traktowane są jako piksele (`px`). Style inline przydają się najbardziej, gdy chcemy płynnie obliczać wartość w zależności od stanu (np. szerokość paska postępu), jednak do globalnego wyglądu strony rekomendowane są klasy CSS.
+
+| Cecha | Klasy CSS (`className`) | Style inline |
+|---|---|---|
+| **Składnia** | `<div className="box">` | `<div style={{ color: 'red' }}>` |
+| **Nazewnictwo właściwości** | Zwykły CSS (np. `margin-top`) | camelCase (np. `marginTop`) |
+| **Kiedy preferować** | Główne stylowanie aplikacji | Dynamiczne i obliczane wartości |
+| **Responsywność** | Obsługuje Media Queries i Hover | Brak Media Queries i pseudo-klas |
+
+### 6.3. Style inline w JSX
 
 Style inline w JSX zapisywane są jako **obiekt JavaScript** (nie string jak w HTML):
 
@@ -3043,7 +3134,7 @@ Style inline w JSX zapisywane są jako **obiekt JavaScript** (nie string jak w H
 
 Zasada: nazwy CSS z myślnikami zamieniamy na **camelCase**.
 
-### 6.4. dynamiczne klasy CSS
+### 6.4. Dynamiczne klasy CSS
 
 Klasy CSS można ustawiać dynamicznie na podstawie stanu:
 
@@ -3089,7 +3180,7 @@ export default App;
 }
 ```
 
-### 6.5. dynamiczne style inline
+### 6.5. Dynamiczne style inline
 
 ```jsx
 // Plik: src/App.js
@@ -3122,7 +3213,7 @@ function App() {
 export default App;
 ```
 
-### 6.6. organizacja plików CSS
+### 6.6. Organizacja plików CSS
 
 W prostych projektach wystarczy:
 - `src/index.css` — style globalne
@@ -3147,7 +3238,11 @@ src/
 
 ---
 
-## 7. zdarzenia (Events)
+## 7. Zdarzenia (Events)
+
+#### System zdarzen w React — teoria
+
+Mechanizm obsługi zdarzeń w React różni się nieco od klasycznego JavaScriptu i HTML. React nie korzysta bezpośrednio z natywnych zdarzeń DOM, lecz tworzy nad nimi własną, wysoce zoptymalizowaną warstwę abstrakcji zwaną **Synthetic Events** (zdarzenia syntetyczne). Gwarantuje to, że zdarzenia będą zachowywać się dokładnie tak samo, niezależnie od tego, jakiej przeglądarki używa użytkownik, eliminując typowe dla starszych przeglądarek błędy kompatybilności. Wszystkie nazwy zdarzeń w React zapisywane są zgodnie z notacją camelCase, dlatego używamy `onClick` i `onChange` zamiast klasycznych `onclick` czy `onchange`. Bardzo ważną zasadą jest również to, że zdarzenie nigdy nie jest wywoływane w momencie renderowania komponentu — do atrybutu przekazujemy jedynie **referencję** do funkcji (nasłuchiwacz), a nie wywołujemy jej od razu (brak nawiasów okrągłych przy nazwie funkcji).
 
 ### 7.1. onClick — obsługa kliknięcia
 
@@ -3309,7 +3404,7 @@ function App() {
 export default App;
 ```
 
-### 7.5. przekazywanie argumentów do handlera
+### 7.5. Przekazywanie argumentów do handlera
 
 Gdy chcesz przekazać argument do funkcji obsługi zdarzenia, musisz użyć funkcji strzałkowej:
 
@@ -3342,7 +3437,7 @@ function App() {
 export default App;
 ```
 
-### 7.6. obiekt zdarzenia (event)
+### 7.6. Obiekt zdarzenia (event)
 
 Każdy handler otrzymuje obiekt zdarzenia (event) jako pierwszy argument:
 
@@ -3368,7 +3463,7 @@ function App() {
 }
 ```
 
-### 7.7. najczęstsze zdarzenia — tabela
+### 7.7. Najczęstsze zdarzenia — tabela
 
 | Zdarzenie | Element | Kiedy się uruchamia |
 |---|---|---|
@@ -3384,9 +3479,19 @@ function App() {
 
 ---
 
-## 8. stan komponentu — useState
+## 8. Stan komponentu — useState
 
-### 8.1. po co jest stan (React hook `useState`)
+Stan (ang. *state*) to jeden z najważniejszych konceptów w programowaniu reaktywnym, na którym opiera się cała filozofia Reacta. Można go rozumieć jako **dane, które żyją wewnątrz komponentu i mogą się zmieniać w czasie** — np. wartość licznika, tekst wpisany w pole formularza, informacja o tym, czy menu jest otwarte, czy zamknięte. W klasycznym, imperatywnym programowaniu używamy zwykłych zmiennych (`let`, `var`) do przechowywania wartości, które się zmieniają. Problem polega na tym, że zmiana zwykłej zmiennej wewnątrz komponentu React **nie powoduje ponownego wyrenderowania widoku** — przeglądarka po prostu nie wie, że coś się zmieniło, i dalej wyświetla stary HTML. Stan w React rozwiązuje ten problem: kiedy wywołujemy funkcję aktualizującą stan (np. `setLicznik`), React automatycznie **ponownie renderuje komponent** z nową wartością i aktualizuje DOM. Dzięki temu interfejs użytkownika jest zawsze zsynchronizowany z danymi — to właśnie oznacza "reaktywność". Stan jest prywatny dla komponentu — każda instancja komponentu ma własną, niezależną kopię stanu. Co więcej, stan **przetrwa pomiędzy kolejnymi renderami** — w przeciwieństwie do zwykłych zmiennych, które przy każdym re-renderze są deklarowane od nowa i tracą poprzednią wartość. Dlatego `useState` jest absolutnym fundamentem budowania interaktywnych aplikacji w React.
+
+| Cecha | Zmienna (`let`) | Stan (`useState`) |
+|---|---|---|
+| **Deklaracja** | `let licznik = 0;` | `const [licznik, setLicznik] = useState(0);` |
+| **Zmiana wartości** | `licznik = licznik + 1;` | `setLicznik(licznik + 1);` |
+| **Re-render po zmianie** | ❌ Nie — widok się nie aktualizuje | ✅ Tak — React automatycznie przerysowuje komponent |
+| **Przetrwa re-render** | ❌ Nie — zmienna jest tworzona od nowa z wartością początkową | ✅ Tak — React zapamiętuje wartość między renderami |
+| **Typowe użycie** | Tymczasowe obliczenia wewnątrz funkcji, zmienne pomocnicze | Dane wpływające na widok: liczniki, formularze, przełączniki, listy |
+
+### 8.1. Po co jest stan
 
 W podstawowym JavaScripcie, gdy chcemy przechować rosnącą liczbę kliknięć posłużylibyśmy się słówkiem `let`, a następnie zmienili tę wartość poprzez standardowe przypisanie (np. `naszaZmienna = 5`). W React, budując aplikacje Single Page Application wymagamy, by w reakcji na zaistniałą operację nasz ekran natychmiast odświeżał bloki odpowiedzialne w HTML i JSX za dany zmienny widok.
 
@@ -3438,7 +3543,7 @@ export default DzialajacyReakcyjnyNaszZliczajacyWidok;
 ```
 
 
-### 8.2. składnia useState
+### 8.2. Składnia useState
 
 ```jsx
 import { useState } from "react";
@@ -3465,7 +3570,7 @@ const [formularz, setFormularz] = useState({         // obiekt
 });
 ```
 
-### 8.3. stan liczbowy — licznik
+### 8.3. Stan liczbowy — licznik
 
 ```jsx
 // Plik: src/App.js
@@ -3493,7 +3598,7 @@ function App() {
 export default App;
 ```
 
-### 8.4. stan tekstowy
+### 8.4. Stan tekstowy
 
 ```jsx
 // Plik: src/App.js
@@ -3522,7 +3627,7 @@ function App() {
 export default App;
 ```
 
-### 8.5. stan boolean — przełącznik
+### 8.5. Stan boolean — przełącznik
 
 ```jsx
 // Plik: src/App.js
@@ -3552,7 +3657,7 @@ function App() {
 export default App;
 ```
 
-### 8.6. aktualizacja na podstawie poprzedniego stanu
+### 8.6. Aktualizacja na podstawie poprzedniego stanu
 
 Jeśli nowa wartość stanu zależy od poprzedniej, używaj **formy funkcyjnej**:
 
@@ -3582,7 +3687,7 @@ function dodajTrzy() {
 }
 ```
 
-### 8.7. reset stanu
+### 8.7. Reset stanu
 
 Reset stanu polega na ustawieniu wartości początkowej:
 
@@ -3596,7 +3701,7 @@ function handleReset() {
 }
 ```
 
-### 8.8. stan nie aktualizuje się natychmiast
+### 8.8. Stan nie aktualizuje się natychmiast
 
 Funkcja `setState` jest asynchroniczna — nowa wartość nie jest dostępna od razu w tej samej linii kodu:
 
@@ -3617,7 +3722,7 @@ function handleKliknij() {
 }
 ```
 
-### 8.9. lazy initial state
+### 8.9. Lazy initial state
 
 Jeśli obliczenie wartości początkowej jest kosztowne, przekaż **funkcję** do `useState`:
 
@@ -3629,7 +3734,7 @@ const [dane, setDane] = useState(() => {
 });
 ```
 
-### 8.10. zmienna lokalna vs stan — różnica
+### 8.10. Zmienna lokalna vs stan — różnica
 
 | Cecha | Zmienna lokalna (`let`) | Stan (`useState`) |
 |---|---|---|
@@ -3640,9 +3745,9 @@ const [dane, setDane] = useState(() => {
 
 ---
 
-## 9. formularze kontrolowane
+## 9. Formularze kontrolowane
 
-### 9.1. czym jest formularz kontrolowany i dlaczego go musisz pisać?
+### 9.1. Czym jest formularz kontrolowany
 
 Zrozumienie **formularza kontrolowanego (controlled forms)** jest jedną z absolutnie najważniejszych umiejętności react-developera. Jeżeli przychodzisz z czystego HTML'a lub PHP, pamiętasz że kliknięcie przycisku "Submit" (<form>) domyślnie powodowało odświeżenie całej strony (i np. wysłanie żądania do serwera dopisując parametry do paska adresu URL typu `?name=adam`).
 
@@ -3683,7 +3788,7 @@ function FormularzPodstawowy() {
 ```
 Zastosowanie `e.preventDefault()` jest krytyczne podczas budowy aplikacji wykorzystujących klasyczne formularze webowe!
 
-### 9.2. input text
+### 9.2. Input text
 
 ```jsx
 // Plik: src/App.js
@@ -3713,7 +3818,7 @@ function App() {
 export default App;
 ```
 
-### 9.3. input number
+### 9.3. Input number
 
 ```jsx
 // Plik: src/App.js
@@ -3747,7 +3852,7 @@ export default App;
 
 **Uwaga:** `e.target.value` zawsze zwraca `string`, nawet dla `type="number"`. Musisz skonwertować na liczbę za pomocą `Number()`.
 
-### 9.4. input password
+### 9.4. Input password
 
 ```jsx
 <div className="mb-3">
@@ -3763,7 +3868,7 @@ export default App;
 </div>
 ```
 
-### 9.5. select — lista rozwijana
+### 9.5. Select — lista rozwijana
 
 ```jsx
 // Plik: src/App.js
@@ -3798,7 +3903,7 @@ function App() {
 export default App;
 ```
 
-### 9.6. textarea
+### 9.6. Textarea
 
 Textarea w React działa tak samo jak input — przez `value` i `onChange`:
 
@@ -3816,7 +3921,7 @@ Textarea w React działa tak samo jak input — przez `value` i `onChange`:
 </div>
 ```
 
-### 9.7. checkbox
+### 9.7. Checkbox
 
 Checkbox używa `checked` zamiast `value` i `onChange` z `e.target.checked`:
 
@@ -3849,7 +3954,7 @@ function App() {
 export default App;
 ```
 
-### 9.8. checkbox jako switch (Bootstrap)
+### 9.8. Checkbox jako switch (Bootstrap)
 
 ```jsx
 <div className="form-check form-switch mb-3">
@@ -3866,7 +3971,7 @@ export default App;
 </div>
 ```
 
-### 9.9. radio — wybór jednej opcji
+### 9.9. Radio — wybór jednej opcji
 
 ```jsx
 // Plik: src/App.js
@@ -3910,7 +4015,7 @@ function App() {
 export default App;
 ```
 
-### 9.10. range — suwak
+### 9.10. Range — suwak
 
 ```jsx
 // Plik: src/App.js
@@ -3940,7 +4045,7 @@ function App() {
 export default App;
 ```
 
-### 9.11. formularz jako jeden obiekt stanu
+### 9.11. Formularz jako jeden obiekt stanu
 
 Zamiast tworzyć osobny `useState` dla każdego pola, możesz trzymać cały formularz w jednym obiekcie:
 
@@ -4017,7 +4122,21 @@ export default App;
 
 **Kluczowy mechanizm:** `[name]: value` — dynamiczny klucz obiektu. Jeśli `name="imie"`, to `[name]` staje się polem `imie` w obiekcie. Dzięki temu **jedna funkcja** `handleChange` obsługuje **wszystkie pola**.
 
-### 9.12. walidacja formularza
+#### Wzorzec formularza kontrolowanego (Controlled Component)
+
+W klasycznym HTML-u to **przeglądarka** zarządza wartością pola `<input>` — użytkownik wpisuje tekst, przeglądarka aktualizuje DOM, a programista odczytuje tę wartość dopiero wtedy, gdy jest mu potrzebna (np. przy wysyłaniu formularza). W React podejście jest odwrotne: to **React jest jedynym źródłem prawdy** (ang. *single source of truth*). Wartość inputa nie "żyje" w DOM-ie — ona jest przechowywana w stanie komponentu (`useState`), a input jedynie ją **wyświetla**. Kiedy użytkownik wpisuje coś w pole, przeglądarka generuje zdarzenie `onChange`, które wywołuje handler, a ten z kolei aktualizuje stan przez `setState`. Dopiero po aktualizacji stanu React ponownie renderuje komponent, a input wyświetla nową wartość. Oznacza to, że **input ZAWSZE pokazuje dokładnie to, co jest zapisane w stanie** — nigdy więcej, nigdy mniej. Taki wzorzec daje programiście pełną kontrolę nad danymi formularza: można łatwo walidować, formatować i transformować wartość przy każdym naciśnięciu klawisza.
+
+**Przepływ danych w formularzu kontrolowanym:**
+
+1. Użytkownik wpisuje znak w pole `<input>`
+2. Przeglądarka generuje zdarzenie `onChange`
+3. Handler zdarzenia odczytuje `event.target.value` (nową wartość inputa)
+4. Handler wywołuje `setState(nowaWartość)` — aktualizuje stan komponentu
+5. React wykrywa zmianę stanu i uruchamia **re-render** komponentu
+6. Input zostaje wyrenderowany z nowym atrybutem `value={stanKomponentu}`
+7. Użytkownik widzi zaktualizowaną wartość na ekranie
+
+### 9.12. Walidacja formularza
 
 ```jsx
 // Plik: src/App.js
@@ -4093,7 +4212,7 @@ function App() {
 export default App;
 ```
 
-### 9.13. reset formularza
+### 9.13. Reset formularza
 
 ```jsx
 function handleReset() {
@@ -4117,7 +4236,15 @@ function handleReset() {
 
 ---
 
-## 10. renderowanie warunkowe
+## 10. Renderowanie warunkowe
+
+Renderowanie warunkowe jest jedną z kluczowych technik w React, która wynika bezpośrednio z filozofii tej biblioteki. W klasycznym HTML strona jest **statyczna** — raz wyrenderowana treść nie zmienia się sama z siebie. Aby coś ukryć lub pokazać, trzeba ręcznie manipulować DOM-em za pomocą JavaScript (np. `element.style.display = "none"`). W React widok jest **funkcją stanu** — komponent to funkcja, która na podstawie aktualnych danych zwraca odpowiedni JSX. Skoro dane (stan) mogą się zmieniać, to naturalną konsekwencją jest to, że chcemy wyświetlać **różne elementy w zależności od stanu**. Na przykład: inny widok dla zalogowanego i niezalogowanego użytkownika, komunikat o błędzie tylko gdy wystąpi błąd, spinner ładowania tylko gdy dane się wczytują. React oferuje kilka technik realizacji renderowania warunkowego, z których każda sprawdza się w innym scenariuszu. Nie ma jednej "najlepszej" metody — wybór zależy od złożoności warunku i tego, czy chcemy pokazać alternatywny widok, czy po prostu ukryć element.
+
+| Technika | Składnia | Kiedy używać |
+|---|---|---|
+| **`if` przed `return`** | `if (warunek) { return <A />; } return <B />;` | Gdy chcesz zwrócić **zupełnie inny widok** w zależności od warunku (np. ekran logowania vs panel użytkownika) |
+| **Operator trójargumentowy** | `{warunek ? <A /> : <B />}` | Gdy chcesz w jednym miejscu JSX wybrać **jeden z dwóch elementów** do wyświetlenia (np. tekst "Aktywny" vs "Nieaktywny") |
+| **Operator `&&`** | `{warunek && <A />}` | Gdy chcesz **pokazać element albo nic** — nie ma alternatywy, element po prostu się pojawia lub znika (np. komunikat o błędzie) |
 
 ### 10.1. if przed return
 
@@ -4149,7 +4276,7 @@ function App() {
 }
 ```
 
-### 10.2. operator trójargumentowy w jsx
+### 10.2. Operator trójargumentowy w JSX
 
 Do krótkich warunków w JSX:
 
@@ -4160,7 +4287,7 @@ Do krótkich warunków w JSX:
 </button>
 ```
 
-### 10.3. operator && — warunkowe wyświetlanie
+### 10.3. Operator && — warunkowe wyświetlanie
 
 Wyświetla element **tylko gdy** warunek jest prawdziwy:
 
@@ -4170,7 +4297,7 @@ Wyświetla element **tylko gdy** warunek jest prawdziwy:
 {zalogowany && <button className="btn btn-danger">Wyloguj</button>}
 ```
 
-### 10.4. komunikaty błędów walidacji
+### 10.4. Komunikaty błędów walidacji
 
 ```jsx
 {bledy.imie && (
@@ -4178,7 +4305,7 @@ Wyświetla element **tylko gdy** warunek jest prawdziwy:
 )}
 ```
 
-### 10.5. obsługa pustej listy
+### 10.5. Obsługa pustej listy
 
 ```jsx
 function ListaKursow({ kursy }) {
@@ -4198,9 +4325,18 @@ function ListaKursow({ kursy }) {
 
 ---
 
-## 11. tablice i renderowanie list
+## 11. Tablice i renderowanie list
 
-### 11.1. renderowanie tablicy przez map()
+Praca z tablicami w React wymaga zrozumienia jednej fundamentalnej zasady: **niemutowalności** (ang. *immutability*). W zwykłym JavaScript jesteśmy przyzwyczajeni do metod takich jak `.push()`, `.splice()` czy `.sort()`, które **modyfikują oryginalną tablicę** w miejscu. W React takie podejście jest **niedopuszczalne** przy pracy ze stanem. Dlaczego? Ponieważ React decyduje o tym, czy ponownie wyrenderować komponent, porównując **referencje** (adresy w pamięci) obiektów, a nie ich zawartość. Jeśli wywołamy `tablica.push(element)`, tablica zmieni swoją zawartość, ale jej referencja (adres w pamięci) **pozostanie taka sama**. Dla Reacta to oznacza: "nic się nie zmieniło, nie trzeba ponownie renderować". Dlatego zamiast mutować istniejącą tablicę, **zawsze tworzymy nową** — za pomocą metod takich jak `.map()`, `.filter()`, operator spread `[...tablica]` czy `.concat()`. Te metody zwracają **nowy obiekt tablicy** z nową referencją, co React poprawnie interpretuje jako zmianę i uruchamia re-render. Ta sama zasada dotyczy sortowania — `sort()` mutuje tablicę, więc najpierw tworzymy kopię (`[...tablica]`), a dopiero na niej sortujemy. Zapamiętaj prostą regułę: **w stanie React nigdy nie zmieniaj, zawsze twórz nowe**.
+
+| Operacja na tablicy | Metoda mutująca ❌ (ZŁA) | Metoda niemutująca ✅ (DOBRA) |
+|---|---|---|
+| **Dodawanie** | `tablica.push(element)` | `[...tablica, element]` lub `tablica.concat(element)` |
+| **Usuwanie** | `tablica.splice(index, 1)` | `tablica.filter((el) => el.id !== id)` |
+| **Aktualizacja elementu** | `tablica[index] = nowaWartość` | `tablica.map((el) => el.id === id ? {...el, pole: nowaWartość} : el)` |
+| **Sortowanie** | `tablica.sort(fn)` | `[...tablica].sort(fn)` |
+
+### 11.1. Renderowanie tablicy przez map()
 
 `map()` to główny sposób wyświetlania list w React:
 
@@ -4229,7 +4365,7 @@ function App() {
 export default App;
 ```
 
-### 11.2. atrybut key — dlaczego jest wymagany
+### 11.2. Atrybut key — dlaczego jest wymagany
 
 Każdy element generowany przez `map()` **musi mieć** atrybut `key` — unikalny identyfikator, który pozwala Reactowi śledzić, który element się zmienił:
 
@@ -4249,7 +4385,7 @@ Każdy element generowany przez `map()` **musi mieć** atrybut `key` — unikaln
 - Najlepszy key to **id** z danych (np. z bazy danych, `Date.now()`).
 - **Nie używaj indeksu** (`index`) jako key, jeśli kolejność elementów może się zmieniać (przy usuwaniu, sortowaniu).
 
-### 11.3. lista numerowana
+### 11.3. Lista numerowana
 
 ```jsx
 function App() {
@@ -4268,7 +4404,7 @@ function App() {
 }
 ```
 
-### 11.4. dodawanie elementu do tablicy stanu
+### 11.4. Dodawanie elementu do tablicy stanu
 
 W React **nigdy nie mutujemy** stanu. Zamiast `push()` tworzymy nową tablicę za pomocą spread:
 
@@ -4314,7 +4450,7 @@ function App() {
 export default App;
 ```
 
-### 11.5. usuwanie elementu z tablicy stanu
+### 11.5. Usuwanie elementu z tablicy stanu
 
 Usuwanie odbywa się przez `filter()` — tworzymy nową tablicę bez elementu o podanym id:
 
@@ -4334,7 +4470,7 @@ function handleUsun(id) {
 ))}
 ```
 
-### 11.6. aktualizacja jednego elementu w tablicy
+### 11.6. Aktualizacja jednego elementu w tablicy
 
 Aktualizacja jednego elementu odbywa się przez `map()` — tworzymy nową tablicę, a element o podanym id zastępujemy zmodyfikowaną kopią:
 
@@ -4356,7 +4492,7 @@ Wyjaśnienie krok po kroku:
 3. Jeśli `id` nie pasuje — zwracamy element bez zmian.
 4. `map()` zwraca **nową tablicę** — stara nie jest mutowana.
 
-### 11.7. sortowanie tablicy w stanie
+### 11.7. Sortowanie tablicy w stanie
 
 ```jsx
 function handleSortuj() {
@@ -4377,9 +4513,11 @@ function handleSortujPoCenie() {
 
 ---
 
-## 12. obiekty w stanie
+## 12. Obiekty w stanie
 
-### 12.1. model danych — tablica obiektów
+Obiekty w stanie React podlegają **dokładnie tym samym zasadom niemutowalności** co tablice — nigdy nie modyfikujemy obiektu bezpośrednio, zawsze tworzymy nową kopię ze zmienionymi polami. Kluczowym narzędziem do pracy z obiektami jest **operator spread** (`{...obiekt}`), który tworzy **płytką kopię** (ang. *shallow copy*) obiektu. Oznacza to, że kopiowane są wartości wszystkich pól na pierwszym poziomie zagnieżdżenia, ale jeśli pole zawiera zagnieżdżony obiekt lub tablicę, kopiowana jest jedynie **referencja** do tego obiektu, a nie jego zawartość. W praktyce, gdy aktualizujemy obiekt w stanie, najpierw rozprzestrzeniamy (spread) cały istniejący obiekt, a potem nadpisujemy tylko te pola, które chcemy zmienić: `{...staryObiekt, zmienionePole: nowaWartość}`. Dzięki temu reszta pól pozostaje nienaruszona, a React widzi nową referencję i prawidłowo uruchamia re-render.
+
+### 12.1. Model danych — tablica obiektów
 
 W React dane najczęściej modelujemy jako tablicę obiektów:
 
@@ -4392,7 +4530,7 @@ const zdjecia = [
 ];
 ```
 
-### 12.2. kopiowanie obiektu — spread
+### 12.2. Kopiowanie obiektu — spread
 
 W React stan jest niezmienny (immutable). Przy aktualizacji obiektu **nigdy nie modyfikujemy** go bezpośrednio — tworzymy kopię:
 
@@ -4410,11 +4548,11 @@ setOsoba({ ...osoba, wiek: 26 });
 setOsoba((prev) => ({ ...prev, wiek: 26 }));
 ```
 
-### 12.3. formularz jako obiekt stanu
+### 12.3. Formularz jako obiekt stanu
 
 Patrz sekcja [9.11](#911-formularz-jako-jeden-obiekt-stanu).
 
-### 12.4. dane z pliku przepisane do kodu
+### 12.4. Dane z pliku przepisane do kodu
 
 Często surowe dane, pochodzące np. z pliku `dane.txt`, możemy przenieść bezpośrednio do kodu jako tablicę obiektów:
 
@@ -4438,32 +4576,57 @@ function App() {
 
 ---
 
-## 13. Bootstrap w React — kompletny przewodnik
+## 13. Bootstrap w React — Kompletny Przewodnik
 
-Bootstrap to najpopularniejszy na świecie framework CSS służący do szybkiego tworzenia nowoczesnych i responsywnych interfejsów użytkownika. React i Bootstrap doskonale się przenikają, pozwalając na niesamowite przyspieszenie pracy nad front-endem, szczególnie w aplikacjach panelowych czy e-commerce.
+Bootstrap to framework CSS, czyli gotowy zestaw klas, komponentów i zasad układu strony. Zamiast pisać od zera style dla przycisków, formularzy, siatki, kart, alertów czy tabel, korzystasz z gotowych klas, np. `btn btn-primary`, `container`, `row`, `col-md-6`, `form-control`.
 
-### 13.1. instalacja i konfiguracja bootstrapa
+Bootstrap nie zastępuje Reacta. React odpowiada za logikę, stan, komponenty i renderowanie JSX. Bootstrap odpowiada za wygląd, responsywność i podstawowe zachowanie wybranych komponentów interfejsu.
 
-Do projektu Reactowego instalujemy Bootstrapa jako paczkę NPM. Nie używamy linków CDN (tagów `<link />` w plikach HTML), ponieważ podejście oparte na pakietach npm, dzięki procesom budowania (Webpack/Vite), ładuje i optymalizuje naszą aplikację poprawnie.
+W tym rozdziale pracujemy głównie z Bootstrapem 5, czyli wersją bez jQuery. W React używamy `className`, a nie `class`.
+
+### 13.1. Czym jest Bootstrap i kiedy go używać
+
+Bootstrap składa się z kilku dużych części:
+
+| Część | Do czego służy |
+|---|---|
+| Layout | `container`, `row`, `col`, breakpointy, responsywność |
+| Utilities | szybkie klasy typu `mt-3`, `d-flex`, `text-center`, `shadow-sm` |
+| Components | gotowe elementy: karty, alerty, navbar, modal, dropdown |
+| Forms | pola formularzy, walidacja, checkboxy, selecty, input group |
+| Helpers | klasy pomocnicze, np. `clearfix`, `ratio`, `visually-hidden` |
+
+Bootstrap najlepiej sprawdza się, gdy:
+- chcesz szybko zbudować estetyczny interfejs
+- tworzysz panel administracyjny, formularze, dashboard, katalog produktów
+- potrzebujesz responsywnej siatki bez pisania dużej ilości CSS
+- zależy Ci na spójnych odstępach, kolorach i komponentach
+
+Bootstrap nie zawsze jest najlepszym wyborem, gdy:
+- projekt ma bardzo niestandardowy, artystyczny wygląd
+- każda sekcja strony ma zupełnie inny system wizualny
+- chcesz pisać własny design system od zera
+
+Najważniejsza zasada: **Bootstrap przyspiesza pracę, ale nie zwalnia z myślenia o semantyce, dostępności i strukturze komponentów.**
+
+### 13.2. Instalacja i konfiguracja Bootstrapa
+
+W projekcie React najwygodniej instalować Bootstrapa jako paczkę npm:
 
 ```bash
-# Szybka rejestracja pakietu bootstrapa w projekcie
 npm install bootstrap
 ```
 
-Po zakończeniu instalacji, należy zaimportować główne style CSS Bootstrapa w pliku głównym — najczęściej w **`src/index.js`** (lub czasami w `src/App.js`).
+Następnie importujemy style w głównym pliku aplikacji. W Create React App będzie to zwykle `src/index.js`, a w Vite często `src/main.jsx`.
 
 ```jsx
 // Plik: src/index.js
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// Importuj zawsze przed twoimi własnymi stylami.
-import "bootstrap/dist/css/bootstrap.css"; 
-// Jeśli chcesz korzystać również z ikon: npm install bootstrap-icons
-// import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
 
-import "./index.css"; // Twój plik z nadpisanymi stylami (ważne by był po Bootstrapie!)
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -4474,218 +4637,887 @@ root.render(
 );
 ```
 
-### 13.2. czysty Bootstrap (CSS) vs React-Bootstrap (Komponenty)
+Kolejność importów ma znaczenie:
 
-Są dwie główne szkoły używania Bootstrapa z Reactem:
+```jsx
+import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
+```
 
-1. **Stylowanie przy pomocy klas (`className`)** — Opisywane w tej dokumentacji. Zwykła i najbardziej popularna metoda polegająca na budowaniu HTML przy pomocy JSX i przypisywaniu predefiniowanych klas Bootstrapa (np. `<div className="col-md-6 mb-3">`). Jest to najprostsze, nie wymaga nauki nowej biblioteki komponentów, a cała wiedza z "czystego HTML'a" od razu tutaj wystarczy.
-2. **Użycie `react-bootstrap`** — Zastępuje tradycyjnego Bootstrapa paczką oddzielnych komponentów JSX (np. `<Button variant="primary">`). Może być nieco bardziej zawiłe w nauczaniu i polecane raczej dla skomplikowanych projektów korporacyjnych. Wymaga wywołania `npm install react-bootstrap bootstrap`.
+Najpierw importujemy Bootstrapa, a dopiero potem własny CSS. Dzięki temu własne style mogą nadpisać klasy Bootstrapa, jeśli będzie to potrzebne.
 
-**W tej dokumentacji skupiamy się w 100% na klasach CSS z podstawowego Bootstrapa**, czyli najlepszym, najszybszym i uniwersalnym podejściu, doskonale sprawdzającym się zarówno w małych jak i potężnych projektach!
+Jeśli chcesz używać komponentów wymagających JavaScriptu, np. `modal`, `dropdown`, `collapse`, `offcanvas`, możesz dodatkowo zaimportować bundle JS:
 
-### 13.3. system Grid (Siatka 12-kolumnowa) w detalach
+```jsx
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+```
 
-System sieci Bootstrap zbudowany jest w oparciu o *flexbox* i umożliwia utworzenie od 1 do 12 kolumn na stronie internetowej, które automatycznie skalują się zależąc od rozmiaru urządzenia.
+W prostych projektach edukacyjnych najczęściej wystarczy sam CSS. JavaScript Bootstrapa dodajemy dopiero wtedy, gdy naprawdę korzystamy z komponentów interaktywnych opartych o atrybuty `data-bs-*`.
 
-Zasada: masz **pojemnik nadrzędny**, w nim dodajesz **wiersz** (`row`), a w nim tworzysz **kolumny** (`col`).
+**Ikony Bootstrap Icons**
 
-**Lista breakpointów (odcięć dla urządzeń):**
-- `xs` (Extra small) — telefony (<576px) — używane przez bazową klasę, np. `.col-`
-- `sm` (Small) — większe telefony (≥576px) — `.col-sm-`
-- `md` (Medium) — tablety (≥768px) — `.col-md-`
-- `lg` (Large) — małe laptopy / komputery (≥992px) — `.col-lg-`
-- `xl` (Extra large) — normalne ekrany (≥1200px) — `.col-xl-`
-- `xxl` (Extra extra large) — wielkie ekrany TV (≥1400px) — `.col-xxl-`
+Bootstrap nie zawiera ikon w podstawowej paczce. Ikony są osobną biblioteką:
 
-Przykłady precyzyjnego pozycjonowania (Responsywny Grid):
+```bash
+npm install bootstrap-icons
+```
+
+```jsx
+import "bootstrap-icons/font/bootstrap-icons.css";
+```
+
+Przykład użycia:
+
+```jsx
+<button className="btn btn-primary">
+  <i className="bi bi-save me-2"></i>
+  Zapisz
+</button>
+```
+
+### 13.3. Czysty Bootstrap CSS vs React-Bootstrap
+
+W React są dwa popularne sposoby używania Bootstrapa.
+
+**1. Klasy CSS Bootstrapa**
+
+To podejście stosowane w tej dokumentacji:
+
+```jsx
+<button className="btn btn-primary">Zapisz</button>
+```
+
+Zalety:
+- uczysz się prawdziwych klas Bootstrapa
+- kod działa podobnie jak w zwykłym HTML
+- nie trzeba instalować dodatkowej biblioteki komponentów
+- łatwo mieszać Bootstrap z własnymi komponentami React
+
+Wady:
+- przy komponentach takich jak modal albo dropdown trzeba uważać na JS Bootstrapa
+- długie `className` mogą być mniej czytelne
+
+**2. React-Bootstrap**
+
+To osobna biblioteka komponentów:
+
+```bash
+npm install react-bootstrap bootstrap
+```
+
+Przykład:
+
+```jsx
+import Button from "react-bootstrap/Button";
+
+function App() {
+  return <Button variant="primary">Zapisz</Button>;
+}
+```
+
+Zalety:
+- komponenty są bardziej "reactowe"
+- modale, dropdowny i zakładki łatwiej kontrolować stanem
+
+Wady:
+- uczysz się dodatkowego API
+- dokumentacja React-Bootstrap różni się od dokumentacji Bootstrapa
+- dla prostych projektów to często niepotrzebna warstwa
+
+W tej dokumentacji używamy **klas CSS Bootstrapa**, bo są najbardziej uniwersalne.
+
+### 13.4. Kontenery i podstawowy układ strony
+
+Kontener ogranicza szerokość treści i nadaje stronie czytelny układ. Bez kontenera elementy często przyklejają się do krawędzi ekranu.
+
+Najważniejsze klasy:
+
+| Klasa | Działanie |
+|---|---|
+| `container` | responsywny kontener o maksymalnej szerokości |
+| `container-fluid` | kontener na pełną szerokość ekranu |
+| `container-md` | pełna szerokość do breakpointu `md`, potem ograniczenie |
+
+```jsx
+function App() {
+  return (
+    <main className="container py-4">
+      <h1>Panel kursanta</h1>
+      <p className="lead">Treść jest czytelnie odsunięta od krawędzi.</p>
+    </main>
+  );
+}
+```
+
+Przykład pełnej szerokości:
+
+```jsx
+<header className="container-fluid bg-dark text-white py-4">
+  <div className="container">
+    <h1 className="mb-0">Nagłówek strony</h1>
+  </div>
+</header>
+```
+
+Dobry wzorzec strony:
+
+```jsx
+<div className="min-vh-100 bg-light">
+  <header className="bg-white border-bottom">
+    <div className="container py-3">Logo i nawigacja</div>
+  </header>
+
+  <main className="container py-4">
+    Treść strony
+  </main>
+
+  <footer className="border-top">
+    <div className="container py-3 text-muted">Stopka</div>
+  </footer>
+</div>
+```
+
+### 13.5. System Grid — siatka 12-kolumnowa
+
+Grid Bootstrapa opiera się na trzech elementach:
+- `container` — ogranicza szerokość strony
+- `row` — tworzy wiersz
+- `col` / `col-*` — tworzy kolumny
+
+Bootstrap dzieli wiersz na 12 części. Jeśli dasz `col-md-6`, element zajmie 6 z 12 kolumn, czyli połowę szerokości od breakpointu `md`.
+
+Breakpointy:
+
+| Breakpoint | Od szerokości | Przykład klasy |
+|---|---:|---|
+| `xs` | domyślnie | `col-12` |
+| `sm` | 576px | `col-sm-6` |
+| `md` | 768px | `col-md-4` |
+| `lg` | 992px | `col-lg-3` |
+| `xl` | 1200px | `col-xl-2` |
+| `xxl` | 1400px | `col-xxl-2` |
+
+Przykład: jedna kolumna na telefonie, trzy na komputerze.
 
 ```jsx
 <div className="container">
-  {/* Wiersz z 3 równymi kolumnami na komputerze (col-md-4), 
-      ale jedna nad drugą na małych telefonach (col-12) */}
-  <div className="row">
-    <div className="col-12 col-md-4 bg-primary text-white p-3">Kolumna 1</div>
-    <div className="col-12 col-md-4 bg-success text-white p-3">Kolumna 2</div>
-    <div className="col-12 col-md-4 bg-danger text-white p-3">Kolumna 3</div>
-  </div>
-
-  {/* Układ bocznego paska i zawartości głównej */}
-  <div className="row mt-4">
-    <div className="col-12 col-lg-3">Boczny Pasek Nawigacji (25% szerokości)</div>
-    <div className="col-12 col-lg-9">Zawartość Główna (75% szerokości)</div>
-  </div>
-</div>
-```
-
-### 13.4. flexbox z bootstrapem (Klasy d-flex)
-
-Bootstrap ułatwia pracę z flexboxem, dostarczając potężne klasy sterujące. Uruchamiasz je stosując klasę `d-flex` (zamiast `row`).
-
-```jsx
-<div className="container mt-4">
-  <div className="d-flex justify-content-between align-items-center bg-light p-3">
-    <div>Logo Lewa Strona</div>
-    <div className="d-flex gap-3"> {/* gap-3 robi równe odstępy miedzy dziećmi */}
-      <button className="btn btn-outline-secondary">Zaloguj</button>
-      <button className="btn btn-primary">Zarejestruj się</button>
+  <div className="row g-3">
+    <div className="col-12 col-md-4">
+      <div className="p-3 bg-primary text-white rounded">Kolumna 1</div>
+    </div>
+    <div className="col-12 col-md-4">
+      <div className="p-3 bg-success text-white rounded">Kolumna 2</div>
+    </div>
+    <div className="col-12 col-md-4">
+      <div className="p-3 bg-danger text-white rounded">Kolumna 3</div>
     </div>
   </div>
+</div>
+```
 
-  {/* Praca w pionie */}
-  <div className="d-flex flex-column align-items-center mt-5">
-    <h2>Zapisz się do newslettera</h2>
-    <input type="email" className="form-control w-50 mt-2" placeholder="Twój e-mail" />
+`g-3` oznacza odstęp między kolumnami i wierszami. Można rozdzielić odstępy:
+
+| Klasa | Działanie |
+|---|---|
+| `g-0` | brak odstępów |
+| `g-3` | odstępy w pionie i poziomie |
+| `gx-4` | odstępy tylko poziome |
+| `gy-2` | odstępy tylko pionowe |
+
+Układ panelowy: sidebar + treść główna.
+
+```jsx
+<div className="container py-4">
+  <div className="row g-4">
+    <aside className="col-12 col-lg-3">
+      <div className="list-group">
+        <button className="list-group-item list-group-item-action active">Profil</button>
+        <button className="list-group-item list-group-item-action">Kursy</button>
+        <button className="list-group-item list-group-item-action">Ustawienia</button>
+      </div>
+    </aside>
+
+    <section className="col-12 col-lg-9">
+      <div className="card">
+        <div className="card-body">
+          <h2 className="h4">Treść główna</h2>
+          <p>Na telefonie sidebar będzie nad treścią, a na dużym ekranie obok.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 ```
 
-- **justify-content-center** - Wyśrodkowanie w poziomie
-- **justify-content-between** - Pchanie do krawędzi (wolna przestrzeń w środku)
-- **align-items-center** - Wyrównanie w pionie
-- **gap-1, gap-2, gap-3, gap-4** - Genialne klasy na luki i odstępy pomiędzy elementami w środku kontenera.
-
-### 13.5. typografia, kolory i tła
-
-Kolor w Bootstrap stosuje się poprzez wywoływanie słów-kluczy dla palety (primary, secondary, success, danger, warning, info, light, dark).
-
-- Kolor tekstu: `text-primary`, `text-danger`, `text-muted` (szary zgaszony kolor), `text-white`.
-- Kolor tła: `bg-primary`, `bg-dark`, `bg-light`, `bg-success`.
-- Ułożenie tekstu: `text-start` (lewo), `text-center` (środek), `text-end` (prawo).
-- Estetyka tekstu: `fst-italic` (kursywa), `fw-bold` (pogrubienie), `fs-1`... `fs-6` (rozmiary czcionek jak znaczniki h1-h6).
+Szybkie automatyczne kolumny:
 
 ```jsx
-<div className="bg-dark text-white p-5 text-center">
-  <h1 className="fw-bold">Nagle nagłówek z efektem!</h1>
-  <p className="fs-4 text-muted">To jest podtytuł dla tekstu...</p>
+<div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3">
+  {produkty.map((produkt) => (
+    <div className="col" key={produkt.id}>
+      <div className="card h-100">
+        <div className="card-body">{produkt.nazwa}</div>
+      </div>
+    </div>
+  ))}
 </div>
 ```
 
-### 13.6. wymiary, marginesy i paddingi (Spacing)
+`row-cols-*` jest bardzo wygodne przy kartach, kafelkach i galeriach.
 
-Aby użyć przerw (spacingów) używasz prefiksu do klasy na wzór `[właściwość][strona]-[rozmiar]`.
-- **m** (Margin) i **p** (Padding)
-- **Strona:** `t` (Top / góra), `b` (Bottom / dół), `s` (Start / lewo), `e` (End / prawo), `x` (oś X - lewo/prawo), `y` (oś Y - góra/dół), albo brak strony = "z każdej strony".
-- **Rozmiary:** `0` (brak), `1` do `5` (narastający rozmiar), `auto` (automatycznie).
+### 13.6. Flexbox i szybkie wyrównywanie elementów
 
-Z kolei rozmiar sztywnego elementu:
-- **Szerokość:** `w-25`, `w-50`, `w-75`, `w-100`, `w-auto`.
-- **Wysokość:** `h-25`, `h-50`, `h-75`, `h-100`.
+Grid służy do większych układów strony. Flexbox przydaje się do układania elementów wewnątrz komponentu: przycisków, nagłówków kart, pasków narzędzi, ikon i opisów.
+
+Najważniejsze klasy:
+
+| Klasa | Działanie |
+|---|---|
+| `d-flex` | włącza flexbox |
+| `flex-column` | układa elementy pionowo |
+| `justify-content-between` | rozsuwa elementy do boków |
+| `justify-content-center` | centruje w osi głównej |
+| `align-items-center` | wyrównuje w osi poprzecznej |
+| `gap-2` | dodaje odstęp między elementami |
+| `flex-wrap` | pozwala elementom zawijać się do kolejnego wiersza |
 
 ```jsx
-<div className="w-100 mx-auto mt-5 p-4 bg-light">
-  {/* mx-auto idealnie wyśrodkowuje box na ekranie o ile jest w kontenerze */}
-  <p className="mb-0">Zero marginesu od dołu (bottom).</p>
-  <p className="my-3 px-5">Margines w pionie równy 3, padding poziomy (w lewo/prawo) to 5.</p>
+<div className="d-flex justify-content-between align-items-center p-3 border rounded">
+  <div>
+    <h2 className="h5 mb-0">Lista zadań</h2>
+    <small className="text-muted">3 zadania do wykonania</small>
+  </div>
+
+  <div className="d-flex gap-2">
+    <button className="btn btn-outline-secondary btn-sm">Filtruj</button>
+    <button className="btn btn-primary btn-sm">Dodaj</button>
+  </div>
 </div>
 ```
 
-### 13.7. przyciski (Buttons) i grupy przycisków
-
-Klasa bazowa to zawsze `.btn`. Doklejasz do nich warianty:
+Przykład z pionowym układem i przyciskiem na dole:
 
 ```jsx
-<div>
-  {/* Zwykłe (wypełnienie) */}
-  <button className="btn btn-primary m-1">Podstawowy</button>
-  <button className="btn btn-success m-1">Zakończ</button>
-  <button className="btn btn-danger m-1">Usuń</button>
-  
-  {/* Zarysowane (Outline) — transparentne tło z obwolutą i kolorem przy najechaniu */}
-  <button className="btn btn-outline-info m-1">Przeczytaj więcej</button>
-  <button className="btn btn-outline-dark m-1">Ciemny zarys</button>
+<div className="card h-100">
+  <div className="card-body d-flex flex-column">
+    <h3 className="h5">Kurs React</h3>
+    <p className="text-muted">Opis może mieć różną długość.</p>
 
-  {/* Różne Rozmiary */}
-  <button className="btn btn-primary btn-sm m-1">Mały knopik</button>
-  <button className="btn btn-primary btn-lg m-1">Wielki Przycisk</button>
-
-  {/* Stan wyłączony przy spełnionych warunkach React! */}
-  <button className="btn btn-secondary w-100 mt-2" disabled={true}>
-    Nieaktywny
-  </button>
+    <button className="btn btn-primary mt-auto">
+      Zobacz kurs
+    </button>
+  </div>
 </div>
 ```
 
-Możesz też zamknąć przyciski w `btn-group`, by scalić je ze sobą (nie będzie między nimi przerw i zaokrągleń u granic).
+`mt-auto` wypycha przycisk na dół karty, jeśli rodzic ma `d-flex flex-column`.
+
+### 13.7. Display, widoczność, pozycjonowanie i overflow
+
+Bootstrap ma klasy do szybkiej kontroli sposobu wyświetlania elementów.
+
+| Klasa | Działanie |
+|---|---|
+| `d-none` | ukrywa element |
+| `d-block` | element blokowy |
+| `d-inline` | element liniowy |
+| `d-inline-block` | liniowy blok |
+| `d-flex` | flexbox |
+| `d-grid` | CSS grid |
+
+Klasy mogą być responsywne:
+
 ```jsx
-<div className="btn-group" role="group">
-  <button type="button" className="btn btn-outline-primary">Lewy</button>
-  <button type="button" className="btn btn-outline-primary">Środkowy</button>
-  <button type="button" className="btn btn-outline-primary">Prawy</button>
+<div className="d-none d-md-block">
+  Ten panel widać od tabletów w górę.
+</div>
+
+<div className="d-block d-md-none">
+  Ten panel widać tylko na telefonach.
 </div>
 ```
 
-### 13.8. formularze zaawansowane (Input, select, switch, walidacja)
-
-Znakomita dokumentacja Bootstrapa jest idealna jeśli połączymy to ze statusem (Stanem) formularza w React. Pola wejściowe używają klasy `form-control`, rozwijane zniżki `form-select`. Klasa `form-label` do opisów. `is-valid` lub `is-invalid` idealnie kolorują błędy.
+Pozycjonowanie:
 
 ```jsx
-import { useState } from "react";
+<div className="position-relative border rounded p-4">
+  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    3
+  </span>
+  Powiadomienia
+</div>
+```
 
-function SkomplikowanyFormularz() {
-  const [imie, setImie] = useState("");
-  const [przedmiot, setPrzedmiot] = useState("");
-  
-  // Zwróci logikę z poprawnością w klasie CSS
-  const getValidationClass = () => {
-    if (imie.length === 0) return ""; 
-    return imie.length >= 3 ? "is-valid" : "is-invalid"; // Zmienia na czerwień lub zieleń
-  };
+Przydatne klasy:
+
+| Klasa | Działanie |
+|---|---|
+| `position-relative` | element staje się punktem odniesienia |
+| `position-absolute` | pozycjonowanie względem rodzica |
+| `top-0`, `bottom-0`, `start-0`, `end-0` | przyklejenie do krawędzi |
+| `translate-middle` | przesunięcie o połowę własnego rozmiaru |
+| `sticky-top` | element zostaje przy górze podczas przewijania |
+| `overflow-auto` | przewijanie, gdy treść się nie mieści |
+| `overflow-hidden` | ukrycie wystającej treści |
+
+Przykład przewijanej listy:
+
+```jsx
+<div className="border rounded overflow-auto" style={{ maxHeight: "240px" }}>
+  {wiadomosci.map((msg) => (
+    <div className="border-bottom p-2" key={msg.id}>
+      {msg.tresc}
+    </div>
+  ))}
+</div>
+```
+
+### 13.8. Spacing, wymiary, obramowania i cienie
+
+Spacing to system marginesów i paddingów. Format klasy:
+
+```txt
+[właściwość][strona]-[rozmiar]
+```
+
+Właściwości:
+- `m` — margin
+- `p` — padding
+
+Strony:
+- `t` — top
+- `b` — bottom
+- `s` — start, czyli lewa strona w językach LTR
+- `e` — end, czyli prawa strona w językach LTR
+- `x` — lewo i prawo
+- `y` — góra i dół
+- brak strony — wszystkie strony
+
+Rozmiary:
+
+| Klasa | Znaczenie |
+|---|---|
+| `0` | brak odstępu |
+| `1` | mały odstęp |
+| `2` | trochę większy |
+| `3` | standardowy odstęp |
+| `4` | duży odstęp |
+| `5` | bardzo duży odstęp |
+| `auto` | automatyczny margines |
+
+```jsx
+<section className="container py-5">
+  <div className="mx-auto p-4 border rounded shadow-sm" style={{ maxWidth: "520px" }}>
+    <h2 className="mb-3">Logowanie</h2>
+    <p className="text-muted mb-4">Wpisz dane dostępowe do konta.</p>
+  </div>
+</section>
+```
+
+Wymiary:
+
+| Klasa | Działanie |
+|---|---|
+| `w-25`, `w-50`, `w-75`, `w-100` | szerokość procentowa |
+| `h-25`, `h-50`, `h-75`, `h-100` | wysokość procentowa |
+| `mw-100` | maksymalna szerokość 100% |
+| `min-vh-100` | minimum pełna wysokość ekranu |
+
+Obramowania i zaokrąglenia:
+
+```jsx
+<div className="border border-primary rounded-3 p-3">
+  Ramka primary i zaokrąglone rogi
+</div>
+
+<img className="rounded-circle border shadow-sm" src="/avatar.png" alt="Avatar" />
+```
+
+Cienie:
+
+| Klasa | Efekt |
+|---|---|
+| `shadow-none` | brak cienia |
+| `shadow-sm` | mały cień |
+| `shadow` | standardowy cień |
+| `shadow-lg` | duży cień |
+
+### 13.9. Typografia, kolory, tła i tryb ciemny
+
+Bootstrap dostarcza gotowe klasy typograficzne.
+
+| Klasa | Działanie |
+|---|---|
+| `display-1` ... `display-6` | bardzo duże nagłówki |
+| `h1` ... `h6` | wygląd nagłówka bez zmiany znacznika |
+| `lead` | większy akapit wprowadzający |
+| `small` | mniejszy tekst |
+| `fw-bold` | pogrubienie |
+| `fw-normal` | normalna grubość |
+| `fst-italic` | kursywa |
+| `text-start`, `text-center`, `text-end` | wyrównanie tekstu |
+| `text-uppercase` | wielkie litery |
+| `text-truncate` | ucięcie tekstu z wielokropkiem |
+
+```jsx
+<section className="bg-light p-5 text-center">
+  <h1 className="display-5 fw-bold">Kurs React i Bootstrap</h1>
+  <p className="lead text-muted mb-0">
+    Szybkie budowanie czytelnych interfejsów.
+  </p>
+</section>
+```
+
+Kolory semantyczne:
+
+| Nazwa | Typowe znaczenie |
+|---|---|
+| `primary` | główna akcja |
+| `secondary` | akcja drugorzędna |
+| `success` | sukces |
+| `danger` | błąd, usuwanie |
+| `warning` | ostrzeżenie |
+| `info` | informacja |
+| `light` | jasne tło |
+| `dark` | ciemne tło |
+
+```jsx
+<div className="p-3 bg-success-subtle text-success-emphasis border border-success rounded">
+  Operacja zakończona powodzeniem.
+</div>
+```
+
+W Bootstrapie 5.3 dostępne są też klasy typu `bg-primary-subtle`, `text-primary-emphasis`, `border-primary-subtle`. Są wygodne, gdy pełne `bg-primary text-white` byłoby zbyt mocne.
+
+Tryb ciemny można aktywować atrybutem `data-bs-theme`.
+
+```jsx
+function App() {
+  const dark = true;
 
   return (
-    <form className="p-4 border rounded bg-light">
-      <h3 className="mb-4">Zgłoszenie Użytkownika</h3>
-      
+    <div data-bs-theme={dark ? "dark" : "light"} className="min-vh-100 p-4">
+      <div className="card">
+        <div className="card-body">
+          <h1 className="h4">Karta dopasowana do motywu</h1>
+          <button className="btn btn-primary">Akcja</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### 13.10. Przyciski, grupy przycisków i stany
+
+Każdy przycisk Bootstrapa zaczyna się od klasy `btn`.
+
+```jsx
+<button className="btn btn-primary">Zapisz</button>
+<button className="btn btn-outline-secondary">Anuluj</button>
+<button className="btn btn-danger">Usuń</button>
+```
+
+Najczęstsze warianty:
+
+| Klasa | Zastosowanie |
+|---|---|
+| `btn-primary` | główna akcja |
+| `btn-secondary` | akcja pomocnicza |
+| `btn-success` | potwierdzenie |
+| `btn-danger` | usuwanie lub błąd |
+| `btn-warning` | ostrzeżenie |
+| `btn-outline-*` | przycisk z obramowaniem |
+| `btn-sm`, `btn-lg` | rozmiar |
+
+Przyciski w React często zależą od stanu:
+
+```jsx
+function ZapiszButton({ zapisuje, poprawny }) {
+  return (
+    <button className="btn btn-primary" disabled={zapisuje || !poprawny}>
+      {zapisuje ? "Zapisywanie..." : "Zapisz"}
+    </button>
+  );
+}
+```
+
+Grupa przycisków:
+
+```jsx
+<div className="btn-group" role="group" aria-label="Widok danych">
+  <button type="button" className="btn btn-outline-primary active">Karty</button>
+  <button type="button" className="btn btn-outline-primary">Tabela</button>
+  <button type="button" className="btn btn-outline-primary">Wykres</button>
+</div>
+```
+
+Pełna szerokość i układ pionowy:
+
+```jsx
+<div className="d-grid gap-2">
+  <button className="btn btn-primary">Zapisz</button>
+  <button className="btn btn-outline-secondary">Wróć</button>
+</div>
+```
+
+W formularzach zawsze ustawiaj `type`:
+
+```jsx
+<button type="submit" className="btn btn-primary">Wyślij</button>
+<button type="button" className="btn btn-outline-secondary">Anuluj</button>
+```
+
+Bez `type="button"` przycisk wewnątrz formularza domyślnie zachowuje się jak submit.
+
+### 13.11. Formularze — pola, selecty, checkboxy i input group
+
+Podstawowe klasy formularzy:
+
+| Element | Klasa |
+|---|---|
+| `input`, `textarea` | `form-control` |
+| `select` | `form-select` |
+| `label` | `form-label` |
+| checkbox/radio wrapper | `form-check` |
+| checkbox/radio input | `form-check-input` |
+| checkbox/radio label | `form-check-label` |
+| tekst pomocniczy | `form-text` |
+
+```jsx
+function FormularzKontaktowy() {
+  return (
+    <form className="border rounded p-4 bg-light">
       <div className="mb-3">
-        <label htmlFor="imieUsera" className="form-label">Imię przypisane</label>
-        <input 
-          id="imieUsera" 
-          type="text" 
-          className={`form-control ${getValidationClass()}`} // Dynamika Bootstrap!
-          value={imie} 
-          onChange={(e) => setImie(e.target.value)} 
-          placeholder="Wpisz imię..." 
+        <label htmlFor="email" className="form-label">Adres e-mail</label>
+        <input
+          id="email"
+          type="email"
+          className="form-control"
+          placeholder="jan@example.com"
         />
-        <div className="invalid-feedback">Imię musi mieć minimum 3 znaki!</div>
+        <div className="form-text">Nie udostępniamy adresu innym osobom.</div>
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Wybór Przedmiotu</label>
-        <select className="form-select text-primary shadow-sm" value={przedmiot} onChange={(e) => setPrzedmiot(e.target.value)}>
-          <option value="">-- wybierz --</option>
-          <option value="matma">Matematyka</option>
-          <option value="fizyka">Fizyka</option>
+        <label htmlFor="temat" className="form-label">Temat</label>
+        <select id="temat" className="form-select">
+          <option value="">Wybierz temat</option>
+          <option value="konto">Konto</option>
+          <option value="platnosci">Płatności</option>
+          <option value="inne">Inne</option>
         </select>
       </div>
 
-      <div className="mb-3 form-check form-switch">
-        <input className="form-check-input" type="checkbox" role="switch" id="regulamin" />
-        <label className="form-check-label" htmlFor="regulamin">Zgadzam się na regulamin</label>
+      <div className="mb-3">
+        <label htmlFor="tresc" className="form-label">Treść</label>
+        <textarea id="tresc" className="form-control" rows="4"></textarea>
       </div>
 
-      <button className="btn btn-success w-100" type="submit">Zapisz ustawienia</button>
+      <button type="submit" className="btn btn-primary">Wyślij</button>
     </form>
   );
 }
 ```
 
-### 13.9. karty (Cards) i bogate układy
-
-Karty (Card) to fundamentalny składnik dla nowoczesnych dashboardów, produktów w sklepie do kliknięcia itp.
-
-Budowa: Kontener `.card`, opcjonalnie z `.card-header` oraz `.card-footer`, oraz obowiązkowo serce karty `.card-body`, gdzie wrzucszamy detale i ewentualnie nagłówek karty z klasą `.card-title`. Opcjonalny obraz na samej górze lub u dołu za pomocą `.card-img-top`.
+Checkbox i switch:
 
 ```jsx
-<div className="row">
-  {listaProduktow.map(prod => (
-    <div key={prod.id} className="col-12 col-md-6 col-lg-4 mb-4">
-      <div className="card h-100 shadow-sm border-0">
-        <img src={prod.img} className="card-img-top" alt={prod.nazwa} style={{ height: "200px", objectFit: "cover" }} />
+<div className="form-check mb-2">
+  <input className="form-check-input" type="checkbox" id="newsletter" />
+  <label className="form-check-label" htmlFor="newsletter">
+    Chcę otrzymywać newsletter
+  </label>
+</div>
+
+<div className="form-check form-switch">
+  <input className="form-check-input" type="checkbox" role="switch" id="tryb" />
+  <label className="form-check-label" htmlFor="tryb">
+    Tryb ciemny
+  </label>
+</div>
+```
+
+Radio:
+
+```jsx
+<div className="form-check">
+  <input className="form-check-input" type="radio" name="plan" id="basic" />
+  <label className="form-check-label" htmlFor="basic">Basic</label>
+</div>
+<div className="form-check">
+  <input className="form-check-input" type="radio" name="plan" id="pro" />
+  <label className="form-check-label" htmlFor="pro">Pro</label>
+</div>
+```
+
+Input group, czyli pole z dodatkiem:
+
+```jsx
+<div className="input-group mb-3">
+  <span className="input-group-text">PLN</span>
+  <input type="number" className="form-control" placeholder="Cena" />
+  <button className="btn btn-outline-secondary" type="button">
+    Przelicz
+  </button>
+</div>
+```
+
+Formularz kontrolowany w React:
+
+```jsx
+import { useState } from "react";
+
+function Formularz() {
+  const [email, setEmail] = useState("");
+
+  return (
+    <form>
+      <label htmlFor="email" className="form-label">E-mail</label>
+      <input
+        id="email"
+        className="form-control"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+    </form>
+  );
+}
+```
+
+### 13.12. Walidacja formularzy i floating labels
+
+Bootstrap daje klasy wizualne do walidacji, ale sama logika walidacji należy do Reacta.
+
+| Klasa | Efekt |
+|---|---|
+| `is-valid` | zielone pole |
+| `is-invalid` | czerwone pole |
+| `valid-feedback` | komunikat sukcesu |
+| `invalid-feedback` | komunikat błędu |
+
+```jsx
+import { useState } from "react";
+
+function WalidowanyEmail() {
+  const [email, setEmail] = useState("");
+  const dotkniete = email.length > 0;
+  const poprawny = email.includes("@") && email.includes(".");
+
+  let klasa = "form-control";
+  if (dotkniete && poprawny) klasa += " is-valid";
+  if (dotkniete && !poprawny) klasa += " is-invalid";
+
+  return (
+    <div className="mb-3">
+      <label htmlFor="email" className="form-label">E-mail</label>
+      <input
+        id="email"
+        className={klasa}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <div className="valid-feedback">Adres wygląda poprawnie.</div>
+      <div className="invalid-feedback">Podaj poprawny adres e-mail.</div>
+    </div>
+  );
+}
+```
+
+Floating labels:
+
+```jsx
+<div className="form-floating mb-3">
+  <input
+    type="email"
+    className="form-control"
+    id="floatingEmail"
+    placeholder="jan@example.com"
+  />
+  <label htmlFor="floatingEmail">Adres e-mail</label>
+</div>
+```
+
+Przy `form-floating` placeholder nadal jest potrzebny technicznie, nawet jeśli użytkownik widzi label.
+
+Walidacja całego formularza:
+
+```jsx
+function Rejestracja() {
+  const [imie, setImie] = useState("");
+  const [zgoda, setZgoda] = useState(false);
+
+  const poprawneImie = imie.trim().length >= 3;
+  const moznaWyslac = poprawneImie && zgoda;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!moznaWyslac) return;
+    alert("Formularz wysłany");
+  }
+
+  return (
+    <form className="p-4 border rounded" onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="imie" className="form-label">Imię</label>
+        <input
+          id="imie"
+          className={`form-control ${imie && !poprawneImie ? "is-invalid" : ""}`}
+          value={imie}
+          onChange={(e) => setImie(e.target.value)}
+        />
+        <div className="invalid-feedback">Minimum 3 znaki.</div>
+      </div>
+
+      <div className="form-check mb-3">
+        <input
+          id="zgoda"
+          className="form-check-input"
+          type="checkbox"
+          checked={zgoda}
+          onChange={(e) => setZgoda(e.target.checked)}
+        />
+        <label className="form-check-label" htmlFor="zgoda">
+          Akceptuję regulamin
+        </label>
+      </div>
+
+      <button className="btn btn-primary" disabled={!moznaWyslac}>
+        Zarejestruj
+      </button>
+    </form>
+  );
+}
+```
+
+### 13.13. Nawigacja — navbar, nav, tabs i breadcrumbs
+
+Navbar to górny pasek nawigacyjny. W najprostszej wersji nie musi mieć JavaScriptu.
+
+```jsx
+<nav className="navbar bg-dark navbar-dark">
+  <div className="container">
+    <a className="navbar-brand" href="/">Moja aplikacja</a>
+    <div className="d-flex gap-2">
+      <a className="btn btn-outline-light btn-sm" href="/login">Logowanie</a>
+      <a className="btn btn-primary btn-sm" href="/register">Rejestracja</a>
+    </div>
+  </div>
+</nav>
+```
+
+Responsywny navbar z collapse wymaga JS Bootstrapa:
+
+```jsx
+<nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div className="container">
+    <a className="navbar-brand fw-bold" href="/">Kursy</a>
+
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Przełącz nawigację"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+
+    <div className="collapse navbar-collapse" id="mainNav">
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item"><a className="nav-link active" href="/">Start</a></li>
+        <li className="nav-item"><a className="nav-link" href="/kursy">Kursy</a></li>
+        <li className="nav-item"><a className="nav-link" href="/kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+`nav` i zakładki sterowane stanem React:
+
+```jsx
+import { useState } from "react";
+
+function Zakladki() {
+  const [aktywny, setAktywny] = useState("opis");
+
+  return (
+    <>
+      <ul className="nav nav-tabs mb-3">
+        <li className="nav-item">
+          <button className={`nav-link ${aktywny === "opis" ? "active" : ""}`} onClick={() => setAktywny("opis")}>
+            Opis
+          </button>
+        </li>
+        <li className="nav-item">
+          <button className={`nav-link ${aktywny === "opinie" ? "active" : ""}`} onClick={() => setAktywny("opinie")}>
+            Opinie
+          </button>
+        </li>
+      </ul>
+
+      {aktywny === "opis" && <p>Opis produktu...</p>}
+      {aktywny === "opinie" && <p>Lista opinii...</p>}
+    </>
+  );
+}
+```
+
+Breadcrumbs:
+
+```jsx
+<nav aria-label="breadcrumb">
+  <ol className="breadcrumb">
+    <li className="breadcrumb-item"><a href="/">Start</a></li>
+    <li className="breadcrumb-item"><a href="/kursy">Kursy</a></li>
+    <li className="breadcrumb-item active" aria-current="page">React</li>
+  </ol>
+</nav>
+```
+
+### 13.14. Karty, list group, badge i układy kafelkowe
+
+Karta składa się zwykle z `.card`, `.card-body`, opcjonalnie `.card-header`, `.card-footer`, `.card-title`, `.card-text`.
+
+```jsx
+<div className="card shadow-sm">
+  <div className="card-header bg-white">
+    Polecany kurs
+  </div>
+  <div className="card-body">
+    <h3 className="card-title h5">React od podstaw</h3>
+    <p className="card-text text-muted">
+      Komponenty, stan, formularze i praktyczne projekty.
+    </p>
+    <a href="/kurs/react" className="btn btn-primary">Zobacz</a>
+  </div>
+  <div className="card-footer text-muted">
+    12 lekcji
+  </div>
+</div>
+```
+
+Karty w siatce:
+
+```jsx
+<div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+  {kursy.map((kurs) => (
+    <div className="col" key={kurs.id}>
+      <div className="card h-100 shadow-sm">
         <div className="card-body d-flex flex-column">
-          <h5 className="card-title text-truncate">{prod.nazwa}</h5>
-          <p className="card-text text-muted">{prod.opis}</p>
+          <div className="d-flex justify-content-between align-items-start">
+            <h3 className="h5 card-title">{kurs.nazwa}</h3>
+            <span className="badge bg-primary">{kurs.poziom}</span>
+          </div>
+
+          <p className="card-text text-muted">{kurs.opis}</p>
+
           <div className="mt-auto d-flex justify-content-between align-items-center">
-            <span className="fw-bold fs-4 text-primary">{prod.cena} PLN</span>
-            <button className="btn btn-outline-primary btn-sm">Do koszyka</button>
+            <strong>{kurs.cena} zł</strong>
+            <button className="btn btn-outline-primary btn-sm">Szczegóły</button>
           </div>
         </div>
       </div>
@@ -4693,209 +5525,577 @@ Budowa: Kontener `.card`, opcjonalnie z `.card-header` oraz `.card-footer`, oraz
   ))}
 </div>
 ```
-*(Uwaga ekspercka) Zwróć uwagę na sprytne użycie klas `h-100`, w `card` oraz `d-flex flex-column` z `mt-auto` (powyżej button). Pozwala to na zrównanie wszystkich kart (każda będzie taka sama wysokość) a przyciski dociśnięte do ich podstawy dla doskonałej estetyki.*
 
-### 13.10. tabele i paginacja
+List group:
+
+```jsx
+<div className="list-group">
+  <button className="list-group-item list-group-item-action active">
+    Konto
+  </button>
+  <button className="list-group-item list-group-item-action">
+    Bezpieczeństwo
+  </button>
+  <button className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    Powiadomienia
+    <span className="badge bg-danger rounded-pill">4</span>
+  </button>
+</div>
+```
+
+Badge:
+
+```jsx
+<h2>
+  Zamówienia <span className="badge bg-secondary">12</span>
+</h2>
+
+<span className="badge rounded-pill text-bg-success">Aktywne</span>
+<span className="badge rounded-pill text-bg-warning">Oczekuje</span>
+<span className="badge rounded-pill text-bg-danger">Błąd</span>
+```
+
+### 13.15. Tabele, paginacja i prezentacja danych
+
+Tabele są dobre dla danych porównywalnych: użytkowników, zamówień, ocen, historii operacji.
 
 ```jsx
 <div className="table-responsive">
-  {/* Dodaj klasę table-responsive do wrappera, by długa tabela pozwalała się scrollować na komórce. */}
-  <table className="table table-bordered table-striped table-hover mt-3 shadow-sm rounded">
-    <thead className="table-dark">
+  <table className="table table-striped table-hover align-middle">
+    <thead className="table-light">
       <tr>
         <th>ID</th>
-        <th>Imię</th>
-        <th>Etykieta</th>
+        <th>Klient</th>
+        <th>Status</th>
+        <th className="text-end">Kwota</th>
         <th className="text-end">Akcje</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>#102</td>
-        <td>Janina Kowalska</td>
-        <td><span className="badge bg-info">Premium</span></td>
-        <td className="text-end">
-          <button className="btn btn-sm btn-danger">Usuń</button>
-        </td>
-      </tr>
-      <tr>
-        <td>#103</td>
-        <td>Marek Nowak</td>
-        <td><span className="badge bg-secondary">Zwykły</span></td>
-        <td className="text-end">
-          <button className="btn btn-sm btn-danger">Usuń</button>
-        </td>
-      </tr>
+      {zamowienia.map((z) => (
+        <tr key={z.id}>
+          <td>#{z.id}</td>
+          <td>{z.klient}</td>
+          <td><span className="badge text-bg-success">{z.status}</span></td>
+          <td className="text-end">{z.kwota} zł</td>
+          <td className="text-end">
+            <button className="btn btn-sm btn-outline-primary">Podgląd</button>
+          </td>
+        </tr>
+      ))}
     </tbody>
   </table>
 </div>
 ```
 
-### 13.11. komponenty UI: alerty, odznaki, paski postępu i spinnery
+Najczęstsze klasy tabel:
 
-React kocha wykorzystać warunkowe renderowanie, by chować lub odsłaniać takie powiadomienia! W połączeniu z Bootstrapem to bardzo proste zadanie.
+| Klasa | Efekt |
+|---|---|
+| `table` | bazowy styl tabeli |
+| `table-striped` | pasy w wierszach |
+| `table-hover` | podświetlenie po najechaniu |
+| `table-bordered` | obramowania komórek |
+| `table-sm` | ciaśniejsza tabela |
+| `align-middle` | pionowe wyśrodkowanie |
+| `table-responsive` | przewijanie na małych ekranach |
+
+Paginacja:
 
 ```jsx
-{/* Alert / Powiadomienie */}
-{czySukces && (
-  <div className="alert alert-success mt-3" role="alert">
-    <strong>Gratulacje!</strong> Twoje konto zostało poprawinie aktywowane.
+<nav aria-label="Strony wyników">
+  <ul className="pagination justify-content-center">
+    <li className="page-item disabled">
+      <button className="page-link">Poprzednia</button>
+    </li>
+    <li className="page-item active">
+      <button className="page-link">1</button>
+    </li>
+    <li className="page-item">
+      <button className="page-link">2</button>
+    </li>
+    <li className="page-item">
+      <button className="page-link">Następna</button>
+    </li>
+  </ul>
+</nav>
+```
+
+W React paginacja zwykle wynika ze stanu:
+
+```jsx
+const [strona, setStrona] = useState(1);
+const naStrone = 10;
+const start = (strona - 1) * naStrone;
+const widoczne = dane.slice(start, start + naStrone);
+```
+
+### 13.16. Alerty, spinnery, progress, placeholdery i toast
+
+Alert:
+
+```jsx
+{blad && (
+  <div className="alert alert-danger" role="alert">
+    {blad}
   </div>
 )}
 
-{/* Odznaki */}
-<h3>Powiadomienia <span className="badge bg-danger rounded-pill">12</span></h3>
-Oto najnowszy komunikat <span className="badge bg-primary px-3 shadow">NOWOŚĆ</span>
+{sukces && (
+  <div className="alert alert-success" role="alert">
+    Dane zostały zapisane.
+  </div>
+)}
+```
 
-{/* Spinner kręcący w dół na czas odświeżania API! */}
-{isLoading && (
-  <div className="d-flex justify-content-center mt-5">
+Spinner:
+
+```jsx
+{ladowanie && (
+  <div className="d-flex justify-content-center py-5">
     <div className="spinner-border text-primary" role="status">
-      <span className="visually-hidden">Ładowanie danych...</span>
+      <span className="visually-hidden">Ładowanie...</span>
     </div>
   </div>
 )}
+```
 
-{/* Pasek postępu */}
-<div className="progress mt-4" style={{ height: "30px" }}>
-  <div 
-    className="progress-bar progress-bar-striped progress-bar-animated bg-success" 
-    role="progressbar" 
-    style={{ width: "75%" }}>
-    75% Pobrano
+Progress:
+
+```jsx
+<div className="progress" role="progressbar" aria-label="Postęp" aria-valuenow={75} aria-valuemin="0" aria-valuemax="100">
+  <div className="progress-bar progress-bar-striped bg-success" style={{ width: "75%" }}>
+    75%
   </div>
 </div>
 ```
 
-### 13.12. złożony przykład praktyczny: panel użytkownika
-
-Poniżej całościowy kod demonstrujący profesjonalne i eleganckie wykonanie interfejsu (Dashboard/Panel) stosując w pełni zasady Bootstrapa, które właśnie przyswoiłeś.
+Placeholder, czyli szkielet ładowania:
 
 ```jsx
-import React, { useState } from "react";
+<div className="card" aria-hidden="true">
+  <div className="card-body">
+    <h5 className="card-title placeholder-glow">
+      <span className="placeholder col-6"></span>
+    </h5>
+    <p className="card-text placeholder-glow">
+      <span className="placeholder col-7"></span>
+      <span className="placeholder col-4"></span>
+      <span className="placeholder col-4"></span>
+    </p>
+  </div>
+</div>
+```
 
-function UserDashboard() {
-  const [trywCiemny, setTrybCiemny] = useState(false);
+Toast w Bootstrapie wymaga JavaScriptu albo własnej kontroli Reactem. Prosty toast kontrolowany stanem:
+
+```jsx
+{pokazToast && (
+  <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 10 }}>
+    <div className="toast show">
+      <div className="toast-header">
+        <strong className="me-auto">System</strong>
+        <button type="button" className="btn-close" onClick={() => setPokazToast(false)}></button>
+      </div>
+      <div className="toast-body">
+        Zapisano zmiany.
+      </div>
+    </div>
+  </div>
+)}
+```
+
+### 13.17. Komponenty wymagające JavaScriptu
+
+Część komponentów Bootstrapa działa wyłącznie na CSS, np. przyciski, karty, alerty, formularze, badge, tabele. Inne wymagają JavaScriptu Bootstrapa:
+- modal
+- dropdown
+- collapse
+- offcanvas
+- tooltip
+- popover
+- carousel
+- toast, jeśli używasz API Bootstrapa
+
+Jeśli używasz atrybutów `data-bs-*`, dodaj:
+
+```jsx
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+```
+
+**Collapse / Accordion**
+
+```jsx
+<div className="accordion" id="faq">
+  <div className="accordion-item">
+    <h2 className="accordion-header">
+      <button
+        className="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#odp1"
+      >
+        Czym jest Bootstrap?
+      </button>
+    </h2>
+    <div id="odp1" className="accordion-collapse collapse show" data-bs-parent="#faq">
+      <div className="accordion-body">
+        To framework CSS z gotowymi klasami i komponentami.
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Modal**
+
+```jsx
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#potwierdzModal">
+  Usuń konto
+</button>
+
+<div className="modal fade" id="potwierdzModal" tabIndex="-1" aria-labelledby="potwierdzLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="potwierdzLabel">Potwierdzenie</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div className="modal-body">
+        Czy na pewno chcesz usunąć konto?
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" className="btn btn-danger">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Offcanvas**
+
+```jsx
+<button className="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBoczne">
+  Menu
+</button>
+
+<div className="offcanvas offcanvas-start" tabIndex="-1" id="menuBoczne">
+  <div className="offcanvas-header">
+    <h5 className="offcanvas-title">Nawigacja</h5>
+    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Zamknij"></button>
+  </div>
+  <div className="offcanvas-body">
+    <div className="list-group">
+      <a href="/" className="list-group-item list-group-item-action">Start</a>
+      <a href="/konto" className="list-group-item list-group-item-action">Konto</a>
+    </div>
+  </div>
+</div>
+```
+
+**Dropdown**
+
+```jsx
+<div className="dropdown">
+  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Akcje
+  </button>
+  <ul className="dropdown-menu">
+    <li><button className="dropdown-item" type="button">Edytuj</button></li>
+    <li><button className="dropdown-item" type="button">Duplikuj</button></li>
+    <li><hr className="dropdown-divider" /></li>
+    <li><button className="dropdown-item text-danger" type="button">Usuń</button></li>
+  </ul>
+</div>
+```
+
+W większej aplikacji React często lepiej kontrolować modal, zakładki albo toast stanem Reacta niż mieszać logikę z `data-bs-*`. Dla prostych projektów szkolnych atrybuty Bootstrapa są jednak wystarczające.
+
+### 13.18. Dostępność i semantyka w Bootstrapie
+
+Bootstrap daje dobre style, ale dostępność nadal zależy od kodu HTML.
+
+Najważniejsze zasady:
+- używaj prawdziwych znaczników: `button` do akcji, `a` do linków
+- każdy `input` powinien mieć `label`
+- nie usuwaj widocznego fokusu bez zapewnienia alternatywy
+- przy spinnerach dodawaj tekst dla czytników ekranu: `visually-hidden`
+- przy modalach, dropdownach i navbarach zachowuj atrybuty `aria-*`
+- nie przekazuj znaczenia tylko kolorem
+
+Przykład dobrego pola:
+
+```jsx
+<label htmlFor="haslo" className="form-label">Hasło</label>
+<input
+  id="haslo"
+  type="password"
+  className="form-control"
+  aria-describedby="hasloPomoc"
+/>
+<div id="hasloPomoc" className="form-text">
+  Hasło powinno mieć minimum 8 znaków.
+</div>
+```
+
+Klasa `visually-hidden` ukrywa tekst wizualnie, ale zostawia go dla czytników ekranu:
+
+```jsx
+<button className="btn btn-outline-danger">
+  <span aria-hidden="true">×</span>
+  <span className="visually-hidden">Usuń element</span>
+</button>
+```
+
+### 13.19. Nadpisywanie Bootstrapa i własny motyw
+
+Najprostszy sposób nadpisywania Bootstrapa to własny plik CSS importowany po Bootstrapie.
+
+```jsx
+import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
+```
+
+Przykład:
+
+```css
+/* Plik: src/index.css */
+.app-card {
+  border-radius: 0.75rem;
+}
+
+.btn-primary {
+  background-color: #0f766e;
+  border-color: #0f766e;
+}
+
+.btn-primary:hover {
+  background-color: #115e59;
+  border-color: #115e59;
+}
+```
+
+Nie nadpisuj wszystkiego globalnie bez potrzeby. Jeśli zmiana dotyczy jednego komponentu, lepiej dodać własną klasę:
+
+```jsx
+<div className="card app-card shadow-sm">
+  <div className="card-body">Treść</div>
+</div>
+```
+
+Bootstrap 5 używa też zmiennych CSS. Można zmienić wygląd wybranego fragmentu:
+
+```jsx
+<div
+  className="card"
+  style={{
+    "--bs-card-border-color": "#0d6efd",
+    "--bs-card-border-width": "2px",
+  }}
+>
+  <div className="card-body">Karta z lokalnie zmienioną ramką</div>
+</div>
+```
+
+Praktyczna zasada:
+- klasy Bootstrapa stosuj do typowych rzeczy: spacing, grid, kolory, komponenty
+- własne klasy stosuj do wyglądu specyficznego dla projektu
+- unikaj bardzo długich `style={{ ... }}` dla zwykłego CSS
+
+### 13.20. Złożony przykład praktyczny: Panel użytkownika
+
+Poniższy przykład łączy siatkę, navbar, karty, tabele, formularz, alert, badge, progress, tryb ciemny i klasy responsywne.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const zadaniaStart = [
+  { id: 1, nazwa: "Uzupełnić profil", status: "Gotowe" },
+  { id: 2, nazwa: "Dodać projekt", status: "W trakcie" },
+  { id: 3, nazwa: "Wysłać formularz", status: "Oczekuje" },
+];
+
+function App() {
+  const [trybCiemny, setTrybCiemny] = useState(false);
+  const [zadania] = useState(zadaniaStart);
+  const [email, setEmail] = useState("");
+  const [komunikat, setKomunikat] = useState("");
+
+  const ukonczone = zadania.filter((z) => z.status === "Gotowe").length;
+  const postep = Math.round((ukonczone / zadania.length) * 100);
+
+  function zapiszEmail(e) {
+    e.preventDefault();
+    if (!email.includes("@")) {
+      setKomunikat("Podaj poprawny adres e-mail.");
+      return;
+    }
+    setKomunikat("Adres zapisany poprawnie.");
+  }
 
   return (
-    <div className={trywCiemny ? "bg-dark text-white min-vh-100" : "bg-light min-vh-100"}>
-      {/* Pasek Nawigacyjny na Samej Górze - Navbar z kontenerem */}
-      <nav className={`navbar px-4 shadow-sm ${trywCiemny ? "navbar-dark bg-secondary" : "navbar-light bg-white"}`}>
-        <div className="container-fluid">
-          <span className="navbar-brand mb-0 h1 fw-bold">🚀 MójPanel PRO</span>
+    <div data-bs-theme={trybCiemny ? "dark" : "light"} className="min-vh-100 bg-body-tertiary">
+      <nav className="navbar navbar-expand bg-body border-bottom">
+        <div className="container">
+          <span className="navbar-brand fw-bold">Panel kursanta</span>
+
           <div className="form-check form-switch ms-auto">
-            <input 
-              className="form-check-input" 
-              type="checkbox" 
-              id="ciemnyTryb"
-              checked={trywCiemny}
-              onChange={() => setTrybCiemny(!trywCiemny)}
+            <input
+              id="darkMode"
+              className="form-check-input"
+              type="checkbox"
+              checked={trybCiemny}
+              onChange={(e) => setTrybCiemny(e.target.checked)}
             />
-            <label className="form-check-label" htmlFor="ciemnyTryb">
-              {trywCiemny ? "Jasny motyw" : "Ciemny motyw"}
+            <label className="form-check-label" htmlFor="darkMode">
+              Tryb ciemny
             </label>
           </div>
         </div>
       </nav>
 
-      {/* Kontener główny aplikacji */}
-      <div className="container mt-5">
-        <div className="row">
-          
-          {/* Kolumna Profilowa (z boku dla dużych urządzeń, na samej górze dla małych) */}
-          <div className="col-12 col-lg-3 mb-4">
-            <div className={`card shadow-sm border-0 ${trywCiemny ? "bg-secondary text-white" : ""}`}>
-              <div className="card-body text-center p-4">
-                <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: "80px", height: "80px", fontSize: "2rem" }}>
+      <main className="container py-4">
+        {komunikat && (
+          <div className={`alert ${komunikat.includes("poprawnie") ? "alert-success" : "alert-danger"}`} role="alert">
+            {komunikat}
+          </div>
+        )}
+
+        <div className="row g-4">
+          <aside className="col-12 col-lg-3">
+            <div className="card shadow-sm">
+              <div className="card-body text-center">
+                <div className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: "72px", height: "72px" }}>
                   JK
                 </div>
-                <h5 className="card-title fw-bold">Jan Kowalski</h5>
-                <p className="card-text text-muted mb-4">Frontend Developer</p>
+                <h1 className="h5 mb-1">Jan Kowalski</h1>
+                <p className="text-muted mb-3">Frontend Developer</p>
                 <div className="d-grid gap-2">
-                  <button className="btn btn-primary btn-sm">Edytuj Profil</button>
-                  <button className="btn btn-outline-danger btn-sm">Wyloguj</button>
+                  <button className="btn btn-primary btn-sm">Edytuj profil</button>
+                  <button className="btn btn-outline-secondary btn-sm">Ustawienia</button>
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
 
-          {/* Kolumna Ze Statystykami (Główny content strony obok zdjęcia) */}
-          <div className="col-12 col-lg-9">
-            <div className="row">
-              <div className="col-12 col-md-6 mb-3">
-                 <div className={`card border-success border-2 placeholder-glow shadow-sm ${trywCiemny ? "bg-secondary" : ""}`}>
-                    <div className="card-body d-flex justify-content-between align-items-center">
-                      <div>
-                        <h6 className="mb-0 text-muted">Zarabiane W Coins</h6>
-                        <h2 className="text-success mb-0 fw-bold">+ 12 450</h2>
-                      </div>
-                      <span className="fs-1">💰</span>
+          <section className="col-12 col-lg-9">
+            <div className="row g-3 mb-4">
+              <div className="col-12 col-md-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body">
+                    <p className="text-muted mb-1">Postęp</p>
+                    <h2 className="h3">{postep}%</h2>
+                    <div className="progress">
+                      <div className="progress-bar" style={{ width: `${postep}%` }}></div>
                     </div>
-                 </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="col-12 col-md-6 mb-3">
-                 <div className={`card border-warning border-2 shadow-sm ${trywCiemny ? "bg-secondary" : ""}`}>
-                    <div className="card-body d-flex justify-content-between align-items-center">
-                      <div>
-                        <h6 className="mb-0 text-muted">Twoje Zadania</h6>
-                        <h2 className="text-warning mb-0 fw-bold">4 Zostały</h2>
-                      </div>
-                      <span className="fs-1">⚡</span>
-                    </div>
-                 </div>
+              <div className="col-12 col-md-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body">
+                    <p className="text-muted mb-1">Zadania</p>
+                    <h2 className="h3">{zadania.length}</h2>
+                    <span className="badge text-bg-info">Aktywne konto</span>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-            {/* Ostatnie akcje - tabela dla informacji */}
-            <div className={`card mt-3 shadow-sm border-0 ${trywCiemny ? "bg-secondary text-white" : ""}`}>
-              <div className="card-header bg-transparent border-0 d-flex justify-content-between align-items-center p-4">
-                <h5 className="mb-0 fw-bold">Ostatnie aktywności systemu</h5>
-                <button className="btn btn-sm btn-outline-primary">Załaduj więcej</button>
-              </div>
-              <div className="card-body p-0">
-                <div className="table-responsive">
-                  <table className={`table mb-0 ${trywCiemny ? "table-dark" : "table-hover"}`}>
-                     <thead className="table-light">
-                        <tr>
-                          <th className="px-4">Użytkownik</th>
-                          <th>Status</th>
-                          <th className="text-end px-4">Czas Aktywności</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                          <td className="px-4 fw-bold">Marek_1993</td>
-                          <td><span className="badge bg-success">Online</span></td>
-                          <td className="text-end px-4 text-muted">2 minuty temu</td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 fw-bold">AniaW</td>
-                          <td><span className="badge bg-danger">Wylogowana</span></td>
-                          <td className="text-end px-4 text-muted">Pół godziny temu</td>
-                        </tr>
-                     </tbody>
-                  </table>
+
+              <div className="col-12 col-md-4">
+                <div className="card h-100 shadow-sm">
+                  <div className="card-body">
+                    <p className="text-muted mb-1">Plan</p>
+                    <h2 className="h3">Pro</h2>
+                    <button className="btn btn-outline-primary btn-sm">Zmień plan</button>
+                  </div>
                 </div>
               </div>
             </div>
 
-          </div>
+            <div className="card shadow-sm mb-4">
+              <div className="card-header bg-body d-flex justify-content-between align-items-center">
+                <h2 className="h5 mb-0">Lista zadań</h2>
+                <span className="badge text-bg-secondary">{ukonczone}/{zadania.length}</span>
+              </div>
+              <div className="table-responsive">
+                <table className="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Zadanie</th>
+                      <th>Status</th>
+                      <th className="text-end">Akcja</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {zadania.map((zadanie) => (
+                      <tr key={zadanie.id}>
+                        <td>{zadanie.nazwa}</td>
+                        <td>
+                          <span className={`badge ${
+                            zadanie.status === "Gotowe" ? "text-bg-success" :
+                            zadanie.status === "W trakcie" ? "text-bg-warning" :
+                            "text-bg-secondary"
+                          }`}>
+                            {zadanie.status}
+                          </span>
+                        </td>
+                        <td className="text-end">
+                          <button className="btn btn-sm btn-outline-primary">Szczegóły</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <form className="card shadow-sm" onSubmit={zapiszEmail}>
+              <div className="card-body">
+                <h2 className="h5">Powiadomienia e-mail</h2>
+                <div className="input-group">
+                  <span className="input-group-text">@</span>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="jan@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <button className="btn btn-primary" type="submit">
+                    Zapisz
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
 
-export default UserDashboard;
+export default App;
 ```
-To jest niesamowicie rozszerzone kompendium Bootstrapa, które da ci 100% pewności w radzeniu sobie ze wszystkimi stylami i układami w Twoich projektach!
 
 ---
 
-## 14. obrazy i zasoby statyczne
+## 14. Obrazy i zasoby statyczne
 
-### 14.1. obrazy z folderu public
+W projekcie React istnieją **dwa główne miejsca**, w których możemy przechowywać obrazy i inne zasoby statyczne (ikony, czcionki, pliki SVG): folder `public/` oraz folder `src/`. Każde z tych miejsc działa inaczej i jest przeznaczone do innych scenariuszy. Obrazy umieszczone w folderze `public/` są serwowane statycznie przez serwer deweloperski — nie przechodzą przez żaden proces budowania ani optymalizacji. Są dostępne dokładnie pod taką nazwą, jaką im nadaliśmy, np. `/logo.png`. Z kolei obrazy umieszczone w folderze `src/` i importowane za pomocą instrukcji `import` przechodzą przez Webpack (lub Vite) podczas budowania aplikacji. Webpack nadaje im **unikalne nazwy hashowane** (np. `logo.a1b2c3d4.png`), co rozwiązuje problem cache przeglądarki — gdy zmienimy obraz, jego hash się zmieni i przeglądarka pobierze nową wersję zamiast wyświetlać starą z pamięci podręcznej. Dodatkowo, Webpack ostrzeże nas podczas kompilacji, jeśli importowany plik nie istnieje, co eliminuje ryzyko zepsutych obrazów na produkcji. Dla małych obrazów (poniżej 10 KB) Webpack automatycznie zamieni je na format Base64 i osadzi bezpośrednio w kodzie JavaScript, co zmniejsza liczbę żądań HTTP.
+
+| Cecha | Folder `public/` | Folder `src/` (import) |
+|---|---|---|
+| **Ścieżka w kodzie** | Bezpośrednia, np. `"/logo.png"` | Przez import: `import logo from "./logo.png"` |
+| **Optymalizacja Webpack** | Brak — plik serwowany jak jest | Tak — hashowanie, minifikacja, Base64 dla małych plików |
+| **Ostrzeżenie o brakującym pliku** | Brak — błąd dopiero w przeglądarce (404) | Tak — błąd kompilacji, aplikacja się nie zbuduje |
+| **Zmiana nazwy pliku w buildzie** | Nie — zawsze ta sama nazwa | Tak — np. `logo.a1b2c3.png` (cache busting) |
+| **Kiedy używać** | Pliki dynamiczne (ścieżka zależy od zmiennej), `favicon.ico`, pliki `manifest.json` | Obrazy używane bezpośrednio w komponentach, ikony, ilustracje |
+
+### 14.1. Obrazy z folderu public
 
 Obrazy umieszczone w folderze `public/` są dostępne bezpośrednio po ścieżce:
 
@@ -4910,7 +6110,7 @@ Obrazy umieszczone w folderze `public/` są dostępne bezpośrednio po ścieżce
 Zalety: prostota, brak importu.
 Wady: brak optymalizacji przez Webpack.
 
-### 14.2. obrazy z folderu src — import
+### 14.2. Obrazy z folderu src — import
 
 ```jsx
 // Plik: src/App.js
@@ -4923,7 +6123,7 @@ function App() {
 
 Zalety: Webpack optymalizuje obraz, ostrzeże, jeśli plik nie istnieje.
 
-### 14.3. obraz zależny od stanu
+### 14.3. Obraz zależny od stanu
 
 ```jsx
 // Plik: src/App.js
@@ -4950,7 +6150,7 @@ function App() {
 export default App;
 ```
 
-### 14.4. obrazy w kolekcjach (tablicach obiektów)
+### 14.4. Obrazy w kolekcjach (tablicach obiektów)
 
 ```jsx
 const zdjecia = [
@@ -4970,7 +6170,7 @@ const zdjecia = [
 ))}
 ```
 
-### 14.5. atrybut alt — dostępność
+### 14.5. Atrybut alt — dostępność
 
 Atrybut `alt` jest wymagany na obrazkach. Opisuje zawartość obrazu dla czytników ekranu i wyświetla się, gdy obraz nie może być załadowany:
 
@@ -4984,9 +6184,31 @@ Atrybut `alt` jest wymagany na obrazkach. Opisuje zawartość obrazu dla czytnik
 
 ---
 
-## 15. przepływ danych — props w górę i w dół
+## 15. Przepływ danych — props w górę i w dół
 
-### 15.1. dane płyną z góry na dół (top-down)
+Przepływ danych w React to **najważniejsza koncepcja architekturalna**, którą musisz zrozumieć, by tworzyć poprawne aplikacje. React stosuje wzorzec **jednokierunkowego przepływu danych** (ang. *one-way data flow* lub *unidirectional data flow*). Oznacza to, że dane **ZAWSZE płyną z góry na dół** — od komponentu rodzica do komponentu dziecka — za pośrednictwem propsów. Dziecko nigdy nie może bezpośrednio zmodyfikować danych rodzica ani wysłać mu czegokolwiek w górę. Gdy dziecko musi powiedzieć coś rodzicowi (np. że użytkownik kliknął przycisk lub wpisał tekst), robi to **pośrednio** — wywołując funkcję zwrotną (callback), którą rodzic wcześniej przekazał mu jako prop. Ta funkcja callback, po wywołaniu przez dziecko, zmienia stan w rodzicu za pomocą `setState`. React wykrywa zmianę stanu, automatycznie re-renderuje rodzica, a nowe dane spływają ponownie w dół do wszystkich dzieci jako zaktualizowane propsy. Ten cykl jest przewidywalny i łatwy do debugowania, ponieważ zawsze wiadomo, **skąd** dane przychodzą i **kto** jest odpowiedzialny za ich zmianę. W przeciwieństwie do dwukierunkowego bindingu (ang. *two-way binding*) znanego z Angular, jednokierunkowy przepływ eliminuje sytuacje, w których trudno ustalić, co zmieniło dane.
+
+**Schemat przepływu danych w React:**
+
+```
+  1. Stan żyje w RODZICU (np. useState)
+             |
+             v
+  2. Props lecą W DOL do dziecka
+             |
+             v
+  3. Dziecko WYWOLUJE callback (np. onClick, onSubmit)
+             |
+             v
+  4. Callback ZMIENIA stan rodzica (setState)
+             |
+             v
+  5. React RE-RENDERUJE rodzica i dzieci z nowymi danymi
+             |
+             +---------- powrot do kroku 2 ----------+
+```
+
+### 15.1. Dane płyną z góry na dół (top-down)
 
 W React dane (props) płyną **zawsze z rodzica do dziecka** — nigdy odwrotnie. Rodzic przekazuje dane jako props, a dziecko je odbiera i wyświetla:
 
@@ -5028,7 +6250,7 @@ function KursKarta({ nazwa, cena }) {
 export default KursKarta;
 ```
 
-### 15.2. callback — dziecko zgłasza zdarzenie rodzicowi
+### 15.2. Callback — dziecko zgłasza zdarzenie rodzicowi
 
 Dziecko nie może bezpośrednio zmienić stanu rodzica. Zamiast tego rodzic **przekazuje funkcję** (callback) jako prop, a dziecko ją wywołuje:
 
@@ -5093,7 +6315,7 @@ function DodajKurs({ onDodaj }) {
 export default DodajKurs;
 ```
 
-### 15.3. lifting state up — podnoszenie stanu
+### 15.3. Lifting state up — podnoszenie stanu
 
 Gdy dwa komponenty muszą dzielić ten sam stan, stan przenosi się do ich **wspólnego rodzica**. Rodzic trzyma stan i przekazuje go do obu dzieci:
 
@@ -5144,7 +6366,7 @@ function Podglad({ imie }) {
 export default Podglad;
 ```
 
-### 15.4. pełny przykład wieloplikowy z przepływem danych
+### 15.4. Pełny przykład wieloplikowy z przepływem danych
 
 Diagram przepływu danych:
 
@@ -5163,7 +6385,18 @@ App (stan: zadania)
 
 ## 16. useEffect i efekty uboczne
 
-### 16.1. po co jest useEffect
+Aby zrozumieć `useEffect`, musimy najpierw zrozumieć pojęcie **efektu ubocznego** (ang. *side effect*). W programowaniu funkcyjnym istnieje koncepcja **czystej funkcji** (*pure function*) — to funkcja, która na podstawie tych samych danych wejściowych **ZAWSZE** zwraca dokładnie ten sam wynik i nie zmienia niczego poza sobą (nie modyfikuje zmiennych globalnych, nie wysyła żądań sieciowych, nie zapisuje do pliku). Komponent React z założenia powinien zachowywać się jak czysta funkcja — na podstawie otrzymanych propsów i aktualnego stanu zawsze powinien zwracać ten sam JSX. Jeśli przekażemy mu `nazwa="React"` i `cena={199}`, to za każdym razem powinien wyrenderować identyczny fragment interfejsu. Ale w prawdziwych aplikacjach potrzebujemy operacji, które wykraczają poza czyste renderowanie — musimy pobrać dane z serwera (fetch), zmienić tytuł zakładki przeglądarki (`document.title`), ustawić timer (`setInterval`), zapisać coś do `localStorage` czy nasłuchiwać na zdarzenia okna (`window.addEventListener`). Wszystkie te operacje to właśnie **efekty uboczne** — czynności, które dotykają świata zewnętrznego poza samym komponentem. Hook `useEffect` jest specjalnie stworzony do obsługi takich operacji — pozwala nam powiedzieć Reactowi: po wyrenderowaniu komponentu, wykonaj jeszcze tę dodatkową operację. Dzięki temu logika renderowania (czysta) jest oddzielona od logiki efektów ubocznych (nieczysta).
+
+| Czysta operacja (bezpośrednio w ciele komponentu) | Efekt uboczny (wymaga `useEffect`) |
+|---|---|
+| Obliczenie sumy: `const suma = ceny.reduce((a, b) => a + b, 0)` | Pobranie danych z API: `fetch("https://api.example.com/dane")` |
+| Filtrowanie tablicy: `const aktywne = zadania.filter(z => !z.done)` | Zmiana tytułu strony: `document.title = "Nowy tytuł"` |
+| Formatowanie daty: `new Date().toLocaleDateString("pl-PL")` | Ustawienie timera: `setInterval(() => ..., 1000)` |
+| Warunkowe renderowanie: `{zalogowany && <Panel />}` | Zapis do localStorage: `localStorage.setItem("klucz", wartosc)` |
+| Mapowanie danych na JSX: `lista.map(el => <Li key={el.id} />)` | Nasluchiwanie zdarzen okna: `window.addEventListener("resize", fn)` |
+| Laczenie stringow: tekst z template literal | Subskrypcja WebSocket: `socket.on("message", handler)` |
+
+### 16.1. Po co jest useEffect
 
 `useEffect` to hook do wykonywania **efektów ubocznych** — operacji, które nie dotyczą bezpośrednio wyniku renderowania. Przykłady:
 - Pobranie danych z API lub localStorage
@@ -5199,7 +6432,7 @@ function App() {
 export default App;
 ```
 
-### 16.3. tablica zależności
+### 16.3. Tablica zależności
 
 Tablica zależności `[]` kontroluje, **kiedy** efekt się uruchomi:
 
@@ -5226,7 +6459,7 @@ useEffect(() => {
 | `[]` | Tylko raz — po pierwszym renderze |
 | `[a, b]` | Gdy zmieni się `a` lub `b` |
 
-### 16.4. cleanup — sprzątanie efektu
+### 16.4. Cleanup — sprzątanie efektu
 
 Efekt może zwrócić funkcję czyszczącą (cleanup), która wykona się przed następnym uruchomieniem efektu lub gdy komponent się odmontowuje:
 
@@ -5284,7 +6517,7 @@ export default App;
 | `JSON.stringify(obiekt)` | Zamienia obiekt/tablicę na string JSON |
 | `JSON.parse(tekst)` | Zamienia string JSON na obiekt/tablicę |
 
-### 16.6. typowe pułapki useEffect
+### 16.6. Typowe pułapki useEffect
 
 ```jsx
 // PUŁAPKA 1: Brak tablicy zależności — nieskończona pętla!
@@ -5307,7 +6540,7 @@ useEffect(() => {
 
 ## 17. useRef — referencje do elementów DOM
 
-### 17.1. czym jest useRef
+### 17.1. Czym jest useRef
 
 `useRef` to hook, który tworzy „pojemnik" na wartość, która **nie powoduje re-renderu** przy zmianie. Najczęściej używany do uzyskania referencji do elementu DOM:
 
@@ -5315,7 +6548,7 @@ useEffect(() => {
 import { useRef } from "react";
 ```
 
-### 17.2. ustawianie fokusa na polu
+### 17.2. Ustawianie fokusa na polu
 
 ```jsx
 // Plik: src/App.js
@@ -5360,9 +6593,9 @@ export default App;
 
 ---
 
-## 18. dane lokalne, JSON i fetch
+## 18. Dane lokalne, JSON i fetch
 
-### 18.1. tablice danych w kodzie
+### 18.1. Tablice danych w kodzie
 
 Najprostszy sposób — dane wpisane bezpośrednio w pliku:
 
@@ -5392,7 +6625,7 @@ function App() {
 }
 ```
 
-### 18.2. import pliku JSON
+### 18.2. Import pliku JSON
 
 Można bezpośrednio importować plik JSON:
 
@@ -5420,7 +6653,7 @@ function App() {
 }
 ```
 
-### 18.3. fetch z folderu public
+### 18.3. Fetch z folderu public
 
 Pliki JSON umieszczone w `public/` można pobrać za pomocą `fetch`:
 
@@ -5461,7 +6694,7 @@ function App() {
 export default App;
 ```
 
-### 18.4. parsowanie danych tekstowych
+### 18.4. Parsowanie danych tekstowych
 
 Gdy dane z pliku `dane.txt` trzeba przetworzyć:
 
@@ -5489,11 +6722,274 @@ console.log(zdjecia);
 // ]
 ```
 
+### 18.5. Czym jest API
+
+**API** (Application Programming Interface) to sposób komunikacji między aplikacjami. W React najczęściej oznacza to pobieranie lub wysyłanie danych do serwera przez HTTP.
+
+Przykład z życia:
+- React wyświetla formularz logowania
+- użytkownik wpisuje dane
+- aplikacja wysyła dane do API
+- serwer odsyła odpowiedź: sukces, błąd albo dodatkowe dane
+
+W aplikacji frontendowej React zwykle odpowiada za:
+- pokazanie danych użytkownikowi
+- przechowywanie danych w stanie (`useState`)
+- pobranie danych po starcie lub po akcji użytkownika (`useEffect`, eventy)
+- pokazanie stanu ładowania i błędu
+
+API zwykle odpowiada za:
+- zapis danych w bazie
+- sprawdzenie poprawności danych
+- logowanie i uprawnienia
+- zwrócenie danych w formacie JSON
+
+### 18.6. Endpoint, metoda HTTP i status odpowiedzi
+
+Adres, pod który wysyłamy zapytanie, nazywa się **endpointem**.
+
+```txt
+https://jsonplaceholder.typicode.com/users
+```
+
+Najczęstsze metody HTTP:
+
+| Metoda | Do czego służy | Przykład |
+|---|---|---|
+| `GET` | Pobieranie danych | lista użytkowników |
+| `POST` | Dodawanie nowych danych | nowy formularz kontaktowy |
+| `PUT` / `PATCH` | Aktualizacja danych | zmiana profilu |
+| `DELETE` | Usuwanie danych | usunięcie zadania |
+
+Status odpowiedzi mówi, czy operacja się udała:
+
+| Status | Znaczenie |
+|---|---|
+| `200` | OK — udało się |
+| `201` | Created — utworzono nowy zasób |
+| `400` | Bad Request — błędne dane |
+| `401` | Unauthorized — brak logowania |
+| `404` | Not Found — nie znaleziono |
+| `500` | Server Error — błąd serwera |
+
+Ważne: `fetch()` nie rzuca błędu dla statusu `404` albo `500`. Trzeba samodzielnie sprawdzić `response.ok`.
+
+```js
+const response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+if (!response.ok) {
+  throw new Error(`Błąd HTTP: ${response.status}`);
+}
+
+const data = await response.json();
+```
+
+### 18.7. Pobieranie danych z zewnętrznego API
+
+Dane z API najczęściej pobieramy w `useEffect`, bo pobranie danych jest **efektem ubocznym** — nie jest zwykłym renderowaniem JSX.
+
+```jsx
+// Plik: src/App.js
+import { useEffect, useState } from "react";
+
+function App() {
+  const [uzytkownicy, setUzytkownicy] = useState([]);
+
+  useEffect(() => {
+    async function pobierzUzytkownikow() {
+      const response = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await response.json();
+      setUzytkownicy(data);
+    }
+
+    pobierzUzytkownikow();
+  }, []);
+
+  return (
+    <div className="container mt-4">
+      <h1>Użytkownicy</h1>
+
+      <ul className="list-group">
+        {uzytkownicy.map((user) => (
+          <li className="list-group-item" key={user.id}>
+            {user.name} — {user.email}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 18.8. Loading, błąd i pusta lista
+
+W realnej aplikacji nie wystarczy samo `setDane(data)`. Użytkownik powinien wiedzieć:
+- czy dane się jeszcze ładują
+- czy wystąpił błąd
+- czy API zwróciło pustą listę
+
+```jsx
+import { useEffect, useState } from "react";
+
+function App() {
+  const [posty, setPosty] = useState([]);
+  const [ladowanie, setLadowanie] = useState(true);
+  const [blad, setBlad] = useState("");
+
+  useEffect(() => {
+    async function pobierzPosty() {
+      try {
+        setLadowanie(true);
+        setBlad("");
+
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+        if (!response.ok) {
+          throw new Error(`Błąd HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setPosty(data.slice(0, 5));
+      } catch (error) {
+        setBlad("Nie udało się pobrać postów.");
+      } finally {
+        setLadowanie(false);
+      }
+    }
+
+    pobierzPosty();
+  }, []);
+
+  if (ladowanie) return <p>Ładowanie danych...</p>;
+  if (blad) return <p className="text-danger">{blad}</p>;
+  if (posty.length === 0) return <p>Brak danych do wyświetlenia.</p>;
+
+  return (
+    <div className="container mt-4">
+      <h1>Posty</h1>
+
+      {posty.map((post) => (
+        <article className="border rounded p-3 mb-3" key={post.id}>
+          <h2 className="h5">{post.title}</h2>
+          <p>{post.body}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+### 18.9. Wysyłanie danych metodą POST
+
+Do wysyłania danych używamy `fetch()` z dodatkowymi opcjami:
+- `method` — metoda HTTP
+- `headers` — informacje o formacie danych
+- `body` — dane zamienione na JSON
+
+```jsx
+async function dodajPost() {
+  const nowyPost = {
+    title: "Nowy wpis",
+    body: "Treść wpisu",
+    userId: 1,
+  };
+
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(nowyPost),
+  });
+
+  if (!response.ok) {
+    throw new Error("Nie udało się zapisać danych");
+  }
+
+  const zapisanyPost = await response.json();
+  console.log(zapisanyPost);
+}
+```
+
+W prawdziwym API serwer zapisuje dane w bazie. `jsonplaceholder.typicode.com` tylko udaje zapis, ale dzięki temu dobrze nadaje się do ćwiczeń.
+
+### 18.10. Parametry w adresie URL
+
+Często API pozwala filtrować dane przez parametry w adresie.
+
+```txt
+https://jsonplaceholder.typicode.com/posts?userId=1
+```
+
+W React warto budować taki adres za pomocą `URLSearchParams`, zamiast sklejać tekst ręcznie.
+
+```js
+const params = new URLSearchParams({
+  userId: "1",
+});
+
+const url = `https://jsonplaceholder.typicode.com/posts?${params.toString()}`;
+const response = await fetch(url);
+```
+
+Przykład z wyszukiwaniem:
+
+```jsx
+const [szukaj, setSzukaj] = useState("");
+
+const wyniki = uzytkownicy.filter((user) =>
+  user.name.toLowerCase().includes(szukaj.toLowerCase())
+);
+```
+
+Jeśli API obsługuje wyszukiwanie po stronie serwera, wtedy zamiast filtrować tablicę w React, wysyłamy zapytanie z parametrem, np. `?q=react`.
+
+### 18.11. Dobre praktyki przy pracy z API
+
+**1. Zawsze obsługuj błąd i ładowanie**
+
+Bez tego użytkownik widzi pustą stronę i nie wie, czy aplikacja działa.
+
+**2. Sprawdzaj `response.ok`**
+
+Sam `fetch()` nie wystarczy do poprawnej obsługi błędów HTTP.
+
+**3. Nie zakładaj, że dane zawsze istnieją**
+
+Przy danych z API przydaje się optional chaining:
+
+```jsx
+<p>Miasto: {user?.address?.city ?? "Brak miasta"}</p>
+```
+
+**4. Nie trzymaj sekretów w kodzie frontendu**
+
+Klucze prywatne, hasła i tokeny administracyjne nie powinny być wpisane w pliku React. Kod frontendu trafia do przeglądarki użytkownika, więc można go podejrzeć.
+
+**5. Uważaj na CORS**
+
+Jeśli przeglądarka blokuje zapytanie komunikatem o CORS, problem zwykle leży po stronie konfiguracji serwera API, a nie w samym komponencie React.
+
+**6. Przy kilku zapytaniach używaj `Promise.all`**
+
+Gdy dwa zapytania są niezależne, można pobrać je równolegle:
+
+```js
+const [usersResponse, postsResponse] = await Promise.all([
+  fetch("https://jsonplaceholder.typicode.com/users"),
+  fetch("https://jsonplaceholder.typicode.com/posts"),
+]);
+```
+
 ---
 
-## 19. logika aplikacji poza jsx
+## 19. Logika aplikacji poza JSX
 
-### 19.1. funkcje pomocnicze
+Jedną z kluczowych zasad dobrego programowania jest **Separation of Concerns** (rozdzielenie odpowiedzialności). Oznacza to, że każdy fragment kodu powinien być odpowiedzialny za **jedną, konkretną rzecz**. W kontekście React oznacza to, że komponent powinien zajmować się **wyłącznie wyświetlaniem interfejsu użytkownika** (renderowaniem JSX) i obsługą interakcji (kliknięcia, wpisywanie tekstu). Logika biznesowa — obliczenia matematyczne, walidacja danych, formatowanie tekstu, transformacje tablic — powinna być wyciągnięta do **osobnych plików pomocniczych** w folderze `utils/` lub `helpers/`. Dane początkowe (listy, konfiguracje, stałe) powinny żyć w folderze `data/`. Dzięki temu komponenty są krótkie i czytelne, a logikę można łatwo testować jednostkowo bez konieczności renderowania całego komponentu. Dodatkowo, te same funkcje pomocnicze mogą być współdzielone przez wiele komponentów, co eliminuje duplikację kodu i ułatwia utrzymanie aplikacji.
+
+### 19.1. Funkcje pomocnicze
 
 Funkcje, które nie potrzebują stanu, można definiować **poza komponentem** lub w osobnych plikach:
 
@@ -5521,7 +7017,7 @@ function App() {
 export default App;
 ```
 
-### 19.2. osobne moduły z logiką
+### 19.2. Osobne moduły z logiką
 
 ```js
 // Plik: src/utils/walidacja.js
@@ -5547,7 +7043,7 @@ function App() {
 }
 ```
 
-### 19.3. oddzielenie UI od obliczeń
+### 19.3. Oddzielenie UI od obliczeń
 
 Dobra praktyka: logika obliczeniowa **poza komponentem**, widok **w komponencie**:
 
@@ -5587,9 +7083,17 @@ function App() {
 
 ---
 
-## 20. organizacja projektu
+## 20. Organizacja projektu
 
-### 20.1. nazewnictwo plików i komponentów
+Organizacja plików i folderów w projekcie React może wydawać się nieistotna na początku, ale staje się **kluczowa**, gdy aplikacja zaczyna rosnąć. W małym projekcie składającym się z 1-3 komponentów wystarczy umieścić wszystkie pliki bezpośrednio w folderze `src/` — dodatkowe foldery byłyby nadmiarowe. Jednak gdy projekt rozrasta się do 10 i więcej komponentów, brak przemyślanej struktury prowadzi do chaosu — trudno znaleźć właściwy plik, trudno zrozumieć zależności między komponentami. Dobrze zorganizowany projekt przyspiesza pracę zespołową, ułatwia wdrażanie nowych programistów i minimalizuje ryzyko błędów.
+
+| Rozmiar projektu | Zalecana struktura |
+|---|---|
+| **Mały** (1-3 komponenty) | Wszystkie pliki w `src/` — bez dodatkowych folderów |
+| **Średni** (4-10 komponentów) | Folder `src/components/` na komponenty + `src/data/` na dane |
+| **Duży** (10+ komponentów) | Pełna struktura: `components/`, `utils/`, `data/`, `hooks/`, `styles/`, ewentualnie podział na moduły funkcjonalne |
+
+### 20.1. Nazewnictwo plików i komponentów
 
 | Konwencja | Przykład | Dotyczy |
 |---|---|---|
@@ -5600,7 +7104,7 @@ function App() {
 **Zasada:** Nazwa pliku komponentu = nazwa komponentu:
 - Plik: `KursKarta.js` → Komponent: `function KursKarta() { ... }`
 
-### 20.2. folder components
+### 20.2. Folder components
 
 ```
 src/
@@ -5612,7 +7116,7 @@ src/
     └── ZadanieFormularz.js
 ```
 
-### 20.3. folder data
+### 20.3. Folder data
 
 ```
 src/
@@ -5621,7 +7125,7 @@ src/
     └── filmy.json     # Dane JSON
 ```
 
-### 20.4. folder utils
+### 20.4. Folder utils
 
 ```
 src/
@@ -5631,7 +7135,7 @@ src/
     └── algorytmy.js   # Funkcje algorytmiczne
 ```
 
-### 20.5. przykładowa struktura projektu
+### 20.5. Przykładowa struktura projektu
 
 ```
 src/
@@ -5652,9 +7156,9 @@ src/
 
 ---
 
-## 21. debugowanie
+## 21. Debugowanie
 
-### 21.1. konsola przeglądarki
+### 21.1. Konsola przeglądarki
 
 ```jsx
 function handleSubmit(e) {
@@ -5674,7 +7178,7 @@ React DevTools to rozszerzenie przeglądarki (Chrome / Firefox), które pozwala:
 
 Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądarki.
 
-### 21.3. typowe błędy składni
+### 21.3. Typowe błędy składni
 
 | Błąd | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -5683,7 +7187,7 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 | `'for' is not a valid attribute` | Użycie `for` zamiast `htmlFor` | Zamień na `htmlFor` |
 | `Expected a ')' to match '('` | Brakujący nawias | Sprawdź nawiasy w JSX |
 
-### 21.4. typowe błędy stanu
+### 21.4. Typowe błędy stanu
 
 | Objaw | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -5691,7 +7195,7 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 | Widok nie aktualizuje się | Mutowanie stanu (push, bezpośrednia zmiana) | Tworzenie kopii (spread) |
 | Stara wartość w console.log | Stan jest asynchroniczny | Loguj przed `setState` lub użyj `useEffect` |
 
-### 21.5. typowe błędy formularzy
+### 21.5. Typowe błędy formularzy
 
 | Objaw | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -5702,9 +7206,9 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 
 ---
 
-## 22. najczęstsze pułapki i jak ich unikać
+## 22. Najczęstsze pułapki i jak ich unikać
 
-### 22.1. brak key w pętli map()
+### 22.1. Brak key w pętli map()
 
 ```jsx
 // BŁĄD (ostrzeżenie w konsoli)
@@ -5714,7 +7218,7 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 {items.map((item) => <li key={item.id}>{item.text}</li>)}
 ```
 
-### 22.2. mutowanie stanu zamiast tworzenia kopii
+### 22.2. Mutowanie stanu zamiast tworzenia kopii
 
 ```jsx
 // błąd — React nie widzi zmiany referencji
@@ -5732,7 +7236,7 @@ setOsoba(osoba);
 setOsoba({ ...osoba, wiek: 26 });
 ```
 
-### 22.3. odczyt stanu zaraz po ustawieniu
+### 22.3. Odczyt stanu zaraz po ustawieniu
 
 ```jsx
 // błąd — stara wartość
@@ -5745,7 +7249,7 @@ setCount(nowy);
 console.log(nowy); // Nowa wartość
 ```
 
-### 22.4. brak event.preventDefault() w formularzu
+### 22.4. Brak event.preventDefault() w formularzu
 
 ```jsx
 // błąd — strona się przeładowuje
@@ -5760,7 +7264,7 @@ function handleSubmit(e) {
 }
 ```
 
-### 22.5. zapomnienie o import useState
+### 22.5. Zapomnienie o import useState
 
 ```jsx
 // błąd — useState is not defined
@@ -5775,7 +7279,7 @@ function App() {
 }
 ```
 
-### 22.6. wywołanie funkcji zamiast przekazania referencji
+### 22.6. Wywołanie funkcji zamiast przekazania referencji
 
 ```jsx
 // błąd — funkcja WYKONA SIĘ natychmiast przy renderze
@@ -5790,7 +7294,7 @@ function App() {
 
 ---
 
-## 23. build i publikacja projektu
+## 23. Build i publikacja projektu
 
 ### 23.1. npm run build
 
@@ -5800,7 +7304,7 @@ npm run build
 
 To polecenie tworzy zoptymalizowaną wersję produkcyjną w folderze `build/`. Pliki są minifikowane (skompresowane), co zapewnia szybsze ładowanie.
 
-### 23.2. co zawiera folder build
+### 23.2. Co zawiera folder build
 
 ```
 build/
@@ -5814,7 +7318,7 @@ build/
 └── favicon.ico
 ```
 
-### 23.3. typowe problemy przy buildzie
+### 23.3. Typowe problemy przy buildzie
 
 | Problem | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -5824,9 +7328,9 @@ build/
 
 ---
 
-## 24. dobre praktyki UI i dostępność
+## 24. Dobre praktyki UI i dostępność
 
-### 24.1. typ przycisku — button vs submit
+### 24.1. Typ przycisku — button vs submit
 
 ```jsx
 {/* Przycisk wysyłający formularz */}
@@ -5838,7 +7342,7 @@ build/
 
 Jeśli nie podasz `type`, przycisk wewnątrz `<form>` domyślnie jest `type="submit"` i może spowodować niechciane wysłanie formularza.
 
-### 24.2. label i htmlFor
+### 24.2. Label i htmlFor
 
 Każde pole formularza powinno mieć etykietę `<label>` powiązaną z polem przez `htmlFor`:
 
@@ -5849,7 +7353,7 @@ Każde pole formularza powinno mieć etykietę `<label>` powiązaną z polem prz
 
 Kliknięcie etykiety automatycznie przenosi fokus na powiązane pole — to ułatwia obsługę, szczególnie na urządzeniach mobilnych.
 
-### 24.3. semantyczny układ strony
+### 24.3. Semantyczny układ strony
 
 ```jsx
 function App() {
@@ -5871,9 +7375,9 @@ function App() {
 
 ---
 
-## 25. routing i nawigacja w SPA (react-router-dom)
+## 25. Routing i Nawigacja w SPA (react-router-dom)
 
-### 25.1. czym jest Client-Side Routing?
+### 25.1. Czym jest Client-Side Routing?
 
 Tak jak wspomnieliśmy w rozdziale wprowadzającym do SPA, aplikacje Reactowe z reguły ładują tylko jeden plik `index.html`. Aby zasymulować przechodzenie między podstronami (np. z `/` na `/profil` czy `/logowanie`) bez odświeżania całej przeglądarki, używamy tzw. "Client-Side Routingu". W ekosystemie React najpopularniejszym do tego narzędziem jest biblioteka **React Router**.
 
@@ -5921,7 +7425,7 @@ function App() {
 export default App;
 ```
 
-### 25.3. linkowanie pomiędzy podstronami używając `<Link>`
+### 25.3. Linkowanie pomiędzy podstronami używając `<Link>`
 
 Gdybyśmy do nawigacji użyli standardowego znacznika HTML `<a href="/login">`, przeglądarka pobrałaby stronę na nowo z serwera, co spowodowałoby reset całego stanu Reacta. Aby temu zapobiec, używamy komponentu `<Link>`.
 
@@ -5941,7 +7445,7 @@ function TopNavigation() {
 
 Dzięki `<Link>`, React zmienia zawartość ekranu "w locie", co jest błyskawiczne i zachowuje stan aplikacji.
 
-### 25.4. nawigacja z poziomu kodu (useNavigate)
+### 25.4. Nawigacja z poziomu kodu (useNavigate)
 
 Często musimy przenieść użytkownika na inną stronę w wyniku jakiejś akcji (np. po udanym zalogowaniu lub po wysłaniu formularza). Nie używamy do tego kliknięcia w `<Link>`, lecz hooka `useNavigate`.
 
@@ -5974,7 +7478,7 @@ function LogowanieForm() {
 }
 ```
 
-### 25.5. parametry w ścieżkach (useParams)
+### 25.5. Parametry w ścieżkach (useParams)
 
 Często ścieżki są dynamiczne, np. profil konkretnego użytkownika `/user/123` lub strona produktu `/produkt/5`. W React Router definiujemy to przy pomocy dwukropka `:id`. Następnie w komponencie możemy ten parametr odczytać używając hooka `useParams`.
 
@@ -6001,9 +7505,9 @@ function ProduktSzczegoly() {
 ```
 
 
-## 26. wzorce praktyczne
+## 26. Wzorce praktyczne
 
-### 26.1. formularz rejestracji
+### 26.1. Formularz rejestracji
 
 Prosty formularz z walidacją — jeden z najczęstszych wzorców w aplikacjach webowych.
 
@@ -6161,7 +7665,9 @@ export default App;
 
 ---
 
-### 26.2. zapisy na kurs
+---
+
+### 26.2. Zapisy na kurs
 
 Przykład połączenia prostego formularza z widokiem powiązanym z tablicą danych.
 
@@ -6277,7 +7783,9 @@ export default App;
 
 ---
 
-### 26.3. formularz filmu
+---
+
+### 26.3. Formularz filmu
 
 Kolejny przykład wprowadzania kontrolowanych struktur danych – tym razem na liście rozwijanej.
 
@@ -6363,1320 +7871,9 @@ export default App;
 
 ---
 
-### 26.4. galeria zdjęć z kategoriami
-
-Interaktywna galeria kafelkowa opierająca się o filtry stanów (checkboxy / switche).
-
-**Wymagania:**
-- Tablica obiektów zdjęć z `dane.txt`
-- Trzy pola switch/checkbox do filtrowania kategorii
-- Filtrowanie zdjęć po zaznaczonych kategoriach
-- Wyświetlanie bloków zdjęć obok siebie
-- Pokazanie liczby pobrań
-- Przycisk „Pobierz" zwiększający liczbę pobrań dla klikniętego zdjęcia
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-function App() {
-  // Dane zdjęć — przepisane z dane.txt
-  const [zdjecia, setZdjecia] = useState([
-    { id: 1, nazwa: "kwiat.jpg", kategoria: "kwiaty", pobrania: 12 },
-    { id: 2, nazwa: "gora.jpg", kategoria: "krajobrazy", pobrania: 34 },
-    { id: 3, nazwa: "roza.jpg", kategoria: "kwiaty", pobrania: 7 },
-    { id: 4, nazwa: "miasto.jpg", kategoria: "miasto", pobrania: 21 },
-    { id: 5, nazwa: "jezioro.jpg", kategoria: "krajobrazy", pobrania: 15 },
-    { id: 6, nazwa: "tulipan.jpg", kategoria: "kwiaty", pobrania: 3 },
-    { id: 7, nazwa: "ulica.jpg", kategoria: "miasto", pobrania: 9 },
-  ]);
-
-  // Stan checkboxów/switchów — które kategorie są zaznaczone
-  const [filtry, setFiltry] = useState({
-    kwiaty: true,
-    krajobrazy: true,
-    miasto: true,
-  });
-
-  // Obsługa zmiany switcha — aktualizacja jednego pola w obiekcie filtrów
-  function handleFiltr(kategoria) {
-    setFiltry((prev) => ({
-      ...prev,
-      [kategoria]: !prev[kategoria],
-    }));
-  }
-
-  // Obsługa kliknięcia "Pobierz" — zwiększenie pobrań dla jednego zdjęcia
-  function handlePobierz(id) {
-    setZdjecia((prev) =>
-      prev.map((z) =>
-        z.id === id ? { ...z, pobrania: z.pobrania + 1 } : z
-      )
-    );
-  }
-
-  // Filtrowanie zdjęć — pokazujemy tylko te z zaznaczonych kategorii
-  const przefiltrowane = zdjecia.filter((z) => filtry[z.kategoria]);
-
-  return (
-    <main className="container mt-4">
-      <h1>Galeria zdjęć</h1>
-
-      {/* Switche do filtrowania kategorii */}
-      <div className="mb-4">
-        {Object.keys(filtry).map((kategoria) => (
-          <div key={kategoria} className="form-check form-switch form-check-inline">
-            <input
-              id={`filtr-${kategoria}`}
-              type="checkbox"
-              className="form-check-input"
-              checked={filtry[kategoria]}
-              onChange={() => handleFiltr(kategoria)}
-            />
-            <label htmlFor={`filtr-${kategoria}`} className="form-check-label">
-              {kategoria}
-            </label>
-          </div>
-        ))}
-      </div>
-
-      {/* Siatka kart ze zdjęciami */}
-      <div className="row">
-        {przefiltrowane.map((zdjecie) => (
-          <div key={zdjecie.id} className="col-md-4 mb-3">
-            <div className="card">
-              {/* Miejsce na obraz — w prawdziwym projekcie byłby tu <img> */}
-              <div
-                className="card-img-top bg-secondary d-flex align-items-center justify-content-center"
-                style={{ height: "150px", color: "white" }}
-              >
-                {zdjecie.nazwa}
-              </div>
-              <div className="card-body">
-                <p className="card-text">
-                  Kategoria: <strong>{zdjecie.kategoria}</strong>
-                </p>
-                <p className="card-text">
-                  Pobrania: <strong>{zdjecie.pobrania}</strong>
-                </p>
-                <button
-                  className="btn btn-success btn-sm"
-                  onClick={() => handlePobierz(zdjecie.id)}
-                >
-                  Pobierz
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Komunikat gdy brak zdjęć */}
-      {przefiltrowane.length === 0 && (
-        <p className="text-muted text-center">Brak zdjęć do wyświetlenia.</p>
-      )}
-    </main>
-  );
-}
-
-export default App;
-```
-
-**Kluczowe mechaniki:**
-- Tablica obiektów w stanie (`useState`)
-- Switche/checkboxy kontrolujące filtrowanie
-- `filter()` do wyświetlania tylko wybranych kategorii
-- `map()` do aktualizacji jednego elementu (zwiększenie licznika pobrań)
-- Spread operator (`...`) do niemutowalnej aktualizacji
-- Grid Bootstrap (`row` / `col-md-4`) do układania kart obok siebie
-- Warunkowe renderowanie pustej listy
-
 ---
 
-### 26.5. lista zadań (Todo app) — wieloplikowy
-
-Kompletny przykład aplikacji z podziałem na pliki — wzorzec przepływu danych parent-child.
-
-```
-src/
-├── App.js                    # Rodzic — trzyma stan
-├── components/
-│   ├── TaskForm.js           # Formularz dodawania
-│   └── TaskList.js           # Lista zadań
-└── index.js                  # Punkt wejścia
-```
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import TaskForm from "./components/TaskForm";
-import TaskList from "./components/TaskList";
-
-function App() {
-  // Stan globalny — lista zadań trzymana w rodzicu
-  const [tasks, setTasks] = useState([]);
-
-  // Funkcja dodająca zadanie — przekazywana do TaskForm
-  function addTask(taskText) {
-    const newTask = {
-      id: Date.now(),         // Prosty sposób na unikalne ID
-      text: taskText,
-      completed: false,
-    };
-    setTasks((prev) => [...prev, newTask]);
-  }
-
-  // Funkcja usuwająca zadanie — przekazywana do TaskList
-  function deleteTask(id) {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
-  }
-
-  // Funkcja przełączająca ukończenie — przekazywana do TaskList
-  function toggleTask(id) {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  }
-
-  return (
-    <main className="container mt-5" style={{ maxWidth: "600px" }}>
-      <h1 className="text-center mb-4">Lista Zadań</h1>
-
-      {/* Komponent formularza — otrzymuje callback onAddTask */}
-      <TaskForm onAddTask={addTask} />
-
-      {/* Komponent listy — otrzymuje dane i callbacki */}
-      <TaskList
-        tasks={tasks}
-        onDeleteTask={deleteTask}
-        onToggleTask={toggleTask}
-      />
-
-      {/* Podsumowanie */}
-      <div className="mt-3 text-muted text-center">
-        Pozostało zadań: {tasks.filter((t) => !t.completed).length} / {tasks.length}
-      </div>
-    </main>
-  );
-}
-
-export default App;
-```
-
-```jsx
-// Plik: src/components/TaskForm.js
-import { useState } from "react";
-
-function TaskForm({ onAddTask }) {
-  const [text, setText] = useState(""); // Stan lokalny — tylko dla tego inputa
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    // Walidacja — nie dodajemy pustych zadań
-    if (text.trim() === "") return;
-
-    // Wywołujemy callback od rodzica
-    onAddTask(text);
-
-    // Czyścimy pole
-    setText("");
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="input-group mb-4">
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Co masz do zrobienia?"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button className="btn btn-success" type="submit">
-        Dodaj
-      </button>
-    </form>
-  );
-}
-
-export default TaskForm;
-```
-
-```jsx
-// Plik: src/components/TaskList.js
-function TaskList({ tasks, onDeleteTask, onToggleTask }) {
-  // Obsługa pustej listy
-  if (tasks.length === 0) {
-    return <p className="text-center text-muted">Brak zadań. Odpocznij!</p>;
-  }
-
-  return (
-    <ul className="list-group">
-      {tasks.map((task) => (
-        <li
-          key={task.id}
-          className="list-group-item d-flex justify-content-between align-items-center"
-        >
-          {/* Tekst zadania — przekreślony, jeśli ukończone */}
-          <span
-            style={{
-              textDecoration: task.completed ? "line-through" : "none",
-              cursor: "pointer",
-            }}
-            onClick={() => onToggleTask(task.id)}
-          >
-            {task.text}
-          </span>
-
-          {/* Przycisk usuwania */}
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={() => onDeleteTask(task.id)}
-          >
-            Usuń
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default TaskList;
-```
-
-**Podsumowanie przepływu danych:**
-
-1. **Dół (Props):** `App` → `TaskList` (przekazuje `tasks`, `onDeleteTask`, `onToggleTask`)
-2. **Góra (Callbacks):** `TaskForm` → `App` (dziecko wywołuje `onAddTask`)
-3. **Odświeżenie:** Gdy `App` zmieni stan, React odmalowuje `TaskForm` i `TaskList` z nowymi danymi
-
----
-
-### 26.6. generator hasła
-
-Aplikacja generująca losowe hasło na podstawie ustawień użytkownika.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-function App() {
-  const [dlugosc, setDlugosc] = useState(12);
-  const [duzeLinetry, setDuzeLitery] = useState(true);
-  const [cyfry, setCyfry] = useState(true);
-  const [specjalne, setSpecjalne] = useState(false);
-  const [haslo, setHaslo] = useState("");
-
-  function generujHaslo() {
-    let znaki = "abcdefghijklmnopqrstuvwxyz";
-    if (duzeLinetry) znaki += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (cyfry) znaki += "0123456789";
-    if (specjalne) znaki += "!@#$%^&*()_+-=[]{}|;:,.<>?";
-
-    let wynik = "";
-    for (let i = 0; i < dlugosc; i++) {
-      const losowy = Math.floor(Math.random() * znaki.length);
-      wynik += znaki[losowy];
-    }
-
-    setHaslo(wynik);
-  }
-
-  return (
-    <main className="container mt-4" style={{ maxWidth: "500px" }}>
-      <h1>Generator hasła</h1>
-
-      {/* Suwak długości */}
-      <div className="mb-3">
-        <label className="form-label">Długość: {dlugosc}</label>
-        <input
-          type="range"
-          className="form-range"
-          min="4"
-          max="32"
-          value={dlugosc}
-          onChange={(e) => setDlugosc(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Checkboxy opcji */}
-      <div className="form-check mb-2">
-        <input
-          id="duze"
-          type="checkbox"
-          className="form-check-input"
-          checked={duzeLinetry}
-          onChange={(e) => setDuzeLitery(e.target.checked)}
-        />
-        <label htmlFor="duze" className="form-check-label">Duże litery (A-Z)</label>
-      </div>
-
-      <div className="form-check mb-2">
-        <input
-          id="cyfry"
-          type="checkbox"
-          className="form-check-input"
-          checked={cyfry}
-          onChange={(e) => setCyfry(e.target.checked)}
-        />
-        <label htmlFor="cyfry" className="form-check-label">Cyfry (0-9)</label>
-      </div>
-
-      <div className="form-check mb-3">
-        <input
-          id="specjalne"
-          type="checkbox"
-          className="form-check-input"
-          checked={specjalne}
-          onChange={(e) => setSpecjalne(e.target.checked)}
-        />
-        <label htmlFor="specjalne" className="form-check-label">Znaki specjalne (!@#$)</label>
-      </div>
-
-      <button className="btn btn-primary mb-3" onClick={generujHaslo}>
-        Generuj hasło
-      </button>
-
-      {/* Wynik */}
-      {haslo && (
-        <div className="alert alert-success">
-          <strong>Wygenerowane hasło:</strong>
-          <code className="d-block mt-1" style={{ fontSize: "1.2rem" }}>
-            {haslo}
-          </code>
-        </div>
-      )}
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.7. kalkulator BMI
-
-Formularz z obliczeniem BMI i interpretacją wyniku.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-// Funkcja pomocnicza — interpretacja BMI (poza komponentem)
-function interpretujBMI(bmi) {
-  if (bmi < 18.5) return { tekst: "Niedowaga", kolor: "warning" };
-  if (bmi < 25) return { tekst: "Waga prawidłowa", kolor: "success" };
-  if (bmi < 30) return { tekst: "Nadwaga", kolor: "warning" };
-  return { tekst: "Otyłość", kolor: "danger" };
-}
-
-function App() {
-  const [waga, setWaga] = useState("");
-  const [wzrost, setWzrost] = useState("");
-  const [wynik, setWynik] = useState(null);
-  const [blad, setBlad] = useState("");
-
-  function handleOblicz(e) {
-    e.preventDefault();
-
-    // Walidacja
-    const wagaNum = Number(waga);
-    const wzrostNum = Number(wzrost);
-
-    if (wagaNum <= 0 || wzrostNum <= 0) {
-      setBlad("Podaj poprawne wartości wagi i wzrostu");
-      setWynik(null);
-      return;
-    }
-
-    // Obliczenie BMI: waga(kg) / wzrost(m)^2
-    const wzrostM = wzrostNum / 100; // cm → m
-    const bmi = wagaNum / (wzrostM * wzrostM);
-
-    setWynik(bmi);
-    setBlad("");
-    console.log(`Waga: ${wagaNum}kg, Wzrost: ${wzrostNum}cm, BMI: ${bmi.toFixed(2)}`);
-  }
-
-  return (
-    <main className="container mt-4" style={{ maxWidth: "400px" }}>
-      <h1>Kalkulator BMI</h1>
-
-      <form onSubmit={handleOblicz}>
-        <div className="mb-3">
-          <label htmlFor="waga" className="form-label">Waga (kg):</label>
-          <input
-            id="waga"
-            type="number"
-            className="form-control"
-            value={waga}
-            onChange={(e) => setWaga(e.target.value)}
-            placeholder="np. 70"
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="wzrost" className="form-label">Wzrost (cm):</label>
-          <input
-            id="wzrost"
-            type="number"
-            className="form-control"
-            value={wzrost}
-            onChange={(e) => setWzrost(e.target.value)}
-            placeholder="np. 175"
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary w-100">
-          Oblicz BMI
-        </button>
-      </form>
-
-      {/* Błąd walidacji */}
-      {blad && <div className="alert alert-danger mt-3">{blad}</div>}
-
-      {/* Wynik BMI */}
-      {wynik !== null && (
-        <div className={`alert alert-${interpretujBMI(wynik).kolor} mt-3`}>
-          <h4>BMI: {wynik.toFixed(2)}</h4>
-          <p>{interpretujBMI(wynik).tekst}</p>
-        </div>
-      )}
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.8. widok kart z filtrami i wyszukiwaniem
-
-Rozbudowany widok kart z wyszukiwarką tekstową i filtrami kategorii.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-function App() {
-  // Dane stałe — produkty
-  const produkty = [
-    { id: 1, nazwa: "Laptop Pro", kategoria: "Elektronika", cena: 4500 },
-    { id: 2, nazwa: "Mysz bezprzewodowa", kategoria: "Elektronika", cena: 120 },
-    { id: 3, nazwa: "Koszulka bawełniana", kategoria: "Odzież", cena: 49 },
-    { id: 4, nazwa: "Spodnie jeansowe", kategoria: "Odzież", cena: 180 },
-    { id: 5, nazwa: "Rower górski", kategoria: "Sport", cena: 2200 },
-    { id: 6, nazwa: "Piłka nożna", kategoria: "Sport", cena: 80 },
-    { id: 7, nazwa: "Monitor 27\"", kategoria: "Elektronika", cena: 1500 },
-    { id: 8, nazwa: "Buty biegowe", kategoria: "Sport", cena: 350 },
-  ];
-
-  // Wyciągnięcie unikalnych kategorii
-  const kategorie = [...new Set(produkty.map((p) => p.kategoria))];
-
-  // Stan filtrów
-  const [szukaj, setSzukaj] = useState("");
-  const [wybranaKategoria, setWybranaKategoria] = useState("Wszystkie");
-  const [sortowanie, setSortowanie] = useState("nazwa");
-
-  // Filtrowanie
-  let przefiltrowane = produkty;
-
-  // Filtr tekstowy
-  if (szukaj.trim() !== "") {
-    przefiltrowane = przefiltrowane.filter((p) =>
-      p.nazwa.toLowerCase().includes(szukaj.toLowerCase())
-    );
-  }
-
-  // Filtr kategorii
-  if (wybranaKategoria !== "Wszystkie") {
-    przefiltrowane = przefiltrowane.filter(
-      (p) => p.kategoria === wybranaKategoria
-    );
-  }
-
-  // Sortowanie
-  przefiltrowane = [...przefiltrowane].sort((a, b) => {
-    if (sortowanie === "nazwa") return a.nazwa.localeCompare(b.nazwa);
-    if (sortowanie === "cena-rosnaco") return a.cena - b.cena;
-    if (sortowanie === "cena-malejaco") return b.cena - a.cena;
-    return 0;
-  });
-
-  return (
-    <main className="container mt-4">
-      <h1>Katalog produktów</h1>
-
-      {/* Panel filtrów */}
-      <div className="row mb-4">
-        {/* Wyszukiwarka */}
-        <div className="col-md-4 mb-2">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Szukaj produktu..."
-            value={szukaj}
-            onChange={(e) => setSzukaj(e.target.value)}
-          />
-        </div>
-
-        {/* Filtr kategorii */}
-        <div className="col-md-4 mb-2">
-          <select
-            className="form-select"
-            value={wybranaKategoria}
-            onChange={(e) => setWybranaKategoria(e.target.value)}
-          >
-            <option value="Wszystkie">Wszystkie kategorie</option>
-            {kategorie.map((k) => (
-              <option key={k} value={k}>{k}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Sortowanie */}
-        <div className="col-md-4 mb-2">
-          <select
-            className="form-select"
-            value={sortowanie}
-            onChange={(e) => setSortowanie(e.target.value)}
-          >
-            <option value="nazwa">Sortuj: Nazwa A-Z</option>
-            <option value="cena-rosnaco">Sortuj: Cena rosnąco</option>
-            <option value="cena-malejaco">Sortuj: Cena malejąco</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Licznik wyników */}
-      <p className="text-muted">Znaleziono: {przefiltrowane.length} produktów</p>
-
-      {/* Siatka kart */}
-      <div className="row">
-        {przefiltrowane.map((produkt) => (
-          <div key={produkt.id} className="col-md-4 mb-3">
-            <div className="card h-100">
-              <div className="card-body">
-                <h5 className="card-title">{produkt.nazwa}</h5>
-                <p className="card-text">
-                  <span className="badge bg-secondary">{produkt.kategoria}</span>
-                </p>
-                <p className="card-text">
-                  <strong>{produkt.cena} zł</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Obsługa braku wyników */}
-      {przefiltrowane.length === 0 && (
-        <p className="text-center text-muted">
-          Brak produktów spełniających kryteria wyszukiwania.
-        </p>
-      )}
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.9. mixer kolorów RGB
-
-Trzy suwaki sterujące kolorem tła w czasie rzeczywistym.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-function App() {
-  const [r, setR] = useState(100);
-  const [g, setG] = useState(150);
-  const [b, setB] = useState(200);
-
-  // Kolor w formacie CSS
-  const kolor = `rgb(${r}, ${g}, ${b})`;
-
-  // Kolor w formacie HEX
-  const hex =
-    "#" +
-    r.toString(16).padStart(2, "0") +
-    g.toString(16).padStart(2, "0") +
-    b.toString(16).padStart(2, "0");
-
-  return (
-    <main className="container mt-4" style={{ maxWidth: "500px" }}>
-      <h1>Mixer kolorów RGB</h1>
-
-      {/* Podgląd koloru */}
-      <div
-        style={{
-          width: "100%",
-          height: "150px",
-          backgroundColor: kolor,
-          borderRadius: "10px",
-          marginBottom: "1rem",
-          border: "1px solid #ccc",
-        }}
-      />
-
-      {/* Wartości koloru */}
-      <p className="text-center">
-        <strong>RGB:</strong> {kolor} | <strong>HEX:</strong> {hex.toUpperCase()}
-      </p>
-
-      {/* Suwak R (czerwony) */}
-      <div className="mb-3">
-        <label className="form-label" style={{ color: "red" }}>
-          R (czerwony): {r}
-        </label>
-        <input
-          type="range"
-          className="form-range"
-          min="0"
-          max="255"
-          value={r}
-          onChange={(e) => setR(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Suwak G (zielony) */}
-      <div className="mb-3">
-        <label className="form-label" style={{ color: "green" }}>
-          G (zielony): {g}
-        </label>
-        <input
-          type="range"
-          className="form-range"
-          min="0"
-          max="255"
-          value={g}
-          onChange={(e) => setG(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Suwak B (niebieski) */}
-      <div className="mb-3">
-        <label className="form-label" style={{ color: "blue" }}>
-          B (niebieski): {b}
-        </label>
-        <input
-          type="range"
-          className="form-range"
-          min="0"
-          max="255"
-          value={b}
-          onChange={(e) => setB(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Reset */}
-      <button
-        className="btn btn-secondary w-100"
-        onClick={() => { setR(0); setG(0); setB(0); }}
-      >
-        Reset (czarny)
-      </button>
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.10. kości do gry z blokowaniem
-
-Gra w kości — rzut 5 kośćmi, możliwość blokowania wybranych kości przy ponownym rzucie.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-// Funkcja losująca wartość kości (1-6)
-function losujKosc() {
-  return Math.floor(Math.random() * 6) + 1;
-}
-
-function App() {
-  // Stan kości — tablica 5 obiektów z wartością i stanem blokady
-  const [kosci, setKosci] = useState([
-    { id: 1, wartosc: losujKosc(), zablokowana: false },
-    { id: 2, wartosc: losujKosc(), zablokowana: false },
-    { id: 3, wartosc: losujKosc(), zablokowana: false },
-    { id: 4, wartosc: losujKosc(), zablokowana: false },
-    { id: 5, wartosc: losujKosc(), zablokowana: false },
-  ]);
-
-  const [liczbaRzutow, setLiczbaRzutow] = useState(1);
-
-  // Rzut kośćmi — tylko niezablokowane
-  function handleRzut() {
-    setKosci((prev) =>
-      prev.map((k) =>
-        k.zablokowana ? k : { ...k, wartosc: losujKosc() }
-      )
-    );
-    setLiczbaRzutow((prev) => prev + 1);
-  }
-
-  // Blokowanie/odblokowanie kości
-  function handleBlokuj(id) {
-    setKosci((prev) =>
-      prev.map((k) =>
-        k.id === id ? { ...k, zablokowana: !k.zablokowana } : k
-      )
-    );
-  }
-
-  // Nowa gra — reset
-  function handleNowaGra() {
-    setKosci(
-      kosci.map((k) => ({ ...k, wartosc: losujKosc(), zablokowana: false }))
-    );
-    setLiczbaRzutow(1);
-  }
-
-  // Suma kości
-  const suma = kosci.reduce((acc, k) => acc + k.wartosc, 0);
-
-  return (
-    <main className="container mt-4 text-center" style={{ maxWidth: "500px" }}>
-      <h1>Kości do gry</h1>
-      <p>Rzut numer: {liczbaRzutow} | Suma: {suma}</p>
-
-      {/* Wyświetlanie kości */}
-      <div className="d-flex justify-content-center gap-2 mb-4">
-        {kosci.map((k) => (
-          <button
-            key={k.id}
-            className={`btn btn-lg ${
-              k.zablokowana ? "btn-danger" : "btn-outline-dark"
-            }`}
-            style={{ width: "60px", height: "60px", fontSize: "1.5rem" }}
-            onClick={() => handleBlokuj(k.id)}
-          >
-            {k.wartosc}
-          </button>
-        ))}
-      </div>
-
-      <p className="text-muted small">
-        Kliknij kość, aby ją zablokować (czerwona = zablokowana)
-      </p>
-
-      <div className="d-flex gap-2 justify-content-center">
-        <button className="btn btn-primary" onClick={handleRzut}>
-          Rzuć kośćmi
-        </button>
-        <button className="btn btn-secondary" onClick={handleNowaGra}>
-          Nowa gra
-        </button>
-      </div>
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.11. licznik z historią operacji
-
-Licznik, który zapisuje historię wszystkich wykonanych operacji.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-function App() {
-  const [licznik, setLicznik] = useState(0);
-  const [historia, setHistoria] = useState([]);
-
-  function wykonajOperacje(operacja, wartosc) {
-    let nowaWartosc;
-
-    switch (operacja) {
-      case "dodaj":
-        nowaWartosc = licznik + wartosc;
-        break;
-      case "odejmij":
-        nowaWartosc = licznik - wartosc;
-        break;
-      case "pomnoz":
-        nowaWartosc = licznik * wartosc;
-        break;
-      case "reset":
-        nowaWartosc = 0;
-        break;
-      default:
-        return;
-    }
-
-    // Zapis do historii
-    const wpis = {
-      id: Date.now(),
-      operacja: operacja,
-      wartosc: wartosc,
-      wynik: nowaWartosc,
-      czas: new Date().toLocaleTimeString(),
-    };
-
-    setHistoria((prev) => [wpis, ...prev]); // Najnowsze na górze
-    setLicznik(nowaWartosc);
-  }
-
-  return (
-    <main className="container mt-4" style={{ maxWidth: "500px" }}>
-      <h1 className="text-center">Licznik: {licznik}</h1>
-
-      {/* Przyciski operacji */}
-      <div className="d-flex gap-2 justify-content-center mb-4">
-        <button className="btn btn-success" onClick={() => wykonajOperacje("dodaj", 1)}>+1</button>
-        <button className="btn btn-success" onClick={() => wykonajOperacje("dodaj", 5)}>+5</button>
-        <button className="btn btn-danger" onClick={() => wykonajOperacje("odejmij", 1)}>-1</button>
-        <button className="btn btn-danger" onClick={() => wykonajOperacje("odejmij", 5)}>-5</button>
-        <button className="btn btn-info" onClick={() => wykonajOperacje("pomnoz", 2)}>×2</button>
-        <button className="btn btn-secondary" onClick={() => wykonajOperacje("reset", 0)}>Reset</button>
-      </div>
-
-      {/* Historia operacji */}
-      <h5>Historia operacji ({historia.length})</h5>
-      {historia.length === 0 ? (
-        <p className="text-muted">Brak operacji</p>
-      ) : (
-        <table className="table table-sm table-striped">
-          <thead>
-            <tr>
-              <th>Czas</th>
-              <th>Operacja</th>
-              <th>Wynik</th>
-            </tr>
-          </thead>
-          <tbody>
-            {historia.map((w) => (
-              <tr key={w.id}>
-                <td>{w.czas}</td>
-                <td>{w.operacja} {w.wartosc !== 0 ? w.wartosc : ""}</td>
-                <td>{w.wynik}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {/* Czyszczenie historii */}
-      {historia.length > 0 && (
-        <button
-          className="btn btn-outline-danger btn-sm"
-          onClick={() => setHistoria([])}
-        >
-          Wyczyść historię
-        </button>
-      )}
-    </main>
-  );
-}
-
-export default App;
-```
-
----
-
-### 26.12. algorytmy w React — sumowanie, zliczanie, filtrowanie
-
-Przykłady typowych operacji algorytmicznych osadzonych w React.
-
-#### 26.12.1. suma i średnia z tablicy
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-
-function App() {
-  const [oceny, setOceny] = useState([5, 4, 3, 5, 4, 2, 5, 3]);
-  const [nowaOcena, setNowaOcena] = useState("");
-
-  // Obliczenia — robione przed return, nie w stanie
-  const suma = oceny.reduce((acc, o) => acc + o, 0);
-  const srednia = oceny.length > 0 ? suma / oceny.length : 0;
-  const najwyzsza = oceny.length > 0 ? Math.max(...oceny) : 0;
-  const najnizsza = oceny.length > 0 ? Math.min(...oceny) : 0;
-
-  function handleDodaj() {
-    const ocena = Number(nowaOcena);
-    if (ocena >= 1 && ocena <= 6) {
-      setOceny((prev) => [...prev, ocena]);
-      setNowaOcena("");
-    }
-  }
-
-  return (
-    <div className="container mt-4" style={{ maxWidth: "400px" }}>
-      <h2>Statystyki ocen</h2>
-      <p>Oceny: {oceny.join(", ")}</p>
-      <p>Suma: {suma}</p>
-      <p>Średnia: {srednia.toFixed(2)}</p>
-      <p>Najwyższa: {najwyzsza}</p>
-      <p>Najniższa: {najnizsza}</p>
-      <p>Liczba ocen: {oceny.length}</p>
-
-      <div className="input-group mt-3">
-        <input
-          type="number"
-          className="form-control"
-          value={nowaOcena}
-          onChange={(e) => setNowaOcena(e.target.value)}
-          placeholder="1-6"
-          min="1"
-          max="6"
-        />
-        <button className="btn btn-primary" onClick={handleDodaj}>Dodaj ocenę</button>
-      </div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-#### 26.12.2. zliczanie wystąpień
-
-```jsx
-function App() {
-  const dane = ["kot", "pies", "kot", "ryba", "pies", "kot", "papuga"];
-
-  // Zliczanie za pomocą reduce
-  const zliczenie = dane.reduce((acc, el) => {
-    acc[el] = (acc[el] || 0) + 1;
-    return acc;
-  }, {});
-
-  return (
-    <div className="container mt-4">
-      <h2>Zliczanie wystąpień</h2>
-      <table className="table" style={{ maxWidth: "300px" }}>
-        <thead>
-          <tr><th>Element</th><th>Ilość</th></tr>
-        </thead>
-        <tbody>
-          {Object.entries(zliczenie).map(([klucz, wartosc]) => (
-            <tr key={klucz}>
-              <td>{klucz}</td>
-              <td>{wartosc}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-```
-
-#### 26.12.3. filtrowanie po wielu kryteriach
-
-```jsx
-function App() {
-  const [minCena, setMinCena] = useState(0);
-  const [maxCena, setMaxCena] = useState(1000);
-  const [szukaj, setSzukaj] = useState("");
-
-  const produkty = [
-    { id: 1, nazwa: "Laptop", cena: 3000 },
-    { id: 2, nazwa: "Mysz", cena: 50 },
-    { id: 3, nazwa: "Klawiatura", cena: 200 },
-    { id: 4, nazwa: "Monitor", cena: 1500 },
-    { id: 5, nazwa: "Słuchawki", cena: 350 },
-  ];
-
-  // Filtrowanie z wieloma warunkami jednocześnie
-  const wyniki = produkty
-    .filter((p) => p.cena >= minCena && p.cena <= maxCena)
-    .filter((p) => p.nazwa.toLowerCase().includes(szukaj.toLowerCase()));
-
-  return (
-    <div className="container mt-4">
-      <h2>Filtrowanie produktów</h2>
-
-      <div className="row mb-3">
-        <div className="col">
-          <input type="text" className="form-control" placeholder="Szukaj..."
-            value={szukaj} onChange={(e) => setSzukaj(e.target.value)} />
-        </div>
-        <div className="col">
-          <input type="number" className="form-control" placeholder="Min cena"
-            value={minCena} onChange={(e) => setMinCena(Number(e.target.value))} />
-        </div>
-        <div className="col">
-          <input type="number" className="form-control" placeholder="Max cena"
-            value={maxCena} onChange={(e) => setMaxCena(Number(e.target.value))} />
-        </div>
-      </div>
-
-      <p>Znaleziono: {wyniki.length}</p>
-      <ul className="list-group">
-        {wyniki.map((p) => (
-          <li key={p.id} className="list-group-item d-flex justify-content-between">
-            <span>{p.nazwa}</span>
-            <span>{p.cena} zł</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-```
-
-#### 26.12.4. szyfr cezara
-
-```jsx
-import { useState } from "react";
-
-function App() {
-  const [tekst, setTekst] = useState("");
-  const [przesuniecie, setPrzesuniecie] = useState(3);
-  const [wynik, setWynik] = useState("");
-
-  function szyfrujCezar(tekst, przesuniecie) {
-    return tekst
-      .split("")
-      .map((znak) => {
-        // Małe litery
-        if (znak >= "a" && znak <= "z") {
-          const kod = ((znak.charCodeAt(0) - 97 + przesuniecie) % 26 + 26) % 26 + 97;
-          return String.fromCharCode(kod);
-        }
-        // Duże litery
-        if (znak >= "A" && znak <= "Z") {
-          const kod = ((znak.charCodeAt(0) - 65 + przesuniecie) % 26 + 26) % 26 + 65;
-          return String.fromCharCode(kod);
-        }
-        // Inne znaki bez zmian
-        return znak;
-      })
-      .join("");
-  }
-
-  function handleSzyfruj() {
-    setWynik(szyfrujCezar(tekst, przesuniecie));
-  }
-
-  function handleDeszyfruj() {
-    setWynik(szyfrujCezar(tekst, -przesuniecie));
-  }
-
-  return (
-    <div className="container mt-4" style={{ maxWidth: "500px" }}>
-      <h2>Szyfr Cezara</h2>
-
-      <div className="mb-3">
-        <label className="form-label">Tekst:</label>
-        <input type="text" className="form-control" value={tekst}
-          onChange={(e) => setTekst(e.target.value)} placeholder="Wpisz tekst" />
-      </div>
-
-      <div className="mb-3">
-        <label className="form-label">Przesunięcie: {przesuniecie}</label>
-        <input type="range" className="form-range" min="1" max="25"
-          value={przesuniecie} onChange={(e) => setPrzesuniecie(Number(e.target.value))} />
-      </div>
-
-      <div className="d-flex gap-2 mb-3">
-        <button className="btn btn-primary" onClick={handleSzyfruj}>Szyfruj</button>
-        <button className="btn btn-secondary" onClick={handleDeszyfruj}>Deszyfruj</button>
-      </div>
-
-      {wynik && (
-        <div className="alert alert-info">
-          <strong>Wynik:</strong> {wynik}
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
-```
-
----
-
----
-
-### 26.13. prosta playlista audio (Odtwarzacz ze stanem)
-
-Ten wzorzec jest genialnym rozwiązaniem skomplikowanego zadania polegającego na zbudowaniu „Player’a” i manipulowaniu ścieżkami podawanych plików typu `mp3`. 
-Z reguły polega to na wrzuceniu utworów do tablicy (bazy), a po kliknięciu klawisza `<li>` zmienieniu całego odtwarzanego źródła na nową muzykę w hooku (stanie).
-
-```jsx
-// Główny lub opcjonalny plik: src/App.js
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css"; // Polegamy mocno na gridach / kartkach bootstrapa stąd.
-
-// Ważne: Baza musi wskazywać na folder publiczny dla ładowarki! Pliki muszą tam siedzieć (public/dzwieki/..._
-const LISTA_UTWOROW = [
-  { id: 1, tytul: "Zimowy wiatr", wokalista: "Marek_Pytlas", src: "/dzwieki/wiatr.mp3" },
-  { id: 2, tytul: "Nocne gwieździste niebo", wokalista: "Dj GROM", src: "/dzwieki/niebo.mp3" },
-  { id: 3, tytul: "Energetyczny Pop 2026", wokalista: "Sygmund", src: "/dzwieki/pop.mp3" }
-];
-
-function OdtwarzaczZPlayLista() {
-  // Trzymamy w całości obiekt w którym jest i autor i jego mp3!
-  const [obecnyUtwor, setObecnyUtwor] = useState(LISTA_UTWOROW[0]);
-
-  return (
-    <div className="container mt-5">
-      <div className="card shadow border-dark" style={{ maxWidth: "550px", margin: "auto" }}>
-        
-        {/* ======== Widok playera (górny ekran odtwarzania) ======== */}
-        <div className="card-header bg-dark text-white text-center rounded-top">
-          <h5 className="mb-0">🎵 Twoja Cyfrowa Playlista</h5>
-        </div>
-        <div className="card-body text-center bg-light">
-          <h6 className="text-secondary text-uppercase ls-1">Aktualnie gra</h6>
-          <h2 className="text-primary fw-bold">{obecnyUtwor.tytul}</h2>
-          <p className="text-muted fs-5">Artysta: {obecnyUtwor.wokalista}</p>
-          
-          {/* Tag Audio ma atrybut kluczowy -> key={}. 
-             Zmusza to silnik React'a do "zniszczenia i zrestartowania Playera" kiedy podepniemy mu nowy key'u 
-             w zapiętym źródle (mp3). Bez tego podmienimy src ale utwór nie zadziała.
-          */}
-          <audio controls autoPlay key={obecnyUtwor.src} className="w-100 mt-4 px-2">
-             <source src={obecnyUtwor.src} type="audio/mpeg" />
-          </audio>
-        </div>
-
-        {/* ======== Sekcja listy utworów do klikania ======== */}
-        <ul className="list-group list-group-flush rounded-bottom">
-          {LISTA_UTWOROW.map((utwor) => {
-             // Wzmienie dynamiczne klasy jeżeli piosenka w pętli zgadza się ze stanem obecnym w pamięci
-             const aktywnyClass = utwor.id === obecnyUtwor.id ? "active bg-primary border-primary fw-bold" : "";
-             
-             return (
-               <li 
-                 key={utwor.id} 
-                 className={`list-group-item list-group-item-action ${aktywnyClass}`}
-                 onClick={() => setObecnyUtwor(utwor)}
-                 style={{ cursor: "pointer", transition: "0.2s" }}
-               >
-                 <div className="d-flex justify-content-between align-items-center">
-                    <span>{utwor.id}. {utwor.tytul} </span>
-                    <span className="badge rounded-pill bg-dark">
-                      {utwor.id === obecnyUtwor.id ? "Odtwarza się" : "Graj"}
-                    </span>
-                 </div>
-               </li>
-             );
-          })}
-        </ul>
-
-      </div>
-    </div>
-  );
-}
-
-export default OdtwarzaczZPlayLista;
-```
-
----
-
-### 26.14. akordeon FAQ z widocznością (Sekcje rozwijane)
-
-Typowe zadanie architektoniczne - "Mam listę elementów, ale po kliknięciu konkretnego w dół rościąga mi się tekst/odpowiedź, gasząc resztę na biało!". Jest to idealne pole dla **Renderowania warunkowego**.
-
-```jsx
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-const BAZA_FAQ = [
-  { id: 1, pyta: "Jak długo czekam na dostawę?", opowiada: "Zasze w 24 godziny od kupienia zlecenia po zaksięgowaniu P24 na naszym koncie firmowym." },
-  { id: 2, pyta: "Czy dostawa jest darmowa dla paczek?", opowiada: "Dla zamówień przekraczających trefny pułap 199.99 PLN wysyłamy na nasz pełny, gigantyczny paczkowy koszt całkowicie za free." },
-  { id: 3, pyta: "Co z procedurą zgłaszanych zwrotów 12 dniowych", opowiada: "Towar ze wgzlędów higienicznych i certyfikatów z rąk Reacta nie może zostać o dziwo wysłany w drogę powrotnę a zaledwie w proces reklamacji wewnątrz chatu." }
-];
-
-function ModulPytanUzytkownikaFAQ() {
-  // Stan "otwarteId" trzyma ID rozwiniętego segmentu. Wartość startowa to puste -> 'null', czyli wszystkie ukryte.
-  const [otwarteId, setOtwarteId] = useState(null);
-
-  // Funkcja odbierająca kliknięcie:
-  const nacisnietyPrzycisk = (idMiejsca) => {
-    // Jeżeli kliknięto id tego samego, co jest już otwarte... ZAMKNIJ wszystkich (przypisać tu null).
-    if (otwarteId === idMiejsca) {
-      setOtwarteId(null);
-    } else {
-      setOtwarteId(idMiejsca); // Jak wciśnie inny guzik - po prostu OTWÓRZ go! A przy okazji reszta zgasi flagi.
-    }
-  };
-
-  return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-5 fw-bold text-dark">Baza Częstych Przyszłoch Pytań</h2>
-      
-      <div className="list-group shadow-lg overflow-hidden border-0 rounded" style={{ maxWidth: "600px", margin: "auto" }}>
-        {BAZA_FAQ.map((rekord) => {
-          
-          // Boolean (flaga bool) decydująca wewnątrz metody - jeżeli w koszcie się zgadza to True
-          const panelWidoczny = otwarteId === rekord.id; 
-          
-          return (
-            <div key={rekord.id}>
-              
-              {/* Sekcja Clickable (Nagłówek Modułu z Zapytaniem) */}
-              <button 
-                onClick={() => nacisnietyPrzycisk(rekord.id)}
-                className={`list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3 border-0 border-bottom
-                 ${panelWidoczny ? "bg-primary text-white" : ""}`}
-                style={{ fontSize: "1.1rem" }}
-              >
-                <div className="fw-bold">
-                  <span className="me-3 fs-4 text-warning">?</span>
-                  Question. {rekord.pyta}
-                </div>
-                {/* Genialny feedback do strzałeczek kierunkowych! */}
-                <span className="fs-5">{panelWidoczny ? "⮝ Zwiń" : "⮟ Rozwiń"}</span>
-              </button>
-
-              {/* Renderowanie warunkowe (wyświetl / zmiel). Gdyby zmienna pod bool'a u góry wynosiła fałsz, po prostu przeskoczy tę sekcję. */}
-              {panelWidoczny && (
-                <div className="p-4 bg-light text-muted border-start border-5 border-warning opacity-75">
-                  <strong className="text-dark">Odpowiedź Eksperta:</strong> <br/>
-                  <p className="mt-2 mb-0 lh-lg">{rekord.opowiada}</p>
-                </div>
-              )}
-              
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  );
-}
-
-export default ModulPytanUzytkownikaFAQ;
-```
-
-
----
-
-### 26.15. formularz zamówienia pizzy
+### 26.4. Formularz zamówienia pizzy
 
 Rozbudowany formularz łączący wiele typów pól: radio (rozmiar), checkboxy (składniki z cenami), select (sos), range (ostrość), textarea (uwagi), dynamiczne obliczanie ceny, walidację i podsumowanie zamówienia w formie paragonu.
 
@@ -8024,7 +8221,454 @@ export default App;
 
 ---
 
-### 26.16. przelicznik walut
+---
+
+### 26.5. Formularz wyceny ubezpieczenia OC pojazdu
+
+Prosty kalkulator składek bazujący na wieku kierowcy i historii bezszkodowej jazdy.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [wiek, setWiek] = useState("");
+  const [pojemnosc, setPojemnosc] = useState("");
+  const [bezszkodowa, setBezszkodowa] = useState(true);
+  const [cena, setCena] = useState(null);
+
+  function obliczOC(e) {
+    e.preventDefault();
+    let baza = 500;
+
+    const wiekNum = Number(wiek);
+    const pojNum = Number(pojemnosc);
+
+    if (wiekNum < 18) {
+      alert("Kierowca musi mieć ukończone 18 lat!");
+      return;
+    }
+
+    // Zwyżki i zniżki
+    if (wiekNum < 25) baza += 300;
+    if (pojNum > 2000) baza += 200;
+    else if (pojNum > 1400) baza += 100;
+    
+    if (bezszkodowa) baza *= 0.8; // Zniżka 20%
+
+    setCena(Math.round(baza));
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Kalkulator OC</h1>
+      <form onSubmit={obliczOC}>
+        <div className="mb-3">
+          <label className="form-label">Wiek kierowcy:</label>
+          <input type="number" className="form-control" value={wiek} onChange={(e) => setWiek(e.target.value)} required min="18" max="100" />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Pojemność silnika (cm3):</label>
+          <input type="number" className="form-control" value={pojemnosc} onChange={(e) => setPojemnosc(e.target.value)} required min="500" max="6000" />
+        </div>
+        <div className="form-check mb-3">
+          <input type="checkbox" className="form-check-input" id="bezszkodowa" checked={bezszkodowa} onChange={(e) => setBezszkodowa(e.target.checked)} />
+          <label className="form-check-label" htmlFor="bezszkodowa">Bezszkodowa jazda (zniżka 20%)</label>
+        </div>
+        <button type="submit" className="btn btn-primary w-100">Oblicz składkę</button>
+      </form>
+      {cena !== null && (
+        <div className="alert alert-success mt-3">
+          Szacowana roczna składka: <strong>{cena} PLN</strong>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.6. Formularz rezerwacji wizyty lekarskiej
+
+Formularz, w którym wybór specjalizacji filtruje listę dostępnych lekarzy.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const lekarze = [
+  { id: 1, nazwa: "Jan Kowalski", spec: "Kardiolog" },
+  { id: 2, nazwa: "Anna Nowak", spec: "Okulista" },
+  { id: 3, nazwa: "Piotr Wiśniewski", spec: "Kardiolog" },
+  { id: 4, nazwa: "Maria Wójcik", spec: "Ortopeda" }
+];
+
+const specjalizacje = [...new Set(lekarze.map(l => l.spec))];
+
+function App() {
+  const [spec, setSpec] = useState("");
+  const [lekarz, setLekarz] = useState("");
+  const [data, setData] = useState("");
+  const [potwierdzenie, setPotwierdzenie] = useState("");
+
+  const dostepniLekarze = lekarze.filter(l => l.spec === spec);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const wybranyLekarz = lekarze.find(l => l.id === Number(lekarz));
+    setPotwierdzenie(`Zarezerwowano wizytę u: ${wybranyLekarz.nazwa} (${spec}) na termin: ${data}`);
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Rezerwacja wizyty</h1>
+      {potwierdzenie ? (
+        <div className="alert alert-success">{potwierdzenie}</div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Specjalizacja:</label>
+            <select className="form-select" value={spec} onChange={(e) => { setSpec(e.target.value); setLekarz(""); }} required>
+              <option value="">Wybierz specjalizację...</option>
+              {specjalizacje.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Lekarz:</label>
+            <select className="form-select" value={lekarz} onChange={(e) => setLekarz(e.target.value)} required disabled={!spec}>
+              <option value="">Wybierz lekarza...</option>
+              {dostepniLekarze.map(l => <option key={l.id} value={l.id}>{l.nazwa}</option>)}
+            </select>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Data wizyty:</label>
+            <input type="date" className="form-control" value={data} onChange={(e) => setData(e.target.value)} required />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">Zarezerwuj</button>
+        </form>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.7. Generator i podgląd CV (Live CV Builder)
+
+Aplikacja, która natychmiastowo aktualizuje wizualny podgląd CV podczas wprowadzania danych, z funkcją wydruku.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [imie, setImie] = useState("Jan Kowalski");
+  const [stanowisko, setStanowisko] = useState("Frontend Developer");
+  const [telefon, setTelefon] = useState("123-456-789");
+  const [email, setEmail] = useState("jan@example.com");
+  const [umiejetnosci, setUmiejetnosci] = useState("React, JavaScript, CSS");
+
+  return (
+    <main className="container-fluid mt-4">
+      <div className="row">
+        {/* Formularz - lewa kolumna */}
+        <div className="col-md-5 d-print-none">
+          <h2>Wprowadź dane</h2>
+          <div className="mb-3">
+            <label className="form-label">Imię i nazwisko</label>
+            <input className="form-control" value={imie} onChange={e => setImie(e.target.value)} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Stanowisko</label>
+            <input className="form-control" value={stanowisko} onChange={e => setStanowisko(e.target.value)} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Telefon</label>
+            <input className="form-control" value={telefon} onChange={e => setTelefon(e.target.value)} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input className="form-control" value={email} onChange={e => setEmail(e.target.value)} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Umiejętności (po przecinku)</label>
+            <input className="form-control" value={umiejetnosci} onChange={e => setUmiejetnosci(e.target.value)} />
+          </div>
+          <button className="btn btn-success" onClick={() => window.print()}>Drukuj CV</button>
+        </div>
+
+        {/* Podgląd CV - prawa kolumna */}
+        <div className="col-md-7">
+          <div className="p-4 border rounded shadow-sm bg-light" style={{ minHeight: "800px" }}>
+            <h1 className="text-primary">{imie || "Imię i Nazwisko"}</h1>
+            <h4 className="text-secondary">{stanowisko || "Twoje Stanowisko"}</h4>
+            <hr />
+            <p><strong>Kontakt:</strong> {telefon} | {email}</p>
+            <h5 className="mt-4">Umiejętności</h5>
+            <ul>
+              {umiejetnosci.split(",").map((um, i) => (
+                um.trim() ? <li key={i}>{um.trim()}</li> : null
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.8. Formularz ankiety z oceną gwiazdkową
+
+Zastosowanie klikalnych przycisków symulujących gwiazdki i warunkowa walidacja (jeśli ocena jest niska, wymagany jest komentarz).
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [ocena, setOcena] = useState(0);
+  const [komentarz, setKomentarz] = useState("");
+  const [wyslano, setWyslano] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (ocena === 0) {
+      alert("Proszę wybrać ocenę.");
+      return;
+    }
+    if (ocena <= 3 && komentarz.trim() === "") {
+      alert("Przy ocenie 3 lub niższej prosimy o krótki komentarz, co poszło nie tak.");
+      return;
+    }
+    setWyslano(true);
+  }
+
+  if (wyslano) {
+    return <div className="container mt-4 alert alert-success">Dziękujemy za opinię!</div>;
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Oceń usługę</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="form-label d-block">Twoja ocena (1-5):</label>
+          {[1, 2, 3, 4, 5].map((gwiazdka) => (
+            <button
+              key={gwiazdka}
+              type="button"
+              className={`btn me-1 ${ocena >= gwiazdka ? "btn-warning" : "btn-outline-secondary"}`}
+              onClick={() => setOcena(gwiazdka)}
+            >
+              ★
+            </button>
+          ))}
+        </div>
+        
+        <div className="mb-3">
+          <label className="form-label">Komentarz:</label>
+          <textarea 
+            className="form-control" 
+            rows="3" 
+            value={komentarz} 
+            onChange={(e) => setKomentarz(e.target.value)}
+            placeholder={ocena > 0 && ocena <= 3 ? "Wymagany komentarz..." : "Opcjonalny komentarz..."}
+          />
+        </div>
+        
+        <button type="submit" className="btn btn-primary w-100">Wyślij ankietę</button>
+      </form>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.9. Kalkulator wyceny szafy na wymiar
+
+Aplikacja z kilkoma zależnościami - zmiana wymiarów lub materiału wpływa na cenę całkowitą.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [szerokosc, setSzerokosc] = useState(100);
+  const [wysokosc, setWysokosc] = useState(200);
+  const [material, setMaterial] = useState("plyta");
+  const [montaz, setMontaz] = useState(false);
+
+  // Zastosowanie prostego algorytmu wyceny
+  const pole = (szerokosc / 100) * (wysokosc / 100); // w metrach kwadratowych
+  
+  let cenaZaMetr = 0;
+  if (material === "plyta") cenaZaMetr = 150;
+  else if (material === "drewno") cenaZaMetr = 450;
+  else if (material === "szklo") cenaZaMetr = 600;
+
+  let suma = pole * cenaZaMetr * 2; // uproszczone wyliczenie na fronty i korpus
+  if (montaz) suma += 300; // stała cena montażu
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Konfigurator szafy</h1>
+      
+      <div className="mb-3">
+        <label className="form-label">Szerokość (cm): {szerokosc}</label>
+        <input type="range" className="form-range" min="50" max="300" step="10" value={szerokosc} onChange={(e) => setSzerokosc(Number(e.target.value))} />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Wysokość (cm): {wysokosc}</label>
+        <input type="range" className="form-range" min="100" max="250" step="10" value={wysokosc} onChange={(e) => setWysokosc(Number(e.target.value))} />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Materiał frontów:</label>
+        <select className="form-select" value={material} onChange={(e) => setMaterial(e.target.value)}>
+          <option value="plyta">Płyta laminowana</option>
+          <option value="drewno">Drewno lite</option>
+          <option value="szklo">Szkło / Lustro</option>
+        </select>
+      </div>
+
+      <div className="form-check mb-4">
+        <input type="checkbox" className="form-check-input" id="montaz" checked={montaz} onChange={(e) => setMontaz(e.target.checked)} />
+        <label className="form-check-label" htmlFor="montaz">Z usługą montażu (+300 zł)</label>
+      </div>
+
+      <div className="alert alert-info">
+        <strong>Szacowany koszt: {Math.round(suma)} PLN</strong>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.10. Kalkulator BMI
+
+Formularz z obliczeniem BMI i interpretacją wyniku.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+// Funkcja pomocnicza — interpretacja BMI (poza komponentem)
+function interpretujBMI(bmi) {
+  if (bmi < 18.5) return { tekst: "Niedowaga", kolor: "warning" };
+  if (bmi < 25) return { tekst: "Waga prawidłowa", kolor: "success" };
+  if (bmi < 30) return { tekst: "Nadwaga", kolor: "warning" };
+  return { tekst: "Otyłość", kolor: "danger" };
+}
+
+function App() {
+  const [waga, setWaga] = useState("");
+  const [wzrost, setWzrost] = useState("");
+  const [wynik, setWynik] = useState(null);
+  const [blad, setBlad] = useState("");
+
+  function handleOblicz(e) {
+    e.preventDefault();
+
+    // Walidacja
+    const wagaNum = Number(waga);
+    const wzrostNum = Number(wzrost);
+
+    if (wagaNum <= 0 || wzrostNum <= 0) {
+      setBlad("Podaj poprawne wartości wagi i wzrostu");
+      setWynik(null);
+      return;
+    }
+
+    // Obliczenie BMI: waga(kg) / wzrost(m)^2
+    const wzrostM = wzrostNum / 100; // cm → m
+    const bmi = wagaNum / (wzrostM * wzrostM);
+
+    setWynik(bmi);
+    setBlad("");
+    console.log(`Waga: ${wagaNum}kg, Wzrost: ${wzrostNum}cm, BMI: ${bmi.toFixed(2)}`);
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "400px" }}>
+      <h1>Kalkulator BMI</h1>
+
+      <form onSubmit={handleOblicz}>
+        <div className="mb-3">
+          <label htmlFor="waga" className="form-label">Waga (kg):</label>
+          <input
+            id="waga"
+            type="number"
+            className="form-control"
+            value={waga}
+            onChange={(e) => setWaga(e.target.value)}
+            placeholder="np. 70"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="wzrost" className="form-label">Wzrost (cm):</label>
+          <input
+            id="wzrost"
+            type="number"
+            className="form-control"
+            value={wzrost}
+            onChange={(e) => setWzrost(e.target.value)}
+            placeholder="np. 175"
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">
+          Oblicz BMI
+        </button>
+      </form>
+
+      {/* Błąd walidacji */}
+      {blad && <div className="alert alert-danger mt-3">{blad}</div>}
+
+      {/* Wynik BMI */}
+      {wynik !== null && (
+        <div className={`alert alert-${interpretujBMI(wynik).kolor} mt-3`}>
+          <h4>BMI: {wynik.toFixed(2)}</h4>
+          <p>{interpretujBMI(wynik).tekst}</p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.11. Przelicznik walut
 
 Dwukierunkowy przelicznik walut z dynamiczną tabelą kursów, historią przeliczeń, zamianą walut jednym kliknięciem i wizualnym wskaźnikiem siły waluty.
 
@@ -8320,7 +8964,1555 @@ export default App;
 
 ---
 
-### 26.17. galeria zdjęć z lightboxem i ulubionymi
+---
+
+### 26.12. Kalkulator spalania paliwa i kosztów podróży
+
+Prosta aplikacja kalkulująca koszty przejazdu na podstawie odległości, spalania i ceny paliwa.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [dystans, setDystans] = useState("");
+  const [spalanie, setSpalanie] = useState("");
+  const [cena, setCena] = useState("");
+  const [pasazerowie, setPasazerowie] = useState("1");
+  const [wynik, setWynik] = useState(null);
+
+  function oblicz(e) {
+    e.preventDefault();
+    const d = Number(dystans);
+    const s = Number(spalanie);
+    const c = Number(cena);
+    const p = Number(pasazerowie);
+
+    if (d > 0 && s > 0 && c > 0 && p > 0) {
+      const zuzycie = (d / 100) * s;
+      const kosztCalkowity = zuzycie * c;
+      const kosztNaOsobe = kosztCalkowity / p;
+
+      setWynik({
+        zuzycie: zuzycie.toFixed(2),
+        koszt: kosztCalkowity.toFixed(2),
+        naOsobe: kosztNaOsobe.toFixed(2)
+      });
+    }
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "400px" }}>
+      <h1>Koszty podróży</h1>
+      <form onSubmit={oblicz}>
+        <div className="mb-2">
+          <label className="form-label">Dystans (km):</label>
+          <input type="number" className="form-control" value={dystans} onChange={e => setDystans(e.target.value)} required />
+        </div>
+        <div className="mb-2">
+          <label className="form-label">Średnie spalanie (l/100km):</label>
+          <input type="number" step="0.1" className="form-control" value={spalanie} onChange={e => setSpalanie(e.target.value)} required />
+        </div>
+        <div className="mb-2">
+          <label className="form-label">Cena paliwa (zł/l):</label>
+          <input type="number" step="0.01" className="form-control" value={cena} onChange={e => setCena(e.target.value)} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Liczba osób:</label>
+          <input type="number" className="form-control" value={pasazerowie} min="1" onChange={e => setPasazerowie(e.target.value)} required />
+        </div>
+        <button type="submit" className="btn btn-primary w-100">Oblicz</button>
+      </form>
+
+      {wynik && (
+        <div className="mt-4 p-3 bg-light rounded border">
+          <p>Zużycie paliwa: <strong>{wynik.zuzycie} l</strong></p>
+          <p>Całkowity koszt: <strong>{wynik.koszt} zł</strong></p>
+          <p>Koszt na osobę: <strong className="text-success">{wynik.naOsobe} zł</strong></p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.13. Kalkulator rat kredytu (symulator)
+
+Aplikacja wykorzystująca wzór matematyczny do obliczania stałej raty kredytowej.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [kwota, setKwota] = useState("");
+  const [oprocentowanie, setOprocentowanie] = useState("");
+  const [okres, setOkres] = useState("");
+  const [wynik, setWynik] = useState(null);
+
+  function obliczRate(e) {
+    e.preventDefault();
+    const K = Number(kwota); // Kapitał
+    const p = Number(oprocentowanie) / 100 / 12; // Miesięczne oprocentowanie
+    const n = Number(okres); // Liczba rat (miesięcy)
+
+    if (K > 0 && p > 0 && n > 0) {
+      // Wzór na ratę stałą
+      const rata = (K * p * Math.pow(1 + p, n)) / (Math.pow(1 + p, n) - 1);
+      const suma = rata * n;
+      const odsetki = suma - K;
+
+      setWynik({
+        rata: rata.toFixed(2),
+        suma: suma.toFixed(2),
+        odsetki: odsetki.toFixed(2)
+      });
+    }
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "450px" }}>
+      <h1>Kalkulator Kredytowy</h1>
+      <form onSubmit={obliczRate}>
+        <div className="mb-3">
+          <label className="form-label">Kwota kredytu (zł):</label>
+          <input type="number" className="form-control" value={kwota} onChange={e => setKwota(e.target.value)} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Oprocentowanie roczne (%):</label>
+          <input type="number" step="0.1" className="form-control" value={oprocentowanie} onChange={e => setOprocentowanie(e.target.value)} required />
+        </div>
+        <div className="mb-4">
+          <label className="form-label">Okres spłaty (w miesiącach):</label>
+          <input type="number" className="form-control" value={okres} onChange={e => setOkres(e.target.value)} required />
+        </div>
+        <button type="submit" className="btn btn-primary w-100">Oblicz ratę</button>
+      </form>
+
+      {wynik && (
+        <div className="mt-4 alert alert-info">
+          <h5>Miesięczna rata: <strong>{wynik.rata} zł</strong></h5>
+          <hr />
+          <p className="mb-1">Całkowita kwota do spłaty: {wynik.suma} zł</p>
+          <p className="mb-0 text-danger">Z tego odsetki: {wynik.odsetki} zł</p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.14. Kalkulator zapotrzebowania kalorycznego (BMR i TDEE)
+
+Kalkulator używający wzoru Harrisa-Benedicta oraz mnożników aktywności z radio buttons i selectem.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [płeć, setPłeć] = useState("k");
+  const [waga, setWaga] = useState("");
+  const [wzrost, setWzrost] = useState("");
+  const [wiek, setWiek] = useState("");
+  const [aktywnosc, setAktywnosc] = useState("1.2");
+  const [wynik, setWynik] = useState(null);
+
+  function obliczKcal(e) {
+    e.preventDefault();
+    const w = Number(waga);
+    const h = Number(wzrost);
+    const a = Number(wiek);
+    
+    let bmr = 0;
+    // Wzór Mifflina-St Jeor (dokładniejszy dla ogółu)
+    if (płeć === "m") {
+      bmr = (10 * w) + (6.25 * h) - (5 * a) + 5;
+    } else {
+      bmr = (10 * w) + (6.25 * h) - (5 * a) - 161;
+    }
+
+    const tdee = bmr * Number(aktywnosc);
+    setWynik({ bmr: Math.round(bmr), tdee: Math.round(tdee) });
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Zapotrzebowanie Kcal</h1>
+      <form onSubmit={obliczKcal}>
+        <div className="mb-3">
+          <label className="me-3">Płeć:</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="plec" value="k" checked={płeć === "k"} onChange={e => setPłeć(e.target.value)} />
+            <label className="form-check-label">Kobieta</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="plec" value="m" checked={płeć === "m"} onChange={e => setPłeć(e.target.value)} />
+            <label className="form-check-label">Mężczyzna</label>
+          </div>
+        </div>
+        <div className="row mb-3">
+          <div className="col">
+            <label>Waga (kg)</label>
+            <input type="number" className="form-control" value={waga} onChange={e => setWaga(e.target.value)} required />
+          </div>
+          <div className="col">
+            <label>Wzrost (cm)</label>
+            <input type="number" className="form-control" value={wzrost} onChange={e => setWzrost(e.target.value)} required />
+          </div>
+          <div className="col">
+            <label>Wiek</label>
+            <input type="number" className="form-control" value={wiek} onChange={e => setWiek(e.target.value)} required />
+          </div>
+        </div>
+        <div className="mb-4">
+          <label>Poziom aktywności fizycznej:</label>
+          <select className="form-select" value={aktywnosc} onChange={e => setAktywnosc(e.target.value)}>
+            <option value="1.2">Brak aktywności (praca siedząca)</option>
+            <option value="1.375">Niska aktywność (1-3 razy w tyg.)</option>
+            <option value="1.55">Średnia aktywność (3-5 razy w tyg.)</option>
+            <option value="1.725">Wysoka aktywność (codziennie)</option>
+          </select>
+        </div>
+        <button type="submit" className="btn btn-success w-100">Oblicz</button>
+      </form>
+
+      {wynik && (
+        <div className="alert alert-success mt-4">
+          <p className="mb-1">BMR (Podstawowa przemiana materii): <strong>{wynik.bmr} kcal</strong></p>
+          <p className="mb-0">TDEE (Całkowite zapotrzebowanie): <strong>{wynik.tdee} kcal</strong></p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.15. Kalkulator wieku psa (ludzkie lata)
+
+Prosty kalkulator z suwakiem i warunkowym mnożnikiem uzależnionym od rozmiaru zwierzęcia.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [wiekPsa, setWiekPsa] = useState(5);
+  const [rozmiar, setRozmiar] = useState("maly");
+
+  let ludzkieLata = 0;
+  if (wiekPsa === 1) ludzkieLata = 15;
+  else if (wiekPsa === 2) ludzkieLata = 24;
+  else {
+    const baza = 24;
+    const resztaLat = wiekPsa - 2;
+    if (rozmiar === "maly") ludzkieLata = baza + (resztaLat * 4);
+    else if (rozmiar === "sredni") ludzkieLata = baza + (resztaLat * 5);
+    else if (rozmiar === "duzy") ludzkieLata = baza + (resztaLat * 6);
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "450px" }}>
+      <h1>Ile lat ma Twój pies?</h1>
+      <div className="card p-4 shadow-sm mt-3">
+        <div className="mb-3">
+          <label className="form-label">Wiek psa w latach kalendarzowych: <strong>{wiekPsa}</strong></label>
+          <input 
+            type="range" 
+            className="form-range" 
+            min="1" max="20" 
+            value={wiekPsa} 
+            onChange={(e) => setWiekPsa(Number(e.target.value))} 
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="form-label">Rozmiar psa:</label>
+          <select className="form-select" value={rozmiar} onChange={(e) => setRozmiar(e.target.value)}>
+            <option value="maly">Mały (do 10 kg)</option>
+            <option value="sredni">Średni (10 - 25 kg)</option>
+            <option value="duzy">Duży (powyżej 25 kg)</option>
+          </select>
+        </div>
+
+        <div className="text-center">
+          <p className="text-muted mb-1">Wiek w przełożeniu na ludzkie lata:</p>
+          <h2 className="text-primary display-4">{ludzkieLata}</h2>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.16. Kalkulator czasu pracy i wynagrodzenia
+
+Narzędzie przeliczające stawkę godzinową na pensję brutto i przybliżone netto w zależności od wybranej umowy.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [stawka, setStawka] = useState("");
+  const [godziny, setGodziny] = useState("");
+  const [umowa, setUmowa] = useState("zlecenie");
+  const [wynik, setWynik] = useState(null);
+
+  function obliczWyplate(e) {
+    e.preventDefault();
+    const brutto = Number(stawka) * Number(godziny);
+    
+    let netto = 0;
+    // Bardzo uproszczone kalkulacje podatkowe na potrzeby przykładu
+    if (umowa === "zlecenie") netto = brutto * 0.85; // ok. 15% potrąceń (status studenta itp.)
+    else if (umowa === "dzielo") netto = brutto * 0.91; // Koszty uzyskania przychodu
+    else if (umowa === "etat") netto = brutto * 0.73; // Pełny ZUS i podatek
+
+    setWynik({
+      brutto: brutto.toFixed(2),
+      netto: netto.toFixed(2)
+    });
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "450px" }}>
+      <h1>Kalkulator Wypłaty</h1>
+      <form onSubmit={obliczWyplate} className="card p-3 bg-light">
+        <div className="mb-3">
+          <label>Stawka godzinowa brutto (zł):</label>
+          <input type="number" className="form-control" value={stawka} onChange={e => setStawka(e.target.value)} required />
+        </div>
+        <div className="mb-3">
+          <label>Przepracowane godziny:</label>
+          <input type="number" className="form-control" value={godziny} onChange={e => setGodziny(e.target.value)} required />
+        </div>
+        <div className="mb-3">
+          <label>Rodzaj umowy:</label>
+          <select className="form-select" value={umowa} onChange={e => setUmowa(e.target.value)}>
+            <option value="zlecenie">Umowa Zlecenie</option>
+            <option value="dzielo">Umowa o Dzieło</option>
+            <option value="etat">Umowa o Pracę (Etat)</option>
+          </select>
+        </div>
+        <button type="submit" className="btn btn-dark">Wylicz wynagrodzenie</button>
+      </form>
+
+      {wynik && (
+        <div className="alert alert-success mt-3">
+          <p className="mb-1">Wynagrodzenie brutto: <strong>{wynik.brutto} zł</strong></p>
+          <p className="mb-0">Szacowane netto na rękę: <strong>{wynik.netto} zł</strong></p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.17. Konwerter systemów liczbowych
+
+Aplikacja z dynamicznym przetwarzaniem wprowadzanej liczby dziesiętnej na system dwójkowy, ósemkowy i szesnastkowy.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [dziesietna, setDziesietna] = useState("");
+
+  const num = parseInt(dziesietna, 10);
+  const isOk = !isNaN(num);
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Konwerter systemów liczbowych</h1>
+      
+      <div className="mb-4 mt-3">
+        <label className="form-label">Wprowadź liczbę dziesiętną (DEC):</label>
+        <input 
+          type="number" 
+          className="form-control form-control-lg" 
+          value={dziesietna} 
+          onChange={(e) => setDziesietna(e.target.value)} 
+          placeholder="Np. 255"
+        />
+      </div>
+
+      <div className="card">
+        <div className="card-header bg-dark text-white">Wyniki konwersji</div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item d-flex justify-content-between align-items-center">
+            <strong>System Dwójkowy (BIN)</strong>
+            <span className="badge bg-primary rounded-pill fs-6">
+              {isOk ? num.toString(2) : "---"}
+            </span>
+          </li>
+          <li className="list-group-item d-flex justify-content-between align-items-center">
+            <strong>System Ósemkowy (OCT)</strong>
+            <span className="badge bg-success rounded-pill fs-6">
+              {isOk ? num.toString(8) : "---"}
+            </span>
+          </li>
+          <li className="list-group-item d-flex justify-content-between align-items-center">
+            <strong>System Szesnastkowy (HEX)</strong>
+            <span className="badge bg-danger rounded-pill fs-6">
+              {isOk ? num.toString(16).toUpperCase() : "---"}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.18. Generator hasła
+
+Aplikacja generująca losowe hasło na podstawie ustawień użytkownika.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [dlugosc, setDlugosc] = useState(12);
+  const [duzeLinetry, setDuzeLitery] = useState(true);
+  const [cyfry, setCyfry] = useState(true);
+  const [specjalne, setSpecjalne] = useState(false);
+  const [haslo, setHaslo] = useState("");
+
+  function generujHaslo() {
+    let znaki = "abcdefghijklmnopqrstuvwxyz";
+    if (duzeLinetry) znaki += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (cyfry) znaki += "0123456789";
+    if (specjalne) znaki += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+    let wynik = "";
+    for (let i = 0; i < dlugosc; i++) {
+      const losowy = Math.floor(Math.random() * znaki.length);
+      wynik += znaki[losowy];
+    }
+
+    setHaslo(wynik);
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Generator hasła</h1>
+
+      {/* Suwak długości */}
+      <div className="mb-3">
+        <label className="form-label">Długość: {dlugosc}</label>
+        <input
+          type="range"
+          className="form-range"
+          min="4"
+          max="32"
+          value={dlugosc}
+          onChange={(e) => setDlugosc(Number(e.target.value))}
+        />
+      </div>
+
+      {/* Checkboxy opcji */}
+      <div className="form-check mb-2">
+        <input
+          id="duze"
+          type="checkbox"
+          className="form-check-input"
+          checked={duzeLinetry}
+          onChange={(e) => setDuzeLitery(e.target.checked)}
+        />
+        <label htmlFor="duze" className="form-check-label">Duże litery (A-Z)</label>
+      </div>
+
+      <div className="form-check mb-2">
+        <input
+          id="cyfry"
+          type="checkbox"
+          className="form-check-input"
+          checked={cyfry}
+          onChange={(e) => setCyfry(e.target.checked)}
+        />
+        <label htmlFor="cyfry" className="form-check-label">Cyfry (0-9)</label>
+      </div>
+
+      <div className="form-check mb-3">
+        <input
+          id="specjalne"
+          type="checkbox"
+          className="form-check-input"
+          checked={specjalne}
+          onChange={(e) => setSpecjalne(e.target.checked)}
+        />
+        <label htmlFor="specjalne" className="form-check-label">Znaki specjalne (!@#$)</label>
+      </div>
+
+      <button className="btn btn-primary mb-3" onClick={generujHaslo}>
+        Generuj hasło
+      </button>
+
+      {/* Wynik */}
+      {haslo && (
+        <div className="alert alert-success">
+          <strong>Wygenerowane hasło:</strong>
+          <code className="d-block mt-1" style={{ fontSize: "1.2rem" }}>
+            {haslo}
+          </code>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.19. Kości do gry z blokowaniem
+
+Gra w kości — rzut 5 kośćmi, możliwość blokowania wybranych kości przy ponownym rzucie.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+// Funkcja losująca wartość kości (1-6)
+function losujKosc() {
+  return Math.floor(Math.random() * 6) + 1;
+}
+
+function App() {
+  // Stan kości — tablica 5 obiektów z wartością i stanem blokady
+  const [kosci, setKosci] = useState([
+    { id: 1, wartosc: losujKosc(), zablokowana: false },
+    { id: 2, wartosc: losujKosc(), zablokowana: false },
+    { id: 3, wartosc: losujKosc(), zablokowana: false },
+    { id: 4, wartosc: losujKosc(), zablokowana: false },
+    { id: 5, wartosc: losujKosc(), zablokowana: false },
+  ]);
+
+  const [liczbaRzutow, setLiczbaRzutow] = useState(1);
+
+  // Rzut kośćmi — tylko niezablokowane
+  function handleRzut() {
+    setKosci((prev) =>
+      prev.map((k) =>
+        k.zablokowana ? k : { ...k, wartosc: losujKosc() }
+      )
+    );
+    setLiczbaRzutow((prev) => prev + 1);
+  }
+
+  // Blokowanie/odblokowanie kości
+  function handleBlokuj(id) {
+    setKosci((prev) =>
+      prev.map((k) =>
+        k.id === id ? { ...k, zablokowana: !k.zablokowana } : k
+      )
+    );
+  }
+
+  // Nowa gra — reset
+  function handleNowaGra() {
+    setKosci(
+      kosci.map((k) => ({ ...k, wartosc: losujKosc(), zablokowana: false }))
+    );
+    setLiczbaRzutow(1);
+  }
+
+  // Suma kości
+  const suma = kosci.reduce((acc, k) => acc + k.wartosc, 0);
+
+  return (
+    <main className="container mt-4 text-center" style={{ maxWidth: "500px" }}>
+      <h1>Kości do gry</h1>
+      <p>Rzut numer: {liczbaRzutow} | Suma: {suma}</p>
+
+      {/* Wyświetlanie kości */}
+      <div className="d-flex justify-content-center gap-2 mb-4">
+        {kosci.map((k) => (
+          <button
+            key={k.id}
+            className={`btn btn-lg ${
+              k.zablokowana ? "btn-danger" : "btn-outline-dark"
+            }`}
+            style={{ width: "60px", height: "60px", fontSize: "1.5rem" }}
+            onClick={() => handleBlokuj(k.id)}
+          >
+            {k.wartosc}
+          </button>
+        ))}
+      </div>
+
+      <p className="text-muted small">
+        Kliknij kość, aby ją zablokować (czerwona = zablokowana)
+      </p>
+
+      <div className="d-flex gap-2 justify-content-center">
+        <button className="btn btn-primary" onClick={handleRzut}>
+          Rzuć kośćmi
+        </button>
+        <button className="btn btn-secondary" onClick={handleNowaGra}>
+          Nowa gra
+        </button>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.20. Gra w zgadywanie liczb (Za dużo / Za mało)
+
+Prosta gra w zgadywanie liczby wylosowanej przez komputer z przedziału 1-100 z historią prób.
+
+```jsx
+// Plik: src/App.js
+import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [cel, setCel] = useState(0);
+  const [proba, setProba] = useState("");
+  const [historia, setHistoria] = useState([]);
+  const [komunikat, setKomunikat] = useState("Zgadnij liczbę od 1 do 100");
+  const [wygrana, setWygrana] = useState(false);
+
+  // Losowanie liczby przy pierwszym montowaniu lub po resecie
+  useEffect(() => {
+    losujZnowu();
+  }, []);
+
+  function losujZnowu() {
+    setCel(Math.floor(Math.random() * 100) + 1);
+    setHistoria([]);
+    setProba("");
+    setKomunikat("Zgadnij liczbę od 1 do 100");
+    setWygrana(false);
+  }
+
+  function sprawdz(e) {
+    e.preventDefault();
+    if (wygrana) return;
+
+    const zgadywana = Number(proba);
+    if (zgadywana < 1 || zgadywana > 100) {
+      setKomunikat("Liczba poza zakresem!");
+      return;
+    }
+
+    const nowaHistoria = [...historia, zgadywana];
+    setHistoria(nowaHistoria);
+    setProba("");
+
+    if (zgadywana === cel) {
+      setKomunikat(`Brawo! Zgadłeś w ${nowaHistoria.length} próbach.`);
+      setWygrana(true);
+    } else if (zgadywana < cel) {
+      setKomunikat("Za mało!");
+    } else {
+      setKomunikat("Za dużo!");
+    }
+  }
+
+  return (
+    <main className="container mt-5 text-center" style={{ maxWidth: "400px" }}>
+      <h1>Zgadnij Liczbę</h1>
+      <h4 className={`my-3 ${wygrana ? 'text-success' : 'text-primary'}`}>
+        {komunikat}
+      </h4>
+
+      <form onSubmit={sprawdz} className="mb-3">
+        <input 
+          type="number" 
+          className="form-control mb-2 text-center fs-4" 
+          value={proba} 
+          onChange={e => setProba(e.target.value)} 
+          disabled={wygrana}
+          autoFocus
+        />
+        {!wygrana ? (
+          <button type="submit" className="btn btn-primary w-100">Sprawdź</button>
+        ) : (
+          <button type="button" className="btn btn-success w-100" onClick={losujZnowu}>Graj jeszcze raz</button>
+        )}
+      </form>
+
+      {historia.length > 0 && (
+        <div className="text-start">
+          <h5>Twoje próby:</h5>
+          <p>{historia.join(" ➔ ")}</p>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.21. Kamień, Papier, Nożyce
+
+Klasyczna gra z komputerem wykorzystująca losowanie wartości oraz zarządzanie punktacją.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const opcje = ["Kamień", "Papier", "Nożyce"];
+
+function App() {
+  const [gracz, setGracz] = useState(null);
+  const [komputer, setKomputer] = useState(null);
+  const [wynikRundy, setWynikRundy] = useState("");
+  const [punktyGracza, setPunktyGracza] = useState(0);
+  const [punktyKomputera, setPunktyKomputera] = useState(0);
+
+  function zagraj(wyborGracza) {
+    const los = Math.floor(Math.random() * 3);
+    const wyborKomputera = opcje[los];
+
+    setGracz(wyborGracza);
+    setKomputer(wyborKomputera);
+
+    if (wyborGracza === wyborKomputera) {
+      setWynikRundy("Remis!");
+    } else if (
+      (wyborGracza === "Kamień" && wyborKomputera === "Nożyce") ||
+      (wyborGracza === "Papier" && wyborKomputera === "Kamień") ||
+      (wyborGracza === "Nożyce" && wyborKomputera === "Papier")
+    ) {
+      setWynikRundy("Wygrywasz rundę!");
+      setPunktyGracza(p => p + 1);
+    } else {
+      setWynikRundy("Komputer wygrywa rundę!");
+      setPunktyKomputera(p => p + 1);
+    }
+  }
+
+  return (
+    <main className="container mt-5 text-center" style={{ maxWidth: "500px" }}>
+      <h1>Kamień, Papier, Nożyce</h1>
+      
+      <div className="d-flex justify-content-around my-4">
+        <div>
+          <h3>Ty</h3>
+          <h2>{punktyGracza}</h2>
+        </div>
+        <div>
+          <h3>Komputer</h3>
+          <h2>{punktyKomputera}</h2>
+        </div>
+      </div>
+
+      <div className="mb-4">
+        {opcje.map(opcja => (
+          <button key={opcja} className="btn btn-outline-dark mx-2 btn-lg" onClick={() => zagraj(opcja)}>
+            {opcja}
+          </button>
+        ))}
+      </div>
+
+      {gracz && (
+        <div className="card p-3 bg-light">
+          <p className="fs-5 mb-1">Twój wybór: <strong>{gracz}</strong></p>
+          <p className="fs-5 mb-3">Wybór komputera: <strong>{komputer}</strong></p>
+          <h4 className={wynikRundy.includes("Wygrywasz") ? "text-success" : (wynikRundy.includes("Komputer") ? "text-danger" : "text-muted")}>
+            {wynikRundy}
+          </h4>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.22. Rzut monetą ze statystykami i historią
+
+Symulator rzutu monetą generujący statystyki rzutów z zapisem ostatnich pięciu wyników.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [wynik, setWynik] = useState(null);
+  const [orly, setOrly] = useState(0);
+  const [reszki, setReszki] = useState(0);
+  const [historia, setHistoria] = useState([]);
+
+  function rzucMoneta() {
+    const los = Math.random() < 0.5 ? "Orzeł" : "Reszka";
+    setWynik(los);
+
+    if (los === "Orzeł") setOrly(o => o + 1);
+    else setReszki(r => r + 1);
+
+    setHistoria(prev => {
+      const nowa = [los, ...prev];
+      if (nowa.length > 5) nowa.pop(); // Zostaw maksymalnie 5 ostatnich
+      return nowa;
+    });
+  }
+
+  const suma = orly + reszki;
+  const procOrzel = suma > 0 ? Math.round((orly / suma) * 100) : 0;
+  const procReszka = suma > 0 ? Math.round((reszki / suma) * 100) : 0;
+
+  return (
+    <main className="container mt-5 text-center" style={{ maxWidth: "450px" }}>
+      <h1>Rzut Monetą</h1>
+
+      <div className="my-4" style={{ height: "100px" }}>
+        {wynik ? (
+          <h1 className="display-1 fw-bold text-primary">{wynik}</h1>
+        ) : (
+          <p className="text-muted mt-4 pt-2">Kliknij przycisk, aby rzucić</p>
+        )}
+      </div>
+
+      <button className="btn btn-warning btn-lg px-5 mb-4" onClick={rzucMoneta}>
+        RZUĆ MONETĄ
+      </button>
+
+      <div className="row text-center mb-4">
+        <div className="col">
+          <p className="mb-0">Orzeł</p>
+          <h4>{orly} ({procOrzel}%)</h4>
+        </div>
+        <div className="col">
+          <p className="mb-0">Suma rzutów</p>
+          <h4>{suma}</h4>
+        </div>
+        <div className="col">
+          <p className="mb-0">Reszka</p>
+          <h4>{reszki} ({procReszka}%)</h4>
+        </div>
+      </div>
+
+      {historia.length > 0 && (
+        <ul className="list-group">
+          <li className="list-group-item bg-light fw-bold">Ostatnie rzuty:</li>
+          {historia.map((h, i) => (
+            <li key={i} className="list-group-item">{h}</li>
+          ))}
+        </ul>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.23. Galeria zdjęć z kategoriami
+
+Interaktywna galeria kafelkowa opierająca się o filtry stanów (checkboxy / switche).
+
+**Wymagania:**
+- Tablica obiektów zdjęć z `dane.txt`
+- Trzy pola switch/checkbox do filtrowania kategorii
+- Filtrowanie zdjęć po zaznaczonych kategoriach
+- Wyświetlanie bloków zdjęć obok siebie
+- Pokazanie liczby pobrań
+- Przycisk „Pobierz" zwiększający liczbę pobrań dla klikniętego zdjęcia
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  // Dane zdjęć — przepisane z dane.txt
+  const [zdjecia, setZdjecia] = useState([
+    { id: 1, nazwa: "kwiat.jpg", kategoria: "kwiaty", pobrania: 12 },
+    { id: 2, nazwa: "gora.jpg", kategoria: "krajobrazy", pobrania: 34 },
+    { id: 3, nazwa: "roza.jpg", kategoria: "kwiaty", pobrania: 7 },
+    { id: 4, nazwa: "miasto.jpg", kategoria: "miasto", pobrania: 21 },
+    { id: 5, nazwa: "jezioro.jpg", kategoria: "krajobrazy", pobrania: 15 },
+    { id: 6, nazwa: "tulipan.jpg", kategoria: "kwiaty", pobrania: 3 },
+    { id: 7, nazwa: "ulica.jpg", kategoria: "miasto", pobrania: 9 },
+  ]);
+
+  // Stan checkboxów/switchów — które kategorie są zaznaczone
+  const [filtry, setFiltry] = useState({
+    kwiaty: true,
+    krajobrazy: true,
+    miasto: true,
+  });
+
+  // Obsługa zmiany switcha — aktualizacja jednego pola w obiekcie filtrów
+  function handleFiltr(kategoria) {
+    setFiltry((prev) => ({
+      ...prev,
+      [kategoria]: !prev[kategoria],
+    }));
+  }
+
+  // Obsługa kliknięcia "Pobierz" — zwiększenie pobrań dla jednego zdjęcia
+  function handlePobierz(id) {
+    setZdjecia((prev) =>
+      prev.map((z) =>
+        z.id === id ? { ...z, pobrania: z.pobrania + 1 } : z
+      )
+    );
+  }
+
+  // Filtrowanie zdjęć — pokazujemy tylko te z zaznaczonych kategorii
+  const przefiltrowane = zdjecia.filter((z) => filtry[z.kategoria]);
+
+  return (
+    <main className="container mt-4">
+      <h1>Galeria zdjęć</h1>
+
+      {/* Switche do filtrowania kategorii */}
+      <div className="mb-4">
+        {Object.keys(filtry).map((kategoria) => (
+          <div key={kategoria} className="form-check form-switch form-check-inline">
+            <input
+              id={`filtr-${kategoria}`}
+              type="checkbox"
+              className="form-check-input"
+              checked={filtry[kategoria]}
+              onChange={() => handleFiltr(kategoria)}
+            />
+            <label htmlFor={`filtr-${kategoria}`} className="form-check-label">
+              {kategoria}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      {/* Siatka kart ze zdjęciami */}
+      <div className="row">
+        {przefiltrowane.map((zdjecie) => (
+          <div key={zdjecie.id} className="col-md-4 mb-3">
+            <div className="card">
+              {/* Miejsce na obraz — w prawdziwym projekcie byłby tu <img> */}
+              <div
+                className="card-img-top bg-secondary d-flex align-items-center justify-content-center"
+                style={{ height: "150px", color: "white" }}
+              >
+                {zdjecie.nazwa}
+              </div>
+              <div className="card-body">
+                <p className="card-text">
+                  Kategoria: <strong>{zdjecie.kategoria}</strong>
+                </p>
+                <p className="card-text">
+                  Pobrania: <strong>{zdjecie.pobrania}</strong>
+                </p>
+                <button
+                  className="btn btn-success btn-sm"
+                  onClick={() => handlePobierz(zdjecie.id)}
+                >
+                  Pobierz
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Komunikat gdy brak zdjęć */}
+      {przefiltrowane.length === 0 && (
+        <p className="text-muted text-center">Brak zdjęć do wyświetlenia.</p>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+**Kluczowe mechaniki:**
+- Tablica obiektów w stanie (`useState`)
+- Switche/checkboxy kontrolujące filtrowanie
+- `filter()` do wyświetlania tylko wybranych kategorii
+- `map()` do aktualizacji jednego elementu (zwiększenie licznika pobrań)
+- Spread operator (`...`) do niemutowalnej aktualizacji
+- Grid Bootstrap (`row` / `col-md-4`) do układania kart obok siebie
+- Warunkowe renderowanie pustej listy
+
+---
+
+---
+
+### 26.24. Lista zadań (Todo App) — wieloplikowy
+
+Kompletny przykład aplikacji z podziałem na pliki — wzorzec przepływu danych parent-child.
+
+```
+src/
+├── App.js                    # Rodzic — trzyma stan
+├── components/
+│   ├── TaskForm.js           # Formularz dodawania
+│   └── TaskList.js           # Lista zadań
+└── index.js                  # Punkt wejścia
+```
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+
+function App() {
+  // Stan globalny — lista zadań trzymana w rodzicu
+  const [tasks, setTasks] = useState([]);
+
+  // Funkcja dodająca zadanie — przekazywana do TaskForm
+  function addTask(taskText) {
+    const newTask = {
+      id: Date.now(),         // Prosty sposób na unikalne ID
+      text: taskText,
+      completed: false,
+    };
+    setTasks((prev) => [...prev, newTask]);
+  }
+
+  // Funkcja usuwająca zadanie — przekazywana do TaskList
+  function deleteTask(id) {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  }
+
+  // Funkcja przełączająca ukończenie — przekazywana do TaskList
+  function toggleTask(id) {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  }
+
+  return (
+    <main className="container mt-5" style={{ maxWidth: "600px" }}>
+      <h1 className="text-center mb-4">Lista Zadań</h1>
+
+      {/* Komponent formularza — otrzymuje callback onAddTask */}
+      <TaskForm onAddTask={addTask} />
+
+      {/* Komponent listy — otrzymuje dane i callbacki */}
+      <TaskList
+        tasks={tasks}
+        onDeleteTask={deleteTask}
+        onToggleTask={toggleTask}
+      />
+
+      {/* Podsumowanie */}
+      <div className="mt-3 text-muted text-center">
+        Pozostało zadań: {tasks.filter((t) => !t.completed).length} / {tasks.length}
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// Plik: src/components/TaskForm.js
+import { useState } from "react";
+
+function TaskForm({ onAddTask }) {
+  const [text, setText] = useState(""); // Stan lokalny — tylko dla tego inputa
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // Walidacja — nie dodajemy pustych zadań
+    if (text.trim() === "") return;
+
+    // Wywołujemy callback od rodzica
+    onAddTask(text);
+
+    // Czyścimy pole
+    setText("");
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="input-group mb-4">
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Co masz do zrobienia?"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button className="btn btn-success" type="submit">
+        Dodaj
+      </button>
+    </form>
+  );
+}
+
+export default TaskForm;
+```
+
+```jsx
+// Plik: src/components/TaskList.js
+function TaskList({ tasks, onDeleteTask, onToggleTask }) {
+  // Obsługa pustej listy
+  if (tasks.length === 0) {
+    return <p className="text-center text-muted">Brak zadań. Odpocznij!</p>;
+  }
+
+  return (
+    <ul className="list-group">
+      {tasks.map((task) => (
+        <li
+          key={task.id}
+          className="list-group-item d-flex justify-content-between align-items-center"
+        >
+          {/* Tekst zadania — przekreślony, jeśli ukończone */}
+          <span
+            style={{
+              textDecoration: task.completed ? "line-through" : "none",
+              cursor: "pointer",
+            }}
+            onClick={() => onToggleTask(task.id)}
+          >
+            {task.text}
+          </span>
+
+          {/* Przycisk usuwania */}
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => onDeleteTask(task.id)}
+          >
+            Usuń
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default TaskList;
+```
+
+**Podsumowanie przepływu danych:**
+
+1. **Dół (Props):** `App` → `TaskList` (przekazuje `tasks`, `onDeleteTask`, `onToggleTask`)
+2. **Góra (Callbacks):** `TaskForm` → `App` (dziecko wywołuje `onAddTask`)
+3. **Odświeżenie:** Gdy `App` zmieni stan, React odmalowuje `TaskForm` i `TaskList` z nowymi danymi
+
+---
+
+---
+
+### 26.25. Widok kart z filtrami i wyszukiwaniem
+
+Rozbudowany widok kart z wyszukiwarką tekstową i filtrami kategorii.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  // Dane stałe — produkty
+  const produkty = [
+    { id: 1, nazwa: "Laptop Pro", kategoria: "Elektronika", cena: 4500 },
+    { id: 2, nazwa: "Mysz bezprzewodowa", kategoria: "Elektronika", cena: 120 },
+    { id: 3, nazwa: "Koszulka bawełniana", kategoria: "Odzież", cena: 49 },
+    { id: 4, nazwa: "Spodnie jeansowe", kategoria: "Odzież", cena: 180 },
+    { id: 5, nazwa: "Rower górski", kategoria: "Sport", cena: 2200 },
+    { id: 6, nazwa: "Piłka nożna", kategoria: "Sport", cena: 80 },
+    { id: 7, nazwa: "Monitor 27\"", kategoria: "Elektronika", cena: 1500 },
+    { id: 8, nazwa: "Buty biegowe", kategoria: "Sport", cena: 350 },
+  ];
+
+  // Wyciągnięcie unikalnych kategorii
+  const kategorie = [...new Set(produkty.map((p) => p.kategoria))];
+
+  // Stan filtrów
+  const [szukaj, setSzukaj] = useState("");
+  const [wybranaKategoria, setWybranaKategoria] = useState("Wszystkie");
+  const [sortowanie, setSortowanie] = useState("nazwa");
+
+  // Filtrowanie
+  let przefiltrowane = produkty;
+
+  // Filtr tekstowy
+  if (szukaj.trim() !== "") {
+    przefiltrowane = przefiltrowane.filter((p) =>
+      p.nazwa.toLowerCase().includes(szukaj.toLowerCase())
+    );
+  }
+
+  // Filtr kategorii
+  if (wybranaKategoria !== "Wszystkie") {
+    przefiltrowane = przefiltrowane.filter(
+      (p) => p.kategoria === wybranaKategoria
+    );
+  }
+
+  // Sortowanie
+  przefiltrowane = [...przefiltrowane].sort((a, b) => {
+    if (sortowanie === "nazwa") return a.nazwa.localeCompare(b.nazwa);
+    if (sortowanie === "cena-rosnaco") return a.cena - b.cena;
+    if (sortowanie === "cena-malejaco") return b.cena - a.cena;
+    return 0;
+  });
+
+  return (
+    <main className="container mt-4">
+      <h1>Katalog produktów</h1>
+
+      {/* Panel filtrów */}
+      <div className="row mb-4">
+        {/* Wyszukiwarka */}
+        <div className="col-md-4 mb-2">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Szukaj produktu..."
+            value={szukaj}
+            onChange={(e) => setSzukaj(e.target.value)}
+          />
+        </div>
+
+        {/* Filtr kategorii */}
+        <div className="col-md-4 mb-2">
+          <select
+            className="form-select"
+            value={wybranaKategoria}
+            onChange={(e) => setWybranaKategoria(e.target.value)}
+          >
+            <option value="Wszystkie">Wszystkie kategorie</option>
+            {kategorie.map((k) => (
+              <option key={k} value={k}>{k}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Sortowanie */}
+        <div className="col-md-4 mb-2">
+          <select
+            className="form-select"
+            value={sortowanie}
+            onChange={(e) => setSortowanie(e.target.value)}
+          >
+            <option value="nazwa">Sortuj: Nazwa A-Z</option>
+            <option value="cena-rosnaco">Sortuj: Cena rosnąco</option>
+            <option value="cena-malejaco">Sortuj: Cena malejąco</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Licznik wyników */}
+      <p className="text-muted">Znaleziono: {przefiltrowane.length} produktów</p>
+
+      {/* Siatka kart */}
+      <div className="row">
+        {przefiltrowane.map((produkt) => (
+          <div key={produkt.id} className="col-md-4 mb-3">
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">{produkt.nazwa}</h5>
+                <p className="card-text">
+                  <span className="badge bg-secondary">{produkt.kategoria}</span>
+                </p>
+                <p className="card-text">
+                  <strong>{produkt.cena} zł</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Obsługa braku wyników */}
+      {przefiltrowane.length === 0 && (
+        <p className="text-center text-muted">
+          Brak produktów spełniających kryteria wyszukiwania.
+        </p>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.26. Algorytmy — sumowanie, zliczanie, filtrowanie
+
+Przykłady typowych operacji algorytmicznych osadzonych w React.
+
+#### 26.12.1. suma i średnia z tablicy
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+
+function App() {
+  const [oceny, setOceny] = useState([5, 4, 3, 5, 4, 2, 5, 3]);
+  const [nowaOcena, setNowaOcena] = useState("");
+
+  // Obliczenia — robione przed return, nie w stanie
+  const suma = oceny.reduce((acc, o) => acc + o, 0);
+  const srednia = oceny.length > 0 ? suma / oceny.length : 0;
+  const najwyzsza = oceny.length > 0 ? Math.max(...oceny) : 0;
+  const najnizsza = oceny.length > 0 ? Math.min(...oceny) : 0;
+
+  function handleDodaj() {
+    const ocena = Number(nowaOcena);
+    if (ocena >= 1 && ocena <= 6) {
+      setOceny((prev) => [...prev, ocena]);
+      setNowaOcena("");
+    }
+  }
+
+  return (
+    <div className="container mt-4" style={{ maxWidth: "400px" }}>
+      <h2>Statystyki ocen</h2>
+      <p>Oceny: {oceny.join(", ")}</p>
+      <p>Suma: {suma}</p>
+      <p>Średnia: {srednia.toFixed(2)}</p>
+      <p>Najwyższa: {najwyzsza}</p>
+      <p>Najniższa: {najnizsza}</p>
+      <p>Liczba ocen: {oceny.length}</p>
+
+      <div className="input-group mt-3">
+        <input
+          type="number"
+          className="form-control"
+          value={nowaOcena}
+          onChange={(e) => setNowaOcena(e.target.value)}
+          placeholder="1-6"
+          min="1"
+          max="6"
+        />
+        <button className="btn btn-primary" onClick={handleDodaj}>Dodaj ocenę</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+#### 26.12.2. zliczanie wystąpień
+
+```jsx
+function App() {
+  const dane = ["kot", "pies", "kot", "ryba", "pies", "kot", "papuga"];
+
+  // Zliczanie za pomocą reduce
+  const zliczenie = dane.reduce((acc, el) => {
+    acc[el] = (acc[el] || 0) + 1;
+    return acc;
+  }, {});
+
+  return (
+    <div className="container mt-4">
+      <h2>Zliczanie wystąpień</h2>
+      <table className="table" style={{ maxWidth: "300px" }}>
+        <thead>
+          <tr><th>Element</th><th>Ilość</th></tr>
+        </thead>
+        <tbody>
+          {Object.entries(zliczenie).map(([klucz, wartosc]) => (
+            <tr key={klucz}>
+              <td>{klucz}</td>
+              <td>{wartosc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+```
+
+#### 26.12.3. filtrowanie po wielu kryteriach
+
+```jsx
+function App() {
+  const [minCena, setMinCena] = useState(0);
+  const [maxCena, setMaxCena] = useState(1000);
+  const [szukaj, setSzukaj] = useState("");
+
+  const produkty = [
+    { id: 1, nazwa: "Laptop", cena: 3000 },
+    { id: 2, nazwa: "Mysz", cena: 50 },
+    { id: 3, nazwa: "Klawiatura", cena: 200 },
+    { id: 4, nazwa: "Monitor", cena: 1500 },
+    { id: 5, nazwa: "Słuchawki", cena: 350 },
+  ];
+
+  // Filtrowanie z wieloma warunkami jednocześnie
+  const wyniki = produkty
+    .filter((p) => p.cena >= minCena && p.cena <= maxCena)
+    .filter((p) => p.nazwa.toLowerCase().includes(szukaj.toLowerCase()));
+
+  return (
+    <div className="container mt-4">
+      <h2>Filtrowanie produktów</h2>
+
+      <div className="row mb-3">
+        <div className="col">
+          <input type="text" className="form-control" placeholder="Szukaj..."
+            value={szukaj} onChange={(e) => setSzukaj(e.target.value)} />
+        </div>
+        <div className="col">
+          <input type="number" className="form-control" placeholder="Min cena"
+            value={minCena} onChange={(e) => setMinCena(Number(e.target.value))} />
+        </div>
+        <div className="col">
+          <input type="number" className="form-control" placeholder="Max cena"
+            value={maxCena} onChange={(e) => setMaxCena(Number(e.target.value))} />
+        </div>
+      </div>
+
+      <p>Znaleziono: {wyniki.length}</p>
+      <ul className="list-group">
+        {wyniki.map((p) => (
+          <li key={p.id} className="list-group-item d-flex justify-content-between">
+            <span>{p.nazwa}</span>
+            <span>{p.cena} zł</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+#### 26.12.4. szyfr cezara
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [tekst, setTekst] = useState("");
+  const [przesuniecie, setPrzesuniecie] = useState(3);
+  const [wynik, setWynik] = useState("");
+
+  function szyfrujCezar(tekst, przesuniecie) {
+    return tekst
+      .split("")
+      .map((znak) => {
+        // Małe litery
+        if (znak >= "a" && znak <= "z") {
+          const kod = ((znak.charCodeAt(0) - 97 + przesuniecie) % 26 + 26) % 26 + 97;
+          return String.fromCharCode(kod);
+        }
+        // Duże litery
+        if (znak >= "A" && znak <= "Z") {
+          const kod = ((znak.charCodeAt(0) - 65 + przesuniecie) % 26 + 26) % 26 + 65;
+          return String.fromCharCode(kod);
+        }
+        // Inne znaki bez zmian
+        return znak;
+      })
+      .join("");
+  }
+
+  function handleSzyfruj() {
+    setWynik(szyfrujCezar(tekst, przesuniecie));
+  }
+
+  function handleDeszyfruj() {
+    setWynik(szyfrujCezar(tekst, -przesuniecie));
+  }
+
+  return (
+    <div className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h2>Szyfr Cezara</h2>
+
+      <div className="mb-3">
+        <label className="form-label">Tekst:</label>
+        <input type="text" className="form-control" value={tekst}
+          onChange={(e) => setTekst(e.target.value)} placeholder="Wpisz tekst" />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Przesunięcie: {przesuniecie}</label>
+        <input type="range" className="form-range" min="1" max="25"
+          value={przesuniecie} onChange={(e) => setPrzesuniecie(Number(e.target.value))} />
+      </div>
+
+      <div className="d-flex gap-2 mb-3">
+        <button className="btn btn-primary" onClick={handleSzyfruj}>Szyfruj</button>
+        <button className="btn btn-secondary" onClick={handleDeszyfruj}>Deszyfruj</button>
+      </div>
+
+      {wynik && (
+        <div className="alert alert-info">
+          <strong>Wynik:</strong> {wynik}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+---
+
+### 26.27. Galeria zdjęć z lightboxem i ulubionymi
 
 Interaktywna galeria zdjęć z filtrowaniem po kategoriach, powiększaniem w lightboxie (modal), nawigacją strzałkami ←/→, oznaczaniem ulubionych (serduszko), licznikiem wyświetleń i trybem siatki/listy.
 
@@ -8675,3 +10867,1628 @@ export default App;
 - **Disabled buttons** — strzałki nieaktywne na krańcach listy
 - **Responsywna siatka** — `col-6 col-md-4` (2 kolumny na telefonie, 3 na desktopie)
 - **Placeholder zamiast obrazów** — div z emoji symulujący obraz (w prawdziwej apce zamień na `<img>`)
+
+---
+
+### 26.28. Książka adresowa z wyszukiwarką i tagami
+
+Zarządzanie listą obiektów z jednoczesnym filtrowaniem tekstowym oraz grupowym.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [kontakty, setKontakty] = useState([
+    { id: 1, imie: "Anna Nowak", telefon: "111-222-333", grupa: "Rodzina" },
+    { id: 2, imie: "Piotr Kowalski", telefon: "444-555-666", grupa: "Praca" },
+    { id: 3, imie: "Marek Wiśniewski", telefon: "777-888-999", grupa: "Znajomi" }
+  ]);
+
+  const [szukaj, setSzukaj] = useState("");
+  const [filtrGrupy, setFiltrGrupy] = useState("Wszystkie");
+
+  const [noweImie, setNoweImie] = useState("");
+  const [nowyTelefon, setNowyTelefon] = useState("");
+  const [nowaGrupa, setNowaGrupa] = useState("Znajomi");
+
+  function dodajKontakt(e) {
+    e.preventDefault();
+    if (!noweImie || !nowyTelefon) return;
+
+    const nowy = {
+      id: Date.now(),
+      imie: noweImie,
+      telefon: nowyTelefon,
+      grupa: nowaGrupa
+    };
+    
+    setKontakty([...kontakty, nowy]);
+    setNoweImie("");
+    setNowyTelefon("");
+  }
+
+  function usunKontakt(id) {
+    setKontakty(kontakty.filter(k => k.id !== id));
+  }
+
+  // Logika podwójnego filtrowania
+  const wyswietlaneKontakty = kontakty.filter(k => {
+    const pasujeTekst = k.imie.toLowerCase().includes(szukaj.toLowerCase()) || k.telefon.includes(szukaj);
+    const pasujeGrupa = filtrGrupy === "Wszystkie" || k.grupa === filtrGrupy;
+    return pasujeTekst && pasujeGrupa;
+  });
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Książka Adresowa</h1>
+      
+      <form onSubmit={dodajKontakt} className="bg-light p-3 border rounded mb-4">
+        <h5>Dodaj nowy kontakt</h5>
+        <div className="row g-2 mb-2">
+          <div className="col-md-5">
+            <input type="text" className="form-control" placeholder="Imię i nazwisko" value={noweImie} onChange={e => setNoweImie(e.target.value)} required />
+          </div>
+          <div className="col-md-4">
+            <input type="text" className="form-control" placeholder="Telefon" value={nowyTelefon} onChange={e => setNowyTelefon(e.target.value)} required />
+          </div>
+          <div className="col-md-3">
+            <select className="form-select" value={nowaGrupa} onChange={e => setNowaGrupa(e.target.value)}>
+              <option value="Rodzina">Rodzina</option>
+              <option value="Praca">Praca</option>
+              <option value="Znajomi">Znajomi</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" className="btn btn-success btn-sm w-100">Dodaj kontakt</button>
+      </form>
+
+      <div className="row mb-3">
+        <div className="col-md-8">
+          <input type="text" className="form-control" placeholder="Szukaj po nazwie lub telefonie..." value={szukaj} onChange={e => setSzukaj(e.target.value)} />
+        </div>
+        <div className="col-md-4">
+          <select className="form-select" value={filtrGrupy} onChange={e => setFiltrGrupy(e.target.value)}>
+            <option value="Wszystkie">Wszystkie grupy</option>
+            <option value="Rodzina">Rodzina</option>
+            <option value="Praca">Praca</option>
+            <option value="Znajomi">Znajomi</option>
+          </select>
+        </div>
+      </div>
+
+      <ul className="list-group">
+        {wyswietlaneKontakty.length === 0 && <li className="list-group-item text-muted">Brak wyników</li>}
+        {wyswietlaneKontakty.map(k => (
+          <li key={k.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{k.imie}</strong> - {k.telefon} <br/>
+              <span className="badge bg-secondary">{k.grupa}</span>
+            </div>
+            <button className="btn btn-danger btn-sm" onClick={() => usunKontakt(k.id)}>Usuń</button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.29. Biblioteczka książek ze statusem przeczytania
+
+Zarządzanie stanem logicznym (true/false) dla wielu elementów listy po kliknięciu.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [ksiazki, setKsiazki] = useState([
+    { id: 1, tytul: "Władca Pierścieni", autor: "J.R.R. Tolkien", przeczytana: true },
+    { id: 2, tytul: "Wiedźmin", autor: "Andrzej Sapkowski", przeczytana: false }
+  ]);
+  
+  const [tytul, setTytul] = useState("");
+  const [autor, setAutor] = useState("");
+  const [tylkoNieprzeczytane, setTylkoNieprzeczytane] = useState(false);
+
+  function dodaj(e) {
+    e.preventDefault();
+    if (!tytul || !autor) return;
+
+    setKsiazki([...ksiazki, {
+      id: Date.now(),
+      tytul,
+      autor,
+      przeczytana: false
+    }]);
+    setTytul("");
+    setAutor("");
+  }
+
+  function przelaczStatus(id) {
+    setKsiazki(ksiazki.map(k => 
+      k.id === id ? { ...k, przeczytana: !k.przeczytana } : k
+    ));
+  }
+
+  const doWyswietlenia = tylkoNieprzeczytane ? ksiazki.filter(k => !k.przeczytana) : ksiazki;
+
+  const procentPrzeczytanych = ksiazki.length > 0 
+    ? Math.round((ksiazki.filter(k => k.przeczytana).length / ksiazki.length) * 100) 
+    : 0;
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Moja Biblioteczka</h1>
+      
+      <div className="progress mb-4" style={{ height: "25px" }}>
+        <div className="progress-bar bg-success" style={{ width: `${procentPrzeczytanych}%` }}>
+          Przeczytane: {procentPrzeczytanych}%
+        </div>
+      </div>
+
+      <form onSubmit={dodaj} className="mb-4 d-flex gap-2">
+        <input type="text" className="form-control" placeholder="Tytuł" value={tytul} onChange={e => setTytul(e.target.value)} required />
+        <input type="text" className="form-control" placeholder="Autor" value={autor} onChange={e => setAutor(e.target.value)} required />
+        <button type="submit" className="btn btn-primary">Dodaj</button>
+      </form>
+
+      <div className="form-check mb-3">
+        <input className="form-check-input" type="checkbox" id="filtr" checked={tylkoNieprzeczytane} onChange={e => setTylkoNieprzeczytane(e.target.checked)} />
+        <label className="form-check-label text-danger" htmlFor="filtr">Pokaż tylko nieprzeczytane</label>
+      </div>
+
+      <ul className="list-group">
+        {doWyswietlenia.map(k => (
+          <li key={k.id} className={`list-group-item d-flex justify-content-between align-items-center ${k.przeczytana ? 'bg-light text-muted' : ''}`}>
+            <div>
+              <strong style={{ textDecoration: k.przeczytana ? 'line-through' : 'none' }}>{k.tytul}</strong> 
+              <br/>
+              <small>{k.autor}</small>
+            </div>
+            <button 
+              className={`btn btn-sm ${k.przeczytana ? 'btn-outline-secondary' : 'btn-success'}`}
+              onClick={() => przelaczStatus(k.id)}
+            >
+              {k.przeczytana ? "Oznacz jako nieprzeczytane" : "✓ Przeczytane"}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.30. Wyszukiwarka przepisów kulinarnych po składnikach
+
+Złożone filtrowanie polegające na porównywaniu zaznaczonych elementów z tablicami składników receptur.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const bazaPrzepisow = [
+  { id: 1, nazwa: "Makaron z serem", skladniki: ["Makaron", "Ser"] },
+  { id: 2, nazwa: "Kanapka z szynką i serem", skladniki: ["Chleb", "Ser", "Szynka"] },
+  { id: 3, nazwa: "Jajecznica z szynką", skladniki: ["Jajka", "Szynka"] },
+  { id: 4, nazwa: "Tosty z serem", skladniki: ["Chleb", "Ser"] }
+];
+
+const dostepneSkladniki = ["Makaron", "Ser", "Chleb", "Szynka", "Jajka"];
+
+function App() {
+  const [mojeSkladniki, setMojeSkladniki] = useState([]);
+
+  function toggleSkladnik(skladnik) {
+    if (mojeSkladniki.includes(skladnik)) {
+      setMojeSkladniki(mojeSkladniki.filter(s => s !== skladnik));
+    } else {
+      setMojeSkladniki([...mojeSkladniki, skladnik]);
+    }
+  }
+
+  // Filtr: przepis jest widoczny tylko wtedy, gdy MAMY WSZYSTKIE wymagane w nim składniki
+  const mozliweDoZrobienia = bazaPrzepisow.filter(przepis => 
+    przepis.skladniki.every(wymagany => mojeSkladniki.includes(wymagany))
+  );
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Co zjem dzisiaj?</h1>
+      <p className="text-muted">Zaznacz składniki, które masz w lodówce:</p>
+      
+      <div className="mb-4 border p-3 rounded bg-light">
+        {dostepneSkladniki.map(skl => (
+          <div key={skl} className="form-check form-check-inline">
+            <input 
+              type="checkbox" 
+              className="form-check-input" 
+              id={skl}
+              checked={mojeSkladniki.includes(skl)}
+              onChange={() => toggleSkladnik(skl)}
+            />
+            <label className="form-check-label" htmlFor={skl}>{skl}</label>
+          </div>
+        ))}
+      </div>
+
+      <h4>Możesz ugotować ({mozliweDoZrobienia.length}):</h4>
+      {mozliweDoZrobienia.length === 0 ? (
+        <div className="alert alert-warning">Musisz zaznaczyć więcej składników!</div>
+      ) : (
+        <ul className="list-group">
+          {mozliweDoZrobienia.map(p => (
+            <li key={p.id} className="list-group-item">
+              <strong>{p.nazwa}</strong>
+              <div className="text-muted small">Wymaga: {p.skladniki.join(", ")}</div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.31. Dzienniczek ocen z obliczaniem średniej ważonej
+
+Aplikacja zbierająca liczbowe wartości wraz z ich "wagą" oraz dynamicznie przeliczająca skomplikowaną średnią.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [oceny, setOceny] = useState([]);
+  const [przedmiot, setPrzedmiot] = useState("");
+  const [wartosc, setWartosc] = useState("5");
+  const [waga, setWaga] = useState("1");
+
+  function dodajOcene(e) {
+    e.preventDefault();
+    if (!przedmiot.trim()) return;
+
+    setOceny([...oceny, {
+      id: Date.now(),
+      przedmiot,
+      wartosc: Number(wartosc),
+      waga: Number(waga)
+    }]);
+    setPrzedmiot("");
+  }
+
+  function usunOcene(id) {
+    setOceny(oceny.filter(o => o.id !== id));
+  }
+
+  // Obliczanie średniej ważonej: Suma(Ocena * Waga) / Suma(Wag)
+  let sumaIloczynow = 0;
+  let sumaWag = 0;
+  oceny.forEach(o => {
+    sumaIloczynow += (o.wartosc * o.waga);
+    sumaWag += o.waga;
+  });
+
+  const srednia = sumaWag > 0 ? (sumaIloczynow / sumaWag).toFixed(2) : "0.00";
+  const ostrzezenie = Number(srednia) < 2.0 && sumaWag > 0;
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Dzienniczek Ocen</h1>
+      
+      <div className={`alert ${ostrzezenie ? 'alert-danger' : 'alert-primary'} text-center`}>
+        <h2>Średnia ważona: {srednia}</h2>
+      </div>
+
+      <form onSubmit={dodajOcene} className="row g-2 mb-4">
+        <div className="col-md-5">
+          <input type="text" className="form-control" placeholder="Przedmiot (np. Matematyka)" value={przedmiot} onChange={e => setPrzedmiot(e.target.value)} required />
+        </div>
+        <div className="col-md-3">
+          <label className="small text-muted d-block">Ocena:</label>
+          <select className="form-select" value={wartosc} onChange={e => setWartosc(e.target.value)}>
+            <option value="6">6 (Celujący)</option>
+            <option value="5">5 (Bardzo dobry)</option>
+            <option value="4">4 (Dobry)</option>
+            <option value="3">3 (Dostateczny)</option>
+            <option value="2">2 (Dopuszczający)</option>
+            <option value="1">1 (Niedostateczny)</option>
+          </select>
+        </div>
+        <div className="col-md-2">
+          <label className="small text-muted d-block">Waga:</label>
+          <select className="form-select" value={waga} onChange={e => setWaga(e.target.value)}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div className="col-md-2 d-flex align-items-end">
+          <button type="submit" className="btn btn-success w-100">Dodaj</button>
+        </div>
+      </form>
+
+      <ul className="list-group">
+        {oceny.length === 0 && <li className="list-group-item text-center">Brak ocen</li>}
+        {oceny.map(o => (
+          <li key={o.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{o.przedmiot}</strong> <br/>
+              <span className="text-muted small">Ocena: <span className="fs-5 fw-bold text-dark">{o.wartosc}</span> (waga {o.waga})</span>
+            </div>
+            <button className="btn btn-outline-danger btn-sm" onClick={() => usunOcene(o.id)}>Usuń</button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.32. Lista zakupów z podziałem na działy
+
+Grupowanie tablicy na podstawie jednej ze zmiennych i warunkowe renderowanie wielu sekcji z koszykiem.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const KATEGORIE = ["Owoce/Warzywa", "Nabiał", "Pieczywo", "Chemia"];
+
+function App() {
+  const [zakupy, setZakupy] = useState([
+    { id: 1, nazwa: "Jabłka", kategoria: "Owoce/Warzywa", kupione: false },
+    { id: 2, nazwa: "Chleb", kategoria: "Pieczywo", kupione: true }
+  ]);
+  const [nazwa, setNazwa] = useState("");
+  const [wybranaKategoria, setWybranaKategoria] = useState(KATEGORIE[0]);
+
+  function dodaj(e) {
+    e.preventDefault();
+    if (!nazwa) return;
+    setZakupy([...zakupy, { id: Date.now(), nazwa, kategoria: wybranaKategoria, kupione: false }]);
+    setNazwa("");
+  }
+
+  function przelaczStan(id) {
+    setZakupy(zakupy.map(z => z.id === id ? { ...z, kupione: !z.kupione } : z));
+  }
+
+  function usunKupione() {
+    setZakupy(zakupy.filter(z => !z.kupione));
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Lista Zakupów</h1>
+      
+      <form onSubmit={dodaj} className="d-flex gap-2 mb-4">
+        <input type="text" className="form-control" placeholder="Co kupić?" value={nazwa} onChange={e => setNazwa(e.target.value)} required />
+        <select className="form-select w-auto" value={wybranaKategoria} onChange={e => setWybranaKategoria(e.target.value)}>
+          {KATEGORIE.map(k => <option key={k} value={k}>{k}</option>)}
+        </select>
+        <button type="submit" className="btn btn-primary">Dodaj</button>
+      </form>
+
+      {KATEGORIE.map(kat => {
+        const produktyWKategorii = zakupy.filter(z => z.kategoria === kat);
+        if (produktyWKategorii.length === 0) return null; // Nie renderuj pustych działów
+
+        return (
+          <div key={kat} className="mb-3 border rounded p-2 bg-light">
+            <h5 className="text-secondary border-bottom pb-1 mb-2">{kat}</h5>
+            <ul className="list-group list-group-flush">
+              {produktyWKategorii.map(z => (
+                <li 
+                  key={z.id} 
+                  className={`list-group-item list-group-item-action ${z.kupione ? "text-decoration-line-through text-muted" : ""}`}
+                  onClick={() => przelaczStan(z.id)}
+                  style={{ cursor: "pointer", backgroundColor: "transparent" }}
+                >
+                  <input type="checkbox" className="form-check-input me-2" checked={z.kupione} readOnly />
+                  {z.nazwa}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      })}
+
+      <button className="btn btn-outline-danger w-100 mt-2" onClick={usunKupione}>
+        Usuń oznaczone jako kupione
+      </button>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.33. Mixer kolorów RGB
+
+Trzy suwaki sterujące kolorem tła w czasie rzeczywistym.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [r, setR] = useState(100);
+  const [g, setG] = useState(150);
+  const [b, setB] = useState(200);
+
+  // Kolor w formacie CSS
+  const kolor = `rgb(${r}, ${g}, ${b})`;
+
+  // Kolor w formacie HEX
+  const hex =
+    "#" +
+    r.toString(16).padStart(2, "0") +
+    g.toString(16).padStart(2, "0") +
+    b.toString(16).padStart(2, "0");
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1>Mixer kolorów RGB</h1>
+
+      {/* Podgląd koloru */}
+      <div
+        style={{
+          width: "100%",
+          height: "150px",
+          backgroundColor: kolor,
+          borderRadius: "10px",
+          marginBottom: "1rem",
+          border: "1px solid #ccc",
+        }}
+      />
+
+      {/* Wartości koloru */}
+      <p className="text-center">
+        <strong>RGB:</strong> {kolor} | <strong>HEX:</strong> {hex.toUpperCase()}
+      </p>
+
+      {/* Suwak R (czerwony) */}
+      <div className="mb-3">
+        <label className="form-label" style={{ color: "red" }}>
+          R (czerwony): {r}
+        </label>
+        <input
+          type="range"
+          className="form-range"
+          min="0"
+          max="255"
+          value={r}
+          onChange={(e) => setR(Number(e.target.value))}
+        />
+      </div>
+
+      {/* Suwak G (zielony) */}
+      <div className="mb-3">
+        <label className="form-label" style={{ color: "green" }}>
+          G (zielony): {g}
+        </label>
+        <input
+          type="range"
+          className="form-range"
+          min="0"
+          max="255"
+          value={g}
+          onChange={(e) => setG(Number(e.target.value))}
+        />
+      </div>
+
+      {/* Suwak B (niebieski) */}
+      <div className="mb-3">
+        <label className="form-label" style={{ color: "blue" }}>
+          B (niebieski): {b}
+        </label>
+        <input
+          type="range"
+          className="form-range"
+          min="0"
+          max="255"
+          value={b}
+          onChange={(e) => setB(Number(e.target.value))}
+        />
+      </div>
+
+      {/* Reset */}
+      <button
+        className="btn btn-secondary w-100"
+        onClick={() => { setR(0); setG(0); setB(0); }}
+      >
+        Reset (czarny)
+      </button>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.34. Licznik z historią operacji
+
+Licznik, który zapisuje historię wszystkich wykonanych operacji.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [licznik, setLicznik] = useState(0);
+  const [historia, setHistoria] = useState([]);
+
+  function wykonajOperacje(operacja, wartosc) {
+    let nowaWartosc;
+
+    switch (operacja) {
+      case "dodaj":
+        nowaWartosc = licznik + wartosc;
+        break;
+      case "odejmij":
+        nowaWartosc = licznik - wartosc;
+        break;
+      case "pomnoz":
+        nowaWartosc = licznik * wartosc;
+        break;
+      case "reset":
+        nowaWartosc = 0;
+        break;
+      default:
+        return;
+    }
+
+    // Zapis do historii
+    const wpis = {
+      id: Date.now(),
+      operacja: operacja,
+      wartosc: wartosc,
+      wynik: nowaWartosc,
+      czas: new Date().toLocaleTimeString(),
+    };
+
+    setHistoria((prev) => [wpis, ...prev]); // Najnowsze na górze
+    setLicznik(nowaWartosc);
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "500px" }}>
+      <h1 className="text-center">Licznik: {licznik}</h1>
+
+      {/* Przyciski operacji */}
+      <div className="d-flex gap-2 justify-content-center mb-4">
+        <button className="btn btn-success" onClick={() => wykonajOperacje("dodaj", 1)}>+1</button>
+        <button className="btn btn-success" onClick={() => wykonajOperacje("dodaj", 5)}>+5</button>
+        <button className="btn btn-danger" onClick={() => wykonajOperacje("odejmij", 1)}>-1</button>
+        <button className="btn btn-danger" onClick={() => wykonajOperacje("odejmij", 5)}>-5</button>
+        <button className="btn btn-info" onClick={() => wykonajOperacje("pomnoz", 2)}>×2</button>
+        <button className="btn btn-secondary" onClick={() => wykonajOperacje("reset", 0)}>Reset</button>
+      </div>
+
+      {/* Historia operacji */}
+      <h5>Historia operacji ({historia.length})</h5>
+      {historia.length === 0 ? (
+        <p className="text-muted">Brak operacji</p>
+      ) : (
+        <table className="table table-sm table-striped">
+          <thead>
+            <tr>
+              <th>Czas</th>
+              <th>Operacja</th>
+              <th>Wynik</th>
+            </tr>
+          </thead>
+          <tbody>
+            {historia.map((w) => (
+              <tr key={w.id}>
+                <td>{w.czas}</td>
+                <td>{w.operacja} {w.wartosc !== 0 ? w.wartosc : ""}</td>
+                <td>{w.wynik}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {/* Czyszczenie historii */}
+      {historia.length > 0 && (
+        <button
+          className="btn btn-outline-danger btn-sm"
+          onClick={() => setHistoria([])}
+        >
+          Wyczyść historię
+        </button>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+---
+
+### 26.35. Prosta Playlista Audio (Odtwarzacz ze stanem)
+
+Ten wzorzec jest genialnym rozwiązaniem skomplikowanego zadania polegającego na zbudowaniu „Player’a” i manipulowaniu ścieżkami podawanych plików typu `mp3`. 
+Z reguły polega to na wrzuceniu utworów do tablicy (bazy), a po kliknięciu klawisza `<li>` zmienieniu całego odtwarzanego źródła na nową muzykę w hooku (stanie).
+
+```jsx
+// Główny lub opcjonalny plik: src/App.js
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css"; // Polegamy mocno na gridach / kartkach bootstrapa stąd.
+
+// Ważne: Baza musi wskazywać na folder publiczny dla ładowarki! Pliki muszą tam siedzieć (public/dzwieki/..._
+const LISTA_UTWOROW = [
+  { id: 1, tytul: "Zimowy wiatr", wokalista: "Marek_Pytlas", src: "/dzwieki/wiatr.mp3" },
+  { id: 2, tytul: "Nocne gwieździste niebo", wokalista: "Dj GROM", src: "/dzwieki/niebo.mp3" },
+  { id: 3, tytul: "Energetyczny Pop 2026", wokalista: "Sygmund", src: "/dzwieki/pop.mp3" }
+];
+
+function OdtwarzaczZPlayLista() {
+  // Trzymamy w całości obiekt w którym jest i autor i jego mp3!
+  const [obecnyUtwor, setObecnyUtwor] = useState(LISTA_UTWOROW[0]);
+
+  return (
+    <div className="container mt-5">
+      <div className="card shadow border-dark" style={{ maxWidth: "550px", margin: "auto" }}>
+        
+        {/* ======== Widok playera (górny ekran odtwarzania) ======== */}
+        <div className="card-header bg-dark text-white text-center rounded-top">
+          <h5 className="mb-0">🎵 Twoja Cyfrowa Playlista</h5>
+        </div>
+        <div className="card-body text-center bg-light">
+          <h6 className="text-secondary text-uppercase ls-1">Aktualnie gra</h6>
+          <h2 className="text-primary fw-bold">{obecnyUtwor.tytul}</h2>
+          <p className="text-muted fs-5">Artysta: {obecnyUtwor.wokalista}</p>
+          
+          {/* Tag Audio ma atrybut kluczowy -> key={}. 
+             Zmusza to silnik React'a do "zniszczenia i zrestartowania Playera" kiedy podepniemy mu nowy key'u 
+             w zapiętym źródle (mp3). Bez tego podmienimy src ale utwór nie zadziała.
+          */}
+          <audio controls autoPlay key={obecnyUtwor.src} className="w-100 mt-4 px-2">
+             <source src={obecnyUtwor.src} type="audio/mpeg" />
+          </audio>
+        </div>
+
+        {/* ======== Sekcja listy utworów do klikania ======== */}
+        <ul className="list-group list-group-flush rounded-bottom">
+          {LISTA_UTWOROW.map((utwor) => {
+             // Wzmienie dynamiczne klasy jeżeli piosenka w pętli zgadza się ze stanem obecnym w pamięci
+             const aktywnyClass = utwor.id === obecnyUtwor.id ? "active bg-primary border-primary fw-bold" : "";
+             
+             return (
+               <li 
+                 key={utwor.id} 
+                 className={`list-group-item list-group-item-action ${aktywnyClass}`}
+                 onClick={() => setObecnyUtwor(utwor)}
+                 style={{ cursor: "pointer", transition: "0.2s" }}
+               >
+                 <div className="d-flex justify-content-between align-items-center">
+                    <span>{utwor.id}. {utwor.tytul} </span>
+                    <span className="badge rounded-pill bg-dark">
+                      {utwor.id === obecnyUtwor.id ? "Odtwarza się" : "Graj"}
+                    </span>
+                 </div>
+               </li>
+             );
+          })}
+        </ul>
+
+      </div>
+    </div>
+  );
+}
+
+export default OdtwarzaczZPlayLista;
+```
+
+---
+
+---
+
+### 26.36. Akordeon FAQ z widocznością (Sekcje Rozwijane)
+
+Typowe zadanie architektoniczne - "Mam listę elementów, ale po kliknięciu konkretnego w dół rościąga mi się tekst/odpowiedź, gasząc resztę na biało!". Jest to idealne pole dla **Renderowania warunkowego**.
+
+```jsx
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const BAZA_FAQ = [
+  { id: 1, pyta: "Jak długo czekam na dostawę?", opowiada: "Zasze w 24 godziny od kupienia zlecenia po zaksięgowaniu P24 na naszym koncie firmowym." },
+  { id: 2, pyta: "Czy dostawa jest darmowa dla paczek?", opowiada: "Dla zamówień przekraczających trefny pułap 199.99 PLN wysyłamy na nasz pełny, gigantyczny paczkowy koszt całkowicie za free." },
+  { id: 3, pyta: "Co z procedurą zgłaszanych zwrotów 12 dniowych", opowiada: "Towar ze wgzlędów higienicznych i certyfikatów z rąk Reacta nie może zostać o dziwo wysłany w drogę powrotnę a zaledwie w proces reklamacji wewnątrz chatu." }
+];
+
+function ModulPytanUzytkownikaFAQ() {
+  // Stan "otwarteId" trzyma ID rozwiniętego segmentu. Wartość startowa to puste -> 'null', czyli wszystkie ukryte.
+  const [otwarteId, setOtwarteId] = useState(null);
+
+  // Funkcja odbierająca kliknięcie:
+  const nacisnietyPrzycisk = (idMiejsca) => {
+    // Jeżeli kliknięto id tego samego, co jest już otwarte... ZAMKNIJ wszystkich (przypisać tu null).
+    if (otwarteId === idMiejsca) {
+      setOtwarteId(null);
+    } else {
+      setOtwarteId(idMiejsca); // Jak wciśnie inny guzik - po prostu OTWÓRZ go! A przy okazji reszta zgasi flagi.
+    }
+  };
+
+  return (
+    <div className="container mt-5">
+      <h2 className="text-center mb-5 fw-bold text-dark">Baza Częstych Przyszłoch Pytań</h2>
+      
+      <div className="list-group shadow-lg overflow-hidden border-0 rounded" style={{ maxWidth: "600px", margin: "auto" }}>
+        {BAZA_FAQ.map((rekord) => {
+          
+          // Boolean (flaga bool) decydująca wewnątrz metody - jeżeli w koszcie się zgadza to True
+          const panelWidoczny = otwarteId === rekord.id; 
+          
+          return (
+            <div key={rekord.id}>
+              
+              {/* Sekcja Clickable (Nagłówek Modułu z Zapytaniem) */}
+              <button 
+                onClick={() => nacisnietyPrzycisk(rekord.id)}
+                className={`list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3 border-0 border-bottom
+                 ${panelWidoczny ? "bg-primary text-white" : ""}`}
+                style={{ fontSize: "1.1rem" }}
+              >
+                <div className="fw-bold">
+                  <span className="me-3 fs-4 text-warning">?</span>
+                  Question. {rekord.pyta}
+                </div>
+                {/* Genialny feedback do strzałeczek kierunkowych! */}
+                <span className="fs-5">{panelWidoczny ? "⮝ Zwiń" : "⮟ Rozwiń"}</span>
+              </button>
+
+              {/* Renderowanie warunkowe (wyświetl / zmiel). Gdyby zmienna pod bool'a u góry wynosiła fałsz, po prostu przeskoczy tę sekcję. */}
+              {panelWidoczny && (
+                <div className="p-4 bg-light text-muted border-start border-5 border-warning opacity-75">
+                  <strong className="text-dark">Odpowiedź Eksperta:</strong> <br/>
+                  <p className="mt-2 mb-0 lh-lg">{rekord.opowiada}</p>
+                </div>
+              )}
+              
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default ModulPytanUzytkownikaFAQ;
+```
+
+
+---
+
+---
+
+### 26.37. CSS Gradient Generator
+
+Narzędzie do wizualnego generowania tła z kodem do skopiowania, operujące na stylach inline.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [kolor1, setKolor1] = useState("#ff0000");
+  const [kolor2, setKolor2] = useState("#0000ff");
+  const [kat, setKat] = useState(90);
+
+  const gradientCSS = `linear-gradient(${kat}deg, ${kolor1}, ${kolor2})`;
+
+  function kopiujKod() {
+    navigator.clipboard.writeText(`background: ${gradientCSS};`);
+    alert("Skopiowano do schowka!");
+  }
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Generator Gradientów CSS</h1>
+      
+      {/* Obszar podglądu */}
+      <div 
+        className="w-100 rounded border border-2 border-dark shadow-sm my-4 d-flex align-items-center justify-content-center"
+        style={{ height: "200px", background: gradientCSS }}
+      >
+        <span className="bg-light px-3 py-1 rounded shadow-sm fw-bold">Podgląd na żywo</span>
+      </div>
+
+      <div className="row mb-3">
+        <div className="col">
+          <label className="form-label">Kolor 1:</label>
+          <input type="color" className="form-control form-control-color w-100" value={kolor1} onChange={e => setKolor1(e.target.value)} />
+        </div>
+        <div className="col">
+          <label className="form-label">Kolor 2:</label>
+          <input type="color" className="form-control form-control-color w-100" value={kolor2} onChange={e => setKolor2(e.target.value)} />
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <label className="form-label">Kąt nachylenia: {kat}°</label>
+        <input type="range" className="form-range" min="0" max="360" value={kat} onChange={e => setKat(Number(e.target.value))} />
+      </div>
+
+      <div className="input-group">
+        <span className="input-group-text">CSS:</span>
+        <input type="text" className="form-control" readOnly value={`background: ${gradientCSS};`} />
+        <button className="btn btn-outline-secondary" onClick={kopiujKod}>Kopiuj</button>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.38. Licznik słów, znaków i czasu czytania
+
+Zaawansowane analizowanie zawartości pola tekstowego za pomocą metod na ciągach znaków (`split`, `trim`).
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [tekst, setTekst] = useState("");
+
+  const znakiZespacjami = tekst.length;
+  const znakiBezSpacji = tekst.replace(/\s+/g, "").length;
+  
+  // Zliczanie słów (podział po spacji i enterach)
+  const slowa = tekst.trim() ? tekst.trim().split(/\s+/).length : 0;
+  
+  // Czas czytania przy założeniu 200 słów na minutę
+  const czasCzytania = (slowa / 200).toFixed(1);
+
+  return (
+    <main className="container mt-4" style={{ maxWidth: "600px" }}>
+      <h1>Analizator Tekstu</h1>
+      
+      <textarea 
+        className="form-control mb-4" 
+        rows="8" 
+        placeholder="Wklej tutaj swój tekst do analizy..." 
+        value={tekst} 
+        onChange={(e) => setTekst(e.target.value)}
+      />
+
+      <div className="row text-center">
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card p-3 shadow-sm bg-light">
+            <h5 className="text-muted mb-1">Znaków</h5>
+            <h3 className="mb-0">{znakiZespacjami}</h3>
+          </div>
+        </div>
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card p-3 shadow-sm bg-light">
+            <h5 className="text-muted mb-1">Znaków (bez spacji)</h5>
+            <h3 className="mb-0">{znakiBezSpacji}</h3>
+          </div>
+        </div>
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card p-3 shadow-sm bg-light">
+            <h5 className="text-muted mb-1">Słów</h5>
+            <h3 className="text-primary mb-0">{slowa}</h3>
+          </div>
+        </div>
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card p-3 shadow-sm bg-light">
+            <h5 className="text-muted mb-1">Czas czytania (min)</h5>
+            <h3 className="text-success mb-0">{czasCzytania}</h3>
+          </div>
+        </div>
+      </div>
+      
+      <button className="btn btn-danger mt-2" onClick={() => setTekst("")}>Wyczyść tekst</button>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.39. Minutnik Kuchenny (Odliczanie)
+
+Zastosowanie hooka `useEffect` i funkcji `setInterval` do manipulacji stanem odliczania czasu w dół.
+
+```jsx
+// Plik: src/App.js
+import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [minuty, setMinuty] = useState("");
+  const [sekundyLacznie, setSekundyLacznie] = useState(0);
+  const [aktywny, setAktywny] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+    if (aktywny && sekundyLacznie > 0) {
+      interval = setInterval(() => {
+        setSekundyLacznie((s) => s - 1);
+      }, 1000);
+    } else if (sekundyLacznie === 0 && aktywny) {
+      setAktywny(false);
+      alert("Czas minął!"); // Alert na koniec czasu
+    }
+    return () => clearInterval(interval);
+  }, [aktywny, sekundyLacznie]);
+
+  function start(e) {
+    e.preventDefault();
+    const min = Number(minuty);
+    if (min > 0) {
+      setSekundyLacznie(min * 60);
+      setAktywny(true);
+    }
+  }
+
+  function pauza() {
+    setAktywny(false);
+  }
+
+  function reset() {
+    setAktywny(false);
+    setSekundyLacznie(0);
+    setMinuty("");
+  }
+
+  const wyswietlaneMinuty = Math.floor(sekundyLacznie / 60).toString().padStart(2, "0");
+  const wyswietlaneSekundy = (sekundyLacznie % 60).toString().padStart(2, "0");
+
+  return (
+    <main className="container mt-4 text-center" style={{ maxWidth: "400px" }}>
+      <h1>Minutnik</h1>
+      
+      <div className="card p-4 my-4 bg-light shadow-sm">
+        <h1 className="display-1 fw-bold text-dark font-monospace">
+          {wyswietlaneMinuty}:{wyswietlaneSekundy}
+        </h1>
+      </div>
+
+      {!aktywny && sekundyLacznie === 0 ? (
+        <form onSubmit={start}>
+          <div className="input-group mb-3">
+            <input 
+              type="number" 
+              className="form-control text-center" 
+              placeholder="Czas w minutach" 
+              value={minuty} 
+              onChange={e => setMinuty(e.target.value)} 
+              required min="1" 
+            />
+            <button className="btn btn-success" type="submit">START</button>
+          </div>
+        </form>
+      ) : (
+        <div className="d-flex justify-content-center gap-2">
+          {aktywny ? (
+             <button className="btn btn-warning w-50" onClick={pauza}>PAUZA</button>
+          ) : (
+             <button className="btn btn-success w-50" onClick={() => setAktywny(true)}>WZNÓW</button>
+          )}
+          <button className="btn btn-danger w-50" onClick={reset}>RESET</button>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.40. Kreator i podgląd menu restauracji (Karta dań)
+
+Oddzielenie formularza tworzenia elementów od samej wizualizacji z podziałem na kategorie (np. wegetariańskie).
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [menu, setMenu] = useState([
+    { id: 1, nazwa: "Burger Klasyczny", cena: 35, opis: "Wołowina 200g, ser, sałata", wege: false },
+    { id: 2, nazwa: "Sałatka Grecka", cena: 28, opis: "Feta, oliwki, pomidory, ogórek", wege: true }
+  ]);
+
+  const [nazwa, setNazwa] = useState("");
+  const [cena, setCena] = useState("");
+  const [opis, setOpis] = useState("");
+  const [wege, setWege] = useState(false);
+
+  function dodajDanie(e) {
+    e.preventDefault();
+    if (!nazwa || !cena) return;
+
+    setMenu([...menu, {
+      id: Date.now(),
+      nazwa,
+      cena: Number(cena),
+      opis,
+      wege
+    }]);
+
+    setNazwa(""); setCena(""); setOpis(""); setWege(false);
+  }
+
+  function usunDanie(id) {
+    setMenu(menu.filter(m => m.id !== id));
+  }
+
+  return (
+    <main className="container-fluid mt-4">
+      <div className="row">
+        {/* Panel Managera */}
+        <div className="col-md-4 bg-light p-4 border-end">
+          <h3>Panel Dodawania</h3>
+          <form onSubmit={dodajDanie}>
+            <div className="mb-2">
+              <input type="text" className="form-control" placeholder="Nazwa dania" value={nazwa} onChange={e => setNazwa(e.target.value)} required />
+            </div>
+            <div className="mb-2">
+              <input type="number" step="0.1" className="form-control" placeholder="Cena (zł)" value={cena} onChange={e => setCena(e.target.value)} required />
+            </div>
+            <div className="mb-2">
+              <textarea className="form-control" placeholder="Opis potrawy (składniki)" value={opis} onChange={e => setOpis(e.target.value)} />
+            </div>
+            <div className="form-check mb-3">
+              <input type="checkbox" className="form-check-input" id="wege" checked={wege} onChange={e => setWege(e.target.checked)} />
+              <label className="form-check-label text-success fw-bold" htmlFor="wege">Danie Wegetariańskie 🍃</label>
+            </div>
+            <button type="submit" className="btn btn-primary w-100">Dodaj do Menu</button>
+          </form>
+        </div>
+
+        {/* Widok Klienta */}
+        <div className="col-md-8 p-4">
+          <h1 className="text-center mb-4 border-bottom pb-2">Nasz Jadłospis</h1>
+          <div className="row">
+            {menu.map(danie => (
+              <div key={danie.id} className="col-md-6 mb-3">
+                <div className={`card h-100 ${danie.wege ? 'border-success' : ''}`}>
+                  <div className="card-body">
+                    <div className="d-flex justify-content-between align-items-start mb-2">
+                      <h4 className="card-title">
+                        {danie.nazwa} {danie.wege && <span className="text-success fs-5">🍃</span>}
+                      </h4>
+                      <h4 className="text-primary fw-bold">{danie.cena.toFixed(2)} zł</h4>
+                    </div>
+                    <p className="card-text text-muted fst-italic">{danie.opis}</p>
+                  </div>
+                  <div className="card-footer bg-white border-top-0">
+                    <button className="btn btn-sm btn-outline-danger" onClick={() => usunDanie(danie.id)}>Usuń z oferty</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {menu.length === 0 && <p className="text-center text-muted">Obecnie menu jest puste.</p>}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.41. Interaktywny Quiz wiedzy (5 pytań)
+
+Wykorzystanie stanu do śledzenia obecnego indeksu elementu tablicy pytań i punktacji.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const pytania = [
+  { p: "Jak nazywa się stolica Francji?", odp: ["Londyn", "Paryż", "Berlin", "Madryt"], poprawna: 1 },
+  { p: "Która planeta jest najbliżej Słońca?", odp: ["Ziemia", "Wenus", "Merkury", "Mars"], poprawna: 2 },
+  { p: "Kto napisał 'Pana Tadeusza'?", odp: ["Sienkiewicz", "Prus", "Mickiewicz", "Słowacki"], poprawna: 2 },
+  { p: "Ile to 2 + 2 * 2?", odp: ["8", "6", "4", "10"], poprawna: 1 },
+  { p: "Jaki jest największy ocean?", odp: ["Spokojny", "Atlantycki", "Indyjski", "Arktyczny"], poprawna: 0 }
+];
+
+function App() {
+  const [aktualne, setAktualne] = useState(0);
+  const [punkty, setPunkty] = useState(0);
+  const [koniec, setKoniec] = useState(false);
+
+  function odpowiedz(indeksOdpowiedzi) {
+    if (indeksOdpowiedzi === pytania[aktualne].poprawna) {
+      setPunkty(p => p + 1);
+    }
+
+    const nastepne = aktualne + 1;
+    if (nastepne < pytania.length) {
+      setAktualne(nastepne);
+    } else {
+      setKoniec(true);
+    }
+  }
+
+  function reset() {
+    setAktualne(0);
+    setPunkty(0);
+    setKoniec(false);
+  }
+
+  return (
+    <main className="container mt-5" style={{ maxWidth: "500px" }}>
+      <h1 className="text-center mb-4">Quiz Wiedzy</h1>
+
+      {koniec ? (
+        <div className="card text-center p-5 shadow-sm">
+          <h2>Koniec Gry!</h2>
+          <p className="fs-4">Twój wynik: <strong className="text-primary">{punkty}</strong> na {pytania.length}</p>
+          <button className="btn btn-success mt-3" onClick={reset}>Zagraj ponownie</button>
+        </div>
+      ) : (
+        <div className="card shadow-sm">
+          <div className="card-header d-flex justify-content-between">
+            <span>Pytanie {aktualne + 1} z {pytania.length}</span>
+            <span>Wynik: {punkty}</span>
+          </div>
+          <div className="card-body p-4">
+            <h4 className="card-title mb-4">{pytania[aktualne].p}</h4>
+            <div className="d-grid gap-2">
+              {pytania[aktualne].odp.map((tekst, i) => (
+                <button key={i} className="btn btn-outline-primary text-start fs-5" onClick={() => odpowiedz(i)}>
+                  {tekst}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.42. Tablica Kanban (Zadania w kolumnach)
+
+Zmiana wartości określonego parametru w obiekcie zadania pozwala na wizualne "przepływanie" zadań między kolumnami.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [zadania, setZadania] = useState([
+    { id: 1, tekst: "Nauczyć się Reacta", status: "todo" },
+    { id: 2, tekst: "Zrobić projekt zaliczeniowy", status: "in_progress" },
+    { id: 3, tekst: "Odpocząć", status: "done" }
+  ]);
+  const [noweZadanie, setNoweZadanie] = useState("");
+
+  function dodajZadanie(e) {
+    e.preventDefault();
+    if (!noweZadanie.trim()) return;
+    setZadania([...zadania, { id: Date.now(), tekst: noweZadanie, status: "todo" }]);
+    setNoweZadanie("");
+  }
+
+  function zmienStatus(id, nowyStatus) {
+    setZadania(zadania.map(z => z.id === id ? { ...z, status: nowyStatus } : z));
+  }
+
+  function usunZadanie(id) {
+    setZadania(zadania.filter(z => z.id !== id));
+  }
+
+  const renderKolumny = (tytul, statusID, kolorH, lewoKrok, prawoKrok) => {
+    const karty = zadania.filter(z => z.status === statusID);
+    return (
+      <div className="col-md-4">
+        <div className="card bg-light h-100">
+          <div className={`card-header text-white fw-bold bg-${kolorH}`}>{tytul} ({karty.length})</div>
+          <div className="card-body p-2">
+            {karty.map(z => (
+              <div key={z.id} className="card mb-2 shadow-sm">
+                <div className="card-body p-2 d-flex flex-column">
+                  <span className="mb-2">{z.tekst}</span>
+                  <div className="d-flex justify-content-between mt-auto">
+                    <div>
+                      {lewoKrok && <button className="btn btn-sm btn-outline-secondary me-1" onClick={() => zmienStatus(z.id, lewoKrok)}>←</button>}
+                      {prawoKrok && <button className="btn btn-sm btn-outline-secondary" onClick={() => zmienStatus(z.id, prawoKrok)}>→</button>}
+                    </div>
+                    <button className="btn btn-sm btn-danger text-white" onClick={() => usunZadanie(z.id)}>✕</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <main className="container mt-4">
+      <h1 className="text-center mb-4">Mini Tablica Kanban</h1>
+      
+      <form onSubmit={dodajZadanie} className="mb-4 d-flex" style={{ maxWidth: "500px", margin: "0 auto" }}>
+        <input type="text" className="form-control me-2" placeholder="Nowe zadanie..." value={noweZadanie} onChange={e => setNoweZadanie(e.target.value)} />
+        <button type="submit" className="btn btn-primary">Dodaj</button>
+      </form>
+
+      <div className="row g-3">
+        {renderKolumny("Do zrobienia", "todo", "secondary", null, "in_progress")}
+        {renderKolumny("W trakcie", "in_progress", "warning text-dark", "todo", "done")}
+        {renderKolumny("Zrobione", "done", "success", "in_progress", null)}
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.43. System rezerwacji miejsc w kinie (Siatka miejsc)
+
+Zarządzanie wizualną siatką elementów - każde miejsce z reprezentacją "wolne", "wybrane", "zajęte".
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+// Generujemy początkowy stan sali: 5 rzędów po 6 miejsc (status 0: wolne, 1: wybrane, 2: zajęte)
+const inicjalizujMiejsca = () => {
+  const siatka = [];
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 6; j++) {
+      // Losowo symulujemy kilka zajętych miejsc na starcie
+      const zajete = Math.random() < 0.2; 
+      siatka.push({ id: `${i}-${j}`, rzad: i + 1, miejsce: j + 1, status: zajete ? 2 : 0 });
+    }
+  }
+  return siatka;
+};
+
+function App() {
+  const [miejsca, setMiejsca] = useState(inicjalizujMiejsca());
+  const cenaBiletu = 25;
+
+  function kliknijMiejsce(id) {
+    setMiejsca(miejsca.map(m => {
+      if (m.id === id) {
+        if (m.status === 0) return { ...m, status: 1 }; // Zaznacz
+        if (m.status === 1) return { ...m, status: 0 }; // Odznacz
+      }
+      return m; // 2 (zajęte) nie reaguje na kliknięcie
+    }));
+  }
+
+  function kupBilety() {
+    setMiejsca(miejsca.map(m => m.status === 1 ? { ...m, status: 2 } : m));
+    alert("Kupiono bilety! Dziękujemy.");
+  }
+
+  const wybrane = miejsca.filter(m => m.status === 1).length;
+  const suma = wybrane * cenaBiletu;
+
+  return (
+    <main className="container mt-4 text-center" style={{ maxWidth: "500px" }}>
+      <h1>Rezerwacja Kina</h1>
+      
+      <div className="bg-dark text-white p-2 mb-4 mx-auto w-75 rounded-pill shadow">
+        EKRAN
+      </div>
+
+      <div className="d-flex flex-wrap justify-content-center" style={{ gap: "10px", width: "350px", margin: "0 auto" }}>
+        {miejsca.map(m => {
+          let bg = "bg-secondary opacity-50"; // Wolne
+          if (m.status === 1) bg = "bg-success"; // Wybrane
+          if (m.status === 2) bg = "bg-danger"; // Zajęte
+
+          return (
+            <div 
+              key={m.id} 
+              onClick={() => kliknijMiejsce(m.id)}
+              className={`${bg} text-white d-flex align-items-center justify-content-center rounded`}
+              style={{ width: "40px", height: "40px", cursor: m.status !== 2 ? "pointer" : "not-allowed" }}
+              title={`Rząd ${m.rzad}, Miejsce ${m.miejsce}`}
+            >
+              {m.miejsce}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-4 p-3 border rounded bg-light text-start">
+        <h5>Wybrane miejsca: <strong>{wybrane}</strong></h5>
+        <h5>Do zapłaty: <strong className="text-primary">{suma} zł</strong></h5>
+        <button className="btn btn-primary w-100 mt-2" disabled={wybrane === 0} onClick={kupBilety}>
+          Kup bilety
+        </button>
+      </div>
+
+      <div className="d-flex justify-content-around mt-3 small text-muted">
+        <span><span className="d-inline-block bg-secondary opacity-50 rounded" style={{width:15, height:15}}></span> Wolne</span>
+        <span><span className="d-inline-block bg-success rounded" style={{width:15, height:15}}></span> Wybrane</span>
+        <span><span className="d-inline-block bg-danger rounded" style={{width:15, height:15}}></span> Zajęte</span>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.44. Akordeon FAQ z wyszukiwarką pytań
+
+Otwieranie jednego elementu na raz poprzez trzymanie jego ID w stanie głównym komponentu i wyszukiwanie w tablicy.
+
+```jsx
+// Plik: src/App.js
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+const pytaniaBaza = [
+  { id: 1, p: "Jak zresetować hasło?", o: "Wybierz opcję 'Zapomniałem hasła' na ekranie logowania i postępuj zgodnie z instrukcjami z maila." },
+  { id: 2, p: "Czy aplikacja jest darmowa?", o: "Tak, podstawowa wersja jest darmowa. Oferujemy płatne pakiety premium z dodatkami." },
+  { id: 3, p: "Jak skontaktować się z obsługą?", o: "Napisz na nasz adres mailowy pomoc@example.com lub zadzwoń pod numer z zakładi kontakt." },
+  { id: 4, p: "Gdzie znajdę ustawienia konta?", o: "Ustawienia konta są widoczne w prawym górnym rogu ekranu po kliknięciu w awatar użytkownika." }
+];
+
+function App() {
+  const [otwarteId, setOtwarteId] = useState(null);
+  const [szukaj, setSzukaj] = useState("");
+
+  const wyswietlane = pytaniaBaza.filter(faq => 
+    faq.p.toLowerCase().includes(szukaj.toLowerCase())
+  );
+
+  function przelacz(id) {
+    if (otwarteId === id) setOtwarteId(null); // Zamknij jeśli kliknięto ponownie to samo
+    else setOtwarteId(id); // Otwórz wybrane (zamykając inne)
+  }
+
+  return (
+    <main className="container mt-5" style={{ maxWidth: "600px" }}>
+      <h1 className="mb-4">Najczęstsze pytania (FAQ)</h1>
+      
+      <div className="mb-4">
+        <input 
+          type="text" 
+          className="form-control form-control-lg" 
+          placeholder="Wpisz słowo kluczowe z pytania..." 
+          value={szukaj} 
+          onChange={(e) => setSzukaj(e.target.value)} 
+        />
+      </div>
+
+      <div className="list-group shadow-sm">
+        {wyswietlane.length === 0 && <div className="p-3 text-muted">Brak pytań spełniających kryteria.</div>}
+        
+        {wyswietlane.map(faq => {
+          const otwarte = otwarteId === faq.id;
+          return (
+            <div key={faq.id} className="list-group-item p-0 border-bottom">
+              <button 
+                className={`w-100 text-start btn bg-transparent border-0 p-3 fs-5 d-flex justify-content-between align-items-center ${otwarte ? "fw-bold text-primary" : "text-dark"}`}
+                onClick={() => przelacz(faq.id)}
+              >
+                {faq.p}
+                <span className="text-muted">{otwarte ? "▲" : "▼"}</span>
+              </button>
+              
+              {otwarte && (
+                <div className="p-3 pt-0 text-muted lh-lg" style={{ backgroundColor: "#f8f9fa" }}>
+                  {faq.o}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+---
+
+### 26.45. Wyszukiwarka użytkowników z API
+
+Przykład łączy kilka praktycznych elementów: pobranie danych z zewnętrznego API, obsługę ładowania i błędu, wyszukiwanie po stronie React oraz podgląd szczegółów wybranego użytkownika.
+
+```jsx
+// Plik: src/App.js
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+
+function App() {
+  const [uzytkownicy, setUzytkownicy] = useState([]);
+  const [szukaj, setSzukaj] = useState("");
+  const [wybranyId, setWybranyId] = useState(null);
+  const [ladowanie, setLadowanie] = useState(true);
+  const [blad, setBlad] = useState("");
+
+  async function pobierzUzytkownikow() {
+    try {
+      setLadowanie(true);
+      setBlad("");
+
+      const response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+      if (!response.ok) {
+        throw new Error(`Błąd HTTP: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setUzytkownicy(data);
+      setWybranyId(data[0]?.id ?? null);
+    } catch (error) {
+      setBlad("Nie udało się pobrać użytkowników. Spróbuj ponownie.");
+    } finally {
+      setLadowanie(false);
+    }
+  }
+
+  useEffect(() => {
+    pobierzUzytkownikow();
+  }, []);
+
+  const wyniki = uzytkownicy.filter((user) => {
+    const tekst = `${user.name} ${user.email} ${user.company.name}`.toLowerCase();
+    return tekst.includes(szukaj.toLowerCase());
+  });
+
+  const wybrany = uzytkownicy.find((user) => user.id === wybranyId);
+
+  if (ladowanie) {
+    return (
+      <main className="container mt-5">
+        <p className="alert alert-info">Ładowanie użytkowników...</p>
+      </main>
+    );
+  }
+
+  if (blad) {
+    return (
+      <main className="container mt-5">
+        <p className="alert alert-danger">{blad}</p>
+        <button className="btn btn-primary" onClick={pobierzUzytkownikow}>
+          Spróbuj ponownie
+        </button>
+      </main>
+    );
+  }
+
+  return (
+    <main className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h1>Użytkownicy z API</h1>
+        <button className="btn btn-outline-primary" onClick={pobierzUzytkownikow}>
+          Odśwież
+        </button>
+      </div>
+
+      <input
+        type="text"
+        className="form-control mb-4"
+        placeholder="Szukaj po nazwie, e-mailu lub firmie..."
+        value={szukaj}
+        onChange={(e) => setSzukaj(e.target.value)}
+      />
+
+      <div className="row g-3">
+        <section className="col-md-5">
+          <div className="list-group">
+            {wyniki.length === 0 && (
+              <div className="list-group-item text-muted">
+                Brak wyników dla podanej frazy.
+              </div>
+            )}
+
+            {wyniki.map((user) => (
+              <button
+                key={user.id}
+                type="button"
+                className={`list-group-item list-group-item-action ${wybranyId === user.id ? "active" : ""}`}
+                onClick={() => setWybranyId(user.id)}
+              >
+                <strong>{user.name}</strong>
+                <br />
+                <small>{user.email}</small>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="col-md-7">
+          {wybrany ? (
+            <div className="border rounded p-3 h-100">
+              <h2 className="h4">{wybrany.name}</h2>
+              <p className="text-muted">@{wybrany.username}</p>
+
+              <hr />
+
+              <p><strong>E-mail:</strong> {wybrany.email}</p>
+              <p><strong>Telefon:</strong> {wybrany.phone}</p>
+              <p><strong>Strona:</strong> {wybrany.website}</p>
+              <p><strong>Firma:</strong> {wybrany.company.name}</p>
+              <p>
+                <strong>Miasto:</strong>{" "}
+                {wybrany.address?.city ?? "Brak danych"}
+              </p>
+            </div>
+          ) : (
+            <div className="border rounded p-3 text-muted">
+              Wybierz użytkownika z listy.
+            </div>
+          )}
+        </section>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
