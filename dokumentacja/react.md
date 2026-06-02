@@ -132,27 +132,13 @@
   - [12.2. Kopiowanie obiektu — spread](#122-kopiowanie-obiektu--spread)
   - [12.3. Formularz jako obiekt stanu](#123-formularz-jako-obiekt-stanu)
   - [12.4. Dane z pliku przepisane do kodu](#124-dane-z-pliku-przepisane-do-kodu)
-- [13. Bootstrap w React — Kompletny Przewodnik](#13-bootstrap-w-react--kompletny-przewodnik)
-  - [13.1. Czym jest Bootstrap i kiedy go używać](#131-czym-jest-bootstrap-i-kiedy-go-używać)
-  - [13.2. Instalacja i konfiguracja Bootstrapa](#132-instalacja-i-konfiguracja-bootstrapa)
-  - [13.3. Czysty Bootstrap CSS vs React-Bootstrap](#133-czysty-bootstrap-css-vs-react-bootstrap)
-  - [13.4. Kontenery i podstawowy układ strony](#134-kontenery-i-podstawowy-układ-strony)
-  - [13.5. System Grid — siatka 12-kolumnowa](#135-system-grid--siatka-12-kolumnowa)
-  - [13.6. Flexbox i szybkie wyrównywanie elementów](#136-flexbox-i-szybkie-wyrównywanie-elementów)
-  - [13.7. Display, widoczność, pozycjonowanie i overflow](#137-display-widoczność-pozycjonowanie-i-overflow)
-  - [13.8. Spacing, wymiary, obramowania i cienie](#138-spacing-wymiary-obramowania-i-cienie)
-  - [13.9. Typografia, kolory, tła i tryb ciemny](#139-typografia-kolory-tła-i-tryb-ciemny)
-  - [13.10. Przyciski, grupy przycisków i stany](#1310-przyciski-grupy-przycisków-i-stany)
-  - [13.11. Formularze — pola, selecty, checkboxy i input group](#1311-formularze--pola-selecty-checkboxy-i-input-group)
-  - [13.12. Walidacja formularzy i floating labels](#1312-walidacja-formularzy-i-floating-labels)
-  - [13.13. Nawigacja — navbar, nav, tabs i breadcrumbs](#1313-nawigacja--navbar-nav-tabs-i-breadcrumbs)
-  - [13.14. Karty, list group, badge i układy kafelkowe](#1314-karty-list-group-badge-i-układy-kafelkowe)
-  - [13.15. Tabele, paginacja i prezentacja danych](#1315-tabele-paginacja-i-prezentacja-danych)
-  - [13.16. Alerty, spinnery, progress, placeholdery i toast](#1316-alerty-spinnery-progress-placeholdery-i-toast)
-  - [13.17. Komponenty wymagające JavaScriptu](#1317-komponenty-wymagające-javascriptu)
-  - [13.18. Dostępność i semantyka w Bootstrapie](#1318-dostępność-i-semantyka-w-bootstrapie)
-  - [13.19. Nadpisywanie Bootstrapa i własny motyw](#1319-nadpisywanie-bootstrapa-i-własny-motyw)
-  - [13.20. Złożony przykład praktyczny: Panel użytkownika](#1320-złożony-przykład-praktyczny-panel-użytkownika)
+- [13. Bootstrap w React — skrót](#13-bootstrap-w-react--skrót)
+  - [13.1. Rola Bootstrapa w aplikacji React](#131-rola-bootstrapa-w-aplikacji-react)
+  - [13.2. Instalacja i import stylów](#132-instalacja-i-import-stylów)
+  - [13.3. Klasy Bootstrapa w JSX](#133-klasy-bootstrapa-w-jsx)
+  - [13.4. Komponenty zależne od stanu Reacta](#134-komponenty-zależne-od-stanu-reacta)
+  - [13.5. React-Bootstrap czy zwykłe klasy](#135-react-bootstrap-czy-zwykłe-klasy)
+  - [13.6. Mini przykład: formularz i karta](#136-mini-przykład-formularz-i-karta)
 - [14. Obrazy i zasoby statyczne](#14-obrazy-i-zasoby-statyczne)
   - [14.1. Obrazy z folderu public](#141-obrazy-z-folderu-public)
   - [14.2. Obrazy z folderu src — import](#142-obrazy-z-folderu-src--import)
@@ -270,9 +256,32 @@
   - [26.43. System rezerwacji miejsc w kinie (Siatka miejsc)](#2643-system-rezerwacji-miejsc-w-kinie-siatka-miejsc)
   - [26.44. Akordeon FAQ z wyszukiwarką pytań](#2644-akordeon-faq-z-wyszukiwarką-pytań)
   - [26.45. Wyszukiwarka użytkowników z API](#2645-wyszukiwarka-użytkowników-z-api)
+
 ## 1. Wprowadzenie
 
+React najłatwiej zrozumieć jako sposób opisywania ekranu na podstawie danych. Nie myślisz wtedy: „znajdź element i zmień mu tekst”, tylko: „dla tych danych pokaż taki widok”. Taka zmiana myślenia jest ważniejsza niż sama składnia JSX.
+
+```jsx
+function StatusPolaczenia({ online }) {
+  return (
+    <p className={online ? "text-success" : "text-danger"}>
+      {online ? "Połączono" : "Brak połączenia"}
+    </p>
+  );
+}
+```
+
+W przykładzie widok nie jest ręcznie aktualizowany. Wystarczy zmienić wartość `online`, a React obliczy, jak powinien wyglądać aktualny fragment interfejsu.
+
 ### 1.1. Czym jest React
+
+React warto rozumieć jako warstwę, która zamienia dane na interfejs. Komponent nie powinien sam wyszukiwać elementu w DOM i zmieniać mu tekstu; powinien dostać dane i zwrócić JSX opisujący aktualny widok.
+
+```jsx
+function UserStatus({ name, active }) {
+  return <p>{name}: {active ? "aktywny" : "nieaktywny"}</p>;
+}
+```
 
 React to biblioteka JavaScript stworzona przez zespół Facebooka (Meta) w 2013 roku. Służy do budowania interfejsów użytkownika (UI). Nie jest pełnym frameworkiem — odpowiada wyłącznie za warstwę widoku. Oznacza to, że React nie narzuca sposobu obsługi routingu, zapytań do serwera ani zarządzania bazą danych. W podstawowych projektach te rzeczy nie są zazwyczaj potrzebne.
 
@@ -281,6 +290,10 @@ Najważniejsza zasada Reacta brzmi: **widok jest funkcją danych**. Jeżeli zmie
 React opiera się na **komponentach**. Komponent to funkcja JavaScript, która zwraca fragment widoku (napisany w składni JSX, która wygląda jak HTML). Cała aplikacja jest drzewem komponentów — od jednego głównego (`App`) aż po najmniejsze przyciski i etykiety.
 
 ### 1.2. Czym jest Single Page Application (SPA)
+
+W SPA pierwszy dokument HTML jest ładowany raz, a dalsze zmiany widoku wykonuje JavaScript. To oznacza, że stan aplikacji może pozostać w pamięci podczas przechodzenia między ekranami, o ile nie odświeżysz całej strony.
+
+W praktyce zwykły link `<a href="/profil">` może przeładować aplikację, a link z routera Reacta zmieni widok bez resetowania stanu.
 
 SPA, czyli Single Page Application (aplikacja jednostronicowa), to aplikacja webowa, która działa na jednej stronie HTML. Przeglądarka ładuje plik `index.html` oraz pliki JavaScript i CSS. Od tego momentu widok zmienia się bez pełnego przeładowania strony — wszystko odbywa się dynamicznie po stronie klienta (przeglądarki).
 
@@ -292,6 +305,16 @@ Proste aplikacje Reactowe są właśnie małymi SPA. W typowych, mniejszych proj
 - dane są wpisane w kodzie lub skopiowane z pliku `dane.txt`
 
 ### 1.3. Deklaratywność vs imperatywność
+
+Deklaratywność najlepiej widać wtedy, gdy ten sam widok ma kilka stanów. Zamiast ręcznie dopisywać i usuwać klasy w DOM, opisujesz warunek w JSX.
+
+```jsx
+function SaveInfo({ saved }) {
+  return <p className={saved ? "text-success" : "text-warning"}>
+    {saved ? "Zapisano zmiany" : "Masz niezapisane zmiany"}
+  </p>;
+}
+```
 
 Przesiadka z czystego JavaScriptu na Reacta wymaga zmiany sposobu myślenia.
 
@@ -334,6 +357,10 @@ To jak zamawianie pizzy: w podejściu imperatywnym wchodzisz do kuchni i instruu
 
 ### 1.4. Virtual DOM — jak React aktualizuje stronę
 
+Virtual DOM nie oznacza, że React zawsze jest automatycznie najszybszy. Oznacza, że React porównuje opis poprzedniego i nowego widoku, a następnie aktualizuje realny DOM tylko tam, gdzie wynik renderowania faktycznie się zmienił.
+
+Dlatego tak ważne są stabilne `key` w listach i niemutowalne aktualizacje stanu. Dzięki nim React potrafi poprawnie rozpoznać, który element jest ten sam, a który został dodany, usunięty albo zmieniony.
+
 Zrozumienie tego mechanizmu pomaga pisać lepszy kod:
 
 1. **Komponenty** to Twoje „klocki" — funkcje zwracające widok.
@@ -344,6 +371,8 @@ Zrozumienie tego mechanizmu pomaga pisać lepszy kod:
 Dzięki temu aplikacje są szybkie, a programista nie musi martwić się o ręczne manipulowanie elementami HTML.
 
 ### 1.5. Jak korzystać z tego poradnika
+
+Ten temat warto zamknąć małym komponentem testowym. Zmień dane wejściowe i sprawdź, czy widok aktualizuje się bez ręcznego dotykania DOM.
 
 | Obszar | Co trzeba umieć | Po co |
 |---|---|---|
@@ -363,7 +392,24 @@ Dzięki temu aplikacje są szybkie, a programista nie musi martwić się o ręcz
 
 ## 2. Środowisko pracy
 
+Środowisko pracy w React składa się z kilku warstw: Node.js uruchamia narzędzia, npm pobiera paczki, bundler przetwarza JSX i CSS, a przeglądarka pokazuje wynik. Gdy coś nie działa, warto ustalić, na której warstwie pojawia się problem: instalacja, uruchomienie serwera, kompilacja, czy dopiero działanie aplikacji w przeglądarce.
+
+| Problem | Gdzie szukać przyczyny | Typowa reakcja |
+|---|---|---|
+| komenda nie istnieje | Node.js / npm / terminal | sprawdź wersje i katalog projektu |
+| aplikacja się nie kompiluje | importy, JSX, zależności | przeczytaj pierwszy błąd w terminalu |
+| strona jest pusta | konsola przeglądarki | sprawdź błąd JavaScript |
+| styl się nie ładuje | import CSS / ścieżka pliku | sprawdź nazwę pliku i import |
+
 ### 2.1. Node.js, npm i npx
+
+`node` uruchamia JavaScript poza przeglądarką, `npm` zarządza paczkami, a `npx` potrafi uruchomić narzędzie bez ręcznej instalacji globalnej. W projekcie React większość problemów środowiskowych zaczyna się od złej wersji Node albo od uruchomienia komendy poza katalogiem projektu.
+
+```bash
+node -v
+npm -v
+pwd # lub cd na Windows: sprawdź aktualny folder
+```
 
 Zanim zaczniesz pracę z Reactem, musisz zrozumieć trzy narzędzia:
 
@@ -382,6 +428,8 @@ Dodatkowo ważne pojęcia:
 | `package-lock.json` | Dokładne wersje zainstalowanych pakietów — nie edytujemy ręcznie |
 
 ### 2.2. Instalacja Node.js
+
+W części „Instalacja Node.js” zapisz konkretną komendę, oczekiwany efekt i miejsce wykonania. Jeśli coś nie działa, porównaj te trzy rzeczy: czy jesteś w katalogu z `package.json`, czy zależności są zainstalowane i czy terminal pokazuje błąd narzędzia czy błąd kodu.
 
 Node.js pobieramy ze strony [https://nodejs.org](https://nodejs.org). Wybieramy wersję **LTS** (Long Term Support), która jest stabilna i sprawdzona. Instalator automatycznie instaluje także `npm` i `npx`.
 
@@ -404,6 +452,8 @@ Jeżeli polecenia zwracają numery wersji, instalacja się powiodła.
 
 ### 2.3. Sprawdzanie wersji
 
+Sprawdzanie wersji ma sens wtedy, gdy zapiszesz wynik i porównasz go z wymaganiami projektu. Jeśli projekt był tworzony na innej wersji Node, po aktualizacji zależności mogą pojawić się błędy, których nie widać w samym kodzie Reacta. Warto sprawdzić też `npm outdated`, gdy projekt długo nie był ruszany.
+
 Przed tworzeniem nowego projektu warto upewnić się, że narzędzia są zainstalowane:
 
 ```bash
@@ -423,6 +473,13 @@ Minimalne wymagania dla Create React App:
 
 ### 2.4. Czym jest Create React App
 
+Create React App jest starszym sposobem tworzenia projektu. Warto umieć rozpoznać jego strukturę, bo dużo istniejących projektów nadal go używa. W nowszych projektach często spotkasz Vite, ale podstawowe komponenty Reacta, propsy, stan i efekty działają tak samo.
+
+| Narzędzie | Typowy start | Folder produkcyjny |
+|---|---|---|
+| CRA | `npm start` | `build` |
+| Vite | `npm run dev` | `dist` |
+
 Create React App (skrót: CRA) to narzędzie, które tworzy gotowy projekt Reactowy z pełną konfiguracją. Nie trzeba ręcznie konfigurować bundlera (Webpack), transpilera (Babel) ani serwera deweloperskiego — CRA robi to za nas.
 
 CRA tworzy projekt z:
@@ -436,6 +493,14 @@ CRA tworzy projekt z:
 > **Uwaga:** Create React App jest obecnie narzędziem, które nie jest już aktywnie rozwijane przez zespół Reacta. Dla nowych projektów profesjonalnych rekomendowane są narzędzia jak Vite. Jednak CRA nadal doskonale sprawdza się do nauki i podstawowych środowisk projektowych, dlatego w tej dokumentacji używamy go świadomie.
 
 ### 2.5. Tworzenie nowego projektu
+
+Po utworzeniu projektu zawsze wykonaj trzy kontrole: czy powstał `package.json`, czy zainstalowały się zależności oraz czy serwer deweloperski pokazuje adres lokalny. Jeśli brakuje `node_modules`, uruchom `npm install` w folderze projektu.
+
+```bash
+cd moja-aplikacja
+npm install
+npm start
+```
 
 Projekt tworzysz w folderze, w którym chcesz mieć katalog aplikacji. Nazwa projektu powinna być:
 - pisana małymi literami
@@ -460,6 +525,8 @@ Jeżeli port 3000 jest zajęty, terminal zapyta, czy użyć innego portu. Potwie
 
 ### 2.6. Uruchamianie projektu
 
+W części „Uruchamianie projektu” zapisz konkretną komendę, oczekiwany efekt i miejsce wykonania. Jeśli coś nie działa, porównaj te trzy rzeczy: czy jesteś w katalogu z `package.json`, czy zależności są zainstalowane i czy terminal pokazuje błąd narzędzia czy błąd kodu.
+
 Po utworzeniu projektu najczęściej używasz dwóch poleceń:
 
 ```bash
@@ -476,6 +543,8 @@ Serwer deweloperski:
 - Działa pod adresem `http://localhost:3000`
 
 ### 2.7. Struktura katalogów
+
+Struktura katalogów pokazuje, które pliki są częścią aplikacji, a które konfiguracją narzędzi. `src` zawiera kod przetwarzany przez bundler, `public` pliki kopiowane bezpośrednio, a `package.json` opisuje zależności i komendy. Przy błędach importu najpierw sprawdzaj, czy plik jest w odpowiednim miejscu.
 
 Po utworzeniu projektu przez CRA otrzymujesz następującą strukturę:
 
@@ -563,6 +632,8 @@ export default App;
 
 ### 2.8. Czyszczenie projektu startowego
 
+Czyszczenie projektu startowego nie polega tylko na usunięciu logo. Po wyczyszczeniu warto zostawić minimalny `App`, jeden plik CSS i działający import. Dzięki temu każdy kolejny błąd będzie pochodził z Twojego kodu, a nie z nieużywanych plików szablonu.
+
 Po utworzeniu projektu warto usunąć niepotrzebne pliki startowe i zacząć od czystego szablonu. Oto minimalny zestaw plików po wyczyszczeniu:
 
 ```jsx
@@ -609,6 +680,8 @@ Pliki, które można usunąć:
 
 ### 2.9. Skrypty npm
 
+W części „Skrypty npm” zapisz konkretną komendę, oczekiwany efekt i miejsce wykonania. Jeśli coś nie działa, porównaj te trzy rzeczy: czy jesteś w katalogu z `package.json`, czy zależności są zainstalowane i czy terminal pokazuje błąd narzędzia czy błąd kodu.
+
 Skrypty są zdefiniowane w pliku `package.json`. Dzięki nim nie trzeba pamiętać pełnych poleceń:
 
 ```json
@@ -633,6 +706,8 @@ Polecenia `eject` prawie nigdy nie używaj. Wyciąga ukrytą konfigurację Webpa
 
 ### 2.10. Instalacja dodatkowych bibliotek
 
+W części „Instalacja dodatkowych bibliotek” zapisz konkretną komendę, oczekiwany efekt i miejsce wykonania. Jeśli coś nie działa, porównaj te trzy rzeczy: czy jesteś w katalogu z `package.json`, czy zależności są zainstalowane i czy terminal pokazuje błąd narzędzia czy błąd kodu.
+
 Aby zainstalować bibliotekę (np. Bootstrap), używasz polecenia `npm install`:
 
 ```bash
@@ -649,9 +724,31 @@ Po instalacji biblioteka pojawia się w `node_modules` i w sekcji `dependencies`
 
 ## 3. Podstawy JavaScript potrzebne w React
 
+JavaScript w React nie jest dodatkiem, tylko podstawą. JSX pozwala pisać znaczniki podobne do HTML, ale każda decyzja widoku opiera się na zwykłych wartościach JavaScript: tablicach, obiektach, funkcjach, warunkach i metodach takich jak `map()` albo `filter()`.
+
+```js
+const produkty = [
+  { id: 1, nazwa: "Monitor", cena: 799, aktywny: true },
+  { id: 2, nazwa: "Mysz", cena: 99, aktywny: false },
+];
+
+const widoczneProdukty = produkty.filter((produkt) => produkt.aktywny);
+const suma = widoczneProdukty.reduce((acc, produkt) => acc + produkt.cena, 0);
+```
+
+Takie przygotowanie danych najlepiej robić przed `return`, a w JSX zostawić samo renderowanie.
+
 React jest biblioteką JavaScript, więc znajomość podstaw tego języka jest niezbędna. Ten rozdział prezentuje elementy JavaScriptu, które pojawiają się najczęściej w kodzie Reactowym.
 
 ### 3.1. Zmienne — const, let, var
+
+W React domyślnie wybieraj `const`, nawet dla tablic i obiektów. Nie oznacza to, że obiekt jest zamrożony; oznacza tylko, że zmienna nie dostanie nowej referencji przez znak `=`. Dla stanu i tak tworzysz nowe kopie przez `setState`.
+
+```js
+const products = [];
+const user = { name: "Anna" };
+let index = 0; // tylko tam, gdzie wartość faktycznie się zmienia
+```
 
 Zmienna to "pudełko", w którym przechowujesz dane (tekst, liczby, tablice), by móc ich później użyć w programie. W nowoczesnym JavaScripcie zmienne deklarujemy za pomocą dwóch głównych słów kluczowych: `const` i `let`. Słowo `var` to przeżytek, którego w React już się nie używa.
 
@@ -704,6 +801,13 @@ osoba.imie = "Anna";     // OK — modyfikujemy pole obiektu
 ```
 
 ### 3.2. Typy danych
+
+W formularzach Reacta typ danych bywa mylący: nawet `input type="number"` zwraca tekst. Jeśli liczba ma być użyta w obliczeniach, zamień ją jawnie przez `Number()` albo przechowuj pusty string jako stan pola.
+
+```js
+const valueFromInput = "42";
+const amount = Number(valueFromInput);
+```
 
 JavaScript ma kilka podstawowych typów danych:
 
@@ -764,6 +868,15 @@ const arr3 = [...arr1]; // Nowa, niezależna tablica
 
 ### 3.3. Operatory arytmetyczne
 
+Przy operatorze `+` uważaj na mieszanie liczb i tekstów. W React bardzo często wartość pochodzi z formularza, więc bez konwersji możesz dostać konkatenację zamiast dodawania.
+
+```js
+const a = "2";
+const b = "3";
+console.log(a + b); // "23"
+console.log(Number(a) + Number(b)); // 5
+```
+
 | Operator | Nazwa | Przykład | Wynik |
 |---|---|---|---|
 | `+` | Dodawanie | `10 + 5` | `15` |
@@ -814,6 +927,13 @@ const wynik = `Cena: ${5 + 3} zł`; // "Cena: 8 zł" — jednoznaczne
 
 ### 3.4. Operatory porównania
 
+W warunkach renderowania używaj `===` i `!==`. Luźne porównanie potrafi ukryć błąd typu, np. gdy identyfikator z formularza jest tekstem, a identyfikator w danych jest liczbą.
+
+```js
+const selectedId = Number(event.target.value);
+const selected = users.find((user) => user.id === selectedId);
+```
+
 | Operator | Znaczenie | Przykład | Wynik |
 |---|---|---|---|
 | `===` | Równe (ścisłe, bez konwersji typów) | `5 === 5` | `true` |
@@ -839,6 +959,12 @@ console.log("" == false); // true (nieintuicyjne)
 ```
 
 ### 3.5. Operatory logiczne
+
+`&&` jest wygodne w JSX, ale pamiętaj, że zwraca wartość, a nie zawsze `true` lub `false`. Szczególnie uważaj na liczbę `0`, bo może zostać wyrenderowana na stronie.
+
+```jsx
+{items.length > 0 && <ProductList items={items} />}
+```
 
 | Operator | Nazwa | Prawda gdy... |
 |---|---|---|
@@ -889,6 +1015,13 @@ const imieUsera = pobraneImie || "Anonim";
 
 ### 3.6. Template stringi (szablony napisów)
 
+Template stringi są bardzo przydatne do klas CSS i komunikatów, ale nie buduj nimi nieczytelnych bloków logiki. Jeśli klasa zależy od wielu warunków, przygotuj zmienną przed `return`.
+
+```jsx
+const buttonClass = `btn ${primary ? "btn-primary" : "btn-outline-secondary"}`;
+return <button className={buttonClass}>Zapisz</button>;
+```
+
 Template stringi to sposób wstawiania zmiennych i wyrażeń do tekstu. Używają **odwrotnych apostrofów** (backtick) `` ` `` zamiast cudzysłowów. Zmienne wstawiamy w `${}`:
 
 ```js
@@ -920,6 +1053,14 @@ const klasa = `btn btn-${aktywny ? "success" : "danger"} ${duzy ? "btn-lg" : ""}
 ```
 
 ### 3.7. Instrukcja warunkowa if / else if / else
+
+Klasyczny `if` jest najlepszy, gdy komponent ma zwrócić całkowicie inny widok: loading, błąd albo brak danych. Użyj go przed `return`, a nie bezpośrednio w JSX.
+
+```jsx
+if (loading) return <p>Ładowanie...</p>;
+if (error) return <p>Nie udało się pobrać danych.</p>;
+return <UserList users={users} />;
+```
 
 Instrukcja `if` pozwala programowi podejmować decyzje. Działa jak "rozwidlenie dróg" – kod pójdzie w jedną stronę, jeśli warunek jest spełniony (`true`), a w drugą, jeśli nie jest (`false`).
 
@@ -955,6 +1096,12 @@ function MojaStrona({ czyZalogowany }) {
 
 ### 3.8. Operator trójargumentowy (ternary)
 
+Operator trójargumentowy najlepiej nadaje się do wyboru jednego z dwóch krótkich wariantów. Jeżeli w obu gałęziach masz duże fragmenty JSX, czytelniej będzie wydzielić osobne komponenty.
+
+```jsx
+<span>{isAdmin ? "Administrator" : "Użytkownik"}</span>
+```
+
 Operator trójargumentowy to skrócona forma `if/else`. Składa się z trzech części: `warunek ? wartość_dlaTrue : wartość_dlaFalse`.
 
 ```js
@@ -970,6 +1117,14 @@ Jest niezwykle często używany w JSX do warunkowego wyświetlania:
 ```
 
 ### 3.9. Funkcje — deklaracja i wyrażenie
+
+Funkcje deklarowane poza komponentem nie są tworzone ponownie przy każdym renderze. To dobre miejsce dla czystej logiki, np. formatowania ceny albo obliczania sumy.
+
+```js
+function formatPrice(value) {
+  return `${value.toFixed(2)} zł`;
+}
+```
 
 Funkcja to nazwany fragment kodu, który "wykonuje jakąś pracę" i może być wywoływany wielokrotnie. Możesz o niej myśleć jak o maszynce – wrzucasz do niej jakieś składniki (parametry), ona robi coś z nimi w środku, a następnie "wypluwa" wynik (przy pomocy `return`). W React każdy komponent jest właśnie taką funkcją!
 
@@ -1027,6 +1182,12 @@ const { suma, srednia } = obliczStatystyki([10, 20, 30]);
 
 ### 3.10. Funkcje strzałkowe (arrow functions)
 
+Funkcje strzałkowe często pojawiają się w handlerach. Jeśli musisz przekazać argument, owiń wywołanie w funkcję, żeby nie uruchomić go podczas renderowania.
+
+```jsx
+<button onClick={() => removeProduct(product.id)}>Usuń</button>
+```
+
 Funkcje strzałkowe to krótsza składnia funkcji, bardzo popularna w React:
 
 ```js
@@ -1077,6 +1238,8 @@ log("INFO", "Start", "Połączono", "Gotowe");
 
 ### 3.11. Tablice — tworzenie i podstawowe metody
 
+Konstrukcję „Tablice — tworzenie i podstawowe metody” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 Tablice (arrays) to uporządkowane kolekcje elementów. W React są fundamentalne — listy, karty, formularze wieloelementowe — wszystko opiera się na tablicach.
 
 ```js
@@ -1116,6 +1279,15 @@ for (const kurs of kursy) {
 ```
 
 ### 3.12. Metody tablic kluczowe w React — map, filter, find, reduce
+
+Te cztery metody są podstawą większości interfejsów opartych na danych.
+
+| Metoda | Zwraca | Typowe użycie w React |
+|---|---|---|
+| `map` | nową tablicę | renderowanie listy elementów |
+| `filter` | nową, krótszą tablicę | wyszukiwarka, kategorie, aktywne elementy |
+| `find` | jeden element albo `undefined` | szczegóły wybranego rekordu |
+| `reduce` | dowolną wartość | suma, grupowanie, statystyki |
 
 W React niemal wszystkie operacje na listach elementów opierają się na czterech podstawowych metodach wbudowanych w JavaScript. Co kluczowe, w przypadku Reacta zależy nam na "niemutowalności" (immutability), dlatego każda z wymienionych metod **nie modyfikuje oryginalnej tablicy, ale zwraca zupełnie nową**. 
 
@@ -1230,6 +1402,8 @@ console.log(sumaCalkowita); // Ujrzysz całkowitą wyciągniętą pojedynczą li
 
 ### 3.13. Obiekty
 
+Obiekty są podstawowym sposobem modelowania danych w aplikacji: użytkownik, produkt, zadanie albo ustawienia formularza. W JSX najczęściej odczytujesz pola przez kropkę, np. `user.name`, ale przy brakujących danych warto używać optional chaining, np. `user.address?.city`.
+
 Obiekty to kolekcje par klucz-wartość. Są podstawą modelowania danych w React:
 
 ```js
@@ -1304,6 +1478,8 @@ const tytuly = filmy.map((f) => f.tytul);
 ```
 
 ### 3.14. Destrukturyzacja tablic i obiektów
+
+Konstrukcję „Destrukturyzacja tablic i obiektów” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
 
 Destrukturyzacja to sposób na „wyciągnięcie" wartości z tablicy lub obiektu do osobnych zmiennych. Jest niezwykle często używana w React.
 
@@ -1400,6 +1576,15 @@ console.log(czwarty); // 40
 
 ### 3.15. Operator spread (...)
 
+Spread tworzy płytką kopię. To wystarczy przy prostych tablicach i obiektach, ale przy zagnieżdżeniach trzeba skopiować każdy poziom, który zmieniasz.
+
+```js
+const nextUser = {
+  ...user,
+  address: { ...user.address, city: "Gdańsk" },
+};
+```
+
 Operator spread (`...`) „rozkłada" tablicę lub obiekt na poszczególne elementy. Jest kluczowy w React do **niemutowalnej aktualizacji stanu**:
 
 **Spread tablicy:**
@@ -1476,6 +1661,8 @@ const pelnaKopia = structuredClone(original);
 
 ### 3.16. Import i export modułów
 
+Konstrukcję „Import i export modułów” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 Podział kodu na mniejsze pliki (moduły) to fundament pracy z Reactem. Zamiast pisać tysiące linijek w jednym pliku `App.js`, wyodrębniamy komponenty, dane i funkcje do osobnych plików, a następnie używamy mechanizmów `export` i `import`, by je ze sobą łączyć.
 
 **1. Export domyślny (Default Export)**
@@ -1525,6 +1712,8 @@ W ekosystemie React za pomocą instrukcji `import` możemy wciągać nie tylko J
 
 ### 3.17. Konwersje typów
 
+Konstrukcję „Konwersje typów” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 W JavaScript ważne jest rozumienie konwersji typów, szczególnie przy formularzach:
 
 ```js
@@ -1571,6 +1760,8 @@ const handleChange = (e) => {
 ```
 
 ### 3.18. Metody napisów
+
+Metody napisów są praktyczne przy wyszukiwarkach i walidacji. Najczęstszy zestaw to `trim()` do usunięcia spacji, `toLowerCase()` do porównywania bez wielkości liter i `includes()` do filtrowania wyników.
 
 Metody napisów (stringów) są często potrzebne przy walidacji formularzy i przetwarzaniu tekstu:
 
@@ -1628,6 +1819,8 @@ String.fromCharCode(65) // "A"
 
 ### 3.19. Truthy i falsy
 
+Truthy i falsy wpływają bezpośrednio na warunki w JSX. Pusty string, `0`, `null`, `undefined` i `false` zachowują się inaczej niż zwykły tekst czy niepusta tablica. Dlatego przy listach lepiej pisać `items.length > 0` niż samo `items.length`.
+
 W JavaScripcie każda wartość może być potraktowana jako `true` (truthy) lub `false` (falsy) w kontekście logicznym. To kluczowe przy renderowaniu warunkowym w React.
 
 **Wartości falsy (traktowane jako `false`):**
@@ -1673,6 +1866,8 @@ if (0) {
 
 ### 3.20. Konsola przeglądarki — console.log()
 
+Konstrukcję „Konsola przeglądarki — console.log()” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 Zanim zaczniesz budować skomplikowane UI, musisz wiedzieć, w jaki sposób komunikować się z przepływem danych w aplikacji. Konsola przeglądarki (klawisz `F12` lub `Prawy przycisk -> Zbadaj -> zakładka Console`) to podstawowe narzędzie diagnostyczne. Pozwala Ci ona "zajrzeć pod maskę" każdego komponentu React.
 
 **Główne stopnie powiadomień (Severity):**
@@ -1717,6 +1912,8 @@ console.table(userzy);
 ```
 
 ### 3.21. Instrukcja warunkowa switch
+
+`switch` bywa czytelny, gdy masz kilka stanów widoku: `loading`, `success`, `error`, `empty`. W takim przypadku funkcja może zwrócić odpowiedni komponent dla każdego statusu, zamiast tworzyć długi łańcuch operatorów trójargumentowych.
 
 Instrukcja `switch` to alternatywa dla wielu warunków `if / else if`. Jest często używana w reducerach (`useReducer`) lub gdy mamy wiele precyzyjnych wartości do sprawdzenia.
 
@@ -1779,6 +1976,8 @@ switch (dzien) {
 ```
 
 ### 3.22. Pętle (for, while, do...while) i iteracja
+
+W React rzadko używa się pętli `for` bezpośrednio w JSX, ale przydają się do przygotowania danych przed renderowaniem. Do wyświetlania listy w widoku zwykle wybieraj `map()`, bo zwraca nową tablicę elementów JSX.
 
 Chociaż w React zazwyczaj używamy metody `.map()` do renderowania list, klasyczne pętle wciąż są ważne w logice i algorytmach.
 
@@ -1874,6 +2073,18 @@ function znajdzPierwszyBlad(pola) {
 
 ### 3.23. Asynchroniczność (Promises, async/await, try/catch)
 
+Przy `async/await` zawsze zakładaj, że operacja może się nie udać. W komponencie najczęściej ustawiasz osobny stan dla ładowania, błędu i danych.
+
+```js
+try {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Błąd odpowiedzi");
+  const data = await response.json();
+} catch (error) {
+  console.error(error);
+}
+```
+
 W dzisiejszym web developmentcie komunikacja z API jest oparta o asynchroniczność. Oznacza to, że Twój kod nie czeka w miejscu na pobranie danych z serwera, ale idzie dalej i wraca do obsługi danych, kiedy są one gotowe.
 
 **Podejście klasyczne: Promises (.then / .catch)**
@@ -1949,6 +2160,8 @@ function ListaUzytkownikow() {
 **Ważne:** Nie można przekazać async funkcji bezpośrednio do useEffect (`useEffect(async () => {...})`). Trzeba zdefiniować async funkcję wewnątrz i ją wywołać.
 
 ### 3.24. Dodatkowe metody tablic — forEach, some, every, slice, splice, concat
+
+Konstrukcję „Dodatkowe metody tablic — forEach, some, every, slice, splice, concat” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
 
 Oprócz `map`, `filter`, `find` i `reduce` istnieje wiele innych przydatnych metod tablicowych.
 
@@ -2099,6 +2312,8 @@ Array.from("React") // ["R", "e", "a", "c", "t"]
 
 ### 3.25. Obiekt Math — losowanie, zaokrąglanie, min/max
 
+Konstrukcję „Obiekt Math — losowanie, zaokrąglanie, min/max” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 Obiekt `Math` zawiera stałe i metody matematyczne. Nie trzeba go importować.
 
 ```js
@@ -2156,6 +2371,8 @@ const losowy = kolory[Math.floor(Math.random() * kolory.length)];
 
 ### 3.26. Obiekt Date — data i czas
 
+Konstrukcję „Obiekt Date — data i czas” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 ```js
 // Aktualna data i czas
 const teraz = new Date();
@@ -2198,6 +2415,8 @@ function Stopka() {
 ```
 
 ### 3.27. setTimeout i setInterval — opóźnienia i interwały
+
+Konstrukcję „setTimeout i setInterval — opóźnienia i interwały” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
 
 #### `setTimeout` — jednorazowe opóźnienie
 
@@ -2248,6 +2467,8 @@ function Stoper() {
 ```
 
 ### 3.28. Operator ?? (nullish coalescing) i ?. (optional chaining)
+
+Konstrukcję „Operator ?? (nullish coalescing) i ?. (optional chaining)” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
 
 #### `??` — wartość domyślna dla null/undefined
 
@@ -2302,6 +2523,8 @@ function ProfilUsera({ user }) {
 
 ### 3.29. Obsługa błędów — try / catch / finally
 
+Konstrukcję „Obsługa błędów — try / catch / finally” najlepiej przećwiczyć na danych, które realnie trafiają do komponentu: tekście z inputa, obiekcie użytkownika albo tablicy produktów. Przygotuj wynik w JavaScripcie przed JSX, a w widoku zostaw tylko odczyt gotowej wartości.
+
 Blok `try/catch` pozwala przechwycić błędy bez zatrzymywania całej aplikacji.
 
 ```js
@@ -2352,6 +2575,8 @@ function handleSubmit(e) {
 ```
 
 ### 3.30. Wyrażenia regularne (RegExp) — podstawy
+
+Wyrażenia regularne są przydatne w walidacji, ale nie powinny być jedyną ochroną formularza. Prosty regex może sprawdzić format, np. kod pocztowy, ale nadal warto pokazać użytkownikowi zrozumiały komunikat błędu.
 
 Wyrażenia regularne (regex) służą do wyszukiwania wzorców w tekście. Przydatne przy walidacji formularzy.
 
@@ -2432,7 +2657,22 @@ function walidujHaslo(haslo) {
 
 ## 4. JSX — składnia widoku
 
+JSX wygląda jak HTML, ale nadal jest JavaScriptem. Oznacza to, że w atrybutach i treści możesz używać wartości z komponentu, a każda klamra `{}` przełącza Cię z trybu znaczników do trybu wyrażeń JavaScript.
+
+```jsx
+function Naglowek({ tytul, liczba }) {
+  return (
+    <header className="page-header">
+      <h1>{tytul}</h1>
+      <p>Liczba elementów: {liczba}</p>
+    </header>
+  );
+}
+```
+
 ### 4.1. Czym jest JSX
+
+W części „Czym jest JSX” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
 
 JSX (JavaScript XML) to rozszerzenie składni JavaScript, które pozwala pisać kod wyglądający jak HTML bezpośrednio w plikach JavaScript. JSX nie jest HTML-em — jest tylko **składnią**, która jest kompilowana do wywołań `React.createElement()`.
 
@@ -2447,6 +2687,13 @@ const element = React.createElement("h1", null, "Witaj, React!");
 Nie musisz znać formy skompilowanej — wystarczy, że piszesz w JSX. Babel (kompilator w CRA) dokonuje tej transformacji automatycznie.
 
 ### 4.2. Wstawianie wartości JavaScript w JSX
+
+W klamrach JSX możesz umieszczać wyrażenia, czyli coś, co zwraca wartość. Nie umieszczaj tam deklaracji zmiennych ani instrukcji `if`. Te rzeczy przygotuj wyżej.
+
+```jsx
+const fullName = `${user.firstName} ${user.lastName}`;
+return <h1>{fullName}</h1>;
+```
 
 Wartości JavaScript wstawiamy w JSX za pomocą **nawiasów klamrowych** `{}`:
 
@@ -2510,6 +2757,13 @@ Podczas pisania kodu w JSX musisz pamiętać, że pod maską jest to JavaScript,
 
 ### 4.3. Atrybuty HTML vs JSX
 
+Najczęstsze różnice między HTML i JSX dotyczą nazw atrybutów. `class` zmienia się na `className`, `for` na `htmlFor`, a style inline przyjmują obiekt.
+
+```jsx
+<label htmlFor="email" className="form-label">E-mail</label>
+<input id="email" style={{ borderColor: "red" }} />
+```
+
 W JSX kilka atrybutów HTML ma inne nazwy, ponieważ oryginalne nazwy kolidują ze słowami kluczowymi JavaScript:
 
 | HTML | JSX | Powód |
@@ -2538,6 +2792,8 @@ W JSX kilka atrybutów HTML ma inne nazwy, ponieważ oryginalne nazwy kolidują 
 ```
 
 ### 4.4. Zasada jednego elementu nadrzędnego
+
+W części „Zasada jednego elementu nadrzędnego” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
 
 Komponent musi zwrócić **jeden główny element**. Nie można zwrócić dwóch sąsiednich elementów bez wspólnego rodzica:
 
@@ -2573,6 +2829,8 @@ function App() {
 
 ### 4.5. Fragmenty — puste znaczniki
 
+W części „Fragmenty — puste znaczniki” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
+
 Jeśli nie chcesz dodawać dodatkowego elementu HTML (np. `div`), możesz użyć **Fragmentu**. Fragment to pusty znacznik `<>...</>`, który nie dodaje żadnego elementu do DOM:
 
 ```jsx
@@ -2601,6 +2859,8 @@ function App() {
 
 ### 4.6. Komentarze w JSX
 
+W części „Komentarze w JSX” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
+
 Komentarze w JSX muszą być w nawiasach klamrowych i mieć składnię JavaScriptu:
 
 ```jsx
@@ -2620,6 +2880,13 @@ function App() {
 
 ### 4.7. Atrybuty boolean
 
+Atrybut boolean bez wartości oznacza `true`. Jeśli wartość zależy od stanu, podaj ją w klamrach. To często pojawia się przy `disabled`, `checked`, `required` i `readOnly`.
+
+```jsx
+<button disabled={!formValid}>Zapisz</button>
+<input type="checkbox" checked={accepted} onChange={handleChange} />
+```
+
 Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oznaczają `true`:
 
 ```jsx
@@ -2637,6 +2904,8 @@ Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oz
 ```
 
 ### 4.8. Co można wstawiać w klamrach — podsumowanie
+
+W części „Co można wstawiać w klamrach — podsumowanie” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
 
 | Można wstawić | Przykład | Uwagi |
 |---|---|---|
@@ -2666,6 +2935,8 @@ Atrybuty logiczne (boolean) w JSX mogą być podawane bez wartości — wtedy oz
 
 ### 4.9. Tagi samozamykające z HTML w JSX (Zasada zamknięcia)
 
+W części „Tagi samozamykające z HTML w JSX (Zasada zamknięcia)” najważniejsze jest utrzymanie JSX jako czytelnej struktury widoku. Jeśli źródło pliku, atrybut albo warunek wymaga kilku operacji, przygotuj zmienną przed `return`, a w znaczniku zostaw prostą wartość.
+
 Gdy przychodzi praca z tagami `HTML`, bardzo często zapomina się o podstawowej regule JSX: **Każdy znacznik musi być zamknięty**. W klasycznym wczesnym HTML pisaliśmy np. `<br>`, `<img>` lub `<input>`. W React (dzięki rygorowi składni XML) coś takiego wywoła od razu potężny błąd kompilacji na czerwono.
 
 Musisz **natychmiast** postawić zamykający ukośnik przez ostatecznym plusem tagu:
@@ -2684,6 +2955,8 @@ Musisz **natychmiast** postawić zamykający ukośnik przez ostatecznym plusem t
 ```
 
 ### 4.10. Multimedia ze źródłem (Audio, Soundplayery i Wideo)
+
+Przy audio i wideo najważniejsze są ścieżki oraz atrybuty sterujące odtwarzaniem. Pliki z `public` podajesz jako `/folder/plik.mp3`, a kontrolę nad wyborem utworu możesz zrobić stanem, np. `currentTrack`. Jeśli źródło się zmienia, czasem warto zmienić też `key`, aby odtwarzacz przeładował media.
 
 Praca z plikami multimedialnymi to klasyk i genialny krok do pierwszych wielkich sukcesów małych interaktywnych apek (np. tworzenie prostej playlisty czy domowego centrum filmowego). Tagi `<audio>` oraz `<video>` wprawdzie są klasycznymi znacznikami HTML, to jednak perfekcyjnie dają się wprawiać w ruch przez mechanizm stanu w JSX i ścieżki (src).
 
@@ -2739,6 +3012,8 @@ function WideoWyjasnienia() {
 
 ### 4.11. Elementy osadzone: Iframe (Mapy, Embedy z YouTube)
 
+Iframe w JSX wymaga nazw atrybutów zgodnych z Reactem: `frameBorder` zastępuje się zwykle stylem, `allowFullScreen` zapisuje jako camelCase, a każdy iframe powinien mieć `title`. Dla map i embedów najczęstszy błąd to wklejenie HTML bez dostosowania atrybutów do JSX.
+
 Na stronach "kontaktowych" i w rozbudowanych projektach - niesamowicie cenne jest osadzić aplikacje od zewnętrznych dostawców. Iframe to dosłownie okno w Twojej stronie wyświetlające zasoby z innych serwerów (np. Google).
 
 ```jsx
@@ -2766,7 +3041,23 @@ function LokalizacjaFirmaWidok() {
 
 ## 5. Komponenty
 
+Komponent powinien mieć jasno określoną odpowiedzialność. Jeżeli komponent pobiera dane, filtruje je, obsługuje formularz i jeszcze renderuje rozbudowany układ, to z czasem będzie trudny do utrzymania. Dobrą praktyką jest rozdzielanie komponentów według roli: kontener danych, formularz, lista, pojedynczy element listy, komunikat.
+
+```jsx
+function ProductItem({ product }) {
+  return <li>{product.name} — {product.price} zł</li>;
+}
+
+function ProductList({ products }) {
+  return products.map((product) => (
+    <ProductItem key={product.id} product={product} />
+  ));
+}
+```
+
 ### 5.1. Czym jest komponent
+
+Komponent warto projektować tak, aby dało się go nazwać jednym rzeczownikiem: `Header`, `ProductCard`, `LoginForm`. Jeżeli nazwa zaczyna brzmieć jak opis kilku zadań naraz, komponent prawdopodobnie robi za dużo.
 
 Komponent to absolutny fundament Reacta. Wyobraź sobie stronę internetową nie jako jeden wielki plik HTML, ale jako budowlę z **klocków LEGO**. Każdy klocek to osobny "komponent". Masz klocek-Nawigację, klocek-Przycisk, klocek-Stopkę.
 
@@ -2780,6 +3071,8 @@ Dzięki podzieleniu aplikacji na komponenty, możesz:
 - Znacznie łatwiej czytać kod i nim zarządzać.
 
 ### 5.2. Pierwszy komponent funkcyjny
+
+Pierwszy komponent powinien być możliwie prosty: jeden `return`, poprawnie domknięty JSX i eksport na końcu pliku. Dopiero gdy ten szkielet działa, dokładaj propsy, stan i zdarzenia.
 
 ```jsx
 // Plik: src/App.js
@@ -2801,6 +3094,8 @@ Każdy komponent:
 3. Jest **eksportowany** (`export default`) — aby inne pliki mogły go użyć.
 
 ### 5.3. Komponent statyczny — bez stanu
+
+Komponent statyczny jest dobry dla stopki, nagłówka, pustego komunikatu albo elementu informacyjnego. Nie każdy komponent musi mieć `useState`; jeśli widok nie zmienia się po akcji użytkownika, zwykła funkcja zwracająca JSX wystarczy.
 
 Komponent nie musi mieć stanu. Może po prostu wyświetlać statyczny widok:
 
@@ -2834,6 +3129,8 @@ export default InfoBox;
 ```
 
 ### 5.4. Kompozycja — komponenty w komponentach
+
+Kompozycja oznacza, że większy ekran składasz z mniejszych elementów. Rodzic decyduje o układzie, a dzieci odpowiadają za własny fragment. To ułatwia wymianę jednego komponentu bez przepisywania całej strony.
 
 Siła Reacta polega na składaniu komponentów jak klocków. Jeden komponent może zawierać inne:
 
@@ -2886,6 +3183,8 @@ export default App;
 
 ### 5.5. Podział na pliki — osobne komponenty
 
+Podział na pliki ma największy sens wtedy, gdy komponent jest używany w kilku miejscach albo jego kod zaczyna zasłaniać logikę rodzica. Dobrym progiem jest moment, gdy nazwa fragmentu JSX sama prosi się o osobny komponent.
+
 Każdy komponent zazwyczaj ma własny plik. Konwencja nazewnictwa:
 - Nazwa pliku = nazwa komponentu
 - PascalCase (każde słowo z wielkiej litery)
@@ -2909,6 +3208,12 @@ src/
 Props (skrót od "properties", czyli właściwości) to fundamentalny mechanizm Reacta pozwalający na przekazywanie danych do komponentów. Działają one dokładnie tak samo, jak argumenty przekazywane do zwykłych funkcji w języku JavaScript, jednak w React przekazujemy je z zewnątrz w postaci atrybutów (podobnie jak w HTML). Kluczową cechą propsów jest to, że są one **tylko do odczytu (readonly)**. Komponent-dziecko, który otrzymuje propsy, w żadnym wypadku nie może ich modyfikować. To zawsze rodzic (komponent wyżej w hierarchii) decyduje o tym, jakie konkretnie wartości zostaną przekazane w dół. Dzięki wykorzystaniu propsów możemy tworzyć wysoce uniwersalne i reużywalne komponenty. Jeden i ten sam komponent wizualny (np. przycisk lub karta profilu) może zostać wywołany wielokrotnie na stronie, za każdym razem z zupełnie innymi danymi wejściowymi.
 
 ### 5.6. Props — przekazywanie danych do komponentu
+
+Propsy powinny być nazwane tak, aby komponent dało się zrozumieć bez zaglądania do rodzica. Jeżeli przekazujesz funkcję, nazwa zaczynająca się od `on` dobrze pokazuje, że dziecko tylko zgłasza zdarzenie.
+
+```jsx
+<TaskItem task={task} onToggle={toggleTask} onRemove={removeTask} />
+```
 
 Props (skrót od "properties", czyli właściwości) to dane przekazywane z komponentu rodzica do komponentu dziecka. Działają dokładnie tak samo jak **parametry funkcji**. 
 
@@ -2949,6 +3254,8 @@ export default App;
 
 ### 5.7. Props — destrukturyzacja
 
+W tym podrozdziale zwróć uwagę na granicę odpowiedzialności komponentu: jakie dane przychodzą z zewnątrz, co komponent wyświetla i jakie akcje zgłasza rodzicowi. To ważniejsze niż sama składnia funkcji.
+
 Zamiast odwoływać się do `props.imie`, `props.wiek` itd., można użyć destrukturyzacji:
 
 ```jsx
@@ -2971,6 +3278,14 @@ export default KursKarta;
 
 ### 5.8. Props — wartości domyślne
 
+W komponentach funkcyjnych wartości domyślne najczytelniej podać podczas destrukturyzacji argumentu. Dzięki temu komponent działa nawet wtedy, gdy rodzic nie przekaże wszystkich propsów.
+
+```jsx
+function Badge({ label, variant = "secondary" }) {
+  return <span className={`badge text-bg-${variant}`}>{label}</span>;
+}
+```
+
 ```jsx
 // Plik: src/components/Przycisk.js
 function Przycisk({ tekst = "Kliknij", kolor = "primary" }) {
@@ -2992,6 +3307,14 @@ export default Przycisk;
 ```
 
 ### 5.9. Children — zawartość między znacznikami
+
+`children` przydaje się, gdy komponent ma opakowywać dowolną treść: kartę, modal, panel albo layout. Dzięki temu komponent nie musi znać dokładnej zawartości, którą wyświetli.
+
+```jsx
+function Panel({ title, children }) {
+  return <section><h2>{title}</h2>{children}</section>;
+}
+```
 
 Specjalny prop `children` zawiera to, co zostanie umieszczone między otwierającym a zamykającym znacznikiem komponentu:
 
@@ -3037,6 +3360,8 @@ export default App;
 
 ### 5.10. Kiedy dzielić komponent na mniejsze
 
+Dziel komponent, gdy widzisz powtarzalny fragment, osobną odpowiedzialność albo zbyt długi `return`. Nie dziel tylko po to, aby mieć więcej plików; podział ma skracać czytanie, a nie rozpraszać kod.
+
 Komponent warto podzielić, gdy:
 - Ma więcej niż ~100 linii JSX.
 - Powtarza się w wielu miejscach (np. karta produktu).
@@ -3049,7 +3374,18 @@ W prostych aplikacjach często wystarczy jeden komponent `App`. Nie musisz na si
 
 ## 6. Stylowanie
 
+Stylowanie w React można prowadzić na kilka sposobów, ale najważniejsze jest zachowanie czytelności. Style globalne są dobre dla resetu, typografii i ogólnego układu strony. Style komponentu są lepsze dla elementów powtarzalnych. Style inline zostawiaj dla wartości naprawdę dynamicznych, np. szerokości paska postępu albo koloru wybranego przez użytkownika.
+
+| Rodzaj stylu | Najlepsze zastosowanie |
+|---|---|
+| globalny CSS | layout strony, typografia, zmienne CSS |
+| plik CSS komponentu | karta, formularz, panel, element listy |
+| klasy dynamiczne | aktywny element, błąd, zaznaczenie |
+| inline style | wartości wyliczane w JavaScript |
+
 ### 6.1. CSS w projekcie React (CRA)
+
+Globalny CSS jest dobry dla ustawień bazowych: `body`, czcionek, tła strony i zmiennych CSS. Style konkretnej karty, formularza albo listy lepiej trzymać bliżej komponentu, żeby łatwiej znaleźć ich użycie.
 
 W CRA pliki CSS importujesz bezpośrednio w plikach JavaScript:
 
@@ -3075,6 +3411,8 @@ export default App;
 ```
 
 ### 6.2. className zamiast class
+
+W części „className zamiast class” rozdziel stałe style od wariantów zależnych od danych. Stałe reguły przenieś do CSS, a w komponencie zostaw tylko decyzję, która klasa pasuje do aktualnego stanu.
 
 W JSX atrybut HTML `class` zamieniony jest na `className`:
 
@@ -3108,6 +3446,8 @@ W React mamy do dyspozycji różne podejścia do stylowania elementów. Najpopul
 
 ### 6.3. Style inline w JSX
 
+W części „Style inline w JSX” rozdziel stałe style od wariantów zależnych od danych. Stałe reguły przenieś do CSS, a w komponencie zostaw tylko decyzję, która klasa pasuje do aktualnego stanu.
+
 Style inline w JSX zapisywane są jako **obiekt JavaScript** (nie string jak w HTML):
 
 ```jsx
@@ -3135,6 +3475,13 @@ Style inline w JSX zapisywane są jako **obiekt JavaScript** (nie string jak w H
 Zasada: nazwy CSS z myślnikami zamieniamy na **camelCase**.
 
 ### 6.4. Dynamiczne klasy CSS
+
+Dynamiczne klasy najlepiej budować z małych, czytelnych warunków. Jeśli warunków jest dużo, przygotuj tablicę klas i połącz ją przez `join(" ")`.
+
+```jsx
+const classes = ["alert", error ? "alert-danger" : "alert-success"];
+return <div className={classes.join(" ")}>{message}</div>;
+```
 
 Klasy CSS można ustawiać dynamicznie na podstawie stanu:
 
@@ -3182,6 +3529,12 @@ export default App;
 
 ### 6.5. Dynamiczne style inline
 
+Style inline są dobre dla wartości obliczanych w JavaScript, np. procentu postępu. Nie powinny zastępować zwykłego CSS dla całego wyglądu komponentu.
+
+```jsx
+<div className="progress-bar" style={{ width: `${percent}%` }} />
+```
+
 ```jsx
 // Plik: src/App.js
 import { useState } from "react";
@@ -3215,6 +3568,8 @@ export default App;
 
 ### 6.6. Organizacja plików CSS
 
+Dla małego projektu wystarczy `App.css` i `index.css`, ale przy większej aplikacji warto grupować style według komponentów. Jeżeli usuwasz komponent, łatwiej wtedy usunąć także jego nieużywany CSS.
+
 W prostych projektach wystarczy:
 - `src/index.css` — style globalne
 - `src/App.css` — style komponentu App
@@ -3240,11 +3595,21 @@ src/
 
 ## 7. Zdarzenia (Events)
 
+Zdarzenia w React są głównym sposobem komunikacji użytkownika z aplikacją. Handler nie powinien tylko „robić czegoś w DOM”, ale najczęściej powinien zmienić stan, wywołać funkcję przekazaną przez props albo uruchomić logikę pomocniczą.
+
+```jsx
+function CounterButton({ onAdd }) {
+  return <button onClick={() => onAdd(1)}>Dodaj 1</button>;
+}
+```
+
 #### System zdarzen w React — teoria
 
 Mechanizm obsługi zdarzeń w React różni się nieco od klasycznego JavaScriptu i HTML. React nie korzysta bezpośrednio z natywnych zdarzeń DOM, lecz tworzy nad nimi własną, wysoce zoptymalizowaną warstwę abstrakcji zwaną **Synthetic Events** (zdarzenia syntetyczne). Gwarantuje to, że zdarzenia będą zachowywać się dokładnie tak samo, niezależnie od tego, jakiej przeglądarki używa użytkownik, eliminując typowe dla starszych przeglądarek błędy kompatybilności. Wszystkie nazwy zdarzeń w React zapisywane są zgodnie z notacją camelCase, dlatego używamy `onClick` i `onChange` zamiast klasycznych `onclick` czy `onchange`. Bardzo ważną zasadą jest również to, że zdarzenie nigdy nie jest wywoływane w momencie renderowania komponentu — do atrybutu przekazujemy jedynie **referencję** do funkcji (nasłuchiwacz), a nie wywołujemy jej od razu (brak nawiasów okrągłych przy nazwie funkcji).
 
 ### 7.1. onClick — obsługa kliknięcia
+
+Dla zdarzenia „onClick — obsługa kliknięcia” nazwij handler zgodnie z akcją użytkownika i trzymaj go krótko. Jeśli obsługa obejmuje walidację, przygotowanie danych i zapis, każdą część wydziel do osobnej funkcji.
 
 Zdarzenie `onClick` reaguje na kliknięcie elementu (najczęściej przycisku):
 
@@ -3294,6 +3659,8 @@ export default App;
 
 ### 7.2. onChange — zmiana wartości pola
 
+`onChange` w React odpala się przy każdej zmianie wartości pola. Najczęściej pobierasz `event.target.value` dla tekstu i `event.target.checked` dla checkboxa. Te dwie właściwości są częstym źródłem pomyłek.
+
 Zdarzenie `onChange` reaguje na zmianę wartości pola formularza. Jest kluczowe w formularzach kontrolowanych:
 
 ```jsx
@@ -3325,6 +3692,15 @@ export default App;
 ```
 
 ### 7.3. onSubmit — wysłanie formularza
+
+Przy `onSubmit` prawie zawsze potrzebujesz `event.preventDefault()`, bo domyślne zachowanie formularza odświeża stronę. Dopiero po zatrzymaniu formularza wykonaj walidację i zapis danych.
+
+```jsx
+function handleSubmit(event) {
+  event.preventDefault();
+  saveForm();
+}
+```
 
 Zdarzenie `onSubmit` reaguje na wysłanie formularza. **Zawsze** należy wywołać `event.preventDefault()`, aby zapobiec przeładowaniu strony:
 
@@ -3368,6 +3744,8 @@ export default App;
 
 ### 7.4. onBlur — utrata fokusa
 
+`onBlur` przydaje się do walidacji po opuszczeniu pola. Dzięki temu nie musisz pokazywać błędu od pierwszego znaku, ale możesz zareagować, gdy użytkownik skończy edycję konkretnego inputa.
+
 Zdarzenie `onBlur` reaguje, gdy pole traci fokus (kursor go opuści). Przydatne do walidacji:
 
 ```jsx
@@ -3406,6 +3784,8 @@ export default App;
 
 ### 7.5. Przekazywanie argumentów do handlera
 
+Argument do handlera przekazuj przez funkcję strzałkową. Bez niej wywołasz funkcję od razu podczas renderowania, a nie dopiero po kliknięciu.
+
 Gdy chcesz przekazać argument do funkcji obsługi zdarzenia, musisz użyć funkcji strzałkowej:
 
 ```jsx
@@ -3439,6 +3819,14 @@ export default App;
 
 ### 7.6. Obiekt zdarzenia (event)
 
+`event.target` wskazuje element, który faktycznie wywołał zdarzenie, a `event.currentTarget` element, do którego przypięto handler. Różnica jest ważna przy kliknięciach wewnątrz złożonych przycisków lub kart.
+
+```jsx
+function handleClick(event) {
+  console.log(event.currentTarget.dataset.id);
+}
+```
+
 Każdy handler otrzymuje obiekt zdarzenia (event) jako pierwszy argument:
 
 ```jsx
@@ -3465,6 +3853,8 @@ function App() {
 
 ### 7.7. Najczęstsze zdarzenia — tabela
 
+Dla zdarzenia „Najczęstsze zdarzenia — tabela” nazwij handler zgodnie z akcją użytkownika i trzymaj go krótko. Jeśli obsługa obejmuje walidację, przygotowanie danych i zapis, każdą część wydziel do osobnej funkcji.
+
 | Zdarzenie | Element | Kiedy się uruchamia |
 |---|---|---|
 | `onClick` | Przycisk, link, dowolny element | Po kliknięciu |
@@ -3481,6 +3871,13 @@ function App() {
 
 ## 8. Stan komponentu — useState
 
+Stan to pamięć komponentu. Każda wartość, która ma wpływać na widok i może zmienić się w czasie działania aplikacji, zwykle powinna być stanem. Wartości, które można wyliczyć z istniejącego stanu, często nie powinny być osobnym stanem.
+
+```jsx
+const [items, setItems] = useState([]);
+const count = items.length; // wyliczone, nie osobny useState
+```
+
 Stan (ang. *state*) to jeden z najważniejszych konceptów w programowaniu reaktywnym, na którym opiera się cała filozofia Reacta. Można go rozumieć jako **dane, które żyją wewnątrz komponentu i mogą się zmieniać w czasie** — np. wartość licznika, tekst wpisany w pole formularza, informacja o tym, czy menu jest otwarte, czy zamknięte. W klasycznym, imperatywnym programowaniu używamy zwykłych zmiennych (`let`, `var`) do przechowywania wartości, które się zmieniają. Problem polega na tym, że zmiana zwykłej zmiennej wewnątrz komponentu React **nie powoduje ponownego wyrenderowania widoku** — przeglądarka po prostu nie wie, że coś się zmieniło, i dalej wyświetla stary HTML. Stan w React rozwiązuje ten problem: kiedy wywołujemy funkcję aktualizującą stan (np. `setLicznik`), React automatycznie **ponownie renderuje komponent** z nową wartością i aktualizuje DOM. Dzięki temu interfejs użytkownika jest zawsze zsynchronizowany z danymi — to właśnie oznacza "reaktywność". Stan jest prywatny dla komponentu — każda instancja komponentu ma własną, niezależną kopię stanu. Co więcej, stan **przetrwa pomiędzy kolejnymi renderami** — w przeciwieństwie do zwykłych zmiennych, które przy każdym re-renderze są deklarowane od nowa i tracą poprzednią wartość. Dlatego `useState` jest absolutnym fundamentem budowania interaktywnych aplikacji w React.
 
 | Cecha | Zmienna (`let`) | Stan (`useState`) |
@@ -3492,6 +3889,8 @@ Stan (ang. *state*) to jeden z najważniejszych konceptów w programowaniu reakt
 | **Typowe użycie** | Tymczasowe obliczenia wewnątrz funkcji, zmienne pomocnicze | Dane wpływające na widok: liczniki, formularze, przełączniki, listy |
 
 ### 8.1. Po co jest stan
+
+Stan jest potrzebny wtedy, gdy komponent ma pamiętać zmianę między renderami: wpisany tekst, wybraną kartę, otwarty panel, pobrane dane. Zmienna lokalna znika przy następnym renderze, więc nie nadaje się do danych widocznych w UI.
 
 W podstawowym JavaScripcie, gdy chcemy przechować rosnącą liczbę kliknięć posłużylibyśmy się słówkiem `let`, a następnie zmienili tę wartość poprzez standardowe przypisanie (np. `naszaZmienna = 5`). W React, budując aplikacje Single Page Application wymagamy, by w reakcji na zaistniałą operację nasz ekran natychmiast odświeżał bloki odpowiedzialne w HTML i JSX za dany zmienny widok.
 
@@ -3545,6 +3944,8 @@ export default DzialajacyReakcyjnyNaszZliczajacyWidok;
 
 ### 8.2. Składnia useState
 
+`useState` zwraca tablicę dwóch elementów: aktualną wartość i funkcję ustawiającą nową wartość. Nazwa settera powinna odpowiadać nazwie stanu, np. `email` i `setEmail`, bo to ułatwia czytanie komponentu.
+
 ```jsx
 import { useState } from "react";
 
@@ -3571,6 +3972,8 @@ const [formularz, setFormularz] = useState({         // obiekt
 ```
 
 ### 8.3. Stan liczbowy — licznik
+
+Stan liczbowy często wymaga pilnowania zakresu. Przy licznikach, ocenach i ilościach warto dodać `Math.max` albo blokadę przycisku, żeby użytkownik nie zszedł poniżej zera.
 
 ```jsx
 // Plik: src/App.js
@@ -3600,6 +4003,8 @@ export default App;
 
 ### 8.4. Stan tekstowy
 
+Przy stanie tekstowym często przydają się wartości pochodne: długość tekstu, wersja po `trim()` albo informacja, czy pole jest puste. Nie muszą być osobnym stanem, bo można je obliczyć przy renderowaniu.
+
 ```jsx
 // Plik: src/App.js
 import { useState } from "react";
@@ -3628,6 +4033,8 @@ export default App;
 ```
 
 ### 8.5. Stan boolean — przełącznik
+
+Stan boolean dobrze opisuje przełączniki: otwarte/zamknięte, widoczne/ukryte, aktywne/nieaktywne. Do zmiany na przeciwną wartość używaj formy funkcyjnej, gdy zależy od poprzedniego stanu.
 
 ```jsx
 // Plik: src/App.js
@@ -3659,6 +4066,13 @@ export default App;
 
 ### 8.6. Aktualizacja na podstawie poprzedniego stanu
 
+Gdy nowy stan zależy od poprzedniego, użyj funkcji aktualizującej. To chroni przed błędami przy kilku aktualizacjach wykonywanych blisko siebie.
+
+```jsx
+setCount((current) => current + 1);
+setItems((current) => [newItem, ...current]);
+```
+
 Jeśli nowa wartość stanu zależy od poprzedniej, używaj **formy funkcyjnej**:
 
 ```jsx
@@ -3689,6 +4103,8 @@ function dodajTrzy() {
 
 ### 8.7. Reset stanu
 
+Reset powinien przywracać dokładnie ten sam kształt danych, z którym komponent startował. Przy formularzach warto mieć stałą `initialForm`, żeby nie przepisywać pustych wartości w kilku miejscach.
+
 Reset stanu polega na ustawieniu wartości początkowej:
 
 ```jsx
@@ -3702,6 +4118,14 @@ function handleReset() {
 ```
 
 ### 8.8. Stan nie aktualizuje się natychmiast
+
+Po wywołaniu settera nie zakładaj, że zmienna stanu od razu ma nową wartość w tej samej funkcji. Jeśli chcesz zareagować na zmianę, użyj wartości obliczonej lokalnie albo efektu zależnego od tego stanu.
+
+```jsx
+const nextCount = count + 1;
+setCount(nextCount);
+console.log(nextCount);
+```
 
 Funkcja `setState` jest asynchroniczna — nowa wartość nie jest dostępna od razu w tej samej linii kodu:
 
@@ -3724,6 +4148,14 @@ function handleKliknij() {
 
 ### 8.9. Lazy initial state
 
+Lazy initial state przydaje się, gdy początkowa wartość wymaga kosztownego obliczenia albo odczytu z localStorage. Funkcja zostanie wykonana tylko przy pierwszym renderze komponentu.
+
+```jsx
+const [theme, setTheme] = useState(() => {
+  return localStorage.getItem("theme") ?? "light";
+});
+```
+
 Jeśli obliczenie wartości początkowej jest kosztowne, przekaż **funkcję** do `useState`:
 
 ```jsx
@@ -3736,6 +4168,8 @@ const [dane, setDane] = useState(() => {
 
 ### 8.10. Zmienna lokalna vs stan — różnica
 
+Zmienna lokalna jest dobra dla wartości pomocniczej obliczanej podczas renderowania, ale nie dla danych, które użytkownik zmienia. Jeśli zmiana ma być widoczna w UI, użyj stanu.
+
 | Cecha | Zmienna lokalna (`let`) | Stan (`useState`) |
 |---|---|---|
 | Zmiana wartości | Odbywa się po cichu | Powoduje re-render komponentu |
@@ -3747,7 +4181,16 @@ const [dane, setDane] = useState(() => {
 
 ## 9. Formularze kontrolowane
 
+Formularz kontrolowany oznacza, że React zna aktualną wartość pola. Dzięki temu można walidować dane na bieżąco, blokować przycisk zapisu, wyświetlać komunikaty i przygotować jeden obiekt do wysłania.
+
+```jsx
+const [email, setEmail] = useState("");
+const emailPoprawny = email.includes("@");
+```
+
 ### 9.1. Czym jest formularz kontrolowany
+
+W polu „Czym jest formularz kontrolowany” sprawdź, jaka właściwość zdarzenia jest właściwa: tekst pobierasz z `value`, checkbox z `checked`, a liczby zwykle wymagają `Number()`. Dzięki temu stan formularza ma oczekiwany typ.
 
 Zrozumienie **formularza kontrolowanego (controlled forms)** jest jedną z absolutnie najważniejszych umiejętności react-developera. Jeżeli przychodzisz z czystego HTML'a lub PHP, pamiętasz że kliknięcie przycisku "Submit" (<form>) domyślnie powodowało odświeżenie całej strony (i np. wysłanie żądania do serwera dopisując parametry do paska adresu URL typu `?name=adam`).
 
@@ -3790,6 +4233,8 @@ Zastosowanie `e.preventDefault()` jest krytyczne podczas budowy aplikacji wykorz
 
 ### 9.2. Input text
 
+W polu „Input text” sprawdź, jaka właściwość zdarzenia jest właściwa: tekst pobierasz z `value`, checkbox z `checked`, a liczby zwykle wymagają `Number()`. Dzięki temu stan formularza ma oczekiwany typ.
+
 ```jsx
 // Plik: src/App.js
 import { useState } from "react";
@@ -3819,6 +4264,12 @@ export default App;
 ```
 
 ### 9.3. Input number
+
+Pole numeryczne nadal zwraca tekst. Jeśli puste pole jest dozwolone, nie zamieniaj go od razu na `0`, bo użytkownik straci możliwość wygodnej edycji.
+
+```jsx
+const amountNumber = amount === "" ? 0 : Number(amount);
+```
 
 ```jsx
 // Plik: src/App.js
@@ -3854,6 +4305,8 @@ export default App;
 
 ### 9.4. Input password
 
+Pole hasła działa jak zwykły input kontrolowany, ale warto dodać walidację długości i opcjonalny przełącznik podglądu hasła. Sam `type="password"` ukrywa tekst, ale nie waliduje jakości hasła.
+
 ```jsx
 <div className="mb-3">
   <label htmlFor="haslo" className="form-label">Hasło:</label>
@@ -3869,6 +4322,8 @@ export default App;
 ```
 
 ### 9.5. Select — lista rozwijana
+
+W `select` wartością stanu jest zwykle `value` wybranej opcji, a nie jej etykieta. Dobrze sprawdza się pusta opcja startowa typu `value=""`, która wymusza świadomy wybór użytkownika.
 
 ```jsx
 // Plik: src/App.js
@@ -3905,6 +4360,8 @@ export default App;
 
 ### 9.6. Textarea
 
+W polu „Textarea” sprawdź, jaka właściwość zdarzenia jest właściwa: tekst pobierasz z `value`, checkbox z `checked`, a liczby zwykle wymagają `Number()`. Dzięki temu stan formularza ma oczekiwany typ.
+
 Textarea w React działa tak samo jak input — przez `value` i `onChange`:
 
 ```jsx
@@ -3922,6 +4379,8 @@ Textarea w React działa tak samo jak input — przez `value` i `onChange`:
 ```
 
 ### 9.7. Checkbox
+
+W polu „Checkbox” sprawdź, jaka właściwość zdarzenia jest właściwa: tekst pobierasz z `value`, checkbox z `checked`, a liczby zwykle wymagają `Number()`. Dzięki temu stan formularza ma oczekiwany typ.
 
 Checkbox używa `checked` zamiast `value` i `onChange` z `e.target.checked`:
 
@@ -3956,6 +4415,8 @@ export default App;
 
 ### 9.8. Checkbox jako switch (Bootstrap)
 
+Switch Bootstrapa nadal jest zwykłym checkboxem pod względem logiki Reacta. Różni się klasami CSS, ale wartość nadal odczytujesz przez `checked`, a nie przez `value`.
+
 ```jsx
 <div className="form-check form-switch mb-3">
   <input
@@ -3972,6 +4433,8 @@ export default App;
 ```
 
 ### 9.9. Radio — wybór jednej opcji
+
+Grupa radio powinna mieć wspólny atrybut `name`, a stan powinien przechowywać jedną wybraną wartość. Każda opcja porównuje swoje `value` z tym stanem.
 
 ```jsx
 // Plik: src/App.js
@@ -4017,6 +4480,8 @@ export default App;
 
 ### 9.10. Range — suwak
 
+Suwak `range` zwraca tekst, tak samo jak inne inputy. Jeśli wynik ma być liczbą, konwertuj przez `Number`, szczególnie przy obliczeniach i porównaniach.
+
 ```jsx
 // Plik: src/App.js
 import { useState } from "react";
@@ -4046,6 +4511,15 @@ export default App;
 ```
 
 ### 9.11. Formularz jako jeden obiekt stanu
+
+Jeden obiekt stanu upraszcza formularze z wieloma polami. Handler może używać atrybutu `name`, aby aktualizować odpowiednie pole bez pisania osobnej funkcji dla każdego inputa.
+
+```jsx
+function handleChange(event) {
+  const { name, value } = event.target;
+  setForm((current) => ({ ...current, [name]: value }));
+}
+```
 
 Zamiast tworzyć osobny `useState` dla każdego pola, możesz trzymać cały formularz w jednym obiekcie:
 
@@ -4138,6 +4612,14 @@ W klasycznym HTML-u to **przeglądarka** zarządza wartością pola `<input>` �
 
 ### 9.12. Walidacja formularza
 
+Walidacja powinna zwracać konkretne komunikaty, a nie tylko `true` albo `false`. Dzięki temu możesz pokazać użytkownikowi dokładnie, które pole wymaga poprawy.
+
+```js
+const errors = {};
+if (!email.includes("@")) errors.email = "Podaj poprawny e-mail";
+if (password.length < 8) errors.password = "Minimum 8 znaków";
+```
+
 ```jsx
 // Plik: src/App.js
 import { useState } from "react";
@@ -4214,6 +4696,8 @@ export default App;
 
 ### 9.13. Reset formularza
 
+Reset formularza powinien czyścić nie tylko wartości pól, ale też błędy i komunikat sukcesu. Inaczej użytkownik może zobaczyć stary błąd przy już pustym formularzu.
+
 ```jsx
 function handleReset() {
   setImie("");
@@ -4238,6 +4722,14 @@ function handleReset() {
 
 ## 10. Renderowanie warunkowe
 
+Renderowanie warunkowe powinno być czytelne. Jeżeli warunek jest prosty, można użyć operatora `&&` albo ternary. Jeżeli wariantów jest kilka, często lepiej przygotować zmienną przed `return` albo wydzielić osobny komponent.
+
+| Sytuacja | Dobry zapis |
+|---|---|
+| pokaż albo ukryj fragment | `warunek && <Element />` |
+| pokaż jeden z dwóch wariantów | `warunek ? <A /> : <B />` |
+| wiele wariantów | `if` przed `return` albo osobna funkcja |
+
 Renderowanie warunkowe jest jedną z kluczowych technik w React, która wynika bezpośrednio z filozofii tej biblioteki. W klasycznym HTML strona jest **statyczna** — raz wyrenderowana treść nie zmienia się sama z siebie. Aby coś ukryć lub pokazać, trzeba ręcznie manipulować DOM-em za pomocą JavaScript (np. `element.style.display = "none"`). W React widok jest **funkcją stanu** — komponent to funkcja, która na podstawie aktualnych danych zwraca odpowiedni JSX. Skoro dane (stan) mogą się zmieniać, to naturalną konsekwencją jest to, że chcemy wyświetlać **różne elementy w zależności od stanu**. Na przykład: inny widok dla zalogowanego i niezalogowanego użytkownika, komunikat o błędzie tylko gdy wystąpi błąd, spinner ładowania tylko gdy dane się wczytują. React oferuje kilka technik realizacji renderowania warunkowego, z których każda sprawdza się w innym scenariuszu. Nie ma jednej "najlepszej" metody — wybór zależy od złożoności warunku i tego, czy chcemy pokazać alternatywny widok, czy po prostu ukryć element.
 
 | Technika | Składnia | Kiedy używać |
@@ -4247,6 +4739,8 @@ Renderowanie warunkowe jest jedną z kluczowych technik w React, która wynika b
 | **Operator `&&`** | `{warunek && <A />}` | Gdy chcesz **pokazać element albo nic** — nie ma alternatywy, element po prostu się pojawia lub znika (np. komunikat o błędzie) |
 
 ### 10.1. if przed return
+
+`if` przed `return` jest najlepszy przy dużych wariantach widoku, np. loading, error i success. Dzięki temu główny JSX nie jest zagnieżdżony w wielu warunkach.
 
 Najprostszy sposób — warunkowe zwrócenie innego widoku:
 
@@ -4278,6 +4772,8 @@ function App() {
 
 ### 10.2. Operator trójargumentowy w JSX
 
+Warunek z części „Operator trójargumentowy w JSX” powinien mieć czytelny stan wejściowy, np. `hasError`, `isEmpty` albo `canSubmit`. Nazwana zmienna przed `return` często jest czytelniejsza niż długi warunek bezpośrednio w JSX.
+
 Do krótkich warunków w JSX:
 
 ```jsx
@@ -4289,6 +4785,12 @@ Do krótkich warunków w JSX:
 
 ### 10.3. Operator && — warunkowe wyświetlanie
 
+Najczęstsza pułapka operatora `&&` w JSX to renderowanie zera. Jeśli lewa strona ma wartość `0`, React może pokazać `0` na ekranie. Porównuj jawnie długość tablicy.
+
+```jsx
+{items.length > 0 && <List items={items} />}
+```
+
 Wyświetla element **tylko gdy** warunek jest prawdziwy:
 
 ```jsx
@@ -4299,6 +4801,8 @@ Wyświetla element **tylko gdy** warunek jest prawdziwy:
 
 ### 10.4. Komunikaty błędów walidacji
 
+Komunikat błędu powinien być blisko pola albo akcji, której dotyczy. W formularzach najlepiej trzymać błędy w obiekcie, np. `errors.email`, aby łatwo pokazać komunikat przy konkretnym inputcie.
+
 ```jsx
 {bledy.imie && (
   <div className="text-danger small mt-1">{bledy.imie}</div>
@@ -4306,6 +4810,8 @@ Wyświetla element **tylko gdy** warunek jest prawdziwy:
 ```
 
 ### 10.5. Obsługa pustej listy
+
+Warunek z części „Obsługa pustej listy” powinien mieć czytelny stan wejściowy, np. `hasError`, `isEmpty` albo `canSubmit`. Nazwana zmienna przed `return` często jest czytelniejsza niż długi warunek bezpośrednio w JSX.
 
 ```jsx
 function ListaKursow({ kursy }) {
@@ -4327,6 +4833,14 @@ function ListaKursow({ kursy }) {
 
 ## 11. Tablice i renderowanie list
 
+Listy w React prawie zawsze łączą trzy rzeczy: tablicę danych, metodę `map()` oraz stabilny atrybut `key`. Jeżeli lista ma wyszukiwanie, sortowanie albo filtrowanie, najpierw przygotuj nową tablicę, a dopiero potem ją renderuj.
+
+```jsx
+const widoczne = produkty
+  .filter((produkt) => produkt.aktywny)
+  .sort((a, b) => a.nazwa.localeCompare(b.nazwa));
+```
+
 Praca z tablicami w React wymaga zrozumienia jednej fundamentalnej zasady: **niemutowalności** (ang. *immutability*). W zwykłym JavaScript jesteśmy przyzwyczajeni do metod takich jak `.push()`, `.splice()` czy `.sort()`, które **modyfikują oryginalną tablicę** w miejscu. W React takie podejście jest **niedopuszczalne** przy pracy ze stanem. Dlaczego? Ponieważ React decyduje o tym, czy ponownie wyrenderować komponent, porównując **referencje** (adresy w pamięci) obiektów, a nie ich zawartość. Jeśli wywołamy `tablica.push(element)`, tablica zmieni swoją zawartość, ale jej referencja (adres w pamięci) **pozostanie taka sama**. Dla Reacta to oznacza: "nic się nie zmieniło, nie trzeba ponownie renderować". Dlatego zamiast mutować istniejącą tablicę, **zawsze tworzymy nową** — za pomocą metod takich jak `.map()`, `.filter()`, operator spread `[...tablica]` czy `.concat()`. Te metody zwracają **nowy obiekt tablicy** z nową referencją, co React poprawnie interpretuje jako zmianę i uruchamia re-render. Ta sama zasada dotyczy sortowania — `sort()` mutuje tablicę, więc najpierw tworzymy kopię (`[...tablica]`), a dopiero na niej sortujemy. Zapamiętaj prostą regułę: **w stanie React nigdy nie zmieniaj, zawsze twórz nowe**.
 
 | Operacja na tablicy | Metoda mutująca ❌ (ZŁA) | Metoda niemutująca ✅ (DOBRA) |
@@ -4337,6 +4851,8 @@ Praca z tablicami w React wymaga zrozumienia jednej fundamentalnej zasady: **nie
 | **Sortowanie** | `tablica.sort(fn)` | `[...tablica].sort(fn)` |
 
 ### 11.1. Renderowanie tablicy przez map()
+
+W części „Renderowanie tablicy przez map()” przygotuj osobną tablicę wynikową przed renderowaniem. Dzięki temu możesz najpierw filtrować, sortować albo aktualizować dane, a potem w JSX wykonać prosty `map` z poprawnym `key`.
 
 `map()` to główny sposób wyświetlania list w React:
 
@@ -4367,6 +4883,12 @@ export default App;
 
 ### 11.2. Atrybut key — dlaczego jest wymagany
 
+`key` nie jest ozdobą ani sposobem na usunięcie ostrzeżenia. To informacja dla Reacta, który element listy jest tym samym elementem po zmianie kolejności, filtrze albo usunięciu rekordu.
+
+```jsx
+{users.map((user) => <UserRow key={user.id} user={user} />)}
+```
+
 Każdy element generowany przez `map()` **musi mieć** atrybut `key` — unikalny identyfikator, który pozwala Reactowi śledzić, który element się zmienił:
 
 ```jsx
@@ -4387,6 +4909,8 @@ Każdy element generowany przez `map()` **musi mieć** atrybut `key` — unikaln
 
 ### 11.3. Lista numerowana
 
+W części „Lista numerowana” przygotuj osobną tablicę wynikową przed renderowaniem. Dzięki temu możesz najpierw filtrować, sortować albo aktualizować dane, a potem w JSX wykonać prosty `map` z poprawnym `key`.
+
 ```jsx
 function App() {
   const kursy = ["HTML", "CSS", "JavaScript", "React"];
@@ -4405,6 +4929,8 @@ function App() {
 ```
 
 ### 11.4. Dodawanie elementu do tablicy stanu
+
+Dodawanie do tablicy w stanie nie powinno używać `push`, bo `push` modyfikuje istniejącą tablicę. Użyj spread, aby utworzyć nową tablicę z nowym elementem na początku albo na końcu.
 
 W React **nigdy nie mutujemy** stanu. Zamiast `push()` tworzymy nową tablicę za pomocą spread:
 
@@ -4452,6 +4978,8 @@ export default App;
 
 ### 11.5. Usuwanie elementu z tablicy stanu
 
+Usuwanie elementu najczytelniej zapisać przez `filter`. Funkcja zostawia tylko te elementy, których identyfikator nie pasuje do usuwanego rekordu.
+
 Usuwanie odbywa się przez `filter()` — tworzymy nową tablicę bez elementu o podanym id:
 
 ```jsx
@@ -4471,6 +4999,14 @@ function handleUsun(id) {
 ```
 
 ### 11.6. Aktualizacja jednego elementu w tablicy
+
+Aktualizacja jednego elementu listy zwykle oznacza `map()`: element pasujący do identyfikatora zastępujesz kopią ze zmianą, a pozostałe zwracasz bez zmian.
+
+```jsx
+setTasks((tasks) => tasks.map((task) =>
+  task.id === id ? { ...task, done: !task.done } : task
+));
+```
 
 Aktualizacja jednego elementu odbywa się przez `map()` — tworzymy nową tablicę, a element o podanym id zastępujemy zmodyfikowaną kopią:
 
@@ -4494,6 +5030,8 @@ Wyjaśnienie krok po kroku:
 
 ### 11.7. Sortowanie tablicy w stanie
 
+`sort()` modyfikuje tablicę, dlatego przed sortowaniem stanu zrób kopię: `[...items].sort(...)`. Bez kopii możesz przypadkiem zmienić istniejący stan.
+
 ```jsx
 function handleSortuj() {
   setElementy((prev) =>
@@ -4515,9 +5053,20 @@ function handleSortujPoCenie() {
 
 ## 12. Obiekty w stanie
 
+Obiekty w stanie są wygodne, ale wymagają ostrożnego kopiowania. Aktualizując jedno pole obiektu, nie nadpisuj całej reszty przypadkiem. Najczęściej używa się operatora spread, a dla zagnieżdżonych danych tworzy się kopię na każdym poziomie.
+
+```jsx
+setUser((current) => ({
+  ...current,
+  address: { ...current.address, city: "Kraków" },
+}));
+```
+
 Obiekty w stanie React podlegają **dokładnie tym samym zasadom niemutowalności** co tablice — nigdy nie modyfikujemy obiektu bezpośrednio, zawsze tworzymy nową kopię ze zmienionymi polami. Kluczowym narzędziem do pracy z obiektami jest **operator spread** (`{...obiekt}`), który tworzy **płytką kopię** (ang. *shallow copy*) obiektu. Oznacza to, że kopiowane są wartości wszystkich pól na pierwszym poziomie zagnieżdżenia, ale jeśli pole zawiera zagnieżdżony obiekt lub tablicę, kopiowana jest jedynie **referencja** do tego obiektu, a nie jego zawartość. W praktyce, gdy aktualizujemy obiekt w stanie, najpierw rozprzestrzeniamy (spread) cały istniejący obiekt, a potem nadpisujemy tylko te pola, które chcemy zmienić: `{...staryObiekt, zmienionePole: nowaWartość}`. Dzięki temu reszta pól pozostaje nienaruszona, a React widzi nową referencję i prawidłowo uruchamia re-render.
 
 ### 12.1. Model danych — tablica obiektów
+
+Model danych powinien mieć stabilne identyfikatory i przewidywalne nazwy pól. Jeśli potem renderujesz listę obiektów, `id` przyda się jako `key`, a jasne nazwy pól ograniczą liczbę komentarzy w JSX.
 
 W React dane najczęściej modelujemy jako tablicę obiektów:
 
@@ -4531,6 +5080,15 @@ const zdjecia = [
 ```
 
 ### 12.2. Kopiowanie obiektu — spread
+
+Spread przy obiekcie tworzy nowy obiekt tylko na pierwszym poziomie. Jeśli pole jest zagnieżdżonym obiektem, ono nadal wskazuje na tę samą referencję, dopóki też go nie skopiujesz.
+
+```jsx
+setProfile((profile) => ({
+  ...profile,
+  settings: { ...profile.settings, newsletter: true },
+}));
+```
 
 W React stan jest niezmienny (immutable). Przy aktualizacji obiektu **nigdy nie modyfikujemy** go bezpośrednio — tworzymy kopię:
 
@@ -4550,9 +5108,13 @@ setOsoba((prev) => ({ ...prev, wiek: 26 }));
 
 ### 12.3. Formularz jako obiekt stanu
 
+Formularz jako obiekt stanu jest wygodny, gdy pól jest kilka i mają wspólny cykl życia: reset, walidacja, zapis. Używaj atrybutu `name`, żeby jeden handler aktualizował różne pola.
+
 Patrz sekcja [9.11](#911-formularz-jako-jeden-obiekt-stanu).
 
 ### 12.4. Dane z pliku przepisane do kodu
+
+Dane przepisane z pliku warto od razu zamienić na tablicę obiektów o jednolitym kształcie. Lepiej zrobić to raz na początku niż później dopisywać warunki dla różnych formatów w JSX.
 
 Często surowe dane, pochodzące np. z pliku `dane.txt`, możemy przenieść bezpośrednio do kodu jako tablicę obiektów:
 
@@ -4576,130 +5138,211 @@ function App() {
 
 ---
 
-## 13. Bootstrap w React — Kompletny Przewodnik
+## 13. Bootstrap w React — skrót
 
-Bootstrap to framework CSS, czyli gotowy zestaw klas, komponentów i zasad układu strony. Zamiast pisać od zera style dla przycisków, formularzy, siatki, kart, alertów czy tabel, korzystasz z gotowych klas, np. `btn btn-primary`, `container`, `row`, `col-md-6`, `form-control`.
+W dokumentacji Reacta Bootstrap powinien być traktowany jako narzędzie do stylowania komponentów, a nie jako osobny temat dominujący cały plik. Pełny opis Bootstrapa znajduje się w `bootstrap.md`, a tutaj zostaje tylko najważniejsze połączenie klas CSS z JSX, stanem i formularzami.
 
-Bootstrap nie zastępuje Reacta. React odpowiada za logikę, stan, komponenty i renderowanie JSX. Bootstrap odpowiada za wygląd, responsywność i podstawowe zachowanie wybranych komponentów interfejsu.
+Bootstrap jest frameworkiem CSS, który dostarcza gotowe klasy, siatkę responsywną, style formularzy oraz zestaw popularnych komponentów interfejsu. W aplikacji React Bootstrap najczęściej pełni rolę warstwy wizualnej: React odpowiada za komponenty, stan i zdarzenia, a Bootstrap za wygląd, odstępy, układ i podstawowe warianty elementów.
 
-W tym rozdziale pracujemy głównie z Bootstrapem 5, czyli wersją bez jQuery. W React używamy `className`, a nie `class`.
+Ten rozdział jest skróconym opisem użycia Bootstrapa w React. Pełna dokumentacja Bootstrapa została wydzielona do osobnego pliku: [bootstrap.md](bootstrap.md). Tam znajdują się szersze opisy siatki, formularzy, utilities, komponentów, JavaScriptu Bootstrapa, motywów oraz większe przykłady praktyczne.
 
-### 13.1. Czym jest Bootstrap i kiedy go używać
+### 13.1. Rola Bootstrapa w aplikacji React
 
-Bootstrap składa się z kilku dużych części:
+W części „Rola Bootstrapa w aplikacji React” Bootstrap dostarcza klasy wyglądu, ale React nadal decyduje o stanie. W praktyce oznacza to, że najpierw wyliczasz stan komponentu, a dopiero potem dobierasz klasy typu `is-invalid`, `active` albo `btn-primary`.
 
-| Część | Do czego służy |
-|---|---|
-| Layout | `container`, `row`, `col`, breakpointy, responsywność |
-| Utilities | szybkie klasy typu `mt-3`, `d-flex`, `text-center`, `shadow-sm` |
-| Components | gotowe elementy: karty, alerty, navbar, modal, dropdown |
-| Forms | pola formularzy, walidacja, checkboxy, selecty, input group |
-| Helpers | klasy pomocnicze, np. `clearfix`, `ratio`, `visually-hidden` |
+Bootstrap nie zastępuje Reacta. Nie zarządza stanem aplikacji, nie tworzy komponentów JSX i nie decyduje o przepływie danych. Dostarcza natomiast gotowy język klas CSS, dzięki któremu można szybko budować spójny interfejs.
 
-Bootstrap najlepiej sprawdza się, gdy:
-- chcesz szybko zbudować estetyczny interfejs
-- tworzysz panel administracyjny, formularze, dashboard, katalog produktów
-- potrzebujesz responsywnej siatki bez pisania dużej ilości CSS
-- zależy Ci na spójnych odstępach, kolorach i komponentach
+Typowy podział odpowiedzialności wygląda tak:
 
-Bootstrap nie zawsze jest najlepszym wyborem, gdy:
-- projekt ma bardzo niestandardowy, artystyczny wygląd
-- każda sekcja strony ma zupełnie inny system wizualny
-- chcesz pisać własny design system od zera
+| Obszar | React | Bootstrap |
+|---|---|---|
+| Dane | stan, propsy, tablice, obiekty | brak odpowiedzialności |
+| Logika | funkcje obsługi zdarzeń, warunki, mapowanie list | brak odpowiedzialności |
+| Struktura | komponenty JSX | klasy układu, np. `container`, `row`, `col` |
+| Wygląd | ewentualnie własne komponenty i style | przyciski, formularze, karty, alerty, tabele |
+| Responsywność | warunkowe renderowanie, jeśli potrzebne | breakpointy, np. `col-md-6`, `d-lg-flex` |
 
-Najważniejsza zasada: **Bootstrap przyspiesza pracę, ale nie zwalnia z myślenia o semantyce, dostępności i strukturze komponentów.**
+Najważniejsza zasada: w React nadal piszesz komponenty i logikę po reactowemu, a klasy Bootstrapa traktujesz jako gotowy zestaw stylów.
 
-### 13.2. Instalacja i konfiguracja Bootstrapa
+### 13.2. Instalacja i import stylów
 
-W projekcie React najwygodniej instalować Bootstrapa jako paczkę npm:
+Import Bootstrapa najlepiej umieścić raz w pliku startowym aplikacji, a nie w każdym komponencie. Własny CSS importuj po Bootstrapie, żeby mógł nadpisać domyślne style.
+
+```jsx
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
+```
+
+W projekcie React najczęściej instaluje się Bootstrapa przez npm:
 
 ```bash
 npm install bootstrap
 ```
 
-Następnie importujemy style w głównym pliku aplikacji. W Create React App będzie to zwykle `src/index.js`, a w Vite często `src/main.jsx`.
+Następnie importuje się arkusz CSS w głównym pliku aplikacji, na przykład w `src/main.jsx` albo `src/index.js`:
 
 ```jsx
-// Plik: src/index.js
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
-import App from "./App";
+import App from "./App.jsx";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
 ```
 
-Kolejność importów ma znaczenie:
+Kolejność importów jest istotna. Najpierw importuje się Bootstrapa, a dopiero potem własny plik CSS. Dzięki temu własne style mogą nadpisać domyślne reguły Bootstrapa.
 
-```jsx
-import "bootstrap/dist/css/bootstrap.css";
-import "./index.css";
-```
-
-Najpierw importujemy Bootstrapa, a dopiero potem własny CSS. Dzięki temu własne style mogą nadpisać klasy Bootstrapa, jeśli będzie to potrzebne.
-
-Jeśli chcesz używać komponentów wymagających JavaScriptu, np. `modal`, `dropdown`, `collapse`, `offcanvas`, możesz dodatkowo zaimportować bundle JS:
+Jeżeli korzystasz tylko z klas CSS, przycisków, formularzy, kart, siatki i tabel, import CSS wystarczy. Jeżeli chcesz używać komponentów Bootstrapa opartych o JavaScript, takich jak modal, dropdown, tooltip, popover, collapse albo offcanvas, potrzebny jest dodatkowy import bundle:
 
 ```jsx
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 ```
 
-W prostych projektach edukacyjnych najczęściej wystarczy sam CSS. JavaScript Bootstrapa dodajemy dopiero wtedy, gdy naprawdę korzystamy z komponentów interaktywnych opartych o atrybuty `data-bs-*`.
+W React często lepiej sterować takimi elementami stanem komponentu zamiast bezpośrednio polegać na atrybutach `data-bs-*`. Dotyczy to szczególnie modali, paneli rozwijanych i zakładek, bo ich widoczność zwykle zależy od danych aplikacji.
 
-**Ikony Bootstrap Icons**
+### 13.3. Klasy Bootstrapa w JSX
 
-Bootstrap nie zawiera ikon w podstawowej paczce. Ikony są osobną biblioteką:
+Klasy Bootstrapa traktuj jak opis wyglądu aktualnego stanu. Gdy stan oznacza błąd, możesz dodać `is-invalid`; gdy element jest aktywny, dodajesz `active`. Sama logika nadal powinna wynikać ze stanu Reacta.
 
-```bash
-npm install bootstrap-icons
-```
+W HTML używa się atrybutu `class`, ale w JSX trzeba używać `className`.
 
 ```jsx
-import "bootstrap-icons/font/bootstrap-icons.css";
+function ProductCard() {
+  return (
+    <article className="card shadow-sm h-100">
+      <div className="card-body">
+        <span className="badge text-bg-success mb-2">Dostępny</span>
+        <h2 className="h5 card-title">Klawiatura mechaniczna</h2>
+        <p className="card-text text-secondary">
+          Kompaktowa klawiatura z podświetleniem i przełącznikami liniowymi.
+        </p>
+        <button className="btn btn-primary">Dodaj do koszyka</button>
+      </div>
+    </article>
+  );
+}
 ```
 
-Przykład użycia:
+Najczęściej używane grupy klas:
+
+| Grupa | Przykłady | Zastosowanie |
+|---|---|---|
+| Layout | `container`, `row`, `col-md-6` | układ strony i siatka |
+| Spacing | `mt-3`, `mb-4`, `p-3`, `gap-2` | marginesy, paddingi, odstępy |
+| Flex | `d-flex`, `align-items-center`, `justify-content-between` | wyrównanie elementów |
+| Kolory | `text-primary`, `text-secondary`, `bg-light` | tekst i tła |
+| Przyciski | `btn`, `btn-primary`, `btn-outline-danger` | akcje użytkownika |
+| Formularze | `form-control`, `form-select`, `form-check` | pola formularzy |
+| Komponenty | `card`, `alert`, `badge`, `navbar` | gotowe elementy interfejsu |
+
+Przykład responsywnego układu kart:
 
 ```jsx
-<button className="btn btn-primary">
-  <i className="bi bi-save me-2"></i>
-  Zapisz
-</button>
+function ProductGrid({ products }) {
+  return (
+    <div className="container py-4">
+      <div className="row g-3">
+        {products.map((product) => (
+          <div className="col-12 col-md-6 col-xl-4" key={product.id}>
+            <article className="card h-100 shadow-sm">
+              <div className="card-body">
+                <h3 className="h5">{product.name}</h3>
+                <p className="text-secondary mb-3">{product.description}</p>
+                <strong>{product.price} zł</strong>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 ```
 
-### 13.3. Czysty Bootstrap CSS vs React-Bootstrap
+Klasy `col-12 col-md-6 col-xl-4` oznaczają: pełna szerokość na małych ekranach, dwie kolumny od breakpointu `md` i trzy kolumny od breakpointu `xl`.
 
-W React są dwa popularne sposoby używania Bootstrapa.
+### 13.4. Komponenty zależne od stanu Reacta
 
-**1. Klasy CSS Bootstrapa**
+W części „Komponenty zależne od stanu Reacta” Bootstrap dostarcza klasy wyglądu, ale React nadal decyduje o stanie. W praktyce oznacza to, że najpierw wyliczasz stan komponentu, a dopiero potem dobierasz klasy typu `is-invalid`, `active` albo `btn-primary`.
 
-To podejście stosowane w tej dokumentacji:
+Bootstrap dobrze łączy się ze stanem Reacta, jeżeli traktujesz klasy jako wynik danych. Przykład: alert może zmieniać wariant zależnie od typu komunikatu.
 
 ```jsx
-<button className="btn btn-primary">Zapisz</button>
+function StatusAlert({ status }) {
+  const variants = {
+    success: "alert-success",
+    warning: "alert-warning",
+    error: "alert-danger",
+    info: "alert-info",
+  };
+
+  const alertClassName = "alert " + (variants[status.type] ?? "alert-secondary");
+
+  return (
+    <div className={alertClassName}>
+      <strong>{status.title}</strong>
+      <p className="mb-0">{status.message}</p>
+    </div>
+  );
+}
 ```
 
-Zalety:
-- uczysz się prawdziwych klas Bootstrapa
-- kod działa podobnie jak w zwykłym HTML
-- nie trzeba instalować dodatkowej biblioteki komponentów
-- łatwo mieszać Bootstrap z własnymi komponentami React
+Podobnie można sterować klasami przycisków, kart, pól formularzy i widoczności sekcji:
 
-Wady:
-- przy komponentach takich jak modal albo dropdown trzeba uważać na JS Bootstrapa
-- długie `className` mogą być mniej czytelne
+```jsx
+function SaveButton({ isSaving, isDirty }) {
+  return (
+    <button className="btn btn-primary" disabled={isSaving || !isDirty}>
+      {isSaving ? "Zapisywanie..." : "Zapisz zmiany"}
+    </button>
+  );
+}
+```
 
-**2. React-Bootstrap**
+Dla formularzy najważniejsze jest połączenie kontrolowanych pól Reacta z klasami Bootstrapa:
 
-To osobna biblioteka komponentów:
+```jsx
+function EmailField({ value, onChange }) {
+  const isInvalid = value.length > 0 && !value.includes("@");
+  const inputClassName = isInvalid ? "form-control is-invalid" : "form-control";
+
+  return (
+    <div className="mb-3">
+      <label htmlFor="email" className="form-label">E-mail</label>
+      <input
+        id="email"
+        type="email"
+        className={inputClassName}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+      {isInvalid && (
+        <div className="invalid-feedback">Adres e-mail musi zawierać znak @.</div>
+      )}
+    </div>
+  );
+}
+```
+
+### 13.5. React-Bootstrap czy zwykłe klasy
+
+Klasy Bootstrapa traktuj jak opis wyglądu aktualnego stanu. Gdy stan oznacza błąd, możesz dodać `is-invalid`; gdy element jest aktywny, dodajesz `active`. Sama logika nadal powinna wynikać ze stanu Reacta.
+
+Są dwa popularne sposoby używania Bootstrapa w React:
+
+| Podejście | Na czym polega | Kiedy używać |
+|---|---|---|
+| Zwykłe klasy Bootstrapa | piszesz JSX i dodajesz `className` | gdy chcesz pełnej kontroli nad strukturą HTML |
+| React-Bootstrap | używasz gotowych komponentów React, np. `<Button />`, `<Modal />` | gdy chcesz komponentów zgodnych z React i mniej ręcznej obsługi JS |
+
+Instalacja React-Bootstrap:
 
 ```bash
 npm install react-bootstrap bootstrap
@@ -4709,1381 +5352,163 @@ Przykład:
 
 ```jsx
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
-function App() {
-  return <Button variant="primary">Zapisz</Button>;
-}
-```
-
-Zalety:
-- komponenty są bardziej "reactowe"
-- modale, dropdowny i zakładki łatwiej kontrolować stanem
-
-Wady:
-- uczysz się dodatkowego API
-- dokumentacja React-Bootstrap różni się od dokumentacji Bootstrapa
-- dla prostych projektów to często niepotrzebna warstwa
-
-W tej dokumentacji używamy **klas CSS Bootstrapa**, bo są najbardziej uniwersalne.
-
-### 13.4. Kontenery i podstawowy układ strony
-
-Kontener ogranicza szerokość treści i nadaje stronie czytelny układ. Bez kontenera elementy często przyklejają się do krawędzi ekranu.
-
-Najważniejsze klasy:
-
-| Klasa | Działanie |
-|---|---|
-| `container` | responsywny kontener o maksymalnej szerokości |
-| `container-fluid` | kontener na pełną szerokość ekranu |
-| `container-md` | pełna szerokość do breakpointu `md`, potem ograniczenie |
-
-```jsx
-function App() {
+function UserCard() {
   return (
-    <main className="container py-4">
-      <h1>Panel kursanta</h1>
-      <p className="lead">Treść jest czytelnie odsunięta od krawędzi.</p>
-    </main>
+    <Card className="shadow-sm">
+      <Card.Body>
+        <Card.Title>Anna Kowalska</Card.Title>
+        <Card.Text className="text-secondary">
+          Konto aktywne, ostatnie logowanie dzisiaj.
+        </Card.Text>
+        <Button variant="primary">Szczegóły</Button>
+      </Card.Body>
+    </Card>
   );
 }
 ```
 
-Przykład pełnej szerokości:
+React-Bootstrap nie jest wymagany. Jeżeli wystarczają Ci klasy CSS, możesz zostać przy zwykłym Bootstrapie. Jeżeli często używasz modali, dropdownów, zakładek lub komponentów wymagających interakcji, React-Bootstrap może uprościć kod.
+
+### 13.6. Mini przykład: formularz i karta
+
+W części „Mini przykład: formularz i karta” Bootstrap dostarcza klasy wyglądu, ale React nadal decyduje o stanie. W praktyce oznacza to, że najpierw wyliczasz stan komponentu, a dopiero potem dobierasz klasy typu `is-invalid`, `active` albo `btn-primary`.
+
+Poniższy przykład pokazuje typowy sposób łączenia Reacta i Bootstrapa: stan formularza jest w React, a wygląd pól, przycisków, listy i komunikatów pochodzi z klas Bootstrapa.
 
 ```jsx
-<header className="container-fluid bg-dark text-white py-4">
-  <div className="container">
-    <h1 className="mb-0">Nagłówek strony</h1>
-  </div>
-</header>
-```
-
-Dobry wzorzec strony:
-
-```jsx
-<div className="min-vh-100 bg-light">
-  <header className="bg-white border-bottom">
-    <div className="container py-3">Logo i nawigacja</div>
-  </header>
-
-  <main className="container py-4">
-    Treść strony
-  </main>
-
-  <footer className="border-top">
-    <div className="container py-3 text-muted">Stopka</div>
-  </footer>
-</div>
-```
-
-### 13.5. System Grid — siatka 12-kolumnowa
-
-Grid Bootstrapa opiera się na trzech elementach:
-- `container` — ogranicza szerokość strony
-- `row` — tworzy wiersz
-- `col` / `col-*` — tworzy kolumny
-
-Bootstrap dzieli wiersz na 12 części. Jeśli dasz `col-md-6`, element zajmie 6 z 12 kolumn, czyli połowę szerokości od breakpointu `md`.
-
-Breakpointy:
-
-| Breakpoint | Od szerokości | Przykład klasy |
-|---|---:|---|
-| `xs` | domyślnie | `col-12` |
-| `sm` | 576px | `col-sm-6` |
-| `md` | 768px | `col-md-4` |
-| `lg` | 992px | `col-lg-3` |
-| `xl` | 1200px | `col-xl-2` |
-| `xxl` | 1400px | `col-xxl-2` |
-
-Przykład: jedna kolumna na telefonie, trzy na komputerze.
-
-```jsx
-<div className="container">
-  <div className="row g-3">
-    <div className="col-12 col-md-4">
-      <div className="p-3 bg-primary text-white rounded">Kolumna 1</div>
-    </div>
-    <div className="col-12 col-md-4">
-      <div className="p-3 bg-success text-white rounded">Kolumna 2</div>
-    </div>
-    <div className="col-12 col-md-4">
-      <div className="p-3 bg-danger text-white rounded">Kolumna 3</div>
-    </div>
-  </div>
-</div>
-```
-
-`g-3` oznacza odstęp między kolumnami i wierszami. Można rozdzielić odstępy:
-
-| Klasa | Działanie |
-|---|---|
-| `g-0` | brak odstępów |
-| `g-3` | odstępy w pionie i poziomie |
-| `gx-4` | odstępy tylko poziome |
-| `gy-2` | odstępy tylko pionowe |
-
-Układ panelowy: sidebar + treść główna.
-
-```jsx
-<div className="container py-4">
-  <div className="row g-4">
-    <aside className="col-12 col-lg-3">
-      <div className="list-group">
-        <button className="list-group-item list-group-item-action active">Profil</button>
-        <button className="list-group-item list-group-item-action">Kursy</button>
-        <button className="list-group-item list-group-item-action">Ustawienia</button>
-      </div>
-    </aside>
-
-    <section className="col-12 col-lg-9">
-      <div className="card">
-        <div className="card-body">
-          <h2 className="h4">Treść główna</h2>
-          <p>Na telefonie sidebar będzie nad treścią, a na dużym ekranie obok.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-```
-
-Szybkie automatyczne kolumny:
-
-```jsx
-<div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3">
-  {produkty.map((produkt) => (
-    <div className="col" key={produkt.id}>
-      <div className="card h-100">
-        <div className="card-body">{produkt.nazwa}</div>
-      </div>
-    </div>
-  ))}
-</div>
-```
-
-`row-cols-*` jest bardzo wygodne przy kartach, kafelkach i galeriach.
-
-### 13.6. Flexbox i szybkie wyrównywanie elementów
-
-Grid służy do większych układów strony. Flexbox przydaje się do układania elementów wewnątrz komponentu: przycisków, nagłówków kart, pasków narzędzi, ikon i opisów.
-
-Najważniejsze klasy:
-
-| Klasa | Działanie |
-|---|---|
-| `d-flex` | włącza flexbox |
-| `flex-column` | układa elementy pionowo |
-| `justify-content-between` | rozsuwa elementy do boków |
-| `justify-content-center` | centruje w osi głównej |
-| `align-items-center` | wyrównuje w osi poprzecznej |
-| `gap-2` | dodaje odstęp między elementami |
-| `flex-wrap` | pozwala elementom zawijać się do kolejnego wiersza |
-
-```jsx
-<div className="d-flex justify-content-between align-items-center p-3 border rounded">
-  <div>
-    <h2 className="h5 mb-0">Lista zadań</h2>
-    <small className="text-muted">3 zadania do wykonania</small>
-  </div>
-
-  <div className="d-flex gap-2">
-    <button className="btn btn-outline-secondary btn-sm">Filtruj</button>
-    <button className="btn btn-primary btn-sm">Dodaj</button>
-  </div>
-</div>
-```
-
-Przykład z pionowym układem i przyciskiem na dole:
-
-```jsx
-<div className="card h-100">
-  <div className="card-body d-flex flex-column">
-    <h3 className="h5">Kurs React</h3>
-    <p className="text-muted">Opis może mieć różną długość.</p>
-
-    <button className="btn btn-primary mt-auto">
-      Zobacz kurs
-    </button>
-  </div>
-</div>
-```
-
-`mt-auto` wypycha przycisk na dół karty, jeśli rodzic ma `d-flex flex-column`.
-
-### 13.7. Display, widoczność, pozycjonowanie i overflow
-
-Bootstrap ma klasy do szybkiej kontroli sposobu wyświetlania elementów.
-
-| Klasa | Działanie |
-|---|---|
-| `d-none` | ukrywa element |
-| `d-block` | element blokowy |
-| `d-inline` | element liniowy |
-| `d-inline-block` | liniowy blok |
-| `d-flex` | flexbox |
-| `d-grid` | CSS grid |
-
-Klasy mogą być responsywne:
-
-```jsx
-<div className="d-none d-md-block">
-  Ten panel widać od tabletów w górę.
-</div>
-
-<div className="d-block d-md-none">
-  Ten panel widać tylko na telefonach.
-</div>
-```
-
-Pozycjonowanie:
-
-```jsx
-<div className="position-relative border rounded p-4">
-  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    3
-  </span>
-  Powiadomienia
-</div>
-```
-
-Przydatne klasy:
-
-| Klasa | Działanie |
-|---|---|
-| `position-relative` | element staje się punktem odniesienia |
-| `position-absolute` | pozycjonowanie względem rodzica |
-| `top-0`, `bottom-0`, `start-0`, `end-0` | przyklejenie do krawędzi |
-| `translate-middle` | przesunięcie o połowę własnego rozmiaru |
-| `sticky-top` | element zostaje przy górze podczas przewijania |
-| `overflow-auto` | przewijanie, gdy treść się nie mieści |
-| `overflow-hidden` | ukrycie wystającej treści |
-
-Przykład przewijanej listy:
-
-```jsx
-<div className="border rounded overflow-auto" style={{ maxHeight: "240px" }}>
-  {wiadomosci.map((msg) => (
-    <div className="border-bottom p-2" key={msg.id}>
-      {msg.tresc}
-    </div>
-  ))}
-</div>
-```
-
-### 13.8. Spacing, wymiary, obramowania i cienie
-
-Spacing to system marginesów i paddingów. Format klasy:
-
-```txt
-[właściwość][strona]-[rozmiar]
-```
-
-Właściwości:
-- `m` — margin
-- `p` — padding
-
-Strony:
-- `t` — top
-- `b` — bottom
-- `s` — start, czyli lewa strona w językach LTR
-- `e` — end, czyli prawa strona w językach LTR
-- `x` — lewo i prawo
-- `y` — góra i dół
-- brak strony — wszystkie strony
-
-Rozmiary:
-
-| Klasa | Znaczenie |
-|---|---|
-| `0` | brak odstępu |
-| `1` | mały odstęp |
-| `2` | trochę większy |
-| `3` | standardowy odstęp |
-| `4` | duży odstęp |
-| `5` | bardzo duży odstęp |
-| `auto` | automatyczny margines |
-
-```jsx
-<section className="container py-5">
-  <div className="mx-auto p-4 border rounded shadow-sm" style={{ maxWidth: "520px" }}>
-    <h2 className="mb-3">Logowanie</h2>
-    <p className="text-muted mb-4">Wpisz dane dostępowe do konta.</p>
-  </div>
-</section>
-```
-
-Wymiary:
-
-| Klasa | Działanie |
-|---|---|
-| `w-25`, `w-50`, `w-75`, `w-100` | szerokość procentowa |
-| `h-25`, `h-50`, `h-75`, `h-100` | wysokość procentowa |
-| `mw-100` | maksymalna szerokość 100% |
-| `min-vh-100` | minimum pełna wysokość ekranu |
-
-Obramowania i zaokrąglenia:
-
-```jsx
-<div className="border border-primary rounded-3 p-3">
-  Ramka primary i zaokrąglone rogi
-</div>
-
-<img className="rounded-circle border shadow-sm" src="/avatar.png" alt="Avatar" />
-```
-
-Cienie:
-
-| Klasa | Efekt |
-|---|---|
-| `shadow-none` | brak cienia |
-| `shadow-sm` | mały cień |
-| `shadow` | standardowy cień |
-| `shadow-lg` | duży cień |
-
-### 13.9. Typografia, kolory, tła i tryb ciemny
-
-Bootstrap dostarcza gotowe klasy typograficzne.
-
-| Klasa | Działanie |
-|---|---|
-| `display-1` ... `display-6` | bardzo duże nagłówki |
-| `h1` ... `h6` | wygląd nagłówka bez zmiany znacznika |
-| `lead` | większy akapit wprowadzający |
-| `small` | mniejszy tekst |
-| `fw-bold` | pogrubienie |
-| `fw-normal` | normalna grubość |
-| `fst-italic` | kursywa |
-| `text-start`, `text-center`, `text-end` | wyrównanie tekstu |
-| `text-uppercase` | wielkie litery |
-| `text-truncate` | ucięcie tekstu z wielokropkiem |
-
-```jsx
-<section className="bg-light p-5 text-center">
-  <h1 className="display-5 fw-bold">Kurs React i Bootstrap</h1>
-  <p className="lead text-muted mb-0">
-    Szybkie budowanie czytelnych interfejsów.
-  </p>
-</section>
-```
-
-Kolory semantyczne:
-
-| Nazwa | Typowe znaczenie |
-|---|---|
-| `primary` | główna akcja |
-| `secondary` | akcja drugorzędna |
-| `success` | sukces |
-| `danger` | błąd, usuwanie |
-| `warning` | ostrzeżenie |
-| `info` | informacja |
-| `light` | jasne tło |
-| `dark` | ciemne tło |
-
-```jsx
-<div className="p-3 bg-success-subtle text-success-emphasis border border-success rounded">
-  Operacja zakończona powodzeniem.
-</div>
-```
-
-W Bootstrapie 5.3 dostępne są też klasy typu `bg-primary-subtle`, `text-primary-emphasis`, `border-primary-subtle`. Są wygodne, gdy pełne `bg-primary text-white` byłoby zbyt mocne.
-
-Tryb ciemny można aktywować atrybutem `data-bs-theme`.
-
-```jsx
-function App() {
-  const dark = true;
-
-  return (
-    <div data-bs-theme={dark ? "dark" : "light"} className="min-vh-100 p-4">
-      <div className="card">
-        <div className="card-body">
-          <h1 className="h4">Karta dopasowana do motywu</h1>
-          <button className="btn btn-primary">Akcja</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-```
-
-### 13.10. Przyciski, grupy przycisków i stany
-
-Każdy przycisk Bootstrapa zaczyna się od klasy `btn`.
-
-```jsx
-<button className="btn btn-primary">Zapisz</button>
-<button className="btn btn-outline-secondary">Anuluj</button>
-<button className="btn btn-danger">Usuń</button>
-```
-
-Najczęstsze warianty:
-
-| Klasa | Zastosowanie |
-|---|---|
-| `btn-primary` | główna akcja |
-| `btn-secondary` | akcja pomocnicza |
-| `btn-success` | potwierdzenie |
-| `btn-danger` | usuwanie lub błąd |
-| `btn-warning` | ostrzeżenie |
-| `btn-outline-*` | przycisk z obramowaniem |
-| `btn-sm`, `btn-lg` | rozmiar |
-
-Przyciski w React często zależą od stanu:
-
-```jsx
-function ZapiszButton({ zapisuje, poprawny }) {
-  return (
-    <button className="btn btn-primary" disabled={zapisuje || !poprawny}>
-      {zapisuje ? "Zapisywanie..." : "Zapisz"}
-    </button>
-  );
-}
-```
-
-Grupa przycisków:
-
-```jsx
-<div className="btn-group" role="group" aria-label="Widok danych">
-  <button type="button" className="btn btn-outline-primary active">Karty</button>
-  <button type="button" className="btn btn-outline-primary">Tabela</button>
-  <button type="button" className="btn btn-outline-primary">Wykres</button>
-</div>
-```
-
-Pełna szerokość i układ pionowy:
-
-```jsx
-<div className="d-grid gap-2">
-  <button className="btn btn-primary">Zapisz</button>
-  <button className="btn btn-outline-secondary">Wróć</button>
-</div>
-```
-
-W formularzach zawsze ustawiaj `type`:
-
-```jsx
-<button type="submit" className="btn btn-primary">Wyślij</button>
-<button type="button" className="btn btn-outline-secondary">Anuluj</button>
-```
-
-Bez `type="button"` przycisk wewnątrz formularza domyślnie zachowuje się jak submit.
-
-### 13.11. Formularze — pola, selecty, checkboxy i input group
-
-Podstawowe klasy formularzy:
-
-| Element | Klasa |
-|---|---|
-| `input`, `textarea` | `form-control` |
-| `select` | `form-select` |
-| `label` | `form-label` |
-| checkbox/radio wrapper | `form-check` |
-| checkbox/radio input | `form-check-input` |
-| checkbox/radio label | `form-check-label` |
-| tekst pomocniczy | `form-text` |
-
-```jsx
-function FormularzKontaktowy() {
-  return (
-    <form className="border rounded p-4 bg-light">
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">Adres e-mail</label>
-        <input
-          id="email"
-          type="email"
-          className="form-control"
-          placeholder="jan@example.com"
-        />
-        <div className="form-text">Nie udostępniamy adresu innym osobom.</div>
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="temat" className="form-label">Temat</label>
-        <select id="temat" className="form-select">
-          <option value="">Wybierz temat</option>
-          <option value="konto">Konto</option>
-          <option value="platnosci">Płatności</option>
-          <option value="inne">Inne</option>
-        </select>
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="tresc" className="form-label">Treść</label>
-        <textarea id="tresc" className="form-control" rows="4"></textarea>
-      </div>
-
-      <button type="submit" className="btn btn-primary">Wyślij</button>
-    </form>
-  );
-}
-```
-
-Checkbox i switch:
-
-```jsx
-<div className="form-check mb-2">
-  <input className="form-check-input" type="checkbox" id="newsletter" />
-  <label className="form-check-label" htmlFor="newsletter">
-    Chcę otrzymywać newsletter
-  </label>
-</div>
-
-<div className="form-check form-switch">
-  <input className="form-check-input" type="checkbox" role="switch" id="tryb" />
-  <label className="form-check-label" htmlFor="tryb">
-    Tryb ciemny
-  </label>
-</div>
-```
-
-Radio:
-
-```jsx
-<div className="form-check">
-  <input className="form-check-input" type="radio" name="plan" id="basic" />
-  <label className="form-check-label" htmlFor="basic">Basic</label>
-</div>
-<div className="form-check">
-  <input className="form-check-input" type="radio" name="plan" id="pro" />
-  <label className="form-check-label" htmlFor="pro">Pro</label>
-</div>
-```
-
-Input group, czyli pole z dodatkiem:
-
-```jsx
-<div className="input-group mb-3">
-  <span className="input-group-text">PLN</span>
-  <input type="number" className="form-control" placeholder="Cena" />
-  <button className="btn btn-outline-secondary" type="button">
-    Przelicz
-  </button>
-</div>
-```
-
-Formularz kontrolowany w React:
-
-```jsx
-import { useState } from "react";
-
-function Formularz() {
-  const [email, setEmail] = useState("");
-
-  return (
-    <form>
-      <label htmlFor="email" className="form-label">E-mail</label>
-      <input
-        id="email"
-        className="form-control"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-    </form>
-  );
-}
-```
-
-### 13.12. Walidacja formularzy i floating labels
-
-Bootstrap daje klasy wizualne do walidacji, ale sama logika walidacji należy do Reacta.
-
-| Klasa | Efekt |
-|---|---|
-| `is-valid` | zielone pole |
-| `is-invalid` | czerwone pole |
-| `valid-feedback` | komunikat sukcesu |
-| `invalid-feedback` | komunikat błędu |
-
-```jsx
-import { useState } from "react";
-
-function WalidowanyEmail() {
-  const [email, setEmail] = useState("");
-  const dotkniete = email.length > 0;
-  const poprawny = email.includes("@") && email.includes(".");
-
-  let klasa = "form-control";
-  if (dotkniete && poprawny) klasa += " is-valid";
-  if (dotkniete && !poprawny) klasa += " is-invalid";
-
-  return (
-    <div className="mb-3">
-      <label htmlFor="email" className="form-label">E-mail</label>
-      <input
-        id="email"
-        className={klasa}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <div className="valid-feedback">Adres wygląda poprawnie.</div>
-      <div className="invalid-feedback">Podaj poprawny adres e-mail.</div>
-    </div>
-  );
-}
-```
-
-Floating labels:
-
-```jsx
-<div className="form-floating mb-3">
-  <input
-    type="email"
-    className="form-control"
-    id="floatingEmail"
-    placeholder="jan@example.com"
-  />
-  <label htmlFor="floatingEmail">Adres e-mail</label>
-</div>
-```
-
-Przy `form-floating` placeholder nadal jest potrzebny technicznie, nawet jeśli użytkownik widzi label.
-
-Walidacja całego formularza:
-
-```jsx
-function Rejestracja() {
-  const [imie, setImie] = useState("");
-  const [zgoda, setZgoda] = useState(false);
-
-  const poprawneImie = imie.trim().length >= 3;
-  const moznaWyslac = poprawneImie && zgoda;
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!moznaWyslac) return;
-    alert("Formularz wysłany");
-  }
-
-  return (
-    <form className="p-4 border rounded" onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="imie" className="form-label">Imię</label>
-        <input
-          id="imie"
-          className={`form-control ${imie && !poprawneImie ? "is-invalid" : ""}`}
-          value={imie}
-          onChange={(e) => setImie(e.target.value)}
-        />
-        <div className="invalid-feedback">Minimum 3 znaki.</div>
-      </div>
-
-      <div className="form-check mb-3">
-        <input
-          id="zgoda"
-          className="form-check-input"
-          type="checkbox"
-          checked={zgoda}
-          onChange={(e) => setZgoda(e.target.checked)}
-        />
-        <label className="form-check-label" htmlFor="zgoda">
-          Akceptuję regulamin
-        </label>
-      </div>
-
-      <button className="btn btn-primary" disabled={!moznaWyslac}>
-        Zarejestruj
-      </button>
-    </form>
-  );
-}
-```
-
-### 13.13. Nawigacja — navbar, nav, tabs i breadcrumbs
-
-Navbar to górny pasek nawigacyjny. W najprostszej wersji nie musi mieć JavaScriptu.
-
-```jsx
-<nav className="navbar bg-dark navbar-dark">
-  <div className="container">
-    <a className="navbar-brand" href="/">Moja aplikacja</a>
-    <div className="d-flex gap-2">
-      <a className="btn btn-outline-light btn-sm" href="/login">Logowanie</a>
-      <a className="btn btn-primary btn-sm" href="/register">Rejestracja</a>
-    </div>
-  </div>
-</nav>
-```
-
-Responsywny navbar z collapse wymaga JS Bootstrapa:
-
-```jsx
-<nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-  <div className="container">
-    <a className="navbar-brand fw-bold" href="/">Kursy</a>
-
-    <button
-      className="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNav"
-      aria-controls="mainNav"
-      aria-expanded="false"
-      aria-label="Przełącz nawigację"
-    >
-      <span className="navbar-toggler-icon"></span>
-    </button>
-
-    <div className="collapse navbar-collapse" id="mainNav">
-      <ul className="navbar-nav ms-auto">
-        <li className="nav-item"><a className="nav-link active" href="/">Start</a></li>
-        <li className="nav-item"><a className="nav-link" href="/kursy">Kursy</a></li>
-        <li className="nav-item"><a className="nav-link" href="/kontakt">Kontakt</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-```
-
-`nav` i zakładki sterowane stanem React:
-
-```jsx
-import { useState } from "react";
-
-function Zakladki() {
-  const [aktywny, setAktywny] = useState("opis");
-
-  return (
-    <>
-      <ul className="nav nav-tabs mb-3">
-        <li className="nav-item">
-          <button className={`nav-link ${aktywny === "opis" ? "active" : ""}`} onClick={() => setAktywny("opis")}>
-            Opis
-          </button>
-        </li>
-        <li className="nav-item">
-          <button className={`nav-link ${aktywny === "opinie" ? "active" : ""}`} onClick={() => setAktywny("opinie")}>
-            Opinie
-          </button>
-        </li>
-      </ul>
-
-      {aktywny === "opis" && <p>Opis produktu...</p>}
-      {aktywny === "opinie" && <p>Lista opinii...</p>}
-    </>
-  );
-}
-```
-
-Breadcrumbs:
-
-```jsx
-<nav aria-label="breadcrumb">
-  <ol className="breadcrumb">
-    <li className="breadcrumb-item"><a href="/">Start</a></li>
-    <li className="breadcrumb-item"><a href="/kursy">Kursy</a></li>
-    <li className="breadcrumb-item active" aria-current="page">React</li>
-  </ol>
-</nav>
-```
-
-### 13.14. Karty, list group, badge i układy kafelkowe
-
-Karta składa się zwykle z `.card`, `.card-body`, opcjonalnie `.card-header`, `.card-footer`, `.card-title`, `.card-text`.
-
-```jsx
-<div className="card shadow-sm">
-  <div className="card-header bg-white">
-    Polecany kurs
-  </div>
-  <div className="card-body">
-    <h3 className="card-title h5">React od podstaw</h3>
-    <p className="card-text text-muted">
-      Komponenty, stan, formularze i praktyczne projekty.
-    </p>
-    <a href="/kurs/react" className="btn btn-primary">Zobacz</a>
-  </div>
-  <div className="card-footer text-muted">
-    12 lekcji
-  </div>
-</div>
-```
-
-Karty w siatce:
-
-```jsx
-<div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-  {kursy.map((kurs) => (
-    <div className="col" key={kurs.id}>
-      <div className="card h-100 shadow-sm">
-        <div className="card-body d-flex flex-column">
-          <div className="d-flex justify-content-between align-items-start">
-            <h3 className="h5 card-title">{kurs.nazwa}</h3>
-            <span className="badge bg-primary">{kurs.poziom}</span>
-          </div>
-
-          <p className="card-text text-muted">{kurs.opis}</p>
-
-          <div className="mt-auto d-flex justify-content-between align-items-center">
-            <strong>{kurs.cena} zł</strong>
-            <button className="btn btn-outline-primary btn-sm">Szczegóły</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
-```
-
-List group:
-
-```jsx
-<div className="list-group">
-  <button className="list-group-item list-group-item-action active">
-    Konto
-  </button>
-  <button className="list-group-item list-group-item-action">
-    Bezpieczeństwo
-  </button>
-  <button className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-    Powiadomienia
-    <span className="badge bg-danger rounded-pill">4</span>
-  </button>
-</div>
-```
-
-Badge:
-
-```jsx
-<h2>
-  Zamówienia <span className="badge bg-secondary">12</span>
-</h2>
-
-<span className="badge rounded-pill text-bg-success">Aktywne</span>
-<span className="badge rounded-pill text-bg-warning">Oczekuje</span>
-<span className="badge rounded-pill text-bg-danger">Błąd</span>
-```
-
-### 13.15. Tabele, paginacja i prezentacja danych
-
-Tabele są dobre dla danych porównywalnych: użytkowników, zamówień, ocen, historii operacji.
-
-```jsx
-<div className="table-responsive">
-  <table className="table table-striped table-hover align-middle">
-    <thead className="table-light">
-      <tr>
-        <th>ID</th>
-        <th>Klient</th>
-        <th>Status</th>
-        <th className="text-end">Kwota</th>
-        <th className="text-end">Akcje</th>
-      </tr>
-    </thead>
-    <tbody>
-      {zamowienia.map((z) => (
-        <tr key={z.id}>
-          <td>#{z.id}</td>
-          <td>{z.klient}</td>
-          <td><span className="badge text-bg-success">{z.status}</span></td>
-          <td className="text-end">{z.kwota} zł</td>
-          <td className="text-end">
-            <button className="btn btn-sm btn-outline-primary">Podgląd</button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-```
-
-Najczęstsze klasy tabel:
-
-| Klasa | Efekt |
-|---|---|
-| `table` | bazowy styl tabeli |
-| `table-striped` | pasy w wierszach |
-| `table-hover` | podświetlenie po najechaniu |
-| `table-bordered` | obramowania komórek |
-| `table-sm` | ciaśniejsza tabela |
-| `align-middle` | pionowe wyśrodkowanie |
-| `table-responsive` | przewijanie na małych ekranach |
-
-Paginacja:
-
-```jsx
-<nav aria-label="Strony wyników">
-  <ul className="pagination justify-content-center">
-    <li className="page-item disabled">
-      <button className="page-link">Poprzednia</button>
-    </li>
-    <li className="page-item active">
-      <button className="page-link">1</button>
-    </li>
-    <li className="page-item">
-      <button className="page-link">2</button>
-    </li>
-    <li className="page-item">
-      <button className="page-link">Następna</button>
-    </li>
-  </ul>
-</nav>
-```
-
-W React paginacja zwykle wynika ze stanu:
-
-```jsx
-const [strona, setStrona] = useState(1);
-const naStrone = 10;
-const start = (strona - 1) * naStrone;
-const widoczne = dane.slice(start, start + naStrone);
-```
-
-### 13.16. Alerty, spinnery, progress, placeholdery i toast
-
-Alert:
-
-```jsx
-{blad && (
-  <div className="alert alert-danger" role="alert">
-    {blad}
-  </div>
-)}
-
-{sukces && (
-  <div className="alert alert-success" role="alert">
-    Dane zostały zapisane.
-  </div>
-)}
-```
-
-Spinner:
-
-```jsx
-{ladowanie && (
-  <div className="d-flex justify-content-center py-5">
-    <div className="spinner-border text-primary" role="status">
-      <span className="visually-hidden">Ładowanie...</span>
-    </div>
-  </div>
-)}
-```
-
-Progress:
-
-```jsx
-<div className="progress" role="progressbar" aria-label="Postęp" aria-valuenow={75} aria-valuemin="0" aria-valuemax="100">
-  <div className="progress-bar progress-bar-striped bg-success" style={{ width: "75%" }}>
-    75%
-  </div>
-</div>
-```
-
-Placeholder, czyli szkielet ładowania:
-
-```jsx
-<div className="card" aria-hidden="true">
-  <div className="card-body">
-    <h5 className="card-title placeholder-glow">
-      <span className="placeholder col-6"></span>
-    </h5>
-    <p className="card-text placeholder-glow">
-      <span className="placeholder col-7"></span>
-      <span className="placeholder col-4"></span>
-      <span className="placeholder col-4"></span>
-    </p>
-  </div>
-</div>
-```
-
-Toast w Bootstrapie wymaga JavaScriptu albo własnej kontroli Reactem. Prosty toast kontrolowany stanem:
-
-```jsx
-{pokazToast && (
-  <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 10 }}>
-    <div className="toast show">
-      <div className="toast-header">
-        <strong className="me-auto">System</strong>
-        <button type="button" className="btn-close" onClick={() => setPokazToast(false)}></button>
-      </div>
-      <div className="toast-body">
-        Zapisano zmiany.
-      </div>
-    </div>
-  </div>
-)}
-```
-
-### 13.17. Komponenty wymagające JavaScriptu
-
-Część komponentów Bootstrapa działa wyłącznie na CSS, np. przyciski, karty, alerty, formularze, badge, tabele. Inne wymagają JavaScriptu Bootstrapa:
-- modal
-- dropdown
-- collapse
-- offcanvas
-- tooltip
-- popover
-- carousel
-- toast, jeśli używasz API Bootstrapa
-
-Jeśli używasz atrybutów `data-bs-*`, dodaj:
-
-```jsx
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-```
-
-**Collapse / Accordion**
-
-```jsx
-<div className="accordion" id="faq">
-  <div className="accordion-item">
-    <h2 className="accordion-header">
-      <button
-        className="accordion-button"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#odp1"
-      >
-        Czym jest Bootstrap?
-      </button>
-    </h2>
-    <div id="odp1" className="accordion-collapse collapse show" data-bs-parent="#faq">
-      <div className="accordion-body">
-        To framework CSS z gotowymi klasami i komponentami.
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-**Modal**
-
-```jsx
-<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#potwierdzModal">
-  Usuń konto
-</button>
-
-<div className="modal fade" id="potwierdzModal" tabIndex="-1" aria-labelledby="potwierdzLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h1 className="modal-title fs-5" id="potwierdzLabel">Potwierdzenie</h1>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
-      </div>
-      <div className="modal-body">
-        Czy na pewno chcesz usunąć konto?
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-        <button type="button" className="btn btn-danger">Usuń</button>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-**Offcanvas**
-
-```jsx
-<button className="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuBoczne">
-  Menu
-</button>
-
-<div className="offcanvas offcanvas-start" tabIndex="-1" id="menuBoczne">
-  <div className="offcanvas-header">
-    <h5 className="offcanvas-title">Nawigacja</h5>
-    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Zamknij"></button>
-  </div>
-  <div className="offcanvas-body">
-    <div className="list-group">
-      <a href="/" className="list-group-item list-group-item-action">Start</a>
-      <a href="/konto" className="list-group-item list-group-item-action">Konto</a>
-    </div>
-  </div>
-</div>
-```
-
-**Dropdown**
-
-```jsx
-<div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Akcje
-  </button>
-  <ul className="dropdown-menu">
-    <li><button className="dropdown-item" type="button">Edytuj</button></li>
-    <li><button className="dropdown-item" type="button">Duplikuj</button></li>
-    <li><hr className="dropdown-divider" /></li>
-    <li><button className="dropdown-item text-danger" type="button">Usuń</button></li>
-  </ul>
-</div>
-```
-
-W większej aplikacji React często lepiej kontrolować modal, zakładki albo toast stanem Reacta niż mieszać logikę z `data-bs-*`. Dla prostych projektów szkolnych atrybuty Bootstrapa są jednak wystarczające.
-
-### 13.18. Dostępność i semantyka w Bootstrapie
-
-Bootstrap daje dobre style, ale dostępność nadal zależy od kodu HTML.
-
-Najważniejsze zasady:
-- używaj prawdziwych znaczników: `button` do akcji, `a` do linków
-- każdy `input` powinien mieć `label`
-- nie usuwaj widocznego fokusu bez zapewnienia alternatywy
-- przy spinnerach dodawaj tekst dla czytników ekranu: `visually-hidden`
-- przy modalach, dropdownach i navbarach zachowuj atrybuty `aria-*`
-- nie przekazuj znaczenia tylko kolorem
-
-Przykład dobrego pola:
-
-```jsx
-<label htmlFor="haslo" className="form-label">Hasło</label>
-<input
-  id="haslo"
-  type="password"
-  className="form-control"
-  aria-describedby="hasloPomoc"
-/>
-<div id="hasloPomoc" className="form-text">
-  Hasło powinno mieć minimum 8 znaków.
-</div>
-```
-
-Klasa `visually-hidden` ukrywa tekst wizualnie, ale zostawia go dla czytników ekranu:
-
-```jsx
-<button className="btn btn-outline-danger">
-  <span aria-hidden="true">×</span>
-  <span className="visually-hidden">Usuń element</span>
-</button>
-```
-
-### 13.19. Nadpisywanie Bootstrapa i własny motyw
-
-Najprostszy sposób nadpisywania Bootstrapa to własny plik CSS importowany po Bootstrapie.
-
-```jsx
-import "bootstrap/dist/css/bootstrap.css";
-import "./index.css";
-```
-
-Przykład:
-
-```css
-/* Plik: src/index.css */
-.app-card {
-  border-radius: 0.75rem;
-}
-
-.btn-primary {
-  background-color: #0f766e;
-  border-color: #0f766e;
-}
-
-.btn-primary:hover {
-  background-color: #115e59;
-  border-color: #115e59;
-}
-```
-
-Nie nadpisuj wszystkiego globalnie bez potrzeby. Jeśli zmiana dotyczy jednego komponentu, lepiej dodać własną klasę:
-
-```jsx
-<div className="card app-card shadow-sm">
-  <div className="card-body">Treść</div>
-</div>
-```
-
-Bootstrap 5 używa też zmiennych CSS. Można zmienić wygląd wybranego fragmentu:
-
-```jsx
-<div
-  className="card"
-  style={{
-    "--bs-card-border-color": "#0d6efd",
-    "--bs-card-border-width": "2px",
-  }}
->
-  <div className="card-body">Karta z lokalnie zmienioną ramką</div>
-</div>
-```
-
-Praktyczna zasada:
-- klasy Bootstrapa stosuj do typowych rzeczy: spacing, grid, kolory, komponenty
-- własne klasy stosuj do wyglądu specyficznego dla projektu
-- unikaj bardzo długich `style={{ ... }}` dla zwykłego CSS
-
-### 13.20. Złożony przykład praktyczny: Panel użytkownika
-
-Poniższy przykład łączy siatkę, navbar, karty, tabele, formularz, alert, badge, progress, tryb ciemny i klasy responsywne.
-
-```jsx
-// Plik: src/App.js
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-
-const zadaniaStart = [
-  { id: 1, nazwa: "Uzupełnić profil", status: "Gotowe" },
-  { id: 2, nazwa: "Dodać projekt", status: "W trakcie" },
-  { id: 3, nazwa: "Wysłać formularz", status: "Oczekuje" },
+import { useMemo, useState } from "react";
+
+const initialTasks = [
+  { id: 1, title: "Przygotować strukturę komponentów", done: true },
+  { id: 2, title: "Dodać formularz kontaktowy", done: false },
+  { id: 3, title: "Sprawdzić widok mobilny", done: false },
 ];
 
 function App() {
-  const [trybCiemny, setTrybCiemny] = useState(false);
-  const [zadania] = useState(zadaniaStart);
-  const [email, setEmail] = useState("");
-  const [komunikat, setKomunikat] = useState("");
+  const [tasks, setTasks] = useState(initialTasks);
+  const [title, setTitle] = useState("");
 
-  const ukonczone = zadania.filter((z) => z.status === "Gotowe").length;
-  const postep = Math.round((ukonczone / zadania.length) * 100);
+  const remainingCount = useMemo(
+    () => tasks.filter((task) => !task.done).length,
+    [tasks]
+  );
 
-  function zapiszEmail(e) {
-    e.preventDefault();
-    if (!email.includes("@")) {
-      setKomunikat("Podaj poprawny adres e-mail.");
+  function addTask(event) {
+    event.preventDefault();
+
+    const trimmedTitle = title.trim();
+    if (trimmedTitle.length < 3) {
       return;
     }
-    setKomunikat("Adres zapisany poprawnie.");
+
+    const nextTask = {
+      id: Date.now(),
+      title: trimmedTitle,
+      done: false,
+    };
+
+    setTasks((currentTasks) => [nextTask, ...currentTasks]);
+    setTitle("");
+  }
+
+  function toggleTask(taskId) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId ? { ...task, done: !task.done } : task
+      )
+    );
   }
 
   return (
-    <div data-bs-theme={trybCiemny ? "dark" : "light"} className="min-vh-100 bg-body-tertiary">
-      <nav className="navbar navbar-expand bg-body border-bottom">
-        <div className="container">
-          <span className="navbar-brand fw-bold">Panel kursanta</span>
-
-          <div className="form-check form-switch ms-auto">
-            <input
-              id="darkMode"
-              className="form-check-input"
-              type="checkbox"
-              checked={trybCiemny}
-              onChange={(e) => setTrybCiemny(e.target.checked)}
-            />
-            <label className="form-check-label" htmlFor="darkMode">
-              Tryb ciemny
-            </label>
-          </div>
-        </div>
-      </nav>
-
-      <main className="container py-4">
-        {komunikat && (
-          <div className={`alert ${komunikat.includes("poprawnie") ? "alert-success" : "alert-danger"}`} role="alert">
-            {komunikat}
-          </div>
-        )}
-
-        <div className="row g-4">
-          <aside className="col-12 col-lg-3">
-            <div className="card shadow-sm">
-              <div className="card-body text-center">
-                <div className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: "72px", height: "72px" }}>
-                  JK
-                </div>
-                <h1 className="h5 mb-1">Jan Kowalski</h1>
-                <p className="text-muted mb-3">Frontend Developer</p>
-                <div className="d-grid gap-2">
-                  <button className="btn btn-primary btn-sm">Edytuj profil</button>
-                  <button className="btn btn-outline-secondary btn-sm">Ustawienia</button>
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          <section className="col-12 col-lg-9">
-            <div className="row g-3 mb-4">
-              <div className="col-12 col-md-4">
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <p className="text-muted mb-1">Postęp</p>
-                    <h2 className="h3">{postep}%</h2>
-                    <div className="progress">
-                      <div className="progress-bar" style={{ width: `${postep}%` }}></div>
-                    </div>
+    <main className="bg-light min-vh-100 py-5">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-lg-8 col-xl-6">
+            <section className="card shadow-sm border-0">
+              <div className="card-body p-4">
+                <div className="d-flex justify-content-between align-items-start gap-3 mb-4">
+                  <div>
+                    <h1 className="h3 mb-1">Lista zadań</h1>
+                    <p className="text-secondary mb-0">
+                      Pozostało do wykonania: {remainingCount}
+                    </p>
                   </div>
+                  <span className="badge text-bg-primary rounded-pill">
+                    {tasks.length} razem
+                  </span>
                 </div>
-              </div>
 
-              <div className="col-12 col-md-4">
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <p className="text-muted mb-1">Zadania</p>
-                    <h2 className="h3">{zadania.length}</h2>
-                    <span className="badge text-bg-info">Aktywne konto</span>
+                <form className="row g-2 mb-4" onSubmit={addTask}>
+                  <div className="col-12 col-md">
+                    <label htmlFor="taskTitle" className="visually-hidden">
+                      Treść zadania
+                    </label>
+                    <input
+                      id="taskTitle"
+                      className="form-control"
+                      value={title}
+                      onChange={(event) => setTitle(event.target.value)}
+                      placeholder="Nowe zadanie"
+                    />
                   </div>
-                </div>
-              </div>
-
-              <div className="col-12 col-md-4">
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <p className="text-muted mb-1">Plan</p>
-                    <h2 className="h3">Pro</h2>
-                    <button className="btn btn-outline-primary btn-sm">Zmień plan</button>
+                  <div className="col-12 col-md-auto">
+                    <button className="btn btn-primary w-100" type="submit">
+                      Dodaj
+                    </button>
                   </div>
-                </div>
-              </div>
-            </div>
+                </form>
 
-            <div className="card shadow-sm mb-4">
-              <div className="card-header bg-body d-flex justify-content-between align-items-center">
-                <h2 className="h5 mb-0">Lista zadań</h2>
-                <span className="badge text-bg-secondary">{ukonczone}/{zadania.length}</span>
-              </div>
-              <div className="table-responsive">
-                <table className="table table-hover align-middle mb-0">
-                  <thead>
-                    <tr>
-                      <th>Zadanie</th>
-                      <th>Status</th>
-                      <th className="text-end">Akcja</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {zadania.map((zadanie) => (
-                      <tr key={zadanie.id}>
-                        <td>{zadanie.nazwa}</td>
-                        <td>
-                          <span className={`badge ${
-                            zadanie.status === "Gotowe" ? "text-bg-success" :
-                            zadanie.status === "W trakcie" ? "text-bg-warning" :
-                            "text-bg-secondary"
-                          }`}>
-                            {zadanie.status}
-                          </span>
-                        </td>
-                        <td className="text-end">
-                          <button className="btn btn-sm btn-outline-primary">Szczegóły</button>
-                        </td>
-                      </tr>
+                {tasks.length === 0 ? (
+                  <div className="alert alert-info mb-0">
+                    Lista jest pusta. Dodaj pierwsze zadanie.
+                  </div>
+                ) : (
+                  <ul className="list-group list-group-flush">
+                    {tasks.map((task) => (
+                      <li
+                        className="list-group-item d-flex align-items-center gap-3 px-0"
+                        key={task.id}
+                      >
+                        <input
+                          className="form-check-input mt-0"
+                          type="checkbox"
+                          checked={task.done}
+                          onChange={() => toggleTask(task.id)}
+                        />
+                        <span className={task.done ? "text-decoration-line-through text-secondary" : ""}>
+                          {task.title}
+                        </span>
+                      </li>
                     ))}
-                  </tbody>
-                </table>
+                  </ul>
+                )}
               </div>
-            </div>
-
-            <form className="card shadow-sm" onSubmit={zapiszEmail}>
-              <div className="card-body">
-                <h2 className="h5">Powiadomienia e-mail</h2>
-                <div className="input-group">
-                  <span className="input-group-text">@</span>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="jan@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button className="btn btn-primary" type="submit">
-                    Zapisz
-                  </button>
-                </div>
-              </div>
-            </form>
-          </section>
+            </section>
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 
 export default App;
 ```
 
----
+W przykładzie Bootstrap odpowiada za układ strony, kartę, formularz, listę, badge, alert i responsywność. React odpowiada za dodawanie elementów, zmianę stanu checkboxa, przeliczanie liczby pozostałych zadań i warunkowe renderowanie pustej listy.
 
 ## 14. Obrazy i zasoby statyczne
+
+Zasoby statyczne są częstym źródłem błędów, bo ścieżka do pliku zależy od miejsca jego przechowywania. Plik z `public` odwołuje się przez ścieżkę URL, a plik z `src` zwykle importuje się jak moduł.
+
+```jsx
+import logo from "./assets/logo.png";
+
+function Header() {
+  return <img src={logo} alt="Logo aplikacji" />;
+}
+```
 
 W projekcie React istnieją **dwa główne miejsca**, w których możemy przechowywać obrazy i inne zasoby statyczne (ikony, czcionki, pliki SVG): folder `public/` oraz folder `src/`. Każde z tych miejsc działa inaczej i jest przeznaczone do innych scenariuszy. Obrazy umieszczone w folderze `public/` są serwowane statycznie przez serwer deweloperski — nie przechodzą przez żaden proces budowania ani optymalizacji. Są dostępne dokładnie pod taką nazwą, jaką im nadaliśmy, np. `/logo.png`. Z kolei obrazy umieszczone w folderze `src/` i importowane za pomocą instrukcji `import` przechodzą przez Webpack (lub Vite) podczas budowania aplikacji. Webpack nadaje im **unikalne nazwy hashowane** (np. `logo.a1b2c3d4.png`), co rozwiązuje problem cache przeglądarki — gdy zmienimy obraz, jego hash się zmieni i przeglądarka pobierze nową wersję zamiast wyświetlać starą z pamięci podręcznej. Dodatkowo, Webpack ostrzeże nas podczas kompilacji, jeśli importowany plik nie istnieje, co eliminuje ryzyko zepsutych obrazów na produkcji. Dla małych obrazów (poniżej 10 KB) Webpack automatycznie zamieni je na format Base64 i osadzi bezpośrednio w kodzie JavaScript, co zmniejsza liczbę żądań HTTP.
 
@@ -6096,6 +5521,12 @@ W projekcie React istnieją **dwa główne miejsca**, w których możemy przecho
 | **Kiedy używać** | Pliki dynamiczne (ścieżka zależy od zmiennej), `favicon.ico`, pliki `manifest.json` | Obrazy używane bezpośrednio w komponentach, ikony, ilustracje |
 
 ### 14.1. Obrazy z folderu public
+
+Folder `public` jest dobry dla plików, które mają stały adres URL albo których nazwa jest znana dopiero w czasie działania aplikacji. Minusem jest brak kontroli kompilatora nad błędną ścieżką.
+
+```jsx
+<img src="/images/avatar.png" alt="Avatar użytkownika" />
+```
 
 Obrazy umieszczone w folderze `public/` są dostępne bezpośrednio po ścieżce:
 
@@ -6112,6 +5543,13 @@ Wady: brak optymalizacji przez Webpack.
 
 ### 14.2. Obrazy z folderu src — import
 
+Import z `src` daje kontrolę narzędzi budujących projekt. Jeśli plik nie istnieje, aplikacja zgłosi błąd podczas kompilacji, a nie dopiero jako brakujący obraz w przeglądarce.
+
+```jsx
+import avatar from "./assets/avatar.png";
+return <img src={avatar} alt="Avatar użytkownika" />;
+```
+
 ```jsx
 // Plik: src/App.js
 import kwiatImg from "./zdjecia/kwiat.jpg";
@@ -6124,6 +5562,8 @@ function App() {
 Zalety: Webpack optymalizuje obraz, ostrzeże, jeśli plik nie istnieje.
 
 ### 14.3. Obraz zależny od stanu
+
+Przy obrazach zdecyduj, czy ścieżka ma być kontrolowana przez bundler. Import z `src` jest bezpieczniejszy dla obrazów używanych w komponentach, a `public` przydaje się dla plików wybieranych dynamicznie.
 
 ```jsx
 // Plik: src/App.js
@@ -6152,6 +5592,8 @@ export default App;
 
 ### 14.4. Obrazy w kolekcjach (tablicach obiektów)
 
+Przy obrazach zdecyduj, czy ścieżka ma być kontrolowana przez bundler. Import z `src` jest bezpieczniejszy dla obrazów używanych w komponentach, a `public` przydaje się dla plików wybieranych dynamicznie.
+
 ```jsx
 const zdjecia = [
   { id: 1, plik: "kwiat.jpg", opis: "Kwiat" },
@@ -6172,6 +5614,8 @@ const zdjecia = [
 
 ### 14.5. Atrybut alt — dostępność
 
+`alt` powinien opisywać sens obrazu, a nie zaczynać się od „obrazek przedstawia”. Jeśli grafika jest tylko dekoracją, pusty `alt=""` jest lepszy niż powtarzanie niepotrzebnej informacji.
+
 Atrybut `alt` jest wymagany na obrazkach. Opisuje zawartość obrazu dla czytników ekranu i wyświetla się, gdy obraz nie może być załadowany:
 
 ```jsx
@@ -6185,6 +5629,12 @@ Atrybut `alt` jest wymagany na obrazkach. Opisuje zawartość obrazu dla czytnik
 ---
 
 ## 15. Przepływ danych — props w górę i w dół
+
+Przepływ danych w React jest jednokierunkowy. Rodzic przekazuje dane do dziecka przez propsy, a dziecko może zgłosić akcję przez funkcję również przekazaną w propsach. To porządkuje aplikację i ułatwia znalezienie miejsca, w którym zmienia się stan.
+
+```jsx
+<TaskItem task={task} onToggle={toggleTask} />
+```
 
 Przepływ danych w React to **najważniejsza koncepcja architekturalna**, którą musisz zrozumieć, by tworzyć poprawne aplikacje. React stosuje wzorzec **jednokierunkowego przepływu danych** (ang. *one-way data flow* lub *unidirectional data flow*). Oznacza to, że dane **ZAWSZE płyną z góry na dół** — od komponentu rodzica do komponentu dziecka — za pośrednictwem propsów. Dziecko nigdy nie może bezpośrednio zmodyfikować danych rodzica ani wysłać mu czegokolwiek w górę. Gdy dziecko musi powiedzieć coś rodzicowi (np. że użytkownik kliknął przycisk lub wpisał tekst), robi to **pośrednio** — wywołując funkcję zwrotną (callback), którą rodzic wcześniej przekazał mu jako prop. Ta funkcja callback, po wywołaniu przez dziecko, zmienia stan w rodzicu za pomocą `setState`. React wykrywa zmianę stanu, automatycznie re-renderuje rodzica, a nowe dane spływają ponownie w dół do wszystkich dzieci jako zaktualizowane propsy. Ten cykl jest przewidywalny i łatwy do debugowania, ponieważ zawsze wiadomo, **skąd** dane przychodzą i **kto** jest odpowiedzialny za ich zmianę. W przeciwieństwie do dwukierunkowego bindingu (ang. *two-way binding*) znanego z Angular, jednokierunkowy przepływ eliminuje sytuacje, w których trudno ustalić, co zmieniło dane.
 
@@ -6209,6 +5659,8 @@ Przepływ danych w React to **najważniejsza koncepcja architekturalna**, któr�
 ```
 
 ### 15.1. Dane płyną z góry na dół (top-down)
+
+Jeśli kilka komponentów musi znać tę samą wartość, nie duplikuj jej. Przenieś stan do wspólnego rodzica i przekaż w dół dane oraz funkcje zmieniające.
 
 W React dane (props) płyną **zawsze z rodzica do dziecka** — nigdy odwrotnie. Rodzic przekazuje dane jako props, a dziecko je odbiera i wyświetla:
 
@@ -6251,6 +5703,12 @@ export default KursKarta;
 ```
 
 ### 15.2. Callback — dziecko zgłasza zdarzenie rodzicowi
+
+Callback przekazywany do dziecka powinien opisywać zdarzenie z perspektywy dziecka, np. `onRemove`, `onSelect`, `onToggle`. Rodzic decyduje, co ta akcja realnie zmieni w stanie.
+
+```jsx
+<ProductCard product={product} onSelect={setSelectedProductId} />
+```
 
 Dziecko nie może bezpośrednio zmienić stanu rodzica. Zamiast tego rodzic **przekazuje funkcję** (callback) jako prop, a dziecko ją wywołuje:
 
@@ -6317,6 +5775,13 @@ export default DodajKurs;
 
 ### 15.3. Lifting state up — podnoszenie stanu
 
+Lifting state up stosuj wtedy, gdy dwa komponenty muszą widzieć tę samą wartość albo reagować na tę samą zmianę. Stan przenosi się do najbliższego wspólnego rodzica, a dzieci dostają dane i callbacki.
+
+```jsx
+<SearchInput value={query} onChange={setQuery} />
+<Results query={query} />
+```
+
 Gdy dwa komponenty muszą dzielić ten sam stan, stan przenosi się do ich **wspólnego rodzica**. Rodzic trzyma stan i przekazuje go do obu dzieci:
 
 ```jsx
@@ -6368,6 +5833,8 @@ export default Podglad;
 
 ### 15.4. Pełny przykład wieloplikowy z przepływem danych
 
+Jeśli kilka komponentów musi znać tę samą wartość, nie duplikuj jej. Przenieś stan do wspólnego rodzica i przekaż w dół dane oraz funkcje zmieniające.
+
 Diagram przepływu danych:
 
 ```
@@ -6385,6 +5852,14 @@ App (stan: zadania)
 
 ## 16. useEffect i efekty uboczne
 
+`useEffect` służy do synchronizacji komponentu ze światem zewnętrznym: API, timerem, localStorage, subskrypcją lub tytułem dokumentu. Nie powinien zastępować zwykłych obliczeń, które można wykonać bezpośrednio podczas renderowania.
+
+```jsx
+useEffect(() => {
+  document.title = `Elementy: ${items.length}`;
+}, [items.length]);
+```
+
 Aby zrozumieć `useEffect`, musimy najpierw zrozumieć pojęcie **efektu ubocznego** (ang. *side effect*). W programowaniu funkcyjnym istnieje koncepcja **czystej funkcji** (*pure function*) — to funkcja, która na podstawie tych samych danych wejściowych **ZAWSZE** zwraca dokładnie ten sam wynik i nie zmienia niczego poza sobą (nie modyfikuje zmiennych globalnych, nie wysyła żądań sieciowych, nie zapisuje do pliku). Komponent React z założenia powinien zachowywać się jak czysta funkcja — na podstawie otrzymanych propsów i aktualnego stanu zawsze powinien zwracać ten sam JSX. Jeśli przekażemy mu `nazwa="React"` i `cena={199}`, to za każdym razem powinien wyrenderować identyczny fragment interfejsu. Ale w prawdziwych aplikacjach potrzebujemy operacji, które wykraczają poza czyste renderowanie — musimy pobrać dane z serwera (fetch), zmienić tytuł zakładki przeglądarki (`document.title`), ustawić timer (`setInterval`), zapisać coś do `localStorage` czy nasłuchiwać na zdarzenia okna (`window.addEventListener`). Wszystkie te operacje to właśnie **efekty uboczne** — czynności, które dotykają świata zewnętrznego poza samym komponentem. Hook `useEffect` jest specjalnie stworzony do obsługi takich operacji — pozwala nam powiedzieć Reactowi: po wyrenderowaniu komponentu, wykonaj jeszcze tę dodatkową operację. Dzięki temu logika renderowania (czysta) jest oddzielona od logiki efektów ubocznych (nieczysta).
 
 | Czysta operacja (bezpośrednio w ciele komponentu) | Efekt uboczny (wymaga `useEffect`) |
@@ -6398,6 +5873,8 @@ Aby zrozumieć `useEffect`, musimy najpierw zrozumieć pojęcie **efektu uboczne
 
 ### 16.1. Po co jest useEffect
 
+Efekt powinien mieć konkretny powód: pobranie danych, zapis do localStorage, timer, subskrypcję albo zmianę tytułu dokumentu. Jeśli nie synchronizujesz się z czymś zewnętrznym, zwykle nie potrzebujesz efektu.
+
 `useEffect` to hook do wykonywania **efektów ubocznych** — operacji, które nie dotyczą bezpośrednio wyniku renderowania. Przykłady:
 - Pobranie danych z API lub localStorage
 - Ustawienie tytułu strony
@@ -6408,6 +5885,8 @@ import { useEffect } from "react";
 ```
 
 ### 16.2. useEffect przy starcie aplikacji
+
+Efekt powinien mieć konkretny powód: pobranie danych, zapis do localStorage, timer, subskrypcję albo zmianę tytułu dokumentu. Jeśli nie synchronizujesz się z czymś zewnętrznym, zwykle nie potrzebujesz efektu.
 
 ```jsx
 // Plik: src/App.js
@@ -6433,6 +5912,14 @@ export default App;
 ```
 
 ### 16.3. Tablica zależności
+
+Tablica zależności mówi Reactowi, kiedy efekt ma zostać uruchomiony ponownie. Pusta tablica oznacza start komponentu, brak tablicy oznacza każdy render, a konkretne wartości oznaczają reakcję na ich zmianę.
+
+```jsx
+useEffect(() => {
+  fetchUser(userId);
+}, [userId]);
+```
 
 Tablica zależności `[]` kontroluje, **kiedy** efekt się uruchomi:
 
@@ -6461,6 +5948,15 @@ useEffect(() => {
 
 ### 16.4. Cleanup — sprzątanie efektu
 
+Cleanup jest konieczny przy timerach, subskrypcjach i nasłuchiwaniu zdarzeń. Bez niego komponent może zostawić działający kod po odmontowaniu.
+
+```jsx
+useEffect(() => {
+  const id = setInterval(tick, 1000);
+  return () => clearInterval(id);
+}, []);
+```
+
 Efekt może zwrócić funkcję czyszczącą (cleanup), która wykona się przed następnym uruchomieniem efektu lub gdy komponent się odmontowuje:
 
 ```jsx
@@ -6477,6 +5973,13 @@ useEffect(() => {
 ```
 
 ### 16.5. localStorage — zapis i odczyt danych
+
+Przy localStorage pamiętaj, że zapisuje tekst. Obiekty i tablice trzeba zamienić przez `JSON.stringify`, a przy odczycie odtworzyć przez `JSON.parse`.
+
+```js
+localStorage.setItem("tasks", JSON.stringify(tasks));
+const saved = JSON.parse(localStorage.getItem("tasks") ?? "[]");
+```
 
 `localStorage` pozwala zapisywać dane w przeglądarce, które przetrwają odświeżenie strony:
 
@@ -6519,6 +6022,8 @@ export default App;
 
 ### 16.6. Typowe pułapki useEffect
 
+Typowa pułapka `useEffect` to dopisanie efektu tam, gdzie wystarczy zwykłe obliczenie. Druga pułapka to brak zależności w tablicy, przez co efekt korzysta ze starej wartości.
+
 ```jsx
 // PUŁAPKA 1: Brak tablicy zależności — nieskończona pętla!
 useEffect(() => {
@@ -6540,7 +6045,11 @@ useEffect(() => {
 
 ## 17. useRef — referencje do elementów DOM
 
+`useRef` jest przydatny, gdy potrzebujesz zapamiętać wartość bez wywoływania ponownego renderu albo odwołać się do rzeczywistego elementu DOM. Nie używaj go jako zamiennika stanu dla danych, które mają być widoczne na ekranie.
+
 ### 17.1. Czym jest useRef
+
+Ref nie jest zamiennikiem stanu. Używaj go do dostępu do DOM albo przechowania wartości technicznej, która nie musi odświeżać widoku.
 
 `useRef` to hook, który tworzy „pojemnik" na wartość, która **nie powoduje re-renderu** przy zmianie. Najczęściej używany do uzyskania referencji do elementu DOM:
 
@@ -6549,6 +6058,13 @@ import { useRef } from "react";
 ```
 
 ### 17.2. Ustawianie fokusa na polu
+
+Focus przez `useRef` jest dobrym przykładem pracy z DOM, której nie da się wygodnie zrobić samym JSX. Najczęściej używa się go po kliknięciu przycisku albo po pokazaniu formularza.
+
+```jsx
+const inputRef = useRef(null);
+<button onClick={() => inputRef.current?.focus()}>Ustaw fokus</button>
+```
 
 ```jsx
 // Plik: src/App.js
@@ -6585,6 +6101,8 @@ export default App;
 
 ### 17.3. useRef vs useState
 
+Ref nie jest zamiennikiem stanu. Używaj go do dostępu do DOM albo przechowania wartości technicznej, która nie musi odświeżać widoku.
+
 | Cecha | `useState` | `useRef` |
 |---|---|---|
 | Zmiana wartości powoduje re-render | Tak | Nie |
@@ -6595,7 +6113,17 @@ export default App;
 
 ## 18. Dane lokalne, JSON i fetch
 
+Dane w aplikacji mogą pochodzić z kodu, pliku JSON, folderu `public` albo z API. Niezależnie od źródła, komponent powinien mieć jasne stany: ładowanie, sukces, błąd i brak danych. Dzięki temu interfejs nie zależy od przypadku.
+
+```jsx
+if (loading) return <p>Ładowanie...</p>;
+if (error) return <p>Nie udało się pobrać danych.</p>;
+if (items.length === 0) return <p>Brak danych.</p>;
+```
+
 ### 18.1. Tablice danych w kodzie
+
+Tablice wpisane w kodzie są dobre dla danych startowych i ćwiczeń. Trzymaj je poza komponentem, jeśli nie zależą od stanu, żeby nie tworzyć tej samej tablicy przy każdym renderze.
 
 Najprostszy sposób — dane wpisane bezpośrednio w pliku:
 
@@ -6627,6 +6155,8 @@ function App() {
 
 ### 18.2. Import pliku JSON
 
+Import JSON jest wygodny, gdy dane są częścią projektu i nie zmieniają się po wdrożeniu. Jeśli dane mają być edytowane przez użytkowników albo serwer, lepszy będzie fetch z API.
+
 Można bezpośrednio importować plik JSON:
 
 ```json
@@ -6654,6 +6184,8 @@ function App() {
 ```
 
 ### 18.3. Fetch z folderu public
+
+Dla danych w części „Fetch z folderu public” zaplanuj osobne zachowanie dla ładowania, błędu, pustej odpowiedzi i poprawnych danych. Dopiero wtedy komponent jest odporny na realne odpowiedzi z pliku albo API.
 
 Pliki JSON umieszczone w `public/` można pobrać za pomocą `fetch`:
 
@@ -6696,6 +6228,8 @@ export default App;
 
 ### 18.4. Parsowanie danych tekstowych
 
+Parsowanie tekstu warto zamknąć w osobnej funkcji, która zwraca tablicę obiektów. Dzięki temu komponent nie musi wiedzieć, czy dane przyszły z CSV, TXT czy ręcznie wpisanej listy.
+
 Gdy dane z pliku `dane.txt` trzeba przetworzyć:
 
 ```jsx
@@ -6724,6 +6258,8 @@ console.log(zdjecia);
 
 ### 18.5. Czym jest API
 
+API to umowa między aplikacją a serwerem: pod jaki adres wysłać żądanie, jaką metodą, z jakimi danymi i jakiej odpowiedzi oczekiwać. W React interesuje Cię głównie moment pobrania danych i sposób zapisania ich w stanie.
+
 **API** (Application Programming Interface) to sposób komunikacji między aplikacjami. W React najczęściej oznacza to pobieranie lub wysyłanie danych do serwera przez HTTP.
 
 Przykład z życia:
@@ -6745,6 +6281,8 @@ API zwykle odpowiada za:
 - zwrócenie danych w formacie JSON
 
 ### 18.6. Endpoint, metoda HTTP i status odpowiedzi
+
+Dla danych w części „Endpoint, metoda HTTP i status odpowiedzi” zaplanuj osobne zachowanie dla ładowania, błędu, pustej odpowiedzi i poprawnych danych. Dopiero wtedy komponent jest odporny na realne odpowiedzi z pliku albo API.
 
 Adres, pod który wysyłamy zapytanie, nazywa się **endpointem**.
 
@@ -6786,6 +6324,16 @@ const data = await response.json();
 
 ### 18.7. Pobieranie danych z zewnętrznego API
 
+Przy pobieraniu danych obsłuż też przerwanie żądania, jeśli komponent zniknie z ekranu. Do tego służy `AbortController`.
+
+```jsx
+useEffect(() => {
+  const controller = new AbortController();
+  fetch(url, { signal: controller.signal });
+  return () => controller.abort();
+}, [url]);
+```
+
 Dane z API najczęściej pobieramy w `useEffect`, bo pobranie danych jest **efektem ubocznym** — nie jest zwykłym renderowaniem JSX.
 
 ```jsx
@@ -6824,6 +6372,8 @@ export default App;
 ```
 
 ### 18.8. Loading, błąd i pusta lista
+
+Dla danych w części „Loading, błąd i pusta lista” zaplanuj osobne zachowanie dla ładowania, błędu, pustej odpowiedzi i poprawnych danych. Dopiero wtedy komponent jest odporny na realne odpowiedzi z pliku albo API.
 
 W realnej aplikacji nie wystarczy samo `setDane(data)`. Użytkownik powinien wiedzieć:
 - czy dane się jeszcze ładują
@@ -6883,6 +6433,16 @@ function App() {
 
 ### 18.9. Wysyłanie danych metodą POST
 
+Przy POST najczęściej wysyłasz JSON. Ustaw nagłówek `Content-Type`, zamień obiekt przez `JSON.stringify` i sprawdź status odpowiedzi tak samo jak przy GET.
+
+```js
+await fetch("/api/orders", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(order),
+});
+```
+
 Do wysyłania danych używamy `fetch()` z dodatkowymi opcjami:
 - `method` — metoda HTTP
 - `headers` — informacje o formacie danych
@@ -6917,6 +6477,8 @@ W prawdziwym API serwer zapisuje dane w bazie. `jsonplaceholder.typicode.com` ty
 
 ### 18.10. Parametry w adresie URL
 
+Dla danych w części „Parametry w adresie URL” zaplanuj osobne zachowanie dla ładowania, błędu, pustej odpowiedzi i poprawnych danych. Dopiero wtedy komponent jest odporny na realne odpowiedzi z pliku albo API.
+
 Często API pozwala filtrować dane przez parametry w adresie.
 
 ```txt
@@ -6947,6 +6509,8 @@ const wyniki = uzytkownicy.filter((user) =>
 Jeśli API obsługuje wyszukiwanie po stronie serwera, wtedy zamiast filtrować tablicę w React, wysyłamy zapytanie z parametrem, np. `?q=react`.
 
 ### 18.11. Dobre praktyki przy pracy z API
+
+Dla danych w części „Dobre praktyki przy pracy z API” zaplanuj osobne zachowanie dla ładowania, błędu, pustej odpowiedzi i poprawnych danych. Dopiero wtedy komponent jest odporny na realne odpowiedzi z pliku albo API.
 
 **1. Zawsze obsługuj błąd i ładowanie**
 
@@ -6987,9 +6551,25 @@ const [usersResponse, postsResponse] = await Promise.all([
 
 ## 19. Logika aplikacji poza JSX
 
+Im więcej logiki da się przenieść poza JSX, tym łatwiej czytać komponent. Funkcje formatujące, filtrujące, sortujące i walidujące mogą działać jako zwykły JavaScript, bez zależności od Reacta.
+
+```js
+export function formatPrice(value) {
+  return `${value.toFixed(2)} zł`;
+}
+```
+
 Jedną z kluczowych zasad dobrego programowania jest **Separation of Concerns** (rozdzielenie odpowiedzialności). Oznacza to, że każdy fragment kodu powinien być odpowiedzialny za **jedną, konkretną rzecz**. W kontekście React oznacza to, że komponent powinien zajmować się **wyłącznie wyświetlaniem interfejsu użytkownika** (renderowaniem JSX) i obsługą interakcji (kliknięcia, wpisywanie tekstu). Logika biznesowa — obliczenia matematyczne, walidacja danych, formatowanie tekstu, transformacje tablic — powinna być wyciągnięta do **osobnych plików pomocniczych** w folderze `utils/` lub `helpers/`. Dane początkowe (listy, konfiguracje, stałe) powinny żyć w folderze `data/`. Dzięki temu komponenty są krótkie i czytelne, a logikę można łatwo testować jednostkowo bez konieczności renderowania całego komponentu. Dodatkowo, te same funkcje pomocnicze mogą być współdzielone przez wiele komponentów, co eliminuje duplikację kodu i ułatwia utrzymanie aplikacji.
 
 ### 19.1. Funkcje pomocnicze
+
+Funkcja pomocnicza powinna być czysta, jeśli to możliwe: dla tych samych argumentów zwraca ten sam wynik i nie zmienia danych z zewnątrz. Dzięki temu łatwo jej użyć w kilku komponentach.
+
+```js
+export function countCompleted(tasks) {
+  return tasks.filter((task) => task.done).length;
+}
+```
 
 Funkcje, które nie potrzebują stanu, można definiować **poza komponentem** lub w osobnych plikach:
 
@@ -7019,6 +6599,8 @@ export default App;
 
 ### 19.2. Osobne moduły z logiką
 
+Jeśli logikę da się zapisać jako czystą funkcję, przenieś ją poza JSX. Komponent stanie się krótszy, a funkcję łatwiej użyć w innym miejscu.
+
 ```js
 // Plik: src/utils/walidacja.js
 export function czyPuste(wartosc) {
@@ -7044,6 +6626,8 @@ function App() {
 ```
 
 ### 19.3. Oddzielenie UI od obliczeń
+
+Jeśli logikę da się zapisać jako czystą funkcję, przenieś ją poza JSX. Komponent stanie się krótszy, a funkcję łatwiej użyć w innym miejscu.
 
 Dobra praktyka: logika obliczeniowa **poza komponentem**, widok **w komponencie**:
 
@@ -7085,6 +6669,17 @@ function App() {
 
 ## 20. Organizacja projektu
 
+Organizacja projektu powinna rosnąć razem z aplikacją. Na początku wystarczy kilka plików, ale gdy pojawiają się formularze, listy, dane i funkcje pomocnicze, warto rozdzielić je na foldery według odpowiedzialności.
+
+```text
+src/
+├── components/
+├── data/
+├── hooks/
+├── utils/
+└── App.jsx
+```
+
 Organizacja plików i folderów w projekcie React może wydawać się nieistotna na początku, ale staje się **kluczowa**, gdy aplikacja zaczyna rosnąć. W małym projekcie składającym się z 1-3 komponentów wystarczy umieścić wszystkie pliki bezpośrednio w folderze `src/` — dodatkowe foldery byłyby nadmiarowe. Jednak gdy projekt rozrasta się do 10 i więcej komponentów, brak przemyślanej struktury prowadzi do chaosu — trudno znaleźć właściwy plik, trudno zrozumieć zależności między komponentami. Dobrze zorganizowany projekt przyspiesza pracę zespołową, ułatwia wdrażanie nowych programistów i minimalizuje ryzyko błędów.
 
 | Rozmiar projektu | Zalecana struktura |
@@ -7094,6 +6689,14 @@ Organizacja plików i folderów w projekcie React może wydawać się nieistotna
 | **Duży** (10+ komponentów) | Pełna struktura: `components/`, `utils/`, `data/`, `hooks/`, `styles/`, ewentualnie podział na moduły funkcjonalne |
 
 ### 20.1. Nazewnictwo plików i komponentów
+
+Dobre nazwy skracają czas szukania błędu. Komponenty zapisuj wielką literą, a funkcje pomocnicze czasownikiem opisującym działanie.
+
+```text
+ProductCard.jsx
+formatPrice.js
+filterProducts.js
+```
 
 | Konwencja | Przykład | Dotyczy |
 |---|---|---|
@@ -7105,6 +6708,8 @@ Organizacja plików i folderów w projekcie React może wydawać się nieistotna
 - Plik: `KursKarta.js` → Komponent: `function KursKarta() { ... }`
 
 ### 20.2. Folder components
+
+`components` trzymaj dla elementów UI wielokrotnego użytku: kart, przycisków, formularzy, list. Jeżeli komponent jest pełną stroną routingu, lepiej pasuje do folderu `pages` albo `views`.
 
 ```
 src/
@@ -7118,6 +6723,8 @@ src/
 
 ### 20.3. Folder data
 
+`data` jest dobre dla statycznych tablic: kategorii, przykładowych produktów, pytań quizu. Jeżeli dane zaczynają być pobierane z API, folder może zostać, ale pliki zmienią rolę na dane testowe lub fallback.
+
 ```
 src/
 └── data/
@@ -7126,6 +6733,8 @@ src/
 ```
 
 ### 20.4. Folder utils
+
+`utils` powinien zawierać funkcje bez JSX i bez hooków. Jeśli funkcja używa `useState` albo `useEffect`, nie jest zwykłym utilsem, tylko hookiem albo częścią komponentu.
 
 ```
 src/
@@ -7136,6 +6745,8 @@ src/
 ```
 
 ### 20.5. Przykładowa struktura projektu
+
+Struktura projektu powinna odpowiadać temu, jak szukasz kodu. Jeśli poprawiasz formularz, powinno być jasne, gdzie jest komponent, gdzie walidacja, a gdzie dane pomocnicze.
 
 ```
 src/
@@ -7158,7 +6769,18 @@ src/
 
 ## 21. Debugowanie
 
+Debugowanie w React zaczyna się od ustalenia, co jest niepoprawne: dane wejściowe, stan, propsy, warunek renderowania czy samo JSX. Najszybsza metoda to sprawdzenie błędu w konsoli, wypisanie wartości i zawężenie problemu do jednego komponentu.
+
 ### 21.1. Konsola przeglądarki
+
+Konsola nie służy tylko do `console.log`. Przy tablicach obiektów często lepsze jest `console.table`, a przy śledzeniu kolejności wywołań można użyć `console.group`.
+
+```js
+console.table(products);
+console.group("submit");
+console.log(form);
+console.groupEnd();
+```
 
 ```jsx
 function handleSubmit(e) {
@@ -7171,6 +6793,8 @@ function handleSubmit(e) {
 
 ### 21.2. React DevTools
 
+React DevTools pozwala zobaczyć drzewo komponentów, propsy, stan i przyczynę ponownego renderowania. To szczególnie przydatne, gdy dziecko dostaje inną wartość niż zakładasz.
+
 React DevTools to rozszerzenie przeglądarki (Chrome / Firefox), które pozwala:
 - Przeglądać drzewo komponentów
 - Podglądać props i stan (state) każdego komponentu
@@ -7179,6 +6803,8 @@ React DevTools to rozszerzenie przeglądarki (Chrome / Firefox), które pozwala:
 Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądarki.
 
 ### 21.3. Typowe błędy składni
+
+Błędy składni zwykle wskazują linię, ale prawdziwa przyczyna może być kilka linijek wyżej: brakujący nawias, niedomknięty tag albo źle wstawiony komentarz JSX.
 
 | Błąd | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -7189,6 +6815,8 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 
 ### 21.4. Typowe błędy stanu
 
+Przy błędach stanu sprawdź, czy używasz settera, czy tworzysz kopię tablicy lub obiektu i czy nie oczekujesz nowej wartości natychmiast po wywołaniu settera.
+
 | Objaw | Przyczyna | Rozwiązanie |
 |---|---|---|
 | Widok nie aktualizuje się | Użycie `let` zamiast `useState` | Zamień na `useState` |
@@ -7196,6 +6824,8 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 | Stara wartość w console.log | Stan jest asynchroniczny | Loguj przed `setState` lub użyj `useEffect` |
 
 ### 21.5. Typowe błędy formularzy
+
+Przy błędach formularzy najpierw sprawdź, czy input ma `value` i `onChange`, czy `name` zgadza się z polem w obiekcie stanu oraz czy `preventDefault()` działa w submit.
 
 | Objaw | Przyczyna | Rozwiązanie |
 |---|---|---|
@@ -7208,7 +6838,17 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 
 ## 22. Najczęstsze pułapki i jak ich unikać
 
+Pułapki w React zwykle wynikają z naruszenia kilku zasad: nie mutuj stanu, nie odczytuj stanu tak, jakby aktualizował się natychmiast, nie wywołuj handlera podczas renderowania i nie ukrywaj błędów w zbyt dużych komponentach.
+
+| Objaw | Najczęstsza przyczyna |
+|---|---|
+| lista nie odświeża się | mutacja tablicy zamiast kopii |
+| formularz przeładowuje stronę | brak `event.preventDefault()` |
+| funkcja uruchamia się od razu | `onClick={fn()}` zamiast `onClick={fn}` |
+
 ### 22.1. Brak key w pętli map()
+
+Objaw braku dobrego `key` to dziwne zachowanie listy po usuwaniu, sortowaniu albo edycji elementów. Indeks tablicy działa tylko dla list statycznych, które nigdy nie zmieniają kolejności.
 
 ```jsx
 // BŁĄD (ostrzeżenie w konsoli)
@@ -7219,6 +6859,17 @@ Instalacja: wyszukaj „React Developer Tools" w sklepie rozszerzeń przeglądar
 ```
 
 ### 22.2. Mutowanie stanu zamiast tworzenia kopii
+
+Mutacja stanu często wygląda niewinnie, ale React może nie zauważyć zmiany, jeśli referencja tablicy lub obiektu pozostaje ta sama. Zawsze twórz nową tablicę lub obiekt.
+
+```js
+// źle
+items.push(newItem);
+setItems(items);
+
+// dobrze
+setItems((items) => [...items, newItem]);
+```
 
 ```jsx
 // błąd — React nie widzi zmiany referencji
@@ -7238,6 +6889,8 @@ setOsoba({ ...osoba, wiek: 26 });
 
 ### 22.3. Odczyt stanu zaraz po ustawieniu
 
+Objaw tego błędu: `console.log` pokazuje starą wartość zaraz po `setState`. To normalne, bo aktualizacja zostanie uwzględniona przy kolejnym renderze. Jeśli potrzebujesz nowej wartości od razu, policz ją w zmiennej lokalnej.
+
 ```jsx
 // błąd — stara wartość
 setCount(count + 1);
@@ -7250,6 +6903,8 @@ console.log(nowy); // Nowa wartość
 ```
 
 ### 22.4. Brak event.preventDefault() w formularzu
+
+Objaw braku `preventDefault()` to przeładowanie strony i utrata stanu formularza. Jeśli po kliknięciu submit aplikacja wraca do początku, najpierw sprawdź tę linię.
 
 ```jsx
 // błąd — strona się przeładowuje
@@ -7266,6 +6921,8 @@ function handleSubmit(e) {
 
 ### 22.5. Zapomnienie o import useState
 
+Objaw braku importu hooka to błąd typu `useState is not defined`. Sprawdź pierwsze linie pliku i upewnij się, że importujesz hook z `react`, a nie z innego pakietu.
+
 ```jsx
 // błąd — useState is not defined
 function App() {
@@ -7280,6 +6937,13 @@ function App() {
 ```
 
 ### 22.6. Wywołanie funkcji zamiast przekazania referencji
+
+W JSX przekazujesz funkcję, a nie wynik jej wykonania. Nawiasy po nazwie funkcji uruchamiają ją natychmiast podczas renderowania.
+
+```jsx
+<button onClick={save}>Zapisz</button>
+<button onClick={() => save(id)}>Zapisz element</button>
+```
 
 ```jsx
 // błąd — funkcja WYKONA SIĘ natychmiast przy renderze
@@ -7296,7 +6960,11 @@ function App() {
 
 ## 23. Build i publikacja projektu
 
+Build produkcyjny różni się od trybu deweloperskiego. Kod jest minifikowany, importy są przetwarzane, a ścieżki do zasobów mogą wyglądać inaczej. Dlatego przed publikacją warto uruchomić build i sprawdzić wynik lokalnie.
+
 ### 23.1. npm run build
+
+`npm run build` tworzy wersję produkcyjną: mniejszą, zoptymalizowaną i gotową do publikacji. Jeśli build się nie udaje, nie publikuj projektu, tylko najpierw napraw błąd kompilacji.
 
 ```bash
 npm run build
@@ -7305,6 +6973,8 @@ npm run build
 To polecenie tworzy zoptymalizowaną wersję produkcyjną w folderze `build/`. Pliki są minifikowane (skompresowane), co zapewnia szybsze ładowanie.
 
 ### 23.2. Co zawiera folder build
+
+Folder produkcyjny zawiera już przetworzone pliki. Nie edytuj ich ręcznie; poprawiaj kod w `src`, uruchamiaj build ponownie i dopiero tę nową wersję publikuj.
 
 ```
 build/
@@ -7320,6 +6990,8 @@ build/
 
 ### 23.3. Typowe problemy przy buildzie
 
+Problemy przy buildzie często wynikają z wielkości liter w nazwach plików. macOS może tolerować różnice typu `Logo.png` i `logo.png`, ale serwer produkcyjny już niekoniecznie.
+
 | Problem | Przyczyna | Rozwiązanie |
 |---|---|---|
 | Ostrzeżenia o nieużywanych zmiennych | Zadeklarowane, ale nieużywane zmienne | Usuń nieużywane zmienne i importy |
@@ -7330,7 +7002,21 @@ build/
 
 ## 24. Dobre praktyki UI i dostępność
 
+Dostępność nie jest osobnym dodatkiem na końcu projektu. Semantyczne znaczniki, etykiety formularzy, poprawne przyciski i teksty alternatywne wpływają jednocześnie na jakość kodu, obsługę klawiatury i zrozumiałość interfejsu.
+
+```jsx
+<label htmlFor="email">E-mail</label>
+<input id="email" type="email" />
+```
+
 ### 24.1. Typ przycisku — button vs submit
+
+Przycisk w formularzu domyślnie ma typ `submit`. Jeśli ma tylko otwierać panel, czyścić filtr albo przełączać widok, ustaw `type="button"`, żeby przypadkiem nie wysłał formularza.
+
+```jsx
+<button type="button" onClick={clearFilters}>Wyczyść filtry</button>
+<button type="submit">Zapisz</button>
+```
 
 ```jsx
 {/* Przycisk wysyłający formularz */}
@@ -7344,6 +7030,13 @@ Jeśli nie podasz `type`, przycisk wewnątrz `<form>` domyślnie jest `type="sub
 
 ### 24.2. Label i htmlFor
 
+`label` powiązany z polem zwiększa obszar kliknięcia i ułatwia obsługę czytnikom ekranu. W JSX używaj `htmlFor`, bo `for` jest słowem zarezerwowanym w JavaScript.
+
+```jsx
+<label htmlFor="password">Hasło</label>
+<input id="password" type="password" />
+```
+
 Każde pole formularza powinno mieć etykietę `<label>` powiązaną z polem przez `htmlFor`:
 
 ```jsx
@@ -7354,6 +7047,8 @@ Każde pole formularza powinno mieć etykietę `<label>` powiązaną z polem prz
 Kliknięcie etykiety automatycznie przenosi fokus na powiązane pole — to ułatwia obsługę, szczególnie na urządzeniach mobilnych.
 
 ### 24.3. Semantyczny układ strony
+
+Dostępność najlepiej dodawać od początku. Poprawny znacznik, etykieta i typ przycisku zwykle kosztują jedną linijkę, a znacząco poprawiają jakość interfejsu.
 
 ```jsx
 function App() {
@@ -7377,7 +7072,11 @@ function App() {
 
 ## 25. Routing i Nawigacja w SPA (react-router-dom)
 
+Routing w SPA nie przeładowuje całej strony. Zmienia się adres w pasku przeglądarki, a React renderuje odpowiedni komponent. Dlatego linki wewnętrzne powinny korzystać z `<Link>`, a nie ze zwykłego `<a href>`, jeśli nie wychodzisz poza aplikację.
+
 ### 25.1. Czym jest Client-Side Routing?
+
+Routing powinien opisywać strukturę widoków. Jeśli parametr w adresie identyfikuje rekord, komponent powinien odczytać go z URL i na tej podstawie znaleźć dane.
 
 Tak jak wspomnieliśmy w rozdziale wprowadzającym do SPA, aplikacje Reactowe z reguły ładują tylko jeden plik `index.html`. Aby zasymulować przechodzenie między podstronami (np. z `/` na `/profil` czy `/logowanie`) bez odświeżania całej przeglądarki, używamy tzw. "Client-Side Routingu". W ekosystemie React najpopularniejszym do tego narzędziem jest biblioteka **React Router**.
 
@@ -7388,6 +7087,8 @@ npm install react-router-dom
 ```
 
 ### 25.2. BrowserRouter, Routes i Route
+
+`BrowserRouter` powinien obejmować całą część aplikacji korzystającą z routingu. `Routes` wybiera pasującą trasę, a `Route` mapuje ścieżkę na element JSX.
 
 Aby routing zadziałał, musimy obudować naszą aplikację (zwykle w pliku `src/index.js` lub `src/App.js`) odpowiednimi komponentami dostarczanymi przez bibliotekę `react-router-dom`.
 
@@ -7427,6 +7128,13 @@ export default App;
 
 ### 25.3. Linkowanie pomiędzy podstronami używając `<Link>`
 
+`Link` zmienia adres wewnątrz aplikacji bez pełnego przeładowania dokumentu. Zwykłego `<a>` używaj do linków zewnętrznych, pobierania plików albo przejścia poza aplikację.
+
+```jsx
+<Link to="/produkty">Produkty</Link>
+<a href="https://react.dev">Dokumentacja React</a>
+```
+
 Gdybyśmy do nawigacji użyli standardowego znacznika HTML `<a href="/login">`, przeglądarka pobrałaby stronę na nowo z serwera, co spowodowałoby reset całego stanu Reacta. Aby temu zapobiec, używamy komponentu `<Link>`.
 
 ```jsx
@@ -7446,6 +7154,8 @@ function TopNavigation() {
 Dzięki `<Link>`, React zmienia zawartość ekranu "w locie", co jest błyskawiczne i zachowuje stan aplikacji.
 
 ### 25.4. Nawigacja z poziomu kodu (useNavigate)
+
+`useNavigate` służy do przejścia wywołanego logiką, np. po poprawnym logowaniu albo zapisaniu formularza. Do zwykłej nawigacji widocznej na stronie lepszy jest `Link`.
 
 Często musimy przenieść użytkownika na inną stronę w wyniku jakiejś akcji (np. po udanym zalogowaniu lub po wysłaniu formularza). Nie używamy do tego kliknięcia w `<Link>`, lecz hooka `useNavigate`.
 
@@ -7480,6 +7190,13 @@ function LogowanieForm() {
 
 ### 25.5. Parametry w ścieżkach (useParams)
 
+Parametry ścieżki są dobre dla identyfikatorów, np. `/products/15`. Po odczytaniu przez `useParams` pamiętaj, że wartość jest tekstem, więc do porównań liczbowych trzeba ją przekonwertować.
+
+```jsx
+const { id } = useParams();
+const productId = Number(id);
+```
+
 Często ścieżki są dynamiczne, np. profil konkretnego użytkownika `/user/123` lub strona produktu `/produkt/5`. W React Router definiujemy to przy pomocy dwukropka `:id`. Następnie w komponencie możemy ten parametr odczytać używając hooka `useParams`.
 
 **Definicja w App.js:**
@@ -7507,7 +7224,21 @@ function ProduktSzczegoly() {
 
 ## 26. Wzorce praktyczne
 
+Wzorce praktyczne warto traktować jak katalog gotowych rozwiązań, ale nie jak kod do bezmyślnego kopiowania. Najpierw rozpoznaj mechanizm: stan, formularz, lista, filtr, obliczenia, API albo routing. Potem przenieś sam wzorzec do własnego komponentu.
+
+| Typ wzorca | Czego szukać w kodzie |
+|---|---|
+| formularz | kontrolowane pola, walidacja, submit |
+| kalkulator | stan wejściowy, obliczenia, formatowanie wyniku |
+| lista | tablica, `map`, `key`, filtrowanie |
+| gra | stan rundy, wynik, reset |
+| API | `useEffect`, loading, error, dane |
+
 ### 26.1. Formularz rejestracji
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz rejestracji” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz rejestracji” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
 
 Prosty formularz z walidacją — jeden z najczęstszych wzorców w aplikacjach webowych.
 
@@ -7669,6 +7400,10 @@ export default App;
 
 ### 26.2. Zapisy na kurs
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Zapisy na kurs” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Zapisy na kurs” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
+
 Przykład połączenia prostego formularza z widokiem powiązanym z tablicą danych.
 
 **Wymagania:**
@@ -7787,6 +7522,10 @@ export default App;
 
 ### 26.3. Formularz filmu
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz filmu” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz filmu” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
+
 Kolejny przykład wprowadzania kontrolowanych struktur danych – tym razem na liście rozwijanej.
 
 **Wymagania:**
@@ -7874,6 +7613,10 @@ export default App;
 ---
 
 ### 26.4. Formularz zamówienia pizzy
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz zamówienia pizzy” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz zamówienia pizzy” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
 
 Rozbudowany formularz łączący wiele typów pól: radio (rozmiar), checkboxy (składniki z cenami), select (sos), range (ostrość), textarea (uwagi), dynamiczne obliczanie ceny, walidację i podsumowanie zamówienia w formie paragonu.
 
@@ -8225,6 +7968,10 @@ export default App;
 
 ### 26.5. Formularz wyceny ubezpieczenia OC pojazdu
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz wyceny ubezpieczenia OC pojazdu” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz wyceny ubezpieczenia OC pojazdu” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
+
 Prosty kalkulator składek bazujący na wieku kierowcy i historii bezszkodowej jazdy.
 
 ```jsx
@@ -8293,6 +8040,10 @@ export default App;
 ---
 
 ### 26.6. Formularz rezerwacji wizyty lekarskiej
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz rezerwacji wizyty lekarskiej” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz rezerwacji wizyty lekarskiej” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
 
 Formularz, w którym wybór specjalizacji filtruje listę dostępnych lekarzy.
 
@@ -8363,6 +8114,10 @@ export default App;
 
 ### 26.7. Generator i podgląd CV (Live CV Builder)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Generator i podgląd CV (Live CV Builder)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Generator i podgląd CV (Live CV Builder)” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
+
 Aplikacja, która natychmiastowo aktualizuje wizualny podgląd CV podczas wprowadzania danych, z funkcją wydruku.
 
 ```jsx
@@ -8432,6 +8187,10 @@ export default App;
 ---
 
 ### 26.8. Formularz ankiety z oceną gwiazdkową
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Formularz ankiety z oceną gwiazdkową” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Formularz ankiety z oceną gwiazdkową” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
 
 Zastosowanie klikalnych przycisków symulujących gwiazdki i warunkowa walidacja (jeśli ocena jest niska, wymagany jest komentarz).
 
@@ -8504,6 +8263,10 @@ export default App;
 
 ### 26.9. Kalkulator wyceny szafy na wymiar
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator wyceny szafy na wymiar” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator wyceny szafy na wymiar” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Aplikacja z kilkoma zależnościami - zmiana wymiarów lub materiału wpływa na cenę całkowitą.
 
 ```jsx
@@ -8569,6 +8332,10 @@ export default App;
 ---
 
 ### 26.10. Kalkulator BMI
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator BMI” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator BMI” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Formularz z obliczeniem BMI i interpretacją wyniku.
 
@@ -8669,6 +8436,10 @@ export default App;
 ---
 
 ### 26.11. Przelicznik walut
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Przelicznik walut” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Przelicznik walut” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Dwukierunkowy przelicznik walut z dynamiczną tabelą kursów, historią przeliczeń, zamianą walut jednym kliknięciem i wizualnym wskaźnikiem siły waluty.
 
@@ -8968,6 +8739,10 @@ export default App;
 
 ### 26.12. Kalkulator spalania paliwa i kosztów podróży
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator spalania paliwa i kosztów podróży” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator spalania paliwa i kosztów podróży” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Prosta aplikacja kalkulująca koszty przejazdu na podstawie odległości, spalania i ceny paliwa.
 
 ```jsx
@@ -9043,6 +8818,10 @@ export default App;
 
 ### 26.13. Kalkulator rat kredytu (symulator)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator rat kredytu (symulator)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator rat kredytu (symulator)” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Aplikacja wykorzystująca wzór matematyczny do obliczania stałej raty kredytowej.
 
 ```jsx
@@ -9113,6 +8892,10 @@ export default App;
 ---
 
 ### 26.14. Kalkulator zapotrzebowania kalorycznego (BMR i TDEE)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator zapotrzebowania kalorycznego (BMR i TDEE)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator zapotrzebowania kalorycznego (BMR i TDEE)” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Kalkulator używający wzoru Harrisa-Benedicta oraz mnożników aktywności z radio buttons i selectem.
 
@@ -9205,6 +8988,10 @@ export default App;
 
 ### 26.15. Kalkulator wieku psa (ludzkie lata)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator wieku psa (ludzkie lata)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator wieku psa (ludzkie lata)” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Prosty kalkulator z suwakiem i warunkowym mnożnikiem uzależnionym od rozmiaru zwierzęcia.
 
 ```jsx
@@ -9266,6 +9053,10 @@ export default App;
 ---
 
 ### 26.16. Kalkulator czasu pracy i wynagrodzenia
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kalkulator czasu pracy i wynagrodzenia” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kalkulator czasu pracy i wynagrodzenia” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Narzędzie przeliczające stawkę godzinową na pensję brutto i przybliżone netto w zależności od wybranej umowy.
 
@@ -9336,6 +9127,10 @@ export default App;
 
 ### 26.17. Konwerter systemów liczbowych
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Konwerter systemów liczbowych” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Konwerter systemów liczbowych” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Aplikacja z dynamicznym przetwarzaniem wprowadzanej liczby dziesiętnej na system dwójkowy, ósemkowy i szesnastkowy.
 
 ```jsx
@@ -9397,6 +9192,10 @@ export default App;
 ---
 
 ### 26.18. Generator hasła
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Generator hasła” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Generator hasła” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
 
 Aplikacja generująca losowe hasło na podstawie ustawień użytkownika.
 
@@ -9504,6 +9303,10 @@ export default App;
 
 ### 26.19. Kości do gry z blokowaniem
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kości do gry z blokowaniem” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kości do gry z blokowaniem” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Gra w kości — rzut 5 kośćmi, możliwość blokowania wybranych kości przy ponownym rzucie.
 
 ```jsx
@@ -9604,6 +9407,10 @@ export default App;
 
 ### 26.20. Gra w zgadywanie liczb (Za dużo / Za mało)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Gra w zgadywanie liczb (Za dużo / Za mało)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Gra w zgadywanie liczb (Za dużo / Za mało)” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Prosta gra w zgadywanie liczby wylosowanej przez komputer z przedziału 1-100 z historią prób.
 
 ```jsx
@@ -9695,6 +9502,10 @@ export default App;
 
 ### 26.21. Kamień, Papier, Nożyce
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kamień, Papier, Nożyce” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kamień, Papier, Nożyce” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Klasyczna gra z komputerem wykorzystująca losowanie wartości oraz zarządzanie punktacją.
 
 ```jsx
@@ -9776,6 +9587,10 @@ export default App;
 
 ### 26.22. Rzut monetą ze statystykami i historią
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Rzut monetą ze statystykami i historią” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Rzut monetą ze statystykami i historią” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Symulator rzutu monetą generujący statystyki rzutów z zapisem ostatnich pięciu wyników.
 
 ```jsx
@@ -9856,6 +9671,10 @@ export default App;
 ---
 
 ### 26.23. Galeria zdjęć z kategoriami
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Galeria zdjęć z kategoriami” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Galeria zdjęć z kategoriami” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
 
 Interaktywna galeria kafelkowa opierająca się o filtry stanów (checkboxy / switche).
 
@@ -9989,6 +9808,10 @@ export default App;
 ---
 
 ### 26.24. Lista zadań (Todo App) — wieloplikowy
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Lista zadań (Todo App) — wieloplikowy” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Lista zadań (Todo App) — wieloplikowy” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
 
 Kompletny przykład aplikacji z podziałem na pliki — wzorzec przepływu danych parent-child.
 
@@ -10154,6 +9977,10 @@ export default TaskList;
 
 ### 26.25. Widok kart z filtrami i wyszukiwaniem
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Widok kart z filtrami i wyszukiwaniem” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Widok kart z filtrami i wyszukiwaniem” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
+
 Rozbudowany widok kart z wyszukiwarką tekstową i filtrami kategorii.
 
 ```jsx
@@ -10292,6 +10119,10 @@ export default App;
 ---
 
 ### 26.26. Algorytmy — sumowanie, zliczanie, filtrowanie
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Algorytmy — sumowanie, zliczanie, filtrowanie” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Algorytmy — sumowanie, zliczanie, filtrowanie” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
 
 Przykłady typowych operacji algorytmicznych osadzonych w React.
 
@@ -10513,6 +10344,10 @@ export default App;
 ---
 
 ### 26.27. Galeria zdjęć z lightboxem i ulubionymi
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Galeria zdjęć z lightboxem i ulubionymi” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Galeria zdjęć z lightboxem i ulubionymi” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
 
 Interaktywna galeria zdjęć z filtrowaniem po kategoriach, powiększaniem w lightboxie (modal), nawigacją strzałkami ←/→, oznaczaniem ulubionych (serduszko), licznikiem wyświetleń i trybem siatki/listy.
 
@@ -10872,6 +10707,10 @@ export default App;
 
 ### 26.28. Książka adresowa z wyszukiwarką i tagami
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Książka adresowa z wyszukiwarką i tagami” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Książka adresowa z wyszukiwarką i tagami” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
+
 Zarządzanie listą obiektów z jednoczesnym filtrowaniem tekstowym oraz grupowym.
 
 ```jsx
@@ -10981,6 +10820,10 @@ export default App;
 
 ### 26.29. Biblioteczka książek ze statusem przeczytania
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Biblioteczka książek ze statusem przeczytania” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Biblioteczka książek ze statusem przeczytania” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
+
 Zarządzanie stanem logicznym (true/false) dla wielu elementów listy po kliknięciu.
 
 ```jsx
@@ -11073,6 +10916,10 @@ export default App;
 
 ### 26.30. Wyszukiwarka przepisów kulinarnych po składnikach
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Wyszukiwarka przepisów kulinarnych po składnikach” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Wyszukiwarka przepisów kulinarnych po składnikach” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
+
 Złożone filtrowanie polegające na porównywaniu zaznaczonych elementów z tablicami składników receptur.
 
 ```jsx
@@ -11148,6 +10995,10 @@ export default App;
 ---
 
 ### 26.31. Dzienniczek ocen z obliczaniem średniej ważonej
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Dzienniczek ocen z obliczaniem średniej ważonej” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Dzienniczek ocen z obliczaniem średniej ważonej” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
 
 Aplikacja zbierająca liczbowe wartości wraz z ich "wagą" oraz dynamicznie przeliczająca skomplikowaną średnią.
 
@@ -11249,6 +11100,10 @@ export default App;
 
 ### 26.32. Lista zakupów z podziałem na działy
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Lista zakupów z podziałem na działy” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Lista zakupów z podziałem na działy” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
+
 Grupowanie tablicy na podstawie jednej ze zmiennych i warunkowe renderowanie wielu sekcji z koszykiem.
 
 ```jsx
@@ -11330,6 +11185,10 @@ export default App;
 ---
 
 ### 26.33. Mixer kolorów RGB
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Mixer kolorów RGB” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Mixer kolorów RGB” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Trzy suwaki sterujące kolorem tła w czasie rzeczywistym.
 
@@ -11439,6 +11298,10 @@ export default App;
 
 ### 26.34. Licznik z historią operacji
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Licznik z historią operacji” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Licznik z historią operacji” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
+
 Licznik, który zapisuje historię wszystkich wykonanych operacji.
 
 ```jsx
@@ -11544,6 +11407,10 @@ export default App;
 
 ### 26.35. Prosta Playlista Audio (Odtwarzacz ze stanem)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Prosta Playlista Audio (Odtwarzacz ze stanem)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Prosta Playlista Audio (Odtwarzacz ze stanem)” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
+
 Ten wzorzec jest genialnym rozwiązaniem skomplikowanego zadania polegającego na zbudowaniu „Player’a” i manipulowaniu ścieżkami podawanych plików typu `mp3`. 
 Z reguły polega to na wrzuceniu utworów do tablicy (bazy), a po kliknięciu klawisza `<li>` zmienieniu całego odtwarzanego źródła na nową muzykę w hooku (stanie).
 
@@ -11622,6 +11489,10 @@ export default OdtwarzaczZPlayLista;
 ---
 
 ### 26.36. Akordeon FAQ z widocznością (Sekcje Rozwijane)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Akordeon FAQ z widocznością (Sekcje Rozwijane)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Akordeon FAQ z widocznością (Sekcje Rozwijane)” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
 
 Typowe zadanie architektoniczne - "Mam listę elementów, ale po kliknięciu konkretnego w dół rościąga mi się tekst/odpowiedź, gasząc resztę na biało!". Jest to idealne pole dla **Renderowania warunkowego**.
 
@@ -11703,6 +11574,10 @@ export default ModulPytanUzytkownikaFAQ;
 
 ### 26.37. CSS Gradient Generator
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „CSS Gradient Generator” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „CSS Gradient Generator” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Narzędzie do wizualnego generowania tła z kodem do skopiowania, operujące na stylach inline.
 
 ```jsx
@@ -11765,6 +11640,10 @@ export default App;
 ---
 
 ### 26.38. Licznik słów, znaków i czasu czytania
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Licznik słów, znaków i czasu czytania” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Licznik słów, znaków i czasu czytania” dodaj obsługę pustego pola, wartości ujemnych i zaokrąglenia wyniku. Funkcję obliczającą trzymaj poza JSX, np. `obliczWynik(dane)`, a w komponencie zostaw tylko pobieranie danych i prezentację rezultatu.
 
 Zaawansowane analizowanie zawartości pola tekstowego za pomocą metod na ciągach znaków (`split`, `trim`).
 
@@ -11835,6 +11714,10 @@ export default App;
 ---
 
 ### 26.39. Minutnik Kuchenny (Odliczanie)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Minutnik Kuchenny (Odliczanie)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Minutnik Kuchenny (Odliczanie)” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
 
 Zastosowanie hooka `useEffect` i funkcji `setInterval` do manipulacji stanem odliczania czasu w dół.
 
@@ -11927,6 +11810,10 @@ export default App;
 ---
 
 ### 26.40. Kreator i podgląd menu restauracji (Karta dań)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Kreator i podgląd menu restauracji (Karta dań)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Kreator i podgląd menu restauracji (Karta dań)” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
 
 Oddzielenie formularza tworzenia elementów od samej wizualizacji z podziałem na kategorie (np. wegetariańskie).
 
@@ -12026,6 +11913,10 @@ export default App;
 
 ### 26.41. Interaktywny Quiz wiedzy (5 pytań)
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Interaktywny Quiz wiedzy (5 pytań)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Interaktywny Quiz wiedzy (5 pytań)” dodaj historię rund, licznik punktów i reset całej rozgrywki. Dane konfiguracyjne, takie jak lista pytań, możliwe ruchy albo ściany kostki, trzymaj poza komponentem.
+
 Wykorzystanie stanu do śledzenia obecnego indeksu elementu tablicy pytań i punktacji.
 
 ```jsx
@@ -12103,6 +11994,10 @@ export default App;
 ---
 
 ### 26.42. Tablica Kanban (Zadania w kolumnach)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Tablica Kanban (Zadania w kolumnach)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Tablica Kanban (Zadania w kolumnach)” dodaj wyszukiwarkę albo filtr kategorii i trzymaj wynik w zmiennej `widoczneElementy`. Dzięki temu logika wyboru danych jest oddzielona od JSX renderującego pojedynczą kartę lub wiersz.
 
 Zmiana wartości określonego parametru w obiekcie zadania pozwala na wizualne "przepływanie" zadań między kolumnami.
 
@@ -12185,6 +12080,10 @@ export default App;
 ---
 
 ### 26.43. System rezerwacji miejsc w kinie (Siatka miejsc)
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „System rezerwacji miejsc w kinie (Siatka miejsc)” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „System rezerwacji miejsc w kinie (Siatka miejsc)” dodaj co najmniej dwa realne błędy walidacji, np. zbyt krótki tekst i brak zaznaczenia zgody. Po poprawnym wysłaniu pokaż podsumowanie danych oraz wyczyść zarówno wartości pól, jak i obiekt błędów.
 
 Zarządzanie wizualną siatką elementów - każde miejsce z reprezentacją "wolne", "wybrane", "zajęte".
 
@@ -12280,6 +12179,10 @@ export default App;
 
 ### 26.44. Akordeon FAQ z wyszukiwarką pytań
 
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Akordeon FAQ z wyszukiwarką pytań” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+W przykładzie „Akordeon FAQ z wyszukiwarką pytań” dodaj jeden konkretny wariant nieidealny: brak danych, błędną wartość, reset albo komunikat po wykonaniu akcji. Taki wariant pokazuje, czy stan komponentu jest zaprojektowany kompletnie.
+
 Otwieranie jednego elementu na raz poprzez trzymanie jego ID w stanie głównym komponentu i wyszukiwanie w tablicy.
 
 ```jsx
@@ -12355,6 +12258,10 @@ export default App;
 ---
 
 ### 26.45. Wyszukiwarka użytkowników z API
+
+W tym wzorcu dopisz własny wariant danych, zamiast zmieniać tylko teksty w gotowym kodzie. Dla przykładu „Wyszukiwarka użytkowników z API” warto sprawdzić, które wartości są stanem, które są wyliczane, a które są tylko prezentacją.
+
+Rozbuduj ten wzorzec o przycisk ponownego pobrania danych, komunikat błędu i stan ładowania. Jeśli dane są filtrowane, wyszukiwarkę licz już z pobranej tablicy, a nie przez kolejne żądanie przy każdym znaku.
 
 Przykład łączy kilka praktycznych elementów: pobranie danych z zewnętrznego API, obsługę ładowania i błędu, wyszukiwanie po stronie React oraz podgląd szczegółów wybranego użytkownika.
 
@@ -12492,3 +12399,5 @@ function App() {
 
 export default App;
 ```
+
+---

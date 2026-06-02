@@ -1,7 +1,5 @@
 # Dokumentacja: Git
 
----
-
 ## Spis treści
 
 - [1. Wprowadzenie do Gita](#1-wprowadzenie-do-gita)
