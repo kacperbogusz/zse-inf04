@@ -15996,7 +15996,7 @@ Thriller;Michael Jackson;1982;9
 
 **MainWindow.xaml:**
 ```xml
-<Window x:Class="ParseowanieP liku.MainWindow"
+<Window x:Class="ParseowaniePliku.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Parsowanie danych z pliku" Height="380" Width="500">
@@ -18042,13 +18042,13 @@ public class GeneratorHasel
     private string _ostatnieHaslo = "";
 
     // public — to jest API klasy — to co pokazujesz na zewnątrz
-    public int MinimalnaD lugosc { get; set; } = 8;
+    public int MinimalnaDlugosc { get; set; } = 8;
 
     // public metoda — główny punkt wejścia
     public string Generuj(int dlugosc, string zestawZnakow)
     {
-        if (dlugosc < MinimalnaD lugosc)
-            dlugosc = MinimalnaD lugosc;
+        if (dlugosc < MinimalnaDlugosc)
+            dlugosc = MinimalnaDlugosc;
 
         _ostatnieHaslo = WylosujZnaki(dlugosc, zestawZnakow); // wywołanie private
         return _ostatnieHaslo;

@@ -107,28 +107,89 @@
   - [14.8. Klasy abstrakcyjne — moduł `abc`](#148-klasy-abstrakcyjne--moduł-abc)
   - [14.9. Kompleksowa implementacja: System Quiz](#149-kompleksowa-implementacja-system-quiz)
 - [15. Algorytmy w Pythonie](#15-algorytmy-w-pythonie)
-  - [15.1. Sortowanie przez wybieranie (Selection Sort)](#151-sortowanie-przez-wybieranie-selection-sort)
-  - [15.2. Sortowanie bąbelkowe (Bubble Sort)](#152-sortowanie-bąbelkowe-bubble-sort)
-  - [15.3. Sortowanie przez wstawianie (Insertion Sort)](#153-sortowanie-przez-wstawianie-insertion-sort)
-  - [15.4. Sortowanie przez scalanie (Merge Sort)](#154-sortowanie-przez-scalanie-merge-sort)
-  - [15.5. Sortowanie szybkie (Quick Sort)](#155-sortowanie-szybkie-quick-sort)
-  - [15.6. Wyszukiwanie liniowe](#156-wyszukiwanie-liniowe)
-  - [15.7. Wyszukiwanie z wartownikiem (Sentinel Search)](#154-wyszukiwanie-z-wartownikiem-sentinel-search)
-  - [15.8. Wyszukiwanie binarne (Binary Search)](#1515-wyszukiwanie-binarne-binary-search)
-  - [15.9. Algorytm Euklidesa (NWD — Największy Wspólny Dzielnik)](#155-algorytm-euklidesa-nwd--największy-wspólny-dzielnik)
-  - [15.10. Najmniejsza Wspólna Wielokrotność (NWW)](#1510-najmniejsza-wspólna-wielokrotność-nww)
-  - [15.11. Sprawdzanie czy liczba jest pierwsza](#1513-sprawdzanie-czy-liczba-jest-pierwsza)
-  - [15.12. Sito Eratostenesa](#156-sito-eratostenesa)
-  - [15.13. Rozkład liczby na czynniki pierwsze](#1513-rozkład-liczby-na-czynniki-pierwsze)
-  - [15.14. Konwersja systemów liczbowych (Dziesiętny <-> Binarny)](#1514-konwersja-systemów-liczbowych-dziesiętny---binarny)
-  - [15.15. Szyfr Cezara](#157-szyfr-cezara)
-  - [15.16. Palindromy i Anagramy](#1516-palindromy-i-anagramy)
-  - [15.17. Rekurencja](#1514-rekurencja)
-  - [15.18. Walidacja danych z wagami](#158-walidacja-danych-z-wagami)
-  - [15.19. Usuwanie powtarzających się znaków (sąsiednich duplikatów)](#1519-usuwanie-powtarzających-się-znaków-sąsiednich-duplikatów)
-  - [15.20. Zliczanie wystąpień wartości w danych](#1510-zliczanie-wystąpień-wartości-w-danych)
-  - [15.21. Obliczanie średniej arytmetycznej](#1511-obliczanie-średniej-arytmetycznej)
-  - [15.22. Wyodrębnianie elementów spełniających warunek](#1512-wyodrębnianie-elementów-spełniających-warunek)
+  - [15.1. Sortowanie i porządkowanie danych](#151-sortowanie-i-porządkowanie-danych)
+    - [15.1.1. Sortowanie przez wybieranie (Selection Sort)](#1511-sortowanie-przez-wybieranie-selection-sort)
+    - [15.1.2. Sortowanie bąbelkowe (Bubble Sort)](#1512-sortowanie-bąbelkowe-bubble-sort)
+    - [15.1.3. Sortowanie przez wstawianie (Insertion Sort)](#1513-sortowanie-przez-wstawianie-insertion-sort)
+    - [15.1.4. Sortowanie przez scalanie (Merge Sort)](#1514-sortowanie-przez-scalanie-merge-sort)
+    - [15.1.5. Sortowanie szybkie (Quick Sort)](#1515-sortowanie-szybkie-quick-sort)
+    - [15.1.6. Sortowanie malejące własnym algorytmem](#1516-sortowanie-malejące-własnym-algorytmem)
+    - [15.1.7. Liczenie liczby zamian w Bubble Sort](#1517-liczenie-liczby-zamian-w-bubble-sort)
+    - [15.1.8. Sprawdzanie, czy tablica jest posortowana](#1518-sprawdzanie-czy-tablica-jest-posortowana)
+    - [15.1.9. Scalanie dwóch posortowanych tablic](#1519-scalanie-dwóch-posortowanych-tablic)
+    - [15.1.10. Podział tablicy względem pivota](#15110-podział-tablicy-względem-pivota)
+  - [15.2. Wyszukiwanie i analiza list](#152-wyszukiwanie-i-analiza-list)
+    - [15.2.1. Wyszukiwanie liniowe](#1521-wyszukiwanie-liniowe)
+    - [15.2.2. Wyszukiwanie z wartownikiem (Sentinel Search)](#1522-wyszukiwanie-z-wartownikiem-sentinel-search)
+    - [15.2.3. Wyszukiwanie binarne (Binary Search)](#1523-wyszukiwanie-binarne-binary-search)
+    - [15.2.4. Znajdowanie minimum, maksimum i ich indeksów](#1524-znajdowanie-minimum-maksimum-i-ich-indeksów)
+    - [15.2.5. Drugie największe i drugie najmniejsze](#1525-drugie-największe-i-drugie-najmniejsze)
+    - [15.2.6. Wyszukiwanie pierwszego i ostatniego wystąpienia wartości](#1526-wyszukiwanie-pierwszego-i-ostatniego-wystąpienia-wartości)
+    - [15.2.7. Wyszukiwanie binarne z liczeniem kroków](#1527-wyszukiwanie-binarne-z-liczeniem-kroków)
+    - [15.2.8. Znajdowanie brakującej liczby z zakresu 1..n](#1528-znajdowanie-brakującej-liczby-z-zakresu-1n)
+    - [15.2.9. Znajdowanie elementów wspólnych dwóch list](#1529-znajdowanie-elementów-wspólnych-dwóch-list)
+    - [15.2.10. Znajdowanie elementów występujących tylko raz](#15210-znajdowanie-elementów-występujących-tylko-raz)
+    - [15.2.11. Usuwanie duplikatów z listy z zachowaniem kolejności](#15211-usuwanie-duplikatów-z-listy-z-zachowaniem-kolejności)
+    - [15.2.12. Zliczanie wystąpień wartości w danych](#15212-zliczanie-wystąpień-wartości-w-danych)
+    - [15.2.13. Obliczanie średniej arytmetycznej](#15213-obliczanie-średniej-arytmetycznej)
+    - [15.2.14. Wyodrębnianie elementów spełniających warunek](#15214-wyodrębnianie-elementów-spełniających-warunek)
+  - [15.3. Działania matematyczne i dzielniki](#153-działania-matematyczne-i-dzielniki)
+    - [15.3.1. Algorytm Euklidesa (NWD)](#1531-algorytm-euklidesa-nwd)
+    - [15.3.2. Najmniejsza Wspólna Wielokrotność (NWW)](#1532-najmniejsza-wspólna-wielokrotność-nww)
+    - [15.3.3. NWD dla wielu liczb](#1533-nwd-dla-wielu-liczb)
+    - [15.3.4. NWW dla wielu liczb](#1534-nww-dla-wielu-liczb)
+    - [15.3.5. Liczby względnie pierwsze](#1535-liczby-względnie-pierwsze)
+    - [15.3.6. Suma dzielników liczby](#1536-suma-dzielników-liczby)
+    - [15.3.7. Liczba doskonała](#1537-liczba-doskonała)
+    - [15.3.8. Liczby zaprzyjaźnione](#1538-liczby-zaprzyjaźnione)
+    - [15.3.9. Skracanie ułamka](#1539-skracanie-ułamka)
+    - [15.3.10. Dodawanie dwóch ułamków](#15310-dodawanie-dwóch-ułamków)
+  - [15.4. Liczby pierwsze, cyfry i cechy liczb](#154-liczby-pierwsze-cyfry-i-cechy-liczb)
+    - [15.4.1. Sprawdzanie czy liczba jest pierwsza](#1541-sprawdzanie-czy-liczba-jest-pierwsza)
+    - [15.4.2. Sito Eratostenesa](#1542-sito-eratostenesa)
+    - [15.4.3. Rozkład liczby na czynniki pierwsze](#1543-rozkład-liczby-na-czynniki-pierwsze)
+    - [15.4.4. Rozkład liczby na czynniki pierwsze z potęgami](#1544-rozkład-liczby-na-czynniki-pierwsze-z-potęgami)
+    - [15.4.5. Najbliższa liczba pierwsza większa od n](#1545-najbliższa-liczba-pierwsza-większa-od-n)
+    - [15.4.6. Liczenie liczb pierwszych w przedziale](#1546-liczenie-liczb-pierwszych-w-przedziale)
+    - [15.4.7. Liczba Armstronga](#1547-liczba-armstronga)
+    - [15.4.8. Statystyka cyfr liczby](#1548-statystyka-cyfr-liczby)
+    - [15.4.9. Odwracanie cyfr liczby bez zamiany na napis](#1549-odwracanie-cyfr-liczby-bez-zamiany-na-napis)
+  - [15.5. Systemy liczbowe i operacje binarne](#155-systemy-liczbowe-i-operacje-binarne)
+    - [15.5.1. Konwersja systemów liczbowych (dziesiętny <-> binarny)](#1551-konwersja-systemów-liczbowych-dziesiętny---binarny)
+    - [15.5.2. Konwersja dziesiętna na dowolny system od 2 do 16](#1552-konwersja-dziesiętna-na-dowolny-system-od-2-do-16)
+    - [15.5.3. Konwersja z dowolnego systemu od 2 do 16 na dziesiętny](#1553-konwersja-z-dowolnego-systemu-od-2-do-16-na-dziesiętny)
+    - [15.5.4. Dodawanie dwóch liczb binarnych zapisanych jako napisy](#1554-dodawanie-dwóch-liczb-binarnych-zapisanych-jako-napisy)
+  - [15.6. Teksty, słowniki i zliczanie](#156-teksty-słowniki-i-zliczanie)
+    - [15.6.1. Palindromy i anagramy](#1561-palindromy-i-anagramy)
+    - [15.6.2. Zliczanie liter w tekście](#1562-zliczanie-liter-w-tekście)
+    - [15.6.3. Najczęściej występujący znak](#1563-najczęściej-występujący-znak)
+    - [15.6.4. Najczęściej występujące słowo w zdaniu](#1564-najczęściej-występujące-słowo-w-zdaniu)
+    - [15.6.5. Usuwanie wszystkich znaków niebędących literami](#1565-usuwanie-wszystkich-znaków-niebędących-literami)
+    - [15.6.6. Sprawdzanie pangramu](#1566-sprawdzanie-pangramu)
+    - [15.6.7. Sprawdzanie poprawności nawiasów](#1567-sprawdzanie-poprawności-nawiasów)
+    - [15.6.8. Usuwanie powtarzających się znaków sąsiednich](#1568-usuwanie-powtarzających-się-znaków-sąsiednich)
+    - [15.6.9. Usuwanie sąsiednich duplikatów aż do skutku](#1569-usuwanie-sąsiednich-duplikatów-aż-do-skutku)
+    - [15.6.10. Najdłuższy wspólny prefiks listy słów](#15610-najdłuższy-wspólny-prefiks-listy-słów)
+    - [15.6.11. Sprawdzanie, czy dwa teksty są izomorficzne](#15611-sprawdzanie-czy-dwa-teksty-są-izomorficzne)
+  - [15.7. Szyfry i kodowanie tekstu](#157-szyfry-i-kodowanie-tekstu)
+    - [15.7.1. Szyfr Cezara](#1571-szyfr-cezara)
+    - [15.7.2. Odszyfrowanie szyfru Cezara](#1572-odszyfrowanie-szyfru-cezara)
+    - [15.7.3. Łamanie szyfru Cezara metodą brute force](#1573-łamanie-szyfru-cezara-metodą-brute-force)
+    - [15.7.4. Szyfr Vigenere'a](#1574-szyfr-vigenerea)
+  - [15.8. Rekurencja i dziel i zwyciężaj](#158-rekurencja-i-dziel-i-zwyciężaj)
+    - [15.8.1. Silnia i Fibonacci rekurencyjnie](#1581-silnia-i-fibonacci-rekurencyjnie)
+    - [15.8.2. Generowanie ciągu Fibonacciego iteracyjnie](#1582-generowanie-ciągu-fibonacciego-iteracyjnie)
+    - [15.8.3. Szybkie potęgowanie](#1583-szybkie-potęgowanie)
+    - [15.8.4. Wieże Hanoi](#1584-wieże-hanoi)
+    - [15.8.5. Suma elementów tablicy rekurencyjnie](#1585-suma-elementów-tablicy-rekurencyjnie)
+  - [15.9. Tablice dwuwymiarowe](#159-tablice-dwuwymiarowe)
+    - [15.9.1. Przeszukiwanie tablicy 2D](#1591-przeszukiwanie-tablicy-2d)
+    - [15.9.2. Suma przekątnych macierzy kwadratowej](#1592-suma-przekątnych-macierzy-kwadratowej)
+    - [15.9.3. Obrót macierzy o 90 stopni w prawo](#1593-obrót-macierzy-o-90-stopni-w-prawo)
+  - [15.10. Walidacja danych i zadania plikowe](#1510-walidacja-danych-i-zadania-plikowe)
+    - [15.10.1. Walidacja danych z wagami (np. PESEL)](#15101-walidacja-danych-z-wagami-np-pesel)
+    - [15.10.2. Prosty system punktacji z pliku CSV](#15102-prosty-system-punktacji-z-pliku-csv)
+    - [15.10.3. Zapis rankingu do pliku CSV](#15103-zapis-rankingu-do-pliku-csv)
 - [16. Tablice dwuwymiarowe](#16-tablice-dwuwymiarowe)
   - [16.1. Tworzenie tablic 2D](#161-tworzenie-tablic-2d)
   - [16.2. Dostęp i iteracja](#162-dostęp-i-iteracja)
@@ -3457,10 +3518,13 @@ Algorytmy to precyzyjne przepisy na rozwiązanie problemu. Składają się z jed
 | O(n) | Liniowa | Czas rośnie proporcjonalnie | Wyszukiwanie liniowe |
 | O(n²) | Kwadratowa | Czas rośnie kwadratowo | Sortowanie bąbelkowe, przez wybieranie |
 | O(log n) | Logarytmiczna | Bardzo efektywna | Wyszukiwanie binarne |
+| O(n log n) | Liniowo-logarytmiczna | Typowa dla szybkich sortowań | Merge Sort, Quick Sort |
 
 ---
 
-### 15.1. Sortowanie przez wybieranie (Selection Sort)
+### 15.1. Sortowanie i porządkowanie danych
+
+#### 15.1.1. Sortowanie przez wybieranie (Selection Sort)
 
 **Idea:** W każdym kroku szukamy elementu minimalnego w nieposortowanej części tablicy i zamieniamy go z pierwszym nieposortowanym elementem.
 
@@ -3474,9 +3538,10 @@ def sortowanie_przez_wybieranie(tablica):
                 indeks_min = j
         # Zamiana miejscami
         tablica[i], tablica[indeks_min] = tablica[indeks_min], tablica[i]
+    return tablica
 ```
 
-### 15.2. Sortowanie bąbelkowe (Bubble Sort)
+#### 15.1.2. Sortowanie bąbelkowe (Bubble Sort)
 
 **Idea:** Porównujemy sąsiednie elementy i zamieniamy je, jeśli są w złej kolejności. Powtarzamy, aż tablica będzie posortowana.
 
@@ -3491,9 +3556,10 @@ def sortowanie_babelkowe(tablica):
                 zamieniono = True
         if not zamieniono:
             break  # Jeśli nie było zamiany, tablica jest posortowana
+    return tablica
 ```
 
-### 15.3. Sortowanie przez wstawianie (Insertion Sort)
+#### 15.1.3. Sortowanie przez wstawianie (Insertion Sort)
 
 **Idea:** Pobieramy kolejny element i "wstawiamy" go w odpowiednie miejsce wśród elementów już posortowanych (podobnie jak układanie kart w dłoni).
 
@@ -3507,9 +3573,10 @@ def sortowanie_przez_wstawianie(tablica):
             tablica[j + 1] = tablica[j]
             j -= 1
         tablica[j + 1] = klucz
+    return tablica
 ```
 
-### 15.4. Sortowanie przez scalanie (Merge Sort)
+#### 15.1.4. Sortowanie przez scalanie (Merge Sort)
 
 **Idea:** Strategia „dziel i zwyciężaj”. Dzielimy tablicę na połowy, aż zostaną pojedyncze elementy, a następnie scalamy je w porządku rosnącym.
 
@@ -3539,9 +3606,10 @@ def merge_sort(tablica):
             tablica[k] = L[i]; i += 1; k += 1
         while j < len(R):
             tablica[k] = R[j]; j += 1; k += 1
+    return tablica
 ```
 
-### 15.5. Sortowanie szybkie (Quick Sort)
+#### 15.1.5. Sortowanie szybkie (Quick Sort)
 
 **Idea:** Wybieramy element obrotowy (pivot). Dzielimy tablicę na elementy mniejsze od pivota, równe mu i większe, a następnie rekurencyjnie sortujemy podtablice.
 
@@ -3556,9 +3624,114 @@ def quick_sort(tablica):
     return quick_sort(lewe) + srodkowe + quick_sort(prawe)
 ```
 
+#### 15.1.6. Sortowanie malejące własnym algorytmem
+
+**Idea:** To wariant sortowania przez wybieranie. Zamiast najmniejszego elementu szukamy największego i ustawiamy go na początku nieposortowanej części tablicy.
+
+```python
+def sortowanie_malejaco(tablica):
+    wynik = tablica[:]
+    n = len(wynik)
+
+    for i in range(n - 1):
+        indeks_max = i
+        for j in range(i + 1, n):
+            if wynik[j] > wynik[indeks_max]:
+                indeks_max = j
+        wynik[i], wynik[indeks_max] = wynik[indeks_max], wynik[i]
+
+    return wynik
+```
+
+#### 15.1.7. Liczenie liczby zamian w Bubble Sort
+
+**Idea:** Oprócz sortowania zliczamy, ile razy algorytm musiał zamienić dwa sąsiednie elementy. To częste zadanie sprawdzające zrozumienie działania algorytmu.
+
+```python
+def bubble_sort_z_licznikiem(tablica):
+    wynik = tablica[:]
+    zamiany = 0
+    n = len(wynik)
+
+    for i in range(n - 1):
+        zamieniono = False
+        for j in range(n - 1 - i):
+            if wynik[j] > wynik[j + 1]:
+                wynik[j], wynik[j + 1] = wynik[j + 1], wynik[j]
+                zamiany += 1
+                zamieniono = True
+        if not zamieniono:
+            break
+
+    return wynik, zamiany
+```
+
+#### 15.1.8. Sprawdzanie, czy tablica jest posortowana
+
+**Idea:** Przechodzimy po parach sąsiednich elementów. Jeśli choć raz poprzedni element jest większy od następnego, tablica nie jest posortowana rosnąco.
+
+```python
+def czy_posortowana_rosnaco(tablica):
+    for i in range(1, len(tablica)):
+        if tablica[i - 1] > tablica[i]:
+            return False
+    return True
+```
+
+#### 15.1.9. Scalanie dwóch posortowanych tablic
+
+**Idea:** Mając dwie już posortowane tablice, budujemy trzecią. Za każdym razem wybieramy mniejszy z dwóch aktualnie rozważanych elementów.
+
+```python
+def scal_posortowane(a, b):
+    wynik = []
+    i = j = 0
+
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            wynik.append(a[i])
+            i += 1
+        else:
+            wynik.append(b[j])
+            j += 1
+
+    while i < len(a):
+        wynik.append(a[i])
+        i += 1
+
+    while j < len(b):
+        wynik.append(b[j])
+        j += 1
+
+    return wynik
+```
+
+#### 15.1.10. Podział tablicy względem pivota
+
+**Idea:** Dzielimy dane na trzy grupy: mniejsze od pivota, równe pivotowi i większe od pivota. To fragment logiki wykorzystywany w Quick Sort.
+
+```python
+def podziel_wzgledem_pivota(tablica, pivot):
+    mniejsze = []
+    rowne = []
+    wieksze = []
+
+    for x in tablica:
+        if x < pivot:
+            mniejsze.append(x)
+        elif x == pivot:
+            rowne.append(x)
+        else:
+            wieksze.append(x)
+
+    return mniejsze, rowne, wieksze
+```
+
 ---
 
-### 15.6. Wyszukiwanie liniowe
+### 15.2. Wyszukiwanie i analiza list
+
+#### 15.2.1. Wyszukiwanie liniowe
 
 **Idea:** Sprawdzamy każdy element po kolei, aż znajdziemy szukaną wartość.
 
@@ -3570,7 +3743,7 @@ def wyszukaj_liniowo(tablica, szukana):
     return -1
 ```
 
-### 15.7. Wyszukiwanie z wartownikiem (Sentinel Search)
+#### 15.2.2. Wyszukiwanie z wartownikiem (Sentinel Search)
 
 **Idea:** Dodajemy szukaną wartość na koniec tablicy jako "wartownika", aby uprościć warunek pętli (brak sprawdzania końca tablicy w każdym kroku).
 
@@ -3585,7 +3758,7 @@ def wyszukaj_z_wartownikiem(tablica, szukana):
     return i if i < n else -1
 ```
 
-### 15.8. Wyszukiwanie binarne (Binary Search)
+#### 15.2.3. Wyszukiwanie binarne (Binary Search)
 
 **Idea:** W posortowanej tablicy sprawdzamy środkowy element. Jeśli to nie on, odrzucamy połowę tablicy, w której na pewno nie ma szukanej wartości.
 
@@ -3603,114 +3776,713 @@ def wyszukiwanie_binarne(tablica, szukana):
     return -1
 ```
 
+#### 15.2.4. Znajdowanie minimum, maksimum i ich indeksów
+
+**Idea:** Przechodzimy po tablicy jeden raz i zapamiętujemy indeks najmniejszego oraz największego elementu.
+
+```python
+def min_max_z_indeksami(tablica):
+    if not tablica:
+        return None
+
+    indeks_min = 0
+    indeks_max = 0
+
+    for i in range(1, len(tablica)):
+        if tablica[i] < tablica[indeks_min]:
+            indeks_min = i
+        if tablica[i] > tablica[indeks_max]:
+            indeks_max = i
+
+    return {
+        "min": tablica[indeks_min],
+        "indeks_min": indeks_min,
+        "max": tablica[indeks_max],
+        "indeks_max": indeks_max,
+    }
+```
+
+#### 15.2.5. Drugie największe i drugie najmniejsze
+
+**Idea:** Szukamy drugich skrajnych wartości bez sortowania. Wersja poniżej zakłada, że interesują nas drugie różne wartości, a nie drugie pozycje w tablicy.
+
+```python
+def drugie_skrajne(tablica):
+    if len(set(tablica)) < 2:
+        return None
+
+    min1 = min2 = None
+    max1 = max2 = None
+
+    for x in tablica:
+        if min1 is None or x < min1:
+            min2 = min1
+            min1 = x
+        elif x != min1 and (min2 is None or x < min2):
+            min2 = x
+
+        if max1 is None or x > max1:
+            max2 = max1
+            max1 = x
+        elif x != max1 and (max2 is None or x > max2):
+            max2 = x
+
+    return {"drugie_min": min2, "drugie_max": max2}
+```
+
+#### 15.2.6. Wyszukiwanie pierwszego i ostatniego wystąpienia wartości
+
+**Idea:** Przechodzimy po całej tablicy. Pierwszy indeks ustawiamy tylko raz, a ostatni aktualizujemy przy każdym trafieniu.
+
+```python
+def pierwsze_i_ostatnie_wystapienie(tablica, szukana):
+    pierwszy = -1
+    ostatni = -1
+
+    for i, wartosc in enumerate(tablica):
+        if wartosc == szukana:
+            if pierwszy == -1:
+                pierwszy = i
+            ostatni = i
+
+    return pierwszy, ostatni
+```
+
+#### 15.2.7. Wyszukiwanie binarne z liczeniem kroków
+
+**Idea:** To zwykłe wyszukiwanie binarne, ale dodatkowo liczymy, ile razy sprawdzono środkowy element.
+
+```python
+def wyszukiwanie_binarne_z_krokami(tablica, szukana):
+    lewy = 0
+    prawy = len(tablica) - 1
+    kroki = 0
+
+    while lewy <= prawy:
+        kroki += 1
+        srodek = (lewy + prawy) // 2
+
+        if tablica[srodek] == szukana:
+            return srodek, kroki
+        if tablica[srodek] < szukana:
+            lewy = srodek + 1
+        else:
+            prawy = srodek - 1
+
+    return -1, kroki
+```
+
+#### 15.2.8. Znajdowanie brakującej liczby z zakresu 1..n
+
+**Idea:** Jeśli w tablicy znajduje się zakres `1..n` z jedną brakującą liczbą, można porównać sumę oczekiwaną z rzeczywistą.
+
+```python
+def brakujaca_liczba(tablica):
+    n = len(tablica) + 1
+    suma_oczekiwana = n * (n + 1) // 2
+    suma_rzeczywista = sum(tablica)
+    return suma_oczekiwana - suma_rzeczywista
+```
+
+#### 15.2.9. Znajdowanie elementów wspólnych dwóch list
+
+**Idea:** Szukamy wartości, które występują w obu listach. Wynik nie zawiera duplikatów i zachowuje kolejność z pierwszej listy.
+
+```python
+def elementy_wspolne(a, b):
+    zbior_b = set(b)
+    dodane = set()
+    wynik = []
+
+    for x in a:
+        if x in zbior_b and x not in dodane:
+            wynik.append(x)
+            dodane.add(x)
+
+    return wynik
+```
+
+#### 15.2.10. Znajdowanie elementów występujących tylko raz
+
+**Idea:** Najpierw zliczamy wystąpienia, potem wybieramy tylko te wartości, których licznik wynosi `1`.
+
+```python
+def elementy_wystepujace_raz(tablica):
+    liczniki = {}
+
+    for x in tablica:
+        liczniki[x] = liczniki.get(x, 0) + 1
+
+    return [x for x in tablica if liczniki[x] == 1]
+```
+
+#### 15.2.11. Usuwanie duplikatów z listy z zachowaniem kolejności
+
+**Idea:** Zbiór `widziane` służy tylko do szybkiego sprawdzania, czy element był już dodany do wyniku.
+
+```python
+def usun_duplikaty_z_listy(tablica):
+    widziane = set()
+    wynik = []
+
+    for x in tablica:
+        if x not in widziane:
+            wynik.append(x)
+            widziane.add(x)
+
+    return wynik
+```
+
+#### 15.2.12. Zliczanie wystąpień wartości w danych
+
+```python
+def zlicz_wystapienia(tablica):
+    liczniki = {}
+    for x in tablica:
+        liczniki[x] = liczniki.get(x, 0) + 1
+    return liczniki
+```
+
+#### 15.2.13. Obliczanie średniej arytmetycznej
+
+```python
+def srednia(tablica):
+    return sum(tablica) / len(tablica) if tablica else 0
+```
+
+#### 15.2.14. Wyodrębnianie elementów spełniających warunek
+
+```python
+def filtruj_parzyste(tablica):
+    return [x for x in tablica if x % 2 == 0]
+```
+
 ---
 
-### 15.9. Algorytm Euklidesa (NWD)
+### 15.3. Działania matematyczne i dzielniki
+
+#### 15.3.1. Algorytm Euklidesa (NWD)
 
 **Idea:** NWD dwóch liczb to największa liczba, która dzieli obie bez reszty. Opiera się na reszcie z dzielenia.
 
 ```python
 def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
     while b != 0:
         a, b = b, a % b
     return a
 ```
 
-### 15.10. Najmniejsza Wspólna Wielokrotność (NWW)
+#### 15.3.2. Najmniejsza Wspólna Wielokrotność (NWW)
 
 **Idea:** Najmniejsza liczba będąca wielokrotnością obu liczb. Wykorzystuje zależność: `NWW(a, b) = |a * b| / NWD(a, b)`.
 
 ```python
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
+
 def nww(a, b):
     if a == 0 or b == 0: return 0
     return abs(a * b) // nwd(a, b)
 ```
 
-### 15.11. Sprawdzanie czy liczba jest pierwsza
+#### 15.3.3. NWD dla wielu liczb
 
-**Idea:** Sprawdzamy dzielniki liczby od 2 do jej pierwiastka. Jeśli żaden nie dzieli liczby, jest ona pierwsza.
+**Idea:** Liczymy NWD pierwszych dwóch liczb, potem wynik łączymy z kolejną liczbą itd.
 
 ```python
-import math
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
 
+def nwd_wielu(liczby):
+    if not liczby:
+        return 0
+
+    wynik = liczby[0]
+    for liczba in liczby[1:]:
+        wynik = nwd(wynik, liczba)
+
+    return wynik
+```
+
+#### 15.3.4. NWW dla wielu liczb
+
+**Idea:** Liczymy NWW kolejnych par, podobnie jak przy NWD dla wielu liczb.
+
+```python
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def nww(a, b):
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // nwd(a, b)
+
+def nww_wielu(liczby):
+    if not liczby:
+        return 0
+
+    wynik = liczby[0]
+    for liczba in liczby[1:]:
+        wynik = nww(wynik, liczba)
+
+    return wynik
+```
+
+#### 15.3.5. Liczby względnie pierwsze
+
+**Idea:** Dwie liczby są względnie pierwsze, jeśli ich największy wspólny dzielnik wynosi `1`.
+
+```python
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def czy_wzglednie_pierwsze(a, b):
+    return nwd(a, b) == 1
+```
+
+#### 15.3.6. Suma dzielników liczby
+
+**Idea:** Sprawdzamy dzielniki do pierwiastka z liczby. Jeśli `d` dzieli `n`, to drugim dzielnikiem jest `n // d`.
+
+```python
+def suma_dzielnikow(n, wlasciwe=False):
+    if n <= 0:
+        return 0
+
+    suma = 0
+    d = 1
+
+    while d * d <= n:
+        if n % d == 0:
+            suma += d
+            drugi = n // d
+            if drugi != d:
+                suma += drugi
+        d += 1
+
+    if wlasciwe:
+        suma -= n
+
+    return suma
+```
+
+#### 15.3.7. Liczba doskonała
+
+**Idea:** Liczba doskonała jest równa sumie swoich dzielników właściwych, czyli dzielników mniejszych od niej samej.
+
+```python
+def suma_dzielnikow_wlasciwych(n):
+    suma = 0
+    for d in range(1, n):
+        if n % d == 0:
+            suma += d
+    return suma
+
+def czy_doskonala(n):
+    if n <= 1:
+        return False
+    return suma_dzielnikow_wlasciwych(n) == n
+```
+
+#### 15.3.8. Liczby zaprzyjaźnione
+
+**Idea:** Dwie liczby są zaprzyjaźnione, jeśli suma dzielników właściwych pierwszej daje drugą, a suma dzielników właściwych drugiej daje pierwszą.
+
+```python
+def suma_dzielnikow_wlasciwych(n):
+    suma = 0
+    for d in range(1, n):
+        if n % d == 0:
+            suma += d
+    return suma
+
+def czy_zaprzyjaznione(a, b):
+    if a == b:
+        return False
+    return (
+        suma_dzielnikow_wlasciwych(a) == b
+        and suma_dzielnikow_wlasciwych(b) == a
+    )
+```
+
+#### 15.3.9. Skracanie ułamka
+
+**Idea:** Licznik i mianownik dzielimy przez ich NWD. Dodatkowo przenosimy znak minus do licznika.
+
+```python
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def skroc_ulamek(licznik, mianownik):
+    if mianownik == 0:
+        raise ValueError("Mianownik nie może być zerem")
+
+    dzielnik = nwd(licznik, mianownik)
+    licznik //= dzielnik
+    mianownik //= dzielnik
+
+    if mianownik < 0:
+        licznik = -licznik
+        mianownik = -mianownik
+
+    return licznik, mianownik
+```
+
+#### 15.3.10. Dodawanie dwóch ułamków
+
+**Idea:** Sprowadzamy ułamki do wspólnego mianownika, dodajemy liczniki, a wynik skracamy.
+
+```python
+def nwd(a, b):
+    a = abs(a)
+    b = abs(b)
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def skroc_ulamek(licznik, mianownik):
+    if mianownik == 0:
+        raise ValueError("Mianownik nie może być zerem")
+
+    dzielnik = nwd(licznik, mianownik)
+    licznik //= dzielnik
+    mianownik //= dzielnik
+
+    if mianownik < 0:
+        licznik = -licznik
+        mianownik = -mianownik
+
+    return licznik, mianownik
+
+def dodaj_ulamki(l1, m1, l2, m2):
+    licznik = l1 * m2 + l2 * m1
+    mianownik = m1 * m2
+    return skroc_ulamek(licznik, mianownik)
+```
+
+---
+
+### 15.4. Liczby pierwsze, cyfry i cechy liczb
+
+#### 15.4.1. Sprawdzanie czy liczba jest pierwsza
+
+**Idea:** Sprawdzamy dzielniki liczby od `2` do jej pierwiastka. Jeśli żaden nie dzieli liczby, jest ona pierwsza.
+
+```python
 def jest_pierwsza(n):
-    if n < 2: return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0: return False
+    if n < 2:
+        return False
+
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            return False
+        d += 1
+
     return True
 ```
 
-### 15.12. Sito Eratostenesa
+#### 15.4.2. Sito Eratostenesa
 
-**Idea:** Wykreślanie wielokrotności liczb pierwszych z tablicy, aby znaleźć wszystkie liczby pierwsze w podanym zakresie.
+**Idea:** Wykreślamy wielokrotności kolejnych liczb pierwszych, aby znaleźć wszystkie liczby pierwsze w zakresie od `2` do `n`.
 
 ```python
 def sito(n):
+    if n < 2:
+        return []
+
     pierwsze = [True] * (n + 1)
-    pierwsze[0] = pierwsze[1] = False
-    for p in range(2, int(n**0.5) + 1):
+    pierwsze[0] = False
+    pierwsze[1] = False
+
+    for p in range(2, int(n ** 0.5) + 1):
         if pierwsze[p]:
             for i in range(p * p, n + 1, p):
                 pierwsze[i] = False
-    return [i for i, b in enumerate(pierwsze) if b]
+
+    return [i for i in range(2, n + 1) if pierwsze[i]]
 ```
 
-### 15.13. Rozkład liczby na czynniki pierwsze
+#### 15.4.3. Rozkład liczby na czynniki pierwsze
 
-**Idea:** Dzielenie liczby przez kolejne najmniejsze możliwe dzielniki (liczby pierwsze), aż pozostanie 1.
+**Idea:** Dzielimy liczbę przez najmniejszy możliwy dzielnik tak długo, jak się da. Potem przechodzimy do kolejnego dzielnika.
 
 ```python
 def rozklad_na_czynniki(n):
     czynniki = []
     d = 2
+
     while d * d <= n:
         while n % d == 0:
             czynniki.append(d)
             n //= d
         d += 1
+
     if n > 1:
         czynniki.append(n)
+
     return czynniki
 ```
 
-### 15.14. Konwersja systemów liczbowych (Dziesiętny <-> Binarny)
+#### 15.4.4. Rozkład liczby na czynniki pierwsze z potęgami
+
+**Idea:** Zamiast powtarzać ten sam czynnik wiele razy, zapisujemy, ile razy wystąpił.
 
 ```python
-def dec_to_bin(n):
-    if n == 0: return "0"
-    wynik = ""
-    while n > 0:
-        wynik = str(n % 2) + wynik
-        n //= 2
-    return wynik
+def rozklad_z_potegami(n):
+    czynniki = {}
+    d = 2
 
-def bin_to_dec(b):
+    while d * d <= n:
+        while n % d == 0:
+            czynniki[d] = czynniki.get(d, 0) + 1
+            n //= d
+        d += 1
+
+    if n > 1:
+        czynniki[n] = czynniki.get(n, 0) + 1
+
+    return czynniki
+```
+
+#### 15.4.5. Najbliższa liczba pierwsza większa od n
+
+**Idea:** Sprawdzamy kolejne liczby większe od `n`, aż trafimy na liczbę pierwszą.
+
+```python
+def jest_pierwsza(n):
+    if n < 2:
+        return False
+
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            return False
+        d += 1
+
+    return True
+
+def nastepna_pierwsza(n):
+    kandydat = n + 1
+
+    while not jest_pierwsza(kandydat):
+        kandydat += 1
+
+    return kandydat
+```
+
+#### 15.4.6. Liczenie liczb pierwszych w przedziale
+
+**Idea:** Testujemy każdą liczbę z przedziału i dopisujemy ją do wyniku, jeśli jest pierwsza.
+
+```python
+def jest_pierwsza(n):
+    if n < 2:
+        return False
+
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            return False
+        d += 1
+
+    return True
+
+def liczby_pierwsze_w_przedziale(a, b):
+    pierwsze = []
+
+    for liczba in range(a, b + 1):
+        if jest_pierwsza(liczba):
+            pierwsze.append(liczba)
+
+    return pierwsze
+```
+
+#### 15.4.7. Liczba Armstronga
+
+**Idea:** Liczba Armstronga jest równa sumie swoich cyfr podniesionych do potęgi równej liczbie cyfr, np. `153 = 1^3 + 5^3 + 3^3`.
+
+```python
+def czy_armstrong(n):
+    if n < 0:
+        return False
+
+    cyfry = [int(c) for c in str(n)]
+    potega = len(cyfry)
+    suma = 0
+
+    for cyfra in cyfry:
+        suma += cyfra ** potega
+
+    return suma == n
+```
+
+#### 15.4.8. Statystyka cyfr liczby
+
+**Idea:** Zliczamy, ile razy każda cyfra od `0` do `9` występuje w zapisie liczby.
+
+```python
+def statystyka_cyfr(n):
+    liczniki = {cyfra: 0 for cyfra in range(10)}
+
+    for znak in str(abs(n)):
+        liczniki[int(znak)] += 1
+
+    return liczniki
+```
+
+#### 15.4.9. Odwracanie cyfr liczby bez zamiany na napis
+
+**Idea:** Ostatnią cyfrę pobieramy przez `n % 10`, a potem usuwamy ją przez `n //= 10`.
+
+```python
+def odwroc_liczbe(n):
+    znak = -1 if n < 0 else 1
+    n = abs(n)
     wynik = 0
-    for i, cyfra in enumerate(reversed(b)):
-        if cyfra == '1':
-            wynik += 2**i
-    return wynik
+
+    while n > 0:
+        cyfra = n % 10
+        wynik = wynik * 10 + cyfra
+        n //= 10
+
+    return znak * wynik
 ```
 
 ---
 
-### 15.15. Szyfr Cezara
+### 15.5. Systemy liczbowe i operacje binarne
 
-**Idea:** Przesunięcie każdej litery tekstu o stałą liczbę pozycji (klucz) w alfabecie.
+#### 15.5.1. Konwersja systemów liczbowych (dziesiętny <-> binarny)
 
 ```python
-def szyfruj_cezar(tekst, klucz):
+def dec_to_bin(n):
+    if n == 0:
+        return "0"
+
     wynik = ""
-    for znak in tekst.lower():
-        if 'a' <= znak <= 'z':
-            nowy = (ord(znak) - ord('a') + klucz) % 26
-            wynik += chr(nowy + ord('a'))
-        else:
-            wynik += znak
+
+    while n > 0:
+        wynik = str(n % 2) + wynik
+        n //= 2
+
+    return wynik
+
+def bin_to_dec(b):
+    wynik = 0
+
+    for i, cyfra in enumerate(reversed(b)):
+        if cyfra == '1':
+            wynik += 2 ** i
+
     return wynik
 ```
 
-### 15.16. Palindromy i Anagramy
+#### 15.5.2. Konwersja dziesiętna na dowolny system od 2 do 16
+
+**Idea:** Dzielimy liczbę przez podstawę systemu, a reszty z dzielenia zapisujemy od końca.
+
+```python
+def dec_to_base(n, podstawa):
+    if podstawa < 2 or podstawa > 16:
+        raise ValueError("Podstawa musi być z zakresu 2..16")
+
+    if n == 0:
+        return "0"
+
+    cyfry = "0123456789ABCDEF"
+    znak = "-" if n < 0 else ""
+    n = abs(n)
+    wynik = ""
+
+    while n > 0:
+        wynik = cyfry[n % podstawa] + wynik
+        n //= podstawa
+
+    return znak + wynik
+```
+
+#### 15.5.3. Konwersja z dowolnego systemu od 2 do 16 na dziesiętny
+
+**Idea:** Przechodzimy po cyfrach od lewej do prawej. Każdy krok mnoży dotychczasowy wynik przez podstawę i dodaje wartość aktualnej cyfry.
+
+```python
+def base_to_dec(napis, podstawa):
+    if podstawa < 2 or podstawa > 16:
+        raise ValueError("Podstawa musi być z zakresu 2..16")
+
+    cyfry = "0123456789ABCDEF"
+    napis = napis.upper()
+    znak = -1 if napis.startswith("-") else 1
+
+    if napis.startswith("-"):
+        napis = napis[1:]
+
+    wynik = 0
+
+    for znak_cyfry in napis:
+        wartosc = cyfry.index(znak_cyfry)
+        if wartosc >= podstawa:
+            raise ValueError("Cyfra nie pasuje do podstawy systemu")
+        wynik = wynik * podstawa + wartosc
+
+    return znak * wynik
+```
+
+#### 15.5.4. Dodawanie dwóch liczb binarnych zapisanych jako napisy
+
+**Idea:** Dodajemy od końca, tak jak pisemnie. Pamiętamy przeniesienie do kolejnej kolumny.
+
+```python
+def dodaj_binarne(a, b):
+    i = len(a) - 1
+    j = len(b) - 1
+    przeniesienie = 0
+    wynik = []
+
+    while i >= 0 or j >= 0 or przeniesienie:
+        suma = przeniesienie
+
+        if i >= 0:
+            suma += int(a[i])
+            i -= 1
+        if j >= 0:
+            suma += int(b[j])
+            j -= 1
+
+        wynik.append(str(suma % 2))
+        przeniesienie = suma // 2
+
+    return "".join(reversed(wynik)).lstrip("0") or "0"
+```
+
+---
+
+### 15.6. Teksty, słowniki i zliczanie
+
+#### 15.6.1. Palindromy i anagramy
 
 ```python
 def czy_palindrom(tekst):
@@ -3723,9 +4495,319 @@ def czy_anagram(s1, s2):
     return sorted(t1) == sorted(t2)
 ```
 
+#### 15.6.2. Zliczanie liter w tekście
+
+**Idea:** Pomijamy znaki, które nie są literami, a litery sprowadzamy do małych znaków.
+
+```python
+def zlicz_litery(tekst):
+    liczniki = {}
+
+    for znak in tekst.lower():
+        if znak.isalpha():
+            liczniki[znak] = liczniki.get(znak, 0) + 1
+
+    return liczniki
+```
+
+#### 15.6.3. Najczęściej występujący znak
+
+**Idea:** Najpierw zliczamy znaki, a potem wybieramy ten z największym licznikiem.
+
+```python
+def najczestszy_znak(tekst):
+    liczniki = {}
+
+    for znak in tekst:
+        if znak != " ":
+            liczniki[znak] = liczniki.get(znak, 0) + 1
+
+    if not liczniki:
+        return None
+
+    najlepszy = None
+
+    for znak, liczba in liczniki.items():
+        if najlepszy is None or liczba > liczniki[najlepszy]:
+            najlepszy = znak
+
+    return najlepszy, liczniki[najlepszy]
+```
+
+#### 15.6.4. Najczęściej występujące słowo w zdaniu
+
+**Idea:** Usuwamy proste znaki interpunkcyjne, dzielimy tekst na słowa i zliczamy wystąpienia.
+
+```python
+def najczestsze_slowo(tekst):
+    oczyszczony = ""
+
+    for znak in tekst.lower():
+        if znak.isalnum() or znak.isspace():
+            oczyszczony += znak
+        else:
+            oczyszczony += " "
+
+    liczniki = {}
+
+    for slowo in oczyszczony.split():
+        liczniki[slowo] = liczniki.get(slowo, 0) + 1
+
+    if not liczniki:
+        return None
+
+    najlepsze = None
+
+    for slowo, liczba in liczniki.items():
+        if najlepsze is None or liczba > liczniki[najlepsze]:
+            najlepsze = slowo
+
+    return najlepsze, liczniki[najlepsze]
+```
+
+#### 15.6.5. Usuwanie wszystkich znaków niebędących literami
+
+**Idea:** Budujemy nowy napis tylko z tych znaków, dla których `isalpha()` zwraca `True`.
+
+```python
+def zostaw_tylko_litery(tekst):
+    wynik = ""
+
+    for znak in tekst:
+        if znak.isalpha():
+            wynik += znak
+
+    return wynik
+```
+
+#### 15.6.6. Sprawdzanie pangramu
+
+**Idea:** Pangram to tekst, który zawiera wszystkie litery alfabetu. W wersji egzaminacyjnej najczęściej sprawdzamy alfabet angielski `a-z`.
+
+```python
+def czy_pangram(tekst):
+    alfabet = set("abcdefghijklmnopqrstuvwxyz")
+    litery = set()
+
+    for znak in tekst.lower():
+        if "a" <= znak <= "z":
+            litery.add(znak)
+
+    return alfabet.issubset(litery)
+```
+
+#### 15.6.7. Sprawdzanie poprawności nawiasów
+
+**Idea:** Używamy stosu. Nawias otwierający odkładamy na stos, a przy zamykającym sprawdzamy, czy pasuje do ostatniego otwartego.
+
+```python
+def czy_poprawne_nawiasy(tekst):
+    pary = {")": "(", "]": "[", "}": "{"}
+    otwierajace = set(pary.values())
+    stos = []
+
+    for znak in tekst:
+        if znak in otwierajace:
+            stos.append(znak)
+        elif znak in pary:
+            if not stos or stos[-1] != pary[znak]:
+                return False
+            stos.pop()
+
+    return len(stos) == 0
+```
+
+#### 15.6.8. Usuwanie powtarzających się znaków sąsiednich
+
+**Idea:** Iterujemy od drugiego znaku i dopisujemy znak tylko wtedy, gdy różni się od poprzedniego.
+
+```python
+def usun_powtarzajace_sie_znaki(tekst):
+    if not tekst:
+        return ""
+    
+    czysty_tekst = tekst[0]
+    for i in range(1, len(tekst)):
+        if tekst[i] != tekst[i - 1]:
+            czysty_tekst += tekst[i]
+    return czysty_tekst
+```
+
+#### 15.6.9. Usuwanie sąsiednich duplikatów aż do skutku
+
+**Idea:** Stos pozwala usuwać pary sąsiednich znaków także wtedy, gdy po usunięciu jednej pary powstaje kolejna para.
+
+```python
+def usun_sasiednie_duplikaty_do_skutku(tekst):
+    stos = []
+
+    for znak in tekst:
+        if stos and stos[-1] == znak:
+            stos.pop()
+        else:
+            stos.append(znak)
+
+    return "".join(stos)
+```
+
+#### 15.6.10. Najdłuższy wspólny prefiks listy słów
+
+**Idea:** Zaczynamy od pierwszego słowa jako kandydata. Skracamy go, aż każde słowo zaczyna się tym prefiksem.
+
+```python
+def najdluzszy_wspolny_prefiks(slowa):
+    if not slowa:
+        return ""
+
+    prefiks = slowa[0]
+
+    for slowo in slowa[1:]:
+        while not slowo.startswith(prefiks):
+            prefiks = prefiks[:-1]
+            if prefiks == "":
+                return ""
+
+    return prefiks
+```
+
+#### 15.6.11. Sprawdzanie, czy dwa teksty są izomorficzne
+
+**Idea:** Teksty są izomorficzne, jeśli każdemu znakowi z pierwszego tekstu odpowiada dokładnie jeden znak z drugiego tekstu i odwrotnie.
+
+```python
+def czy_izomorficzne(a, b):
+    if len(a) != len(b):
+        return False
+
+    mapa_ab = {}
+    mapa_ba = {}
+
+    for znak_a, znak_b in zip(a, b):
+        if znak_a in mapa_ab and mapa_ab[znak_a] != znak_b:
+            return False
+        if znak_b in mapa_ba and mapa_ba[znak_b] != znak_a:
+            return False
+
+        mapa_ab[znak_a] = znak_b
+        mapa_ba[znak_b] = znak_a
+
+    return True
+```
+
 ---
 
-### 15.17. Rekurencja
+### 15.7. Szyfry i kodowanie tekstu
+
+#### 15.7.1. Szyfr Cezara
+
+**Idea:** Przesunięcie każdej litery tekstu o stałą liczbę pozycji w alfabecie.
+
+```python
+def szyfruj_cezar(tekst, klucz):
+    wynik = ""
+
+    for znak in tekst:
+        if "a" <= znak <= "z":
+            nowy = (ord(znak) - ord("a") + klucz) % 26
+            wynik += chr(nowy + ord("a"))
+        elif "A" <= znak <= "Z":
+            nowy = (ord(znak) - ord("A") + klucz) % 26
+            wynik += chr(nowy + ord("A"))
+        else:
+            wynik += znak
+
+    return wynik
+```
+
+#### 15.7.2. Odszyfrowanie szyfru Cezara
+
+**Idea:** Odszyfrowanie jest tym samym algorytmem, ale z przeciwnym przesunięciem.
+
+```python
+def szyfruj_cezar(tekst, klucz):
+    wynik = ""
+
+    for znak in tekst:
+        if "a" <= znak <= "z":
+            nowy = (ord(znak) - ord("a") + klucz) % 26
+            wynik += chr(nowy + ord("a"))
+        elif "A" <= znak <= "Z":
+            nowy = (ord(znak) - ord("A") + klucz) % 26
+            wynik += chr(nowy + ord("A"))
+        else:
+            wynik += znak
+
+    return wynik
+
+def odszyfruj_cezar(tekst, klucz):
+    return szyfruj_cezar(tekst, -klucz)
+```
+
+#### 15.7.3. Łamanie szyfru Cezara metodą brute force
+
+**Idea:** Szyfr Cezara ma tylko 26 możliwych przesunięć, więc można wypisać wszystkie kandydaty.
+
+```python
+def szyfruj_cezar(tekst, klucz):
+    wynik = ""
+
+    for znak in tekst:
+        if "a" <= znak <= "z":
+            nowy = (ord(znak) - ord("a") + klucz) % 26
+            wynik += chr(nowy + ord("a"))
+        elif "A" <= znak <= "Z":
+            nowy = (ord(znak) - ord("A") + klucz) % 26
+            wynik += chr(nowy + ord("A"))
+        else:
+            wynik += znak
+
+    return wynik
+
+def lam_cezara(tekst):
+    proby = []
+
+    for klucz in range(26):
+        proby.append((klucz, szyfruj_cezar(tekst, -klucz)))
+
+    return proby
+```
+
+#### 15.7.4. Szyfr Vigenere'a
+
+**Idea:** Każda litera jest przesuwana o wartość wynikającą z kolejnej litery klucza. Klucz powtarza się cyklicznie.
+
+```python
+def szyfruj_vigenere(tekst, klucz):
+    klucz = "".join(z for z in klucz.lower() if "a" <= z <= "z")
+
+    if not klucz:
+        raise ValueError("Klucz musi zawierać przynajmniej jedną literę a-z")
+
+    wynik = ""
+    indeks_klucza = 0
+
+    for znak in tekst:
+        przesuniecie = ord(klucz[indeks_klucza % len(klucz)]) - ord("a")
+
+        if "a" <= znak <= "z":
+            nowy = (ord(znak) - ord("a") + przesuniecie) % 26
+            wynik += chr(nowy + ord("a"))
+            indeks_klucza += 1
+        elif "A" <= znak <= "Z":
+            nowy = (ord(znak) - ord("A") + przesuniecie) % 26
+            wynik += chr(nowy + ord("A"))
+            indeks_klucza += 1
+        else:
+            wynik += znak
+
+    return wynik
+```
+
+---
+
+### 15.8. Rekurencja i dziel i zwyciężaj
+
+#### 15.8.1. Silnia i Fibonacci rekurencyjnie
 
 **Idea:** Technika, w której funkcja wywołuje samą siebie. Wymaga przypadku bazowego (stopu).
 
@@ -3739,53 +4821,218 @@ def fib(n):
     return n if n <= 1 else fib(n-1) + fib(n-2)
 ```
 
-### 15.18. Walidacja danych z wagami (np. PESEL)
+#### 15.8.2. Generowanie ciągu Fibonacciego iteracyjnie
+
+**Idea:** Zamiast rekurencji używamy dwóch zmiennych przechowujących dwa ostatnie wyrazy ciągu.
+
+```python
+def fibonacci_iteracyjnie(n):
+    if n <= 0:
+        return []
+
+    wynik = []
+    a = 0
+    b = 1
+
+    for _ in range(n):
+        wynik.append(a)
+        a, b = b, a + b
+
+    return wynik
+```
+
+#### 15.8.3. Szybkie potęgowanie
+
+```python
+def poteguj_szybko(a, n):
+    if n == 0:
+        return 1
+    if n < 0:
+        return 1 / poteguj_szybko(a, -n)
+
+    polowa = poteguj_szybko(a, n // 2)
+
+    if n % 2 == 0:
+        return polowa * polowa
+    return polowa * polowa * a
+```
+
+#### 15.8.4. Wieże Hanoi
+
+**Idea:** Aby przenieść `n` krążków, najpierw przenosimy `n-1` krążków na słupek pomocniczy, potem największy krążek na cel, a na końcu `n-1` krążków na cel.
+
+```python
+def hanoi(n, zrodlo, pomocniczy, cel, ruchy=None):
+    if ruchy is None:
+        ruchy = []
+
+    if n == 0:
+        return ruchy
+
+    hanoi(n - 1, zrodlo, cel, pomocniczy, ruchy)
+    ruchy.append((zrodlo, cel))
+    hanoi(n - 1, pomocniczy, zrodlo, cel, ruchy)
+
+    return ruchy
+```
+
+#### 15.8.5. Suma elementów tablicy rekurencyjnie
+
+**Idea:** Suma pustej części tablicy wynosi `0`. W innym przypadku dodajemy aktualny element do sumy reszty tablicy.
+
+```python
+def suma_rekurencyjnie(tablica, indeks=0):
+    if indeks == len(tablica):
+        return 0
+
+    return tablica[indeks] + suma_rekurencyjnie(tablica, indeks + 1)
+```
+
+---
+
+### 15.9. Tablice dwuwymiarowe
+
+#### 15.9.1. Przeszukiwanie tablicy 2D
+
+**Idea:** Sprawdzamy każdy wiersz i każdą kolumnę. Po znalezieniu elementu zwracamy parę indeksów.
+
+```python
+def znajdz_w_macierzy(macierz, szukana):
+    for i, wiersz in enumerate(macierz):
+        for j, wartosc in enumerate(wiersz):
+            if wartosc == szukana:
+                return i, j
+
+    return -1, -1
+```
+
+#### 15.9.2. Suma przekątnych macierzy kwadratowej
+
+**Idea:** Dodajemy elementy z przekątnej głównej i pobocznej. Jeśli rozmiar macierzy jest nieparzysty, środkowy element został policzony dwa razy, więc odejmujemy go raz.
+
+```python
+def suma_przekatnych(macierz):
+    n = len(macierz)
+    suma = 0
+
+    for i in range(n):
+        suma += macierz[i][i]
+        suma += macierz[i][n - 1 - i]
+
+    if n % 2 == 1:
+        srodek = n // 2
+        suma -= macierz[srodek][srodek]
+
+    return suma
+```
+
+#### 15.9.3. Obrót macierzy o 90 stopni w prawo
+
+**Idea:** Pierwszy wiersz wyniku powstaje z pierwszej kolumny oryginału czytanej od dołu.
+
+```python
+def obroc_macierz_90(macierz):
+    if not macierz:
+        return []
+
+    liczba_wierszy = len(macierz)
+    liczba_kolumn = len(macierz[0])
+    wynik = []
+
+    for kolumna in range(liczba_kolumn):
+        nowy_wiersz = []
+        for wiersz in range(liczba_wierszy - 1, -1, -1):
+            nowy_wiersz.append(macierz[wiersz][kolumna])
+        wynik.append(nowy_wiersz)
+
+    return wynik
+```
+
+---
+
+### 15.10. Walidacja danych i zadania plikowe
+
+#### 15.10.1. Walidacja danych z wagami (np. PESEL)
+
+**Idea:** Mnożymy kolejne cyfry przez odpowiednie wagi, sumujemy wyniki i wyliczamy cyfrę kontrolną.
 
 ```python
 def suma_kontrolna(liczby, wagi):
     suma = sum(int(l) * w for l, w in zip(liczby, wagi))
     return (10 - (suma % 10)) % 10
+
+def poprawny_pesel(pesel):
+    if len(pesel) != 11 or not pesel.isdigit():
+        return False
+
+    wagi = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
+    cyfra_kontrolna = suma_kontrolna(pesel[:10], wagi)
+
+    return cyfra_kontrolna == int(pesel[10])
 ```
 
-### 15.19. Usuwanie powtarzających się znaków (sąsiednich duplikatów)
+#### 15.10.2. Prosty system punktacji z pliku CSV
 
-Algorytm usuwania powtarzających się bezpośrednio po sobie znaków opiera się na iteracji przez tekst od drugiego znaku (indeks 1) i porównywaniu go z poprzednikiem (indeks `i-1`). Jeśli są różne, znak jest dodawany do wynikowego napisu.
+**Idea:** Wczytujemy uczniów z pliku CSV, liczymy sumę i średnią punktów, a potem zwracamy ranking od najlepszego wyniku.
+
+Przykładowe kolumny pliku: `imie,nazwisko,zadanie1,zadanie2,zadanie3`.
 
 ```python
-def usun_powtarzajace_sie_znaki(tekst):
-    if not tekst:
-        return ""
-    
-    czysty_tekst = tekst[0]
-    for i in range(1, len(tekst)):
-        if tekst[i] != tekst[i-1]:
-            czysty_tekst += tekst[i]
-    return czysty_tekst
+import csv
+
+def ranking_uczniow_csv(sciezka):
+    uczniowie = []
+
+    with open(sciezka, newline="", encoding="utf-8") as plik:
+        czytnik = csv.DictReader(plik)
+
+        for wiersz in czytnik:
+            pola_punktow = [
+                nazwa
+                for nazwa in wiersz.keys()
+                if nazwa not in ("imie", "nazwisko")
+            ]
+
+            punkty = []
+            for pole in pola_punktow:
+                if wiersz[pole] != "":
+                    punkty.append(float(wiersz[pole]))
+
+            suma = sum(punkty)
+            srednia_punktow = suma / len(punkty) if punkty else 0
+
+            uczniowie.append({
+                "imie": wiersz["imie"],
+                "nazwisko": wiersz["nazwisko"],
+                "suma": suma,
+                "srednia": srednia_punktow,
+            })
+
+    return sorted(uczniowie, key=lambda u: u["suma"], reverse=True)
 ```
 
-### 15.20. Zliczanie wystąpień wartości w danych
+#### 15.10.3. Zapis rankingu do pliku CSV
+
+**Idea:** To rozwinięcie poprzedniego przykładu. Po policzeniu rankingu zapisujemy wynik do nowego pliku.
 
 ```python
-def zlicz_wystapienia(tablica):
-    liczniki = {}
-    for x in tablica:
-        liczniki[x] = liczniki.get(x, 0) + 1
-    return liczniki
-```
+import csv
 
-### 15.21. Obliczanie średniej arytmetycznej
+def zapisz_ranking_csv(ranking, sciezka_wyjsciowa):
+    pola = ["miejsce", "imie", "nazwisko", "suma", "srednia"]
 
-```python
-def srednia(tablica):
-    return sum(tablica) / len(tablica) if tablica else 0
-```
+    with open(sciezka_wyjsciowa, "w", newline="", encoding="utf-8") as plik:
+        zapis = csv.DictWriter(plik, fieldnames=pola)
+        zapis.writeheader()
 
-### 15.22. Wyodrębnianie elementów spełniających warunek
-
-```python
-def filtruj_parzyste(tablica):
-    # Wykorzystanie list comprehension
-    return [x for x in tablica if x % 2 == 0]
+        for miejsce, uczen in enumerate(ranking, start=1):
+            zapis.writerow({
+                "miejsce": miejsce,
+                "imie": uczen["imie"],
+                "nazwisko": uczen["nazwisko"],
+                "suma": uczen["suma"],
+                "srednia": round(uczen["srednia"], 2),
+            })
 ```
 
 ---
