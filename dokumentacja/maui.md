@@ -539,6 +539,28 @@ Materiał skupia się na aplikacjach użytkowych: formularzach, listach, obrazac
   - [35.35. Pogoda z API](#3535-pogoda-z-api)
   - [35.36. Lista użytkowników z API](#3536-lista-użytkowników-z-api)
   - [35.37. Informacje o urządzeniu i sieci](#3537-informacje-o-urządzeniu-i-sieci)
+- [36. Najczęstsze błędy (Wyjątki i błędy kompilacji)](#36-najczęstsze-błędy-wyjątki-i-błędy-kompilacji)
+  - [36.1. NullReferenceException](#361-nullreferenceexception)
+  - [36.2. Błąd XFC0000 (Błąd parsowania XAML)](#362-błąd-xfc0000-błąd-parsowania-xaml)
+  - [36.3. Błąd XFC0009 (Brak właściwości)](#363-błąd-xfc0009-brak-właściwości)
+  - [36.4. MissingMethodException (Brak konstruktora bezparametrowego)](#364-missingmethodexception-brak-konstruktora-bezparametrowego)
+  - [36.5. InvalidOperationException](#365-invalidoperationexception)
+  - [36.6. HttpRequestException](#366-httprequestexception)
+  - [36.7. TaskCanceledException](#367-taskcanceledexception)
+  - [36.8. FileNotFoundException](#368-filenotfoundexception)
+  - [36.9. Błąd CS0103 (Kompilacja)](#369-błąd-cs0103-kompilacja)
+  - [36.10. Błąd CS1061 (Kompilacja)](#3610-błąd-cs1061-kompilacja)
+  - [36.11. FormatException](#3611-formatexception)
+  - [36.12. ArgumentOutOfRangeException](#3612-argumentoutofrangeexception)
+  - [36.13. UnauthorizedAccessException](#3613-unauthorizedaccessexception)
+  - [36.14. InvalidCastException](#3614-invalidcastexception)
+  - [36.15. JsonException (System.Text.Json)](#3615-jsonexception-system.text.json)
+  - [36.16. Błąd NETSDK1005 (Błąd Budowania)](#3616-błąd-netsdk1005-błąd-budowania)
+  - [36.17. Błąd CS0246 (Brak using)](#3617-błąd-cs0246-brak-using)
+  - [36.18. TargetInvocationException (Błędy wiązań i XAML)](#3618-targetinvocationexception-błędy-wiązań-i-xaml)
+  - [36.19. Java.Lang.Exception (Wyjątki specyficzne dla Androida)](#3619-java.lang.exception-wyjątki-specyficzne-dla-androida)
+  - [36.20. TypeLoadException](#3620-typeloadexception)
+
 
 ## 1. Wprowadzenie do .NET MAUI
 
@@ -22919,3 +22941,400 @@ public partial class InfoUrzadzeniaPage : ContentPage
     }
 }
 ```
+
+
+## 36. Najczęstsze błędy (Wyjątki i błędy kompilacji)
+
+Tworząc aplikacje w platformie MAUI (C# oraz XAML) możesz napotkać błędy w czasie kompilacji oraz działaniu na różnych urządzeniach. Poniżej przedstawiamy typowe wyjątki systemowe (Exceptions) wyrzucane przez framework oraz popularne komunikaty błędów widoczne w okienku Output/Error List Visual Studio.
+
+### 36.1. NullReferenceException
+Zgłaszany, gdy kod próbuje wywołać metodę lub uzyskać dostęp do właściwości obiektu (np. kontrolki lub zmiennej modelu), który jest równy `null`.
+
+**❌ Kod powodujący błąd:**
+```csharp
+Label mojLabel = null;
+mojLabel.Text = "Witaj w MAUI";
+```
+**Komunikat błędu:**
+```
+System.NullReferenceException: 'Object reference not set to an instance of an object.'
+```
+**✅ Poprawny kod:**
+```csharp
+Label mojLabel = new Label();
+mojLabel.Text = "Witaj w MAUI";
+```
+Upewnij się, że kontrolka istnieje i została utworzona przed przypisaniem wartości, zwłaszcza jeśli odnosisz się do niej przed wywołaniem `InitializeComponent()`.
+
+### 36.2. Błąd XFC0000 (Błąd parsowania XAML)
+Błąd kompilatora XAML (XAML Compiler), sygnalizujący błędną składnię, brakujący atrybut lub nierozpoznany znacznik w pliku .xaml.
+
+**❌ Kod powodujący błąd:**
+```csharp
+<Label Text="Witaj" FontSize="BłędnyRozmiar" />
+```
+**Komunikat błędu:**
+```
+XFC0000: Cannot convert "BłędnyRozmiar" to type "double"
+```
+**✅ Poprawny kod:**
+```csharp
+<Label Text="Witaj" FontSize="18" />
+```
+Popraw wskazaną przez błąd linijkę w pliku XAML podając wartość o prawidłowym typie oczekiwanym przez framework.
+
+### 36.3. Błąd XFC0009 (Brak właściwości)
+Zgłaszany, gdy wpiszesz w znaczniku XAML atrybut, który nie jest znany kompilatorowi MAUI (częsta literówka w nazwach właściwości).
+
+**❌ Kod powodujący błąd:**
+```csharp
+<Button Label="Zapisz" Clicked="OnZapisz" />
+```
+**Komunikat błędu:**
+```
+XFC0009: No property, BindableProperty, or event found for "Label", or mismatching type between value and property.
+```
+**✅ Poprawny kod:**
+```csharp
+<Button Text="Zapisz" Clicked="OnZapisz" />
+```
+Zamień niewłaściwą nazwę atrybutu (np. `Label`) na poprawną (np. `Text`), zgodnie z dokumentacją kontrolki MAUI.
+
+### 36.4. MissingMethodException (Brak konstruktora bezparametrowego)
+Pojawia się podczas próby nawigacji do strony (lub tworzenia obiektu z XAML), która nie ma publicznego konstruktora bez argumentów.
+
+**❌ Kod powodujący błąd:**
+```csharp
+public partial class MojaStrona : ContentPage {
+    public MojaStrona(int id) { InitializeComponent(); }
+}
+```
+**Komunikat błędu:**
+```
+System.MissingMethodException: 'Constructor on type 'Miniaplikacje.MojaStrona' not found.'
+```
+**✅ Poprawny kod:**
+```csharp
+public partial class MojaStrona : ContentPage {
+    public MojaStrona() { InitializeComponent(); }
+    public MojaStrona(int id) : this() { ... }
+}
+```
+Każda strona tworzona automatycznie z XAML lub podczas standardowej nawigacji musi posiadać publiczny konstruktor bez parametrów.
+
+### 36.5. InvalidOperationException
+Wyjątek ten występuje w różnych scenariuszach w MAUI, najczęściej przy próbie wykonania operacji w niewłaściwym stanie, np. aktualizacji UI z wątku tła na niektórych platformach.
+
+**❌ Kod powodujący błąd:**
+```csharp
+Task.Run(() => {
+    StatusLabel.Text = "Zakończono";
+});
+```
+**Komunikat błędu:**
+```
+System.InvalidOperationException: 'The current thread is not the UI thread.' (Na platformie iOS/Windows)
+```
+**✅ Poprawny kod:**
+```csharp
+Task.Run(() => {
+    MainThread.BeginInvokeOnMainThread(() => {
+        StatusLabel.Text = "Zakończono";
+    });
+});
+```
+Zawsze modyfikuj kontrolki widoku (UI) korzystając z wątku głównego, używając `MainThread.BeginInvokeOnMainThread()`.
+
+### 36.6. HttpRequestException
+Częsty błąd przy komunikacji z API (metody HttpClient). Występuje, gdy serwer nie odpowiada, URL jest błędny lub brakuje połączenia internetowego.
+
+**❌ Kod powodujący błąd:**
+```csharp
+HttpClient client = new HttpClient();
+var odpowiedz = await client.GetStringAsync("http://zlyadres.brak");
+```
+**Komunikat błędu:**
+```
+System.Net.Http.HttpRequestException: 'No such host is known. (zlyadres.brak:80)'
+```
+**✅ Poprawny kod:**
+```csharp
+try {
+    var odpowiedz = await client.GetStringAsync("https://api.github.com");
+} catch (HttpRequestException ex) {
+    await DisplayAlert("Błąd", "Brak połączenia z siecią.", "OK");
+}
+```
+Operacje sieciowe zawsze obejmuj blokiem `try...catch` i sprawdzaj uprzednio połączenie z internetem (np. przez `Connectivity.Current.NetworkAccess`).
+
+### 36.7. TaskCanceledException
+Związany z programowaniem asynchronicznym. Zgłaszany najczęściej, gdy wywołanie `HttpClient` przekroczyło limit czasu (timeout) lub operacja została anulowana za pomocą `CancellationToken`.
+
+**❌ Kod powodujący błąd:**
+```csharp
+HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(1) };
+await client.GetStringAsync("https://wolny-serwer.com");
+```
+**Komunikat błędu:**
+```
+System.Threading.Tasks.TaskCanceledException: 'A task was canceled.'
+```
+**✅ Poprawny kod:**
+```csharp
+try {
+    await client.GetStringAsync("https://wolny-serwer.com");
+} catch (TaskCanceledException) {
+    await DisplayAlert("Błąd", "Przekroczono czas oczekiwania (Timeout).", "OK");
+}
+```
+Zwiększ limit czasu lub obsłuż ten wyjątek (szczególnie na wolnych połączeniach mobilnych), wyświetlając przyjazny komunikat dla użytkownika.
+
+### 36.8. FileNotFoundException
+Pojawia się przy próbie odczytu pliku z pamięci urządzenia (lokalnego Storage), który nie istnieje pod podaną ścieżką.
+
+**❌ Kod powodujący błąd:**
+```csharp
+string path = Path.Combine(FileSystem.AppDataDirectory, "dane.json");
+string json = File.ReadAllText(path);
+```
+**Komunikat błędu:**
+```
+System.IO.FileNotFoundException: 'Could not find file '/data/user/0/.../files/dane.json'.'
+```
+**✅ Poprawny kod:**
+```csharp
+string path = Path.Combine(FileSystem.AppDataDirectory, "dane.json");
+if (File.Exists(path)) {
+    string json = File.ReadAllText(path);
+}
+```
+Przed próbą otwarcia pliku sprawdź metodą `File.Exists()` czy dany plik rzeczywiście tam się znajduje.
+
+### 36.9. Błąd CS0103 (Kompilacja)
+Klasyczny błąd kompilacji, sygnalizujący że zmienna lub nazwa podana w C# nie występuje w bieżącym kontekście lub kontrolka XAML nie ma przypisanego `x:Name`.
+
+**❌ Kod powodujący błąd:**
+```csharp
+WejscieUzytkownika.Text = ""; // Ale kontrolka ma x:Name="PoleWejscia" w XAML
+```
+**Komunikat błędu:**
+```
+CS0103: The name 'WejscieUzytkownika' does not exist in the current context
+```
+**✅ Poprawny kod:**
+```csharp
+PoleWejscia.Text = "";
+```
+Upewnij się, że nazwa zmiennej w pliku C# dokładnie (z uwzględnieniem wielkości liter) zgadza się z atrybutem `x:Name` wpisanym w pliku `.xaml`.
+
+### 36.10. Błąd CS1061 (Kompilacja)
+Zgłaszany, gdy próbujemy odwołać się do metody lub właściwości, która nie istnieje dla danego typu obiektu (często błędne nazwy własności klas MAUI).
+
+**❌ Kod powodujący błąd:**
+```csharp
+Button btn = new Button();
+btn.Title = "Zapisz";
+```
+**Komunikat błędu:**
+```
+CS1061: 'Button' does not contain a definition for 'Title'...
+```
+**✅ Poprawny kod:**
+```csharp
+Button btn = new Button();
+btn.Text = "Zapisz";
+```
+Sprawdź na co pozwala dana kontrolka. W MAUI większość elementów wyświetlających napisy ma właściwość `Text`, a nie `Title` czy `Content`.
+
+### 36.11. FormatException
+Pojawia się w trakcie uruchomienia aplikacji, gdy próbujesz przetworzyć ciąg znaków na inny typ danych (np. liczbę) przy użyciu metody `Parse`, a ciąg zawiera niewłaściwe znaki.
+
+**❌ Kod powodujący błąd:**
+```csharp
+int kwota = int.Parse("100 PLN");
+```
+**Komunikat błędu:**
+```
+System.FormatException: 'Input string was not in a correct format.'
+```
+**✅ Poprawny kod:**
+```csharp
+if (int.TryParse("100 PLN", out int kwota)) {
+    // sukces
+} else {
+    // obsługa błędu wpisywania
+}
+```
+Używaj bezpieczniejszej funkcji `TryParse()` zamiast `Parse()`, szczególnie, gdy parsujesz dane wejściowe pobrane od użytkownika.
+
+### 36.12. ArgumentOutOfRangeException
+Zgłaszany przez kolekcje (np. `List`, `ObservableCollection`), gdy podany numer indeksu nie istnieje (jest mniejszy od 0 lub wykracza poza rozmiar kolekcji).
+
+**❌ Kod powodujący błąd:**
+```csharp
+var o = kolekcja[10]; // gdy kolekcja ma 5 elementów
+```
+**Komunikat błędu:**
+```
+System.ArgumentOutOfRangeException: 'Index was out of range. Must be non-negative and less than the size of the collection.'
+```
+**✅ Poprawny kod:**
+```csharp
+if (kolekcja.Count > 10) {
+    var o = kolekcja[10];
+}
+```
+Kontroluj wielkość kolekcji przy użyciu właściwości `.Count` przed bezpośrednim odwoływaniem się poprzez indeksy.
+
+### 36.13. UnauthorizedAccessException
+Pojawia się na urządzeniach mobilnych, gdy program próbuje zapisać dane, odczytać kontakty lub użyć kamery bez przyznania przez użytkownika odpowiednich uprawnień w manifeście.
+
+**❌ Kod powodujący błąd:**
+```csharp
+var zdjecie = await MediaPicker.CapturePhotoAsync();
+```
+**Komunikat błędu:**
+```
+System.UnauthorizedAccessException: 'Access to the path or media is denied.' (lub podobne błędy systemowe)
+```
+**✅ Poprawny kod:**
+```csharp
+var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+if (status != PermissionStatus.Granted)
+    status = await Permissions.RequestAsync<Permissions.Camera>();
+if (status == PermissionStatus.Granted)
+    var zdjecie = await MediaPicker.CapturePhotoAsync();
+```
+Dla każdej platformy (szczególnie Android/iOS) dodaj uprawnienia w pliku manifestu i poproś o nie użytkownika używając klasy `Permissions` z MAUI.
+
+### 36.14. InvalidCastException
+Występuje w obsłudze zdarzeń, gdy rzutujesz argument `sender` na niewłaściwy typ kontrolki.
+
+**❌ Kod powodujący błąd:**
+```csharp
+void OnKlick(object sender, EventArgs e) {
+    Label klikniety = (Label)sender; // błąd, jeśli to był Button
+}
+```
+**Komunikat błędu:**
+```
+System.InvalidCastException: 'Unable to cast object of type 'Microsoft.Maui.Controls.Button' to type 'Microsoft.Maui.Controls.Label'.'
+```
+**✅ Poprawny kod:**
+```csharp
+void OnKlick(object sender, EventArgs e) {
+    if (sender is Button klikniety) {
+        // tu bezpiecznie używamy 'klikniety' jako Button
+    }
+}
+```
+Używaj operatora `is` do bezpiecznego sprawdzania i rzutowania typów przy obsłudze uniwersalnych zdarzeń współdzielonych między różnymi kontrolkami.
+
+### 36.15. JsonException (System.Text.Json)
+Zgłaszany w procesie konwersji (deserializacji) ciągu JSON pobranego z sieci lub pliku do modelu C#, gdy JSON jest uszkodzony lub brakuje dopasowania typów.
+
+**❌ Kod powodujący błąd:**
+```csharp
+string json = "{ 'nazwa': 'Błędny JSON' }"; // cudzysłów pojedynczy
+var obj = JsonSerializer.Deserialize<Model>(json);
+```
+**Komunikat błędu:**
+```
+System.Text.Json.JsonException: ''{' is invalid after a single quoted string. Expected end of data. LineNumber: 0...'
+```
+**✅ Poprawny kod:**
+```csharp
+string json = "{ \"nazwa\": \"Poprawny JSON\" }";
+try {
+    var obj = JsonSerializer.Deserialize<Model>(json);
+} catch (JsonException) { /* obsługa błędu */ }
+```
+Upewnij się, że odpowiedź z serwera jest prawidłowym obiektem JSON, właściwości w modelu są kompatybilne i poprawnie zdefiniowano pola do konwersji.
+
+### 36.16. Błąd NETSDK1005 (Błąd Budowania)
+Błąd na poziomie narzędzi kompilacji systemu .NET informujący o braku pliku konfiguracyjnego dla paczek (NuGet) używanych w projekcie.
+
+**❌ Kod powodujący błąd:**
+```csharp
+(Błąd pojawia się po pobraniu repozytorium z gita przed zrobieniem Restore)
+```
+**Komunikat błędu:**
+```
+NETSDK1005: Assets file '.../obj/project.assets.json' doesn't exist. Run a NuGet package restore to generate this file.
+```
+**✅ Poprawny kod:**
+```csharp
+dotnet restore
+```
+Kliknij prawym przyciskiem myszy na rozwiązanie (Solution) w Visual Studio i wybierz `Restore NuGet Packages` lub odbuduj projekt (Rebuild).
+
+### 36.17. Błąd CS0246 (Brak using)
+Oznacza problem ze znalezieniem typu, klasy lub narzędzia, prawdopodobnie z powodu braku odwołania na górze pliku do właściwej przestrzeni nazw.
+
+**❌ Kod powodujący błąd:**
+```csharp
+ObservableCollection<string> napisy;
+```
+**Komunikat błędu:**
+```
+CS0246: The type or namespace name 'ObservableCollection<>' could not be found...
+```
+**✅ Poprawny kod:**
+```csharp
+using System.Collections.ObjectModel;
+
+ObservableCollection<string> napisy;
+```
+Kliknij na podkreślony na czerwono element i wywołaj sugestie Visual Studio (zwykle żarówka lub skrót Ctrl+Kropka), aby automatycznie dodać brakujący `using`.
+
+### 36.18. TargetInvocationException (Błędy wiązań i XAML)
+Wyjątek opakowujący inny wyjątek. Często występuje podczas refleksji i wczytywania interfejsu (metoda `InitializeComponent()`), kryjąc wewnątrz prawdziwą przyczynę awarii.
+
+**❌ Kod powodujący błąd:**
+```csharp
+<!-- Błędne przypisanie w konstruktorze lub wiązaniu wewnątrz XAML -->
+```
+**Komunikat błędu:**
+```
+System.Reflection.TargetInvocationException: 'Exception has been thrown by the target of an invocation.'
+```
+**✅ Poprawny kod:**
+```csharp
+// Należy zbadać InnerException
+```
+Gdy spotkasz ten wyjątek, kliknij opcję `View Detail` (lub w inspectora wyjątków) i sprawdź zawartość obiektu `InnerException`, która wskaże dokładny kod, plik lub XAML odpowiedzialny za błąd.
+
+### 36.19. Java.Lang.Exception (Wyjątki specyficzne dla Androida)
+Gdy tworzysz aplikację MAUI i uruchamiasz ją na Androidzie, błędy pochodzące od samego podsystemu operacyjnego Android (a nie .NET) będą owinięte w wyjątki Java.
+
+**❌ Kod powodujący błąd:**
+```csharp
+// Operacja specyficzna dla systemu Android kończąca się niepowodzeniem
+```
+**Komunikat błędu:**
+```
+Java.Lang.IllegalArgumentException: '...' (lub podobny Java Exception)
+```
+**✅ Poprawny kod:**
+```csharp
+// Poprawienie natywnej logiki interfejsu
+```
+Są to typowe błędy ekosystemu Androida. Należy skopiować komunikat błędu (InnerException) do wyszukiwarki dopisując hasła `Android MAUI`, by odnaleźć błąd związany z użyciem platformy natywnej.
+
+### 36.20. TypeLoadException
+Zgłaszany, gdy środowisko wykonawcze (runtime) MAUI nie potrafi odnaleźć typu (klasy lub struktury) załadowanego ze skompilowanego zestawu (assemblies) lub biblioteki zewnętrznej NuGet.
+
+**❌ Kod powodujący błąd:**
+```csharp
+// Aktualizacja frameworku do nowszej wersji, pozostawienie starych bibliotek niezgodnych z .NET 8
+```
+**Komunikat błędu:**
+```
+System.TypeLoadException: 'Could not load type 'X' from assembly 'Y'.'
+```
+**✅ Poprawny kod:**
+```csharp
+Należy zaktualizować paczki NuGet do nowszej wersji zgodnej z MAUI / .NET 8.
+```
+Wykonaj komendę `Clean` (Wyczyść projekt) na całym Solution, zaktualizuj paczki NuGet, usuń foldery `bin` i `obj`, a następnie przebuduj całość od zera.
+

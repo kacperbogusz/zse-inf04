@@ -401,6 +401,28 @@
   - [50.12. Stan bieżący i zatwierdzony](#5012-stan-bieżący-i-zatwierdzony)
   - [50.13. Atlas najważniejszych właściwości WPF](#5013-atlas-najważniejszych-właściwości-wpf)
   - [50.14. Atlas najważniejszych zdarzeń WPF](#5014-atlas-najważniejszych-zdarzeń-wpf)
+- [51. Najczęstsze błędy (Wyjątki i błędy kompilacji)](#51-najczęstsze-błędy-wyjątki-i-błędy-kompilacji)
+  - [51.1. NullReferenceException](#511-nullreferenceexception)
+  - [51.2. XamlParseException](#512-xamlparseexception)
+  - [51.3. InvalidOperationException (Aktualizacja UI z innego wątku)](#513-invalidoperationexception-aktualizacja-ui-z-innego-wątku)
+  - [51.4. FormatException](#514-formatexception)
+  - [51.5. Błąd CS0103 (Kompilacja)](#515-błąd-cs0103-kompilacja)
+  - [51.6. Błąd CS1061 (Kompilacja)](#516-błąd-cs1061-kompilacja)
+  - [51.7. Błąd CS0246 (Kompilacja)](#517-błąd-cs0246-kompilacja)
+  - [51.8. InvalidCastException](#518-invalidcastexception)
+  - [51.9. ArgumentNullException](#519-argumentnullexception)
+  - [51.10. FileNotFoundException](#5110-filenotfoundexception)
+  - [51.11. IndexOutOfRangeException](#5111-indexoutofrangeexception)
+  - [51.12. ArgumentOutOfRangeException](#5112-argumentoutofrangeexception)
+  - [51.13. XamlParseException (Brak handlera zdarzeń)](#5113-xamlparseexception-brak-handlera-zdarzeń)
+  - [51.14. BindingExpression path error (Ostrzeżenie Output Window)](#5114-bindingexpression-path-error-ostrzeżenie-output-window)
+  - [51.15. UnauthorizedAccessException](#5115-unauthorizedaccessexception)
+  - [51.16. DivideByZeroException](#5116-dividebyzeroexception)
+  - [51.17. StackOverflowException](#5117-stackoverflowexception)
+  - [51.18. OutOfMemoryException](#5118-outofmemoryexception)
+  - [51.19. InvalidOperationException (Kolekcje w pętli foreach)](#5119-invalidoperationexception-kolekcje-w-pętli-foreach)
+  - [51.20. NotSupportedException](#5120-notsupportedexception)
+
 
 ---
 
@@ -29553,3 +29575,426 @@ private void ZmienRozmiar_Click(object sender, RoutedEventArgs e)
 ~~~
 
 Zdarzenia `Preview...` są zdarzeniami tunelowymi. Najpierw przechodzą od okna w stronę elementu docelowego, a dopiero później zwykłe zdarzenie może przejść w drugą stronę. Dzięki temu można przechwycić klawisz albo kliknięcie wcześniej, zanim obsłuży je konkretna kontrolka.
+
+
+## 51. Najczęstsze błędy (Wyjątki i błędy kompilacji)
+
+Poniższa lista zawiera rzeczywiste wyjątki czasu wykonania platformy .NET oraz błędy kompilacji (kody CS), z którymi najczęściej spotkasz się w okienku Output lub Error List w programie Visual Studio.
+
+### 51.1. NullReferenceException
+Jeden z najczęstszych błędów w C#. Występuje, gdy kod próbuje odwołać się do składowej obiektu, który ma wartość `null`.
+
+**❌ Kod powodujący błąd:**
+```csharp
+Button mojPrzycisk = null;
+mojPrzycisk.Content = "Kliknij";
+```
+**Komunikat błędu:**
+```
+System.NullReferenceException: 'Object reference not set to an instance of an object.'
+```
+**✅ Poprawny kod:**
+```csharp
+Button mojPrzycisk = new Button();
+mojPrzycisk.Content = "Kliknij";
+// Lub sprawdzenie null: if(mojPrzycisk != null) ...
+```
+Należy zawsze upewnić się, że obiekt został zainicjalizowany (`new`) przed odwołaniem się do jego właściwości lub metod.
+
+### 51.2. XamlParseException
+Wyjątek zgłaszany w trakcie ładowania pliku XAML (często przy uruchamianiu okna `InitializeComponent()`), gdy struktura dokumentu jest niepoprawna lub brakuje wymaganego zasobu.
+
+**❌ Kod powodujący błąd:**
+```csharp
+<Window ...>
+    <Button Content="Test" Style="{StaticResource BrakujacyStyl}"/>
+</Window>
+```
+**Komunikat błędu:**
+```
+System.Windows.Markup.XamlParseException: 'Provide value on 'System.Windows.Baml2006.TypeConverterMarkupExtension' threw an exception.'
+```
+**✅ Poprawny kod:**
+```csharp
+<Window.Resources>
+    <Style x:Key="BrakujacyStyl" TargetType="Button" />
+</Window.Resources>
+<Button Content="Test" Style="{StaticResource BrakujacyStyl}"/>
+```
+Błąd zazwyczaj zawiera szczegóły (tzw. InnerException) wskazujące konkretny wiersz w pliku XAML. Należy naprawić literówkę w zasobach lub usunąć niepoprawny znacznik.
+
+### 51.3. InvalidOperationException (Aktualizacja UI z innego wątku)
+W WPF elementy interfejsu (UI) mogą być modyfikowane tylko z głównego wątku (tzw. wątku UI). Próba ich edycji z innego wątku (np. z asynchronicznego zadania Task bez powrotu do UI) powoduje awarię.
+
+**❌ Kod powodujący błąd:**
+```csharp
+Task.Run(() => {
+    txtStatus.Text = "Gotowe!";
+});
+```
+**Komunikat błędu:**
+```
+System.InvalidOperationException: 'The calling thread cannot access this object because a different thread owns it.'
+```
+**✅ Poprawny kod:**
+```csharp
+Task.Run(() => {
+    Application.Current.Dispatcher.Invoke(() => {
+        txtStatus.Text = "Gotowe!";
+    });
+});
+```
+Należy użyć mechanizmu `Dispatcher.Invoke` (lub `BeginInvoke`), aby przekazać operację modyfikacji interfejsu na odpowiedni wątek.
+
+### 51.4. FormatException
+Pojawia się, gdy format argumentu nie spełnia wymagań metody parsującej, na przykład przy próbie zamiany liter na liczbę.
+
+**❌ Kod powodujący błąd:**
+```csharp
+int wiek = int.Parse("Dwadzieścia");
+```
+**Komunikat błędu:**
+```
+System.FormatException: 'Input string was not in a correct format.'
+```
+**✅ Poprawny kod:**
+```csharp
+if (int.TryParse("Dwadzieścia", out int wiek))
+{
+    // parsowanie udane
+}
+else
+{
+    // obsługa błędu
+}
+```
+Zaleca się używanie metod `TryParse`, które nie rzucają wyjątku w przypadku błędu formatu, lecz zwracają wartość logiczną `false`.
+
+### 51.5. Błąd CS0103 (Kompilacja)
+Błąd kompilacji występujący, gdy użyta nazwa zmiennej, kontrolki lub metody nie istnieje w bieżącym pliku ani kontekście.
+
+**❌ Kod powodujący błąd:**
+```csharp
+btnWyslij.Content = "Wyślij"; // Brak elementu o x:Name="btnWyslij" w XAML
+```
+**Komunikat błędu:**
+```
+CS0103: The name 'btnWyslij' does not exist in the current context
+```
+**✅ Poprawny kod:**
+```csharp
+<!-- W pliku XAML: -->
+<Button x:Name="btnWyslij" />
+
+// W C#:
+btnWyslij.Content = "Wyślij";
+```
+Upewnij się, że kontrolka w XAML ma ustawiony atrybut `x:Name` zgodny z nazwą używaną w C# (wielkość liter ma znaczenie!).
+
+### 51.6. Błąd CS1061 (Kompilacja)
+Pojawia się, gdy typ (np. obiekt danej klasy) nie zawiera definicji wywoływanej metody lub właściwości.
+
+**❌ Kod powodujący błąd:**
+```csharp
+string tekst = "Witaj";
+tekst.ReverseString();
+```
+**Komunikat błędu:**
+```
+CS1061: 'string' does not contain a definition for 'ReverseString'...
+```
+**✅ Poprawny kod:**
+```csharp
+string tekst = "Witaj";
+char[] tablica = tekst.ToCharArray();
+Array.Reverse(tablica);
+string wynik = new string(tablica);
+```
+Należy sprawdzić dokumentację dla danego typu. Jeśli była to własna klasa, sprawdź literówki lub dodaj brakującą metodę/właściwość.
+
+### 51.7. Błąd CS0246 (Kompilacja)
+Oznacza problem z odnalezieniem typu lub przestrzeni nazw (namespace). Zwykle to efekt braku instrukcji `using` na górze pliku.
+
+**❌ Kod powodujący błąd:**
+```csharp
+ObservableCollection<string> lista;
+```
+**Komunikat błędu:**
+```
+CS0246: The type or namespace name 'ObservableCollection<>' could not be found (are you missing a using directive or an assembly reference?)
+```
+**✅ Poprawny kod:**
+```csharp
+using System.Collections.ObjectModel;
+
+ObservableCollection<string> lista;
+```
+Dodaj brakującą przestrzeń nazw poprzez `using` na początku pliku lub wykorzystaj autouzupełnianie w Visual Studio (Ctrl + .).
+
+### 51.8. InvalidCastException
+Wyjątek zgłaszany w czasie działania programu, gdy próbuje się rzutować obiekt na typ, z którym nie jest on kompatybilny.
+
+**❌ Kod powodujący błąd:**
+```csharp
+object liczba = 10;
+string tekst = (string)liczba;
+```
+**Komunikat błędu:**
+```
+System.InvalidCastException: 'Unable to cast object of type 'System.Int32' to type 'System.String'.'
+```
+**✅ Poprawny kod:**
+```csharp
+object liczba = 10;
+string tekst = liczba.ToString();
+```
+Należy rzutować obiekty tylko na takie typy, w których rzeczywiście zostały utworzone. Do konwersji używaj metod takich jak `ToString()`, `Convert.ToInt32()` itp.
+
+### 51.9. ArgumentNullException
+Podobne do `NullReferenceException`, ale zgłaszane, gdy null został jawnie przekazany do metody, która nie akceptuje takich wartości.
+
+**❌ Kod powodujący błąd:**
+```csharp
+string plik = null;
+File.ReadAllText(plik);
+```
+**Komunikat błędu:**
+```
+System.ArgumentNullException: 'Value cannot be null. (Parameter 'path')'
+```
+**✅ Poprawny kod:**
+```csharp
+string plik = "dane.txt";
+if (plik != null)
+{
+    File.ReadAllText(plik);
+}
+```
+Należy weryfikować zmienne przed przekazaniem ich jako argumenty do wbudowanych lub zewnętrznych funkcji.
+
+### 51.10. FileNotFoundException
+Zgłaszany przy próbie odczytu pliku, który fizycznie nie istnieje pod wskazaną ścieżką.
+
+**❌ Kod powodujący błąd:**
+```csharp
+string tekst = File.ReadAllText("brak_pliku.txt");
+```
+**Komunikat błędu:**
+```
+System.IO.FileNotFoundException: 'Could not find file '.../brak_pliku.txt'.'
+```
+**✅ Poprawny kod:**
+```csharp
+if (File.Exists("plik.txt"))
+{
+    string tekst = File.ReadAllText("plik.txt");
+}
+```
+Przed operacją na plikach zawsze sprawdzaj ich istnienie za pomocą `File.Exists()`. Pamiętaj również o właściwych ścieżkach (względne vs bezwzględne).
+
+### 51.11. IndexOutOfRangeException
+Pojawia się, gdy program próbuje pobrać element tablicy po indeksie, który wykracza poza jej długość.
+
+**❌ Kod powodujący błąd:**
+```csharp
+int[] tablica = { 1, 2 };
+int trzeciElement = tablica[2];
+```
+**Komunikat błędu:**
+```
+System.IndexOutOfRangeException: 'Index was outside the bounds of the array.'
+```
+**✅ Poprawny kod:**
+```csharp
+int[] tablica = { 1, 2 };
+if (tablica.Length > 2)
+{
+    int trzeciElement = tablica[2];
+}
+```
+Upewnij się, że użyty indeks wynosi od 0 do `Length - 1`.
+
+### 51.12. ArgumentOutOfRangeException
+Podobne do IndexOutOfRangeException, ale stosowane przez metody kolekcje (np. `List<T>`), gdy podany argument (często indeks) przekracza akceptowalny zakres.
+
+**❌ Kod powodujący błąd:**
+```csharp
+List<string> lista = new List<string>();
+lista.RemoveAt(0);
+```
+**Komunikat błędu:**
+```
+System.ArgumentOutOfRangeException: 'Index was out of range. Must be non-negative and less than the size of the collection.'
+```
+**✅ Poprawny kod:**
+```csharp
+List<string> lista = new List<string>();
+if (lista.Count > 0)
+{
+    lista.RemoveAt(0);
+}
+```
+Zanim wywołasz metodę zależną od zawartości kolekcji, upewnij się, że nie jest ona pusta (Count > 0).
+
+### 51.13. XamlParseException (Brak handlera zdarzeń)
+Błąd, który zdarza się bardzo często, gdy skopiujemy kontrolkę z XAML i zapomnimy skopiować metody C# lub usuniemy metodę C# bez usunięcia atrybutu z XAML.
+
+**❌ Kod powodujący błąd:**
+```csharp
+<!-- XAML posiada Click, ale w kodzie C# nie ma takiej metody -->
+<Button Click="Przycisk_Click" />
+```
+**Komunikat błędu:**
+```
+System.Windows.Markup.XamlParseException: 'Failed to create a 'Click' from the text 'Przycisk_Click'.' Line number '...'
+```
+**✅ Poprawny kod:**
+```csharp
+<!-- Jeśli nie ma metody, usunąć atrybut z XAML -->
+<Button />
+```
+Znajdź w podanej w błędzie linii XAML zdarzenie (np. Click="...") i usuń je lub wygeneruj metodę w pliku `.xaml.cs`.
+
+### 51.14. BindingExpression path error (Ostrzeżenie Output Window)
+To błąd logiczny, który nie powoduje zamknięcia aplikacji, ale sprawia, że dane (Binding) się nie wyświetlają. Wynika z podania niewłaściwej nazwy właściwości w XAML.
+
+**❌ Kod powodujący błąd:**
+```csharp
+<TextBlock Text="{Binding Nazwiskoooo}" />
+```
+**Komunikat błędu:**
+```
+System.Windows.Data Error: 40 : BindingExpression path error: 'Nazwiskoooo' property not found on 'object' ''Person' (HashCode=...)'
+```
+**✅ Poprawny kod:**
+```csharp
+<TextBlock Text="{Binding Nazwisko}" />
+```
+Należy otworzyć okno "Output" w Visual Studio w trakcie działania aplikacji, znaleźć błąd Bindingu i poprawić literówkę w atrybucie `Binding`.
+
+### 51.15. UnauthorizedAccessException
+Pojawia się, gdy próbujemy modyfikować plik systemowy lub plik tylko do odczytu bez odpowiednich uprawnień.
+
+**❌ Kod powodujący błąd:**
+```csharp
+File.WriteAllText("C:\\Windows\\System32\\plik.txt", "dane");
+```
+**Komunikat błędu:**
+```
+System.UnauthorizedAccessException: 'Access to the path '...' is denied.'
+```
+**✅ Poprawny kod:**
+```csharp
+// Wybierz katalog, do którego użytkownik ma prawa zapisu:
+string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+File.WriteAllText(Path.Combine(path, "plik.txt"), "dane");
+```
+Pisz i czytaj dane z folderów dozwolonych (np. Moje Dokumenty, AppData) lub upewnij się, że program został uruchomiony jako administrator.
+
+### 51.16. DivideByZeroException
+Zgłaszany przy próbie podzielenia liczby całkowitej przez zero.
+
+**❌ Kod powodujący błąd:**
+```csharp
+int a = 10;
+int b = 0;
+int wynik = a / b;
+```
+**Komunikat błędu:**
+```
+System.DivideByZeroException: 'Attempted to divide by zero.'
+```
+**✅ Poprawny kod:**
+```csharp
+int a = 10;
+int b = 0;
+if (b != 0)
+    int wynik = a / b;
+```
+Zabezpieczaj kod wykonujący dzielenie poprzez wcześniejsze sprawdzenie czy mianownik różni się od zera.
+
+### 51.17. StackOverflowException
+Pojawia się (często zawieszając program natychmiast), gdy stos wywołań zostanie przepełniony. Najczęściej powoduje go nieskończona rekurencja lub błędne wywoływanie zdarzeń wewnątrz pętli.
+
+**❌ Kod powodujący błąd:**
+```csharp
+public int Wiek
+{
+    get { return Wiek; } // Odwołuje się znów do właściwości zamiast do pola
+}
+```
+**Komunikat błędu:**
+```
+Process is terminated due to StackOverflowException.
+```
+**✅ Poprawny kod:**
+```csharp
+private int _wiek;
+public int Wiek
+{
+    get { return _wiek; }
+}
+```
+Szukaj nieskończonych pętli w akcesorach własności (getter/setter) lub nieskończonej rekurencji. Upewnij się, że modyfikacja danych w zdarzeniu `TextChanged` nie powoduje kolejnego zdarzenia `TextChanged`.
+
+### 51.18. OutOfMemoryException
+Wyjątek informujący o wyczerpaniu dostępnej pamięci operacyjnej.
+
+**❌ Kod powodujący błąd:**
+```csharp
+List<byte[]> duzeDane = new List<byte[]>();
+while(true) duzeDane.Add(new byte[1000000]);
+```
+**Komunikat błędu:**
+```
+System.OutOfMemoryException: 'Exception of type 'System.OutOfMemoryException' was thrown.'
+```
+**✅ Poprawny kod:**
+```csharp
+// Poprawna logika z ograniczeniem przydzielania pamięci
+// oraz zwalnianiem obiektów lub tablic, których już nie potrzebujemy.
+```
+Zoptymalizuj przetwarzanie dużych plików. Unikaj ładowania wszystkiego naraz (np. wielkich list lub obrazów bez optymalizacji rozdzielczości).
+
+### 51.19. InvalidOperationException (Kolekcje w pętli foreach)
+Występuje podczas użycia instrukcji `foreach`, jeśli modyfikujemy kolekcję podczas przeglądania (dodajemy lub usuwamy z niej elementy).
+
+**❌ Kod powodujący błąd:**
+```csharp
+foreach (var item in lista)
+{
+    if (item == "usun") lista.Remove(item);
+}
+```
+**Komunikat błędu:**
+```
+System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+```
+**✅ Poprawny kod:**
+```csharp
+for (int i = lista.Count - 1; i >= 0; i--)
+{
+    if (lista[i] == "usun") lista.RemoveAt(i);
+}
+```
+Zamiast `foreach` użyj tradycyjnej pętli `for` (najlepiej idąc od tyłu `i--`, aby indeksy nie ulegały przesunięciu po usunięciu elementu).
+
+### 51.20. NotSupportedException
+Zgłaszany przy użyciu metod klasy, która nie obsługuje wybranej operacji (np. modyfikowanie tablicy o stałym rozmiarze używając interfejsów kolekcji).
+
+**❌ Kod powodujący błąd:**
+```csharp
+int[] tablica = { 1, 2 };
+((IList)tablica).Add(3);
+```
+**Komunikat błędu:**
+```
+System.NotSupportedException: 'Collection was of a fixed size.'
+```
+**✅ Poprawny kod:**
+```csharp
+List<int> lista = new List<int> { 1, 2 };
+lista.Add(3);
+```
+W przypadku konieczności dynamicznego dodawania/usuwania elementów wybieraj `List<T>` zamiast zwykłych tablic konwertowanych na interfejsy.
+

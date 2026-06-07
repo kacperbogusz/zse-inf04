@@ -256,6 +256,28 @@
   - [26.43. System rezerwacji miejsc w kinie (Siatka miejsc)](#2643-system-rezerwacji-miejsc-w-kinie-siatka-miejsc)
   - [26.44. Akordeon FAQ z wyszukiwarką pytań](#2644-akordeon-faq-z-wyszukiwarką-pytań)
   - [26.45. Wyszukiwarka użytkowników z API](#2645-wyszukiwarka-użytkowników-z-api)
+- [27. Najczęstsze błędy (Wyjątki i błędy konsolowe)](#27-najczęstsze-błędy-wyjątki-i-błędy-konsolowe)
+  - [27.1. SyntaxError: Unexpected token](#271-syntaxerror-unexpected-token)
+  - [27.2. TypeError: Cannot read properties of undefined](#272-typeerror-cannot-read-properties-of-undefined)
+  - [27.3. ReferenceError: X is not defined](#273-referenceerror-x-is-not-defined)
+  - [27.4. Warning: Each child in a list should have a unique "key" prop](#274-warning-each-child-in-a-list-should-have-a-unique-key-prop)
+  - [27.5. Error: Rendered fewer hooks than expected](#275-error-rendered-fewer-hooks-than-expected)
+  - [27.6. Error: Invalid hook call](#276-error-invalid-hook-call)
+  - [27.7. Error: Too many re-renders](#277-error-too-many-re-renders)
+  - [27.8. Error: Objects are not valid as a React child](#278-error-objects-are-not-valid-as-a-react-child)
+  - [27.9. Warning: A component is changing an uncontrolled input to be controlled](#279-warning-a-component-is-changing-an-uncontrolled-input-to-be-controlled)
+  - [27.10. Module not found: Can't resolve](#2710-module-not-found-can't-resolve)
+  - [27.11. TypeError: Failed to fetch](#2711-typeerror-failed-to-fetch)
+  - [27.12. CORS error: Access-Control-Allow-Origin](#2712-cors-error-access-control-allow-origin)
+  - [27.13. TypeError: X is not a function](#2713-typeerror-x-is-not-a-function)
+  - [27.14. Error: Element type is invalid](#2714-error-element-type-is-invalid)
+  - [27.15. Warning: React does not recognize the prop on a DOM element](#2715-warning-react-does-not-recognize-the-prop-on-a-dom-element)
+  - [27.16. TypeError: Assignment to constant variable](#2716-typeerror-assignment-to-constant-variable)
+  - [27.17. Unhandled Promise Rejection](#2717-unhandled-promise-rejection)
+  - [27.18. SyntaxError: Cannot use import statement outside a module](#2718-syntaxerror-cannot-use-import-statement-outside-a-module)
+  - [27.19. JSON.parse error: Unexpected token](#2719-json.parse-error-unexpected-token)
+  - [27.20. Error: Minified React error](#2720-error-minified-react-error)
+
 
 ## 1. Wprowadzenie
 
@@ -12401,3 +12423,394 @@ export default App;
 ```
 
 ---
+
+
+## 27. Najczęstsze błędy (Wyjątki i błędy konsolowe)
+
+W procesie tworzenia aplikacji we frameworku React i języku JavaScript najczęściej spotyka się błędy w samej konsoli przeglądarki (Developer Tools) lub w narzędziu bundlującym (Vite/Babel) ukazanym w terminalu. Zrozumienie powyższych czerwonych komunikatów pozwala sprawnie radzić sobie z awariami interfejsu.
+
+### 27.1. SyntaxError: Unexpected token
+Jeden z najczęstszych błędów początkujących w React. Oznacza niezgodność składni (zazwyczaj JSX) lub próbę napisania czystego HTML zamiast poprawnego JSX w nieodpowiednim pliku.
+
+**❌ Kod powodujący błąd:**
+```js
+const el = <div class="kontener">Witaj</div>;
+```
+**Komunikat w konsoli:**
+```
+SyntaxError: Unexpected token '<' (jeśli plik nie jest skompilowany jako JSX/TSX)
+```
+**✅ Poprawny kod:**
+```js
+const el = <div className="kontener">Witaj</div>; // i upewnij się, że plik ma rozszerzenie .jsx/.tsx
+```
+Upewnij się, że używasz odpowiedniego rozszerzenia pliku dla Babel lub Vite (.jsx) i pamiętaj, że JSX wymaga używania `className` zamiast `class`.
+
+### 27.2. TypeError: Cannot read properties of undefined
+Występuje powszechnie przy pobieraniu danych ze stanu lub API, gdy próbujemy odwołać się do pola wewnątrz obiektu, który jeszcze nie został załadowany i ma wartość `undefined`.
+
+**❌ Kod powodujący błąd:**
+```js
+function Profil({ user }) {
+  return <div>{user.name}</div>; // jeśli user jest undefined, to rzuci wyjątek
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+```
+**✅ Poprawny kod:**
+```js
+function Profil({ user }) {
+  return <div>{user?.name || 'Brak danych'}</div>;
+}
+```
+Należy sprawdzać istnienie danych przed renderowaniem, na przykład używając operatora opcjonalnego wywołania (`?.`) lub warunkowego (&&).
+
+### 27.3. ReferenceError: X is not defined
+Pojawia się, gdy używamy w kodzie zmiennej, komponentu lub funkcji, której nie zaimportowaliśmy na początku pliku lub nie zadeklarowaliśmy.
+
+**❌ Kod powodujący błąd:**
+```js
+function App() {
+  return <Header />;
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught ReferenceError: Header is not defined
+```
+**✅ Poprawny kod:**
+```js
+import Header from './Header';
+
+function App() {
+  return <Header />;
+}
+```
+Skopiuj nazwę błędu i sprawdź, czy dany element został poprawnie zaincludowany poleceniem `import`.
+
+### 27.4. Warning: Each child in a list should have a unique "key" prop
+Ostrzeżenie w konsoli od samego Reacta (na żółto). Zgłaszane podczas renderowania listy elementów z tablicy w przypadku braku unikalnego klucza dla każdego z nich.
+
+**❌ Kod powodujący błąd:**
+```js
+{zadania.map(zadanie => (<li>{zadanie.nazwa}</li>))}
+```
+**Komunikat w konsoli:**
+```
+Warning: Each child in a list should have a unique "key" prop.
+```
+**✅ Poprawny kod:**
+```js
+{zadania.map(zadanie => (<li key={zadanie.id}>{zadanie.nazwa}</li>))}
+```
+Dodaj własność `key` do najwyższego elementu zwracanego z funkcji `map()`. Unikaj używania indeksu tablicy jako klucza, jeśli elementy mogą zmieniać swoją kolejność.
+
+### 27.5. Error: Rendered fewer hooks than expected
+Zgłaszany przez React, gdy hooki (np. `useState`, `useEffect`) zostaną wywołane warunkowo lub wewnątrz pętli. Psuje to mechanizm wewnętrzny śledzenia stanu Reacta.
+
+**❌ Kod powodujący błąd:**
+```js
+if (czyZalogowany) {
+  const [imie, setImie] = useState('');
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+```
+**✅ Poprawny kod:**
+```js
+const [imie, setImie] = useState('');
+if (czyZalogowany) { /* logika */ }
+```
+Hooki muszą zawsze być deklarowane na samym początku (top-level) komponentu funkcyjnego, a nie w blokach `if` czy `for`.
+
+### 27.6. Error: Invalid hook call
+Pojawia się, gdy wywołasz hook Reacta poza ciałem komponentu funkcyjnego, lub wewnątrz zwykłej funkcji JavaScript, która nie jest customowym hookiem.
+
+**❌ Kod powodujący błąd:**
+```js
+function pomocnicza() {
+  useEffect(() => { ... });
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Invalid hook call. Hooks can only be called inside of the body of a function component.
+```
+**✅ Poprawny kod:**
+```js
+function usePomocnicza() { // Custom Hook
+  useEffect(() => { ... });
+}
+```
+Upewnij się, że nazwa funkcji wywołującej hooka zaczyna się od 'use' (np. `useWindowSize`), i że masz tylko jedną kopię Reacta w `node_modules`.
+
+### 27.7. Error: Too many re-renders
+Krytyczny błąd blokujący aplikację. Oznacza nieskończoną pętlę renderowania: komponent aktualizuje stan, co wymusza renderowanie, które znów aktualizuje stan.
+
+**❌ Kod powodujący błąd:**
+```js
+function Przycisk() {
+  const [licznik, setLicznik] = useState(0);
+  return <button onClick={setLicznik(licznik + 1)}>Klik</button>; // od razu się wywołuje
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+```
+**✅ Poprawny kod:**
+```js
+function Przycisk() {
+  const [licznik, setLicznik] = useState(0);
+  return <button onClick={() => setLicznik(licznik + 1)}>Klik</button>;
+}
+```
+Upewnij się, że do handlerów zdarzeń (jak `onClick`) przekazujesz funkcję (np. arrow function `() =>`), a nie natychmiastowe jej wywołanie.
+
+### 27.8. Error: Objects are not valid as a React child
+Występuje, gdy spróbujesz wyrenderować cały obiekt (np. z API) bezpośrednio w drzewie JSX, zamiast jego konkretnych tekstowych właściwości.
+
+**❌ Kod powodujący błąd:**
+```js
+const dane = { tytul: 'Test' };
+return <div>{dane}</div>;
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Objects are not valid as a React child (found: object with keys {tytul}). If you meant to render a collection of children, use an array instead.
+```
+**✅ Poprawny kod:**
+```js
+const dane = { tytul: 'Test' };
+return <div>{dane.tytul}</div>;
+```
+Wybierz konkretne pole typu prostego (string/number), np. `.nazwa` w obiekcie.
+
+### 27.9. Warning: A component is changing an uncontrolled input to be controlled
+Zgłaszany przez formularze, gdy wartość początkowa (np. `value={stan}`) wynosi na początku `undefined` (input niekontrolowany), a następnie zmienia się na string (input kontrolowany).
+
+**❌ Kod powodujący błąd:**
+```js
+const [tekst, setTekst] = useState();
+return <input value={tekst} onChange={e => setTekst(e.target.value)} />;
+```
+**Komunikat w konsoli:**
+```
+Warning: A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value.
+```
+**✅ Poprawny kod:**
+```js
+const [tekst, setTekst] = useState(''); // pusty string zamiast undefined
+return <input value={tekst} onChange={e => setTekst(e.target.value)} />;
+```
+Zawsze podawaj wartość domyślną podczas inicjalizacji `useState`, np. puste ciągi znaków `useState('')`.
+
+### 27.10. Module not found: Can't resolve
+Błąd paczkowarki (Vite/Webpack), mówiący o tym, że podany w imporcie plik ścieżki nie istnieje, ma złą wielkość znaków lub nie zainstalowano pakietu NPM.
+
+**❌ Kod powodujący błąd:**
+```js
+import Header from './header';
+```
+**Komunikat w konsoli:**
+```
+Module not found: Error: Can't resolve './header' in '/src/components'
+```
+**✅ Poprawny kod:**
+```js
+import Header from './Header'; // duża litera
+```
+Sprawdź dokładnie nazwę pliku, zwracając uwagę na wielkość liter (Linux/Mac rozróżnia wielkość znaków), lub wykonaj `npm install [pakiet]`.
+
+### 27.11. TypeError: Failed to fetch
+Oznacza, że żądanie sieciowe z API w ogóle nie opuściło przeglądarki lub zostało całkowicie zablokowane ze względu na awarię sieci, brak internetu, błędy CORS lub po prostu serwer jest wyłączony.
+
+**❌ Kod powodujący błąd:**
+```js
+fetch('http://nieistniejacy-serwer.lokalny')
+  .then(res => res.json())
+```
+**Komunikat w konsoli:**
+```
+TypeError: Failed to fetch
+```
+**✅ Poprawny kod:**
+```js
+fetch('http://localhost:3000/api')
+  .catch(err => console.error("Serwer wyłączony lub awaria sieci:", err));
+```
+Upewnij się, że lokalny serwer działa poprawnie i adres do API jest bezbłędny. Obsłuż zawsze stan błędu w sekcji `.catch()` bloków Promise.
+
+### 27.12. CORS error: Access-Control-Allow-Origin
+Błąd zgłaszany w konsoli przez przeglądarkę dla celów bezpieczeństwa, gdy próbujemy uderzać (Fetch/Axios) do zewnętrznego serwera, który zabrania żądań z innej domeny.
+
+**❌ Kod powodujący błąd:**
+```js
+// Kod wysyłający strzał do API z innej domeny bez odpowiednich nagłówków na serwerze
+```
+**Komunikat w konsoli:**
+```
+Access to fetch at 'https://api.strona.com' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+**✅ Poprawny kod:**
+```js
+// Poprawka następuje najczęściej w kodzie Backend-u, np. dodanie paczki cors w Express.js
+```
+Należy skonfigurować Backend aby wysyłał nagłówki CORS, włączenie proxy serwera w Vite lub użycie wtyczki CORS (podczas developingu).
+
+### 27.13. TypeError: X is not a function
+Pojawia się podczas próby wywołania jako funkcja czegoś, co nią nie jest - na przykład obiektu. Bardzo częste podczas pomyłek w destrukturyzacji ze zmienną `useState`.
+
+**❌ Kod powodujący błąd:**
+```js
+const { licznik, setLicznik } = useState(0); // użyto klamerek dla tablicy
+```
+**Komunikat w konsoli:**
+```
+TypeError: setLicznik is not a function
+```
+**✅ Poprawny kod:**
+```js
+const [licznik, setLicznik] = useState(0);
+```
+Hooki w React, takie jak `useState`, zwracają tablicę (Array), a nie obiekt. Zwróć uwagę na nawiasy kwadratowe.
+
+### 27.14. Error: Element type is invalid
+Pojawia się, gdy poprosisz Reacta o wyrenderowanie komponentu, ale dostarczysz mu coś nieprawidłowego, np. `undefined` z powodu błędu z importem lub nieużywania default exportów.
+
+**❌ Kod powodujący błąd:**
+```js
+import Header from './Header'; // Gdy w Header.jsx brakuje export default Header
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+```
+**✅ Poprawny kod:**
+```js
+import { Header } from './Header'; // (Jeśli eksport był nazwany 'export const Header')
+```
+Upewnij się, że w pliku zawierającym komponent na końcu jest wpisane na przykład `export default NazwaKomponentu;`.
+
+### 27.15. Warning: React does not recognize the prop on a DOM element
+Pojawia się, gdy podajesz niestandardowe propsy (camelCase) bezpośrednio do elementów czystego HTML (`div`, `span`), zamiast do komponentu Reactowego.
+
+**❌ Kod powodujący błąd:**
+```js
+<div isDarkTheme={true}>Tło</div>
+```
+**Komunikat w konsoli:**
+```
+Warning: React does not recognize the `isDarkTheme` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isdarktheme` instead.
+```
+**✅ Poprawny kod:**
+```js
+const className = true ? 'dark' : 'light';
+<div className={className}>Tło</div>
+```
+Propsy we wbudowanych elementach HTML muszą być nazwane tak samo jak istniejące, prawdziwe atrybuty standardu HTML (np. `className`, `id`).
+
+### 27.16. TypeError: Assignment to constant variable
+Podstawowy błąd JavaScript polegający na próbie modyfikacji wartości w zmiennej przypisanej do stałej (`const`).
+
+**❌ Kod powodujący błąd:**
+```js
+const wiek = 10;
+wiek = 15;
+```
+**Komunikat w konsoli:**
+```
+TypeError: Assignment to constant variable.
+```
+**✅ Poprawny kod:**
+```js
+let wiek = 10;
+wiek = 15;
+```
+Jeśli masz zamiar modyfikować zmienną, zadeklaruj ją za pomocą `let`. Jeśli jest to stan Reacta, zmieniaj go tylko przez funkcję settera (np. `setWiek(15)`).
+
+### 27.17. Unhandled Promise Rejection
+Ten błąd konsolowy oznacza, że funkcja asynchroniczna rzuciła wyjątkiem (na przykład padło zapytanie do API), a aplikacja nigdzie tego nie wyłapała w odpowiednim bloku `catch`.
+
+**❌ Kod powodujący błąd:**
+```js
+async function load() {
+  const res = await fetch('/api');
+  const data = await res.json();
+}
+```
+**Komunikat w konsoli:**
+```
+Uncaught (in promise) SyntaxError: Unexpected end of JSON input
+```
+**✅ Poprawny kod:**
+```js
+async function load() {
+  try {
+    const res = await fetch('/api');
+    const data = await res.json();
+  } catch (error) {
+    console.error("Złapano błąd:", error);
+  }
+}
+```
+Zawsze dodawaj bloki `try { ... } catch (error) { ... }` używając operacji `await`.
+
+### 27.18. SyntaxError: Cannot use import statement outside a module
+Zgłaszany przez NodeJS (często przy uruchamianiu skryptów lub tworzeniu testów po stronie serwera), oznaczający próbę korzystania z nowoczesnych modułów ES (`import`) w starszym ekosystemie CommonJS.
+
+**❌ Kod powodujący błąd:**
+```js
+// Próba wykonania czystego skryptu za pomocą node plik.js
+```
+**Komunikat w konsoli:**
+```
+SyntaxError: Cannot use import statement outside a module
+```
+**✅ Poprawny kod:**
+```js
+// Upewnij się, że to Vite buduje aplikację lub w package.json podaj: "type": "module"
+```
+Upewnij się, że wykonujesz środowisko za pomocą np. Vite. Czysty node wymaga rozszerzenia `.mjs` lub deklaracji w package.json.
+
+### 27.19. JSON.parse error: Unexpected token
+Próba przetworzenia odpowiedzi jako JSON z serwera, na przykład w wyniku `res.json()`, podczas gdy w rzeczywistości serwer zwrócił HTML (np. stronę błędu 404).
+
+**❌ Kod powodujący błąd:**
+```js
+fetch('/nie-istnieje').then(res => res.json())
+```
+**Komunikat w konsoli:**
+```
+SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+```
+**✅ Poprawny kod:**
+```js
+fetch('/api/dane').then(res => {
+  if(!res.ok) throw new Error("Błąd pobierania danych");
+  return res.json();
+})
+```
+Sprawdzaj wartość `res.ok` (statusy HTTP 200) przed użyciem konwersji na `.json()`. Najwyraźniej strona odpowiedziała kodem tekstowym, nie danymi API.
+
+### 27.20. Error: Minified React error
+Pojawia się na produkcji po zbudowaniu aplikacji. Wersja zminifikowana zastępuje opis błędu linkiem.
+
+**❌ Kod powodujący błąd:**
+```js
+// Aplikacja produkcyjna ulega krytycznej usterce.
+```
+**Komunikat w konsoli:**
+```
+Uncaught Error: Minified React error #185; visit https://reactjs.org/docs/error-decoder.html?invariant=185...
+```
+**✅ Poprawny kod:**
+```js
+// Przejdź do wskazanego pod adresem URL błędu
+```
+Musisz odwiedzić podany link w przeglądarce, aby odkodować zminifikowany błąd i przeczytać jego oryginalną, deweloperską treść.
+

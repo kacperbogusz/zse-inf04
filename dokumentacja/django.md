@@ -46,6 +46,7 @@
   - [5.8. Relacje: Wiele do wielu (ManyToManyField)](#58-relacje:-wiele-do-wielu-manytomanyfield)
   - [5.9. Relacje: Jeden do jednego (OneToOneField)](#59-relacje:-jeden-do-jednego-onetoonefield)
   - [5.10. Opcja on_delete](#510-opcja-on_delete)
+  - [5.11. Praca z istniejącą bazą danych (inspectdb)](#511-praca-z-istniejącą-bazą-danych-inspectdb)
 - [6. ORM — zapytania do bazy danych](#6-orm-zapytania-do-bazy-danych)
   - [6.1. Czym jest ORM](#61-czym-jest-orm)
   - [6.2. Tworzenie obiektów](#62-tworzenie-obiektów)
@@ -124,6 +125,7 @@
   - [Przykład 1: Prosta Lista Zadań (To-Do List)](#przykład-1:-prosta-lista-zadań-to-do-list)
   - [Przykład 2: Blog z relacjami (Kategorie i Artykuły)](#przykład-2:-blog-z-relacjami-kategorie-i-artykuły)
   - [Przykład 3: Miniforum — Rejestracja i Wątki Użytkowników](#przykład-3:-miniforum-rejestracja-i-wątki-użytkowników)
+  - [Przykład 4: Prosty Dziennik Szkolny (Od zera do finału)](#przykład-4:-prosty-dziennik-szkolny-od-zera-do-finału)
 
 ---
 
@@ -2996,6 +2998,33 @@ Przy relacjach określamy, co ma się stać przy usuwaniu rodzica.
 - `models.SET_DEFAULT`: Ustaw na domyślną wartość.
 - `models.DO_NOTHING`: Nie rób nic.
 
+### 5.11. Praca z istniejącą bazą danych (inspectdb)
+
+Django oferuje doskonałe narzędzie do inżynierii odwrotnej, gdy mamy już gotową, utworzoną wcześniej bazę danych (z istniejącymi tabelami) i chcemy zintegrować ją z naszym projektem, by korzystać z niej poprzez ORM.
+
+Zamiast pisać modele ręcznie, Django potrafi automatycznie przeanalizować podłączoną bazę i wygenerować odpowiadający jej kod dla pliku `models.py`.
+
+**Krok 1: Podpięcie bazy w `settings.py`**
+Najpierw upewnij się, że w pliku konfiguracyjnym w słowniku `DATABASES` znajdują się prawidłowe parametry połączenia z docelową bazą (np. ścieżka do pliku SQLite, lub poświadczenia dla MySQL/PostgreSQL).
+
+**Krok 2: Użycie komendy `inspectdb`**
+Aby zobaczyć wygenerowane modele w konsoli (na próbę), wpisz polecenie:
+```bash
+python manage.py inspectdb
+```
+
+Aby od razu zapisać ten wynik bezpośrednio w pliku `models.py` Twojej aplikacji, przekieruj strumień wyjścia (pamiętaj, że nadpisze to obecny plik):
+```bash
+python manage.py inspectdb > nazwa_aplikacji/models.py
+```
+
+**Krok 3: Analiza wygenerowanego pliku**
+Po utworzeniu pliku warto do niego zajrzeć. Zauważysz tam m.in.:
+- Atrybut `managed = False` w wewnętrznej klasie `Meta` każdego modelu. Mówi to Django, by zachowało tę tabelę tylko do odczytu i nie próbowało wykonywać na niej migracji (tworzyć/usuwać tabeli czy jej kolumn). Jeśli chcesz w pełni zarządzać cyklem życia tej tabeli z poziomu Django, powinieneś zmienić to na `managed = True` (i wykonać `makemigrations`).
+- Czasami wygenerowane modele mogą wymagać drobnych poprawek ręcznych, zwłaszcza jeśli konwencje nazewnictwa w bazie były bardzo nietypowe.
+
+Dzięki `inspectdb` podłączenie istniejących tabel do nowego projektu Django staje się niezwykle proste.
+
 ---
 
 ## 6. ORM — zapytania do bazy danych
@@ -4598,3 +4627,197 @@ Plik logowania (`forum/templates/forum/logowanie.html`):
 ```
 
 Tym sposobem otrzymaliśmy pełnoprawne mini-forum, a Django oszczędziło nam pisania setek linii bezpiecznego i skomplikowanego kodu autoryzacyjnego!
+
+---
+
+### Przykład 4: Prosty Dziennik Szkolny (Od zera do finału)
+
+**Cel:** Stworzenie w pełni funkcjonalnego "Szkolnego Dziennika Ocen" kompletnie od zera. Pokazujemy tu pełen proces: od komendy inicjującej projekt, przez konfigurację plików, po gotowy produkt. Aplikacja pozwoli dodawać uczniów oraz przypisywać im oceny.
+
+#### Krok 1: Utworzenie i konfiguracja projektu
+Najpierw w terminalu (wewnątrz środowiska wirtualnego) wydajemy polecenia:
+```bash
+django-admin startproject dziennik_projekt .
+python manage.py startapp szkola
+```
+
+Teraz rejestrujemy aplikację. Otwieramy plik `dziennik_projekt/settings.py` i w sekcji `INSTALLED_APPS` dopisujemy `'szkola'`:
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'szkola',  # <-- Nasza nowa aplikacja
+]
+```
+
+#### Krok 2: Projekt bazy danych (Modele)
+Otwieramy plik `szkola/models.py`. Tworzymy model Ucznia i model Oceny (powiązanej z uczniem):
+```python
+from django.db import models
+
+class Uczen(models.Model):
+    imie = models.CharField(max_length=50)
+    nazwisko = models.CharField(max_length=50)
+    klasa = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f"{self.imie} {self.nazwisko} ({self.klasa})"
+
+class Ocena(models.Model):
+    uczen = models.ForeignKey(Uczen, on_delete=models.CASCADE, related_name='oceny')
+    wartosc = models.IntegerField(help_text="Wpisz ocenę od 1 do 6")
+    przedmiot = models.CharField(max_length=50)
+    data = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.wartosc} z {self.przedmiot}"
+```
+Zapisujemy zmiany w bazie danych, używając w terminalu:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+#### Krok 3: Rejestracja w Panelu Administratora
+Otwieramy plik `szkola/admin.py`, aby móc łatwo dodać uczniów przez wbudowany panel:
+```python
+from django.contrib import admin
+from .models import Uczen, Ocena
+
+admin.site.register(Uczen)
+admin.site.register(Ocena)
+```
+Możesz teraz utworzyć administratora komendą `python manage.py createsuperuser` i zalogować się pod adresem `localhost:8000/admin/`, aby ręcznie wprowadzić pierwszych uczniów.
+
+#### Krok 4: Tworzenie Formularza (Forms)
+Aby dodawać oceny przez stronę internetową, potrzebujemy formularza. Tworzymy nowy plik `szkola/forms.py`:
+```python
+from django import forms
+from .models import Ocena
+
+class OcenaForm(forms.ModelForm):
+    class Meta:
+        model = Ocena
+        fields = ['wartosc', 'przedmiot']
+```
+
+#### Krok 5: Widoki i Logika (Views)
+W pliku `szkola/views.py` tworzymy dwa widoki: jeden do wyświetlania wszystkich uczniów, drugi do widoku szczegółów ucznia (gdzie będziemy mogli też dodawać mu oceny).
+```python
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Uczen
+from .forms import OcenaForm
+
+# Widok 1: Lista wszystkich uczniów
+def lista_uczniow(request):
+    uczniowie = Uczen.objects.all().order_by('nazwisko')
+    return render(request, 'szkola/lista.html', {'uczniowie': uczniowie})
+
+# Widok 2: Szczegóły ucznia (lista jego ocen) oraz formularz dodawania nowej oceny
+def szczegoly_ucznia(request, uczen_id):
+    uczen = get_object_or_404(Uczen, id=uczen_id)
+    
+    if request.method == 'POST':
+        form = OcenaForm(request.POST)
+        if form.is_valid():
+            # Przypisujemy ucznia do oceny przed ostatecznym zapisem do bazy
+            nowa_ocena = form.save(commit=False)
+            nowa_ocena.uczen = uczen
+            nowa_ocena.save()
+            return redirect('szczegoly', uczen_id=uczen.id)
+    else:
+        form = OcenaForm()
+
+    return render(request, 'szkola/szczegoly.html', {
+        'uczen': uczen,
+        'form': form,
+    })
+```
+
+#### Krok 6: Podłączenie adresów (URLs)
+Teraz łączymy widoki z adresami przeglądarki.
+W głównym katalogu projektu w pliku `dziennik_projekt/urls.py` dodajemy:
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('szkola.urls')), # Główna strona oddelegowana do aplikacji szkola
+]
+```
+
+Następnie tworzymy plik `szkola/urls.py`:
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.lista_uczniow, name='lista_uczniow'),
+    path('uczen/<int:uczen_id>/', views.szczegoly_ucznia, name='szczegoly'),
+]
+```
+
+#### Krok 7: Szablony HTML (Templates)
+W folderze `szkola` tworzymy podfoldery `templates/szkola/` (czyli ścieżka z plikami to `szkola/templates/szkola/`). Tworzymy tam dwa pliki:
+
+1. `lista.html` - Spis uczniów z linkami do ich szczegółów:
+```html
+<!DOCTYPE html>
+<html>
+<head><title>Dziennik Szkolny</title></head>
+<body>
+    <h1>Lista Uczniów</h1>
+    <ul>
+        {% for u in uczniowie %}
+            <li>
+                <a href="{% url 'szczegoly' u.id %}">
+                    {{ u.imie }} {{ u.nazwisko }} (Klasa {{ u.klasa }})
+                </a>
+            </li>
+        {% empty %}
+            <li>Brak uczniów w bazie. Dodaj ich przez panel /admin/</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+```
+
+2. `szczegoly.html` - Strona ucznia, jego oceny i formularz:
+```html
+<!DOCTYPE html>
+<html>
+<head><title>{{ uczen.imie }} {{ uczen.nazwisko }}</title></head>
+<body>
+    <a href="{% url 'lista_uczniow' %}">← Wróć do listy</a>
+    <h2>{{ uczen.imie }} {{ uczen.nazwisko }} - Oceny</h2>
+
+    <ul>
+        {% for ocena in uczen.oceny.all %}
+            <li><strong>{{ ocena.wartosc }}</strong> - {{ ocena.przedmiot }} <small>({{ ocena.data|date:"Y-m-d" }})</small></li>
+        {% empty %}
+            <li>Brak ocen. Uczeń jest nieklasyfikowany.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <h3>Dodaj nową ocenę</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Wystaw Ocenę</button>
+    </form>
+</body>
+</html>
+```
+
+#### Krok 8: Finał - Uruchomienie!
+Ostatni etap to uruchomienie serwera aplikacji w terminalu:
+```bash
+python manage.py runserver
+```
+Wejdź na `http://127.0.0.1:8000/`. Aplikacja jest gotowa – możesz dodawać uczniów przez Panel Administratora, a z poziomu witryny płynnie sprawdzać ich dzienniczek i na bieżąco wpisywać oceny!

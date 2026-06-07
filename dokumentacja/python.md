@@ -217,6 +217,28 @@
   - [18.8. Wzorzec menu programu (pętla główna)](#188-wzorzec-menu-programu-pętla-główna)
   - [18.9. Sortowanie obiektów — parametr `key`](#189-sortowanie-obiektów--parametr-key)
   - [18.10. Generatory i `yield`](#1810-generatory-i-yield)
+- [19. Najczęstsze błędy (Wyjątki i błędy konsolowe)](#19-najczęstsze-błędy-wyjątki-i-błędy-konsolowe)
+  - [19.1. SyntaxError](#191-syntaxerror)
+  - [19.2. IndentationError](#192-indentationerror)
+  - [19.3. NameError](#193-nameerror)
+  - [19.4. TypeError](#194-typeerror)
+  - [19.5. ValueError](#195-valueerror)
+  - [19.6. IndexError](#196-indexerror)
+  - [19.7. KeyError](#197-keyerror)
+  - [19.8. AttributeError](#198-attributeerror)
+  - [19.9. ImportError](#199-importerror)
+  - [19.10. ModuleNotFoundError](#1910-modulenotfounderror)
+  - [19.11. ZeroDivisionError](#1911-zerodivisionerror)
+  - [19.12. FileNotFoundError](#1912-filenotfounderror)
+  - [19.13. RecursionError](#1913-recursionerror)
+  - [19.14. StopIteration](#1914-stopiteration)
+  - [19.15. UnboundLocalError](#1915-unboundlocalerror)
+  - [19.16. NotImplementedError](#1916-notimplementederror)
+  - [19.17. TabError](#1917-taberror)
+  - [19.18. PermissionError](#1918-permissionerror)
+  - [19.19. OverflowError](#1919-overflowerror)
+  - [19.20. UnicodeDecodeError](#1920-unicodedecodeerror)
+
 
 
 ---
@@ -6000,3 +6022,413 @@ def czytaj_linie(nazwa_pliku):
 | Można iterować | Tak (jeśli zwróci listę) | Tak (zawsze) |
 | Wznawia wykonanie | Nie (zaczyna od nowa) | Tak (kontynuuje) |
 | Typ zwracanej wartości | Dowolny | Obiekt `generator` |
+
+
+## 19. Najczęstsze błędy (Wyjątki i błędy konsolowe)
+
+W tym rozdziale opisano rzeczywiste błędy wykonania i wyjątki wyrzucane przez interpreter Pythona (widoczne w konsoli), w odróżnieniu od logicznych błędów projektowych.
+
+### 19.1. SyntaxError
+Pojawia się, gdy kod niezgodny jest ze składnią języka Python (np. brakujący dwukropek, niezamknięty nawias).
+
+**❌ Kod powodujący błąd:**
+```python
+if True
+    print('Prawda')
+```
+**Komunikat w konsoli:**
+```
+SyntaxError: expected ':'
+```
+**✅ Poprawny kod:**
+```python
+if True:
+    print('Prawda')
+```
+Należy dodać brakujący dwukropek na końcu instrukcji warunkowej.
+
+### 19.2. IndentationError
+Występuje, gdy wcięcia w kodzie są nieprawidłowe lub niespójne.
+
+**❌ Kod powodujący błąd:**
+```python
+def funkcja():
+print('Witaj')
+```
+**Komunikat w konsoli:**
+```
+IndentationError: expected an indented block
+```
+**✅ Poprawny kod:**
+```python
+def funkcja():
+    print('Witaj')
+```
+W Pythonie bloki kodu definiuje się za pomocą wcięć. Należy dodać wcięcie (np. 4 spacje).
+
+### 19.3. NameError
+Wyjątek zgłaszany, gdy program próbuje użyć zmiennej lub funkcji, która nie została wcześniej zdefiniowana.
+
+**❌ Kod powodujący błąd:**
+```python
+wynik = x + 5
+```
+**Komunikat w konsoli:**
+```
+NameError: name 'x' is not defined
+```
+**✅ Poprawny kod:**
+```python
+x = 10
+wynik = x + 5
+```
+Przed użyciem zmiennej `x`, należy przypisać jej wartość.
+
+### 19.4. TypeError
+Występuje, gdy operacja lub funkcja jest stosowana do obiektu niewłaściwego typu.
+
+**❌ Kod powodujący błąd:**
+```python
+wynik = 'Wiek: ' + 25
+```
+**Komunikat w konsoli:**
+```
+TypeError: can only concatenate str (not "int") to str
+```
+**✅ Poprawny kod:**
+```python
+wynik = 'Wiek: ' + str(25)
+```
+Nie można łączyć napisów (str) z liczbami (int). Należy najpierw rzutować liczbę na napis używając `str()`.
+
+### 19.5. ValueError
+Zgłaszany, gdy funkcja otrzymuje argument o poprawnym typie, ale niewłaściwej wartości.
+
+**❌ Kod powodujący błąd:**
+```python
+liczba = int('abc')
+```
+**Komunikat w konsoli:**
+```
+ValueError: invalid literal for int() with base 10: 'abc'
+```
+**✅ Poprawny kod:**
+```python
+liczba = int('123')
+```
+Funkcja `int()` oczekuje napisu, który można zinterpretować jako liczbę całkowitą.
+
+### 19.6. IndexError
+Pojawia się przy próbie dostępu do elementu listy (lub krotki) poza jej zakresem.
+
+**❌ Kod powodujący błąd:**
+```python
+lista = [1, 2, 3]
+element = lista[5]
+```
+**Komunikat w konsoli:**
+```
+IndexError: list index out of range
+```
+**✅ Poprawny kod:**
+```python
+lista = [1, 2, 3]
+if len(lista) > 5:
+    element = lista[5]
+```
+Należy upewnić się, że podany indeks mieści się w rozmiarze listy (od 0 do `len(lista) - 1`).
+
+### 19.7. KeyError
+Zgłaszany podczas próby dostępu do wartości w słowniku przy użyciu klucza, który nie istnieje.
+
+**❌ Kod powodujący błąd:**
+```python
+slownik = {'a': 1}
+wartosc = slownik['b']
+```
+**Komunikat w konsoli:**
+```
+KeyError: 'b'
+```
+**✅ Poprawny kod:**
+```python
+slownik = {'a': 1}
+wartosc = slownik.get('b', 0)
+```
+Aby uniknąć błędu, można użyć metody `get()`, która pozwala określić domyślną wartość, jeśli klucz nie istnieje.
+
+### 19.8. AttributeError
+Pojawia się, gdy próbuje się wywołać nieistniejącą metodę lub pole na obiekcie.
+
+**❌ Kod powodujący błąd:**
+```python
+napis = 'test'
+napis.append('!')
+```
+**Komunikat w konsoli:**
+```
+AttributeError: 'str' object has no attribute 'append'
+```
+**✅ Poprawny kod:**
+```python
+napis = 'test'
+napis += '!'
+```
+Klasa `str` (napis) nie posiada metody `append()`. Do łączenia napisów używa się operatora `+`.
+
+### 19.9. ImportError
+Występuje, gdy moduł został znaleziony, ale nie udaje się zaimportować z niego określonej nazwy.
+
+**❌ Kod powodujący błąd:**
+```python
+from math import potega
+```
+**Komunikat w konsoli:**
+```
+ImportError: cannot import name 'potega' from 'math'
+```
+**✅ Poprawny kod:**
+```python
+from math import pow
+```
+Należy sprawdzić poprawność nazwy importowanej funkcji lub klasy. Funkcja potęgowania to `pow`.
+
+### 19.10. ModuleNotFoundError
+Zgłaszany, gdy próba importu modułu kończy się niepowodzeniem, ponieważ plik lub biblioteka nie istnieje.
+
+**❌ Kod powodujący błąd:**
+```python
+import nieznana_biblioteka
+```
+**Komunikat w konsoli:**
+```
+ModuleNotFoundError: No module named 'nieznana_biblioteka'
+```
+**✅ Poprawny kod:**
+```python
+# Pip install wymaganej biblioteki przed importem
+import requests
+```
+Upewnij się, że biblioteka została zainstalowana (np. za pomocą `pip install`) i czy nazwa jest poprawna.
+
+### 19.11. ZeroDivisionError
+Pojawia się, gdy próbuje się podzielić liczbę przez zero.
+
+**❌ Kod powodujący błąd:**
+```python
+wynik = 10 / 0
+```
+**Komunikat w konsoli:**
+```
+ZeroDivisionError: division by zero
+```
+**✅ Poprawny kod:**
+```python
+dzielnik = 0
+if dzielnik != 0:
+    wynik = 10 / dzielnik
+else:
+    wynik = None
+```
+Zawsze należy sprawdzać, czy mianownik przed wykonaniem operacji dzielenia nie wynosi 0.
+
+### 19.12. FileNotFoundError
+Zgłaszany w przypadku próby otwarcia pliku, który nie istnieje we wskazanym miejscu.
+
+**❌ Kod powodujący błąd:**
+```python
+with open('brakujacy_plik.txt', 'r') as f:
+    dane = f.read()
+```
+**Komunikat w konsoli:**
+```
+FileNotFoundError: [Errno 2] No such file or directory: 'brakujacy_plik.txt'
+```
+**✅ Poprawny kod:**
+```python
+import os
+if os.path.exists('moj_plik.txt'):
+    with open('moj_plik.txt', 'r') as f:
+        dane = f.read()
+```
+Należy upewnić się, że ścieżka i nazwa pliku są poprawne, lub użyć modułu `os` do sprawdzenia, czy plik istnieje.
+
+### 19.13. RecursionError
+Występuje, gdy funkcja wywołuje samą siebie zbyt wiele razy, co powoduje przepełnienie limitu głębokości rekurencji.
+
+**❌ Kod powodujący błąd:**
+```python
+def rekurencja():
+    return rekurencja()
+rekurencja()
+```
+**Komunikat w konsoli:**
+```
+RecursionError: maximum recursion depth exceeded
+```
+**✅ Poprawny kod:**
+```python
+def rekurencja(n):
+    if n <= 0:
+        return 0
+    return 1 + rekurencja(n - 1)
+rekurencja(10)
+```
+Należy upewnić się, że funkcja rekurencyjna posiada tzw. warunek stopu (bazowy), który przerywa ciąg wywołań.
+
+### 19.14. StopIteration
+Zgłaszany przez funkcję `next()` lub generator, sygnalizujący że nie ma więcej elementów w obiekcie iterowalnym.
+
+**❌ Kod powodujący błąd:**
+```python
+it = iter([1, 2])
+next(it)
+next(it)
+next(it)
+```
+**Komunikat w konsoli:**
+```
+StopIteration
+```
+**✅ Poprawny kod:**
+```python
+it = iter([1, 2])
+while True:
+    try:
+        element = next(it)
+    except StopIteration:
+        break
+```
+Należy obsługiwać wyjątek `StopIteration` w blokach iterujących (lub korzystać z pętli `for`, która obsługuje go automatycznie).
+
+### 19.15. UnboundLocalError
+Występuje w ciele funkcji, gdy próbujemy odwołać się do zmiennej lokalnej przed przypisaniem jej wartości.
+
+**❌ Kod powodujący błąd:**
+```python
+x = 10
+def dodaj():
+    x += 1
+dodaj()
+```
+**Komunikat w konsoli:**
+```
+UnboundLocalError: local variable 'x' referenced before assignment
+```
+**✅ Poprawny kod:**
+```python
+x = 10
+def dodaj():
+    global x
+    x += 1
+dodaj()
+```
+Jeśli chcemy zmodyfikować zmienną globalną, należy użyć słowa kluczowego `global`. W przeciwnym razie trzeba zadeklarować nową zmienną lokalną.
+
+### 19.16. NotImplementedError
+Wyjątek często zgłaszany w metodach abstrakcyjnych, informujący że dana funkcjonalność nie została jeszcze zaimplementowana.
+
+**❌ Kod powodujący błąd:**
+```python
+class Figura:
+    def pole(self):
+        raise NotImplementedError()
+
+f = Figura()
+f.pole()
+```
+**Komunikat w konsoli:**
+```
+NotImplementedError
+```
+**✅ Poprawny kod:**
+```python
+class Kwadrat(Figura):
+    def pole(self):
+        return 10 * 10
+
+k = Kwadrat()
+print(k.pole())
+```
+Należy utworzyć klasę pochodną, która nadpisuje (implementuje) metodę abstrakcyjną.
+
+### 19.17. TabError
+Zgłaszany w przypadku, gdy w bloku kodu stosowane są jednocześnie spacje i tabulatory niezgodnie z formatowaniem Pythona.
+
+**❌ Kod powodujący błąd:**
+```python
+def test():
+    print('linia ze spacjami')
+	print('linia z tabulatorem')
+```
+**Komunikat w konsoli:**
+```
+TabError: inconsistent use of tabs and spaces in indentation
+```
+**✅ Poprawny kod:**
+```python
+def test():
+    print('linia ze spacjami')
+    print('linia ze spacjami')
+```
+W Pythonie powinno się korzystać tylko z jednego rodzaju wcięć (zalecane są 4 spacje) w całym pliku.
+
+### 19.18. PermissionError
+Występuje, gdy program próbuje uruchomić operację bez wystarczających praw dostępu (np. otworzenie pliku zablokowanego tylko do odczytu).
+
+**❌ Kod powodujący błąd:**
+```python
+with open('/root/hasla.txt', 'w') as f:
+    f.write('sekret')
+```
+**Komunikat w konsoli:**
+```
+PermissionError: [Errno 13] Permission denied: '/root/hasla.txt'
+```
+**✅ Poprawny kod:**
+```python
+# Uruchom jako root lub zmień ścieżkę na katalog z prawem zapisu
+with open('moje_dane.txt', 'w') as f:
+    f.write('dane')
+```
+Należy zmienić prawa pliku/katalogu w systemie operacyjnym lub upewnić się, że ścieżka odnosi się do dozwolonego obszaru.
+
+### 19.19. OverflowError
+Pojawia się, gdy wynik operacji arytmetycznej przekracza zakres dopuszczalny dla danego typu danych (zwykle zmiennoprzecinkowych float).
+
+**❌ Kod powodujący błąd:**
+```python
+import math
+math.exp(1000)
+```
+**Komunikat w konsoli:**
+```
+OverflowError: math range error
+```
+**✅ Poprawny kod:**
+```python
+import math
+# Zastosowanie odpowiednich skali logarytmicznych lub mniejszych potęg
+math.exp(100)
+```
+Należy kontrolować wielkość przetwarzanych wartości liczbowych lub używać wyspecjalizowanych bibliotek do dużych liczb.
+
+### 19.20. UnicodeDecodeError
+Pojawia się, gdy proces dekodowania bajtów do ciągu znaków napotka dane, które nie pasują do wybranego kodowania.
+
+**❌ Kod powodujący błąd:**
+```python
+with open('plik_utf8.txt', 'r', encoding='ascii') as f:
+    tekst = f.read()
+```
+**Komunikat w konsoli:**
+```
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 10
+```
+**✅ Poprawny kod:**
+```python
+with open('plik_utf8.txt', 'r', encoding='utf-8') as f:
+    tekst = f.read()
+```
+Zawsze podawaj odpowiednie kodowanie (najczęściej `utf-8`) podczas pracy z plikami i strumieniami tekstowymi.
+
