@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>git.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/kacperbogusz/Desktop/Egzamin INF04/zse-inf04/dokumentacja/markdown-pdf.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="dokumentacja-git">Dokumentacja: Git</h1>
+<h2 id="spis-treści">Spis treści</h2>
+<ul>
+<li><a href="#1-wprowadzenie-do-gita">1. Wprowadzenie do Gita</a>
+<ul>
+<li><a href="#11-czym-jest-git-i-do-czego-s%C5%82u%C5%BCy">1.1. Czym jest Git i do czego służy</a></li>
+<li><a href="#12-instalacja-gita">1.2. Instalacja Gita</a></li>
+<li><a href="#13-konfiguracja-wst%C4%99pna--git-config">1.3. Konfiguracja wstępna — <code>git config</code></a></li>
+<li><a href="#14-kluczowe-poj%C4%99cia-repozytorium-commit-branch-head">1.4. Kluczowe pojęcia: repozytorium, commit, branch, HEAD</a></li>
+<li><a href="#15-obszary-pracy-w-gicie--working-directory-staging-area-repository">1.5. Obszary pracy w Gicie — Working Directory, Staging Area, Repository</a></li>
+</ul>
+</li>
+<li><a href="#2-pierwsze-repozytorium">2. Pierwsze repozytorium</a>
+<ul>
+<li><a href="#21-tworzenie-repozytorium--git-init">2.1. Tworzenie repozytorium — <code>git init</code></a></li>
+<li><a href="#22-klonowanie-istniej%C4%85cego-repozytorium--git-clone">2.2. Klonowanie istniejącego repozytorium — <code>git clone</code></a></li>
+<li><a href="#23-sprawdzanie-stanu--git-status">2.3. Sprawdzanie stanu — <code>git status</code></a></li>
+<li><a href="#24-plik-gitignore--co-pomijamy">2.4. Plik <code>.gitignore</code> — co pomijamy</a></li>
+</ul>
+</li>
+<li><a href="#3-zapisywanie-zmian--commit">3. Zapisywanie zmian — commit</a>
+<ul>
+<li><a href="#31-dodawanie-plik%C3%B3w-do-staging--git-add">3.1. Dodawanie plików do staging — <code>git add</code></a></li>
+<li><a href="#32-tworzenie-commitu--git-commit">3.2. Tworzenie commitu — <code>git commit</code></a></li>
+<li><a href="#33-przegl%C4%85danie-historii--git-log">3.3. Przeglądanie historii — <code>git log</code></a></li>
+<li><a href="#34-por%C3%B3wnywanie-zmian--git-diff">3.4. Porównywanie zmian — <code>git diff</code></a></li>
+<li><a href="#35-cofanie-zmian--git-restore-git-reset-git-revert">3.5. Cofanie zmian — <code>git restore</code>, <code>git reset</code>, <code>git revert</code></a></li>
+</ul>
+</li>
+<li><a href="#4-ga%C5%82%C4%99zie--branch">4. Gałęzie — branch</a>
+<ul>
+<li><a href="#41-czym-jest-ga%C5%82%C4%85%C5%BA-i-po-co-jej-u%C5%BCywa%C4%87">4.1. Czym jest gałąź i po co jej używać</a></li>
+<li><a href="#42-tworzenie-i-prze%C5%82%C4%85czanie-ga%C5%82%C4%99zi--git-branch-git-checkout-git-switch">4.2. Tworzenie i przełączanie gałęzi — <code>git branch</code>, <code>git checkout</code>, <code>git switch</code></a></li>
+<li><a href="#43-scalanie-ga%C5%82%C4%99zi--git-merge">4.3. Scalanie gałęzi — <code>git merge</code></a></li>
+<li><a href="#44-konflikty-przy-scalaniu-i-jak-je-rozwi%C4%85zywa%C4%87">4.4. Konflikty przy scalaniu i jak je rozwiązywać</a></li>
+<li><a href="#45-usuwanie-ga%C5%82%C4%99zi">4.5. Usuwanie gałęzi</a></li>
+</ul>
+</li>
+<li><a href="#5-praca-ze-zdalnym-repozytorium">5. Praca ze zdalnym repozytorium</a>
+<ul>
+<li><a href="#51-dodawanie-zdalnego-repozytorium--git-remote">5.1. Dodawanie zdalnego repozytorium — <code>git remote</code></a></li>
+<li><a href="#52-wysy%C5%82anie-zmian--git-push">5.2. Wysyłanie zmian — <code>git push</code></a></li>
+<li><a href="#53-pobieranie-zmian--git-fetch-i-git-pull">5.3. Pobieranie zmian — <code>git fetch</code> i <code>git pull</code></a></li>
+<li><a href="#54-github--tworzenie-repozytorium-i-pierwsze-push">5.4. GitHub — tworzenie repozytorium i pierwsze push</a></li>
+</ul>
+</li>
+<li><a href="#6-przydatne-komendy-i-wzorce">6. Przydatne komendy i wzorce</a>
+<ul>
+<li><a href="#61-zmiana-ostatniego-commitu--git-commit---amend">6.1. Zmiana ostatniego commitu — <code>git commit --amend</code></a></li>
+<li><a href="#62-schowek-tymczasowy--git-stash">6.2. Schowek tymczasowy — <code>git stash</code></a></li>
+<li><a href="#63-tagi--git-tag">6.3. Tagi — <code>git tag</code></a></li>
+<li><a href="#64-aliasy--skr%C3%B3ty-do-komend">6.4. Aliasy — skróty do komend</a></li>
+<li><a href="#65-typowy-przep%C5%82yw-pracy--%C5%9Bci%C4%85gawka-krok-po-kroku">6.5. Typowy przepływ pracy — ściągawka krok po kroku</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-wprowadzenie-do-gita">1. Wprowadzenie do Gita</h2>
+<h3 id="11-czym-jest-git-i-do-czego-służy">1.1. Czym jest Git i do czego służy</h3>
+<p><strong>Git</strong> to rozproszony system kontroli wersji (ang. <em>Distributed Version Control System</em>). Pozwala śledzić zmiany w plikach projektu w czasie, cofać się do poprzednich wersji oraz współpracować z innymi programistami bez nadpisywania nawzajem swojej pracy.</p>
+<p><strong>Co Git robi dla Ciebie:</strong></p>
+<ul>
+<li>Zapisuje historię każdej zmiany (kto, co, kiedy zmienił)</li>
+<li>Pozwala eksperymentować na osobnych gałęziach bez ryzyka zepsucia głównego kodu</li>
+<li>Umożliwia pracę równoległą — kilka osób jednocześnie modyfikuje projekt</li>
+<li>Pozwala wrócić do dowolnego wcześniejszego stanu projektu</li>
+</ul>
+<p><strong>Git ≠ GitHub</strong> — Git to narzędzie działające lokalnie na Twoim komputerze. GitHub, GitLab, Bitbucket to serwisy internetowe, które <em>przechowują</em> repozytoria Git w chmurze i dodają funkcje społecznościowe (pull requesty, issues itp.).</p>
+<hr>
+<h3 id="12-instalacja-gita">1.2. Instalacja Gita</h3>
+<p><strong>Windows:</strong></p>
+<ol>
+<li>Pobierz instalator ze strony <a href="https://git-scm.com">git-scm.com</a></li>
+<li>Uruchom instalator — domyślne ustawienia są odpowiednie</li>
+<li>Po instalacji otwórz <strong>Git Bash</strong> lub zwykły terminal CMD/PowerShell</li>
+</ol>
+<p><strong>macOS:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Przez Homebrew (jeśli zainstalowany):</span>
+brew install git
+
+<span class="hljs-comment"># Lub zainstaluj Xcode Command Line Tools:</span>
+xcode-select --install
+</div></code></pre>
+<p><strong>Linux (Debian/Ubuntu):</strong></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install git
+</div></code></pre>
+<p><strong>Sprawdzenie wersji po instalacji:</strong></p>
+<pre class="hljs"><code><div>git --version
+<span class="hljs-comment"># Przykładowy wynik: git version 2.43.0</span>
+</div></code></pre>
+<hr>
+<h3 id="13-konfiguracja-wstępna--git-config">1.3. Konfiguracja wstępna — <code>git config</code></h3>
+<p>Przed pierwszym użyciem należy podać swoje dane — Git dołącza je do każdego commitu.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Ustaw imię i nazwisko (widoczne w historii commitów)</span>
+git config --global user.name <span class="hljs-string">&quot;Jan Kowalski&quot;</span>
+
+<span class="hljs-comment"># Ustaw adres e-mail</span>
+git config --global user.email <span class="hljs-string">&quot;jan.kowalski@example.com&quot;</span>
+
+<span class="hljs-comment"># Ustaw domyślny edytor tekstu (np. VS Code)</span>
+git config --global core.editor <span class="hljs-string">&quot;code --wait&quot;</span>
+
+<span class="hljs-comment"># Ustaw domyślną nazwę głównej gałęzi na &quot;main&quot;</span>
+git config --global init.defaultBranch main
+</div></code></pre>
+<p>Flaga <code>--global</code> oznacza, że ustawienie dotyczy wszystkich repozytoriów na tym komputerze.
+Bez flagi — ustawienie dotyczy tylko bieżącego repozytorium.</p>
+<p><strong>Sprawdzenie konfiguracji:</strong></p>
+<pre class="hljs"><code><div>git config --list
+<span class="hljs-comment"># Wyświetla wszystkie ustawienia</span>
+
+git config user.name
+<span class="hljs-comment"># Wyświetla tylko imię</span>
+</div></code></pre>
+<hr>
+<h3 id="14-kluczowe-pojęcia-repozytorium-commit-branch-head">1.4. Kluczowe pojęcia: repozytorium, commit, branch, HEAD</h3>
+<table>
+<thead>
+<tr>
+<th>Pojęcie</th>
+<th>Wyjaśnienie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Repozytorium (repo)</strong></td>
+<td>Folder projektu śledzony przez Gita — zawiera wszystkie pliki i całą historię zmian</td>
+</tr>
+<tr>
+<td><strong>Commit</strong></td>
+<td>Migawka (snapshot) stanu projektu w danym momencie — ma unikalny hash (np. <code>a3f5c2d</code>), autora i wiadomość</td>
+</tr>
+<tr>
+<td><strong>Branch (gałąź)</strong></td>
+<td>Oddzielna linia rozwoju projektu — pozwala pracować nad nową funkcją bez wpływu na główny kod</td>
+</tr>
+<tr>
+<td><strong>HEAD</strong></td>
+<td>Wskaźnik na bieżący commit (czyli „gdzie teraz jesteś&quot; w historii) — zwykle wskazuje na wierzchołek aktywnej gałęzi</td>
+</tr>
+<tr>
+<td><strong>Staging Area</strong></td>
+<td>Poczekalnia — pliki dodane przez <code>git add</code>, które wejdą do następnego commitu</td>
+</tr>
+<tr>
+<td><strong>Remote</strong></td>
+<td>Zdalne repozytorium (np. na GitHubie) — źródło/cel synchronizacji</td>
+</tr>
+<tr>
+<td><strong>Hash / SHA</strong></td>
+<td>Unikalny 40-znakowy identyfikator każdego commitu (używa się skróconego 7-znakowego, np. <code>a3f5c2d</code>)</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>Etykieta przypisana do konkretnego commitu (zwykle wersja: <code>v1.0</code>, <code>v2.3.1</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="15-obszary-pracy-w-gicie--working-directory-staging-area-repository">1.5. Obszary pracy w Gicie — Working Directory, Staging Area, Repository</h3>
+<p>Git rozróżnia <strong>trzy obszary</strong>, przez które przechodzą Twoje zmiany:</p>
+<pre class="hljs"><code><div>┌─────────────────────────────────────────────────────────────┐
+│                       Twój projekt                          │
+│                                                             │
+│  Working Directory   Staging Area      Repository (.git/)   │
+│  ─────────────────   ───────────────   ─────────────────── │
+│  Edytujesz pliki     git add plik.py   git commit           │
+│  (niezapisane)       (przygotowane)    (zapisane w hist.)   │
+│                                                             │
+│       ←──── git restore ────                                │
+│       ←──── git reset HEAD ── git restore --staged ────     │
+└─────────────────────────────────────────────────────────────┘
+</div></code></pre>
+<ol>
+<li><strong>Working Directory</strong> — tu edytujesz pliki. Zmiany są widoczne, ale Git ich jeszcze nie śledzi jako „gotowe do zapisu&quot;.</li>
+<li><strong>Staging Area</strong> (indeks) — pliki dodane przez <code>git add</code>. To „poczekalnia&quot; przed commitem. Możesz tu selektywnie wybierać, które zmiany wejdą do commitu.</li>
+<li><strong>Repository</strong> — historia commitów zapisana w ukrytym folderze <code>.git/</code>. Stały, nienaruszalny zapis.</li>
+</ol>
+<hr>
+<h2 id="2-pierwsze-repozytorium">2. Pierwsze repozytorium</h2>
+<h3 id="21-tworzenie-repozytorium--git-init">2.1. Tworzenie repozytorium — <code>git init</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># 1. Przejdź do folderu projektu</span>
+<span class="hljs-built_in">cd</span> /ścieżka/do/mojego/projektu
+
+<span class="hljs-comment"># 2. Zainicjalizuj repozytorium</span>
+git init
+<span class="hljs-comment"># Wynik: Initialized empty Git repository in /ścieżka/.git/</span>
+
+<span class="hljs-comment"># Lub stwórz nowy folder i od razu zainicjalizuj:</span>
+git init nazwa-projektu
+<span class="hljs-built_in">cd</span> nazwa-projektu
+</div></code></pre>
+<p>Po wykonaniu <code>git init</code> powstaje ukryty folder <code>.git/</code> — to serce repozytorium. <strong>Nie usuwaj go ręcznie.</strong></p>
+<p><strong>Przykład — pierwsze kroki od zera:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">mkdir</span> moj-projekt
+<span class="hljs-built_in">cd</span> moj-projekt
+git init
+
+<span class="hljs-comment"># Stwórz pierwszy plik</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;# Mój projekt&quot;</span> &gt; README.md
+
+<span class="hljs-comment"># Dodaj do staging</span>
+git add README.md
+
+<span class="hljs-comment"># Zapisz jako pierwszy commit</span>
+git commit -m <span class="hljs-string">&quot;Pierwszy commit: dodanie README&quot;</span>
+</div></code></pre>
+<hr>
+<h3 id="22-klonowanie-istniejącego-repozytorium--git-clone">2.2. Klonowanie istniejącego repozytorium — <code>git clone</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Klonuj repozytorium z GitHuba (HTTP)</span>
+git <span class="hljs-built_in">clone</span> https://github.com/uzytkownik/nazwa-repo.git
+
+<span class="hljs-comment"># Klonuj do konkretnego folderu</span>
+git <span class="hljs-built_in">clone</span> https://github.com/uzytkownik/nazwa-repo.git moj-folder
+
+<span class="hljs-comment"># Klonuj przez SSH (wymaga skonfigurowanego klucza SSH)</span>
+git <span class="hljs-built_in">clone</span> git@github.com:uzytkownik/nazwa-repo.git
+</div></code></pre>
+<p>Klonowanie pobiera cały projekt wraz z <strong>pełną historią</strong> commitów. Po klonowaniu masz gotową lokalną kopię — od razu możesz pracować.</p>
+<hr>
+<h3 id="23-sprawdzanie-stanu--git-status">2.3. Sprawdzanie stanu — <code>git status</code></h3>
+<p><code>git status</code> to najczęściej używana komenda — pokazuje co dzieje się w repozytorium.</p>
+<pre class="hljs"><code><div>git status
+</div></code></pre>
+<p><strong>Możliwe stany pliku:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stan</th>
+<th>Znaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Untracked</code></td>
+<td>Nowy plik, Git go jeszcze nie zna</td>
+</tr>
+<tr>
+<td><code>Modified</code></td>
+<td>Plik śledzony, ale zmieniony od ostatniego commitu</td>
+</tr>
+<tr>
+<td><code>Staged</code></td>
+<td>Dodany do staging (przez <code>git add</code>), gotowy do commitu</td>
+</tr>
+<tr>
+<td><code>Unmodified</code></td>
+<td>Brak zmian od ostatniego commitu</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Przykładowe wyjście:</strong></p>
+<pre class="hljs"><code><div>On branch main
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        new file:   plik.py
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+        modified:   README.md
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+        notes.txt
+</div></code></pre>
+<hr>
+<h3 id="24-plik-gitignore--co-pomijamy">2.4. Plik <code>.gitignore</code> — co pomijamy</h3>
+<p>Plik <code>.gitignore</code> określa, które pliki i foldery Git ma <strong>ignorować</strong> (nie śledzić).</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Tworzenie .gitignore w katalogu projektu</span>
+<span class="hljs-built_in">touch</span> .gitignore
+</div></code></pre>
+<p><strong>Przykładowa zawartość <code>.gitignore</code> dla projektu Python:</strong></p>
+<pre class="hljs"><code><div># Środowisko wirtualne
+venv/
+.venv/
+env/
+
+# Pliki skompilowane
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pliki systemowe
+.DS_Store
+Thumbs.db
+
+# Pliki konfiguracyjne z hasłami/kluczami
+.env
+secrets.json
+config.local.py
+
+# Pliki IDE
+.idea/
+.vscode/
+*.suo
+*.user
+</div></code></pre>
+<p><strong>Przykładowa zawartość <code>.gitignore</code> dla projektu C# / WPF:</strong></p>
+<pre class="hljs"><code><div># Visual Studio
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# NuGet
+packages/
+*.nupkg
+
+# Pliki lokalne
+*.local.config
+appsettings.local.json
+</div></code></pre>
+<p><strong>Reguły składni <code>.gitignore</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Wzorzec</th>
+<th>Co ignoruje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*.log</code></td>
+<td>Wszystkie pliki <code>.log</code></td>
+</tr>
+<tr>
+<td><code>build/</code></td>
+<td>Folder o nazwie <code>build</code></td>
+</tr>
+<tr>
+<td><code>**/temp</code></td>
+<td>Folder <code>temp</code> w dowolnym miejscu</td>
+</tr>
+<tr>
+<td><code>!ważny.log</code></td>
+<td>Wyjątek — ten plik NIE jest ignorowany</td>
+</tr>
+<tr>
+<td><code>doc/*.txt</code></td>
+<td>Pliki <code>.txt</code> tylko w folderze <code>doc/</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ważne:</strong> Jeśli plik był już śledzony przez Gita, dodanie go do <code>.gitignore</code> nie wystarczy — trzeba go najpierw usunąć z indeksu: <code>git rm --cached plik.txt</code></p>
+</blockquote>
+<hr>
+<h2 id="3-zapisywanie-zmian--commit">3. Zapisywanie zmian — commit</h2>
+<h3 id="31-dodawanie-plików-do-staging--git-add">3.1. Dodawanie plików do staging — <code>git add</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Dodaj konkretny plik</span>
+git add main.py
+
+<span class="hljs-comment"># Dodaj kilka plików</span>
+git add main.py utils.py README.md
+
+<span class="hljs-comment"># Dodaj cały folder</span>
+git add src/
+
+<span class="hljs-comment"># Dodaj WSZYSTKIE zmienione i nowe pliki</span>
+git add .
+
+<span class="hljs-comment"># Dodaj wszystkie pliki z rozszerzeniem .py</span>
+git add *.py
+
+<span class="hljs-comment"># Tryb interaktywny — wybierasz które części pliku dodać</span>
+git add -p main.py
+</div></code></pre>
+<p><strong>Usuwanie z staging (bez utraty zmian w pliku):</strong></p>
+<pre class="hljs"><code><div>git restore --staged main.py
+<span class="hljs-comment"># lub (starsza składnia):</span>
+git reset HEAD main.py
+</div></code></pre>
+<hr>
+<h3 id="32-tworzenie-commitu--git-commit">3.2. Tworzenie commitu — <code>git commit</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Commit z wiadomością (zalecane)</span>
+git commit -m <span class="hljs-string">&quot;Dodanie funkcji logowania użytkownika&quot;</span>
+
+<span class="hljs-comment"># Commit z dłuższym opisem (otwiera edytor)</span>
+git commit
+
+<span class="hljs-comment"># Skrót: add wszystkich zmienionych (śledzonych) plików + commit</span>
+git commit -am <span class="hljs-string">&quot;Poprawka błędu w obliczeniach&quot;</span>
+<span class="hljs-comment"># UWAGA: -a nie dodaje nowych (Untracked) plików!</span>
+</div></code></pre>
+<p><strong>Zasady dobrego komunikatu commitu:</strong></p>
+<ul>
+<li>Zacznij od czasownika w trybie rozkazującym: <em>Dodaj</em>, <em>Napraw</em>, <em>Usuń</em>, <em>Zmień</em>, <em>Refaktoruj</em></li>
+<li>Pierwsza linia: maks. 72 znaki</li>
+<li>Opisuj <strong>co</strong> i <strong>dlaczego</strong>, nie jak</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># ✅ Dobre wiadomości:</span>
+git commit -m <span class="hljs-string">&quot;Dodaj walidację formularza logowania&quot;</span>
+git commit -m <span class="hljs-string">&quot;Napraw błąd dzielenia przez zero w kalkulatorze&quot;</span>
+git commit -m <span class="hljs-string">&quot;Usuń zbędne importy z main.py&quot;</span>
+
+<span class="hljs-comment"># ❌ Złe wiadomości:</span>
+git commit -m <span class="hljs-string">&quot;fix&quot;</span>
+git commit -m <span class="hljs-string">&quot;zmiany&quot;</span>
+git commit -m <span class="hljs-string">&quot;aaa&quot;</span>
+</div></code></pre>
+<hr>
+<h3 id="33-przeglądanie-historii--git-log">3.3. Przeglądanie historii — <code>git log</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Pełna historia commitów</span>
+git <span class="hljs-built_in">log</span>
+
+<span class="hljs-comment"># Skrócona, jedna linia na commit</span>
+git <span class="hljs-built_in">log</span> --oneline
+
+<span class="hljs-comment"># Z grafem gałęzi</span>
+git <span class="hljs-built_in">log</span> --oneline --graph --all
+
+<span class="hljs-comment"># Ostatnie N commitów</span>
+git <span class="hljs-built_in">log</span> -5
+
+<span class="hljs-comment"># Historia konkretnego pliku</span>
+git <span class="hljs-built_in">log</span> --oneline main.py
+
+<span class="hljs-comment"># Commity od konkretnej daty</span>
+git <span class="hljs-built_in">log</span> --since=<span class="hljs-string">&quot;2024-01-01&quot;</span> --<span class="hljs-keyword">until</span>=<span class="hljs-string">&quot;2024-12-31&quot;</span>
+
+<span class="hljs-comment"># Commity konkretnego autora</span>
+git <span class="hljs-built_in">log</span> --author=<span class="hljs-string">&quot;Kowalski&quot;</span>
+</div></code></pre>
+<p><strong>Przykładowe wyjście <code>git log --oneline</code>:</strong></p>
+<pre class="hljs"><code><div>a3f5c2d Napraw błąd w module kalkulatora
+8b2e1a0 Dodaj obsługę wyjątków w parsowaniu pliku
+f7c3d5b Refaktoryzacja klasy Album
+3a1b9c2 Pierwszy commit: dodanie README
+</div></code></pre>
+<p><strong>Pokazanie szczegółów konkretnego commitu:</strong></p>
+<pre class="hljs"><code><div>git show a3f5c2d
+<span class="hljs-comment"># lub ostatni commit:</span>
+git show HEAD
+</div></code></pre>
+<hr>
+<h3 id="34-porównywanie-zmian--git-diff">3.4. Porównywanie zmian — <code>git diff</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Zmiany w Working Directory (niezastagedowane)</span>
+git diff
+
+<span class="hljs-comment"># Zmiany w Staging Area (zastagedowane, gotowe do commitu)</span>
+git diff --staged
+<span class="hljs-comment"># lub:</span>
+git diff --cached
+
+<span class="hljs-comment"># Porównanie dwóch commitów</span>
+git diff a3f5c2d 8b2e1a0
+
+<span class="hljs-comment"># Porównanie gałęzi</span>
+git diff main feature/logowanie
+
+<span class="hljs-comment"># Zmiany w konkretnym pliku</span>
+git diff main.py
+</div></code></pre>
+<p><strong>Jak czytać wynik <code>git diff</code>:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">diff --git a/main.py b/main.py</span>
+<span class="hljs-comment">index 3a1b9c2..f7c3d5b 100644</span>
+<span class="hljs-comment">--- a/main.py      ← stara wersja</span>
+<span class="hljs-comment">+++ b/main.py      ← nowa wersja</span>
+<span class="hljs-meta">@@ -10,7 +10,8 @@</span>
+ def oblicz(a, b):
+<span class="hljs-deletion">-    return a + b        ← usunięta linia (czerwona)</span>
+<span class="hljs-addition">+    if b == 0:          ← dodana linia (zielona)</span>
+<span class="hljs-addition">+        return None</span>
+<span class="hljs-addition">+    return a / b</span>
+</div></code></pre>
+<hr>
+<h3 id="35-cofanie-zmian--git-restore-git-reset-git-revert">3.5. Cofanie zmian — <code>git restore</code>, <code>git reset</code>, <code>git revert</code></h3>
+<p><strong>Odrzucenie zmian w Working Directory (nie zapisane, przed <code>git add</code>):</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Przywróć plik do stanu z ostatniego commitu</span>
+git restore main.py
+
+<span class="hljs-comment"># Przywróć wszystkie pliki</span>
+git restore .
+</div></code></pre>
+<blockquote>
+<p>⚠️ <code>git restore</code> jest <strong>nieodwracalne</strong> — niezapisane zmiany przepadają!</p>
+</blockquote>
+<p><strong>Usunięcie pliku z Staging Area (po <code>git add</code>, przed <code>git commit</code>):</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Usuń z staging, ale zachowaj zmiany w pliku</span>
+git restore --staged main.py
+</div></code></pre>
+<p><strong>Cofnięcie commitów — <code>git reset</code>:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Cofnij ostatni commit, zachowaj zmiany w staging</span>
+git reset --soft HEAD~1
+
+<span class="hljs-comment"># Cofnij ostatni commit, zachowaj zmiany w Working Directory</span>
+git reset --mixed HEAD~1
+<span class="hljs-comment"># (to jest domyślne zachowanie bez flagi)</span>
+
+<span class="hljs-comment"># Cofnij ostatni commit i USUŃ zmiany całkowicie</span>
+git reset --hard HEAD~1
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Flaga</th>
+<th>Staging Area</th>
+<th>Working Directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--soft</code></td>
+<td>Zachowane (pliki staged)</td>
+<td>Bez zmian</td>
+</tr>
+<tr>
+<td><code>--mixed</code></td>
+<td>Wyczyszczone (pliki unstaged)</td>
+<td>Bez zmian</td>
+</tr>
+<tr>
+<td><code>--hard</code></td>
+<td>Wyczyszczone</td>
+<td><strong>Zmiany usunięte!</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bezpieczne cofnięcie — <code>git revert</code> (zalecane na współdzielonych gałęziach):</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Tworzy NOWY commit, który odwraca zmiany z podanego commitu</span>
+git revert a3f5c2d
+
+<span class="hljs-comment"># Cofnij ostatni commit (tworząc nowy &quot;odwrotny&quot; commit)</span>
+git revert HEAD
+</div></code></pre>
+<blockquote>
+<p><code>git revert</code> jest <strong>bezpieczny</strong> — nie niszczy historii, tylko dodaje nowy commit.
+<code>git reset --hard</code> przepisuje historię — <strong>nie używaj</strong> na commitach już wysłanych na zdalne repo!</p>
+</blockquote>
+<hr>
+<h2 id="4-gałęzie--branch">4. Gałęzie — branch</h2>
+<h3 id="41-czym-jest-gałąź-i-po-co-jej-używać">4.1. Czym jest gałąź i po co jej używać</h3>
+<p>Gałąź (branch) to oddzielna „linia czasu&quot; projektu. Główna gałąź to zazwyczaj <code>main</code> (lub <code>master</code> w starszych projektach).</p>
+<pre class="hljs"><code><div>main:    A ── B ── C ──────────── G (merge)
+                   └── D ── E ──┘
+feature/logowanie:     (nowa funkcja)
+</div></code></pre>
+<p><strong>Kiedy tworzyć nową gałąź:</strong></p>
+<ul>
+<li>Chcesz dodać nową funkcję bez ryzyka zepsucia działającego kodu</li>
+<li>Naprawiasz błąd (hotfix)</li>
+<li>Eksperymentujesz z nowym podejściem</li>
+<li>Pracujesz w zespole — każda osoba ma swoją gałąź</li>
+</ul>
+<hr>
+<h3 id="42-tworzenie-i-przełączanie-gałęzi--git-branch-git-checkout-git-switch">4.2. Tworzenie i przełączanie gałęzi — <code>git branch</code>, <code>git checkout</code>, <code>git switch</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Wyświetl wszystkie lokalne gałęzie (* oznacza aktywną)</span>
+git branch
+
+<span class="hljs-comment"># Wyświetl lokalne i zdalne gałęzie</span>
+git branch -a
+
+<span class="hljs-comment"># Utwórz nową gałąź (bez przełączania)</span>
+git branch feature/logowanie
+
+<span class="hljs-comment"># Przełącz się na gałąź</span>
+git switch feature/logowanie
+<span class="hljs-comment"># lub starsza składnia:</span>
+git checkout feature/logowanie
+
+<span class="hljs-comment"># Utwórz nową gałąź I od razu się przełącz (najczęściej używane)</span>
+git switch -c feature/logowanie
+<span class="hljs-comment"># lub starsza składnia:</span>
+git checkout -b feature/logowanie
+
+<span class="hljs-comment"># Wróć do poprzedniej gałęzi</span>
+git switch -
+</div></code></pre>
+<p><strong>Typowy przepływ z gałęziami:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 1. Jesteś na main — upewnij się że jest aktualny</span>
+git switch main
+git pull
+
+<span class="hljs-comment"># 2. Utwórz nową gałąź dla nowej funkcji</span>
+git switch -c feature/koszyk-zakupow
+
+<span class="hljs-comment"># 3. Pracuj, dodawaj commity...</span>
+git add .
+git commit -m <span class="hljs-string">&quot;Dodaj klasę Koszyk&quot;</span>
+git add .
+git commit -m <span class="hljs-string">&quot;Dodaj metodę dodajProdukt&quot;</span>
+
+<span class="hljs-comment"># 4. Wróć do main i scal</span>
+git switch main
+git merge feature/koszyk-zakupow
+
+<span class="hljs-comment"># 5. Usuń gałąź po scaleniu</span>
+git branch -d feature/koszyk-zakupow
+</div></code></pre>
+<hr>
+<h3 id="43-scalanie-gałęzi--git-merge">4.3. Scalanie gałęzi — <code>git merge</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Będąc na gałęzi docelowej (np. main), scal z feature</span>
+git switch main
+git merge feature/logowanie
+</div></code></pre>
+<p><strong>Rodzaje scalania:</strong></p>
+<p><strong>Fast-forward</strong> (brak nowego commitu — historia jest liniowa):</p>
+<pre class="hljs"><code><div>Przed:  main: A ── B
+              └── C ── D  (feature)
+
+Po:     main: A ── B ── C ── D
+</div></code></pre>
+<p><strong>Merge commit</strong> (gdy obie gałęzie miały nowe commity):</p>
+<pre class="hljs"><code><div>Przed:  main: A ── B ── E
+                  └── C ── D  (feature)
+
+Po:     main: A ── B ── E ── M (merge commit)
+                  └── C ── D ──┘
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Wymuś zawsze merge commit (zachowanie historii gałęzi)</span>
+git merge --no-ff feature/logowanie
+
+<span class="hljs-comment"># Podejrzyj co zostanie scalone (bez faktycznego scalania)</span>
+git merge --dry-run feature/logowanie
+</div></code></pre>
+<hr>
+<h3 id="44-konflikty-przy-scalaniu-i-jak-je-rozwiązywać">4.4. Konflikty przy scalaniu i jak je rozwiązywać</h3>
+<p>Konflikt wystąpi, gdy ta sama linia w pliku została zmieniona w obu gałęziach.</p>
+<pre class="hljs"><code><div>git merge feature/logowanie
+<span class="hljs-comment"># Auto-merging main.py</span>
+<span class="hljs-comment"># CONFLICT (content): Merge conflict in main.py</span>
+<span class="hljs-comment"># Automatic merge failed; fix conflicts and then commit the result.</span>
+</div></code></pre>
+<p><strong>Jak wygląda konflikt w pliku:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">def</span> <span class="hljs-title function_">oblicz_rabat</span>(<span class="hljs-params">cena</span>):
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    <span class="hljs-comment"># Wersja z gałęzi main</span>
+    <span class="hljs-keyword">return</span> cena * <span class="hljs-number">0.9</span>
+=======
+    <span class="hljs-comment"># Wersja z gałęzi feature/logowanie</span>
+    <span class="hljs-keyword">return</span> cena * <span class="hljs-number">0.85</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/logowanie
+</div></code></pre>
+<p><strong>Rozwiązanie konfliktu krok po kroku:</strong></p>
+<ol>
+<li>Otwórz plik z konfliktem w edytorze</li>
+<li>Zdecyduj która wersja jest prawidłowa (lub napisz nową)</li>
+<li>Usuń znaczniki <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></li>
+<li>Zapisz plik</li>
+<li><code>git add plik_z_konfliktem.py</code></li>
+<li><code>git commit -m &quot;Rozwiązanie konfliktu w oblicz_rabat&quot;</code></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># Sprawdź które pliki mają konflikty</span>
+git status
+
+<span class="hljs-comment"># Przerwij scalanie (wróć do stanu sprzed merge)</span>
+git merge --abort
+</div></code></pre>
+<hr>
+<h3 id="45-usuwanie-gałęzi">4.5. Usuwanie gałęzi</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Usuń lokalną gałąź (tylko jeśli jest już scalona)</span>
+git branch -d feature/logowanie
+
+<span class="hljs-comment"># Wymuś usunięcie (nawet jeśli nieskalona)</span>
+git branch -D feature/logowanie
+
+<span class="hljs-comment"># Usuń zdalną gałąź</span>
+git push origin --delete feature/logowanie
+</div></code></pre>
+<hr>
+<h2 id="5-praca-ze-zdalnym-repozytorium">5. Praca ze zdalnym repozytorium</h2>
+<h3 id="51-dodawanie-zdalnego-repozytorium--git-remote">5.1. Dodawanie zdalnego repozytorium — <code>git remote</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Wyświetl zdalne repozytoria</span>
+git remote -v
+
+<span class="hljs-comment"># Dodaj zdalne repozytorium (zwykle origin)</span>
+git remote add origin https://github.com/uzytkownik/projekt.git
+
+<span class="hljs-comment"># Zmień URL zdalnego repozytorium</span>
+git remote set-url origin https://github.com/uzytkownik/nowy-url.git
+
+<span class="hljs-comment"># Usuń zdalne repozytorium</span>
+git remote remove origin
+
+<span class="hljs-comment"># Zmień nazwę</span>
+git remote rename origin backup
+</div></code></pre>
+<blockquote>
+<p>Nazwa <code>origin</code> to konwencja — technicznie możesz użyć dowolnej nazwy.</p>
+</blockquote>
+<hr>
+<h3 id="52-wysyłanie-zmian--git-push">5.2. Wysyłanie zmian — <code>git push</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Wyślij lokalną gałąź na zdalne repo</span>
+git push origin main
+
+<span class="hljs-comment"># Wyślij i ustaw upstream (śledzenie) — potem wystarczy &quot;git push&quot;</span>
+git push -u origin main
+
+<span class="hljs-comment"># Po ustawieniu upstream — skrót</span>
+git push
+
+<span class="hljs-comment"># Wyślij nową lokalną gałąź na zdalne repo</span>
+git push -u origin feature/logowanie
+
+<span class="hljs-comment"># Wymuś push (UWAGA: nadpisuje historię na serwerze!)</span>
+git push --force
+<span class="hljs-comment"># Bezpieczniejsza wersja (nie nadpisze jeśli ktoś już coś wypchnął):</span>
+git push --force-with-lease
+</div></code></pre>
+<blockquote>
+<p>⚠️ <code>git push --force</code> nigdy nie używaj na gałęziach współdzielonych z innymi (np. <code>main</code>)!</p>
+</blockquote>
+<hr>
+<h3 id="53-pobieranie-zmian--git-fetch-i-git-pull">5.3. Pobieranie zmian — <code>git fetch</code> i <code>git pull</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># git fetch — pobiera zmiany ze zdalnego repo BEZ scalania</span>
+git fetch origin
+
+<span class="hljs-comment"># Po fetch możesz zobaczyć co się zmieniło:</span>
+git <span class="hljs-built_in">log</span> HEAD..origin/main --oneline
+
+<span class="hljs-comment"># Scal pobrane zmiany ręcznie:</span>
+git merge origin/main
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># git pull — pobiera I od razu scala (fetch + merge)</span>
+git pull
+
+<span class="hljs-comment"># git pull z konkretnej gałęzi</span>
+git pull origin main
+
+<span class="hljs-comment"># Pobierz i rebase zamiast merge (liniowa historia)</span>
+git pull --rebase
+</div></code></pre>
+<p><strong>Kiedy używać fetch vs pull:</strong></p>
+<ul>
+<li><code>git fetch</code> — gdy chcesz <strong>najpierw zobaczyć</strong> co się zmieniło, zanim scalisz</li>
+<li><code>git pull</code> — gdy chcesz szybko zsynchronizować i ufasz że nie będzie konfliktów</li>
+</ul>
+<hr>
+<h3 id="54-github--tworzenie-repozytorium-i-pierwsze-push">5.4. GitHub — tworzenie repozytorium i pierwsze push</h3>
+<p><strong>Scenariusz 1: Nowy projekt — najpierw lokalnie:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 1. Utwórz lokalnie</span>
+<span class="hljs-built_in">mkdir</span> moj-projekt &amp;&amp; <span class="hljs-built_in">cd</span> moj-projekt
+git init
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;# Mój Projekt&quot;</span> &gt; README.md
+git add .
+git commit -m <span class="hljs-string">&quot;Pierwszy commit&quot;</span>
+
+<span class="hljs-comment"># 2. Na GitHubie: kliknij &quot;New repository&quot;, skopiuj URL</span>
+
+<span class="hljs-comment"># 3. Połącz i wyślij</span>
+git remote add origin https://github.com/TY/moj-projekt.git
+git branch -M main
+git push -u origin main
+</div></code></pre>
+<p><strong>Scenariusz 2: Istniejące repo na GitHubie — sklonuj:</strong></p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/TY/moj-projekt.git
+<span class="hljs-built_in">cd</span> moj-projekt
+<span class="hljs-comment"># Pracuj, commituj, push...</span>
+git push
+</div></code></pre>
+<p><strong>Standardowy codzienny cykl pracy z GitHubem:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 1. Zacznij dzień — pobierz zmiany</span>
+git pull
+
+<span class="hljs-comment"># 2. Pracuj i commituj</span>
+git add .
+git commit -m <span class="hljs-string">&quot;Opis zmiany&quot;</span>
+
+<span class="hljs-comment"># 3. Wyślij na koniec dnia</span>
+git push
+</div></code></pre>
+<hr>
+<h2 id="6-przydatne-komendy-i-wzorce">6. Przydatne komendy i wzorce</h2>
+<h3 id="61-zmiana-ostatniego-commitu--git-commit---amend">6.1. Zmiana ostatniego commitu — <code>git commit --amend</code></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Zmień wiadomość ostatniego commitu</span>
+git commit --amend -m <span class="hljs-string">&quot;Poprawiona wiadomość&quot;</span>
+
+<span class="hljs-comment"># Dodaj zapomniane pliki do ostatniego commitu (bez zmiany wiadomości)</span>
+git add zapomniany_plik.py
+git commit --amend --no-edit
+</div></code></pre>
+<blockquote>
+<p>⚠️ Używaj <code>--amend</code> tylko jeśli commit <strong>nie został jeszcze wypchnięty</strong> na zdalne repo!</p>
+</blockquote>
+<hr>
+<h3 id="62-schowek-tymczasowy--git-stash">6.2. Schowek tymczasowy — <code>git stash</code></h3>
+<p><code>git stash</code> pozwala tymczasowo odłożyć niezakończone zmiany i wrócić do czystego Working Directory.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Odłóż zmiany do schowka</span>
+git stash
+
+<span class="hljs-comment"># Odłóż z opisem</span>
+git stash push -m <span class="hljs-string">&quot;Prace nad formularzem logowania&quot;</span>
+
+<span class="hljs-comment"># Wyświetl zawartość schowka</span>
+git stash list
+<span class="hljs-comment"># Wynik:</span>
+<span class="hljs-comment"># stash@{0}: On main: Prace nad formularzem logowania</span>
+<span class="hljs-comment"># stash@{1}: WIP on main: a3f5c2d Poprzedni commit</span>
+
+<span class="hljs-comment"># Przywróć ostatnio odłożone zmiany</span>
+git stash pop
+
+<span class="hljs-comment"># Przywróć konkretny schowek</span>
+git stash pop stash@{1}
+
+<span class="hljs-comment"># Przywróć bez usuwania ze schowka</span>
+git stash apply
+
+<span class="hljs-comment"># Usuń konkretny schowek</span>
+git stash drop stash@{0}
+
+<span class="hljs-comment"># Usuń wszystkie schowki</span>
+git stash clear
+</div></code></pre>
+<p><strong>Typowy scenariusz użycia <code>git stash</code>:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Pracujesz nad nową funkcją, nagle musisz pilnie naprawić błąd na main</span>
+
+git stash                     <span class="hljs-comment"># odłóż bieżące zmiany</span>
+git switch main               <span class="hljs-comment"># przejdź na main</span>
+git switch -c hotfix/blad    <span class="hljs-comment"># utwórz gałąź hotfix</span>
+<span class="hljs-comment"># ... napraw błąd ...</span>
+git commit -am <span class="hljs-string">&quot;Napraw krytyczny błąd w module płatności&quot;</span>
+git switch main
+git merge hotfix/blad
+git switch feature/moja-funkcja  <span class="hljs-comment"># wróć do swojej pracy</span>
+git stash pop                 <span class="hljs-comment"># przywróć odłożone zmiany</span>
+</div></code></pre>
+<hr>
+<h3 id="63-tagi--git-tag">6.3. Tagi — <code>git tag</code></h3>
+<p>Tagi służą do oznaczania ważnych punktów w historii, zwykle wersji oprogramowania.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Wyświetl wszystkie tagi</span>
+git tag
+
+<span class="hljs-comment"># Utwórz lekki tag (tylko etykieta)</span>
+git tag v1.0
+
+<span class="hljs-comment"># Utwórz tag z opisem (zalecane)</span>
+git tag -a v1.0 -m <span class="hljs-string">&quot;Wersja 1.0 — pierwsze publiczne wydanie&quot;</span>
+
+<span class="hljs-comment"># Oznacz starszy commit tagiem</span>
+git tag -a v0.9 a3f5c2d -m <span class="hljs-string">&quot;Wersja 0.9 beta&quot;</span>
+
+<span class="hljs-comment"># Wyślij tagi na zdalne repo (git push ich domyślnie nie wysyła!)</span>
+git push origin v1.0
+git push origin --tags  <span class="hljs-comment"># wyślij wszystkie tagi</span>
+
+<span class="hljs-comment"># Usuń tag lokalnie</span>
+git tag -d v1.0
+
+<span class="hljs-comment"># Usuń tag z zdalnego repo</span>
+git push origin --delete v1.0
+
+<span class="hljs-comment"># Przejdź do stanu projektu z danego tagu</span>
+git checkout v1.0
+</div></code></pre>
+<hr>
+<h3 id="64-aliasy--skróty-do-komend">6.4. Aliasy — skróty do komend</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Utwórz skróty dla często używanych komend</span>
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm <span class="hljs-string">&quot;commit -m&quot;</span>
+git config --global alias.lg <span class="hljs-string">&quot;log --oneline --graph --all&quot;</span>
+git config --global alias.last <span class="hljs-string">&quot;log -1 HEAD&quot;</span>
+git config --global alias.unstage <span class="hljs-string">&quot;restore --staged&quot;</span>
+</div></code></pre>
+<p><strong>Po konfiguracji możesz pisać:</strong></p>
+<pre class="hljs"><code><div>git st          <span class="hljs-comment"># zamiast: git status</span>
+git co main     <span class="hljs-comment"># zamiast: git checkout main</span>
+git lg          <span class="hljs-comment"># zamiast: git log --oneline --graph --all</span>
+git last        <span class="hljs-comment"># pokazuje ostatni commit</span>
+git unstage plik.py  <span class="hljs-comment"># zamiast: git restore --staged plik.py</span>
+</div></code></pre>
+<hr>
+<h3 id="65-typowy-przepływ-pracy--ściągawka-krok-po-kroku">6.5. Typowy przepływ pracy — ściągawka krok po kroku</h3>
+<p><strong>Inicjalizacja projektu od zera:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">mkdir</span> projekt &amp;&amp; <span class="hljs-built_in">cd</span> projekt
+git init
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;# Projekt&quot;</span> &gt; README.md
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;__pycache__/&quot;</span> &gt; .gitignore
+git add .
+git commit -m <span class="hljs-string">&quot;Inicjalizacja projektu&quot;</span>
+git remote add origin https://github.com/TY/projekt.git
+git push -u origin main
+</div></code></pre>
+<p><strong>Codzienna praca:</strong></p>
+<pre class="hljs"><code><div>git pull                          <span class="hljs-comment"># pobierz zmiany od innych</span>
+git switch -c feature/nowa-f     <span class="hljs-comment"># utwórz gałąź dla nowej funkcji</span>
+<span class="hljs-comment"># ... edytuj pliki ...</span>
+git status                        <span class="hljs-comment"># sprawdź co zmieniłeś</span>
+git diff                          <span class="hljs-comment"># podejrzyj zmiany</span>
+git add .                         <span class="hljs-comment"># dodaj do staging</span>
+git commit -m <span class="hljs-string">&quot;Opis zmiany&quot;</span>       <span class="hljs-comment"># zapisz commit</span>
+git push -u origin feature/nowa-f <span class="hljs-comment"># wyślij gałąź na GitHub</span>
+</div></code></pre>
+<p><strong>Scalanie gotowej funkcji:</strong></p>
+<pre class="hljs"><code><div>git switch main                   <span class="hljs-comment"># przejdź na main</span>
+git pull                          <span class="hljs-comment"># upewnij się że main jest aktualny</span>
+git merge feature/nowa-f          <span class="hljs-comment"># scal funkcję</span>
+git push                          <span class="hljs-comment"># wyślij zaktualizowany main</span>
+git branch -d feature/nowa-f      <span class="hljs-comment"># usuń lokalną gałąź</span>
+git push origin --delete feature/nowa-f  <span class="hljs-comment"># usuń zdalną gałąź</span>
+</div></code></pre>
+<hr>
+<h2 id="szybka-ściągawka-komend">Szybka ściągawka komend</h2>
+<table>
+<thead>
+<tr>
+<th>Komenda</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git init</code></td>
+<td>Inicjalizuj nowe repozytorium</td>
+</tr>
+<tr>
+<td><code>git clone &lt;url&gt;</code></td>
+<td>Sklonuj zdalne repozytorium</td>
+</tr>
+<tr>
+<td><code>git status</code></td>
+<td>Sprawdź stan plików</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>Dodaj wszystkie zmiany do staging</td>
+</tr>
+<tr>
+<td><code>git add &lt;plik&gt;</code></td>
+<td>Dodaj konkretny plik do staging</td>
+</tr>
+<tr>
+<td><code>git commit -m &quot;opis&quot;</code></td>
+<td>Zapisz commit z wiadomością</td>
+</tr>
+<tr>
+<td><code>git log --oneline</code></td>
+<td>Historia commitów (krótko)</td>
+</tr>
+<tr>
+<td><code>git diff</code></td>
+<td>Pokaż niezastagedowane zmiany</td>
+</tr>
+<tr>
+<td><code>git diff --staged</code></td>
+<td>Pokaż zastagedowane zmiany</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>Wyświetl gałęzie</td>
+</tr>
+<tr>
+<td><code>git switch -c &lt;nazwa&gt;</code></td>
+<td>Utwórz i przełącz na nową gałąź</td>
+</tr>
+<tr>
+<td><code>git switch &lt;nazwa&gt;</code></td>
+<td>Przełącz na gałąź</td>
+</tr>
+<tr>
+<td><code>git merge &lt;gałąź&gt;</code></td>
+<td>Scal gałąź z bieżącą</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>Wyślij commity na zdalne repo</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>Pobierz i scal ze zdalnego repo</td>
+</tr>
+<tr>
+<td><code>git fetch</code></td>
+<td>Pobierz zmiany (bez scalania)</td>
+</tr>
+<tr>
+<td><code>git restore &lt;plik&gt;</code></td>
+<td>Cofnij zmiany w pliku (Working Dir)</td>
+</tr>
+<tr>
+<td><code>git restore --staged &lt;plik&gt;</code></td>
+<td>Usuń plik z staging</td>
+</tr>
+<tr>
+<td><code>git reset --soft HEAD~1</code></td>
+<td>Cofnij ostatni commit (zachowaj staged)</td>
+</tr>
+<tr>
+<td><code>git reset --hard HEAD~1</code></td>
+<td>Cofnij ostatni commit (usuń zmiany)</td>
+</tr>
+<tr>
+<td><code>git revert HEAD</code></td>
+<td>Cofnij commit tworząc nowy commit</td>
+</tr>
+<tr>
+<td><code>git stash</code></td>
+<td>Odłóż zmiany do schowka</td>
+</tr>
+<tr>
+<td><code>git stash pop</code></td>
+<td>Przywróć ze schowka</td>
+</tr>
+<tr>
+<td><code>git tag -a v1.0 -m &quot;...&quot;</code></td>
+<td>Utwórz opisany tag</td>
+</tr>
+<tr>
+<td><code>git remote -v</code></td>
+<td>Wyświetl zdalne repozytoria</td>
+</tr>
+<tr>
+<td><code>git remote add origin &lt;url&gt;</code></td>
+<td>Dodaj zdalne repo</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

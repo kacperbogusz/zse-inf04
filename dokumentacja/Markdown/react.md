@@ -2676,52 +2676,6 @@ function walidujHaslo(haslo) {
 }
 ```
 
-### 3.31. Odczyt plików lokalnych (File API, FileReader)
-
-Choć aplikacje uruchamiane w przeglądarce ze względów bezpieczeństwa nie mają bezpośredniego dostępu do zapisywania i odczytywania plików na dysku użytkownika w tle (w przeciwieństwie do aplikacji w języku Python czy w środowisku desktopowym), to wciąż mogą wczytać plik z inicjatywy samego użytkownika (gdy kliknie on pole `<input type="file">`). Do odczytu zawartości wykorzystuje się wbudowany w przeglądarki obiekt `FileReader`.
-
-**Przykład – odczytywanie zawartości pliku tekstowego po wybraniu w inpucie:**
-
-```jsx
-import { useState } from "react";
-
-function WczytywaczPlikow() {
-  const [zawartosc, setZawartosc] = useState("");
-
-  const handleFileChange = (e) => {
-    // e.target.files to tablica plików. Bierzemy pierwszy wgrany plik.
-    const file = e.target.files[0]; 
-    if (!file) return;
-
-    // Utworzenie obiektu czytnika
-    const reader = new FileReader();
-
-    // Funkcja odpalana asynchronicznie, gdy plik zostanie wczytany
-    reader.onload = (event) => {
-      // Wynikiem event.target.result jest tekst z wnętrza pliku .txt
-      setZawartosc(event.target.result);
-    };
-
-    // Wystartowanie wczytywania (czytamy go jako zwykły tekst)
-    reader.readAsText(file);
-  };
-
-  return (
-    <div>
-      <h3>Wgraj plik tekstowy (.txt)</h3>
-      <input type="file" accept=".txt" onChange={handleFileChange} />
-      <hr />
-      <h4>Zawartość z wewnątrz pliku:</h4>
-      <pre>{zawartosc}</pre>
-    </div>
-  );
-}
-```
-
-**Najpopularniejsze formaty czytania z FileReader:**
-- `readAsText(file)` — wczytuje plik do Stringa (idealne do `.txt`, `.json`, `.csv`).
-- `readAsDataURL(file)` — wczytuje plik do formatu ciągu kodowanego jako Base64. Jest to idealne rozwiązanie do podglądu zdjęć (jeśli wgrasz np. `.jpg`, wynik możesz wkleić bezpośrednio do atrybutu `<img src={...} />`, aby natychmiast pokazać użytkownikowi wybrany przed chwilą przez niego obrazek przed wysłaniem na serwer).
-
 ---
 
 ## 4. JSX — składnia widoku

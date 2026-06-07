@@ -3157,47 +3157,72 @@ W Pythonie nie ma ścisłych ograniczeń dostępu (jak `private` w Java). Stosuj
 
 **Name Mangling:** Atrybut `self.__tajne` w klasie `Konto` jest zamieniany na `_Konto__tajne`. Można się do niego dostać z zewnątrz, ale jest to celowo utrudnione.
 
-### 11.2. Gettery i settery — metody dostępu
-Klasyczne podejście (rzadziej stosowane w Pythonie na rzecz `@property`):
+### 11.2. Gettery i settery — klasyczne metody dostępu
+W klasycznym podejściu (znanym np. z Javy) zamiast bezpośrednio modyfikować atrybuty obiektu, tworzymy oddzielne metody do ich pobierania (`get`) i ustawiania (`set`). 
+Umożliwia to zablokowanie ustawienia błędnych wartości, ale wymusza stosowanie nawiasów `()` przy każdym użyciu.
 
+**Przykład — klasyczny getter i setter z walidacją:**
 ```python
-class Pracownik:
-    def __init__(self, pensja):
-        self.__pensja = pensja
+class KontoBankowe:
+    def __init__(self, saldo):
+        self.__saldo = 0
+        self.set_saldo(saldo)  # Użycie settera już w konstruktorze dla walidacji
 
-    def get_pensja(self):
-        return self.__pensja
+    # Getter — metoda pobierająca
+    def get_saldo(self):
+        return self.__saldo
 
-    def set_pensja(self, nowa_pensja):
-        if nowa_pensja > 0:
-            self.__pensja = nowa_pensja
+    # Setter — metoda ustawiająca
+    def set_saldo(self, kwota):
+        if kwota >= 0:
+            self.__saldo = kwota
+        else:
+            print("Błąd: Saldo nie może być ujemne!")
+
+konto = KontoBankowe(100)
+konto.set_saldo(150)           # Ustawienie nowej wartości (wywołanie metody)
+print(konto.get_saldo())       # Pobranie wartości -> 150
+konto.set_saldo(-50)           # Próba przypisania ujemnej wartości zakończona błędem
 ```
 
 ### 11.3. Dekorator `@property` — pythoniczny getter/setter
-Pozwala używać metod tak, jakby były zwykłymi polami (bez nawiasów `()`), co umożliwia dodanie walidacji bez zmiany API klasy.
+W Pythonie klasyczne gettery i settery są rzadko używane, ponieważ wymuszają zmianę składni w wywołaniach. Lepszym sposobem jest dekorator `@property`. 
+Sprawia on, że ukryta logika walidacji odbywa się **automatycznie** podczas zwykłego przypisywania wartości znakiem `=`.
 
+**Przykład — ten sam mechanizm za pomocą `@property`:**
 ```python
-class Osoba:
-    def __init__(self, wiek):
-        self.__wiek = wiek
+class Temperatura:
+    def __init__(self, celsjusz):
+        # Przypisujemy do atrybutu publicznego (self.celsjusz), a nie prywatnego!
+        # To sprawia, że setter zostanie od razu wywołany, walidując wartość startową.
+        self.celsjusz = celsjusz
 
     @property
-    def wiek(self):
-        """Getter: wywoływany przy 'print(obj.wiek)'"""
-        return self.__wiek
+    def celsjusz(self):
+        # Ten kod uruchomi się, gdy ktoś wywoła np.: print(t.celsjusz)
+        return self.__celsjusz
 
-    @wiek.setter
-    def wiek(self, wartosc):
-        """Setter: wywoływany przy 'obj.wiek = 20'"""
-        if 0 <= wartosc <= 150:
-            self.__wiek = wartosc
+    @celsjusz.setter
+    def celsjusz(self, wartosc):
+        # Ten kod uruchomi się, gdy ktoś wywoła np.: t.celsjusz = 20
+        if wartosc >= -273.15:
+            self.__celsjusz = wartosc
         else:
-            print("Nieprawidłowy wiek!")
+            print("Błąd: Temperatura poniżej zera absolutnego!")
 
-o = Osoba(25)
-o.wiek = 30    # Wywołuje setter
-print(o.wiek)  # Wywołuje getter -> 30
-o.wiek = -5    # Nieprawidłowy wiek!
+    @property
+    def fahrenheit(self):
+        # Wirtualny atrybut tylko do odczytu (nie ma settera).
+        # Atrybut "fahrenheit" nie istnieje jako zmienna, jest liczony w locie na podstawie celsjusza.
+        return self.__celsjusz * 9 / 5 + 32
+
+t = Temperatura(25)
+t.celsjusz = 30       # Setter działa w tle — waliduje i przypisuje nową wartość
+print(t.celsjusz)     # Getter działa w tle — zwraca 30
+print(t.fahrenheit)   # Oblicza się w locie i zwraca 86.0
+
+t.celsjusz = -300     # Wywołuje setter i blokuje ujemną temperaturę błędem!
+# t.fahrenheit = 100  # Spowodowałoby błąd AttributeError, bo ten atrybut jest tylko do odczytu
 ```
 
 ---
