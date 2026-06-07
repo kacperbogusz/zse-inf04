@@ -4,7 +4,6 @@ Ten dokument jest praktycznym przewodnikiem po **.NET MAUI**. Prowadzi od podsta
 
 Materiał skupia się na aplikacjach użytkowych: formularzach, listach, obrazach, suwakach, przyciskach, komunikatach, pracy z plikami i prostych danych. Zaawansowane wzorce architektoniczne są pominięte albo ograniczone do minimum, bo na początku ważniejsze jest sprawne zbudowanie działającego ekranu i poprawna obsługa zdarzeń.
 
-> [!NOTE]
 > Przykłady kodu pokazują zwykle dwa pliki: widok `.xaml` oraz logikę `.xaml.cs`. To najprostszy i najbardziej bezpośredni sposób nauki MAUI: najpierw budujesz ekran, potem podpinasz zdarzenia i aktualizujesz widok z code-behind.
 
 ## Spis treści
@@ -561,7 +560,6 @@ Po .NET MAUI sięgamy wtedy, gdy chcemy **jedną aplikację na wiele platform** 
 - MAUI to **następca Xamarin.Forms**, oparty na nowoczesnym **.NET**.
 - Architektura **jednego projektu** (Single Project) trzyma cały kod i zasoby w jednym miejscu.
 
-> [!TIP]
 > W tym podręczniku najczęściej mówimy o zastosowaniu **mobilnym** (telefon), bo to ono dominuje w nauce. Pamiętaj jednak, że niemal wszystkie pokazane mechanizmy działają identycznie również na komputerze.
 
 **Na co uważać:**
@@ -608,7 +606,6 @@ Do bardzo wymagających graficznie gier (silniki 3D, zaawansowana fizyka) lepiej
 | **macOS** | komputery Apple (Mac Catalyst) | komputer Mac z Xcode |
 | **Windows** | komputery z Windows (WinUI 3) | Windows + Windows App SDK |
 
-> [!IMPORTANT]
 > Aby tworzyć i testować aplikacje na **iOS** oraz **macOS**, potrzebny jest komputer **Mac** - to wymóg Apple. Na Windows zbudujesz aplikacje na **Android** i **Windows** bez przeszkód. Android można budować zarówno na Windows, jak i na macOS.
 
 **Na co uważać:**
@@ -720,7 +717,6 @@ Część przykładów znalezionych w sieci dotyczy Xamarin.Forms. Zwykle da się
 - Framework wybiera odpowiednie elementy w zależności od budowanej platformy.
 - Zasoby (obrazy, czcionki) są **współdzielone** i automatycznie dostosowywane.
 
-> [!TIP]
 > Na początku nauki możesz całkowicie zignorować folder `Platforms`. Cała Twoja praca odbywa się w plikach `.xaml` i `.xaml.cs` w głównym katalogu projektu.
 
 **Na co uważać:**
@@ -778,13 +774,7 @@ Najczęstszą barierą na starcie jest **konfiguracja środowiska** (instalacja 
 
 Wybór technologii to kompromis. MAUI błyszczy przy aplikacjach wieloplatformowych z typowym interfejsem. Gdy wymagania są skrajne (tylko jedna platforma, ekstremalna wydajność, czysty web), inne narzędzia mogą pasować lepiej. Dla większości aplikacji biznesowych i narzędziowych MAUI jest jednak bardzo dobrym, uniwersalnym wyborem.
 
-> [!NOTE]
 > W kolejnym rozdziale przygotujemy środowisko pracy: zainstalujemy potrzebne narzędzia, utworzymy pierwszy projekt i uruchomimy go. To fundament, bez którego nie ruszymy z praktyką.
-
----
-
----
-
 
 ---
 
@@ -807,7 +797,6 @@ Visual Studio służy do **pisania, uruchamiania i debugowania** aplikacji MAUI.
 - Ma wbudowane wsparcie dla MAUI po zainstalowaniu odpowiedniego **workloadu**.
 - Zawiera edytor kodu, debugger, podgląd XAML i menedżer urządzeń.
 
-> [!TIP]
 > Jeśli dopiero zaczynasz na Windows, **Visual Studio Community** to najprostsza droga. Większość rzeczy zrobisz tam „klikając", bez ręcznego używania terminala.
 
 **Na co uważać:**
@@ -1099,7 +1088,6 @@ Pierwsze uruchomienie bywa źródłem frustracji, bo środowisko składa się z 
 
 Większość problemów ze środowiskiem rozwiązuje jedna z trzech czynności: **przebudowanie projektu** (Clean + Rebuild), **aktualizacja workloadów** (`dotnet workload update`) lub **ponowne uruchomienie środowiska/komputera**. Jeśli coś nie działa po instalacji, najpierw spróbuj tych kroków, zanim zaczniesz szukać bardziej złożonych przyczyn.
 
-> [!TIP]
 > Pierwsze budowanie projektu zawsze trwa najdłużej, bo pobierane są zależności i przygotowywane są zasoby. Kolejne uruchomienia są znacznie szybsze. Nie zniechęcaj się długim startem za pierwszym razem.
 
 ---
@@ -1397,7 +1385,6 @@ Folder **`Resources`** przechowuje **zasoby współdzielone** aplikacji: obrazy,
 | `Resources/AppIcon` | ikona aplikacji |
 | `Resources/Splash` | ekran powitalny (splash screen) |
 
-> [!WARNING]
 > Nazwy plików obrazów muszą być pisane **małymi literami**, bez spacji i myślników (np. `logo.png`, `kostka1.png`). Plik `Moja Grafika.png` spowoduje błąd budowania.
 
 **Na co uważać:**
@@ -1459,13 +1446,7 @@ Zasady:
 
 Nie musisz od razu używać wszystkich folderów. Ale nawet w prostym projekcie warto wydzielić przynajmniej `Models`, `Helpers` i `Data` - to ułatwia późniejszą rozbudowę i sprawia, że kod jest czytelniejszy.
 
-> [!TIP]
 > Porządek w projekcie to nie „ozdoba", lecz realna oszczędność czasu. W uporządkowanym projekcie szybciej znajdujesz pliki, łatwiej dodajesz funkcje i rzadziej powielasz kod.
-
----
-
----
-
 
 ---
 
@@ -1497,7 +1478,6 @@ if (wiek >= 18)           // początek warunku
 }                         // koniec bloku
 ```
 
-> [!TIP]
 > Zasada na start: każda „czynność" to jedna instrukcja zakończona `;`, a powiązane instrukcje grupujemy w bloku `{ }`. Trzymaj porządek w wcięciach od pierwszego dnia - zaoszczędzi Ci to mnóstwo błędów.
 
 
@@ -1595,7 +1575,6 @@ double polowa = 7.0 / 2.0;         // 3.5 (bo to double, nie int)
 | `double` | duża | (brak) | **domyślny** dla obliczeń |
 | `decimal` | bardzo duża | `m` | **pieniądze**, finanse |
 
-> [!WARNING]
 > Do kwot pieniężnych używaj **`decimal`**, nie `double`. `double` przechowuje liczby w przybliżeniu, przez co `0.1 + 0.2` może dać `0.30000000000000004`. Dla cen i sald takie błędy są niedopuszczalne - `decimal` ich nie ma.
 
 **Na co uważać:** liczby z kropką bez przyrostka są typu `double` - przypisanie `decimal cena = 19.99;` (bez `m`) to błąd. Pamiętaj o kropce zamiast przecinka. Przy dzieleniu, jeśli choć jedna liczba jest `double` (np. `7.0`), wynik będzie `double` z częścią ułamkową.
@@ -1959,7 +1938,6 @@ int zaokraglone = (int)Math.Round(3.9);    // 4
 | `string` -> `int` | `int.Parse` | rzuca wyjątek przy błędzie |
 | liczba -> `string` | `.ToString()` | opcjonalny format |
 
-> [!WARNING]
 > Na danych od użytkownika **zawsze** używaj `TryParse`, nie `Parse`. `int.Parse("abc")` rzuci wyjątek i zatrzyma aplikację; `int.TryParse("abc", out var x)` bezpiecznie zwróci `false`.
 
 **Na co uważać:** rzutowanie `(int)` na `double` **obcina**, a nie zaokrągla - `(int)3.9` to `3`. Aby zaokrąglić, użyj `Math.Round`. Pamiętaj, że suwak (`Slider.Value`) zwraca `double` - do liczby całkowitej rzutuj: `(int)Suwak.Value`.
@@ -2059,7 +2037,6 @@ if (zalogowany && maUprawnienia)
 }
 ```
 
-> [!TIP]
 > Wzorzec **wczesnego wyjścia** (early return) bardzo poprawia czytelność walidacji: sprawdzaj warunki po kolei i przerywaj `return`, gdy coś jest nie tak, zamiast budować głębokie zagnieżdżenia `if`.
 
 ```csharp
@@ -3177,13 +3154,7 @@ private void Pokaz(string tekst, bool ok)
 
 **Na co uważać:** trzymaj się schematu **odczytaj -> sprawdź -> policz -> pokaż**. Najpierw waliduj (z wczesnym wyjściem `return`), potem licz, na końcu aktualizuj widok. Pomocnicza metoda (`Pokaz`) eliminuje powtarzanie. Ten wzorzec to fundament niemal każdej logiki w aplikacji - opanuj go, a poradzisz sobie z większością zadań.
 
-> [!TIP]
 > To koniec kursu podstaw C#. Jeśli rozumiesz zmienne i typy, operatory, warunki, wszystkie pętle, tablice i listy, metody oraz klasy - masz solidny fundament. Reszta podręcznika pokazuje, jak użyć tej wiedzy do budowania interfejsu i logiki aplikacji MAUI. Wracaj do tego rozdziału, gdy coś w kodzie będzie niejasne.
-
----
-
----
-
 
 ---
 
@@ -3457,7 +3428,6 @@ XAML jest wymagający co do składni. Poniższa tabela zbiera najczęstsze błę
 
 Większość błędów XAML to drobne pomyłki składni: niezamknięty znacznik, brak cudzysłowu, zła wielkość liter. Czytaj komunikaty błędów - zwykle wskazują linię i element, w którym jest problem. Edytor z podpowiedziami (IntelliSense) znacząco redukuje takie pomyłki.
 
-> [!TIP]
 > Gdy XAML „nie chce się skompilować", zacznij od sprawdzenia trzech rzeczy: czy wszystkie znaczniki są zamknięte, czy wszystkie wartości mają cudzysłowy oraz czy `ContentPage` ma tylko jedno dziecko. To pokrywa większość typowych błędów.
 
 
@@ -4008,7 +3978,6 @@ protected override async void OnAppearing()
 
 Odświeżanie w `OnAppearing` jest proste, ale uważaj, by nie wykonywać **ciężkich** operacji za każdym wejściem, jeśli dane się nie zmieniły. W większych aplikacjach warto sprawdzać, czy odświeżenie jest naprawdę potrzebne (np. flagą „dane zmienione").
 
-> [!TIP]
 > Zapamiętaj prostą zasadę: **konstruktor = raz, `OnAppearing` = za każdym razem**. To rozróżnienie rozwiązuje większość problemów z „nieodświeżającymi się" danymi po powrocie z innego ekranu.
 
 ---
@@ -4301,13 +4270,7 @@ public partial class SzczegolyPage : ContentPage, IQueryAttributable
 
 Najczęstsze problemy to brak kontenera nawigacji (`NavigationPage`/Shell) oraz brak rejestracji trasy w Shell. Zawsze wywołuj metody nawigacji z `await`. Aby uniknąć podwójnej nawigacji przy szybkim dwukrotnym kliknięciu, możesz na chwilę wyłączyć przycisk (`IsEnabled = false`).
 
-> [!TIP]
 > Dla większości aplikacji z kilkoma ekranami **Shell** jest najwygodniejszym wyborem - łączy menu, zakładki i nawigację URI w jednym, spójnym mechanizmie. Klasyczny `NavigationPage` świetnie sprawdza się w prostych aplikacjach „lista -> szczegóły".
-
----
-
----
-
 
 ---
 
@@ -4811,7 +4774,6 @@ Nie ma jednego „najlepszego" layoutu - liczy się dobór do zadania. W praktyc
 
 Większość problemów z układem wynika z trzech przyczyn: zbyt wielu dzieci tam, gdzie dozwolone jest jedno; sztywnych rozmiarów psujących responsywność; oraz braku `ScrollView` przy dłuższej treści. Pilnując tych trzech rzeczy, unikniesz większości kłopotów.
 
-> [!TIP]
 > Buduj ekran „od zewnątrz do środka": najpierw wybierz layout główny (zwykle `VerticalStackLayout` lub `Grid` w `ScrollView`), potem dodawaj wewnątrz mniejsze layouty dla poszczególnych fragmentów. Taka warstwowa budowa jest czytelna i łatwa w modyfikacji.
 
 
@@ -5213,7 +5175,6 @@ To przykład „żywego" interfejsu: jedna wartość (z suwaka) steruje kilkoma 
 
 Najczęstsze potknięcia to mylenie właściwości kolorów (`Color` vs `BackgroundColor`) oraz brak rzutowania wartości suwaka na `int`. Pamiętaj też o czytelności kolorów w obu trybach motywu.
 
-> [!TIP]
 > Kolory i suwaki to podstawa „dynamicznego" interfejsu. Połączenie `Slider` + `ValueChanged` + zmiana właściwości (kolor, rozmiar, widoczność) daje natychmiastową, efektowną reakcję na działania użytkownika. Wzornik RGB to świetne ćwiczenie łączące te elementy.
 
 
@@ -5309,7 +5270,6 @@ MAUI udostępnia w klasie **`Colors`** dziesiątki gotowych, **nazwanych koloró
 | `LightSlateGray` | `#778899` | `DarkSlateGray` | `#2F4F4F` |
 | `Transparent` | `#00000000` | `Beige` | `#F5F5DC` |
 
-> [!NOTE]
 > Wszystkie powyższe nazwy działają zarówno w XAML (np. `BackgroundColor="SteelBlue"`), jak i w C# (`Colors.SteelBlue`). `Transparent` to kolor w pełni przezroczysty - przydatny do „niewidocznego" tła. Gdy potrzebujesz odcienia spoza listy, użyj zapisu HEX.
 
 
@@ -5507,11 +5467,6 @@ public class WiadomoscSelector : DataTemplateSelector
 
 ---
 
----
-
-
----
-
 ## 14. Kontrolki tekstowe
 
 
@@ -5587,7 +5542,6 @@ Wynik.TextColor = punkty >= 50 ? Colors.Green : Colors.Red;
 </Label>
 ```
 
-> [!TIP]
 > Do dynamicznego budowania tekstu używaj interpolacji: `Wynik.Text = $"Suma: {suma} zł";`. To czytelniejsze i mniej podatne na błędy niż sklejanie operatorem `+`.
 
 
@@ -5669,7 +5623,6 @@ private void OnZaloguj(object sender, EventArgs e)
 - Pobieranie liczby bez `TryParse` (wyjątek przy złym wpisie).
 - Mylenie `Text` (realna wartość) z `Placeholder` (tylko podpowiedź).
 
-> [!WARNING]
 > Zanim porównasz lub przetworzysz `Entry.Text`, sprawdź `string.IsNullOrWhiteSpace(PoleEmail.Text)`. Dla pustego pola `Text` może być `null`, a operacje na `null` powodują błąd.
 
 
@@ -5786,7 +5739,6 @@ private void OnSzukaj(object sender, TextChangedEventArgs e)
 - Porównywanie bez ujednolicenia wielkości liter (`ToLower`) - wyszukiwanie „rozróżnia" wielkość.
 - Brak obsługi pustej frazy (powinna pokazać całą listę).
 
-> [!TIP]
 > Do filtrowania „na żywo" używaj `TextChanged` oraz metod LINQ `Where` i `Contains`. Porównuj po `ToLower()`, aby wyszukiwanie ignorowało wielkość liter.
 
 
@@ -7203,9 +7155,6 @@ public partial class ProductSearchPage : ContentPage
 
 ---
 
-
----
-
 ## 15. Przyciski i akcje użytkownika
 
 ### 15.1. Button
@@ -7269,7 +7218,6 @@ private void OnDowolny(object sender, EventArgs e)
 
 - Umieszczenie wielu odpowiedzialności w jednym przycisku.
 
-> [!NOTE]
 > Jeden handler może obsłużyć kilka przycisków - rzutuj `sender` na `Button` i sprawdź np. jego `Text` lub `ClassId`, aby rozpoznać, który przycisk wysłał zdarzenie.
 
 
@@ -7733,9 +7681,6 @@ Content = layout;
 
 ---
 
-
----
-
 ## 16. Kontrolki wyboru i wartości liczbowe
 
 ### 16.1. Slider - odczyt wartości i ValueChanged
@@ -7848,7 +7793,6 @@ private void OnRozmiar(object sender, CheckedChangedEventArgs e)
 
 - Brak `GroupName` - przyciski nie wykluczają się i można zaznaczyć kilka naraz.
 
-> [!WARNING]
 > Bez wspólnego `GroupName` przyciski radiowe nie tworzą grupy. Zawsze nadawaj tę samą nazwę grupy opcjom, które mają się wzajemnie wykluczać.
 
 
@@ -7918,7 +7862,6 @@ private void OnPrzelaczono(object sender, ToggledEventArgs e)
 **Na co uważać:**
 
 
-> [!TIP]
 > Wszystkie te kontrolki przechowują **stan logiczny** (`bool`). W logice aplikacji odczytujesz ten stan i podejmujesz decyzję instrukcją `if`. To prosty, ale fundamentalny wzorzec interakcji.
 
 
@@ -8069,7 +8012,6 @@ var wybrany = (Produkt)ListaProduktow.SelectedItem;
 - Odwołanie do `SelectedItem` bez sprawdzenia `SelectedIndex != -1` (na starcie nic nie jest wybrane -> `null`).
 - Brak `ItemDisplayBinding` przy liście obiektów (pokazuje nazwę typu zamiast właściwości).
 
-> [!WARNING]
 > Zawsze sprawdzaj `SelectedIndex != -1` przed użyciem `SelectedItem`. Na starcie nic nie jest wybrane, a `SelectedItem` jest `null` - odwołanie do niego spowoduje błąd.
 
 
@@ -8209,7 +8151,6 @@ private void OnRozmiar(object sender, ValueChangedEventArgs e)
 - Pominięcie rzutowania na `int` przy wartościach całkowitych (np. `23.7`).
 - Odczyt `Suwak.Value` zamiast wygodnego `e.NewValue` w handlerze.
 
-> [!TIP]
 
 
 ### 16.13. Stepper
@@ -8276,7 +8217,6 @@ private void OnIlosc(object sender, ValueChangedEventArgs e)
 
 Wybierz `Slider`, gdy ważna jest płynność i szeroki zakres (np. głośność). Wybierz `Stepper`, gdy chcesz precyzyjnych, małych zmian liczby i chcesz uniknąć ręcznego wpisywania. Obie kontrolki zwracają `double` - do liczb całkowitych rzutuj na `int`.
 
-> [!TIP]
 > Wszystkie kontrolki z tego rozdziału świetnie współpracują z `Label` pokazującym aktualnie wybraną wartość. Po każdej zmianie aktualizuj etykietę - to natychmiastowa, czytelna informacja zwrotna dla użytkownika.
 
 
@@ -8875,9 +8815,6 @@ public class SettingsPage : ContentPage
 
 ---
 
-
----
-
 ## 17. Kontrolki graficzne i prezentacyjne
 
 ### 17.1. Image
@@ -8953,7 +8890,6 @@ ObrazKostki.Source = $"kostka{wartosc}.png"; // -> "kostka3.png"
 - Brak pliku w `Resources/Images`.
 - Zapomnienie o przebudowaniu projektu po dodaniu obrazu.
 
-> [!WARNING]
 > Nazwy plików obrazów muszą być pisane **małymi literami**, bez spacji i myślników (`kostka1.png`, nie `Kostka 1.png`). Po dodaniu nowego obrazu **przebuduj** projekt.
 
 
@@ -9005,7 +8941,6 @@ private async void OnPobierz(object sender, EventArgs e)
 - Brak ukrycia wskaźnika po zakończeniu (kręci się w nieskończoność).
 - Ukrycie poza blokiem `finally` (pozostaje przy błędzie).
 
-> [!TIP]
 > Ukrywanie wskaźnika umieszczaj w bloku `finally` - zniknie nawet, gdy operacja zakończy się błędem.
 
 
@@ -9049,7 +8984,6 @@ private async void OnStart(object sender, EventArgs e)
 
 - Przekazanie wartości spoza zakresu 0–1 (np. procentów 0–100).
 
-> [!NOTE]
 > `Progress` przyjmuje wartość od `0.0` do `1.0`. Jeśli masz procenty (0–100), podziel je przez 100: `Pasek.Progress = procent / 100.0;`.
 
 
@@ -9181,7 +9115,6 @@ StatusKropka.Color = aktywne ? Colors.Green : Colors.Red;
 
 Dobierz wskaźnik do sytuacji: gdy znasz postęp - `ProgressBar`; gdy nie - `ActivityIndicator`. Do kart używaj `Border` (nowoczesny) zamiast `Frame` (starszy). `Image` to najczęściej zmieniana dynamicznie kontrolka, więc wróć do niej przy pracy z obrazami.
 
-> [!TIP]
 > Wskaźniki postępu i aktywności bardzo poprawiają odbiór aplikacji. Użytkownik, który widzi „kręciołkę" podczas ładowania, wie, że aplikacja działa - bez niej mógłby pomyśleć, że się zawiesiła.
 
 
@@ -9818,7 +9751,6 @@ Obraz.Source = ImageSource.FromFile(sciezkaDoPliku);
 
 Obraz z zasobów wymaga poprawnej nazwy (małe litery, bez spacji). Obraz z URL wymaga sieci i może się nie załadować (warto przewidzieć obraz zastępczy). Obraz z pliku lokalnego podajemy przez pełną ścieżkę (zwykle w `AppDataDirectory`).
 
-> [!TIP]
 > Ten rozdział to Twoja „ściąga" z właściwości. Gdy nie pamiętasz, czy użyć `Text` czy `Content`, `IsVisible` czy `IsEnabled`, `List` czy `ObservableCollection` - wróć do odpowiedniego porównania. Znajomość tych par różnic eliminuje większość typowych pomyłek.
 
 
@@ -9916,7 +9848,6 @@ Etykieta.Rotation = 15;         // obróć o 15 stopni
 Etykieta.TranslationX = 30;     // przesuń w prawo o 30
 ```
 
-> [!TIP]
 > Skoro te właściwości ma **każda** kontrolka, opanowanie ich raz pozwala sterować wyglądem i zachowaniem wszystkich elementów. Najczęściej używane to `WidthRequest`/`HeightRequest`, `Margin`, `BackgroundColor`, `Opacity`, `IsVisible`, `IsEnabled` oraz `HorizontalOptions`/`VerticalOptions`.
 
 
@@ -9948,9 +9879,6 @@ layout.Padding = new Thickness(16, 24);
 
 ---
 
----
-
-
 ### 19.16. Podsumowanie kontrolek
 
 | Kontrolka | Typ | Główne zdarzenie | Kluczowe właściwości |
@@ -9960,9 +9888,6 @@ layout.Padding = new Thickness(16, 24);
 | Editor | Pole wieloliniowe | TextChanged, Completed | AutoSize, MaxLength, Placeholder |
 | SearchBar | Pole wyszukiwania | TextChanged, SearchButtonPressed | Placeholder, Text |
 | Switch | Przełącznik | Toggled | IsToggled, OnColor, ThumbColor |
-
-
----
 
 
 ---
@@ -10179,7 +10104,6 @@ private void OnObrazDotkniety(object sender, EventArgs e)
 
 - Brak `GestureRecognizers` - element nie reaguje na dotyk.
 
-> [!TIP]
 > Gdy kilka obrazów współdzieli jeden handler, ustaw im unikalne `ClassId` (np. numer) w XAML i odczytaj `((Image)sender).ClassId` w kodzie, by rozpoznać, który obraz dotknięto.
 
 
@@ -10262,7 +10186,6 @@ Jedna akcja użytkownika często zmienia **kilka rzeczy** na ekranie naraz (teks
 
 Najczęstsze problemy to niezgodność nazwy metody z XAML oraz zły typ parametru `e`. Pamiętaj też, by nie podpinać tego samego handlera wielokrotnie operatorem `+=` (np. w `OnAppearing`), bo wtedy wykona się kilka razy.
 
-> [!TIP]
 
 
 ### 20.11. Receptury - gotowe przykłady łączone (XAML + C#)
@@ -10756,7 +10679,6 @@ Każdy suwak zwraca `double` - rzutuj na `int`, bo składowe koloru to liczby ca
 
 Dobór typu stanu zależy od tego, co pamiętamy. Pamiętaj o trzech zasadach: stan trzymaj w **polach klasy**, po zmianie stanu **aktualizuj interfejs**, a stan traktuj jako **źródło prawdy** (wygląd to jego odbicie).
 
-> [!TIP]
 > Świadome zarządzanie stanem to fundament dobrych aplikacji. Jeśli potrafisz odpowiedzieć na pytanie „co moja aplikacja musi pamiętać?" i konsekwentnie aktualizujesz interfejs po każdej zmianie stanu, większość interakcji staje się prosta i przewidywalna.
 
 ---
@@ -11077,13 +10999,7 @@ Logika „wmieszana" w handlery przycisków jest praktycznie nietestowalna bez u
 
 Złota zasada: **widok pokazuje, logika liczy**. Wydzielaj walidację, obliczenia, losowanie i operacje na danych do klas pomocniczych, modeli i klas pomocniczych. Kod staje się czytelniejszy, łatwiejszy do ponownego użycia i testowalny.
 
-> [!TIP]
 > Oddzielanie logiki od widoku to krok w stronę czytelnej architektury. Nawet w prostej aplikacji wydzielenie walidacji, obliczeń i operacji na danych do osobnych klas znacząco poprawia jakość kodu.
-
----
-
----
-
 
 ---
 
@@ -11565,7 +11481,6 @@ public partial class ZgloszeniePage : ContentPage
 **Na co uważać:**
 
 
-> [!TIP]
 > Dobry formularz prowadzi użytkownika za rękę: ma czytelne etykiety, sensowne podpowiedzi (`Placeholder`), walidację z jasnym komunikatem i - opcjonalnie - blokadę przycisku do czasu poprawnego wypełnienia. Walidacji poświęcamy w całości następny rozdział.
 
 
@@ -13589,9 +13504,6 @@ public partial class ReviewPage : ContentPage
 
 ---
 
-
----
-
 ## 24. Walidacja i komunikaty dla użytkownika
 
 ### 24.1. Po co walidować dane
@@ -13950,7 +13862,6 @@ Zauważ kolejność: pustość -> format e-maila -> długość hasła -> zgodno�
 
 Najczęstsze pułapki to `Parse` zamiast `TryParse` oraz brak zabezpieczenia przed `null`. Waliduj zawsze **przed** użyciem danych, pokazuj czytelny komunikat i sprawdzaj warunki w sensownej kolejności (pustość -> format -> logika).
 
-> [!IMPORTANT]
 > Walidacja to nie „dodatek", lecz integralna część każdego formularza. Trzy filary dobrej walidacji to: sprawdzaj **przed** przetworzeniem, używaj **`TryParse`** dla liczb i **`IsNullOrWhiteSpace`** dla tekstu, oraz zawsze **informuj** użytkownika o wyniku.
 
 ---
@@ -14144,13 +14055,9 @@ Po **udanym zapisie** krótki komunikat potwierdzający buduje zaufanie użytkow
 
 Najczęstszy błąd to zapomnienie `async`/`await`. Pamiętaj też, że `DisplayActionSheet` i `DisplayPromptAsync` mogą zwrócić wynik anulowania/`null` - zawsze go sprawdzaj przed podjęciem akcji.
 
-> [!TIP]
 > Dialogi to szybki sposób komunikacji bez budowania własnych ekranów. Zasada: potwierdzenia i ważne komunikaty -> dialog; dyskretne, ciągłe informacje (walidacja na żywo) -> etykieta. Zawsze obsługuj `async`/`await` i sprawdzaj wyniki anulowania.
 
 ---
-
----
-
 
 ### 24.22. Podsumowanie technik walidacji
 
@@ -14165,12 +14072,6 @@ Najczęstszy błąd to zapomnienie `async`/`await`. Pamiętaj też, że `Display
 | `TextColor = Colors.Red/Green` | Komunikaty zmieniające kolor |
 | `DisplayAlert()` | Wyświetlenie komunikatu po akcji |
 | `Slider` + `Math.Round` | Wartości całkowite ze Slidera |
-
----
-
-
----
-
 
 ---
 
@@ -14558,7 +14459,6 @@ Gdy lista jest pusta, warto pokazać **komunikat zastępczy** zamiast pustego ek
 
 Najważniejsza zasada: do list wyświetlanych używaj **`ObservableCollection`**, podepnij `ItemsSource` **raz** i operuj na kolekcji (`Add`/`Remove`/`Clear`). To rozwiązuje większość problemów z odświeżaniem.
 
-> [!TIP]
 > Para `CollectionView` + `ObservableCollection` to przepis na dynamiczną listę. Dodajesz element przez `Add`, usuwasz przez `Remove`, a widok aktualizuje się sam. To jeden z najważniejszych wzorców w aplikacjach MAUI - opanuj go dobrze.
 
 ---
@@ -16677,9 +16577,6 @@ Każdy przykład zawiera kompletny kod XAML oraz C# gotowy do użycia w projekci
 
 ---
 
-
----
-
 ## 26. Binding danych w praktyce
 
 ### 26.1. Czym jest binding
@@ -16955,13 +16852,7 @@ Pamiętaj o dwóch poziomach powiadamiania: `INotifyPropertyChanged` dla **wła�
 
 Trzy najczęstsze problemy: brak `BindingContext`, brak `INotifyPropertyChanged` i użycie `List` zamiast `ObservableCollection`. Gdy „binding nie działa", sprawdź je w tej kolejności - to rozwiązuje większość przypadków.
 
-> [!TIP]
 > Binding to most między danymi a widokiem. Zapamiętaj: ustaw **`BindingContext`**, dla pól edycji używaj **`TwoWay`**, a do dynamicznych list używaj **`ObservableCollection`**. `INotifyPropertyChanged` potraktuj jako kolejny krok, gdy chcesz automatycznie odświeżać pojedyncze właściwości obiektu.
-
----
-
----
-
 
 ---
 
@@ -17006,7 +16897,6 @@ MAUI ma **rygorystyczne wymagania** co do nazw plików obrazów. Nazwa musi skł
 
 To **bardzo częsty błąd początkujących**. Trzymaj się schematu: małe litery, cyfry, podkreślniki. `Moja Grafika.png` -> zmień na `moja_grafika.png`. Po zmianie nazwy przebuduj projekt.
 
-> [!WARNING]
 > Plik o nazwie z wielką literą, spacją lub myślnikiem **uniemożliwi zbudowanie** aplikacji. To jedna z najczęstszych przyczyn błędów budowania związanych z zasobami.
 
 
@@ -17319,7 +17209,6 @@ To wzorcowy przykład „obraz = odbicie stanu". Wartości i blokady trzymamy w 
 
 Najczęstsze problemy z obrazami to **nazwy plików** (wielkie litery, spacje) i **brak przebudowania** po dodaniu. Dwie złote zasady: nazywaj pliki małymi literami bez spacji, a po dodaniu obrazu wykonuj Rebuild.
 
-> [!TIP]
 > Obrazy to często najbardziej „dynamiczna" część interfejsu - podmieniasz je w reakcji na stan. Opanuj trzy rzeczy: poprawne nazewnictwo, podmianę `Source` w kodzie (z interpolacją nazwy) oraz `Opacity` do oznaczania stanu. To pokrywa większość zastosowań.
 
 ---
@@ -17649,9 +17538,6 @@ public partial class KlikalnyObrazPage : ContentPage
     }
 }
 ```
-
----
-
 
 ---
 
@@ -18099,13 +17985,9 @@ Prywatny katalog aplikacji (`AppDataDirectory`) **nie wymaga** specjalnych upraw
 
 Trzy najważniejsze zasady pracy z plikami: (1) **buduj ścieżki** przez `Path.Combine` + `AppDataDirectory`, (2) **sprawdzaj istnienie** przed odczytem/usunięciem i otaczaj operacje `try/catch`, (3) pamiętaj o różnicy: **zasoby** są tylko do odczytu (czytane przez `OpenAppPackageFileAsync`), a **pliki użytkownika** zapisujesz w `AppDataDirectory`.
 
-> [!IMPORTANT]
 > Najczęstsze nieporozumienie początkujących: próba zapisu do `Resources/Raw` lub `Resources/Images`. Te foldery są **tylko do odczytu** (część pakietu aplikacji). Wszystko, co aplikacja tworzy lub zmienia, zapisuj w `FileSystem.AppDataDirectory`.
 
 ---
-
----
-
 
 ### 28.18. Receptury plików, obrazów, danych i API
 
@@ -18799,9 +18681,6 @@ public partial class MediaPickerGaleriaPage : ContentPage
 
 ---
 
-
----
-
 ## 29. Preferences i ustawienia aplikacji
 
 
@@ -19002,7 +18881,6 @@ Wczytuj zapamiętane ustawienia w `OnAppearing` lub w konstruktorze, a zapisuj p
 
 `Preferences` to narzędzie do **małych** ustawień. Pamiętaj o wartościach domyślnych, zgodności typów i o tym, by nie przechowywać tam danych wrażliwych ani dużych struktur.
 
-> [!TIP]
 > `Preferences` to najprostszy sposób, by aplikacja „pamiętała" wybory użytkownika między uruchomieniami. Zapisuj drobne ustawienia (motyw, login, rozmiar czcionki), odczytuj je przy starcie z sensowną wartością domyślną, a wrażliwe dane trzymaj w `SecureStorage`.
 
 ---
@@ -19188,9 +19066,6 @@ public partial class MotywPage : ContentPage
     }
 }
 ```
-
----
-
 
 ---
 
@@ -19513,13 +19388,9 @@ public class ZadaniaBaza
 
 Najczęstsze potknięcia: brak atrybutów klucza, ręczne ustawianie `Id` oraz brak utworzenia tabeli. Pamiętaj, że wszystkie operacje są asynchroniczne (`await`), a po każdej zmianie odświeżaj widok.
 
-> [!TIP]
 > SQLite to standardowy sposób trwałego przechowywania większych danych w MAUI. Zapamiętaj przepis: model z `[PrimaryKey, AutoIncrement]`, klasa bazy z leniwym `Init` i `CreateTableAsync`, metody CRUD oparte na `InsertAsync`/`UpdateAsync`/`DeleteAsync`/`Table<T>()`, oraz odświeżanie widoku po każdej operacji.
 
 ---
-
----
-
 
 ### 30.13. SQLite - model + klasa bazy CRUD
 
@@ -19870,9 +19741,6 @@ public partial class ZadaniaPage : ContentPage
 
 ---
 
-
----
-
 ## 31. API, JSON i HttpClient - temat opcjonalny
 
 
@@ -20136,13 +20004,9 @@ Rozróżniaj rodzaje błędów: `HttpRequestException` to zwykle problem z sieci
 
 Trzy filary pracy z API: **asynchroniczność** (`await`), **obsługa błędów** (`try/catch` + sprawdzanie statusu) oraz **zgodność modelu** z JSON. Zawsze pokazuj użytkownikowi, że trwa pobieranie, i informuj o problemach.
 
-> [!TIP]
 > Praca z API to: pobierz (`GetFromJsonAsync`), pokaż wskaźnik ładowania, obsłuż błędy, zdeserializuj na model i wyświetl w `CollectionView`. Logikę pobierania danych trzymaj w osobnej klasie, a `HttpClient` współdziel. To wzorzec aplikacji takich jak pogodynka czy katalog online.
 
 ---
-
----
-
 
 ### 31.12. HttpClient GET + JSON (GetFromJsonAsync)
 
@@ -20730,7 +20594,6 @@ Sprawdzaj `Connectivity` **przed** żądaniami sieciowymi - to oszczędza użytk
 
 Praca z funkcjami urządzenia wymaga trzech kroków: **zadeklaruj** uprawnienie, **poproś** o nie w runtime, **obsłuż odmowę** i niedostępność. Zawsze otaczaj wywołania `try/catch`, bo zachowanie różni się między platformami i urządzeniami.
 
-> [!TIP]
 > Funkcje urządzenia ożywiają aplikację (aparat, GPS, udostępnianie), ale wiążą się z uprawnieniami i różnicami platform. Zasada: zadeklaruj -> poproś -> obsłuż odmowę. Przed żądaniami sieciowymi sprawdzaj `Connectivity`.
 
 ---
@@ -20891,13 +20754,7 @@ Nie zakładaj, że „skoro działa na Windows, zadziała wszędzie". Testuj na 
 
 Do różnic w **wartościach** używaj `OnPlatform`/`OnIdiom` (czytelne, w XAML), a `#if` rezerwuj na różnice w **kodzie**. Zawsze testuj na docelowych platformach.
 
-> [!TIP]
 > Większość aplikacji wymaga niewiele kodu specyficznego dla platformy. Do różnic w wyglądzie i rozmiarach używaj `OnPlatform` i `OnIdiom`, do drobnych różnic w logice - `#if`. Buduj responsywnie i testuj na realnych urządzeniach.
-
----
-
----
-
 
 ---
 
@@ -21063,7 +20920,6 @@ Nie pokazuj użytkownikowi surowego `ex.Message` z technicznymi szczegółami - 
 
 Najczęstszy wyjątek to `NullReferenceException` - odwołanie do obiektu, który jest `null`. Sprawdzaj `null` (operatory `?.` i `??`), zanim użyjesz obiektu. Drugi częsty błąd to `FormatException` z `Parse` - używaj `TryParse`.
 
-> [!TIP]
 > Dobra strategia: **zapobiegaj** błędom (`TryParse`, `File.Exists`, sprawdzanie `null`), **łap** tylko nieprzewidywalne (sieć, pliki), **informuj** użytkownika prostym komunikatem i **loguj** szczegóły dla siebie. Breakpoint i okno Output to Twoi najlepsi pomocnicy przy szukaniu błędów.
 
 ---
